@@ -1,0 +1,9 @@
+{
+  "name": { "text": "木こり", "color": "green" },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "xp": [
+    { "action": "break_block", "target": "#minecraft:logs", "xp": 5 }
+  ]
+}

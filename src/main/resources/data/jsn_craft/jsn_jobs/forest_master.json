@@ -1,0 +1,13 @@
+{
+  "name": { "text": "森の匠", "color": "dark_green" },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 50,
+  "requires": [
+    { "job": "jsn_craft:lumberjack", "level": 20 }
+  ],
+  "xp": [
+    { "action": "break_block", "target": "#minecraft:logs", "xp": 8 },
+    { "action": "break_block", "target": "#minecraft:leaves", "xp": 1 }
+  ]
+}

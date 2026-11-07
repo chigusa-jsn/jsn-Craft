@@ -1,0 +1,14 @@
+{
+  "name": { "text": "戦士", "color": "red" },
+  "type": "combat",
+  "tier": "basic",
+  "max_level": 50,
+  "xp": [
+    { "action": "kill_entity", "target": "minecraft:creeper", "xp": 15 },
+    { "action": "kill_entity", "target": "minecraft:enderman", "xp": 20 },
+    { "action": "kill_entity", "target": "minecraft:zombie", "xp": 10 },
+    { "action": "kill_entity", "target": "minecraft:skeleton", "xp": 10 },
+    { "action": "kill_entity", "target": "minecraft:spider", "xp": 10 },
+    { "action": "kill_entity", "target": "*", "xp": 2 }
+  ]
+}
