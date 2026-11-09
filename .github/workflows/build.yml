@@ -5,6 +5,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,3 +31,16 @@ jobs:
         with:
           name: jsn-craft-mod
           path: build/libs/*.jar
+
+      # main に入るたびに、.jar をそのままダウンロードできるリリースを作る
+      - name: Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: jsn-Craft ビルド ${{ github.run_number }}
+          body: |
+            自動ビルド版です。下の Assets から .jar をダウンロードして、mods フォルダに入れてください。
+            変更内容: ${{ github.event.head_commit.message }}
+          files: build/libs/*.jar
+          make_latest: true
