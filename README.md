@@ -37,6 +37,29 @@ MMO風の職業システムを追加する Minecraft MOD（NeoForge 1.21.1）。
 | `/job title @s 森の守護者` | 肩書を付ける（OP） |
 | `/job title @s clear` | 肩書を外す（OP） |
 | `/job addxp life 500` | 経験値を足す（テスト用・OP） |
+| `/job board`（または **Kキー**） | 職業メニュー（ステータス・戦闘ボード・生活ボード） |
+| `/job resetboard combat` | スキルボードをリセット（テスト用・OP） |
+
+## スキルボード
+
+職業レベルが1上がるごとにスキルポイント（SP）が1もらえる。SPは職業ごとで、その職業のボードにだけ使える。
+能力が上がるのは、今就いている職業のボードだけ（転職するとお休み、戻ると復活）。
+
+ボードは職業JSONの `board` に書く。ツリー型も盤面型も同じ書き方。
+
+```json
+{ "id": "power1", "x": -2, "y": 1, "cost": 1, "links": ["root"],
+  "name": "鋭刃 I", "icon": "minecraft:stone_sword",
+  "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 0.5 } ] }
+```
+
+| 項目 | 意味 |
+|---|---|
+| `x`, `y` | 盤面上の位置 |
+| `start` | `true` なら最初から解放できる |
+| `links` | つながっているマス。どれかを解放済みなら、このマスも解放できる |
+| `cost` | 必要なSP |
+| `effects` | 上がる能力。`operation` を `add_multiplied_total` にすると「○%アップ」 |
 
 自分の頭上表示は **F5（三人称視点）** で確認できる。
 
