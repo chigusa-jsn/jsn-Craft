@@ -5,6 +5,7 @@ import com.chigusa.jsncraft.job.JobDefinition;
 import com.chigusa.jsncraft.job.JobManager;
 import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.JobType;
+import com.chigusa.jsncraft.job.SkillBoardService;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -28,6 +29,8 @@ import java.util.Map;
 /**
  * /job          自分の職業を見る
  * /job list     職業の一覧
+ * /job board    職業メニュー（ステータス・スキルボード）を開く。Kキーでも開ける
+ * /job resetboard <life|combat>   スキルボードをリセット（OP用）
  * /job change <職業>   転職（例: /job change lumberjack）
  * /job title <プレイヤー> <肩書> | clear   肩書を付ける（OP用）
  * /job addxp <life|combat> <量>   経験値を足す（テスト用・OP用）
@@ -45,6 +48,14 @@ public final class JobCommand {
                 .executes(JobCommand::info)
                 .then(Commands.literal("info").executes(JobCommand::info))
                 .then(Commands.literal("list").executes(JobCommand::list))
+                .then(Commands.literal("board").executes(ctx -> {
+                    SkillBoardService.sendSnapshot(ctx.getSource().getPlayerOrException(), true);
+                    return 1;
+                }))
+                .then(Commands.literal("resetboard")
+                        .requires(s -> s.hasPermission(2))
+                        .then(Commands.literal("life").executes(ctx -> resetBoard(ctx, JobType.LIFE)))
+                        .then(Commands.literal("combat").executes(ctx -> resetBoard(ctx, JobType.COMBAT))))
                 .then(Commands.literal("change")
                         .then(Commands.argument("job", ResourceLocationArgument.id())
                                 .suggests(SUGGEST_JOBS)
@@ -127,6 +138,13 @@ public final class JobCommand {
             return 0;
         }
         JobService.addXp(player, job, IntegerArgumentType.getInteger(ctx, "amount"));
+        return 1;
+    }
+
+    private static int resetBoard(CommandContext<CommandSourceStack> ctx, JobType type) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        SkillBoardService.reset(player, type);
+        ctx.getSource().sendSuccess(() -> Component.literal(type.displayName() + "ジョブのスキルボードをリセットしました"), false);
         return 1;
     }
 

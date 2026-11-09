@@ -1,8 +1,9 @@
 {
-  "name": { "text": "戦士", "color": "red" },
+  "name": { "text": "蒼刃の剣士", "color": "aqua" },
   "type": "combat",
   "tier": "basic",
   "max_level": 50,
+  "skill_points_per_level": 1,
   "xp": [
     { "action": "kill_entity", "target": "minecraft:creeper", "xp": 15 },
     { "action": "kill_entity", "target": "minecraft:enderman", "xp": 20 },
@@ -10,5 +11,46 @@
     { "action": "kill_entity", "target": "minecraft:skeleton", "xp": 10 },
     { "action": "kill_entity", "target": "minecraft:spider", "xp": 10 },
     { "action": "kill_entity", "target": "*", "xp": 2 }
+  ],
+  "board": [
+    { "id": "root", "x": 0, "y": 0, "start": true, "cost": 1,
+      "name": "剣の心得", "icon": "minecraft:wooden_sword",
+      "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 0.5 } ] },
+
+    { "id": "power1", "x": -2, "y": 1, "cost": 1, "links": ["root"],
+      "name": "鋭刃 I", "icon": "minecraft:stone_sword",
+      "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 0.5 } ] },
+    { "id": "power2", "x": -2, "y": 2, "cost": 2, "links": ["power1"],
+      "name": "鋭刃 II", "icon": "minecraft:iron_sword",
+      "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 1.0 } ] },
+    { "id": "power3", "x": -2, "y": 3, "cost": 3, "links": ["power2"],
+      "name": "★ 剛剣", "icon": "minecraft:diamond_sword",
+      "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 0.1, "operation": "add_multiplied_total" } ] },
+
+    { "id": "speed1", "x": 0, "y": 1, "cost": 1, "links": ["root"],
+      "name": "迅剣 I", "icon": "minecraft:feather",
+      "effects": [ { "attribute": "minecraft:generic.attack_speed", "amount": 0.2 } ] },
+    { "id": "speed2", "x": 0, "y": 2, "cost": 2, "links": ["speed1"],
+      "name": "迅剣 II", "icon": "minecraft:sugar",
+      "effects": [ { "attribute": "minecraft:generic.attack_speed", "amount": 0.3 } ] },
+    { "id": "speed3", "x": 0, "y": 3, "cost": 3, "links": ["speed2"],
+      "name": "★ 疾風", "icon": "minecraft:wind_charge",
+      "effects": [
+        { "attribute": "minecraft:generic.attack_speed", "amount": 0.1, "operation": "add_multiplied_total" },
+        { "attribute": "minecraft:generic.movement_speed", "amount": 0.05, "operation": "add_multiplied_base" }
+      ] },
+
+    { "id": "guard1", "x": 2, "y": 1, "cost": 1, "links": ["root"],
+      "name": "頑健 I", "icon": "minecraft:apple",
+      "effects": [ { "attribute": "minecraft:generic.max_health", "amount": 2 } ] },
+    { "id": "guard2", "x": 2, "y": 2, "cost": 2, "links": ["guard1"],
+      "name": "頑健 II", "icon": "minecraft:golden_apple",
+      "effects": [ { "attribute": "minecraft:generic.max_health", "amount": 4 } ] },
+    { "id": "guard3", "x": 2, "y": 3, "cost": 3, "links": ["guard2"],
+      "name": "★ 不屈", "icon": "minecraft:totem_of_undying",
+      "effects": [
+        { "attribute": "minecraft:generic.max_health", "amount": 2 },
+        { "attribute": "minecraft:generic.knockback_resistance", "amount": 0.2 }
+      ] }
   ]
 }

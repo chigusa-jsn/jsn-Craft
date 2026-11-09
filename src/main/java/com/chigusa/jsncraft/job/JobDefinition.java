@@ -23,7 +23,9 @@ public record JobDefinition(
         JobTier tier,
         int maxLevel,
         List<Requirement> requires,
-        List<XpRule> xp
+        List<XpRule> xp,
+        int skillPointsPerLevel,
+        List<BoardNode> board
 ) {
     public static final Codec<JobDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
             ComponentSerialization.CODEC.fieldOf("name").forGetter(JobDefinition::name),
@@ -31,8 +33,14 @@ public record JobDefinition(
             JobTier.CODEC.optionalFieldOf("tier", JobTier.BASIC).forGetter(JobDefinition::tier),
             Codec.intRange(1, 1000).optionalFieldOf("max_level", 50).forGetter(JobDefinition::maxLevel),
             Requirement.CODEC.listOf().optionalFieldOf("requires", List.of()).forGetter(JobDefinition::requires),
-            XpRule.CODEC.listOf().optionalFieldOf("xp", List.of()).forGetter(JobDefinition::xp)
+            XpRule.CODEC.listOf().optionalFieldOf("xp", List.of()).forGetter(JobDefinition::xp),
+            Codec.intRange(0, 100).optionalFieldOf("skill_points_per_level", 1).forGetter(JobDefinition::skillPointsPerLevel),
+            BoardNode.CODEC.listOf().optionalFieldOf("board", List.of()).forGetter(JobDefinition::board)
     ).apply(i, JobDefinition::new));
+
+    public java.util.Optional<BoardNode> node(String id) {
+        return board.stream().filter(n -> n.id().equals(id)).findFirst();
+    }
 
     /** 転職条件：「この職業がこのレベル以上」。合体職なら2つ書けばいい。 */
     public record Requirement(ResourceLocation job, int level) {

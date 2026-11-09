@@ -64,8 +64,13 @@ public final class JobService {
             player.sendSystemMessage(Component.literal("★ ").withStyle(ChatFormatting.GOLD)
                     .append(def.name().copy())
                     .append(Component.literal(" が Lv." + prog.level + " になりました！").withStyle(ChatFormatting.GOLD)));
+            if (def.skillPointsPerLevel() > 0 && !def.board().isEmpty()) {
+                player.sendSystemMessage(Component.literal("  スキルポイント 残り " + SkillBoardService.pointsAvailable(def, prog)
+                        + "（Kキーでスキルボード）").withStyle(ChatFormatting.AQUA));
+            }
             player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.75F, 1.0F);
             sync(player);
+            SkillBoardService.sendSnapshot(player, false);
         } else {
             String progressText = prog.level >= def.maxLevel()
                     ? " (MAX)"
@@ -96,7 +101,9 @@ public final class JobService {
         }
         data.setJob(def.type(), jobId);
         data.progress(jobId); // 初めてならLv.1で作られる
+        SkillBoardService.applyBonuses(player); // 前の職業のボードはお休み、新しい職業のボードを反映
         sync(player);
+        SkillBoardService.sendSnapshot(player, false);
         return null;
     }
 
@@ -141,7 +148,8 @@ public final class JobService {
             } else {
                 JobProgress p = data.progress(id);
                 String xp = p.level >= def.maxLevel() ? "MAX" : p.xp + "/" + xpForNextLevel(p.level);
-                out.append(def.name().copy()).append(Component.literal(" Lv." + p.level + "  EXP " + xp).withStyle(ChatFormatting.GRAY));
+                out.append(def.name().copy()).append(Component.literal(" Lv." + p.level + "  EXP " + xp
+                        + "  SP " + SkillBoardService.pointsAvailable(def, p)).withStyle(ChatFormatting.GRAY));
             }
         }
         return out;
