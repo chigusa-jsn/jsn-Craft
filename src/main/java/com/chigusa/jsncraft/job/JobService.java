@@ -25,10 +25,11 @@ public final class JobService {
 
     /**
      * 今のレベルから次のレベルに上がるのに必要な経験値。
-     * 基本職は Lv1→2 で70、以降1レベルごとに+20。上位職は2倍、合体職は3倍。
+     * 50 ＋ レベル × 増え幅。増え幅は基本職20、上位職40、合体職60。
+     * （例：基本職 Lv1→2 は70、上位職 Lv1→2 は90、合体職 Lv1→2 は110）
      */
     public static int xpForNextLevel(JobDefinition def, int level) {
-        return (50 + level * 20) * def.tier().xpMultiplier();
+        return 50 + level * def.tier().xpPerLevel();
     }
 
     /** 行動したときに呼ぶ。今就いている生活・戦闘ジョブそれぞれで、条件に合うルールの経験値を入れる。 */
