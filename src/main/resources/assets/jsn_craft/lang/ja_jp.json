@@ -1,4 +1,11 @@
 {
   "key.categories.jsn_craft": "jsn-Craft",
-  "key.jsn_craft.open_menu": "職業メニューを開く"
+  "key.jsn_craft.open_menu": "職業メニューを開く",
+  "attribute.name.jsn_craft.max_mana": "最大マナ",
+  "attribute.name.jsn_craft.mana_regen": "マナ回復速度",
+  "attribute.name.jsn_craft.max_stamina": "最大スタミナ",
+  "attribute.name.jsn_craft.stamina_regen": "スタミナ回復速度",
+  "attribute.name.jsn_craft.mining_fortune": "採掘の幸運",
+  "attribute.name.jsn_craft.crit_chance": "会心率",
+  "attribute.name.jsn_craft.crit_damage": "会心ダメージ"
 }

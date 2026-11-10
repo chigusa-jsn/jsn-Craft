@@ -37,6 +37,8 @@ public class JobScreen extends Screen {
 
     private BoardSnapshotPayload data;
     private int tab = lastTab;
+    private int boardIndex = 0;
+    private Button prevBtn, nextBtn;
     private double panX, panY;
 
     private int left, top, panelW, panelH;
@@ -64,11 +66,30 @@ public class JobScreen extends Screen {
                 .bounds(left + 8 + tabW, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("生活ボード").withStyle(ChatFormatting.GREEN), b -> setTab(TAB_LIFE))
                 .bounds(left + 12 + tabW * 2, top + 4, tabW, 18).build());
+
+        // 引き継いだボード（基本職のボードなど）との切り替え
+        int by = top + panelH - 17;
+        prevBtn = addRenderableWidget(Button.builder(Component.literal("◀"), b -> boardIndex--)
+                .bounds(left + panelW - 62, by, 16, 14).build());
+        nextBtn = addRenderableWidget(Button.builder(Component.literal("▶"), b -> boardIndex++)
+                .bounds(left + panelW - 20, by, 16, 14).build());
+    }
+
+    private List<BoardView> boards() {
+        return tab == TAB_COMBAT ? data.combat() : data.life();
+    }
+
+    private Optional<BoardView> currentBoard() {
+        List<BoardView> list = boards();
+        if (list.isEmpty()) return Optional.empty();
+        boardIndex = Math.max(0, Math.min(boardIndex, list.size() - 1));
+        return Optional.of(list.get(boardIndex));
     }
 
     private void setTab(int t) {
         tab = t;
         lastTab = t;
+        boardIndex = 0;
         panX = 0;
         panY = 0;
     }
@@ -82,16 +103,19 @@ public class JobScreen extends Screen {
 
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-        super.render(g, mouseX, mouseY, partialTick); // 背景とタブボタン
+        boolean multi = tab != TAB_STATUS && boards().size() > 1;
+        currentBoard();
+        prevBtn.visible = multi;
+        nextBtn.visible = multi;
+        prevBtn.active = boardIndex > 0;
+        nextBtn.active = boardIndex < boards().size() - 1;
 
-        // パネル
-        g.fill(left, top + 26, left + panelW, top + panelH, 0xE0101018);
-        outline(g, left, top + 26, panelW, panelH - 26, 0xFF5A5A78);
+        super.render(g, mouseX, mouseY, partialTick); // 背景・パネル・ボタン
 
         if (tab == TAB_STATUS) {
             renderStatus(g);
         } else {
-            Optional<BoardView> board = tab == TAB_COMBAT ? data.combat() : data.life();
+            Optional<BoardView> board = currentBoard();
             if (board.isEmpty()) {
                 g.drawCenteredString(font, (tab == TAB_COMBAT ? "戦闘" : "生活") + "ジョブに就いていません（/job change）",
                         left + panelW / 2, top + panelH / 2, 0xAAAAAA);
@@ -104,6 +128,14 @@ public class JobScreen extends Screen {
         }
     }
 
+    @Override
+    public void renderBackground(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+        super.renderBackground(g, mouseX, mouseY, partialTick);
+        // パネル（ボタンより先に描く）
+        g.fill(left, top + 26, left + panelW, top + panelH, 0xE0101018);
+        outline(g, left, top + 26, panelW, panelH - 26, 0xFF5A5A78);
+    }
+
     private void renderStatus(GuiGraphics g) {
         int x = left + 12;
         int y = top + 34;
@@ -113,21 +145,29 @@ public class JobScreen extends Screen {
             g.drawString(font, Component.literal("《" + own.title() + "》").withStyle(ChatFormatting.GOLD), x, y, 0xFFFFFF);
             y += 12;
         }
-        y = jobLine(g, x, y, "[戦闘] ", ChatFormatting.RED, data.combat());
-        y = jobLine(g, x, y, "[生活] ", ChatFormatting.GREEN, data.life());
+        y = jobLine(g, x, y, "[戦闘] ", ChatFormatting.RED, data.combat().stream().findFirst());
+        y = jobLine(g, x, y, "[生活] ", ChatFormatting.GREEN, data.life().stream().findFirst());
         y += 4;
         g.fill(x, y, left + panelW - 12, y + 1, 0xFF5A5A78);
         y += 6;
 
-        int valueX = left + panelW / 2 + 30;
-        for (StatLine s : data.stats()) {
-            if (y > top + panelH - 12) break;
-            g.drawString(font, s.name(), x, y, 0xDDDDDD);
-            g.drawString(font, s.value(), valueX - font.width(s.value()), y, 0xFFFFFF);
+        // 能力値は2列で並べる（左列の下まで行ったら右列へ）
+        List<StatLine> stats = data.stats();
+        int perColumn = (stats.size() + 1) / 2;
+        int colW = (panelW - 24) / 2;
+        int startY = y;
+        for (int i = 0; i < stats.size(); i++) {
+            StatLine s = stats.get(i);
+            int col = i / perColumn;
+            int cx = x + col * (colW + 4);
+            int cy = startY + (i % perColumn) * 11;
+            if (cy > top + panelH - 12) continue;
+            int valueX = cx + colW - 44;
+            g.drawString(font, s.name(), cx, cy, 0xDDDDDD);
+            g.drawString(font, s.value(), valueX - font.width(s.value()), cy, 0xFFFFFF);
             if (!s.bonus().isEmpty()) {
-                g.drawString(font, "(" + s.bonus() + ")", valueX + 8, y, 0x55FF55);
+                g.drawString(font, s.bonus(), valueX + 4, cy, 0x55FF55);
             }
-            y += 11;
         }
     }
 
@@ -147,7 +187,11 @@ public class JobScreen extends Screen {
 
     private void renderBoardHeader(GuiGraphics g, BoardView v) {
         Component head = v.jobName().copy().append(Component.literal(" Lv." + v.level()).withStyle(ChatFormatting.WHITE));
+        if (v.inherited()) head = head.copy().append(Component.literal(" (引き継ぎ)").withStyle(ChatFormatting.GRAY));
         g.drawString(font, head, left + 10, top + 32, 0xFFFFFF);
+        if (boards().size() > 1) {
+            g.drawCenteredString(font, (boardIndex + 1) + "/" + boards().size(), left + panelW - 33, top + panelH - 14, 0xAAAAAA);
+        }
         String sp = "スキルポイント " + v.points();
         g.drawString(font, sp, left + panelW - 10 - font.width(sp), top + 32, 0x55FFFF);
     }
@@ -155,7 +199,7 @@ public class JobScreen extends Screen {
     private void renderBoard(GuiGraphics g, BoardView v, int mouseX, int mouseY) {
         renderBoardHeader(g, v);
 
-        int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 2;
+        int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 20;
         int originX = (areaL + areaR) / 2 + (int) panX;
         int originY = areaT + 14 + (int) panY;
 
@@ -203,7 +247,7 @@ public class JobScreen extends Screen {
 
         g.disableScissor();
 
-        g.drawString(font, "ドラッグで移動 / クリックで解放", areaL + 6, areaB - 11, 0x666677);
+        g.drawString(font, "ドラッグで移動 / クリックで解放", areaL + 6, top + panelH - 14, 0x666677);
 
         if (hovered != null) {
             List<Component> tip = new ArrayList<>();
@@ -230,11 +274,11 @@ public class JobScreen extends Screen {
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
         if (button != 0 || tab == TAB_STATUS) return false;
 
-        Optional<BoardView> board = tab == TAB_COMBAT ? data.combat() : data.life();
+        Optional<BoardView> board = currentBoard();
         if (board.isEmpty()) return false;
         BoardView v = board.get();
 
-        int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 2;
+        int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 20;
         if (mouseX < areaL || mouseX >= areaR || mouseY < areaT || mouseY >= areaB) return false;
         int originX = (areaL + areaR) / 2 + (int) panX;
         int originY = areaT + 14 + (int) panY;
@@ -244,7 +288,7 @@ public class JobScreen extends Screen {
             int y = cy(originY, n) - NODE / 2;
             if (mouseX >= x && mouseX < x + NODE && mouseY >= y && mouseY < y + NODE) {
                 if (!v.isUnlocked(n.id()) && v.isReachable(n) && v.points() >= n.cost()) {
-                    PacketDistributor.sendToServer(new UnlockNodePayload(v.type(), n.id()));
+                    PacketDistributor.sendToServer(new UnlockNodePayload(v.jobId(), n.id()));
                 }
                 return true;
             }

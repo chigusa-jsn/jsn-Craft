@@ -6,6 +6,7 @@ import com.chigusa.jsncraft.job.JobManager;
 import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.JobType;
 import com.chigusa.jsncraft.job.SkillBoardService;
+import com.chigusa.jsncraft.stat.ResourceService;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -31,6 +32,7 @@ import java.util.Map;
  * /job list     職業の一覧
  * /job board    職業メニュー（ステータス・スキルボード）を開く。Kキーでも開ける
  * /job resetboard <life|combat>   スキルボードをリセット（OP用）
+ * /job gauge <mana|stamina> <値>   マナ/スタミナを減らしてゲージを試す（OP用）
  * /job change <職業>   転職（例: /job change lumberjack）
  * /job title <プレイヤー> <肩書> | clear   肩書を付ける（OP用）
  * /job addxp <life|combat> <量>   経験値を足す（テスト用・OP用）
@@ -52,6 +54,14 @@ public final class JobCommand {
                     SkillBoardService.sendSnapshot(ctx.getSource().getPlayerOrException(), true);
                     return 1;
                 }))
+                .then(Commands.literal("gauge")
+                        .requires(s -> s.hasPermission(2))
+                        .then(Commands.literal("mana")
+                                .then(Commands.argument("value", IntegerArgumentType.integer(0))
+                                        .executes(ctx -> setGauge(ctx, true))))
+                        .then(Commands.literal("stamina")
+                                .then(Commands.argument("value", IntegerArgumentType.integer(0))
+                                        .executes(ctx -> setGauge(ctx, false)))))
                 .then(Commands.literal("resetboard")
                         .requires(s -> s.hasPermission(2))
                         .then(Commands.literal("life").executes(ctx -> resetBoard(ctx, JobType.LIFE)))
@@ -145,6 +155,13 @@ public final class JobCommand {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         SkillBoardService.reset(player, type);
         ctx.getSource().sendSuccess(() -> Component.literal(type.displayName() + "ジョブのスキルボードをリセットしました"), false);
+        return 1;
+    }
+
+    private static int setGauge(CommandContext<CommandSourceStack> ctx, boolean mana) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        int value = IntegerArgumentType.getInteger(ctx, "value");
+        ResourceService.set(player, mana ? value : -1, mana ? -1 : value);
         return 1;
     }
 

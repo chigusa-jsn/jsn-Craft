@@ -2,7 +2,7 @@
   "name": { "text": "樹海の伐り手", "color": "green" },
   "type": "life",
   "tier": "basic",
-  "max_level": 50,
+  "max_level": 30,
   "skill_points_per_level": 1,
   "xp": [
     { "action": "break_block", "target": "#minecraft:logs", "xp": 5 }

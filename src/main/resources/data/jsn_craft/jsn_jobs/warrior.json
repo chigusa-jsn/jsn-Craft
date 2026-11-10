@@ -2,7 +2,7 @@
   "name": { "text": "蒼刃の剣士", "color": "aqua" },
   "type": "combat",
   "tier": "basic",
-  "max_level": 50,
+  "max_level": 30,
   "skill_points_per_level": 1,
   "xp": [
     { "action": "kill_entity", "target": "minecraft:creeper", "xp": 15 },

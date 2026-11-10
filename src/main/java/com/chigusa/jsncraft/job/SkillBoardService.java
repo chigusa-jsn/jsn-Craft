@@ -36,21 +36,51 @@ import java.util.Set;
  *
  * - スキルポイントは職業ごと。(レベル - 1) × skill_points_per_level がもらえる分で、
  *   解放したマスのコストの合計を引いた残りが使える分。
- * - 能力が上がるのは、今就いている生活ジョブ・戦闘ジョブのボードだけ。
+ * - 能力が上がるのは「今就いている職業」と「その職業になるまでに通ってきた職業」のボード。
+ *   たとえば古樹の守り人なら、樹海の伐り手のボードも効いたまま。
  */
 public final class SkillBoardService {
 
     private static final String MODIFIER_PREFIX = "board/";
 
-    /** ステータス画面にいつも出す能力値（1.21.1 のID）。 */
+    /** ステータス画面にいつも出す能力値。 */
     private static final List<ResourceLocation> BASE_STATS = List.of(
             ResourceLocation.withDefaultNamespace("generic.max_health"),
+            JsnCraft.id("max_mana"),
+            JsnCraft.id("mana_regen"),
+            JsnCraft.id("max_stamina"),
+            JsnCraft.id("stamina_regen"),
             ResourceLocation.withDefaultNamespace("generic.attack_damage"),
             ResourceLocation.withDefaultNamespace("generic.attack_speed"),
+            JsnCraft.id("crit_chance"),
+            JsnCraft.id("crit_damage"),
             ResourceLocation.withDefaultNamespace("generic.armor"),
             ResourceLocation.withDefaultNamespace("generic.movement_speed"),
             ResourceLocation.withDefaultNamespace("player.block_break_speed"),
+            JsnCraft.id("mining_fortune"),
             ResourceLocation.withDefaultNamespace("generic.luck"));
+
+    // ---------------- 効いているボード ----------------
+
+    /** その枠の職業と、そこに至るまでに通ってきた職業（転職条件をたどる）。今の職業が先頭。 */
+    public static List<ResourceLocation> boardChain(PlayerJobData data, JobType type) {
+        Set<ResourceLocation> out = new LinkedHashSet<>();
+        collect(data.getJob(type), out);
+        return new ArrayList<>(out);
+    }
+
+    private static void collect(@Nullable ResourceLocation jobId, Set<ResourceLocation> out) {
+        JobDefinition def = JobManager.INSTANCE.get(jobId);
+        if (def == null || !out.add(jobId)) return;
+        for (JobDefinition.Requirement req : def.requires()) collect(req.job(), out);
+    }
+
+    /** 生活・戦闘の両方で、今効いているボードの職業（重複なし）。 */
+    public static Set<ResourceLocation> allActiveBoards(PlayerJobData data) {
+        Set<ResourceLocation> out = new LinkedHashSet<>();
+        for (JobType type : JobType.values()) out.addAll(boardChain(data, type));
+        return out;
+    }
 
     // ---------------- ポイント ----------------
 
@@ -83,11 +113,11 @@ public final class SkillBoardService {
 
     /** マスを解放する。成功したら null、失敗したら理由を返す。 */
     @Nullable
-    public static Component unlock(ServerPlayer player, JobType type, String nodeId) {
+    public static Component unlock(ServerPlayer player, ResourceLocation jobId, String nodeId) {
         PlayerJobData data = JobService.data(player);
-        ResourceLocation jobId = data.getJob(type);
+        if (!allActiveBoards(data).contains(jobId)) return Component.literal("今の職業のボードではありません");
         JobDefinition def = JobManager.INSTANCE.get(jobId);
-        if (def == null) return Component.literal(type.displayName() + "ジョブに就いていません");
+        if (def == null) return Component.literal("その職業は存在しません");
 
         Optional<BoardNode> found = def.node(nodeId);
         if (found.isEmpty()) return Component.literal("そのマスはありません");
@@ -109,7 +139,7 @@ public final class SkillBoardService {
         return null;
     }
 
-    /** ボードを全部リセットして、ポイントを戻す。 */
+    /** 今就いている職業のボードをリセットして、ポイントを戻す。 */
     public static void reset(ServerPlayer player, JobType type) {
         PlayerJobData data = JobService.data(player);
         ResourceLocation jobId = data.getJob(type);
@@ -123,9 +153,8 @@ public final class SkillBoardService {
 
     private record Key(ResourceLocation attribute, AttributeModifier.Operation operation) {}
 
-    /** いったん全部外してから、今の職業のボードの分を付け直す。 */
+    /** いったん全部外してから、効いているボードの分を付け直す。 */
     public static void applyBonuses(ServerPlayer player) {
-        // 外す
         BuiltInRegistries.ATTRIBUTE.holders().forEach(holder -> {
             AttributeInstance inst = player.getAttribute(holder);
             if (inst == null) return;
@@ -134,11 +163,9 @@ public final class SkillBoardService {
             }
         });
 
-        // 合計する
         Map<Key, Double> totals = new LinkedHashMap<>();
         PlayerJobData data = JobService.data(player);
-        for (JobType type : JobType.values()) {
-            ResourceLocation jobId = data.getJob(type);
+        for (ResourceLocation jobId : allActiveBoards(data)) {
             JobDefinition def = JobManager.INSTANCE.get(jobId);
             if (def == null) continue;
             for (String nodeId : data.progress(jobId).unlocked) {
@@ -150,7 +177,6 @@ public final class SkillBoardService {
             }
         }
 
-        // 付ける
         totals.forEach((key, amount) -> {
             Optional<Holder.Reference<Attribute>> holder = BuiltInRegistries.ATTRIBUTE.getHolder(key.attribute());
             if (holder.isEmpty()) {
@@ -182,10 +208,9 @@ public final class SkillBoardService {
     public static BoardSnapshotPayload buildSnapshot(ServerPlayer player, boolean open) {
         PlayerJobData data = JobService.data(player);
 
-        // ステータスに出す能力値：いつもの7つ＋ボードで上がるもの
         Set<ResourceLocation> statIds = new LinkedHashSet<>(BASE_STATS);
-        for (JobType type : JobType.values()) {
-            JobDefinition def = JobManager.INSTANCE.get(data.getJob(type));
+        for (ResourceLocation jobId : allActiveBoards(data)) {
+            JobDefinition def = JobManager.INSTANCE.get(jobId);
             if (def == null) continue;
             for (BoardNode node : def.board()) {
                 for (BoardNode.Effect e : node.effects()) statIds.add(e.attribute());
@@ -209,23 +234,27 @@ public final class SkillBoardService {
             });
         }
 
-        return new BoardSnapshotPayload(open, stats, boardView(data, JobType.COMBAT), boardView(data, JobType.LIFE));
+        return new BoardSnapshotPayload(open, stats, boardViews(data, JobType.COMBAT), boardViews(data, JobType.LIFE));
     }
 
-    private static Optional<BoardView> boardView(PlayerJobData data, JobType type) {
-        ResourceLocation jobId = data.getJob(type);
-        JobDefinition def = JobManager.INSTANCE.get(jobId);
-        if (def == null) return Optional.empty();
-        JobProgress prog = data.progress(jobId);
-
-        List<NodeView> nodes = new ArrayList<>();
-        for (BoardNode n : def.board()) {
-            List<Component> effects = new ArrayList<>();
-            for (BoardNode.Effect e : n.effects()) effects.add(describe(e));
-            nodes.add(new NodeView(n.id(), n.x(), n.y(), n.name(), n.icon(), n.start(), n.cost(), n.links(), effects));
+    private static List<BoardView> boardViews(PlayerJobData data, JobType type) {
+        List<BoardView> out = new ArrayList<>();
+        boolean first = true;
+        for (ResourceLocation jobId : boardChain(data, type)) {
+            JobDefinition def = JobManager.INSTANCE.get(jobId);
+            if (def == null) continue;
+            JobProgress prog = data.progress(jobId);
+            List<NodeView> nodes = new ArrayList<>();
+            for (BoardNode n : def.board()) {
+                List<Component> effects = new ArrayList<>();
+                for (BoardNode.Effect e : n.effects()) effects.add(describe(e));
+                nodes.add(new NodeView(n.id(), n.x(), n.y(), n.name(), n.icon(), n.start(), n.cost(), n.links(), effects));
+            }
+            out.add(new BoardView(jobId.toString(), def.name(), prog.level, pointsAvailable(def, prog),
+                    !first, nodes, new ArrayList<>(prog.unlocked)));
+            first = false;
         }
-        return Optional.of(new BoardView(type.getSerializedName(), def.name(), prog.level,
-                pointsAvailable(def, prog), nodes, new ArrayList<>(prog.unlocked)));
+        return out;
     }
 
     private static Component describe(BoardNode.Effect e) {

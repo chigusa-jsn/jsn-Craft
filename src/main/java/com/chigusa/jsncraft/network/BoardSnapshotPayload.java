@@ -23,8 +23,8 @@ import java.util.Set;
 public record BoardSnapshotPayload(
         boolean open,
         List<StatLine> stats,
-        Optional<BoardView> combat,
-        Optional<BoardView> life
+        List<BoardView> combat,
+        List<BoardView> life
 ) implements CustomPacketPayload {
 
     public static final Type<BoardSnapshotPayload> TYPE = new Type<>(JsnCraft.id("board_snapshot"));
@@ -54,14 +54,15 @@ public record BoardSnapshotPayload(
         ).apply(i, NodeView::new));
     }
 
-    /** 1つの職業のスキルボード（表示用）。 */
-    public record BoardView(String type, Component jobName, int level, int points,
+    /** 1つの職業のスキルボード（表示用）。inherited は「前の職業から引き継いだボード」。 */
+    public record BoardView(String jobId, Component jobName, int level, int points, boolean inherited,
                             List<NodeView> nodes, List<String> unlocked) {
         public static final Codec<BoardView> CODEC = RecordCodecBuilder.create(i -> i.group(
-                Codec.STRING.fieldOf("type").forGetter(BoardView::type),
+                Codec.STRING.fieldOf("job_id").forGetter(BoardView::jobId),
                 ComponentSerialization.CODEC.fieldOf("job_name").forGetter(BoardView::jobName),
                 Codec.INT.fieldOf("level").forGetter(BoardView::level),
                 Codec.INT.fieldOf("points").forGetter(BoardView::points),
+                Codec.BOOL.fieldOf("inherited").forGetter(BoardView::inherited),
                 NodeView.CODEC.listOf().fieldOf("nodes").forGetter(BoardView::nodes),
                 Codec.STRING.listOf().fieldOf("unlocked").forGetter(BoardView::unlocked)
         ).apply(i, BoardView::new));
@@ -85,8 +86,8 @@ public record BoardSnapshotPayload(
     public static final Codec<BoardSnapshotPayload> CODEC = RecordCodecBuilder.create(i -> i.group(
             Codec.BOOL.fieldOf("open").forGetter(BoardSnapshotPayload::open),
             StatLine.CODEC.listOf().fieldOf("stats").forGetter(BoardSnapshotPayload::stats),
-            BoardView.CODEC.optionalFieldOf("combat").forGetter(BoardSnapshotPayload::combat),
-            BoardView.CODEC.optionalFieldOf("life").forGetter(BoardSnapshotPayload::life)
+            BoardView.CODEC.listOf().fieldOf("combat").forGetter(BoardSnapshotPayload::combat),
+            BoardView.CODEC.listOf().fieldOf("life").forGetter(BoardSnapshotPayload::life)
     ).apply(i, BoardSnapshotPayload::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BoardSnapshotPayload> STREAM_CODEC =

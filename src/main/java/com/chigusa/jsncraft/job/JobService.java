@@ -23,9 +23,12 @@ public final class JobService {
         return player.getData(ModAttachments.JOB_DATA);
     }
 
-    /** 今のレベルから次のレベルに上がるのに必要な経験値。Lv1→2で100、以降50ずつ増える。 */
-    public static int xpForNextLevel(int level) {
-        return 50 + level * 50;
+    /**
+     * 今のレベルから次のレベルに上がるのに必要な経験値。
+     * 基本職は Lv1→2 で70、以降1レベルごとに+20。上位職は2倍、合体職は3倍。
+     */
+    public static int xpForNextLevel(JobDefinition def, int level) {
+        return (50 + level * 20) * def.tier().xpMultiplier();
     }
 
     /** 行動したときに呼ぶ。今就いている生活・戦闘ジョブそれぞれで、条件に合うルールの経験値を入れる。 */
@@ -53,8 +56,8 @@ public final class JobService {
 
         prog.xp += amount;
         boolean leveledUp = false;
-        while (prog.level < def.maxLevel() && prog.xp >= xpForNextLevel(prog.level)) {
-            prog.xp -= xpForNextLevel(prog.level);
+        while (prog.level < def.maxLevel() && prog.xp >= xpForNextLevel(def, prog.level)) {
+            prog.xp -= xpForNextLevel(def, prog.level);
             prog.level++;
             leveledUp = true;
         }
@@ -74,7 +77,7 @@ public final class JobService {
         } else {
             String progressText = prog.level >= def.maxLevel()
                     ? " (MAX)"
-                    : " (" + prog.xp + "/" + xpForNextLevel(prog.level) + ")";
+                    : " (" + prog.xp + "/" + xpForNextLevel(def, prog.level) + ")";
             player.displayClientMessage(Component.literal("+" + amount + " ").withStyle(ChatFormatting.YELLOW)
                     .append(def.name().copy())
                     .append(Component.literal(progressText).withStyle(ChatFormatting.GRAY)), true);
@@ -147,7 +150,7 @@ public final class JobService {
                 out.append(Component.literal("なし（/job change で就職）").withStyle(ChatFormatting.GRAY));
             } else {
                 JobProgress p = data.progress(id);
-                String xp = p.level >= def.maxLevel() ? "MAX" : p.xp + "/" + xpForNextLevel(p.level);
+                String xp = p.level >= def.maxLevel() ? "MAX" : p.xp + "/" + xpForNextLevel(def, p.level);
                 out.append(def.name().copy()).append(Component.literal(" Lv." + p.level + "  EXP " + xp
                         + "  SP " + SkillBoardService.pointsAvailable(def, p)).withStyle(ChatFormatting.GRAY));
             }

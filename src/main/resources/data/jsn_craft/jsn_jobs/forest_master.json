@@ -4,7 +4,7 @@
   "tier": "advanced",
   "max_level": 50,
   "requires": [
-    { "job": "jsn_craft:lumberjack", "level": 20 }
+    { "job": "jsn_craft:lumberjack", "level": 30 }
   ],
   "xp": [
     { "action": "break_block", "target": "#minecraft:logs", "xp": 8 },

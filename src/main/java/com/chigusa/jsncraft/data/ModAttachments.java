@@ -1,6 +1,7 @@
 package com.chigusa.jsncraft.data;
 
 import com.chigusa.jsncraft.JsnCraft;
+import com.chigusa.jsncraft.stat.PlayerResources;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -17,6 +18,13 @@ public final class ModAttachments {
             () -> AttachmentType.builder(() -> new PlayerJobData())
                     .serialize(PlayerJobData.CODEC)
                     .copyOnDeath()
+                    .build());
+
+    /** 今のマナとスタミナ。セーブされる。死んだら満タンからやり直し。 */
+    public static final Supplier<AttachmentType<PlayerResources>> RESOURCES = ATTACHMENT_TYPES.register(
+            "resources",
+            () -> AttachmentType.builder(() -> new PlayerResources())
+                    .serialize(PlayerResources.CODEC)
                     .build());
 
     private ModAttachments() {}
