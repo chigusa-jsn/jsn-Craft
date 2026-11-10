@@ -29,7 +29,9 @@ public final class GaugeHud {
             VanillaGuiLayers.FOOD_LEVEL,
             VanillaGuiLayers.ARMOR_LEVEL);
 
-    private static final int X = 4, Y = 4, LABEL_W = 26, BAR_W = 90, BAR_H = 7, ROW = 10;
+    /** ゲージ全体の大きさ（1.0 で文字と同じ大きさ） */
+    private static final float SCALE = 0.6F;
+    private static final int X = 5, Y = 5, LABEL_W = 26, BAR_W = 80, BAR_H = 7, ROW = 10;
 
     private static boolean shouldDraw() {
         Minecraft mc = Minecraft.getInstance();
@@ -46,6 +48,14 @@ public final class GaugeHud {
         float maxMana = (float) p.getAttributeValue(ModAttributes.MAX_MANA);
         float maxSt = (float) p.getAttributeValue(ModAttributes.MAX_STAMINA);
 
+        // 全体を小さめに描く
+        g.pose().pushPose();
+        g.pose().scale(SCALE, SCALE, 1F);
+        drawAll(g, font, p, maxMana, maxSt);
+        g.pose().popPose();
+    }
+
+    private static void drawAll(GuiGraphics g, Font font, LocalPlayer p, float maxMana, float maxSt) {
         int y = Y;
         gauge(g, font, y, "HP", p.getHealth() + p.getAbsorptionAmount(), p.getMaxHealth(), 0xFFD83A3A, 0xFF5A1414);
         String armor = "防御 " + p.getArmorValue();
