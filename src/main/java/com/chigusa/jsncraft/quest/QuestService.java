@@ -7,6 +7,7 @@ import com.chigusa.jsncraft.job.JobManager;
 import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.JobType;
 import com.chigusa.jsncraft.network.QuestListPayload;
+import com.chigusa.jsncraft.npc.ReceptionistEntity;
 import com.chigusa.jsncraft.network.QuestListPayload.ObjectiveView;
 import com.chigusa.jsncraft.network.QuestListPayload.QuestView;
 import net.minecraft.ChatFormatting;
@@ -33,13 +34,41 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
-/** 依頼の受注・進行・報告・ごほうび。 */
+/**
+ * 依頼の受注・進行・報告・ごほうび。
+ * 受注と報酬の受け取りは受付嬢のそばでだけ。報告（納品）はどこでもできる。
+ */
 public final class QuestService {
 
     /** 同時に受けられる依頼の数 */
     public static final int MAX_ACTIVE = 5;
+    /** 受付嬢と話せる距離（ブロック） */
+    private static final double RECEPTIONIST_RANGE = 8.0;
+
+    /** プレイヤーが最後に話しかけた受付嬢（エンティティID）。保存はしない。 */
+    private static final Map<UUID, Integer> LAST_RECEPTIONIST = new ConcurrentHashMap<>();
+
+    public static void talkedTo(ServerPlayer player, ReceptionistEntity receptionist) {
+        LAST_RECEPTIONIST.put(player.getUUID(), receptionist.getId());
+    }
+
+    /** 今、受付嬢のそばにいるか（最後に話しかけた受付嬢が近くにいる）。 */
+    public static boolean isAtReceptionist(ServerPlayer player) {
+        Integer id = LAST_RECEPTIONIST.get(player.getUUID());
+        if (id == null) return false;
+        Entity e = player.level().getEntity(id);
+        return e instanceof ReceptionistEntity && e.isAlive()
+                && e.distanceToSqr(player) <= RECEPTIONIST_RANGE * RECEPTIONIST_RANGE;
+    }
+
+    /** Kキーでメニューを開いたときは「受付嬢から離れている」扱いにする。 */
+    public static void leftReceptionist(ServerPlayer player) {
+        LAST_RECEPTIONIST.remove(player.getUUID());
+    }
 
     public static PlayerQuestData data(ServerPlayer player) {
         return player.getData(ModAttachments.QUESTS);
@@ -52,6 +81,7 @@ public final class QuestService {
     public static Component whyUnavailable(ServerPlayer player, ResourceLocation id, QuestDefinition def) {
         PlayerQuestData q = data(player);
         if (q.active.containsKey(id)) return Component.literal("受注中です");
+        if (q.reported.contains(id)) return Component.literal("報酬の受け取り待ちです");
         if (!def.isOpen(LocalDateTime.now())) return Component.literal("今は受けられない期間です");
 
         Long last = q.completed.get(id);
@@ -82,6 +112,7 @@ public final class QuestService {
     public static Component accept(ServerPlayer player, ResourceLocation id) {
         QuestDefinition def = QuestManager.INSTANCE.get(id);
         if (def == null) return Component.literal("その依頼はありません");
+        if (!isAtReceptionist(player)) return Component.literal("依頼は受付嬢から受けてください");
         Component why = whyUnavailable(player, id, def);
         if (why != null) return why;
         PlayerQuestData q = data(player);
@@ -109,12 +140,28 @@ public final class QuestService {
         if (def.endTime().map(LocalDateTime.now()::isAfter).orElse(false)) return Component.literal("期限が過ぎています");
         if (!isComplete(player, def, progress)) return Component.literal("まだ目標を達成していません");
 
-        // 納品アイテムを回収
+        // 納品アイテムを回収して、報酬待ちにする
         for (QuestDefinition.Objective o : def.objectives()) {
             if (o.type().equals("deliver_item")) removeItems(player.getInventory(), o.target(), o.count());
         }
+        q.active.remove(id);
+        q.reported.add(id);
+        player.sendSystemMessage(Component.literal("依頼「").withStyle(ChatFormatting.AQUA)
+                .append(def.title().copy())
+                .append(Component.literal("」を報告しました！ 報酬は受付嬢から受け取ってください").withStyle(ChatFormatting.AQUA)));
+        player.level().playSound(null, player.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.6F, 1.2F);
+        sendList(player);
+        return null;
+    }
 
-        // ごほうび
+    /** 受付嬢のところで報酬を受け取る。 */
+    @Nullable
+    public static Component claim(ServerPlayer player, ResourceLocation id) {
+        QuestDefinition def = QuestManager.INSTANCE.get(id);
+        PlayerQuestData q = data(player);
+        if (def == null || !q.reported.contains(id)) return Component.literal("受け取れる報酬はありません");
+        if (!isAtReceptionist(player)) return Component.literal("報酬は受付嬢から受け取ってください");
+
         QuestDefinition.Rewards r = def.rewards();
         for (QuestDefinition.JobXp xp : r.jobXp()) {
             ResourceLocation job = resolveJob(player, xp.job());
@@ -137,7 +184,7 @@ public final class QuestService {
             player.sendSystemMessage(Component.literal("肩書《" + title + "》を手に入れました！").withStyle(ChatFormatting.GOLD));
         });
 
-        q.active.remove(id);
+        q.reported.remove(id);
         q.completed.put(id, LocalDate.now().toEpochDay());
         player.sendSystemMessage(Component.literal("★ 依頼「").withStyle(ChatFormatting.GOLD)
                 .append(def.title().copy()).append(Component.literal("」を達成しました！").withStyle(ChatFormatting.GOLD)));
@@ -183,7 +230,7 @@ public final class QuestService {
                             .append(Component.literal("」の目標を達成：").withStyle(ChatFormatting.AQUA))
                             .append(label(o)));
                     if (isComplete(player, def, progress)) {
-                        player.sendSystemMessage(Component.literal("  → Kキーの「依頼」タブから報告できます").withStyle(ChatFormatting.GRAY));
+                        player.sendSystemMessage(Component.literal("  → Kキーの「依頼」タブから報告できます（報酬は受付嬢から）").withStyle(ChatFormatting.GRAY));
                     }
                 }
             }
@@ -220,10 +267,15 @@ public final class QuestService {
     public static QuestListPayload buildList(ServerPlayer player) {
         PlayerQuestData q = data(player);
         List<QuestView> views = new ArrayList<>();
+        // 報酬待ち
+        for (ResourceLocation id : q.reported) {
+            QuestDefinition def = QuestManager.INSTANCE.get(id);
+            if (def != null) views.add(view(player, id, def, List.of(), "reported"));
+        }
         // 受注中
         for (Map.Entry<ResourceLocation, List<Integer>> e : q.active.entrySet()) {
             QuestDefinition def = QuestManager.INSTANCE.get(e.getKey());
-            if (def != null) views.add(view(player, e.getKey(), def, e.getValue(), true));
+            if (def != null) views.add(view(player, e.getKey(), def, e.getValue(), "active"));
         }
         // 受けられる依頼（特別 → 職業 → 通常の順）
         for (String cat : List.of("special", "job", "normal")) {
@@ -231,18 +283,20 @@ public final class QuestService {
                 QuestDefinition def = e.getValue();
                 if (!def.category().equals(cat)) continue;
                 if (whyUnavailable(player, e.getKey(), def) != null) continue;
-                views.add(view(player, e.getKey(), def, List.of(), false));
+                views.add(view(player, e.getKey(), def, List.of(), "available"));
             }
         }
-        return new QuestListPayload(views, q.active.size(), MAX_ACTIVE);
+        return new QuestListPayload(views, q.active.size(), MAX_ACTIVE, isAtReceptionist(player));
     }
 
-    private static QuestView view(ServerPlayer player, ResourceLocation id, QuestDefinition def, List<Integer> progress, boolean active) {
+    private static QuestView view(ServerPlayer player, ResourceLocation id, QuestDefinition def, List<Integer> progress, String state) {
+        boolean active = state.equals("active");
+        boolean reported = state.equals("reported");
         List<ObjectiveView> objs = new ArrayList<>();
         for (int i = 0; i < def.objectives().size(); i++) {
             QuestDefinition.Objective o = def.objectives().get(i);
             int counted = i < progress.size() ? progress.get(i) : 0;
-            int now = active || !o.isCounted() ? currentProgress(player, o, counted) : 0;
+            int now = reported ? o.count() : active || !o.isCounted() ? currentProgress(player, o, counted) : 0;
             objs.add(new ObjectiveView(label(o), Math.min(now, o.count()), o.count()));
         }
         List<Component> rewards = new ArrayList<>();
@@ -265,7 +319,7 @@ public final class QuestService {
 
         boolean canTurnIn = active && isComplete(player, def, progress)
                 && !def.endTime().map(LocalDateTime.now()::isAfter).orElse(false);
-        return new QuestView(id.toString(), def.title(), def.description(), def.category(), active, canTurnIn,
+        return new QuestView(id.toString(), def.title(), def.description(), def.category(), state, canTurnIn,
                 periodText(def), objs, rewards);
     }
 

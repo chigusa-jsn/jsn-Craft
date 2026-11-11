@@ -6,10 +6,10 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-/** クライアント → サーバー：依頼を「受ける」「報告する」「あきらめる」。 */
+/** クライアント → サーバー：依頼を「受ける」「報告する」「あきらめる」「報酬を受け取る」。 */
 public record QuestActionPayload(String questId, int action) implements CustomPacketPayload {
 
-    public static final int ACCEPT = 0, TURN_IN = 1, ABANDON = 2;
+    public static final int ACCEPT = 0, TURN_IN = 1, ABANDON = 2, CLAIM = 3;
 
     public static final Type<QuestActionPayload> TYPE = new Type<>(JsnCraft.id("quest_action"));
 

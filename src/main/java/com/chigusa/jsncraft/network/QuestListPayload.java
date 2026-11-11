@@ -12,8 +12,12 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 import java.util.List;
 
-/** サーバー → 本人：依頼タブに出す一覧（受注中＋受けられる依頼）。 */
-public record QuestListPayload(List<QuestView> quests, int activeCount, int maxActive) implements CustomPacketPayload {
+/**
+ * サーバー → 本人：依頼タブに出す一覧（報酬待ち＋受注中＋受けられる依頼）。
+ * atReceptionist は「今、受付嬢に話しかけている」か（受注と報酬の受け取りは受付嬢でだけできる）。
+ */
+public record QuestListPayload(List<QuestView> quests, int activeCount, int maxActive, boolean atReceptionist)
+        implements CustomPacketPayload {
 
     public static final Type<QuestListPayload> TYPE = new Type<>(JsnCraft.id("quest_list"));
 
@@ -29,32 +33,46 @@ public record QuestListPayload(List<QuestView> quests, int activeCount, int maxA
         }
     }
 
-    public record QuestView(String id, Component title, Component description, String category, boolean active,
+    /** state: "available"（受けられる） / "active"（受注中） / "reported"（報告済み・報酬待ち） */
+    public record QuestView(String id, Component title, Component description, String category, String state,
                             boolean canTurnIn, String period, List<ObjectiveView> objectives, List<Component> rewards) {
         public static final Codec<QuestView> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.STRING.fieldOf("id").forGetter(QuestView::id),
                 ComponentSerialization.CODEC.fieldOf("title").forGetter(QuestView::title),
                 ComponentSerialization.CODEC.fieldOf("description").forGetter(QuestView::description),
                 Codec.STRING.fieldOf("category").forGetter(QuestView::category),
-                Codec.BOOL.fieldOf("active").forGetter(QuestView::active),
+                Codec.STRING.fieldOf("state").forGetter(QuestView::state),
                 Codec.BOOL.fieldOf("can_turn_in").forGetter(QuestView::canTurnIn),
                 Codec.STRING.fieldOf("period").forGetter(QuestView::period),
                 ObjectiveView.CODEC.listOf().fieldOf("objectives").forGetter(QuestView::objectives),
                 ComponentSerialization.CODEC.listOf().fieldOf("rewards").forGetter(QuestView::rewards)
         ).apply(i, QuestView::new));
+
+        public boolean isActive() {
+            return state.equals("active");
+        }
+
+        public boolean isReported() {
+            return state.equals("reported");
+        }
+
+        public boolean isAvailable() {
+            return state.equals("available");
+        }
     }
 
     public static final Codec<QuestListPayload> CODEC = RecordCodecBuilder.create(i -> i.group(
             QuestView.CODEC.listOf().fieldOf("quests").forGetter(QuestListPayload::quests),
             Codec.INT.fieldOf("active_count").forGetter(QuestListPayload::activeCount),
-            Codec.INT.fieldOf("max_active").forGetter(QuestListPayload::maxActive)
+            Codec.INT.fieldOf("max_active").forGetter(QuestListPayload::maxActive),
+            Codec.BOOL.fieldOf("at_receptionist").forGetter(QuestListPayload::atReceptionist)
     ).apply(i, QuestListPayload::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, QuestListPayload> STREAM_CODEC =
             ByteBufCodecs.fromCodecWithRegistries(CODEC);
 
     /** クライアントが覚えている最新の一覧 */
-    public static volatile QuestListPayload client = new QuestListPayload(List.of(), 0, 5);
+    public static volatile QuestListPayload client = new QuestListPayload(List.of(), 0, 5, false);
 
     @Override
     public Type<? extends CustomPacketPayload> type() {

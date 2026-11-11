@@ -53,6 +53,7 @@ public class ReceptionistEntity extends PathfinderMob {
     protected InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS;
         if (player instanceof ServerPlayer sp) {
+            QuestService.talkedTo(sp, this);
             PacketDistributor.sendToPlayer(sp, new OpenTabPayload(OpenTabPayload.TAB_QUEST));
             QuestService.sendList(sp);
             SkillBoardService.sendSnapshot(sp, true);

@@ -49,7 +49,7 @@ public class JobScreen extends Screen {
     private int tab = lastTab;
     private int boardIndex = 0;
     private Button prevBtn, nextBtn;
-    private Button acceptBtn, turnInBtn, abandonBtn;
+    private Button acceptBtn, turnInBtn, abandonBtn, claimBtn;
     @Nullable private String selectedQuest;
     private int questScroll;
     private double panX, panY;
@@ -88,6 +88,8 @@ public class JobScreen extends Screen {
                 .bounds(qx, qy, 60, 16).build());
         turnInBtn = addRenderableWidget(Button.builder(Component.literal("報告する"), b -> questAction(QuestActionPayload.TURN_IN))
                 .bounds(qx, qy, 60, 16).build());
+        claimBtn = addRenderableWidget(Button.builder(Component.literal("報酬を受け取る"), b -> questAction(QuestActionPayload.CLAIM))
+                .bounds(qx, qy, 84, 16).build());
         abandonBtn = addRenderableWidget(Button.builder(Component.literal("あきらめる"), b -> questAction(QuestActionPayload.ABANDON))
                 .bounds(left + panelW - 72, qy, 64, 16).build());
 
@@ -135,11 +137,15 @@ public class JobScreen extends Screen {
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         boolean multi = isBoardTab() && boards().size() > 1;
         QuestView selected = selectedQuest();
-        acceptBtn.visible = tab == TAB_QUEST && selected != null && !selected.active();
-        acceptBtn.active = QuestListPayload.client.activeCount() < QuestListPayload.client.maxActive();
-        turnInBtn.visible = tab == TAB_QUEST && selected != null && selected.active();
+        QuestListPayload ql = QuestListPayload.client;
+        boolean questTab = tab == TAB_QUEST && selected != null;
+        acceptBtn.visible = questTab && selected.isAvailable();
+        acceptBtn.active = ql.atReceptionist() && ql.activeCount() < ql.maxActive();
+        turnInBtn.visible = questTab && selected.isActive();
         turnInBtn.active = selected != null && selected.canTurnIn();
-        abandonBtn.visible = tab == TAB_QUEST && selected != null && selected.active();
+        abandonBtn.visible = questTab && selected.isActive();
+        claimBtn.visible = questTab && selected.isReported();
+        claimBtn.active = ql.atReceptionist();
         currentBoard();
         prevBtn.visible = multi;
         nextBtn.visible = multi;
@@ -388,16 +394,24 @@ public class JobScreen extends Screen {
         List<Row> rows = new ArrayList<>();
         int y = top + 32 - questScroll;
         QuestListPayload d = QuestListPayload.client;
+        boolean anyReported = false;
+        for (QuestView q : quests()) {
+            if (!q.isReported()) continue;
+            if (!anyReported) { rows.add(new Row(y, null, "報酬受け取り待ち")); y += ROW_H; anyReported = true; }
+            rows.add(new Row(y, q, null));
+            y += ROW_H;
+        }
+        if (anyReported) y += 4;
         rows.add(new Row(y, null, "受注中 " + d.activeCount() + "/" + d.maxActive()));
         y += ROW_H;
         boolean any = false;
-        for (QuestView q : quests()) if (q.active()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
+        for (QuestView q : quests()) if (q.isActive()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
         if (!any) { rows.add(new Row(y, null, "  なし")); y += ROW_H; }
         y += 4;
         rows.add(new Row(y, null, "受けられる依頼"));
         y += ROW_H;
         any = false;
-        for (QuestView q : quests()) if (!q.active()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
+        for (QuestView q : quests()) if (q.isAvailable()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
         if (!any) rows.add(new Row(y, null, "  なし"));
         return rows;
     }
@@ -419,9 +433,10 @@ public class JobScreen extends Screen {
             boolean hover = mouseX >= listL && mouseX < listR && mouseY >= r.y() - 1 && mouseY < r.y() + ROW_H - 1;
             if (sel) g.fill(listL, r.y() - 2, listR, r.y() + ROW_H - 2, 0x60FFFFFF);
             else if (hover) g.fill(listL, r.y() - 2, listR, r.y() + ROW_H - 2, 0x30FFFFFF);
-            String mark = q.canTurnIn() ? "✔ " : "";
+            String mark = q.isReported() ? "★ " : q.canTurnIn() ? "✔ " : "";
+            int color = q.isReported() ? 0xFFD700 : q.canTurnIn() ? 0x55FF55 : categoryColor(q.category());
             String text = font.plainSubstrByWidth(mark + q.title().getString(), LIST_W - 6);
-            g.drawString(font, text, listL + 3, r.y(), q.canTurnIn() ? 0x55FF55 : categoryColor(q.category()));
+            g.drawString(font, text, listL + 3, r.y(), color);
         }
         g.disableScissor();
 
@@ -459,6 +474,16 @@ public class JobScreen extends Screen {
                 g.drawString(font, Component.literal("・").append(r.copy()), x + 2, y, 0xFFFFFF);
                 y += 10;
             }
+        }
+
+        // 受付嬢から離れているときの案内（ボタンの横）
+        boolean away = !QuestListPayload.client.atReceptionist();
+        String hint = null;
+        if (selected.isAvailable() && away) hint = "受付嬢から受けられます";
+        else if (selected.isReported() && away) hint = "受付嬢から受け取れます";
+        if (hint != null) {
+            int hx = left + LIST_W + 14 + (selected.isReported() ? 88 : 64);
+            g.drawString(font, hint, hx, top + panelH - 18, 0xAAAAAA);
         }
     }
 

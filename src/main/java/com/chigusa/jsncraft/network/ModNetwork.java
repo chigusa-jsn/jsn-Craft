@@ -44,6 +44,7 @@ public final class ModNetwork {
     private static void handleOpenMenu(OpenMenuPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.player() instanceof ServerPlayer player) {
+                QuestService.leftReceptionist(player); // Kキーは受付嬢の外
                 QuestService.sendList(player); // 先に依頼一覧を送ってから、メニューを開かせる
                 SkillBoardService.sendSnapshot(player, true);
             }
@@ -76,6 +77,7 @@ public final class ModNetwork {
             Component error = switch (payload.action()) {
                 case QuestActionPayload.ACCEPT -> QuestService.accept(player, id);
                 case QuestActionPayload.TURN_IN -> QuestService.turnIn(player, id);
+                case QuestActionPayload.CLAIM -> QuestService.claim(player, id);
                 case QuestActionPayload.ABANDON -> {
                     QuestService.abandon(player, id);
                     yield null;
