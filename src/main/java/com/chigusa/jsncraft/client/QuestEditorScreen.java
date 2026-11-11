@@ -44,6 +44,8 @@ public class QuestEditorScreen extends Screen {
     private final String[] objCount = new String[QuestEditorData.MAX_OBJECTIVES];
     private String xpJob, xpAmount, rewardTitle;
     private final List<ItemStack> items = new ArrayList<>();
+    private final List<ItemStack> choices = new ArrayList<>();
+    private String choose = "1";
 
     private Component status = Component.empty();
     private int left, top, panelW, colW;
@@ -73,6 +75,8 @@ public class QuestEditorScreen extends Screen {
         xpAmount = data.xpAmount() > 0 ? String.valueOf(data.xpAmount()) : "";
         rewardTitle = data.rewardTitle();
         for (ItemStack s : data.items()) items.add(s.copy());
+        for (ItemStack s : data.choices()) choices.add(s.copy());
+        choose = String.valueOf(Math.max(1, data.choose()));
     }
 
     /** サーバーから保存結果が届いたとき */
@@ -86,7 +90,7 @@ public class QuestEditorScreen extends Screen {
         panelW = Math.min(width - 10, 420);
         colW = (panelW - 18) / 2;
         left = (width - panelW) / 2;
-        int H = 22 + ROW * 6 + 34;
+        int H = 22 + ROW * 7 + 34;
         top = Math.max(4, (height - H) / 2);
 
         int lx = left + 6, rx = left + 12 + colW;
@@ -148,15 +152,25 @@ public class QuestEditorScreen extends Screen {
                 .create(rx, ry, 70, 20, Component.literal("経験値"), (b, v) -> xpJob = v));
         box(rx + 72, ry, colW - 72, "経験値の量", xpAmount, 7, v -> xpAmount = v);
         box(rx, ry + ROW, colW, "肩書（もらえる称号）", rewardTitle, 32, v -> rewardTitle = v);
-        addRenderableWidget(Button.builder(Component.literal("選ぶ"), b -> openRewardPicker())
-                .bounds(rx, ry + ROW * 2, 34, 20).build());
+        addRenderableWidget(Button.builder(Component.literal("選ぶ"), b -> openRewardPicker(false))
+                .bounds(rx, ry + ROW * 2, 34, 20)
+                .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("通常報酬：全員が必ずもらえるアイテム")))
+                .build());
         addRenderableWidget(Button.builder(Component.literal("✋"), b -> addHeldItem())
                 .bounds(rx + 36, ry + ROW * 2, 20, 20)
                 .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("手に持っているアイテムを報酬に追加")))
                 .build());
 
+        // ---- 右：選択報酬（候補の中から○個選ぶ） ----
+        addRenderableWidget(Button.builder(Component.literal("選ぶ"), b -> openRewardPicker(true))
+                .bounds(rx, ry + ROW * 3, 34, 20)
+                .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("選択報酬：候補を登録（" + QuestEditorData.MAX_CHOICES + "つまで）")))
+                .build());
+        box(rx + 36, ry + ROW * 3, 22, "数", choose, 1, v -> choose = v)
+                .setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("候補の中から選べる数")));
+
         // ---- 下：保存 ----
-        int by = y0 + ROW * 6 + 12;
+        int by = y0 + ROW * 7 + 12;
         addRenderableWidget(Button.builder(Component.literal(id.isEmpty() ? "作成する" : "更新する").withStyle(ChatFormatting.GREEN),
                 b -> save()).bounds(left + panelW / 2 - 104, by, 100, 20).build());
         addRenderableWidget(Button.builder(Component.literal("キャンセル"), b -> onClose())
@@ -195,17 +209,33 @@ public class QuestEditorScreen extends Screen {
             }
             ix += 18;
         }
-        if (items.isEmpty()) g.drawString(font, "← アイテム報酬なし", rx + ITEMS_X, iy + 4, 0x777777);
+        if (items.isEmpty()) g.drawString(font, "← 通常報酬アイテム", rx + ITEMS_X, iy + 4, 0x777777);
+
+        // 選択報酬の候補
+        int cx = rx + ITEMS_X, cy = y0 + ROW * 6 + 2;
+        for (ItemStack s : choices) {
+            g.fill(cx - 1, cy - 1, cx + 17, cy + 17, 0xFF2A3A2A);
+            g.renderItem(s, cx, cy);
+            g.renderItemDecorations(font, s, cx, cy);
+            if (mouseX >= cx && mouseX < cx + 16 && mouseY >= cy && mouseY < cy + 16) {
+                List<Component> tip = new ArrayList<>(Screen.getTooltipFromItem(minecraft, s));
+                tip.add(Component.literal("クリックで外す").withStyle(ChatFormatting.RED));
+                g.renderComponentTooltip(font, tip, mouseX, mouseY);
+            }
+            cx += 18;
+        }
+        if (choices.isEmpty()) g.drawString(font, "← 選択報酬（○つの中から□つ）", rx + ITEMS_X, cy + 4, 0x777777);
+        else g.drawString(font, "から" + chooseCount() + "つ", cx + 2, cy + 4, 0x88CC88);
 
         if (!status.getString().isEmpty()) {
-            g.drawCenteredString(font, status, left + panelW / 2, y0 + ROW * 6 + 1, 0xFF5555);
+            g.drawCenteredString(font, status, left + panelW / 2, y0 + ROW * 7 + 1, 0xFF5555);
         }
     }
 
     @Override
     public void renderBackground(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         super.renderBackground(g, mouseX, mouseY, partialTick);
-        int H = 22 + ROW * 6 + 34;
+        int H = 22 + ROW * 7 + 34;
         g.fill(left, top, left + panelW, top + H, 0xE0101018);
         g.fill(left, top, left + panelW, top + 1, 0xFF5A5A78);
         g.fill(left, top + H - 1, left + panelW, top + H, 0xFF5A5A78);
@@ -224,6 +254,14 @@ public class QuestEditorScreen extends Screen {
                 return true;
             }
         }
+        int cy = top + 20 + ROW * 6 + 2;
+        for (int i = 0; i < choices.size(); i++) {
+            int cx = rx + ITEMS_X + i * 18;
+            if (mouseX >= cx && mouseX < cx + 16 && mouseY >= cy && mouseY < cy + 16) {
+                choices.remove(i);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -239,16 +277,22 @@ public class QuestEditorScreen extends Screen {
         minecraft.setScreen(new PickerScreen(this, kind, jobs, (entry, count) -> objTarget[n] = entry.id()));
     }
 
-    private void openRewardPicker() {
-        if (items.size() >= QuestEditorData.MAX_ITEMS) {
-            status = Component.literal("報酬アイテムは " + QuestEditorData.MAX_ITEMS + " 種類までです");
+    private void openRewardPicker(boolean choice) {
+        List<ItemStack> target = choice ? choices : items;
+        int max = choice ? QuestEditorData.MAX_CHOICES : QuestEditorData.MAX_ITEMS;
+        if (target.size() >= max) {
+            status = Component.literal((choice ? "選択報酬の候補" : "通常報酬アイテム") + "は " + max + " 種類までです");
             return;
         }
         minecraft.setScreen(new PickerScreen(this, PickerScreen.Kind.REWARD, jobs, (entry, count) -> {
             ItemStack s = entry.stack().copy();
             s.setCount(count);
-            items.add(s);
+            target.add(s);
         }));
+    }
+
+    private int chooseCount() {
+        return Math.max(1, Math.min(Math.max(1, choices.size()), parse(choose, 1)));
     }
 
     // ---- 手持ちから入力 ----
@@ -296,7 +340,7 @@ public class QuestEditorScreen extends Screen {
         }
         QuestEditorData data = new QuestEditorData(id, title, description, category, repeat,
                 requiredJob == null ? "" : requiredJob, parse(minLevel, 0), start, end, objs,
-                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items));
+                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items), List.copyOf(choices), chooseCount());
         status = Component.literal("保存中…").withStyle(ChatFormatting.GRAY);
         PacketDistributor.sendToServer(new QuestEditorPayloads.Save(data));
     }

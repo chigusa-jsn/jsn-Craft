@@ -25,10 +25,13 @@ public record QuestEditorData(
         String xpJob,
         int xpAmount,
         String rewardTitle,
-        List<ItemStack> items
+        List<ItemStack> items,
+        List<ItemStack> choices,
+        int choose
 ) {
     public static final int MAX_OBJECTIVES = 3;
     public static final int MAX_ITEMS = 4;
+    public static final int MAX_CHOICES = 5;
 
     public record Obj(String type, String target, int count) {
         public static final Codec<Obj> CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -52,12 +55,14 @@ public record QuestEditorData(
             Codec.STRING.fieldOf("xp_job").forGetter(QuestEditorData::xpJob),
             Codec.INT.fieldOf("xp_amount").forGetter(QuestEditorData::xpAmount),
             Codec.STRING.fieldOf("reward_title").forGetter(QuestEditorData::rewardTitle),
-            ItemStack.CODEC.listOf().fieldOf("items").forGetter(QuestEditorData::items)
+            ItemStack.CODEC.listOf().fieldOf("items").forGetter(QuestEditorData::items),
+            ItemStack.CODEC.listOf().fieldOf("choices").forGetter(QuestEditorData::choices),
+            Codec.INT.fieldOf("choose").forGetter(QuestEditorData::choose)
     ).apply(i, QuestEditorData::new));
 
     public static QuestEditorData blank() {
         List<Obj> objs = new ArrayList<>();
         for (int i = 0; i < MAX_OBJECTIVES; i++) objs.add(new Obj("break_block", "", 1));
-        return new QuestEditorData("", "", "", "normal", "once", "", 0, "", "", objs, "life", 0, "", List.of());
+        return new QuestEditorData("", "", "", "normal", "once", "", 0, "", "", objs, "life", 0, "", List.of(), List.of(), 1);
     }
 }

@@ -51,6 +51,10 @@ public class JobScreen extends Screen {
     private Button prevBtn, nextBtn;
     private Button acceptBtn, turnInBtn, abandonBtn, claimBtn;
     @Nullable private String selectedQuest;
+    /** 選択報酬で選んだ候補の番号（どの依頼のものか picksFor で覚える） */
+    private final java.util.Set<Integer> picks = new java.util.LinkedHashSet<>();
+    @Nullable private String picksFor;
+    private int choiceX = -1000, choiceY = -1000;
     private int questScroll;
     private double panX, panY;
 
@@ -145,7 +149,11 @@ public class JobScreen extends Screen {
         turnInBtn.active = selected != null && selected.canTurnIn();
         abandonBtn.visible = questTab && selected.isActive();
         claimBtn.visible = questTab && selected.isReported();
-        claimBtn.active = ql.atReceptionist();
+        if (selected == null || !selected.id().equals(picksFor)) {
+            picks.clear();
+            picksFor = selected == null ? null : selected.id();
+        }
+        claimBtn.active = ql.atReceptionist() && selected != null && picks.size() == selected.pickCount();
         currentBoard();
         prevBtn.visible = multi;
         nextBtn.visible = multi;
@@ -316,7 +324,7 @@ public class JobScreen extends Screen {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
-        if (button == 0 && tab == TAB_QUEST) return clickQuestList(mouseX, mouseY);
+        if (button == 0 && tab == TAB_QUEST) return clickChoice(mouseX, mouseY) || clickQuestList(mouseX, mouseY);
         if (button != 0 || !isBoardTab()) return false;
 
         Optional<BoardView> board = currentBoard();
@@ -368,7 +376,27 @@ public class JobScreen extends Screen {
 
     private void questAction(int action) {
         QuestView q = selectedQuest();
-        if (q != null) PacketDistributor.sendToServer(new QuestActionPayload(q.id(), action));
+        if (q == null) return;
+        List<Integer> chosen = action == QuestActionPayload.CLAIM ? new ArrayList<>(picks) : List.of();
+        PacketDistributor.sendToServer(new QuestActionPayload(q.id(), action, chosen));
+    }
+
+    /** 選択報酬のアイコンをクリック：受付嬢のそばで、報酬待ちの依頼なら選ぶ／外す。 */
+    private boolean clickChoice(double mouseX, double mouseY) {
+        QuestView q = selectedQuest();
+        if (q == null || q.choices().isEmpty()) return false;
+        for (int i = 0; i < q.choices().size(); i++) {
+            int ix = choiceX + i * 20;
+            if (mouseX >= ix && mouseX < ix + 18 && mouseY >= choiceY && mouseY < choiceY + 18) {
+                if (!q.isReported() || !QuestListPayload.client.atReceptionist()) return true;
+                if (!picks.remove(i)) {
+                    if (q.pickCount() == 1) picks.clear(); // 1つだけなら選び直し
+                    if (picks.size() < q.pickCount()) picks.add(i);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     private static int categoryColor(String category) {
@@ -476,14 +504,49 @@ public class JobScreen extends Screen {
             }
         }
 
+        // 選択報酬
+        choiceX = -1000;
+        ItemStack hoveredChoice = null;
+        if (!selected.choices().isEmpty()) {
+            y += 2;
+            g.drawString(font, "選択報酬（" + selected.choices().size() + "つの中から" + selected.pickCount() + "つ）", x, y, 0xFFFF55);
+            y += 11;
+            choiceX = x + 2;
+            choiceY = y;
+            boolean choosing = selected.isReported() && QuestListPayload.client.atReceptionist();
+            for (int i = 0; i < selected.choices().size(); i++) {
+                ItemStack c = selected.choices().get(i);
+                int ix = choiceX + i * 20;
+                boolean picked = picks.contains(i);
+                g.fill(ix - 1, y - 1, ix + 19, y + 19, picked ? 0xFFFFC14D : choosing ? 0xFF55AA77 : 0xFF3A3A44);
+                g.fill(ix, y, ix + 18, y + 18, 0xFF1A1A22);
+                g.renderItem(c, ix + 1, y + 1);
+                g.renderItemDecorations(font, c, ix + 1, y + 1);
+                if (mouseX >= ix && mouseX < ix + 18 && mouseY >= y && mouseY < y + 18) hoveredChoice = c;
+            }
+            if (choosing) {
+                g.drawString(font, picks.size() + "/" + selected.pickCount(), choiceX + selected.choices().size() * 20 + 4, y + 5,
+                        picks.size() == selected.pickCount() ? 0x55FF55 : 0xFFFF55);
+            }
+            y += 22;
+        }
+
         // 受付嬢から離れているときの案内（ボタンの横）
         boolean away = !QuestListPayload.client.atReceptionist();
         String hint = null;
         if (selected.isAvailable() && away) hint = "受付嬢から受けられます";
         else if (selected.isReported() && away) hint = "受付嬢から受け取れます";
+        if (hint == null && selected.isReported() && !away && picks.size() < selected.pickCount()) {
+            hint = "選択報酬を選んでね";
+        }
         if (hint != null) {
             int hx = left + LIST_W + 14 + (selected.isReported() ? 88 : 64);
             g.drawString(font, hint, hx, top + panelH - 18, 0xAAAAAA);
+        }
+        if (hoveredChoice != null) {
+            List<Component> tip = new ArrayList<>(Screen.getTooltipFromItem(minecraft, hoveredChoice));
+            if (selected.isReported() && !away) tip.add(Component.literal("クリックで選ぶ").withStyle(ChatFormatting.GREEN));
+            g.renderComponentTooltip(font, tip, mouseX, mouseY);
         }
     }
 

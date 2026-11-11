@@ -129,7 +129,23 @@ Kキーのメニューの「依頼」タブでは、依頼を見る・報告す�
 | `start`, `end` | 受けられる期間。サーバーのPCの時刻で判定。書かなければいつでも |
 | `objectives` | 目標。`break_block`（壊す） / `kill_entity`（倒す） / `deliver_item`（納品） / `reach_level`（職業レベル） |
 | `label` | 目標の説明文（省略すると自動） |
-| `rewards` | `job_xp`（`life` / `combat` / 職業ID）、`items`、`title`（肩書） |
+| `rewards` | `job_xp`（`life` / `combat` / 職業ID）、`items`（通常報酬）、`title`（肩書）、`choices` と `choose`（選択報酬：候補の中から choose 個選ぶ） |
+
+選択報酬の例（3つの中から1つ）：
+
+```json
+"rewards": {
+  "items": [ { "id": "minecraft:bread", "count": 8 } ],
+  "choices": [
+    { "id": "minecraft:iron_sword" },
+    { "id": "minecraft:iron_axe" },
+    { "id": "minecraft:bow" }
+  ],
+  "choose": 1
+}
+```
+
+選択報酬は、受付嬢のところで報酬を受け取るときに、候補のアイコンをクリックして選ぶ。
 
 ## 受付嬢NPC
 

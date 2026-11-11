@@ -80,6 +80,10 @@ public final class QuestEditorService {
         for (ItemStack s : data.items()) if (!s.isEmpty()) items.add(s.copy());
         Optional<String> title = data.rewardTitle().isBlank() ? Optional.empty() : Optional.of(data.rewardTitle().trim());
 
+        List<ItemStack> choices = new ArrayList<>();
+        for (ItemStack s : data.choices()) if (!s.isEmpty()) choices.add(s.copy());
+        int choose = Math.max(1, Math.min(Math.max(1, choices.size()), data.choose()));
+
         QuestDefinition def = new QuestDefinition(
                 Component.literal(data.title().trim()),
                 Component.literal(data.description().trim()),
@@ -89,7 +93,7 @@ public final class QuestEditorService {
                 data.repeat(),
                 start, end,
                 objectives,
-                new QuestDefinition.Rewards(xp, items, title));
+                new QuestDefinition.Rewards(xp, items, title, choices, choose));
 
         ResourceLocation id = data.id().isBlank() ? null : ResourceLocation.tryParse(data.id());
         if (id != null && store.find(id) != null) {
@@ -157,7 +161,9 @@ public final class QuestEditorService {
                 xp != null ? xp.job() : "life",
                 xp != null ? xp.amount() : 0,
                 def.rewards().title().orElse(""),
-                def.rewards().items().stream().limit(QuestEditorData.MAX_ITEMS).map(ItemStack::copy).toList());
+                def.rewards().items().stream().limit(QuestEditorData.MAX_ITEMS).map(ItemStack::copy).toList(),
+                def.rewards().choices().stream().limit(QuestEditorData.MAX_CHOICES).map(ItemStack::copy).toList(),
+                def.rewards().choose());
     }
 
     private QuestEditorService() {}

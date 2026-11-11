@@ -68,14 +68,23 @@ public record QuestDefinition(
     /**
      * ごほうび。job_xp の job は "life" / "combat"（今の職業）か、職業ID。
      * items は {"id": "minecraft:diamond", "count": 3} の形（エンチャントなどの付いたアイテムもOK）。
+     * choices は選択報酬の候補、choose はその中から選べる数（例：3つの中から1つ）。
      */
-    public record Rewards(List<JobXp> jobXp, List<ItemStack> items, Optional<String> title) {
-        public static final Rewards NONE = new Rewards(List.of(), List.of(), Optional.empty());
+    public record Rewards(List<JobXp> jobXp, List<ItemStack> items, Optional<String> title,
+                          List<ItemStack> choices, int choose) {
+        public static final Rewards NONE = new Rewards(List.of(), List.of(), Optional.empty(), List.of(), 1);
         public static final Codec<Rewards> CODEC = RecordCodecBuilder.create(i -> i.group(
                 JobXp.CODEC.listOf().optionalFieldOf("job_xp", List.of()).forGetter(Rewards::jobXp),
                 ItemStack.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Rewards::items),
-                Codec.STRING.optionalFieldOf("title").forGetter(Rewards::title)
+                Codec.STRING.optionalFieldOf("title").forGetter(Rewards::title),
+                ItemStack.CODEC.listOf().optionalFieldOf("choices", List.of()).forGetter(Rewards::choices),
+                Codec.intRange(1, 10).optionalFieldOf("choose", 1).forGetter(Rewards::choose)
         ).apply(i, Rewards::new));
+
+        /** 実際に選ぶ数（候補より多くは選べない） */
+        public int pickCount() {
+            return Math.min(choose, choices.size());
+        }
     }
 
     public record JobXp(String job, int amount) {

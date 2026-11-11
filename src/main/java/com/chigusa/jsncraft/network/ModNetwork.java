@@ -86,7 +86,7 @@ public final class ModNetwork {
             Component error = switch (payload.action()) {
                 case QuestActionPayload.ACCEPT -> QuestService.accept(player, id);
                 case QuestActionPayload.TURN_IN -> QuestService.turnIn(player, id);
-                case QuestActionPayload.CLAIM -> QuestService.claim(player, id);
+                case QuestActionPayload.CLAIM -> QuestService.claim(player, id, payload.picks());
                 case QuestActionPayload.ABANDON -> {
                     QuestService.abandon(player, id);
                     yield null;

@@ -156,24 +156,26 @@ public final class QuestService {
 
     /** 受付嬢のところで報酬を受け取る。 */
     @Nullable
-    public static Component claim(ServerPlayer player, ResourceLocation id) {
+    public static Component claim(ServerPlayer player, ResourceLocation id, List<Integer> picks) {
         QuestDefinition def = QuestManager.INSTANCE.get(id);
         PlayerQuestData q = data(player);
         if (def == null || !q.reported.contains(id)) return Component.literal("受け取れる報酬はありません");
         if (!isAtReceptionist(player)) return Component.literal("報酬は受付嬢から受け取ってください");
 
         QuestDefinition.Rewards r = def.rewards();
+        // 選択報酬のチェック：ちょうど決められた数を、重複なく選んでいるか
+        java.util.Set<Integer> chosen = new java.util.LinkedHashSet<>(picks);
+        if (chosen.size() != picks.size() || chosen.size() != r.pickCount()
+                || chosen.stream().anyMatch(i -> i < 0 || i >= r.choices().size())) {
+            return Component.literal("選択報酬を " + r.pickCount() + " 個選んでください");
+        }
+        for (int i : chosen) give(player, r.choices().get(i));
+
         for (QuestDefinition.JobXp xp : r.jobXp()) {
             ResourceLocation job = resolveJob(player, xp.job());
             if (job != null) JobService.addXp(player, job, xp.amount());
         }
-        for (ItemStack item : r.items()) {
-            ItemStack left = item.copy();
-            while (!left.isEmpty()) {
-                ItemStack part = left.split(left.getMaxStackSize());
-                if (!player.getInventory().add(part)) player.drop(part, false);
-            }
-        }
+        for (ItemStack item : r.items()) give(player, item);
         r.title().ifPresent(title -> {
             q.titles.add(title);
             JobService.data(player).setTitle(title);
@@ -188,6 +190,14 @@ public final class QuestService {
         player.level().playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 0.6F, 1.0F);
         sendList(player);
         return null;
+    }
+
+    private static void give(ServerPlayer player, ItemStack item) {
+        ItemStack left = item.copy();
+        while (!left.isEmpty()) {
+            ItemStack part = left.split(left.getMaxStackSize());
+            if (!player.getInventory().add(part)) player.drop(part, false);
+        }
     }
 
     @Nullable
@@ -316,7 +326,7 @@ public final class QuestService {
         boolean canTurnIn = active && isComplete(player, def, progress)
                 && !def.endTime().map(LocalDateTime.now()::isAfter).orElse(false);
         return new QuestView(id.toString(), def.title(), def.description(), def.category(), state, canTurnIn,
-                periodText(def), objs, rewards);
+                periodText(def), objs, rewards, def.rewards().choices(), def.rewards().choose());
     }
 
     private static String periodText(QuestDefinition def) {
