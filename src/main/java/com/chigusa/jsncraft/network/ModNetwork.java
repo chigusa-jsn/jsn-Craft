@@ -2,6 +2,7 @@ package com.chigusa.jsncraft.network;
 
 import com.chigusa.jsncraft.client.ClientMenuHandler;
 import com.chigusa.jsncraft.job.SkillBoardService;
+import com.chigusa.jsncraft.quest.QuestEditorService;
 import com.chigusa.jsncraft.quest.QuestService;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -12,13 +13,21 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("5");
+        PayloadRegistrar registrar = event.registrar("6");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
         registrar.playToClient(ResourceSyncPayload.TYPE, ResourceSyncPayload.STREAM_CODEC, ModNetwork::handleResources);
         registrar.playToClient(QuestListPayload.TYPE, QuestListPayload.STREAM_CODEC, ModNetwork::handleQuestList);
         registrar.playToClient(OpenTabPayload.TYPE, OpenTabPayload.STREAM_CODEC, ModNetwork::handleOpenTab);
+        registrar.playToClient(QuestEditorPayloads.Open.TYPE, QuestEditorPayloads.Open.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> ClientMenuHandler.openEditor(p)));
+        registrar.playToClient(QuestEditorPayloads.Result.TYPE, QuestEditorPayloads.Result.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> ClientMenuHandler.editorResult(p)));
+        registrar.playToServer(QuestEditorPayloads.Save.TYPE, QuestEditorPayloads.Save.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) QuestEditorService.save(sp, p.data());
+                }));
         // クライアント → サーバー
         registrar.playToServer(OpenMenuPayload.TYPE, OpenMenuPayload.STREAM_CODEC, ModNetwork::handleOpenMenu);
         registrar.playToServer(UnlockNodePayload.TYPE, UnlockNodePayload.STREAM_CODEC, ModNetwork::handleUnlock);

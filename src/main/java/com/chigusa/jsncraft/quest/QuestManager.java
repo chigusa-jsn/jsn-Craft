@@ -36,12 +36,24 @@ public class QuestManager extends SimpleJsonResourceReloadListener {
         JsnCraft.LOGGER.info("[jsn-Craft] {} 個の依頼を読み込みました", quests.size());
     }
 
+    /** 依頼を探す。ファイルの依頼 → ゲーム内で作った依頼（一時停止中も含む）の順。 */
     @Nullable
     public QuestDefinition get(@Nullable ResourceLocation id) {
-        return id == null ? null : quests.get(id);
+        if (id == null) return null;
+        QuestDefinition def = quests.get(id);
+        if (def != null) return def;
+        CustomQuestStore custom = CustomQuestStore.get();
+        return custom == null ? null : custom.find(id);
     }
 
+    /** 今募集している依頼の一覧（ファイルの依頼＋ゲーム内で作った依頼のうち、一時停止していないもの）。 */
     public Map<ResourceLocation, QuestDefinition> all() {
-        return quests;
+        CustomQuestStore custom = CustomQuestStore.get();
+        if (custom == null || custom.all().isEmpty()) return quests;
+        Map<ResourceLocation, QuestDefinition> merged = new LinkedHashMap<>(quests);
+        custom.all().forEach((id, def) -> {
+            if (!custom.isDisabled(id)) merged.put(id, def);
+        });
+        return merged;
     }
 }

@@ -167,14 +167,11 @@ public final class QuestService {
             ResourceLocation job = resolveJob(player, xp.job());
             if (job != null) JobService.addXp(player, job, xp.amount());
         }
-        for (QuestDefinition.ItemReward item : r.items()) {
-            Item it = BuiltInRegistries.ITEM.get(item.id());
-            int left = item.count();
-            while (left > 0) {
-                int n = Math.min(left, it.getDefaultMaxStackSize());
-                ItemStack stack = new ItemStack(it, n);
-                if (!player.getInventory().add(stack)) player.drop(stack, false);
-                left -= n;
+        for (ItemStack item : r.items()) {
+            ItemStack left = item.copy();
+            while (!left.isEmpty()) {
+                ItemStack part = left.split(left.getMaxStackSize());
+                if (!player.getInventory().add(part)) player.drop(part, false);
             }
         }
         r.title().ifPresent(title -> {
@@ -311,9 +308,8 @@ public final class QuestService {
             };
             rewards.add(Component.empty().append(job.copy()).append(" 経験値 +" + xp.amount()));
         }
-        for (QuestDefinition.ItemReward item : def.rewards().items()) {
-            rewards.add(Component.empty().append(new ItemStack(BuiltInRegistries.ITEM.get(item.id())).getHoverName())
-                    .append(" ×" + item.count()));
+        for (ItemStack item : def.rewards().items()) {
+            rewards.add(Component.empty().append(item.getHoverName()).append(" ×" + item.getCount()));
         }
         def.rewards().title().ifPresent(t -> rewards.add(Component.literal("肩書《" + t + "》").withStyle(ChatFormatting.GOLD)));
 

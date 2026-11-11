@@ -2,6 +2,10 @@ package com.chigusa.jsncraft.event;
 
 import com.chigusa.jsncraft.JsnCraft;
 import com.chigusa.jsncraft.command.JobCommand;
+import com.chigusa.jsncraft.command.QuestCommand;
+import com.chigusa.jsncraft.quest.CustomQuestStore;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import com.chigusa.jsncraft.job.JobManager;
 import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.SkillBoardService;
@@ -29,6 +33,17 @@ public final class GameEvents {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         JobCommand.register(event.getDispatcher());
+        QuestCommand.register(event.getDispatcher());
+    }
+
+    @SubscribeEvent
+    public static void onServerStarted(ServerStartedEvent event) {
+        CustomQuestStore.onServerStarted(event.getServer());
+    }
+
+    @SubscribeEvent
+    public static void onServerStopped(ServerStoppedEvent event) {
+        CustomQuestStore.onServerStopped();
     }
 
     // ---- 経験値 ----

@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -64,12 +65,15 @@ public record QuestDefinition(
         }
     }
 
-    /** ごほうび。job_xp の job は "life" / "combat"（今の職業）か、職業ID。 */
-    public record Rewards(List<JobXp> jobXp, List<ItemReward> items, Optional<String> title) {
+    /**
+     * ごほうび。job_xp の job は "life" / "combat"（今の職業）か、職業ID。
+     * items は {"id": "minecraft:diamond", "count": 3} の形（エンチャントなどの付いたアイテムもOK）。
+     */
+    public record Rewards(List<JobXp> jobXp, List<ItemStack> items, Optional<String> title) {
         public static final Rewards NONE = new Rewards(List.of(), List.of(), Optional.empty());
         public static final Codec<Rewards> CODEC = RecordCodecBuilder.create(i -> i.group(
                 JobXp.CODEC.listOf().optionalFieldOf("job_xp", List.of()).forGetter(Rewards::jobXp),
-                ItemReward.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Rewards::items),
+                ItemStack.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Rewards::items),
                 Codec.STRING.optionalFieldOf("title").forGetter(Rewards::title)
         ).apply(i, Rewards::new));
     }
@@ -79,13 +83,6 @@ public record QuestDefinition(
                 Codec.STRING.fieldOf("job").forGetter(JobXp::job),
                 Codec.INT.fieldOf("amount").forGetter(JobXp::amount)
         ).apply(i, JobXp::new));
-    }
-
-    public record ItemReward(ResourceLocation id, int count) {
-        public static final Codec<ItemReward> CODEC = RecordCodecBuilder.create(i -> i.group(
-                ResourceLocation.CODEC.fieldOf("id").forGetter(ItemReward::id),
-                Codec.intRange(1, 64 * 36).optionalFieldOf("count", 1).forGetter(ItemReward::count)
-        ).apply(i, ItemReward::new));
     }
 
     // ---- 期間 ----
