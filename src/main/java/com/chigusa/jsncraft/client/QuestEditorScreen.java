@@ -22,8 +22,8 @@ import java.util.List;
 
 /**
  * 依頼エディター（OP用）。左に「基本」、右に「目標・報酬」。
- * 目標の [✋] を押すと、手に持っているアイテム（スポーンエッグならそのモンスター）が対象に入る。
- * 報酬の [手持ちを追加] で、手に持っているアイテムをそのまま報酬に登録できる。
+ * 目標の対象・報酬アイテムは一覧から選べる（[✋] なら手に持っているアイテム）。
+ * 開始・終了はカレンダーから選ぶ。
  */
 public class QuestEditorScreen extends Screen {
 
@@ -45,7 +45,6 @@ public class QuestEditorScreen extends Screen {
     private String xpJob, xpAmount, rewardTitle;
     private final List<ItemStack> items = new ArrayList<>();
 
-    private final EditBox[] targetBoxes = new EditBox[QuestEditorData.MAX_OBJECTIVES];
     private Component status = Component.empty();
     private int left, top, panelW, colW;
 
@@ -108,8 +107,16 @@ public class QuestEditorScreen extends Screen {
                 .withValues(jobChoices).withInitialValue(initialJob).displayOnlyValue()
                 .create(lx, y0 + ROW * 3, colW - 48, 20, Component.literal("職業条件"), (b, v) -> requiredJob = v));
         box(lx + colW - 44, y0 + ROW * 3, 44, "Lv", minLevel, 4, v -> minLevel = v);
-        box(lx, y0 + ROW * 4, colW, "開始 例: 2026-12-24 18:00", start, 20, v -> start = v);
-        box(lx, y0 + ROW * 5, colW, "終了 例: 2026-12-31", end, 20, v -> end = v);
+        Component startLabel = start.isBlank()
+                ? Component.literal("開始：すぐに受けられる")
+                : Component.literal("開始：" + DatePickerScreen.pretty(start) + " から");
+        addRenderableWidget(Button.builder(startLabel, b -> minecraft.setScreen(
+                new DatePickerScreen(this, false, start, v -> start = v))).bounds(lx, y0 + ROW * 4, colW, 20).build());
+        Component endLabel = end.isBlank()
+                ? Component.literal("終了：期限なし")
+                : Component.literal("終了：" + DatePickerScreen.pretty(end) + " まで");
+        addRenderableWidget(Button.builder(endLabel, b -> minecraft.setScreen(
+                new DatePickerScreen(this, true, end, v -> end = v))).bounds(lx, y0 + ROW * 5, colW, 20).build());
 
         // ---- 右：目標 ----
         for (int i = 0; i < QuestEditorData.MAX_OBJECTIVES; i++) {
@@ -117,9 +124,18 @@ public class QuestEditorScreen extends Screen {
             int y = y0 + ROW * i;
             addRenderableWidget(CycleButton.<String>builder(QuestEditorScreen::objTypeName)
                     .withValues(OBJ_TYPES).withInitialValue(objType[i]).displayOnlyValue()
-                    .create(rx, y, 46, 20, Component.literal("目標"), (b, v) -> objType[n] = v));
+                    .create(rx, y, 46, 20, Component.literal("目標"), (b, v) -> {
+                        if (!v.equals(objType[n])) objTarget[n] = ""; // 種類が変わったら対象は選び直し
+                        objType[n] = v;
+                        rebuildWidgets();
+                    }));
             int tw = colW - 46 - 36 - 22 - 6;
-            targetBoxes[i] = box(rx + 48, y, tw, "対象 (例 minecraft:oak_log)", objTarget[i], 128, v -> objTarget[n] = v);
+            Component targetName = PickerScreen.nameOf(objType[i], objTarget[i], jobs);
+            String shortName = font.plainSubstrByWidth(targetName.getString(), tw - 8);
+            addRenderableWidget(Button.builder(Component.literal(shortName).withStyle(targetName.getStyle()), b -> openTargetPicker(n))
+                    .bounds(rx + 48, y, tw, 20)
+                    .tooltip(net.minecraft.client.gui.components.Tooltip.create(targetName))
+                    .build());
             box(rx + 50 + tw, y, 34, "数", objCount[i], 7, v -> objCount[n] = v);
             addRenderableWidget(Button.builder(Component.literal("✋"), b -> fillFromHand(n))
                     .bounds(rx + colW - 20, y, 20, 20).build());
@@ -132,10 +148,12 @@ public class QuestEditorScreen extends Screen {
                 .create(rx, ry, 70, 20, Component.literal("経験値"), (b, v) -> xpJob = v));
         box(rx + 72, ry, colW - 72, "経験値の量", xpAmount, 7, v -> xpAmount = v);
         box(rx, ry + ROW, colW, "肩書（もらえる称号）", rewardTitle, 32, v -> rewardTitle = v);
-        addRenderableWidget(Button.builder(Component.literal("手持ちを追加"), b -> addHeldItem())
-                .bounds(rx, ry + ROW * 2, 70, 20).build());
-        addRenderableWidget(Button.builder(Component.literal("消す"), b -> items.clear())
-                .bounds(rx + 72, ry + ROW * 2, 30, 20).build());
+        addRenderableWidget(Button.builder(Component.literal("選ぶ"), b -> openRewardPicker())
+                .bounds(rx, ry + ROW * 2, 34, 20).build());
+        addRenderableWidget(Button.builder(Component.literal("✋"), b -> addHeldItem())
+                .bounds(rx + 36, ry + ROW * 2, 20, 20)
+                .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("手に持っているアイテムを報酬に追加")))
+                .build());
 
         // ---- 下：保存 ----
         int by = y0 + ROW * 6 + 12;
@@ -164,17 +182,20 @@ public class QuestEditorScreen extends Screen {
         g.drawString(font, "目標（✋で手持ちから入力）・報酬", rx, top + 6, 0xFFFF55);
         int y0 = top + 20;
 
-        // 報酬アイテムのアイコン
-        int ix = rx + 106, iy = y0 + ROW * 5 + 2;
+        // 報酬アイテムのアイコン（クリックで外す）
+        int ix = rx + ITEMS_X, iy = y0 + ROW * 5 + 2;
         for (ItemStack s : items) {
+            g.fill(ix - 1, iy - 1, ix + 17, iy + 17, 0xFF22222E);
             g.renderItem(s, ix, iy);
             g.renderItemDecorations(font, s, ix, iy);
             if (mouseX >= ix && mouseX < ix + 16 && mouseY >= iy && mouseY < iy + 16) {
-                g.renderTooltip(font, s, mouseX, mouseY);
+                List<Component> tip = new ArrayList<>(Screen.getTooltipFromItem(minecraft, s));
+                tip.add(Component.literal("クリックで外す").withStyle(ChatFormatting.RED));
+                g.renderComponentTooltip(font, tip, mouseX, mouseY);
             }
             ix += 18;
         }
-        if (items.isEmpty()) g.drawString(font, "アイテムなし", rx + 106, iy + 4, 0x777777);
+        if (items.isEmpty()) g.drawString(font, "← アイテム報酬なし", rx + ITEMS_X, iy + 4, 0x777777);
 
         if (!status.getString().isEmpty()) {
             g.drawCenteredString(font, status, left + panelW / 2, y0 + ROW * 6 + 1, 0xFF5555);
@@ -188,6 +209,46 @@ public class QuestEditorScreen extends Screen {
         g.fill(left, top, left + panelW, top + H, 0xE0101018);
         g.fill(left, top, left + panelW, top + 1, 0xFF5A5A78);
         g.fill(left, top + H - 1, left + panelW, top + H, 0xFF5A5A78);
+    }
+
+    private static final int ITEMS_X = 60;
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (super.mouseClicked(mouseX, mouseY, button)) return true;
+        int rx = left + 12 + colW, iy = top + 20 + ROW * 5 + 2;
+        for (int i = 0; i < items.size(); i++) {
+            int ix = rx + ITEMS_X + i * 18;
+            if (mouseX >= ix && mouseX < ix + 16 && mouseY >= iy && mouseY < iy + 16) {
+                items.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // ---- 一覧から選ぶ ----
+
+    private void openTargetPicker(int n) {
+        PickerScreen.Kind kind = switch (objType[n]) {
+            case "kill_entity" -> PickerScreen.Kind.MOB;
+            case "deliver_item" -> PickerScreen.Kind.ITEM;
+            case "reach_level" -> PickerScreen.Kind.JOB;
+            default -> PickerScreen.Kind.BLOCK;
+        };
+        minecraft.setScreen(new PickerScreen(this, kind, jobs, (entry, count) -> objTarget[n] = entry.id()));
+    }
+
+    private void openRewardPicker() {
+        if (items.size() >= QuestEditorData.MAX_ITEMS) {
+            status = Component.literal("報酬アイテムは " + QuestEditorData.MAX_ITEMS + " 種類までです");
+            return;
+        }
+        minecraft.setScreen(new PickerScreen(this, PickerScreen.Kind.REWARD, jobs, (entry, count) -> {
+            ItemStack s = entry.stack().copy();
+            s.setCount(count);
+            items.add(s);
+        }));
     }
 
     // ---- 手持ちから入力 ----
@@ -207,7 +268,9 @@ public class QuestEditorScreen extends Screen {
         } else {
             target = BuiltInRegistries.ITEM.getKey(held.getItem()).toString();
         }
-        targetBoxes[n].setValue(target); // responder で objTarget も更新される
+        objTarget[n] = target;
+        status = Component.empty();
+        rebuildWidgets();
     }
 
     private void addHeldItem() {
