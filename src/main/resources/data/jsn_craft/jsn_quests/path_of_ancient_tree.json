@@ -1,0 +1,16 @@
+{
+  "title": { "text": "古樹への道" },
+  "description": { "text": "古樹の守り人を目指す伐り手への試練。腕を磨き、森の恵みを納めよ。" },
+  "category": "job",
+  "required_job": "jsn_craft:lumberjack",
+  "min_level": 10,
+  "repeat": "once",
+  "objectives": [
+    { "type": "reach_level", "target": "jsn_craft:lumberjack", "count": 20 },
+    { "type": "deliver_item", "target": "#minecraft:logs", "count": 64, "label": { "text": "原木を納品" } }
+  ],
+  "rewards": {
+    "job_xp": [ { "job": "jsn_craft:lumberjack", "amount": 500 } ],
+    "title": "森の守護者"
+  }
+}

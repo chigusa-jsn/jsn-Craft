@@ -1,0 +1,13 @@
+{
+  "title": { "text": "ゾンビ退治" },
+  "description": { "text": "夜になると村の近くにゾンビが出るんだ。10体ほど倒してほしい。" },
+  "category": "normal",
+  "repeat": "once",
+  "objectives": [
+    { "type": "kill_entity", "target": "minecraft:zombie", "count": 10 }
+  ],
+  "rewards": {
+    "job_xp": [ { "job": "combat", "amount": 200 } ],
+    "items": [ { "id": "minecraft:iron_ingot", "count": 3 } ]
+  }
+}

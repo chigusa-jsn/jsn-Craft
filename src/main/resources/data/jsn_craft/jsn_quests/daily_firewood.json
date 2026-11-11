@@ -1,0 +1,13 @@
+{
+  "title": { "text": "薪集め" },
+  "description": { "text": "冬に備えて薪が足りないの。原木を集めてきてくれる？" },
+  "category": "normal",
+  "repeat": "daily",
+  "objectives": [
+    { "type": "break_block", "target": "#minecraft:logs", "count": 32, "label": { "text": "原木を切る" } }
+  ],
+  "rewards": {
+    "job_xp": [ { "job": "life", "amount": 150 } ],
+    "items": [ { "id": "minecraft:bread", "count": 4 } ]
+  }
+}

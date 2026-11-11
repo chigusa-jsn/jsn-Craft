@@ -5,6 +5,8 @@ import com.chigusa.jsncraft.command.JobCommand;
 import com.chigusa.jsncraft.job.JobManager;
 import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.SkillBoardService;
+import com.chigusa.jsncraft.quest.QuestManager;
+import com.chigusa.jsncraft.quest.QuestService;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,6 +23,7 @@ public final class GameEvents {
     @SubscribeEvent
     public static void onAddReloadListeners(AddReloadListenerEvent event) {
         event.addListener(JobManager.INSTANCE);
+        event.addListener(QuestManager.INSTANCE);
     }
 
     @SubscribeEvent
@@ -35,6 +38,7 @@ public final class GameEvents {
         if (event.getPlayer() instanceof ServerPlayer player && !player.isCreative()) {
             var state = event.getState();
             JobService.onAction(player, rule -> rule.action().equals("break_block") && rule.matchesBlock(state));
+            QuestService.onBreak(player, state);
         }
     }
 
@@ -44,6 +48,7 @@ public final class GameEvents {
         if (event.getSource().getEntity() instanceof ServerPlayer player && !(event.getEntity() instanceof Player)) {
             var victim = event.getEntity();
             JobService.onAction(player, rule -> rule.action().equals("kill_entity") && rule.matchesEntity(victim));
+            QuestService.onKill(player, victim);
         }
     }
 

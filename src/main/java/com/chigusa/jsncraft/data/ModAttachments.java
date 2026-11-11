@@ -1,6 +1,7 @@
 package com.chigusa.jsncraft.data;
 
 import com.chigusa.jsncraft.JsnCraft;
+import com.chigusa.jsncraft.quest.PlayerQuestData;
 import com.chigusa.jsncraft.stat.PlayerResources;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -25,6 +26,14 @@ public final class ModAttachments {
             "resources",
             () -> AttachmentType.builder(() -> new PlayerResources())
                     .serialize(PlayerResources.CODEC)
+                    .build());
+
+    /** 依頼の受注・達成状況と、もらった肩書。死んでも消えない。 */
+    public static final Supplier<AttachmentType<PlayerQuestData>> QUESTS = ATTACHMENT_TYPES.register(
+            "quests",
+            () -> AttachmentType.builder(() -> new PlayerQuestData())
+                    .serialize(PlayerQuestData.CODEC)
+                    .copyOnDeath()
                     .build());
 
     private ModAttachments() {}

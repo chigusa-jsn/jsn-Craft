@@ -1,0 +1,376 @@
+package com.chigusa.jsncraft.quest;
+
+import com.chigusa.jsncraft.data.ModAttachments;
+import com.chigusa.jsncraft.data.PlayerJobData;
+import com.chigusa.jsncraft.job.JobDefinition;
+import com.chigusa.jsncraft.job.JobManager;
+import com.chigusa.jsncraft.job.JobService;
+import com.chigusa.jsncraft.job.JobType;
+import com.chigusa.jsncraft.network.QuestListPayload;
+import com.chigusa.jsncraft.network.QuestListPayload.ObjectiveView;
+import com.chigusa.jsncraft.network.QuestListPayload.QuestView;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+
+/** 依頼の受注・進行・報告・ごほうび。 */
+public final class QuestService {
+
+    /** 同時に受けられる依頼の数 */
+    public static final int MAX_ACTIVE = 5;
+
+    public static PlayerQuestData data(ServerPlayer player) {
+        return player.getData(ModAttachments.QUESTS);
+    }
+
+    // ---------------- 受けられるか ----------------
+
+    /** 受けられないなら理由、受けられるなら null。 */
+    @Nullable
+    public static Component whyUnavailable(ServerPlayer player, ResourceLocation id, QuestDefinition def) {
+        PlayerQuestData q = data(player);
+        if (q.active.containsKey(id)) return Component.literal("受注中です");
+        if (!def.isOpen(LocalDateTime.now())) return Component.literal("今は受けられない期間です");
+
+        Long last = q.completed.get(id);
+        if (last != null) {
+            if (def.repeat().equals("once")) return Component.literal("達成済みです");
+            if (def.repeat().equals("daily") && last == LocalDate.now().toEpochDay()) {
+                return Component.literal("今日はもう達成しました（明日また受けられます）");
+            }
+        }
+
+        if (def.requiredJob().isPresent()) {
+            ResourceLocation job = def.requiredJob().get();
+            PlayerJobData jobs = JobService.data(player);
+            boolean holding = job.equals(jobs.getJob(JobType.LIFE)) || job.equals(jobs.getJob(JobType.COMBAT));
+            JobDefinition jobDef = JobManager.INSTANCE.get(job);
+            Component jobName = jobDef != null ? jobDef.name() : Component.literal(job.toString());
+            if (!holding) return Component.literal("").append(jobName.copy()).append(" に就いている人だけが受けられます");
+            if (jobs.level(job) < def.minLevel()) {
+                return Component.literal("").append(jobName.copy()).append(" Lv." + def.minLevel() + " 以上が必要です");
+            }
+        }
+        return null;
+    }
+
+    // ---------------- 受ける・あきらめる・報告 ----------------
+
+    @Nullable
+    public static Component accept(ServerPlayer player, ResourceLocation id) {
+        QuestDefinition def = QuestManager.INSTANCE.get(id);
+        if (def == null) return Component.literal("その依頼はありません");
+        Component why = whyUnavailable(player, id, def);
+        if (why != null) return why;
+        PlayerQuestData q = data(player);
+        if (q.active.size() >= MAX_ACTIVE) return Component.literal("同時に受けられるのは " + MAX_ACTIVE + " 件までです");
+
+        List<Integer> progress = new ArrayList<>();
+        for (int i = 0; i < def.objectives().size(); i++) progress.add(0);
+        q.active.put(id, progress);
+        player.sendSystemMessage(Component.literal("依頼「").withStyle(ChatFormatting.YELLOW)
+                .append(def.title().copy()).append(Component.literal("」を受けました").withStyle(ChatFormatting.YELLOW)));
+        sendList(player);
+        return null;
+    }
+
+    public static void abandon(ServerPlayer player, ResourceLocation id) {
+        if (data(player).active.remove(id) != null) sendList(player);
+    }
+
+    @Nullable
+    public static Component turnIn(ServerPlayer player, ResourceLocation id) {
+        QuestDefinition def = QuestManager.INSTANCE.get(id);
+        PlayerQuestData q = data(player);
+        List<Integer> progress = q.active.get(id);
+        if (def == null || progress == null) return Component.literal("その依頼は受けていません");
+        if (def.endTime().map(LocalDateTime.now()::isAfter).orElse(false)) return Component.literal("期限が過ぎています");
+        if (!isComplete(player, def, progress)) return Component.literal("まだ目標を達成していません");
+
+        // 納品アイテムを回収
+        for (QuestDefinition.Objective o : def.objectives()) {
+            if (o.type().equals("deliver_item")) removeItems(player.getInventory(), o.target(), o.count());
+        }
+
+        // ごほうび
+        QuestDefinition.Rewards r = def.rewards();
+        for (QuestDefinition.JobXp xp : r.jobXp()) {
+            ResourceLocation job = resolveJob(player, xp.job());
+            if (job != null) JobService.addXp(player, job, xp.amount());
+        }
+        for (QuestDefinition.ItemReward item : r.items()) {
+            Item it = BuiltInRegistries.ITEM.get(item.id());
+            int left = item.count();
+            while (left > 0) {
+                int n = Math.min(left, it.getDefaultMaxStackSize());
+                ItemStack stack = new ItemStack(it, n);
+                if (!player.getInventory().add(stack)) player.drop(stack, false);
+                left -= n;
+            }
+        }
+        r.title().ifPresent(title -> {
+            q.titles.add(title);
+            JobService.data(player).setTitle(title);
+            JobService.sync(player);
+            player.sendSystemMessage(Component.literal("肩書《" + title + "》を手に入れました！").withStyle(ChatFormatting.GOLD));
+        });
+
+        q.active.remove(id);
+        q.completed.put(id, LocalDate.now().toEpochDay());
+        player.sendSystemMessage(Component.literal("★ 依頼「").withStyle(ChatFormatting.GOLD)
+                .append(def.title().copy()).append(Component.literal("」を達成しました！").withStyle(ChatFormatting.GOLD)));
+        player.level().playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 0.6F, 1.0F);
+        sendList(player);
+        return null;
+    }
+
+    @Nullable
+    private static ResourceLocation resolveJob(ServerPlayer player, String job) {
+        PlayerJobData jobs = JobService.data(player);
+        if (job.equals("life")) return jobs.getJob(JobType.LIFE);
+        if (job.equals("combat")) return jobs.getJob(JobType.COMBAT);
+        return ResourceLocation.tryParse(job);
+    }
+
+    // ---------------- 進み具合 ----------------
+
+    public static void onBreak(ServerPlayer player, BlockState state) {
+        onAction(player, "break_block", target -> matchesBlock(target, state));
+    }
+
+    public static void onKill(ServerPlayer player, Entity victim) {
+        onAction(player, "kill_entity", target -> matchesEntity(target, victim));
+    }
+
+    private static void onAction(ServerPlayer player, String type, Predicate<String> matcher) {
+        PlayerQuestData q = data(player);
+        if (q.active.isEmpty()) return;
+        boolean changed = false;
+        for (Map.Entry<ResourceLocation, List<Integer>> e : q.active.entrySet()) {
+            QuestDefinition def = QuestManager.INSTANCE.get(e.getKey());
+            if (def == null) continue;
+            List<Integer> progress = e.getValue();
+            for (int i = 0; i < def.objectives().size() && i < progress.size(); i++) {
+                QuestDefinition.Objective o = def.objectives().get(i);
+                if (!o.type().equals(type) || progress.get(i) >= o.count() || !matcher.test(o.target())) continue;
+                progress.set(i, progress.get(i) + 1);
+                changed = true;
+                if (progress.get(i) >= o.count()) {
+                    player.sendSystemMessage(Component.literal("依頼「").withStyle(ChatFormatting.AQUA)
+                            .append(def.title().copy())
+                            .append(Component.literal("」の目標を達成：").withStyle(ChatFormatting.AQUA))
+                            .append(label(o)));
+                    if (isComplete(player, def, progress)) {
+                        player.sendSystemMessage(Component.literal("  → Kキーの「依頼」タブから報告できます").withStyle(ChatFormatting.GRAY));
+                    }
+                }
+            }
+        }
+        if (changed) sendList(player);
+    }
+
+    private static int currentProgress(ServerPlayer player, QuestDefinition.Objective o, int counted) {
+        return switch (o.type()) {
+            case "deliver_item" -> countItems(player.getInventory(), o.target());
+            case "reach_level" -> {
+                ResourceLocation job = ResourceLocation.tryParse(o.target());
+                yield job == null ? 0 : JobService.data(player).level(job);
+            }
+            default -> counted;
+        };
+    }
+
+    public static boolean isComplete(ServerPlayer player, QuestDefinition def, List<Integer> progress) {
+        for (int i = 0; i < def.objectives().size(); i++) {
+            QuestDefinition.Objective o = def.objectives().get(i);
+            int counted = i < progress.size() ? progress.get(i) : 0;
+            if (currentProgress(player, o, counted) < o.count()) return false;
+        }
+        return true;
+    }
+
+    // ---------------- 画面に送る ----------------
+
+    public static void sendList(ServerPlayer player) {
+        PacketDistributor.sendToPlayer(player, buildList(player));
+    }
+
+    public static QuestListPayload buildList(ServerPlayer player) {
+        PlayerQuestData q = data(player);
+        List<QuestView> views = new ArrayList<>();
+        // 受注中
+        for (Map.Entry<ResourceLocation, List<Integer>> e : q.active.entrySet()) {
+            QuestDefinition def = QuestManager.INSTANCE.get(e.getKey());
+            if (def != null) views.add(view(player, e.getKey(), def, e.getValue(), true));
+        }
+        // 受けられる依頼（特別 → 職業 → 通常の順）
+        for (String cat : List.of("special", "job", "normal")) {
+            for (Map.Entry<ResourceLocation, QuestDefinition> e : QuestManager.INSTANCE.all().entrySet()) {
+                QuestDefinition def = e.getValue();
+                if (!def.category().equals(cat)) continue;
+                if (whyUnavailable(player, e.getKey(), def) != null) continue;
+                views.add(view(player, e.getKey(), def, List.of(), false));
+            }
+        }
+        return new QuestListPayload(views, q.active.size(), MAX_ACTIVE);
+    }
+
+    private static QuestView view(ServerPlayer player, ResourceLocation id, QuestDefinition def, List<Integer> progress, boolean active) {
+        List<ObjectiveView> objs = new ArrayList<>();
+        for (int i = 0; i < def.objectives().size(); i++) {
+            QuestDefinition.Objective o = def.objectives().get(i);
+            int counted = i < progress.size() ? progress.get(i) : 0;
+            int now = active || !o.isCounted() ? currentProgress(player, o, counted) : 0;
+            objs.add(new ObjectiveView(label(o), Math.min(now, o.count()), o.count()));
+        }
+        List<Component> rewards = new ArrayList<>();
+        for (QuestDefinition.JobXp xp : def.rewards().jobXp()) {
+            Component job = switch (xp.job()) {
+                case "life" -> Component.literal("生活ジョブ");
+                case "combat" -> Component.literal("戦闘ジョブ");
+                default -> {
+                    JobDefinition jd = JobManager.INSTANCE.get(ResourceLocation.tryParse(xp.job()));
+                    yield jd != null ? jd.name() : Component.literal(xp.job());
+                }
+            };
+            rewards.add(Component.empty().append(job.copy()).append(" 経験値 +" + xp.amount()));
+        }
+        for (QuestDefinition.ItemReward item : def.rewards().items()) {
+            rewards.add(Component.empty().append(new ItemStack(BuiltInRegistries.ITEM.get(item.id())).getHoverName())
+                    .append(" ×" + item.count()));
+        }
+        def.rewards().title().ifPresent(t -> rewards.add(Component.literal("肩書《" + t + "》").withStyle(ChatFormatting.GOLD)));
+
+        boolean canTurnIn = active && isComplete(player, def, progress)
+                && !def.endTime().map(LocalDateTime.now()::isAfter).orElse(false);
+        return new QuestView(id.toString(), def.title(), def.description(), def.category(), active, canTurnIn,
+                periodText(def), objs, rewards);
+    }
+
+    private static String periodText(QuestDefinition def) {
+        String repeat = switch (def.repeat()) {
+            case "daily" -> "1日1回";
+            case "always" -> "何度でも";
+            default -> "1回のみ";
+        };
+        return def.endTime().map(end -> {
+            Duration left = Duration.between(LocalDateTime.now(), end);
+            if (left.isNegative()) return repeat + " / 期限切れ";
+            long days = left.toDays();
+            String rest = days > 0 ? "あと" + days + "日" : "あと" + Math.max(1, left.toHours()) + "時間";
+            return repeat + " / " + end.format(DateTimeFormatter.ofPattern("M/d HH:mm")) + " まで（" + rest + "）";
+        }).orElse(repeat);
+    }
+
+    /** 目標の説明。JSONに label があればそれ、なければ自動で作る。 */
+    public static Component label(QuestDefinition.Objective o) {
+        if (o.label().isPresent()) return o.label().get();
+        String t = o.target();
+        return switch (o.type()) {
+            case "break_block" -> Component.empty().append(blockName(t)).append(" を壊す");
+            case "kill_entity" -> Component.empty().append(entityName(t)).append(" を倒す");
+            case "deliver_item" -> Component.empty().append(itemName(t)).append(" を納品");
+            case "reach_level" -> {
+                JobDefinition jd = JobManager.INSTANCE.get(ResourceLocation.tryParse(t));
+                yield Component.empty().append(jd != null ? jd.name() : Component.literal(t)).append(" のレベル");
+            }
+            default -> Component.literal(o.type() + " " + t);
+        };
+    }
+
+    private static Component blockName(String t) {
+        if (t.equals("*")) return Component.literal("ブロック");
+        if (t.startsWith("#")) return Component.literal(t);
+        ResourceLocation id = ResourceLocation.tryParse(t);
+        return id == null ? Component.literal(t) : BuiltInRegistries.BLOCK.get(id).getName();
+    }
+
+    private static Component entityName(String t) {
+        if (t.equals("*")) return Component.literal("モンスター");
+        if (t.startsWith("#")) return Component.literal(t);
+        ResourceLocation id = ResourceLocation.tryParse(t);
+        return id == null ? Component.literal(t) : BuiltInRegistries.ENTITY_TYPE.get(id).getDescription();
+    }
+
+    private static Component itemName(String t) {
+        if (t.startsWith("#")) return Component.literal(t);
+        ResourceLocation id = ResourceLocation.tryParse(t);
+        return id == null ? Component.literal(t) : new ItemStack(BuiltInRegistries.ITEM.get(id)).getHoverName();
+    }
+
+    // ---------------- 判定の小道具 ----------------
+
+    private static boolean matchesBlock(String target, BlockState state) {
+        if (target.equals("*")) return true;
+        if (target.startsWith("#")) {
+            ResourceLocation tag = ResourceLocation.tryParse(target.substring(1));
+            return tag != null && state.is(TagKey.create(Registries.BLOCK, tag));
+        }
+        ResourceLocation id = ResourceLocation.tryParse(target);
+        return id != null && id.equals(BuiltInRegistries.BLOCK.getKey(state.getBlock()));
+    }
+
+    private static boolean matchesEntity(String target, Entity entity) {
+        if (target.equals("*")) return true;
+        if (target.startsWith("#")) {
+            ResourceLocation tag = ResourceLocation.tryParse(target.substring(1));
+            return tag != null && entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, tag));
+        }
+        ResourceLocation id = ResourceLocation.tryParse(target);
+        return id != null && id.equals(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()));
+    }
+
+    private static boolean matchesItem(String target, ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        if (target.startsWith("#")) {
+            ResourceLocation tag = ResourceLocation.tryParse(target.substring(1));
+            return tag != null && stack.is(TagKey.create(Registries.ITEM, tag));
+        }
+        ResourceLocation id = ResourceLocation.tryParse(target);
+        return id != null && id.equals(BuiltInRegistries.ITEM.getKey(stack.getItem()));
+    }
+
+    private static int countItems(Inventory inv, String target) {
+        int n = 0;
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack s = inv.getItem(i);
+            if (matchesItem(target, s)) n += s.getCount();
+        }
+        return n;
+    }
+
+    private static void removeItems(Inventory inv, String target, int count) {
+        for (int i = 0; i < inv.getContainerSize() && count > 0; i++) {
+            ItemStack s = inv.getItem(i);
+            if (!matchesItem(target, s)) continue;
+            int take = Math.min(count, s.getCount());
+            s.shrink(take);
+            count -= take;
+        }
+        inv.setChanged();
+    }
+
+    private QuestService() {}
+}

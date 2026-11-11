@@ -92,3 +92,40 @@ MMO風の職業システムを追加する Minecraft MOD（NeoForge 1.21.1）。
 
 `action` は今のところ `break_block`（ブロックを壊す）と `kill_entity`（モブを倒す）。
 `target` は ID（`minecraft:stone`）、タグ（`#minecraft:logs`）、何でも（`*`）。
+
+## 依頼（クエスト）
+
+Kキーのメニューの「依頼」タブで、受ける・報告する・あきらめるができる。同時に受けられるのは5件まで。
+依頼でもらった肩書は `/job mytitle <肩書>` で付け替えられる（`/job mytitle clear` で外す）。
+
+依頼は `src/main/resources/data/jsn_craft/jsn_quests/` に JSON を1つ足すだけ。
+サーバーで運営が追加するときは、データパックの `data/<名前>/jsn_quests/` に置いて `/reload` すれば、止めずに増やせる。
+
+```json
+{
+  "title": { "text": "【特別依頼】収穫祭" },
+  "description": { "text": "カボチャを集めよう" },
+  "category": "special",
+  "repeat": "once",
+  "start": "2026-11-01T00:00",
+  "end": "2026-12-31T23:59",
+  "objectives": [
+    { "type": "deliver_item", "target": "minecraft:pumpkin", "count": 16 }
+  ],
+  "rewards": {
+    "job_xp": [ { "job": "life", "amount": 300 } ],
+    "items": [ { "id": "minecraft:golden_apple", "count": 1 } ],
+    "title": "収穫祭の英雄"
+  }
+}
+```
+
+| 項目 | 意味 |
+|---|---|
+| `category` | `normal`（通常） / `job`（職業依頼） / `special`（運営の特別依頼） |
+| `required_job`, `min_level` | 職業依頼の条件。その職業に就いていて、レベルが足りている人だけ |
+| `repeat` | `once`（1回だけ） / `daily`（1日1回） / `always`（何度でも） |
+| `start`, `end` | 受けられる期間。サーバーのPCの時刻で判定。書かなければいつでも |
+| `objectives` | 目標。`break_block`（壊す） / `kill_entity`（倒す） / `deliver_item`（納品） / `reach_level`（職業レベル） |
+| `label` | 目標の説明文（省略すると自動） |
+| `rewards` | `job_xp`（`life` / `combat` / 職業ID）、`items`、`title`（肩書） |

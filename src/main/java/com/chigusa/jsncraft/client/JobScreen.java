@@ -6,6 +6,10 @@ import com.chigusa.jsncraft.network.BoardSnapshotPayload.NodeView;
 import com.chigusa.jsncraft.network.BoardSnapshotPayload.StatLine;
 import com.chigusa.jsncraft.network.ClientJobCache;
 import com.chigusa.jsncraft.network.JobSyncPayload;
+import com.chigusa.jsncraft.network.QuestActionPayload;
+import com.chigusa.jsncraft.network.QuestListPayload;
+import com.chigusa.jsncraft.network.QuestListPayload.ObjectiveView;
+import com.chigusa.jsncraft.network.QuestListPayload.QuestView;
 import com.chigusa.jsncraft.network.UnlockNodePayload;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -14,6 +18,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -25,12 +30,13 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 職業メニュー。タブで「ステータス」「戦闘ボード」「生活ボード」を切り替える。
+ * 職業メニュー。タブで「ステータス」「戦闘ボード」「生活ボード」「依頼」を切り替える。
  * ボードはドラッグで動かせる（盤面型の大きなボードにも対応できるように）。
  */
 public class JobScreen extends Screen {
 
-    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2;
+    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2, TAB_QUEST = 3;
+    private static final int LIST_W = 120, ROW_H = 12;
     private static final int NODE = 22, GAP_X = 38, GAP_Y = 34;
 
     private static int lastTab = TAB_STATUS;
@@ -39,6 +45,9 @@ public class JobScreen extends Screen {
     private int tab = lastTab;
     private int boardIndex = 0;
     private Button prevBtn, nextBtn;
+    private Button acceptBtn, turnInBtn, abandonBtn;
+    @Nullable private String selectedQuest;
+    private int questScroll;
     private double panX, panY;
 
     private int left, top, panelW, panelH;
@@ -59,13 +68,24 @@ public class JobScreen extends Screen {
         left = (width - panelW) / 2;
         top = (height - panelH) / 2;
 
-        int tabW = (panelW - 16) / 3;
+        int tabW = (panelW - 20) / 4;
         addRenderableWidget(Button.builder(Component.literal("ステータス"), b -> setTab(TAB_STATUS))
                 .bounds(left + 4, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("戦闘ボード").withStyle(ChatFormatting.RED), b -> setTab(TAB_COMBAT))
                 .bounds(left + 8 + tabW, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("生活ボード").withStyle(ChatFormatting.GREEN), b -> setTab(TAB_LIFE))
                 .bounds(left + 12 + tabW * 2, top + 4, tabW, 18).build());
+        addRenderableWidget(Button.builder(Component.literal("依頼").withStyle(ChatFormatting.YELLOW), b -> setTab(TAB_QUEST))
+                .bounds(left + 16 + tabW * 3, top + 4, tabW, 18).build());
+
+        // 依頼のボタン（詳細の下）
+        int qx = left + LIST_W + 14, qy = top + panelH - 22;
+        acceptBtn = addRenderableWidget(Button.builder(Component.literal("受ける"), b -> questAction(QuestActionPayload.ACCEPT))
+                .bounds(qx, qy, 60, 16).build());
+        turnInBtn = addRenderableWidget(Button.builder(Component.literal("報告する"), b -> questAction(QuestActionPayload.TURN_IN))
+                .bounds(qx, qy, 60, 16).build());
+        abandonBtn = addRenderableWidget(Button.builder(Component.literal("あきらめる"), b -> questAction(QuestActionPayload.ABANDON))
+                .bounds(left + panelW - 72, qy, 64, 16).build());
 
         // 引き継いだボード（基本職のボードなど）との切り替え
         int by = top + panelH - 17;
@@ -76,7 +96,13 @@ public class JobScreen extends Screen {
     }
 
     private List<BoardView> boards() {
-        return tab == TAB_COMBAT ? data.combat() : data.life();
+        if (tab == TAB_COMBAT) return data.combat();
+        if (tab == TAB_LIFE) return data.life();
+        return List.of();
+    }
+
+    private boolean isBoardTab() {
+        return tab == TAB_COMBAT || tab == TAB_LIFE;
     }
 
     private Optional<BoardView> currentBoard() {
@@ -103,7 +129,13 @@ public class JobScreen extends Screen {
 
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-        boolean multi = tab != TAB_STATUS && boards().size() > 1;
+        boolean multi = isBoardTab() && boards().size() > 1;
+        QuestView selected = selectedQuest();
+        acceptBtn.visible = tab == TAB_QUEST && selected != null && !selected.active();
+        acceptBtn.active = QuestListPayload.client.activeCount() < QuestListPayload.client.maxActive();
+        turnInBtn.visible = tab == TAB_QUEST && selected != null && selected.active();
+        turnInBtn.active = selected != null && selected.canTurnIn();
+        abandonBtn.visible = tab == TAB_QUEST && selected != null && selected.active();
         currentBoard();
         prevBtn.visible = multi;
         nextBtn.visible = multi;
@@ -114,6 +146,8 @@ public class JobScreen extends Screen {
 
         if (tab == TAB_STATUS) {
             renderStatus(g);
+        } else if (tab == TAB_QUEST) {
+            renderQuests(g, mouseX, mouseY);
         } else {
             Optional<BoardView> board = currentBoard();
             if (board.isEmpty()) {
@@ -272,7 +306,8 @@ public class JobScreen extends Screen {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
-        if (button != 0 || tab == TAB_STATUS) return false;
+        if (button == 0 && tab == TAB_QUEST) return clickQuestList(mouseX, mouseY);
+        if (button != 0 || !isBoardTab()) return false;
 
         Optional<BoardView> board = currentBoard();
         if (board.isEmpty()) return false;
@@ -298,12 +333,152 @@ public class JobScreen extends Screen {
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double dragX, double dragY) {
-        if (tab != TAB_STATUS && button == 0) {
+        if (isBoardTab() && button == 0) {
             panX += dragX;
             panY += dragY;
             return true;
         }
         return super.mouseDragged(mouseX, mouseY, button, dragX, dragY);
+    }
+
+    // ---- 依頼タブ ----
+
+    private List<QuestView> quests() {
+        return QuestListPayload.client.quests();
+    }
+
+    @Nullable
+    private QuestView selectedQuest() {
+        List<QuestView> list = quests();
+        if (list.isEmpty()) return null;
+        for (QuestView q : list) if (q.id().equals(selectedQuest)) return q;
+        selectedQuest = list.get(0).id(); // 見つからなければ先頭を選ぶ
+        return list.get(0);
+    }
+
+    private void questAction(int action) {
+        QuestView q = selectedQuest();
+        if (q != null) PacketDistributor.sendToServer(new QuestActionPayload(q.id(), action));
+    }
+
+    private static int categoryColor(String category) {
+        return switch (category) {
+            case "special" -> 0xFFAA00;
+            case "job" -> 0x55FF55;
+            default -> 0xFFFFFF;
+        };
+    }
+
+    private static String categoryMark(String category) {
+        return switch (category) {
+            case "special" -> "[特別] ";
+            case "job" -> "[職業] ";
+            default -> "[通常] ";
+        };
+    }
+
+    /** 一覧の行の位置（見出しの分をずらす）。-1 なら見出し。 */
+    private record Row(int y, @Nullable QuestView quest, @Nullable String header) {}
+
+    private List<Row> questRows() {
+        List<Row> rows = new ArrayList<>();
+        int y = top + 32 - questScroll;
+        QuestListPayload d = QuestListPayload.client;
+        rows.add(new Row(y, null, "受注中 " + d.activeCount() + "/" + d.maxActive()));
+        y += ROW_H;
+        boolean any = false;
+        for (QuestView q : quests()) if (q.active()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
+        if (!any) { rows.add(new Row(y, null, "  なし")); y += ROW_H; }
+        y += 4;
+        rows.add(new Row(y, null, "受けられる依頼"));
+        y += ROW_H;
+        any = false;
+        for (QuestView q : quests()) if (!q.active()) { rows.add(new Row(y, q, null)); y += ROW_H; any = true; }
+        if (!any) rows.add(new Row(y, null, "  なし"));
+        return rows;
+    }
+
+    private void renderQuests(GuiGraphics g, int mouseX, int mouseY) {
+        int listL = left + 6, listT = top + 30, listR = left + 6 + LIST_W, listB = top + panelH - 4;
+        g.fill(listR + 3, listT, listR + 4, listB, 0xFF5A5A78);
+
+        // 一覧
+        g.enableScissor(listL, listT, listR, listB);
+        QuestView selected = selectedQuest();
+        for (Row r : questRows()) {
+            if (r.header() != null) {
+                g.drawString(font, r.header(), listL, r.y(), 0x8888AA);
+                continue;
+            }
+            QuestView q = r.quest();
+            boolean sel = selected != null && q.id().equals(selected.id());
+            boolean hover = mouseX >= listL && mouseX < listR && mouseY >= r.y() - 1 && mouseY < r.y() + ROW_H - 1;
+            if (sel) g.fill(listL, r.y() - 2, listR, r.y() + ROW_H - 2, 0x60FFFFFF);
+            else if (hover) g.fill(listL, r.y() - 2, listR, r.y() + ROW_H - 2, 0x30FFFFFF);
+            String mark = q.canTurnIn() ? "✔ " : "";
+            String text = font.plainSubstrByWidth(mark + q.title().getString(), LIST_W - 6);
+            g.drawString(font, text, listL + 3, r.y(), q.canTurnIn() ? 0x55FF55 : categoryColor(q.category()));
+        }
+        g.disableScissor();
+
+        // 詳細
+        int x = listR + 10, y = top + 32, w = left + panelW - 8 - x;
+        if (selected == null) {
+            g.drawString(font, "今受けられる依頼はありません", x, y, 0xAAAAAA);
+            return;
+        }
+        g.drawString(font, Component.literal(categoryMark(selected.category())).withStyle(s -> s.withColor(categoryColor(selected.category())))
+                .append(selected.title().copy().withStyle(ChatFormatting.BOLD)), x, y, 0xFFFFFF);
+        y += 11;
+        g.drawString(font, selected.period(), x, y, 0x888899);
+        y += 12;
+        for (FormattedCharSequence line : font.split(selected.description(), w)) {
+            g.drawString(font, line, x, y, 0xCCCCCC);
+            y += 10;
+        }
+        y += 4;
+        g.drawString(font, "目標", x, y, 0xFFFF55);
+        y += 11;
+        for (ObjectiveView o : selected.objectives()) {
+            String count = " " + o.progress() + "/" + o.count();
+            Component line = Component.literal(o.done() ? "✔ " : "・").append(o.label().copy()).append(count);
+            for (FormattedCharSequence part : font.split(line, w)) {
+                g.drawString(font, part, x + 2, y, o.done() ? 0x55FF55 : 0xFFFFFF);
+                y += 10;
+            }
+        }
+        y += 4;
+        if (!selected.rewards().isEmpty()) {
+            g.drawString(font, "報酬", x, y, 0xFFFF55);
+            y += 11;
+            for (Component r : selected.rewards()) {
+                g.drawString(font, Component.literal("・").append(r.copy()), x + 2, y, 0xFFFFFF);
+                y += 10;
+            }
+        }
+    }
+
+    private boolean clickQuestList(double mouseX, double mouseY) {
+        int listL = left + 6, listT = top + 30, listR = left + 6 + LIST_W, listB = top + panelH - 4;
+        if (mouseX < listL || mouseX >= listR || mouseY < listT || mouseY >= listB) return false;
+        for (Row r : questRows()) {
+            if (r.quest() != null && mouseY >= r.y() - 2 && mouseY < r.y() + ROW_H - 2) {
+                selectedQuest = r.quest().id();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (tab == TAB_QUEST) {
+            int rows = questRows().size();
+            int max = Math.max(0, rows * ROW_H + 10 - (panelH - 34));
+            questScroll = (int) Math.max(0, Math.min(max, questScroll - scrollY * ROW_H));
+            return true;
+        }
+        return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
     }
 
     // ---- 小道具 ----

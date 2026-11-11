@@ -7,6 +7,7 @@ import com.chigusa.jsncraft.job.JobService;
 import com.chigusa.jsncraft.job.JobType;
 import com.chigusa.jsncraft.job.SkillBoardService;
 import com.chigusa.jsncraft.stat.ResourceService;
+import com.chigusa.jsncraft.quest.QuestService;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -32,6 +33,7 @@ import java.util.Map;
  * /job list     職業の一覧
  * /job board    職業メニュー（ステータス・スキルボード）を開く。Kキーでも開ける
  * /job resetboard <life|combat>   スキルボードをリセット（OP用）
+ * /job mytitle <肩書> | clear   依頼でもらった肩書に付け替える
  * /job gauge <mana|stamina> <値>   マナ/スタミナを減らしてゲージを試す（OP用）
  * /job change <職業>   転職（例: /job change lumberjack）
  * /job title <プレイヤー> <肩書> | clear   肩書を付ける（OP用）
@@ -51,9 +53,17 @@ public final class JobCommand {
                 .then(Commands.literal("info").executes(JobCommand::info))
                 .then(Commands.literal("list").executes(JobCommand::list))
                 .then(Commands.literal("board").executes(ctx -> {
-                    SkillBoardService.sendSnapshot(ctx.getSource().getPlayerOrException(), true);
+                    ServerPlayer p = ctx.getSource().getPlayerOrException();
+                    QuestService.sendList(p);
+                    SkillBoardService.sendSnapshot(p, true);
                     return 1;
                 }))
+                .then(Commands.literal("mytitle")
+                        .then(Commands.literal("clear").executes(ctx -> chooseTitle(ctx, "")))
+                        .then(Commands.argument("text", StringArgumentType.greedyString())
+                                .suggests((ctx, b) -> SharedSuggestionProvider.suggest(
+                                        QuestService.data(ctx.getSource().getPlayerOrException()).titles, b))
+                                .executes(ctx -> chooseTitle(ctx, StringArgumentType.getString(ctx, "text")))))
                 .then(Commands.literal("gauge")
                         .requires(s -> s.hasPermission(2))
                         .then(Commands.literal("mana")
@@ -162,6 +172,19 @@ public final class JobCommand {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         int value = IntegerArgumentType.getInteger(ctx, "value");
         ResourceService.set(player, mana ? value : -1, mana ? -1 : value);
+        return 1;
+    }
+
+    /** 依頼でもらった肩書の中から、自分で付け替える。 */
+    private static int chooseTitle(CommandContext<CommandSourceStack> ctx, String title) throws CommandSyntaxException {
+        ServerPlayer player = ctx.getSource().getPlayerOrException();
+        if (!title.isEmpty() && !QuestService.data(player).titles.contains(title)) {
+            ctx.getSource().sendFailure(Component.literal("その肩書はまだ持っていません"));
+            return 0;
+        }
+        JobService.data(player).setTitle(title);
+        JobService.sync(player);
+        ctx.getSource().sendSuccess(() -> Component.literal(title.isEmpty() ? "肩書を外しました" : "肩書を《" + title + "》にしました"), false);
         return 1;
     }
 
