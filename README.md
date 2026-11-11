@@ -129,3 +129,11 @@ Kキーのメニューの「依頼」タブで、受ける・報告する・あ�
 | `objectives` | 目標。`break_block`（壊す） / `kill_entity`（倒す） / `deliver_item`（納品） / `reach_level`（職業レベル） |
 | `label` | 目標の説明文（省略すると自動） |
 | `rewards` | `job_xp`（`life` / `combat` / 職業ID）、`items`、`title`（肩書） |
+
+## 受付嬢NPC
+
+右クリックすると、依頼タブが開いた状態でメニューが出る。攻撃されても倒れず、その場から動かない。
+
+- 置く：クリエイティブの「スポーンエッグ」タブにある「受付嬢のスポーンエッグ」、または `/summon jsn_craft:receptionist`
+- 片付ける：クリエイティブでスニークしながら殴る、または `/kill`
+- 見た目：`src/main/resources/assets/jsn_craft/textures/entity/receptionist.png`（アレックス型・64×64）を差し替える

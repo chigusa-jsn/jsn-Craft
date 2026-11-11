@@ -2,6 +2,7 @@ package com.chigusa.jsncraft;
 
 import com.chigusa.jsncraft.data.ModAttachments;
 import com.chigusa.jsncraft.network.ModNetwork;
+import com.chigusa.jsncraft.npc.ModEntities;
 import com.chigusa.jsncraft.stat.ModAttributes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,9 @@ public class JsnCraft {
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
         // マナ・スタミナなど、jsn-Craft の能力値を登録
         ModAttributes.ATTRIBUTES.register(modEventBus);
+        // 受付嬢NPCとスポーンエッグ
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModEntities.ITEMS.register(modEventBus);
         // サーバー→クライアントへ職業情報を送る通信を登録
         modEventBus.addListener(ModNetwork::register);
     }

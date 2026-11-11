@@ -41,6 +41,10 @@ public class JobScreen extends Screen {
 
     private static int lastTab = TAB_STATUS;
 
+    public static void startOnTab(int tab) {
+        if (tab >= TAB_STATUS && tab <= TAB_QUEST) lastTab = tab;
+    }
+
     private BoardSnapshotPayload data;
     private int tab = lastTab;
     private int boardIndex = 0;

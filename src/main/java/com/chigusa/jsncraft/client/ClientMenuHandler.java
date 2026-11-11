@@ -14,5 +14,10 @@ public final class ClientMenuHandler {
         }
     }
 
+    /** 次に開くメニューのタブを決める（受付嬢に話しかけたら依頼タブ）。 */
+    public static void startOnTab(int tab) {
+        JobScreen.startOnTab(tab);
+    }
+
     private ClientMenuHandler() {}
 }

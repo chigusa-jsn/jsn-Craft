@@ -12,12 +12,13 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("4");
+        PayloadRegistrar registrar = event.registrar("5");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
         registrar.playToClient(ResourceSyncPayload.TYPE, ResourceSyncPayload.STREAM_CODEC, ModNetwork::handleResources);
         registrar.playToClient(QuestListPayload.TYPE, QuestListPayload.STREAM_CODEC, ModNetwork::handleQuestList);
+        registrar.playToClient(OpenTabPayload.TYPE, OpenTabPayload.STREAM_CODEC, ModNetwork::handleOpenTab);
         // クライアント → サーバー
         registrar.playToServer(OpenMenuPayload.TYPE, OpenMenuPayload.STREAM_CODEC, ModNetwork::handleOpenMenu);
         registrar.playToServer(UnlockNodePayload.TYPE, UnlockNodePayload.STREAM_CODEC, ModNetwork::handleUnlock);
@@ -57,6 +58,10 @@ public final class ModNetwork {
             Component error = SkillBoardService.unlock(player, jobId, payload.nodeId());
             if (error != null) player.displayClientMessage(error.copy().withStyle(net.minecraft.ChatFormatting.RED), true);
         });
+    }
+
+    private static void handleOpenTab(OpenTabPayload payload, IPayloadContext context) {
+        context.enqueueWork(() -> ClientMenuHandler.startOnTab(payload.tab()));
     }
 
     private static void handleQuestList(QuestListPayload payload, IPayloadContext context) {
