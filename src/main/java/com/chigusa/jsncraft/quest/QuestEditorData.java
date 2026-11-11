@@ -19,16 +19,32 @@ public record QuestEditorData(
         String repeat,
         String requiredJob,
         int minLevel,
-        String start,
-        String end,
+        Period period,
         List<Obj> objectives,
         String xpJob,
         int xpAmount,
         String rewardTitle,
         List<ItemStack> items,
         List<ItemStack> choices,
-        int choose
+        int choose,
+        boolean hideRewards
 ) {
+    /** 受けられる期間（"2026-12-24 18:00" の形、空なら指定なし） */
+    public record Period(String start, String end) {
+        public static final Codec<Period> CODEC = RecordCodecBuilder.create(i -> i.group(
+                Codec.STRING.fieldOf("start").forGetter(Period::start),
+                Codec.STRING.fieldOf("end").forGetter(Period::end)
+        ).apply(i, Period::new));
+    }
+
+    public String start() {
+        return period.start();
+    }
+
+    public String end() {
+        return period.end();
+    }
+
     public static final int MAX_OBJECTIVES = 3;
     public static final int MAX_ITEMS = 4;
     public static final int MAX_CHOICES = 5;
@@ -49,20 +65,20 @@ public record QuestEditorData(
             Codec.STRING.fieldOf("repeat").forGetter(QuestEditorData::repeat),
             Codec.STRING.fieldOf("required_job").forGetter(QuestEditorData::requiredJob),
             Codec.INT.fieldOf("min_level").forGetter(QuestEditorData::minLevel),
-            Codec.STRING.fieldOf("start").forGetter(QuestEditorData::start),
-            Codec.STRING.fieldOf("end").forGetter(QuestEditorData::end),
+            Period.CODEC.fieldOf("period").forGetter(QuestEditorData::period),
             Obj.CODEC.listOf().fieldOf("objectives").forGetter(QuestEditorData::objectives),
             Codec.STRING.fieldOf("xp_job").forGetter(QuestEditorData::xpJob),
             Codec.INT.fieldOf("xp_amount").forGetter(QuestEditorData::xpAmount),
             Codec.STRING.fieldOf("reward_title").forGetter(QuestEditorData::rewardTitle),
             ItemStack.CODEC.listOf().fieldOf("items").forGetter(QuestEditorData::items),
             ItemStack.CODEC.listOf().fieldOf("choices").forGetter(QuestEditorData::choices),
-            Codec.INT.fieldOf("choose").forGetter(QuestEditorData::choose)
+            Codec.INT.fieldOf("choose").forGetter(QuestEditorData::choose),
+            Codec.BOOL.fieldOf("hide_rewards").forGetter(QuestEditorData::hideRewards)
     ).apply(i, QuestEditorData::new));
 
     public static QuestEditorData blank() {
         List<Obj> objs = new ArrayList<>();
         for (int i = 0; i < MAX_OBJECTIVES; i++) objs.add(new Obj("break_block", "", 1));
-        return new QuestEditorData("", "", "", "normal", "once", "", 0, "", "", objs, "life", 0, "", List.of(), List.of(), 1);
+        return new QuestEditorData("", "", "", "normal", "once", "", 0, new Period("", ""), objs, "life", 0, "", List.of(), List.of(), 1, false);
     }
 }

@@ -46,6 +46,7 @@ public class QuestEditorScreen extends Screen {
     private final List<ItemStack> items = new ArrayList<>();
     private final List<ItemStack> choices = new ArrayList<>();
     private String choose = "1";
+    private boolean hideRewards;
 
     private Component status = Component.empty();
     private int left, top, panelW, colW;
@@ -77,6 +78,7 @@ public class QuestEditorScreen extends Screen {
         for (ItemStack s : data.items()) items.add(s.copy());
         for (ItemStack s : data.choices()) choices.add(s.copy());
         choose = String.valueOf(Math.max(1, data.choose()));
+        hideRewards = data.hideRewards();
     }
 
     /** サーバーから保存結果が届いたとき */
@@ -121,6 +123,12 @@ public class QuestEditorScreen extends Screen {
                 : Component.literal("終了：" + DatePickerScreen.pretty(end) + " まで");
         addRenderableWidget(Button.builder(endLabel, b -> minecraft.setScreen(
                 new DatePickerScreen(this, true, end, v -> end = v))).bounds(lx, y0 + ROW * 5, colW, 20).build());
+
+        addRenderableWidget(CycleButton.<Boolean>builder(v -> v
+                        ? Component.literal("報酬：？？？で隠す").withStyle(ChatFormatting.LIGHT_PURPLE)
+                        : Component.literal("報酬：そのまま見せる"))
+                .withValues(false, true).withInitialValue(hideRewards).displayOnlyValue()
+                .create(lx, y0 + ROW * 6, colW, 20, Component.literal("報酬の表示"), (b, v) -> hideRewards = v));
 
         // ---- 右：目標 ----
         for (int i = 0; i < QuestEditorData.MAX_OBJECTIVES; i++) {
@@ -339,8 +347,8 @@ public class QuestEditorScreen extends Screen {
             objs.add(new QuestEditorData.Obj(objType[i], objTarget[i] == null ? "" : objTarget[i], parse(objCount[i], 1)));
         }
         QuestEditorData data = new QuestEditorData(id, title, description, category, repeat,
-                requiredJob == null ? "" : requiredJob, parse(minLevel, 0), start, end, objs,
-                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items), List.copyOf(choices), chooseCount());
+                requiredJob == null ? "" : requiredJob, parse(minLevel, 0), new QuestEditorData.Period(start, end), objs,
+                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items), List.copyOf(choices), chooseCount(), hideRewards);
         status = Component.literal("保存中…").withStyle(ChatFormatting.GRAY);
         PacketDistributor.sendToServer(new QuestEditorPayloads.Save(data));
     }

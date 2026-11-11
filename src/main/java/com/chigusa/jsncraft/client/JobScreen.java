@@ -520,8 +520,13 @@ public class JobScreen extends Screen {
                 boolean picked = picks.contains(i);
                 g.fill(ix - 1, y - 1, ix + 19, y + 19, picked ? 0xFFFFC14D : choosing ? 0xFF55AA77 : 0xFF3A3A44);
                 g.fill(ix, y, ix + 18, y + 18, 0xFF1A1A22);
-                g.renderItem(c, ix + 1, y + 1);
-                g.renderItemDecorations(font, c, ix + 1, y + 1);
+                if (selected.hidden()) {
+                    g.drawCenteredString(font, "?", ix + 9, y + 5, 0xFFD27FFF);
+                    if (c.getCount() > 1) g.drawString(font, String.valueOf(c.getCount()), ix + 17 - font.width(String.valueOf(c.getCount())), y + 10, 0xFFFFFF);
+                } else {
+                    g.renderItem(c, ix + 1, y + 1);
+                    g.renderItemDecorations(font, c, ix + 1, y + 1);
+                }
                 if (mouseX >= ix && mouseX < ix + 18 && mouseY >= y && mouseY < y + 18) hoveredChoice = c;
             }
             if (choosing) {
@@ -544,7 +549,9 @@ public class JobScreen extends Screen {
             g.drawString(font, hint, hx, top + panelH - 18, 0xAAAAAA);
         }
         if (hoveredChoice != null) {
-            List<Component> tip = new ArrayList<>(Screen.getTooltipFromItem(minecraft, hoveredChoice));
+            List<Component> tip = selected.hidden()
+                    ? new ArrayList<>(List.of(Component.literal("？？？？？ ×" + hoveredChoice.getCount()).withStyle(ChatFormatting.LIGHT_PURPLE)))
+                    : new ArrayList<>(Screen.getTooltipFromItem(minecraft, hoveredChoice));
             if (selected.isReported() && !away) tip.add(Component.literal("クリックで選ぶ").withStyle(ChatFormatting.GREEN));
             g.renderComponentTooltip(font, tip, mouseX, mouseY);
         }

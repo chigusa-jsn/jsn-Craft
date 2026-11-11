@@ -37,7 +37,7 @@ public record QuestListPayload(List<QuestView> quests, int activeCount, int maxA
     /** state: "available"（受けられる） / "active"（受注中） / "reported"（報告済み・報酬待ち） */
     public record QuestView(String id, Component title, Component description, String category, String state,
                             boolean canTurnIn, String period, List<ObjectiveView> objectives, List<Component> rewards,
-                            List<ItemStack> choices, int choose) {
+                            List<ItemStack> choices, int choose, boolean hidden) {
         public static final Codec<QuestView> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.STRING.fieldOf("id").forGetter(QuestView::id),
                 ComponentSerialization.CODEC.fieldOf("title").forGetter(QuestView::title),
@@ -49,7 +49,8 @@ public record QuestListPayload(List<QuestView> quests, int activeCount, int maxA
                 ObjectiveView.CODEC.listOf().fieldOf("objectives").forGetter(QuestView::objectives),
                 ComponentSerialization.CODEC.listOf().fieldOf("rewards").forGetter(QuestView::rewards),
                 ItemStack.CODEC.listOf().fieldOf("choices").forGetter(QuestView::choices),
-                Codec.INT.fieldOf("choose").forGetter(QuestView::choose)
+                Codec.INT.fieldOf("choose").forGetter(QuestView::choose),
+                Codec.BOOL.fieldOf("hidden").forGetter(QuestView::hidden)
         ).apply(i, QuestView::new));
 
         /** 実際に選ぶ数 */

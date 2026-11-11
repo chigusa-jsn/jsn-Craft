@@ -18,6 +18,7 @@ import java.util.Optional;
  * category: normal（通常依頼） / job（職業依頼） / special（運営の特別依頼）
  * repeat:   once（1回だけ） / daily（1日1回） / always（何度でも）
  * start/end: "2026-12-24T00:00" の形。サーバーのPCの時刻で判定。書かなければいつでも。
+ * hide_rewards: true にすると、受け取るまで報酬が「？？？？？」と表示される。
  */
 public record QuestDefinition(
         Component title,
@@ -29,7 +30,8 @@ public record QuestDefinition(
         Optional<String> start,
         Optional<String> end,
         List<Objective> objectives,
-        Rewards rewards
+        Rewards rewards,
+        boolean hideRewards
 ) {
     public static final Codec<QuestDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
             ComponentSerialization.CODEC.fieldOf("title").forGetter(QuestDefinition::title),
@@ -41,7 +43,8 @@ public record QuestDefinition(
             Codec.STRING.optionalFieldOf("start").forGetter(QuestDefinition::start),
             Codec.STRING.optionalFieldOf("end").forGetter(QuestDefinition::end),
             Objective.CODEC.listOf().fieldOf("objectives").forGetter(QuestDefinition::objectives),
-            Rewards.CODEC.optionalFieldOf("rewards", Rewards.NONE).forGetter(QuestDefinition::rewards)
+            Rewards.CODEC.optionalFieldOf("rewards", Rewards.NONE).forGetter(QuestDefinition::rewards),
+            Codec.BOOL.optionalFieldOf("hide_rewards", false).forGetter(QuestDefinition::hideRewards)
     ).apply(i, QuestDefinition::new));
 
     /**

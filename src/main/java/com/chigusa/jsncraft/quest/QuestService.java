@@ -169,13 +169,22 @@ public final class QuestService {
                 || chosen.stream().anyMatch(i -> i < 0 || i >= r.choices().size())) {
             return Component.literal("選択報酬を " + r.pickCount() + " 個選んでください");
         }
-        for (int i : chosen) give(player, r.choices().get(i));
+        for (int i : chosen) {
+            ItemStack c = r.choices().get(i);
+            give(player, c);
+            player.sendSystemMessage(Component.literal("  + ").withStyle(ChatFormatting.GRAY)
+                    .append(c.getHoverName()).append(" ×" + c.getCount()));
+        }
 
         for (QuestDefinition.JobXp xp : r.jobXp()) {
             ResourceLocation job = resolveJob(player, xp.job());
             if (job != null) JobService.addXp(player, job, xp.amount());
         }
-        for (ItemStack item : r.items()) give(player, item);
+        for (ItemStack item : r.items()) {
+            give(player, item);
+            player.sendSystemMessage(Component.literal("  + ").withStyle(ChatFormatting.GRAY)
+                    .append(item.getHoverName()).append(" ×" + item.getCount()));
+        }
         r.title().ifPresent(title -> {
             q.titles.add(title);
             JobService.data(player).setTitle(title);
@@ -306,6 +315,7 @@ public final class QuestService {
             int now = reported ? o.count() : active || !o.isCounted() ? currentProgress(player, o, counted) : 0;
             objs.add(new ObjectiveView(label(o), Math.min(now, o.count()), o.count()));
         }
+        boolean hide = def.hideRewards();
         List<Component> rewards = new ArrayList<>();
         for (QuestDefinition.JobXp xp : def.rewards().jobXp()) {
             Component job = switch (xp.job()) {
@@ -316,17 +326,24 @@ public final class QuestService {
                     yield jd != null ? jd.name() : Component.literal(xp.job());
                 }
             };
-            rewards.add(Component.empty().append(job.copy()).append(" 経験値 +" + xp.amount()));
+            rewards.add(Component.empty().append(job.copy()).append(" 経験値 +" + (hide ? "？？？" : xp.amount())));
         }
         for (ItemStack item : def.rewards().items()) {
-            rewards.add(Component.empty().append(item.getHoverName()).append(" ×" + item.getCount()));
+            rewards.add(Component.empty().append(hide ? Component.literal("？？？？？") : item.getHoverName())
+                    .append(" ×" + item.getCount()));
         }
-        def.rewards().title().ifPresent(t -> rewards.add(Component.literal("肩書《" + t + "》").withStyle(ChatFormatting.GOLD)));
+        def.rewards().title().ifPresent(t -> rewards.add(
+                Component.literal("肩書《" + (hide ? "？？？？？" : t) + "》").withStyle(ChatFormatting.GOLD)));
+        // 隠すときは、中身をクライアントに送らない（個数だけ伝える）
+        List<ItemStack> choices = new ArrayList<>();
+        for (ItemStack c : def.rewards().choices()) {
+            choices.add(hide ? new ItemStack(net.minecraft.world.item.Items.PAPER, c.getCount()) : c);
+        }
 
         boolean canTurnIn = active && isComplete(player, def, progress)
                 && !def.endTime().map(LocalDateTime.now()::isAfter).orElse(false);
         return new QuestView(id.toString(), def.title(), def.description(), def.category(), state, canTurnIn,
-                periodText(def), objs, rewards, def.rewards().choices(), def.rewards().choose());
+                periodText(def), objs, rewards, choices, def.rewards().choose(), hide);
     }
 
     private static String periodText(QuestDefinition def) {

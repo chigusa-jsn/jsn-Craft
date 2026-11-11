@@ -93,7 +93,8 @@ public final class QuestEditorService {
                 data.repeat(),
                 start, end,
                 objectives,
-                new QuestDefinition.Rewards(xp, items, title, choices, choose));
+                new QuestDefinition.Rewards(xp, items, title, choices, choose),
+                data.hideRewards());
 
         ResourceLocation id = data.id().isBlank() ? null : ResourceLocation.tryParse(data.id());
         if (id != null && store.find(id) != null) {
@@ -155,15 +156,17 @@ public final class QuestEditorService {
                 def.repeat(),
                 def.requiredJob().map(ResourceLocation::toString).orElse(""),
                 def.minLevel(),
-                def.start().map(s -> s.replace('T', ' ')).orElse(""),
-                def.end().map(s -> s.replace('T', ' ')).orElse(""),
+                new QuestEditorData.Period(
+                        def.start().map(s -> s.replace('T', ' ')).orElse(""),
+                        def.end().map(s -> s.replace('T', ' ')).orElse("")),
                 objs,
                 xp != null ? xp.job() : "life",
                 xp != null ? xp.amount() : 0,
                 def.rewards().title().orElse(""),
                 def.rewards().items().stream().limit(QuestEditorData.MAX_ITEMS).map(ItemStack::copy).toList(),
                 def.rewards().choices().stream().limit(QuestEditorData.MAX_CHOICES).map(ItemStack::copy).toList(),
-                def.rewards().choose());
+                def.rewards().choose(),
+                def.hideRewards());
     }
 
     private QuestEditorService() {}
