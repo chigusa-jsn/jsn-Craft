@@ -19,8 +19,12 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import java.util.Set;
 
 /**
- * 画面左上に、HP・MP・スタミナ・満腹度の4本のゲージを数字つきで出す。
- * その代わり、バニラのハート・満腹度・防御力のアイコンは隠す。
+ * 経験値バーのすぐ上（ハートと満腹度があった場所）に、4本のゲージを2列で出す。
+ *
+ *   HP [■■■■ 18 / 24 ■■]   MP [■■■ 30 / 80 ■■■]
+ *   ST [■■■■ 95 / 100 ■]   満腹 [■■■ 14 / 20 ■■]
+ *
+ * バニラのハート・満腹度・防御力のアイコンは隠す。
  */
 public final class GaugeHud {
 
@@ -31,12 +35,20 @@ public final class GaugeHud {
 
     /** ゲージ全体の大きさ（1.0 で文字と同じ大きさ） */
     private static final float SCALE = 0.6F;
-    private static final int X = 5, Y = 5, LABEL_W = 26, BAR_W = 80, BAR_H = 7, ROW = 10;
+    /** ホットバーの幅（バニラと同じ 182） */
+    private static final int HOTBAR_W = 182;
+    private static final int LABEL_W = 22, BAR_H = 9, ROW = 11, GAP = 6;
+    /** ゲージが使う高さ（画面の単位）。空気の泡などをこの分だけ上にずらす */
+    private static final int HEIGHT = (int) Math.ceil(ROW * 2 * SCALE) + 2;
+    /** 画面の下からどれだけ上に置くか（経験値バーとレベルの数字をよける） */
+    private static final int BOTTOM = 36;
+    /** バニラのハート1段（39）に比べて、上に積むものをずらす量 */
+    private static final int SHIFT = BOTTOM + HEIGHT + 10 - 39;
 
     private static boolean shouldDraw() {
         Minecraft mc = Minecraft.getInstance();
         return mc.player != null && mc.gameMode != null && mc.gameMode.canHurtPlayer()
-                && !mc.options.hideGui && !mc.getDebugOverlay().showDebugScreen();
+                && !mc.options.hideGui;
     }
 
     private static void render(GuiGraphics g, DeltaTracker delta) {
@@ -45,54 +57,53 @@ public final class GaugeHud {
         LocalPlayer p = mc.player;
         Font font = mc.font;
 
+        int sw = g.guiWidth(), sh = g.guiHeight();
+        int x0 = sw / 2 - HOTBAR_W / 2;
+        int y0 = sh - BOTTOM - HEIGHT; // 経験値バーとレベルの数字のすぐ上
+
         float maxMana = (float) p.getAttributeValue(ModAttributes.MAX_MANA);
         float maxSt = (float) p.getAttributeValue(ModAttributes.MAX_STAMINA);
+        float hp = p.getHealth() + p.getAbsorptionAmount();
 
-        // 全体を小さめに描く
         g.pose().pushPose();
+        g.pose().translate(x0, y0, 0);
         g.pose().scale(SCALE, SCALE, 1F);
-        drawAll(g, font, p, maxMana, maxSt);
+
+        int total = (int) (HOTBAR_W / SCALE);
+        int colW = (total - GAP) / 2;
+        int rx = colW + GAP;
+
+        gauge(g, font, 0, 0, colW, "HP", hp, p.getMaxHealth(), 0xFFD83A3A, 0xFF5A1414);
+        gauge(g, font, rx, 0, colW, "MP", ResourceSyncPayload.clientMana, maxMana, 0xFF3A7BD8, 0xFF142A5A);
+        gauge(g, font, 0, ROW, colW, "ST", ResourceSyncPayload.clientStamina, maxSt, 0xFFE0C23A, 0xFF5A4A14);
+        gauge(g, font, rx, ROW, colW, "満腹", p.getFoodData().getFoodLevel(), 20, 0xFFE0802A, 0xFF5A3014);
+
+        // 防御力は、HPの左に小さく
+        String armor = "防御 " + p.getArmorValue();
+        g.drawString(font, armor, -font.width(armor) - 4, 1, 0xFFB0C4DE, true);
+
         g.pose().popPose();
     }
 
-    private static void drawAll(GuiGraphics g, Font font, LocalPlayer p, float maxMana, float maxSt) {
-        int y = Y;
-        gauge(g, font, y, "HP", p.getHealth() + p.getAbsorptionAmount(), p.getMaxHealth(), 0xFFD83A3A, 0xFF5A1414);
-        String armor = "防御 " + p.getArmorValue();
-        g.drawString(font, armor, X + LABEL_W + BAR_W + 4 + font.width(valueText(p.getHealth() + p.getAbsorptionAmount(), p.getMaxHealth())) + 8,
-                y, 0xFFB0C4DE, true);
-        y += ROW;
-        gauge(g, font, y, "MP", ResourceSyncPayload.clientMana, maxMana, 0xFF3A7BD8, 0xFF142A5A);
-        y += ROW;
-        gauge(g, font, y, "ST", ResourceSyncPayload.clientStamina, maxSt, 0xFFE0C23A, 0xFF5A4A14);
-        y += ROW;
-        gauge(g, font, y, "満腹", p.getFoodData().getFoodLevel(), 20, 0xFFE0802A, 0xFF5A3014);
-    }
-
-    private static void gauge(GuiGraphics g, Font font, int y, String label, float value, float max, int color, int back) {
-        g.drawString(font, label, X, y, 0xFFFFFFFF, true);
-        int bx = X + LABEL_W, by = y;
-        // 枠と背景
-        g.fill(bx - 1, by - 1, bx + BAR_W + 1, by + BAR_H + 1, 0xC0000000);
-        g.fill(bx, by, bx + BAR_W, by + BAR_H, back);
-        // 中身
+    private static void gauge(GuiGraphics g, Font font, int x, int y, int w, String label, float value, float max, int color, int back) {
+        g.drawString(font, label, x, y + 1, 0xFFFFFFFF, true);
+        int bx = x + LABEL_W, bw = w - LABEL_W;
+        g.fill(bx - 1, y - 1, bx + bw + 1, y + BAR_H + 1, 0xC0000000);
+        g.fill(bx, y, bx + bw, y + BAR_H, back);
         float ratio = max <= 0 ? 0 : Math.max(0, Math.min(1, value / max));
-        int w = Math.round(BAR_W * ratio);
-        g.fill(bx, by, bx + w, by + BAR_H, color);
-        g.fill(bx, by, bx + w, by + 2, 0x40FFFFFF); // 上のつや
-        // 数字
-        g.drawString(font, valueText(value, max), bx + BAR_W + 4, y, 0xFFFFFFFF, true);
-    }
-
-    private static String valueText(float value, float max) {
-        return (int) Math.ceil(value) + " / " + (int) Math.ceil(max);
+        g.fill(bx, y, bx + Math.round(bw * ratio), y + BAR_H, color);
+        g.fill(bx, y, bx + Math.round(bw * ratio), y + 2, 0x40FFFFFF); // 上のつや
+        // 数字はバーの真ん中に重ねる
+        String text = (int) Math.ceil(value) + " / " + (int) Math.ceil(max);
+        g.drawString(font, text, bx + (bw - font.width(text)) / 2, y + 1, 0xFFFFFFFF, true);
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static final class Register {
         @SubscribeEvent
         public static void onRegisterLayers(RegisterGuiLayersEvent event) {
-            event.registerAboveAll(JsnCraft.id("gauges"), GaugeHud::render);
+            // ハートの場所に描く（空気の泡などより先）
+            event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, JsnCraft.id("gauges"), GaugeHud::render);
         }
     }
 
@@ -100,9 +111,12 @@ public final class GaugeHud {
     public static final class Hide {
         @SubscribeEvent
         public static void onRenderLayer(RenderGuiLayerEvent.Pre event) {
-            if (HIDDEN.contains(event.getName()) && shouldDraw()) {
-                event.setCanceled(true);
-            }
+            if (!HIDDEN.contains(event.getName()) || !shouldDraw()) return;
+            event.setCanceled(true);
+            // バニラが使うはずだった高さの代わりに、ゲージの高さ分だけ上にずらす（空気の泡などが重ならないように）
+            var gui = Minecraft.getInstance().gui;
+            if (event.getName().equals(VanillaGuiLayers.PLAYER_HEALTH)) gui.leftHeight += SHIFT;
+            if (event.getName().equals(VanillaGuiLayers.FOOD_LEVEL)) gui.rightHeight += SHIFT;
         }
     }
 

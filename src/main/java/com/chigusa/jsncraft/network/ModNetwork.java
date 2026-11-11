@@ -13,13 +13,15 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("6");
+        PayloadRegistrar registrar = event.registrar("7");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
         registrar.playToClient(ResourceSyncPayload.TYPE, ResourceSyncPayload.STREAM_CODEC, ModNetwork::handleResources);
         registrar.playToClient(QuestListPayload.TYPE, QuestListPayload.STREAM_CODEC, ModNetwork::handleQuestList);
         registrar.playToClient(OpenTabPayload.TYPE, OpenTabPayload.STREAM_CODEC, ModNetwork::handleOpenTab);
+        registrar.playToClient(PartyStatusPayload.TYPE, PartyStatusPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> PartyStatusPayload.client = p.members()));
         registrar.playToClient(QuestEditorPayloads.Open.TYPE, QuestEditorPayloads.Open.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> ClientMenuHandler.openEditor(p)));
         registrar.playToClient(QuestEditorPayloads.Result.TYPE, QuestEditorPayloads.Result.STREAM_CODEC,
