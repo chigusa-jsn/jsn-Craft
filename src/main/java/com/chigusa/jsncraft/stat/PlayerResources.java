@@ -16,6 +16,8 @@ public class PlayerResources {
     // 最後にクライアントへ送った値（保存はしない）
     transient int lastSentMana = Integer.MIN_VALUE;
     transient int lastSentStamina = Integer.MIN_VALUE;
+    /** 最後にスタミナを使ったゲーム時間（この後しばらくは回復しない） */
+    transient long lastStaminaUse = Long.MIN_VALUE / 2;
 
     public PlayerResources() {}
 

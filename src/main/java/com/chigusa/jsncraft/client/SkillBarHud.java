@@ -49,17 +49,24 @@ public final class SkillBarHud {
                 g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 3, y0 + 2);
                 boolean lacking = ResourceSyncPayload.clientStamina < v.stamina() || ResourceSyncPayload.clientMana < v.mana();
                 float left = ClientSkills.cooldownLeft(i);
+                // ここから先はアイコンより手前に描く（アイテムの絵は奥行きが手前なので、そのままだと隠れる）
+                g.pose().pushPose();
+                g.pose().translate(0, 0, 300);
                 if (left > 0 && v.cooldown() > 0) {
                     int h = Math.round((SLOT - 2) * Math.min(1, left / v.cooldown()));
-                    g.fill(x + 1, y0 + SLOT - 2 - h, x + SLOT - 1, y0 + SLOT - 2, 0xB0000000);
-                    String sec = left >= 10 ? String.valueOf((int) left) : String.format("%.1f", left);
-                    g.drawCenteredString(font, sec, x + SLOT / 2, y0 + 7, 0xFFFFFF);
+                    g.fill(x + 1, y0 + SLOT - 2 - h, x + SLOT - 1, y0 + SLOT - 2, 0xA0000000);
+                    String sec = left >= 10 ? String.valueOf((int) Math.ceil(left)) : String.format("%.1f", left);
+                    g.drawCenteredString(font, sec, x + SLOT / 2, y0 + 7, 0xFFFFFF55);
                 } else if (lacking) {
                     g.fill(x + 1, y0, x + SLOT - 1, y0 + SLOT - 2, 0x70FF0000);
                 }
+                g.pose().popPose();
             }
-            // キー番号
-            g.drawString(font, String.valueOf(i + 1), x + 2, y0 + 1, 0xFFFFFF55, true);
+            // キー番号（アイコンより手前）
+            g.pose().pushPose();
+            g.pose().translate(0, 0, 300);
+            g.drawString(font, String.valueOf(i + 1), x + 2, y0 + 1, 0xFFFFFFFF, true);
+            g.pose().popPose();
         }
         g.drawString(font, "R:もどる", x0 + w + 6, y0 + 7, 0xFF8899BB, true);
     }

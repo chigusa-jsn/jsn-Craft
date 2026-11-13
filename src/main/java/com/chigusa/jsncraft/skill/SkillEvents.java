@@ -69,9 +69,12 @@ public final class SkillEvents {
             SkillDefinition dodge = SkillService.passive(victim, "dodge");
             if (dodge != null && victim.getRandom().nextDouble() < dodge.chance()) {
                 event.setCanceled(true);
-                victim.serverLevel().sendParticles(ParticleTypes.CLOUD, victim.getX(), victim.getY() + 1, victim.getZ(), 6, 0.3, 0.4, 0.3, 0.02);
-                victim.level().playSound(null, victim.blockPosition(), SoundEvents.PLAYER_ATTACK_NODAMAGE, SoundSource.PLAYERS, 1.0F, 1.4F);
-                victim.displayClientMessage(net.minecraft.network.chat.Component.literal("見切った！"), true);
+                victim.serverLevel().sendParticles(ParticleTypes.CLOUD, victim.getX(), victim.getY() + 1, victim.getZ(), 12, 0.4, 0.5, 0.4, 0.04);
+                victim.serverLevel().sendParticles(ParticleTypes.ENCHANTED_HIT, victim.getX(), victim.getY() + 1.2, victim.getZ(), 10, 0.4, 0.5, 0.4, 0.2);
+                victim.level().playSound(null, victim.blockPosition(), SoundEvents.PLAYER_ATTACK_NODAMAGE, SoundSource.PLAYERS, 1.2F, 1.4F);
+                victim.level().playSound(null, victim.blockPosition(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 0.6F, 1.8F);
+                victim.displayClientMessage(net.minecraft.network.chat.Component.literal("✦ 見切り！ ✦")
+                        .withStyle(net.minecraft.ChatFormatting.AQUA, net.minecraft.ChatFormatting.BOLD), true);
                 return;
             }
         }

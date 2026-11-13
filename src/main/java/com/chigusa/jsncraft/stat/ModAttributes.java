@@ -25,7 +25,7 @@ public final class ModAttributes {
     /** 最大スタミナ */
     public static final DeferredHolder<Attribute, Attribute> MAX_STAMINA = register("max_stamina", 100, 0, 100000);
     /** 1秒あたりのスタミナ回復量 */
-    public static final DeferredHolder<Attribute, Attribute> STAMINA_REGEN = register("stamina_regen", 5, 0, 10000);
+    public static final DeferredHolder<Attribute, Attribute> STAMINA_REGEN = register("stamina_regen", 2, 0, 10000);
     /** 採掘の幸運：鉱石のドロップが増える確率。0.25 なら 25% で2倍、1.5 なら必ず2倍＋50%で3倍 */
     public static final DeferredHolder<Attribute, Attribute> MINING_FORTUNE = register("mining_fortune", 0, 0, 10);
     /** 会心率：近接攻撃が会心になる確率（0.1 = 10%） */

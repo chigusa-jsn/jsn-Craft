@@ -11,6 +11,9 @@ import net.neoforged.neoforge.network.PacketDistributor;
  */
 public final class ResourceService {
 
+    /** スタミナを使ってから回復が始まるまでの時間（tick）。40 = 2秒 */
+    public static final int STAMINA_REGEN_DELAY = 40;
+
     public static PlayerResources get(ServerPlayer player) {
         return player.getData(ModAttachments.RESOURCES);
     }
@@ -32,7 +35,10 @@ public final class ResourceService {
 
         // 1秒(20tick)で回復量の分だけ増える
         r.mana = Math.min(maxMana, r.mana + (float) player.getAttributeValue(ModAttributes.MANA_REGEN) / 20F);
-        r.stamina = Math.min(maxStamina, r.stamina + (float) player.getAttributeValue(ModAttributes.STAMINA_REGEN) / 20F);
+        // スタミナは、使ってから少しのあいだ回復しない
+        if (player.level().getGameTime() - r.lastStaminaUse >= STAMINA_REGEN_DELAY) {
+            r.stamina = Math.min(maxStamina, r.stamina + (float) player.getAttributeValue(ModAttributes.STAMINA_REGEN) / 20F);
+        }
 
         int m = (int) r.mana, s = (int) r.stamina;
         if (m != r.lastSentMana || s != r.lastSentStamina) {
@@ -61,6 +67,7 @@ public final class ResourceService {
         PlayerResources r = get(player);
         if (r.stamina < amount) return false;
         r.stamina -= amount;
+        if (amount > 0) r.lastStaminaUse = player.level().getGameTime();
         return true;
     }
 

@@ -3,7 +3,9 @@ package com.chigusa.jsncraft.skill;
 import com.chigusa.jsncraft.JsnCraft;
 import com.chigusa.jsncraft.npc.ReceptionistEntity;
 import com.chigusa.jsncraft.party.PartyManager;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -21,8 +23,12 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -103,28 +109,91 @@ public final class SkillEffects {
         return true;
     }
 
-    // ---- slash_line：斬撃を飛ばして、一直線上の敵を斬る ----
+    // ---- slash_line：青い三日月の斬撃が前へ飛んでいき、通り道の敵を斬る ----
+
+    /** 飛んでいる斬撃1つ */
+    private static final class Slash {
+        final ServerLevel level;
+        final UUID owner;
+        final Vec3 dir;
+        final double length;
+        final float damage;
+        final Set<Integer> hit = new HashSet<>();
+        Vec3 pos;
+        double traveled;
+
+        Slash(ServerLevel level, UUID owner, Vec3 pos, Vec3 dir, double length, float damage) {
+            this.level = level;
+            this.owner = owner;
+            this.pos = pos;
+            this.dir = dir;
+            this.length = length;
+            this.damage = damage;
+        }
+    }
+
+    /** サーバーのメインスレッドだけで触る */
+    private static final List<Slash> SLASHES = new ArrayList<>();
+    private static final DustParticleOptions AZURE = new DustParticleOptions(new Vector3f(0.35F, 0.7F, 1.0F), 1.6F);
+    private static final DustParticleOptions AZURE_CORE = new DustParticleOptions(new Vector3f(0.85F, 0.95F, 1.0F), 1.0F);
+    /** 1tickに進む距離（ブロック） */
+    private static final double SLASH_SPEED = 1.5;
+
     private static boolean slashLine(ServerPlayer player, SkillDefinition s) {
-        ServerLevel level = player.serverLevel();
-        Vec3 start = player.getEyePosition();
-        Vec3 dir = player.getLookAngle();
-        Vec3 end = start.add(dir.scale(s.radius()));
+        Vec3 dir = player.getLookAngle().normalize();
+        Vec3 start = player.getEyePosition().add(0, -0.3, 0).add(dir.scale(0.8));
         float damage = attackDamage(player) * (float) s.power();
-        AABB box = new AABB(start, end).inflate(1.5);
-        for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, box, e -> isEnemy(player, e))) {
-            // 線からの距離が近いものだけ
-            Vec3 c = e.getBoundingBox().getCenter();
-            double t = Math.max(0, Math.min(s.radius(), c.subtract(start).dot(dir)));
-            if (c.distanceTo(start.add(dir.scale(t))) > 1.5) continue;
-            e.hurt(player.damageSources().playerAttack(player), damage);
-        }
-        for (double t = 1; t <= s.radius(); t += 0.7) {
-            Vec3 p = start.add(dir.scale(t));
-            level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, p.x, p.y, p.z, 2, 0.1, 0.1, 0.1, 0.0);
-            if (((int) (t * 10)) % 3 == 0) level.sendParticles(ParticleTypes.SWEEP_ATTACK, p.x, p.y, p.z, 1, 0, 0, 0, 0);
-        }
-        level.playSound(null, player.blockPosition(), SoundEvents.TRIDENT_RIPTIDE_1.value(), SoundSource.PLAYERS, 1.0F, 1.4F);
+        SLASHES.add(new Slash(player.serverLevel(), player.getUUID(), start, dir, s.radius(), damage));
+        player.level().playSound(null, player.blockPosition(), SoundEvents.TRIDENT_RIPTIDE_1.value(), SoundSource.PLAYERS, 1.0F, 1.4F);
+        player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0F, 0.7F);
         return true;
+    }
+
+    private static void tickSlashes(net.minecraft.server.MinecraftServer server) {
+        Iterator<Slash> it = SLASHES.iterator();
+        while (it.hasNext()) {
+            Slash sl = it.next();
+            ServerPlayer owner = server.getPlayerList().getPlayer(sl.owner);
+            if (owner == null || owner.serverLevel() != sl.level) {
+                it.remove();
+                continue;
+            }
+            boolean done = false;
+            // 1tickで3回に分けて進む（速くても敵をすり抜けないように）
+            for (int step = 0; step < 3 && !done; step++) {
+                sl.pos = sl.pos.add(sl.dir.scale(SLASH_SPEED / 3));
+                sl.traveled += SLASH_SPEED / 3;
+                BlockPos bp = BlockPos.containing(sl.pos);
+                if (!sl.level.getBlockState(bp).getCollisionShape(sl.level, bp).isEmpty()) done = true; // 壁に当たったら消える
+                for (LivingEntity e : sl.level.getEntitiesOfClass(LivingEntity.class, new AABB(sl.pos, sl.pos).inflate(1.4),
+                        e -> isEnemy(owner, e) && !sl.hit.contains(e.getId()))) {
+                    e.hurt(owner.damageSources().playerAttack(owner), sl.damage);
+                    sl.hit.add(e.getId());
+                    sl.level.sendParticles(ParticleTypes.CRIT, e.getX(), e.getY() + e.getBbHeight() / 2, e.getZ(), 15, 0.3, 0.3, 0.3, 0.3);
+                    sl.level.playSound(null, e.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0F, 1.2F);
+                }
+                if (sl.traveled >= sl.length) done = true;
+            }
+            drawCrescent(sl);
+            if (done) {
+                sl.level.sendParticles(ParticleTypes.SWEEP_ATTACK, sl.pos.x, sl.pos.y, sl.pos.z, 1, 0, 0, 0, 0);
+                owner.displayClientMessage(net.minecraft.network.chat.Component.literal("蒼閃：" + sl.hit.size() + "体に命中")
+                        .withStyle(net.minecraft.ChatFormatting.AQUA), true);
+                it.remove();
+            }
+        }
+    }
+
+    /** 進む向きに対して横に広がる、三日月の形に粒を並べる */
+    private static void drawCrescent(Slash sl) {
+        Vec3 up = Math.abs(sl.dir.y) > 0.95 ? new Vec3(1, 0, 0) : new Vec3(0, 1, 0);
+        Vec3 right = sl.dir.cross(up).normalize();
+        for (int deg = -75; deg <= 75; deg += 10) {
+            double a = Math.toRadians(deg);
+            Vec3 p = sl.pos.add(right.scale(Math.sin(a) * 1.5)).add(sl.dir.scale((Math.cos(a) - 1) * 0.7));
+            sl.level.sendParticles(Math.abs(deg) < 30 ? AZURE_CORE : AZURE, p.x, p.y, p.z, 2, 0.03, 0.03, 0.03, 0);
+        }
+        sl.level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, sl.pos.x, sl.pos.y, sl.pos.z, 2, 0.2, 0.1, 0.2, 0.01);
     }
 
     // ---- buff：しばらく能力アップ（target に能力値ID、power に割合） ----
@@ -146,6 +215,7 @@ public final class SkillEffects {
 
     /** 時間切れの能力アップを外す（毎tick） */
     public static void tickBuffs(net.minecraft.server.MinecraftServer server) {
+        tickSlashes(server);
         long now = server.overworld().getGameTime();
         Iterator<Buff> it = BUFFS.values().iterator();
         while (it.hasNext()) {
