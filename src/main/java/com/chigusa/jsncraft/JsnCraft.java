@@ -24,6 +24,8 @@ public class JsnCraft {
         // 受付嬢NPCとスポーンエッグ
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModEntities.ITEMS.register(modEventBus);
+        // スキル用の専用エフェクト
+        com.chigusa.jsncraft.vfx.ModParticles.PARTICLE_TYPES.register(modEventBus);
         // サーバー→クライアントへ職業情報を送る通信を登録
         modEventBus.addListener(ModNetwork::register);
     }

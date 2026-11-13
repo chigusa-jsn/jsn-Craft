@@ -49,6 +49,7 @@ public final class SkillEvents {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
         SkillEffects.tickBuffs(event.getServer());
+        SkillService.tickCasts(event.getServer());
     }
 
     @SubscribeEvent
@@ -63,6 +64,17 @@ public final class SkillEvents {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onDamage(LivingIncomingDamageEvent event) {
+        // 受け流し：かまえている間の近接攻撃を無効にして反撃
+        if (event.getEntity() instanceof ServerPlayer victim
+                && event.getSource().getDirectEntity() instanceof LivingEntity attacker && attacker != victim) {
+            PlayerSkillData pd = SkillService.data(victim);
+            if (victim.level().getGameTime() <= pd.parryUntil) {
+                event.setCanceled(true);
+                SkillEffects.counter(victim, attacker);
+                return;
+            }
+        }
+
         // 見切り：近接攻撃をたまにかわす
         if (event.getEntity() instanceof ServerPlayer victim
                 && event.getSource().getDirectEntity() instanceof LivingEntity attacker && attacker != victim) {
@@ -91,6 +103,10 @@ public final class SkillEvents {
                 amount *= (float) (1 + d.empowered);
                 player.crit(event.getEntity());
                 d.empowered = 0;
+                HitFlags.CRIT.set(true);
+                com.chigusa.jsncraft.vfx.Vfx.sparks(player.serverLevel(), event.getEntity().getBoundingBox().getCenter(), 16);
+                com.chigusa.jsncraft.vfx.Vfx.slash(player.serverLevel(), event.getEntity().getBoundingBox().getCenter(), 1.6F,
+                        com.chigusa.jsncraft.vfx.Vfx.GOLD, 30);
             }
             event.setAmount(amount);
         }

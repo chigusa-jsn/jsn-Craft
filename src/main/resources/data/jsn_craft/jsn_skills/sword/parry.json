@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "受け流し"
+  },
+  "description": {
+    "text": "1秒間かまえる。その間に近接攻撃を受けると無効にして、攻撃力の2倍で反撃する。"
+  },
+  "icon": "minecraft:shield",
+  "type": "active",
+  "effect": "parry",
+  "stamina": 15,
+  "cooldown": 8,
+  "duration": 1.0,
+  "power": 2.0
+}

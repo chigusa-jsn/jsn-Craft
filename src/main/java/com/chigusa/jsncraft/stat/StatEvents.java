@@ -75,6 +75,7 @@ public final class StatEvents {
         double bonus = player.getAttributeValue(ModAttributes.CRIT_DAMAGE);
         event.setAmount((float) (event.getAmount() * (1 + bonus)));
         player.crit(event.getEntity());
+        com.chigusa.jsncraft.skill.HitFlags.CRIT.set(true);
         player.level().playSound(null, event.getEntity().blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT,
                 player.getSoundSource(), 1.0F, 1.0F);
     }

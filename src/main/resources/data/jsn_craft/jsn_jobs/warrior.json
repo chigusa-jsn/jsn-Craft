@@ -230,12 +230,24 @@
       "level": 5
     },
     {
+      "skill": "jsn_craft:sword/whirlwind",
+      "level": 8
+    },
+    {
       "skill": "jsn_craft:sword/foresight",
       "level": 10
     },
     {
+      "skill": "jsn_craft:sword/parry",
+      "level": 15
+    },
+    {
       "skill": "jsn_craft:sword/spirit",
       "level": 20
+    },
+    {
+      "skill": "jsn_craft:sword/iai",
+      "level": 25
     },
     {
       "skill": "jsn_craft:sword/azure_flash",

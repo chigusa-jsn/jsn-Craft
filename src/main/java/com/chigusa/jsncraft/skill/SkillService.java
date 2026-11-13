@@ -91,6 +91,10 @@ public final class SkillService {
             return;
         }
         long now = player.level().getGameTime();
+        if (d.casting != null) {
+            player.displayClientMessage(Component.literal("ため中…").withStyle(ChatFormatting.GRAY), true);
+            return;
+        }
         long ready = d.readyAt.getOrDefault(id.toString(), 0L);
         if (now < ready) {
             player.displayClientMessage(Component.literal("待ち時間 あと " + String.format("%.1f", (ready - now) / 20.0) + " 秒")
@@ -106,13 +110,51 @@ public final class SkillService {
             fail(player, "マナが足りません");
             return;
         }
-        if (!SkillEffects.activate(player, skill)) return; // 使えない場面（対象がいないなど）
+        if (skill.castTime() > 0) {
+            // ため：コストと待ち時間は先に払って、時間がたったら技が出る
+            startCast(player, d, id, skill, now);
+        } else if (!SkillEffects.activate(player, skill)) {
+            return; // 使えない場面（対象がいないなど）
+        }
 
         ResourceService.tryUseStamina(player, skill.stamina());
         ResourceService.tryUseMana(player, skill.mana());
         d.readyAt.put(id.toString(), now + Math.round(skill.cooldown() * 20));
         player.displayClientMessage(Component.empty().append(skill.name().copy()).withStyle(ChatFormatting.AQUA), true);
         sync(player);
+    }
+
+    private static final ResourceLocation CAST_SLOW = com.chigusa.jsncraft.JsnCraft.id("casting_slow");
+
+    private static void startCast(ServerPlayer player, PlayerSkillData d, ResourceLocation id, SkillDefinition skill, long now) {
+        int ticks = Math.max(1, Math.round(skill.castTime() * 20));
+        d.casting = id.toString();
+        d.castEnd = now + ticks;
+        var speed = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
+        if (speed != null) {
+            speed.removeModifier(CAST_SLOW);
+            speed.addTransientModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(CAST_SLOW, -0.6,
+                    net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+        }
+        com.chigusa.jsncraft.vfx.Vfx.magicCircle(player.serverLevel(), player.position(), 1.8F, ticks + 6, com.chigusa.jsncraft.vfx.Vfx.AZURE);
+        player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.5F, 1.8F);
+        PacketDistributor.sendToPlayer(player, new com.chigusa.jsncraft.network.CastBarPayload(skill.name(), ticks));
+    }
+
+    /** ため中の人を見て、時間になったら技を出す（毎tick） */
+    public static void tickCasts(net.minecraft.server.MinecraftServer server) {
+        for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+            PlayerSkillData d = data(player);
+            if (d.casting == null) continue;
+            if (!player.isAlive() || player.level().getGameTime() >= d.castEnd) {
+                String id = d.casting;
+                d.casting = null;
+                var speed = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
+                if (speed != null) speed.removeModifier(CAST_SLOW);
+                SkillDefinition skill = SkillManager.INSTANCE.get(ResourceLocation.tryParse(id));
+                if (skill != null && player.isAlive()) SkillEffects.activate(player, skill);
+            }
+        }
     }
 
     private static void fail(ServerPlayer player, String msg) {

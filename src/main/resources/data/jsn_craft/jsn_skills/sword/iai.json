@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "居合・一閃"
+  },
+  "description": {
+    "text": "0.5秒ためてから前へ駆け抜け（7ブロック）、通り道の敵をまとめて斬る。攻撃力の2倍。"
+  },
+  "icon": "minecraft:netherite_sword",
+  "type": "active",
+  "effect": "blink_slash",
+  "stamina": 30,
+  "cooldown": 15,
+  "power": 2.0,
+  "radius": 7,
+  "cast_time": 0.5
+}

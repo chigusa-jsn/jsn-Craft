@@ -26,6 +26,12 @@ public class PlayerSkillData {
     /** 踏み込みなどで「次の一撃が強くなる」状態：倍率と期限 */
     public transient double empowered = 0;
     public transient long empoweredUntil = 0;
+    /** ため中のスキル（なければ null）と、出る時間 */
+    public transient String casting = null;
+    public transient long castEnd = 0;
+    /** 受け流しのかまえ：期限と反撃の強さ */
+    public transient long parryUntil = 0;
+    public transient double parryPower = 0;
 
     public PlayerSkillData() {
         while (slots.size() < SLOTS) slots.add("");

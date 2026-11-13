@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "旋風斬"
+  },
+  "description": {
+    "text": "その場で回転し、周り360度（3.5ブロック）の敵を3回連続で斬る。1回ごとに攻撃力の0.7倍。"
+  },
+  "icon": "minecraft:breeze_rod",
+  "type": "active",
+  "effect": "whirlwind",
+  "stamina": 25,
+  "cooldown": 10,
+  "power": 0.7,
+  "radius": 3.5,
+  "amplifier": 3
+}

@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("10");
+        PayloadRegistrar registrar = event.registrar("11");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -45,6 +45,11 @@ public final class ModNetwork {
                     com.chigusa.jsncraft.job.JobService.sync(sp);
                     SkillBoardService.sendSnapshot(sp, false);
                 }));
+        registrar.playToClient(CastBarPayload.TYPE, CastBarPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.CastBarHud.start(p.name(), p.ticks())));
+        registrar.playToClient(DamageNumberPayload.TYPE, DamageNumberPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.particle.ParticleSetup.spawnDamageNumber(
+                        p.x(), p.y(), p.z(), p.amount(), p.style())));
         registrar.playToClient(PartyStatusPayload.TYPE, PartyStatusPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> PartyStatusPayload.client = p.members()));
         registrar.playToClient(QuestEditorPayloads.Open.TYPE, QuestEditorPayloads.Open.STREAM_CODEC,

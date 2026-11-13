@@ -193,6 +193,8 @@ Kキーのメニューの「依頼」タブでは、依頼を見る・報告す�
 - スキルバーへのセットは、Kキーのメニューの「スキル」タブ（スキルをクリック → 枠をクリック、右クリックで外す）
 
 スキルは `data/jsn_craft/jsn_skills/` にJSONで書き、職業JSONの `skills` で覚えるレベルを決める。
+`"cast_time": 0.5` を付けると、0.5秒ためてから出る（足元に魔法陣、画面にためのゲージ、ため中は動きが遅くなる）。
+スキルで与えたダメージは蒼、会心は金の数字で出る。
 
 ```json
 { "name": { "text": "斬り払い" }, "description": { "text": "前方の敵をまとめてなぎ払う。" },
@@ -205,6 +207,9 @@ Kキーのメニューの「依頼」タブでは、依頼を見る・報告す�
 | `sweep` | アクティブ | 前方の敵をなぎ払う（攻撃力×power、radius 範囲） |
 | `dash` | アクティブ | 前に踏み込む（power 勢い）。bonus があれば次の一撃が (1+bonus) 倍 |
 | `slash_line` | アクティブ | 一直線（radius ブロック）の敵を斬る（攻撃力×power） |
+| `whirlwind` | アクティブ | 周り radius の敵を amplifier 回連続で斬る（1回 攻撃力×power） |
+| `parry` | アクティブ | duration 秒かまえ、その間の近接攻撃を無効にして 攻撃力×power で反撃 |
+| `blink_slash` | アクティブ | 前へ radius ブロック駆け抜け、通り道の敵を斬る（攻撃力×power） |
 | `buff` | アクティブ | duration 秒、target の能力値が +power（割合）|
 | `potion` | アクティブ | target のポーション効果を duration 秒（amplifier で強さ） |
 | `heal_area` | アクティブ | 自分と radius 内のパーティー仲間を power 回復 |

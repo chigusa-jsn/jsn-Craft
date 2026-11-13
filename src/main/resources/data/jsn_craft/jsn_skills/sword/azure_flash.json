@@ -3,7 +3,7 @@
     "text": "奥義・蒼閃"
   },
   "description": {
-    "text": "青い三日月の斬撃を飛ばし、通り道（10ブロック）の敵をすべて斬る。攻撃力の2.5倍。壁に当たると消える。"
+    "text": "0.4秒ためてから、青い三日月の斬撃を飛ばす。通り道（10ブロック）の敵をすべて斬る。攻撃力の2.5倍。壁に当たると消える。"
   },
   "icon": "minecraft:diamond_sword",
   "type": "active",
@@ -11,5 +11,6 @@
   "stamina": 40,
   "cooldown": 30,
   "power": 2.5,
-  "radius": 10
+  "radius": 10,
+  "cast_time": 0.4
 }
