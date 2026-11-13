@@ -1,48 +1,214 @@
 {
-  "name": { "text": "樹海の伐り手", "color": "green" },
+  "name": {
+    "text": "樹海の伐り手",
+    "color": "green"
+  },
   "type": "life",
   "tier": "basic",
   "max_level": 30,
   "skill_points_per_level": 1,
   "xp": [
-    { "action": "break_block", "target": "#minecraft:logs", "xp": 5 }
+    {
+      "action": "break_block",
+      "target": "#minecraft:logs",
+      "xp": 5
+    }
   ],
   "board": [
-    { "id": "root", "x": 0, "y": 0, "start": true, "cost": 1,
-      "name": "伐採の心得", "icon": "minecraft:wooden_axe",
-      "effects": [ { "attribute": "minecraft:player.block_break_speed", "amount": 0.1 } ] },
-
-    { "id": "chop1", "x": -2, "y": 1, "cost": 1, "links": ["root"],
-      "name": "斧さばき I", "icon": "minecraft:stone_axe",
-      "effects": [ { "attribute": "minecraft:player.block_break_speed", "amount": 0.1 } ] },
-    { "id": "chop2", "x": -2, "y": 2, "cost": 2, "links": ["chop1"],
-      "name": "斧さばき II", "icon": "minecraft:iron_axe",
-      "effects": [ { "attribute": "minecraft:player.block_break_speed", "amount": 0.2 } ] },
-    { "id": "chop3", "x": -2, "y": 3, "cost": 3, "links": ["chop2"],
-      "name": "★ 豪腕", "icon": "minecraft:diamond_axe",
-      "effects": [ { "attribute": "minecraft:player.block_break_speed", "amount": 0.3 } ] },
-
-    { "id": "reach1", "x": 0, "y": 1, "cost": 1, "links": ["root"],
-      "name": "高枝伸ばし I", "icon": "minecraft:stick",
-      "effects": [ { "attribute": "minecraft:player.block_interaction_range", "amount": 0.5 } ] },
-    { "id": "reach2", "x": 0, "y": 2, "cost": 2, "links": ["reach1"],
-      "name": "高枝伸ばし II", "icon": "minecraft:bamboo",
-      "effects": [ { "attribute": "minecraft:player.block_interaction_range", "amount": 1.0 } ] },
-    { "id": "reach3", "x": 0, "y": 3, "cost": 3, "links": ["reach2"],
-      "name": "★ 森の恵み", "icon": "minecraft:golden_apple",
-      "effects": [ { "attribute": "minecraft:generic.luck", "amount": 1 } ] },
-
-    { "id": "walk1", "x": 2, "y": 1, "cost": 1, "links": ["root"],
-      "name": "森歩き", "icon": "minecraft:leather_boots",
-      "effects": [ { "attribute": "minecraft:generic.movement_speed", "amount": 0.05, "operation": "add_multiplied_base" } ] },
-    { "id": "walk2", "x": 2, "y": 2, "cost": 2, "links": ["walk1"],
-      "name": "身軽", "icon": "minecraft:feather",
-      "effects": [ { "attribute": "minecraft:generic.safe_fall_distance", "amount": 2 } ] },
-    { "id": "walk3", "x": 2, "y": 3, "cost": 3, "links": ["walk2"],
-      "name": "★ 木登り名人", "icon": "minecraft:vine",
+    {
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "start": true,
+      "cost": 1,
+      "name": "伐採の心得",
+      "icon": "minecraft:wooden_axe",
       "effects": [
-        { "attribute": "minecraft:generic.jump_strength", "amount": 0.08 },
-        { "attribute": "minecraft:generic.safe_fall_distance", "amount": 2 }
-      ] }
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "chop1",
+      "x": -2,
+      "y": 1,
+      "cost": 1,
+      "links": [
+        "root"
+      ],
+      "name": "斧さばき I",
+      "icon": "minecraft:stone_axe",
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "chop2",
+      "x": -2,
+      "y": 2,
+      "cost": 2,
+      "links": [
+        "chop1"
+      ],
+      "name": "斧さばき II",
+      "icon": "minecraft:iron_axe",
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "chop3",
+      "x": -2,
+      "y": 3,
+      "cost": 3,
+      "links": [
+        "chop2"
+      ],
+      "name": "★ 豪腕",
+      "icon": "minecraft:diamond_axe",
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "reach1",
+      "x": 0,
+      "y": 1,
+      "cost": 1,
+      "links": [
+        "root"
+      ],
+      "name": "高枝伸ばし I",
+      "icon": "minecraft:stick",
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_interaction_range",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "reach2",
+      "x": 0,
+      "y": 2,
+      "cost": 2,
+      "links": [
+        "reach1"
+      ],
+      "name": "高枝伸ばし II",
+      "icon": "minecraft:bamboo",
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_interaction_range",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "reach3",
+      "x": 0,
+      "y": 3,
+      "cost": 3,
+      "links": [
+        "reach2"
+      ],
+      "name": "★ 森の恵み",
+      "icon": "minecraft:golden_apple",
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "walk1",
+      "x": 2,
+      "y": 1,
+      "cost": 1,
+      "links": [
+        "root"
+      ],
+      "name": "森歩き",
+      "icon": "minecraft:leather_boots",
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.05,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "walk2",
+      "x": 2,
+      "y": 2,
+      "cost": 2,
+      "links": [
+        "walk1"
+      ],
+      "name": "身軽",
+      "icon": "minecraft:feather",
+      "effects": [
+        {
+          "attribute": "minecraft:generic.safe_fall_distance",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "walk3",
+      "x": 2,
+      "y": 3,
+      "cost": 3,
+      "links": [
+        "walk2"
+      ],
+      "name": "★ 木登り名人",
+      "icon": "minecraft:vine",
+      "effects": [
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.08
+        },
+        {
+          "attribute": "minecraft:generic.safe_fall_distance",
+          "amount": 2
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:lumberjack/felling",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:lumberjack/replant",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:lumberjack/forest_blessing",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:lumberjack/mighty_axe",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:lumberjack/spirit_of_trees",
+      "level": 30
+    }
   ]
 }

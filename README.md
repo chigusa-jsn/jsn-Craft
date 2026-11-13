@@ -184,3 +184,32 @@ Kキーのメニューの「依頼」タブでは、依頼を見る・報告す�
 
 - 4人まで（`PartyManager.MAX_MEMBERS` で変えられる）
 - 仲間のHP・MPが画面の左側に出る。ログアウトするとパーティーから抜ける
+
+## スキル
+
+- 職業レベルが上がると、決まったレベルでスキルを覚える（上位職になっても、通ってきた職業のスキルは使える）
+- **アクティブ**：**Rでスキルモード**に切り替えると、ホットバーがスキルバーになり、**1〜5**で使える。もう一度Rで戻る
+- **パッシブ**：覚えている間、常に効く
+- スキルバーへのセットは、Kキーのメニューの「スキル」タブ（スキルをクリック → 枠をクリック、右クリックで外す）
+
+スキルは `data/jsn_craft/jsn_skills/` にJSONで書き、職業JSONの `skills` で覚えるレベルを決める。
+
+```json
+{ "name": { "text": "斬り払い" }, "description": { "text": "前方の敵をまとめてなぎ払う。" },
+  "icon": "minecraft:iron_sword", "type": "active", "effect": "sweep",
+  "stamina": 15, "cooldown": 5, "power": 1.0, "radius": 3.5 }
+```
+
+| effect | 種類 | 中身 |
+|---|---|---|
+| `sweep` | アクティブ | 前方の敵をなぎ払う（攻撃力×power、radius 範囲） |
+| `dash` | アクティブ | 前に踏み込む（power 勢い）。bonus があれば次の一撃が (1+bonus) 倍 |
+| `slash_line` | アクティブ | 一直線（radius ブロック）の敵を斬る（攻撃力×power） |
+| `buff` | アクティブ | duration 秒、target の能力値が +power（割合）|
+| `potion` | アクティブ | target のポーション効果を duration 秒（amplifier で強さ） |
+| `heal_area` | アクティブ | 自分と radius 内のパーティー仲間を power 回復 |
+| `dodge` | パッシブ | 近接攻撃を chance の確率でかわす |
+| `full_hp_bonus` | パッシブ | HP満タンで近接攻撃 +power（割合） |
+| `tree_feller` | パッシブ | しゃがんで原木を切ると木を丸ごと倒す（1本ごとに stamina） |
+| `replant` | パッシブ | 木の根元を切ると苗木を植え直す |
+| `extra_drop` | パッシブ | target（タグ）のブロックで、chance の確率でドロップ2倍 |

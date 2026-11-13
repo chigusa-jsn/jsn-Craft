@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "植林の心得"
+  },
+  "description": {
+    "text": "木の根元を切ると、苗木を自動で植え直す。"
+  },
+  "icon": "minecraft:oak_sapling",
+  "type": "passive",
+  "effect": "replant"
+}

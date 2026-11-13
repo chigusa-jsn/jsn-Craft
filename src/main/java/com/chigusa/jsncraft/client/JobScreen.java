@@ -35,14 +35,14 @@ import java.util.Optional;
  */
 public class JobScreen extends Screen {
 
-    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2, TAB_QUEST = 3;
+    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2, TAB_QUEST = 3, TAB_SKILL = 4;
     private static final int LIST_W = 120, ROW_H = 12;
     private static final int NODE = 22, GAP_X = 38, GAP_Y = 34;
 
     private static int lastTab = TAB_STATUS;
 
     public static void startOnTab(int tab) {
-        if (tab >= TAB_STATUS && tab <= TAB_QUEST) lastTab = tab;
+        if (tab >= TAB_STATUS && tab <= TAB_SKILL) lastTab = tab;
     }
 
     private BoardSnapshotPayload data;
@@ -76,7 +76,7 @@ public class JobScreen extends Screen {
         left = (width - panelW) / 2;
         top = (height - panelH) / 2;
 
-        int tabW = (panelW - 20) / 4;
+        int tabW = (panelW - 24) / 5;
         addRenderableWidget(Button.builder(Component.literal("ステータス"), b -> setTab(TAB_STATUS))
                 .bounds(left + 4, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("戦闘ボード").withStyle(ChatFormatting.RED), b -> setTab(TAB_COMBAT))
@@ -85,6 +85,8 @@ public class JobScreen extends Screen {
                 .bounds(left + 12 + tabW * 2, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("依頼").withStyle(ChatFormatting.YELLOW), b -> setTab(TAB_QUEST))
                 .bounds(left + 16 + tabW * 3, top + 4, tabW, 18).build());
+        addRenderableWidget(Button.builder(Component.literal("スキル").withStyle(ChatFormatting.LIGHT_PURPLE), b -> setTab(TAB_SKILL))
+                .bounds(left + 20 + tabW * 4, top + 4, tabW, 18).build());
 
         // 依頼のボタン（詳細の下）
         int qx = left + LIST_W + 14, qy = top + panelH - 22;
@@ -164,6 +166,8 @@ public class JobScreen extends Screen {
 
         if (tab == TAB_STATUS) {
             renderStatus(g);
+        } else if (tab == TAB_SKILL) {
+            renderSkills(g, mouseX, mouseY);
         } else if (tab == TAB_QUEST) {
             renderQuests(g, mouseX, mouseY);
         } else {
@@ -325,6 +329,7 @@ public class JobScreen extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
         if (button == 0 && tab == TAB_QUEST) return clickChoice(mouseX, mouseY) || clickQuestList(mouseX, mouseY);
+        if (tab == TAB_SKILL) return clickSkills(mouseX, mouseY, button);
         if (button != 0 || !isBoardTab()) return false;
 
         Optional<BoardView> board = currentBoard();
@@ -571,6 +576,11 @@ public class JobScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (tab == TAB_SKILL) {
+            int max = Math.max(0, ClientSkills.state().skills().size() * SKILL_ROW - (panelH - 92));
+            skillScroll = (int) Math.max(0, Math.min(max, skillScroll - scrollY * SKILL_ROW));
+            return true;
+        }
         if (tab == TAB_QUEST) {
             int rows = questRows().size();
             int max = Math.max(0, rows * ROW_H + 10 - (panelH - 34));
@@ -578,6 +588,122 @@ public class JobScreen extends Screen {
             return true;
         }
         return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+    }
+
+    // ---- スキルタブ ----
+
+    private static final int SKILL_ROW = 22;
+    @Nullable private String pickedSkill;
+    private int skillScroll;
+
+    private int skillSlotX(int i) {
+        return left + panelW / 2 - (ClientSkills.SLOTS * 26) / 2 + i * 26;
+    }
+
+    private void renderSkills(GuiGraphics g, int mouseX, int mouseY) {
+        int slotY = top + 44;
+        g.drawString(font, "スキルバー（Rでスキルモード → 1〜5で使う）", left + 10, top + 32, 0xFFFF55);
+        List<Component> tip = null;
+        for (int i = 0; i < ClientSkills.SLOTS; i++) {
+            int x = skillSlotX(i);
+            boolean hover = mouseX >= x && mouseX < x + 24 && mouseY >= slotY && mouseY < slotY + 24;
+            g.fill(x - 1, slotY - 1, x + 25, slotY + 25, pickedSkill != null && hover ? 0xFF55DD77 : 0xFF5A5A78);
+            g.fill(x, slotY, x + 24, slotY + 24, 0xFF1A1A2A);
+            g.drawString(font, String.valueOf(i + 1), x + 2, slotY + 1, 0xFFFF55);
+            var v = ClientSkills.find(ClientSkills.slot(i));
+            if (v != null) {
+                g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 4, slotY + 5);
+                if (hover) tip = List.of(v.name(), Component.literal("右クリックで外す").withStyle(ChatFormatting.GRAY));
+            }
+        }
+
+        // スキル一覧
+        int listT = slotY + 32, listB = top + panelH - 14;
+        g.drawString(font, pickedSkill == null ? "アクティブスキルをクリック → 上の枠をクリックでセット"
+                : "セットする枠をクリックしてね（もう一度スキルを押すとやめる）", left + 10, listT - 2, pickedSkill == null ? 0x888899 : 0x55FF55);
+        listT += 10;
+        g.enableScissor(left + 2, listT, left + panelW - 2, listB);
+        int y = listT - skillScroll;
+        for (var v : ClientSkills.state().skills()) {
+            boolean hover = mouseX >= left + 6 && mouseX < left + panelW - 6 && mouseY >= y && mouseY < y + SKILL_ROW - 2
+                    && mouseY >= listT && mouseY < listB;
+            boolean picked = v.id().equals(pickedSkill);
+            int bg = picked ? 0xFF3A5A3A : hover ? 0xFF2A2A40 : 0xFF181826;
+            g.fill(left + 6, y, left + panelW - 6, y + SKILL_ROW - 2, bg);
+            g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), left + 9, y + 2);
+            if (!v.learned()) g.fill(left + 9, y + 2, left + 25, y + 18, 0xA0000000);
+            int nameColor = !v.learned() ? 0x777777 : v.active() ? 0xFFFFFF : 0xAADDFF;
+            g.drawString(font, v.name(), left + 30, y + 2, nameColor);
+            String kind = v.active() ? "アクティブ" : "パッシブ";
+            String info = v.learned() ? kind : "Lv." + v.level() + " で習得";
+            g.drawString(font, Component.literal(info).withStyle(v.learned() ? ChatFormatting.DARK_AQUA : ChatFormatting.DARK_GRAY),
+                    left + 30, y + 11, 0xFFFFFF);
+            if (v.active()) {
+                StringBuilder cost = new StringBuilder();
+                if (v.stamina() > 0) cost.append("ST ").append((int) v.stamina()).append("  ");
+                if (v.mana() > 0) cost.append("MP ").append((int) v.mana()).append("  ");
+                if (v.cooldown() > 0) cost.append("CT ").append(fmtSec(v.cooldown())).append("秒");
+                String c = cost.toString().trim();
+                g.drawString(font, c, left + panelW - 10 - font.width(c), y + 6, 0xAAAAAA);
+            }
+            if (hover) {
+                List<Component> t = new ArrayList<>();
+                t.add(v.name().copy().withStyle(ChatFormatting.BOLD));
+                t.add(Component.empty().append(v.jobName()).append(Component.literal(" Lv." + v.level()).withStyle(ChatFormatting.GRAY)));
+                for (var line : font.split(v.description(), 200)) t.add(Component.literal(toStr(line)));
+                if (!v.learned()) t.add(Component.literal("まだ覚えていません").withStyle(ChatFormatting.RED));
+                else if (v.active()) t.add(Component.literal("クリックでスキルバーにセット").withStyle(ChatFormatting.GREEN));
+                else t.add(Component.literal("覚えている間、常に効果があります").withStyle(ChatFormatting.AQUA));
+                tip = t;
+            }
+            y += SKILL_ROW;
+        }
+        g.disableScissor();
+        if (ClientSkills.state().skills().isEmpty()) {
+            g.drawCenteredString(font, "今の職業にはスキルがありません", left + panelW / 2, listT + 20, 0xAAAAAA);
+        }
+        if (tip != null) g.renderComponentTooltip(font, tip, mouseX, mouseY);
+    }
+
+    private static String toStr(FormattedCharSequence seq) {
+        StringBuilder sb = new StringBuilder();
+        seq.accept((index, style, cp) -> {
+            sb.appendCodePoint(cp);
+            return true;
+        });
+        return sb.toString();
+    }
+
+    private static String fmtSec(float s) {
+        return s == Math.floor(s) ? String.valueOf((int) s) : String.format("%.1f", s);
+    }
+
+    private boolean clickSkills(double mouseX, double mouseY, int button) {
+        int slotY = top + 44;
+        for (int i = 0; i < ClientSkills.SLOTS; i++) {
+            int x = skillSlotX(i);
+            if (mouseX >= x && mouseX < x + 24 && mouseY >= slotY && mouseY < slotY + 24) {
+                if (button == 1) {
+                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(i, ""));
+                } else if (pickedSkill != null) {
+                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(i, pickedSkill));
+                    pickedSkill = null;
+                }
+                return true;
+            }
+        }
+        if (button != 0) return false;
+        int listT = slotY + 32 + 10, listB = top + panelH - 14;
+        if (mouseY < listT || mouseY >= listB) return false;
+        int y = listT - skillScroll;
+        for (var v : ClientSkills.state().skills()) {
+            if (mouseX >= left + 6 && mouseX < left + panelW - 6 && mouseY >= y && mouseY < y + SKILL_ROW - 2) {
+                if (v.active() && v.learned()) pickedSkill = v.id().equals(pickedSkill) ? null : v.id();
+                return true;
+            }
+            y += SKILL_ROW;
+        }
+        return false;
     }
 
     // ---- 小道具 ----

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "一刀伐採"
+  },
+  "description": {
+    "text": "しゃがみながら原木を切ると、つながった原木を丸ごと倒す。1本ごとにスタミナを2使う。"
+  },
+  "icon": "minecraft:iron_axe",
+  "type": "passive",
+  "effect": "tree_feller",
+  "stamina": 2
+}

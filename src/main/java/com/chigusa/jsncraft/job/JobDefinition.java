@@ -25,7 +25,8 @@ public record JobDefinition(
         List<Requirement> requires,
         List<XpRule> xp,
         int skillPointsPerLevel,
-        List<BoardNode> board
+        List<BoardNode> board,
+        List<SkillUnlock> skills
 ) {
     public static final Codec<JobDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
             ComponentSerialization.CODEC.fieldOf("name").forGetter(JobDefinition::name),
@@ -35,8 +36,17 @@ public record JobDefinition(
             Requirement.CODEC.listOf().optionalFieldOf("requires", List.of()).forGetter(JobDefinition::requires),
             XpRule.CODEC.listOf().optionalFieldOf("xp", List.of()).forGetter(JobDefinition::xp),
             Codec.intRange(0, 100).optionalFieldOf("skill_points_per_level", 1).forGetter(JobDefinition::skillPointsPerLevel),
-            BoardNode.CODEC.listOf().optionalFieldOf("board", List.of()).forGetter(JobDefinition::board)
+            BoardNode.CODEC.listOf().optionalFieldOf("board", List.of()).forGetter(JobDefinition::board),
+            SkillUnlock.CODEC.listOf().optionalFieldOf("skills", List.of()).forGetter(JobDefinition::skills)
     ).apply(i, JobDefinition::new));
+
+    /** スキルを覚えるレベル。skill は data/<名前空間>/jsn_skills/ のスキルID。 */
+    public record SkillUnlock(ResourceLocation skill, int level) {
+        public static final Codec<SkillUnlock> CODEC = RecordCodecBuilder.create(i -> i.group(
+                ResourceLocation.CODEC.fieldOf("skill").forGetter(SkillUnlock::skill),
+                Codec.INT.optionalFieldOf("level", 1).forGetter(SkillUnlock::level)
+        ).apply(i, SkillUnlock::new));
+    }
 
     public java.util.Optional<BoardNode> node(String id) {
         return board.stream().filter(n -> n.id().equals(id)).findFirst();

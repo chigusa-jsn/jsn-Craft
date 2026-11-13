@@ -9,5 +9,6 @@
   "attribute.name.jsn_craft.crit_chance": "会心率",
   "attribute.name.jsn_craft.crit_damage": "会心ダメージ",
   "entity.jsn_craft.receptionist": "受付嬢",
-  "item.jsn_craft.receptionist_spawn_egg": "受付嬢のスポーンエッグ"
+  "item.jsn_craft.receptionist_spawn_egg": "受付嬢のスポーンエッグ",
+  "key.jsn_craft.skill_mode": "スキルモード切り替え"
 }

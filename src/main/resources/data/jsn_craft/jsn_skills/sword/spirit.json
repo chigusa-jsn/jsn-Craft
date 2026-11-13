@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "剣気"
+  },
+  "description": {
+    "text": "HPが満タンのとき、近接攻撃のダメージが20%アップ。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "passive",
+  "effect": "full_hp_bonus",
+  "power": 0.2
+}

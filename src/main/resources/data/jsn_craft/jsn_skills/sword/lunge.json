@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "踏み込み"
+  },
+  "description": {
+    "text": "前へ素早く踏み込む。3秒以内の次の一撃が1.5倍になる。"
+  },
+  "icon": "minecraft:feather",
+  "type": "active",
+  "effect": "dash",
+  "stamina": 10,
+  "cooldown": 4,
+  "power": 1.4,
+  "bonus": 0.5
+}

@@ -56,6 +56,7 @@ public final class JobService {
         if (prog.level >= def.maxLevel()) return;
 
         prog.xp += amount;
+        int oldLevel = prog.level;
         boolean leveledUp = false;
         while (prog.level < def.maxLevel() && prog.xp >= xpForNextLevel(def, prog.level)) {
             prog.xp -= xpForNextLevel(def, prog.level);
@@ -75,6 +76,7 @@ public final class JobService {
             player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.75F, 1.0F);
             sync(player);
             SkillBoardService.sendSnapshot(player, false);
+            com.chigusa.jsncraft.skill.SkillService.onLevelUp(player, jobId, oldLevel, prog.level);
         } else {
             String progressText = prog.level >= def.maxLevel()
                     ? " (MAX)"
@@ -106,6 +108,8 @@ public final class JobService {
         data.setJob(def.type(), jobId);
         data.progress(jobId); // 初めてならLv.1で作られる
         SkillBoardService.applyBonuses(player); // 前の職業のボードはお休み、新しい職業のボードを反映
+        com.chigusa.jsncraft.skill.SkillService.autoFill(player);
+        com.chigusa.jsncraft.skill.SkillService.sync(player);
         sync(player);
         SkillBoardService.sendSnapshot(player, false);
         return null;

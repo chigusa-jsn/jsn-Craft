@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "剛斧"
+  },
+  "description": {
+    "text": "30秒間、ブロックを壊す速さが2倍になる。"
+  },
+  "icon": "minecraft:golden_axe",
+  "type": "active",
+  "effect": "buff",
+  "target": "minecraft:player.block_break_speed",
+  "power": 1.0,
+  "duration": 30,
+  "stamina": 30,
+  "cooldown": 90
+}

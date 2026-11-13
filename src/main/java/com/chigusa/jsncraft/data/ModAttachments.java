@@ -36,5 +36,13 @@ public final class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    /** スキルバーにセットしたスキル。死んでも消えない。 */
+    public static final Supplier<AttachmentType<com.chigusa.jsncraft.skill.PlayerSkillData>> SKILLS = ATTACHMENT_TYPES.register(
+            "skills",
+            () -> AttachmentType.builder(() -> new com.chigusa.jsncraft.skill.PlayerSkillData())
+                    .serialize(com.chigusa.jsncraft.skill.PlayerSkillData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
     private ModAttachments() {}
 }

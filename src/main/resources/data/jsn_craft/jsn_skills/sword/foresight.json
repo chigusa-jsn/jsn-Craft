@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "見切り"
+  },
+  "description": {
+    "text": "近接攻撃を10%の確率でかわす。"
+  },
+  "icon": "minecraft:phantom_membrane",
+  "type": "passive",
+  "effect": "dodge",
+  "chance": 0.1
+}

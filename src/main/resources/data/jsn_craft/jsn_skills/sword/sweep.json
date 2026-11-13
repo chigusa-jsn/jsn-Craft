@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "斬り払い"
+  },
+  "description": {
+    "text": "前方の敵をまとめてなぎ払う。"
+  },
+  "icon": "minecraft:iron_sword",
+  "type": "active",
+  "effect": "sweep",
+  "stamina": 15,
+  "cooldown": 5,
+  "power": 1.0,
+  "radius": 3.5
+}

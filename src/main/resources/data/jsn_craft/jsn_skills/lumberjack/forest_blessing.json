@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "森の恵み"
+  },
+  "description": {
+    "text": "原木を切ったとき、15%の確率でドロップが2倍になる。"
+  },
+  "icon": "minecraft:apple",
+  "type": "passive",
+  "effect": "extra_drop",
+  "target": "#minecraft:logs",
+  "chance": 0.15
+}

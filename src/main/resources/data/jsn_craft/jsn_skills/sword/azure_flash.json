@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "奥義・蒼閃"
+  },
+  "description": {
+    "text": "青い斬撃を飛ばし、一直線上（10ブロック）の敵を斬る。攻撃力の2.5倍。"
+  },
+  "icon": "minecraft:diamond_sword",
+  "type": "active",
+  "effect": "slash_line",
+  "stamina": 40,
+  "cooldown": 30,
+  "power": 2.5,
+  "radius": 10
+}
