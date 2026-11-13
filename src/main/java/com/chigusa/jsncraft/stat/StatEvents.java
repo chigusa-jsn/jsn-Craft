@@ -25,12 +25,12 @@ public final class StatEvents {
         }
     }
 
-    /** 前のバージョン（回復速度5）で遊んでいた人を、新しい初期値2にそろえる */
+    /** 前のバージョン（回復速度5や2）で遊んでいた人を、新しい初期値1にそろえる */
     @SubscribeEvent
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             var inst = player.getAttribute(ModAttributes.STAMINA_REGEN);
-            if (inst != null && inst.getBaseValue() == 5.0) inst.setBaseValue(2.0);
+            if (inst != null && (inst.getBaseValue() == 5.0 || inst.getBaseValue() == 2.0)) inst.setBaseValue(1.0);
         }
     }
 

@@ -234,7 +234,8 @@ public final class SkillBoardService {
             });
         }
 
-        return new BoardSnapshotPayload(open, stats, boardViews(data, JobType.COMBAT), boardViews(data, JobType.LIFE));
+        return new BoardSnapshotPayload(open, stats, boardViews(data, JobType.COMBAT), boardViews(data, JobType.LIFE),
+                new ArrayList<>(com.chigusa.jsncraft.quest.QuestService.data(player).titles));
     }
 
     private static List<BoardView> boardViews(PlayerJobData data, JobType type) {

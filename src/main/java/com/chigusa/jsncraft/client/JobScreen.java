@@ -50,6 +50,8 @@ public class JobScreen extends Screen {
     private int boardIndex = 0;
     private Button prevBtn, nextBtn;
     private Button acceptBtn, turnInBtn, abandonBtn, claimBtn;
+    private Button titleBtn;
+    private boolean titleMenu;
     @Nullable private String selectedQuest;
     /** 選択報酬で選んだ候補の番号（どの依頼のものか picksFor で覚える） */
     private final java.util.Set<Integer> picks = new java.util.LinkedHashSet<>();
@@ -87,6 +89,10 @@ public class JobScreen extends Screen {
                 .bounds(left + 16 + tabW * 3, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("スキル").withStyle(ChatFormatting.LIGHT_PURPLE), b -> setTab(TAB_SKILL))
                 .bounds(left + 20 + tabW * 4, top + 4, tabW, 18).build());
+
+        // 肩書の変更（ステータスタブ）
+        titleBtn = addRenderableWidget(Button.builder(Component.literal("肩書を変更"), b -> titleMenu = !titleMenu)
+                .bounds(left + panelW - 80, top + 32, 70, 14).build());
 
         // 依頼のボタン（詳細の下）
         int qx = left + LIST_W + 14, qy = top + panelH - 22;
@@ -141,6 +147,8 @@ public class JobScreen extends Screen {
 
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+        titleBtn.visible = tab == TAB_STATUS;
+        if (tab != TAB_STATUS) titleMenu = false;
         boolean multi = isBoardTab() && boards().size() > 1;
         QuestView selected = selectedQuest();
         QuestListPayload ql = QuestListPayload.client;
@@ -166,6 +174,7 @@ public class JobScreen extends Screen {
 
         if (tab == TAB_STATUS) {
             renderStatus(g);
+            if (titleMenu) renderTitleMenu(g, mouseX, mouseY);
         } else if (tab == TAB_SKILL) {
             renderSkills(g, mouseX, mouseY);
         } else if (tab == TAB_QUEST) {
@@ -197,10 +206,14 @@ public class JobScreen extends Screen {
         int y = top + 34;
         Minecraft mc = Minecraft.getInstance();
         JobSyncPayload own = mc.player != null ? ClientJobCache.get(mc.player.getId()) : null;
-        if (own != null && !own.title().isEmpty()) {
-            g.drawString(font, Component.literal("《" + own.title() + "》").withStyle(ChatFormatting.GOLD), x, y, 0xFFFFFF);
-            y += 12;
-        }
+        // 名前と肩書
+        Component name = mc.player != null ? mc.player.getName().copy().withStyle(ChatFormatting.BOLD) : Component.empty();
+        String title = own != null ? own.title() : "";
+        Component titleText = title.isEmpty()
+                ? Component.literal("肩書なし").withStyle(ChatFormatting.DARK_GRAY)
+                : Component.literal("《" + title + "》").withStyle(ChatFormatting.GOLD);
+        g.drawString(font, Component.empty().append(name).append("  ").append(titleText), x, y + 3, 0xFFFFFF);
+        y += 16;
         y = jobLine(g, x, y, "[戦闘] ", ChatFormatting.RED, data.combat().stream().findFirst());
         y = jobLine(g, x, y, "[生活] ", ChatFormatting.GREEN, data.life().stream().findFirst());
         y += 4;
@@ -325,8 +338,62 @@ public class JobScreen extends Screen {
 
     // ---- 操作 ----
 
+    // ---- 肩書の一覧（ステータスタブの「肩書を変更」） ----
+
+    private List<String> titleOptions() {
+        List<String> out = new ArrayList<>();
+        out.add("");
+        out.addAll(data.titles());
+        return out;
+    }
+
+    private int titleMenuX() {
+        return left + panelW - 172;
+    }
+
+    private void renderTitleMenu(GuiGraphics g, int mouseX, int mouseY) {
+        int x = titleMenuX(), y = top + 48, w = 162;
+        List<String> opts = titleOptions();
+        int h = opts.size() * 12 + 4 + (data.titles().isEmpty() ? 12 : 0);
+        g.pose().pushPose();
+        g.pose().translate(0, 0, 400);
+        g.fill(x - 1, y - 1, x + w + 1, y + h + 1, 0xFF8888AA);
+        g.fill(x, y, x + w, y + h, 0xF0181828);
+        int ry = y + 2;
+        for (String t : opts) {
+            boolean hover = mouseX >= x && mouseX < x + w && mouseY >= ry && mouseY < ry + 12;
+            if (hover) g.fill(x, ry, x + w, ry + 12, 0x40FFFFFF);
+            Component label = t.isEmpty() ? Component.literal("（肩書をはずす）").withStyle(ChatFormatting.GRAY)
+                    : Component.literal("《" + t + "》").withStyle(ChatFormatting.GOLD);
+            g.drawString(font, label, x + 4, ry + 2, 0xFFFFFF);
+            ry += 12;
+        }
+        if (data.titles().isEmpty()) {
+            g.drawString(font, "依頼で肩書を手に入れよう", x + 4, ry + 2, 0x888899);
+        }
+        g.pose().popPose();
+    }
+
+    /** 肩書の一覧が開いているときのクリック。一覧の外を押したら閉じる。 */
+    private boolean clickTitleMenu(double mouseX, double mouseY) {
+        int x = titleMenuX(), y = top + 48, w = 162;
+        int ry = y + 2;
+        for (String t : titleOptions()) {
+            if (mouseX >= x && mouseX < x + w && mouseY >= ry && mouseY < ry + 12) {
+                PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SetTitlePayload(t));
+                titleMenu = false;
+                return true;
+            }
+            ry += 12;
+        }
+        if (titleBtn.isMouseOver(mouseX, mouseY)) return false; // ボタン自身は普通に押させる
+        titleMenu = false;
+        return true;
+    }
+
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (titleMenu && clickTitleMenu(mouseX, mouseY)) return true;
         if (super.mouseClicked(mouseX, mouseY, button)) return true;
         if (button == 0 && tab == TAB_QUEST) return clickChoice(mouseX, mouseY) || clickQuestList(mouseX, mouseY);
         if (tab == TAB_SKILL) return clickSkills(mouseX, mouseY, button);

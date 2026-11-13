@@ -36,6 +36,8 @@ public final class NameplateRenderer {
 
     private static final double MAX_DISTANCE_SQ = 64 * 64;
     private static final int LINE_HEIGHT = 10;
+    /** 文字の大きさ（バニラの名札は 0.025） */
+    private static final float SCALE = 0.02F;
 
     @SubscribeEvent
     public static void onRenderLiving(RenderLivingEvent.Post<?, ?> event) {
@@ -66,6 +68,9 @@ public final class NameplateRenderer {
         if (!info.title().isEmpty()) {
             lines.add(Component.literal("《" + info.title() + "》").withStyle(ChatFormatting.GOLD));
         }
+        // F5で自分を見ているときは、マイクラの名札が出ないので自分の名前も一番下に出す
+        boolean self = player == mc.player;
+        if (self) lines.add(0, player.getDisplayName().copy().withStyle(ChatFormatting.WHITE));
         if (lines.isEmpty()) return;
 
         float partialTick = event.getPartialTick();
@@ -77,7 +82,7 @@ public final class NameplateRenderer {
         // バニラの名札と同じ位置・向き・大きさに合わせる
         pose.translate(anchor.x, anchor.y + 0.5, anchor.z);
         pose.mulPose(mc.getEntityRenderDispatcher().cameraOrientation());
-        pose.scale(0.025F, -0.025F, 0.025F);
+        pose.scale(SCALE, -SCALE, SCALE);
 
         Matrix4f matrix = pose.last().pose();
         Font font = mc.font;
@@ -86,7 +91,7 @@ public final class NameplateRenderer {
         int light = event.getPackedLight();
 
         // 名札(y=0)の1段上から、上へ積んでいく
-        int y = -LINE_HEIGHT;
+        int y = self ? 0 : -LINE_HEIGHT;
         for (Component line : lines) {
             float x = -font.width(line) / 2.0F;
             // 壁越しにうっすら見える層（スニーク中は出さない）

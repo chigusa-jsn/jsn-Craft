@@ -24,7 +24,8 @@ public record BoardSnapshotPayload(
         boolean open,
         List<StatLine> stats,
         List<BoardView> combat,
-        List<BoardView> life
+        List<BoardView> life,
+        List<String> titles
 ) implements CustomPacketPayload {
 
     public static final Type<BoardSnapshotPayload> TYPE = new Type<>(JsnCraft.id("board_snapshot"));
@@ -87,7 +88,8 @@ public record BoardSnapshotPayload(
             Codec.BOOL.fieldOf("open").forGetter(BoardSnapshotPayload::open),
             StatLine.CODEC.listOf().fieldOf("stats").forGetter(BoardSnapshotPayload::stats),
             BoardView.CODEC.listOf().fieldOf("combat").forGetter(BoardSnapshotPayload::combat),
-            BoardView.CODEC.listOf().fieldOf("life").forGetter(BoardSnapshotPayload::life)
+            BoardView.CODEC.listOf().fieldOf("life").forGetter(BoardSnapshotPayload::life),
+            Codec.STRING.listOf().fieldOf("titles").forGetter(BoardSnapshotPayload::titles)
     ).apply(i, BoardSnapshotPayload::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BoardSnapshotPayload> STREAM_CODEC =

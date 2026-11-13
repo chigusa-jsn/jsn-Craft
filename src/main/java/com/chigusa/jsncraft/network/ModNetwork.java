@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("9");
+        PayloadRegistrar registrar = event.registrar("10");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -35,6 +35,15 @@ public final class ModNetwork {
         registrar.playToServer(JobChangePayloads.Change.TYPE, JobChangePayloads.Change.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.npc.JobChangeService.change(sp, p.jobId());
+                }));
+        registrar.playToServer(SetTitlePayload.TYPE, SetTitlePayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (!(c.player() instanceof ServerPlayer sp)) return;
+                    String t = p.title();
+                    if (!t.isEmpty() && !QuestService.data(sp).titles.contains(t)) return; // 持っていない肩書はだめ
+                    com.chigusa.jsncraft.job.JobService.data(sp).setTitle(t);
+                    com.chigusa.jsncraft.job.JobService.sync(sp);
+                    SkillBoardService.sendSnapshot(sp, false);
                 }));
         registrar.playToClient(PartyStatusPayload.TYPE, PartyStatusPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> PartyStatusPayload.client = p.members()));
