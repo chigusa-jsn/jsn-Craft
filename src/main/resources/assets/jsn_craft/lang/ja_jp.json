@@ -10,5 +10,7 @@
   "attribute.name.jsn_craft.crit_damage": "会心ダメージ",
   "entity.jsn_craft.receptionist": "受付嬢",
   "item.jsn_craft.receptionist_spawn_egg": "受付嬢のスポーンエッグ",
-  "key.jsn_craft.skill_mode": "スキルモード切り替え"
+  "key.jsn_craft.skill_mode": "スキルモード切り替え",
+  "entity.jsn_craft.job_master": "転職の神官",
+  "item.jsn_craft.job_master_spawn_egg": "転職の神官のスポーンエッグ"
 }

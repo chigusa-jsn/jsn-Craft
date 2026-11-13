@@ -30,5 +30,11 @@ public final class ClientMenuHandler {
         }
     }
 
+    public static void openJobChange(com.chigusa.jsncraft.network.JobChangePayloads.Open payload) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.screen instanceof JobChangeScreen screen) screen.update(payload.jobs());
+        else mc.setScreen(new JobChangeScreen(payload.jobs()));
+    }
+
     private ClientMenuHandler() {}
 }

@@ -10,5 +10,7 @@
   "attribute.name.jsn_craft.crit_damage": "Crit Damage",
   "entity.jsn_craft.receptionist": "Receptionist",
   "item.jsn_craft.receptionist_spawn_egg": "Receptionist Spawn Egg",
-  "key.jsn_craft.skill_mode": "Toggle Skill Mode"
+  "key.jsn_craft.skill_mode": "Toggle Skill Mode",
+  "entity.jsn_craft.job_master": "Job Master",
+  "item.jsn_craft.job_master_spawn_egg": "Job Master Spawn Egg"
 }

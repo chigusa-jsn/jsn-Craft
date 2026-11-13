@@ -32,6 +32,7 @@ public class ReceptionistRenderer extends HumanoidMobRenderer<ReceptionistEntity
         @SubscribeEvent
         public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ModEntities.RECEPTIONIST.get(), ReceptionistRenderer::new);
+            event.registerEntityRenderer(ModEntities.JOB_MASTER.get(), JobMasterRenderer::new);
         }
     }
 }
