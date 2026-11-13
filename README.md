@@ -33,7 +33,7 @@ MMO風の職業システムを追加する Minecraft MOD（NeoForge 1.21.1）。
 |---|---|
 | `/job` | 自分の職業とレベルを見る |
 | `/job list` | 職業の一覧 |
-| `/job change lumberjack` | 転職（Tabキーで候補が出る） |
+| `/job change lumberjack` | 転職（OP・テスト用。ふだんは転職の神官から） |
 | `/job title @s 森の守護者` | 肩書を付ける（OP） |
 | `/job title @s clear` | 肩書を外す（OP） |
 | `/job addxp life 500` | 経験値を足す（テスト用・OP） |

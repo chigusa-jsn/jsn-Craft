@@ -35,7 +35,7 @@ import java.util.Map;
  * /job resetboard <life|combat>   スキルボードをリセット（OP用）
  * /job mytitle <肩書> | clear   依頼でもらった肩書に付け替える
  * /job gauge <mana|stamina> <値>   マナ/スタミナを減らしてゲージを試す（OP用）
- * /job change <職業>   転職（例: /job change lumberjack）
+ * /job change <職業>   転職（OP用。ふだんは転職の神官から）
  * /job title <プレイヤー> <肩書> | clear   肩書を付ける（OP用）
  * /job addxp <life|combat> <量>   経験値を足す（テスト用・OP用）
  */
@@ -77,6 +77,7 @@ public final class JobCommand {
                         .then(Commands.literal("life").executes(ctx -> resetBoard(ctx, JobType.LIFE)))
                         .then(Commands.literal("combat").executes(ctx -> resetBoard(ctx, JobType.COMBAT))))
                 .then(Commands.literal("change")
+                        .requires(s -> s.hasPermission(2)) // ふだんの転職は転職の神官から。コマンドはOPのテスト用
                         .then(Commands.argument("job", ResourceLocationArgument.id())
                                 .suggests(SUGGEST_JOBS)
                                 .executes(JobCommand::change)))
