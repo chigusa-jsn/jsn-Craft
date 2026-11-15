@@ -67,10 +67,37 @@ public final class SkillService {
             for (JobDefinition.SkillUnlock u : def.skills()) {
                 if (jobs.level(jobId) < u.level()) continue;
                 SkillDefinition s = SkillManager.INSTANCE.get(u.skill());
-                if (s != null && !s.isActive() && s.effect().equals(effect)) return s;
+                if (s != null && !s.isActive() && s.effect().equals(effect)) return effective(player, u.skill(), s);
             }
         }
+        // ボードのパネルで覚えたパッシブ
+        for (ResourceLocation id : SkillBoardService.grantedSkills(player)) {
+            SkillDefinition s = SkillManager.INSTANCE.get(id);
+            if (s != null && !s.isActive() && s.effect().equals(effect)) return effective(player, id, s);
+        }
         return null;
+    }
+
+    /**
+     * ボードの「技の強化」パネルと、待ち時間短縮・消費ST軽減を反映したスキルの中身。
+     * 元の設定は変えずに、強化済みのコピーを返す。
+     */
+    public static SkillDefinition effective(ServerPlayer player, ResourceLocation id, SkillDefinition s) {
+        Map<String, Double> m = SkillBoardService.skillMods(player, id);
+        double cdr = player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.COOLDOWN_REDUCTION);
+        double scr = player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.STAMINA_COST_REDUCTION);
+        float stamina = (float) Math.max(0, (s.stamina() + m.getOrDefault("stamina", 0.0)) * (1 - Math.min(0.5, scr)));
+        float cooldown = (float) Math.max(0, (s.cooldown() + m.getOrDefault("cooldown", 0.0)) * (1 - Math.min(0.5, cdr)));
+        return new SkillDefinition(s.name(), s.description(), s.icon(), s.type(), s.effect(),
+                stamina, s.mana(), cooldown,
+                s.power() * (1 + m.getOrDefault("power_pct", 0.0)),
+                s.bonus(),
+                s.radius() + m.getOrDefault("radius", 0.0),
+                s.duration() + m.getOrDefault("duration", 0.0),
+                s.chance() + m.getOrDefault("chance", 0.0),
+                s.target(),
+                (int) Math.round(s.amplifier() + m.getOrDefault("amplifier", 0.0)),
+                (float) Math.max(0, s.castTime() + m.getOrDefault("cast_time", 0.0)));
     }
 
     // ---------------- 発動 ----------------
@@ -79,7 +106,8 @@ public final class SkillService {
         PlayerSkillData d = data(player);
         if (slot < 0 || slot >= PlayerSkillData.SLOTS) return;
         ResourceLocation id = ResourceLocation.tryParse(d.slots.get(slot));
-        SkillDefinition skill = SkillManager.INSTANCE.get(id);
+        SkillDefinition base = SkillManager.INSTANCE.get(id);
+        SkillDefinition skill = base == null ? null : effective(player, id, base);
         if (skill == null) {
             player.displayClientMessage(Component.literal((slot + 1) + "番にはスキルがセットされていません（Kキー →「スキル」）")
                     .withStyle(ChatFormatting.GRAY), true);
@@ -152,7 +180,7 @@ public final class SkillService {
                 var speed = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
                 if (speed != null) speed.removeModifier(CAST_SLOW);
                 SkillDefinition skill = SkillManager.INSTANCE.get(ResourceLocation.tryParse(id));
-                if (skill != null && player.isAlive()) SkillEffects.activate(player, skill);
+                if (skill != null && player.isAlive()) SkillEffects.activate(player, effective(player, ResourceLocation.tryParse(id), skill));
             }
         }
     }
@@ -226,8 +254,9 @@ public final class SkillService {
             for (JobDefinition.SkillUnlock u : def.skills()) {
                 SkillDefinition s = SkillManager.INSTANCE.get(u.skill());
                 if (s == null) continue;
+                SkillDefinition e = effective(player, u.skill(), s); // ボードの強化を反映した値を見せる
                 views.add(new SkillView(u.skill().toString(), s.name(), s.description(), s.icon(), s.isActive(), u.level(),
-                        def.name(), jobs.level(jobId) >= u.level(), s.stamina(), s.mana(), s.cooldown()));
+                        def.name(), jobs.level(jobId) >= u.level(), e.stamina(), e.mana(), e.cooldown()));
             }
         }
         long now = player.level().getGameTime();

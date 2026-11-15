@@ -26,7 +26,8 @@ public record JobDefinition(
         List<XpRule> xp,
         int skillPointsPerLevel,
         List<BoardNode> board,
-        List<SkillUnlock> skills
+        List<SkillUnlock> skills,
+        String boardStyle
 ) {
     public static final Codec<JobDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
             ComponentSerialization.CODEC.fieldOf("name").forGetter(JobDefinition::name),
@@ -37,7 +38,8 @@ public record JobDefinition(
             XpRule.CODEC.listOf().optionalFieldOf("xp", List.of()).forGetter(JobDefinition::xp),
             Codec.intRange(0, 100).optionalFieldOf("skill_points_per_level", 1).forGetter(JobDefinition::skillPointsPerLevel),
             BoardNode.CODEC.listOf().optionalFieldOf("board", List.of()).forGetter(JobDefinition::board),
-            SkillUnlock.CODEC.listOf().optionalFieldOf("skills", List.of()).forGetter(JobDefinition::skills)
+            SkillUnlock.CODEC.listOf().optionalFieldOf("skills", List.of()).forGetter(JobDefinition::skills),
+            Codec.STRING.optionalFieldOf("board_style", "tree").forGetter(JobDefinition::boardStyle)
     ).apply(i, JobDefinition::new));
 
     /** スキルを覚えるレベル。skill は data/<名前空間>/jsn_skills/ のスキルID。 */

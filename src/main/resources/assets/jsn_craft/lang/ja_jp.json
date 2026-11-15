@@ -13,5 +13,11 @@
   "key.jsn_craft.skill_mode": "スキルモード切り替え",
   "entity.jsn_craft.job_master": "転職の神官",
   "item.jsn_craft.job_master_spawn_egg": "転職の神官のスポーンエッグ",
-  "item.jsn_craft.oblivion_orb": "忘却の宝珠"
+  "item.jsn_craft.oblivion_orb": "忘却の宝珠",
+  "attribute.name.jsn_craft.skill_damage": "スキルダメージ",
+  "attribute.name.jsn_craft.cooldown_reduction": "待ち時間短縮",
+  "attribute.name.jsn_craft.stamina_cost_reduction": "消費ST軽減",
+  "attribute.name.jsn_craft.damage_reduction": "被ダメージ軽減",
+  "attribute.name.jsn_craft.lifesteal": "吸血",
+  "attribute.name.jsn_craft.job_xp_bonus": "職業経験値"
 }

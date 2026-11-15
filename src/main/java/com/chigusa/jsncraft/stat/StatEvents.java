@@ -63,6 +63,22 @@ public final class StatEvents {
         }
     }
 
+    /** 被ダメージ軽減 */
+    @SubscribeEvent
+    public static void onPlayerHurt(LivingIncomingDamageEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        double red = Math.min(0.6, player.getAttributeValue(ModAttributes.DAMAGE_REDUCTION));
+        if (red > 0) event.setAmount((float) (event.getAmount() * (1 - red)));
+    }
+
+    /** 吸血：与えたダメージの一部だけHPが回復 */
+    @SubscribeEvent
+    public static void onDealt(net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Post event) {
+        if (!(event.getSource().getEntity() instanceof ServerPlayer player) || event.getEntity() == player) return;
+        double steal = player.getAttributeValue(ModAttributes.LIFESTEAL);
+        if (steal > 0 && event.getNewDamage() > 0) player.heal((float) (event.getNewDamage() * steal));
+    }
+
     /** 会心：プレイヤーの近接攻撃が、確率で大ダメージになる */
     @SubscribeEvent
     public static void onIncomingDamage(LivingIncomingDamageEvent event) {

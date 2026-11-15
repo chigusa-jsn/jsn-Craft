@@ -32,6 +32,10 @@ public class PlayerSkillData {
     /** 受け流しのかまえ：期限と反撃の強さ */
     public transient long parryUntil = 0;
     public transient double parryPower = 0;
+    /** 連撃：近接攻撃を当てた回数 */
+    public transient int comboCount = 0;
+    /** 不屈：次に使えるようになるゲーム時間 */
+    public transient long endureReadyAt = 0;
 
     public PlayerSkillData() {
         while (slots.size() < SLOTS) slots.add("");

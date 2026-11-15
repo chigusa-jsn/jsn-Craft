@@ -40,24 +40,30 @@ public record BoardSnapshotPayload(
     }
 
     /** スキルボードのマス1つ（表示用）。 */
-    public record NodeView(String id, int x, int y, Component name, Optional<ResourceLocation> icon,
-                           boolean start, int cost, List<String> links, List<Component> effects) {
+    /** masked は「？パネルで、まだ中身が見えない」。min_level は鍵パネルの必要レベル。big は★パネル */
+    public record NodeView(String id, double x, double y, Component name, Optional<ResourceLocation> icon,
+                           boolean start, int cost, List<String> links, List<Component> effects,
+                           int minLevel, boolean big, boolean masked) {
         public static final Codec<NodeView> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.STRING.fieldOf("id").forGetter(NodeView::id),
-                Codec.INT.fieldOf("x").forGetter(NodeView::x),
-                Codec.INT.fieldOf("y").forGetter(NodeView::y),
+                Codec.DOUBLE.fieldOf("x").forGetter(NodeView::x),
+                Codec.DOUBLE.fieldOf("y").forGetter(NodeView::y),
                 ComponentSerialization.CODEC.fieldOf("name").forGetter(NodeView::name),
                 ResourceLocation.CODEC.optionalFieldOf("icon").forGetter(NodeView::icon),
                 Codec.BOOL.fieldOf("start").forGetter(NodeView::start),
                 Codec.INT.fieldOf("cost").forGetter(NodeView::cost),
                 Codec.STRING.listOf().fieldOf("links").forGetter(NodeView::links),
-                ComponentSerialization.CODEC.listOf().fieldOf("effects").forGetter(NodeView::effects)
+                ComponentSerialization.CODEC.listOf().fieldOf("effects").forGetter(NodeView::effects),
+                Codec.INT.fieldOf("min_level").forGetter(NodeView::minLevel),
+                Codec.BOOL.fieldOf("big").forGetter(NodeView::big),
+                Codec.BOOL.fieldOf("masked").forGetter(NodeView::masked)
         ).apply(i, NodeView::new));
     }
 
     /** 1つの職業のスキルボード（表示用）。inherited は「前の職業から引き継いだボード」。 */
+    /** style は "tree"（ツリー型）か "hex"（六角形のパネル） */
     public record BoardView(String jobId, Component jobName, int level, int points, boolean inherited,
-                            List<NodeView> nodes, List<String> unlocked) {
+                            List<NodeView> nodes, List<String> unlocked, String style) {
         public static final Codec<BoardView> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Codec.STRING.fieldOf("job_id").forGetter(BoardView::jobId),
                 ComponentSerialization.CODEC.fieldOf("job_name").forGetter(BoardView::jobName),
@@ -65,7 +71,8 @@ public record BoardSnapshotPayload(
                 Codec.INT.fieldOf("points").forGetter(BoardView::points),
                 Codec.BOOL.fieldOf("inherited").forGetter(BoardView::inherited),
                 NodeView.CODEC.listOf().fieldOf("nodes").forGetter(BoardView::nodes),
-                Codec.STRING.listOf().fieldOf("unlocked").forGetter(BoardView::unlocked)
+                Codec.STRING.listOf().fieldOf("unlocked").forGetter(BoardView::unlocked),
+                Codec.STRING.fieldOf("style").forGetter(BoardView::style)
         ).apply(i, BoardView::new));
 
         public boolean isUnlocked(String id) {

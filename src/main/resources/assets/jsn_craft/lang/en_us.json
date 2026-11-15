@@ -13,5 +13,11 @@
   "key.jsn_craft.skill_mode": "Toggle Skill Mode",
   "entity.jsn_craft.job_master": "Job Master",
   "item.jsn_craft.job_master_spawn_egg": "Job Master Spawn Egg",
-  "item.jsn_craft.oblivion_orb": "Orb of Oblivion"
+  "item.jsn_craft.oblivion_orb": "Orb of Oblivion",
+  "attribute.name.jsn_craft.skill_damage": "Skill Damage",
+  "attribute.name.jsn_craft.cooldown_reduction": "Cooldown Reduction",
+  "attribute.name.jsn_craft.stamina_cost_reduction": "Stamina Cost Reduction",
+  "attribute.name.jsn_craft.damage_reduction": "Damage Reduction",
+  "attribute.name.jsn_craft.lifesteal": "Lifesteal",
+  "attribute.name.jsn_craft.job_xp_bonus": "Job XP Bonus"
 }

@@ -11,6 +11,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -126,6 +127,7 @@ public final class SkillBoardService {
         JobProgress prog = data.progress(jobId);
         if (prog.unlocked.contains(nodeId)) return Component.literal("もう解放しています");
         if (!isReachable(def, prog.unlocked, node)) return Component.literal("つながっているマスを先に解放してください");
+        if (prog.level < node.minLevel()) return Component.literal("このパネルは Lv." + node.minLevel() + " から開けられます");
         int points = pointsAvailable(def, prog);
         if (points < node.cost()) {
             return Component.literal("スキルポイントが足りません（必要 " + node.cost() + " / 残り " + points + "）");
@@ -179,7 +181,7 @@ public final class SkillBoardService {
             for (String nodeId : data.progress(jobId).unlocked) {
                 def.node(nodeId).ifPresent(node -> {
                     for (BoardNode.Effect e : node.effects()) {
-                        totals.merge(new Key(e.attribute(), e.operation()), e.amount(), Double::sum);
+                        e.attribute().ifPresent(a -> totals.merge(new Key(a, e.operation()), e.amount(), Double::sum));
                     }
                 });
             }
@@ -221,7 +223,7 @@ public final class SkillBoardService {
             JobDefinition def = JobManager.INSTANCE.get(jobId);
             if (def == null) continue;
             for (BoardNode node : def.board()) {
-                for (BoardNode.Effect e : node.effects()) statIds.add(e.attribute());
+                for (BoardNode.Effect e : node.effects()) e.attribute().ifPresent(statIds::add);
             }
         }
         List<StatLine> stats = new ArrayList<>();
@@ -255,25 +257,98 @@ public final class SkillBoardService {
             JobProgress prog = data.progress(jobId);
             List<NodeView> nodes = new ArrayList<>();
             for (BoardNode n : def.board()) {
+                // ？パネルは、開けたか、隣が開いて手が届くようになるまで中身を見せない
+                boolean masked = n.hidden() && !prog.unlocked.contains(n.id()) && !isReachable(def, prog.unlocked, n);
                 List<Component> effects = new ArrayList<>();
-                for (BoardNode.Effect e : n.effects()) effects.add(describe(e));
-                nodes.add(new NodeView(n.id(), n.x(), n.y(), n.name(), n.icon(), n.start(), n.cost(), n.links(), effects));
+                if (!masked) for (BoardNode.Effect e : n.effects()) effects.add(describe(e));
+                nodes.add(new NodeView(n.id(), n.x(), n.y(),
+                        masked ? Component.literal("？？？") : n.name(),
+                        masked ? Optional.empty() : n.icon(),
+                        n.start(), n.cost(), n.links(), effects, n.minLevel(), n.big(), masked));
             }
             out.add(new BoardView(jobId.toString(), def.name(), prog.level, pointsAvailable(def, prog),
-                    !first, nodes, new ArrayList<>(prog.unlocked)));
+                    !first, nodes, new ArrayList<>(prog.unlocked), def.boardStyle()));
             first = false;
         }
         return out;
     }
 
     private static Component describe(BoardNode.Effect e) {
-        Component name = BuiltInRegistries.ATTRIBUTE.getHolder(e.attribute())
+        // パッシブを覚える
+        if (e.grant().isPresent()) {
+            var s = com.chigusa.jsncraft.skill.SkillManager.INSTANCE.get(e.grant().get());
+            Component name = s != null ? s.name() : Component.literal(e.grant().get().toString());
+            MutableComponent line = Component.literal("新パッシブ「").append(name.copy()).append("」");
+            if (s != null && !s.description().getString().isEmpty()) line.append(Component.literal("：").append(s.description().copy()));
+            return line.withStyle(ChatFormatting.LIGHT_PURPLE);
+        }
+        // 技の強化
+        if (e.skill().isPresent()) {
+            var s = com.chigusa.jsncraft.skill.SkillManager.INSTANCE.get(e.skill().get());
+            Component name = s != null ? s.name() : Component.literal(e.skill().get().toString());
+            String what = switch (e.field()) {
+                case "power_pct" -> "威力 " + signed(e.amount() * 100) + "%";
+                case "radius" -> "範囲 " + signed(e.amount());
+                case "cooldown" -> "待ち時間 " + signed(e.amount()) + "秒";
+                case "stamina" -> "消費ST " + signed(e.amount());
+                case "amplifier" -> "回数 " + signed(e.amount());
+                case "duration" -> "時間 " + signed(e.amount()) + "秒";
+                case "cast_time" -> "ため " + signed(e.amount()) + "秒";
+                case "chance" -> "確率 " + signed(e.amount() * 100) + "%";
+                default -> e.field() + " " + signed(e.amount());
+            };
+            return Component.literal("").append(name.copy()).append(" " + what).withStyle(ChatFormatting.GOLD);
+        }
+        // 能力値
+        ResourceLocation attr = e.attribute().orElse(ResourceLocation.withDefaultNamespace("unknown"));
+        Component name = BuiltInRegistries.ATTRIBUTE.getHolder(attr)
                 .<Component>map(h -> Component.translatable(h.value().getDescriptionId()))
-                .orElse(Component.literal(e.attribute().toString()));
+                .orElse(Component.literal(attr.toString()));
+        boolean pctStat = PERCENT_STATS.contains(attr.getPath());
         String amount = e.operation() == AttributeModifier.Operation.ADD_VALUE
-                ? signed(e.amount())
+                ? (pctStat ? signed(e.amount() * 100) + "%" : signed(e.amount()))
                 : signed(e.amount() * 100) + "%";
         return Component.empty().append(name).append(" " + amount).withStyle(ChatFormatting.BLUE);
+    }
+
+    /** 0.05 を「5%」と見せたい能力値 */
+    private static final Set<String> PERCENT_STATS = Set.of("crit_chance", "crit_damage", "skill_damage", "cooldown_reduction",
+            "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "generic.knockback_resistance");
+
+    // ---------------- 技の強化・覚えたパッシブ（他から使う） ----------------
+
+    /** 今効いているボードで、このスキルにかかっている強化の合計（field → 量） */
+    public static Map<String, Double> skillMods(ServerPlayer player, ResourceLocation skill) {
+        Map<String, Double> out = new LinkedHashMap<>();
+        PlayerJobData data = JobService.data(player);
+        for (ResourceLocation jobId : allActiveBoards(data)) {
+            JobDefinition def = JobManager.INSTANCE.get(jobId);
+            if (def == null) continue;
+            for (String nodeId : data.progress(jobId).unlocked) {
+                def.node(nodeId).ifPresent(node -> {
+                    for (BoardNode.Effect e : node.effects()) {
+                        if (e.skill().isPresent() && e.skill().get().equals(skill)) out.merge(e.field(), e.amount(), Double::sum);
+                    }
+                });
+            }
+        }
+        return out;
+    }
+
+    /** 今効いているボードで覚えたパッシブ */
+    public static List<ResourceLocation> grantedSkills(ServerPlayer player) {
+        List<ResourceLocation> out = new ArrayList<>();
+        PlayerJobData data = JobService.data(player);
+        for (ResourceLocation jobId : allActiveBoards(data)) {
+            JobDefinition def = JobManager.INSTANCE.get(jobId);
+            if (def == null) continue;
+            for (String nodeId : data.progress(jobId).unlocked) {
+                def.node(nodeId).ifPresent(node -> {
+                    for (BoardNode.Effect e : node.effects()) e.grant().ifPresent(out::add);
+                });
+            }
+        }
+        return out;
     }
 
     private static String fmt(double v) {

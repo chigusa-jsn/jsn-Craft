@@ -81,6 +81,7 @@ public final class SkillEffects {
         HitFlags.SKILL.set(true);
         try {
             e.invulnerableTime = 0; // 連続攻撃でも毎回当たるように
+            damage *= (float) (1 + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.SKILL_DAMAGE));
             e.hurt(player.damageSources().playerAttack(player), damage);
         } finally {
             HitFlags.SKILL.set(false);

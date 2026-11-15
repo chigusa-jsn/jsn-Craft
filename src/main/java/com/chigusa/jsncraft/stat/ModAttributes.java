@@ -33,6 +33,19 @@ public final class ModAttributes {
     /** 会心ダメージ：会心のときに増えるダメージの割合（0.5 = +50%） */
     public static final DeferredHolder<Attribute, Attribute> CRIT_DAMAGE = register("crit_damage", 0.5, 0, 100);
 
+    /** スキルで与えるダメージ +○%（0.05 = 5%） */
+    public static final DeferredHolder<Attribute, Attribute> SKILL_DAMAGE = register("skill_damage", 0, 0, 10);
+    /** スキルの待ち時間 -○%（最大50%） */
+    public static final DeferredHolder<Attribute, Attribute> COOLDOWN_REDUCTION = register("cooldown_reduction", 0, 0, 0.5);
+    /** スキルの消費ST -○%（最大50%） */
+    public static final DeferredHolder<Attribute, Attribute> STAMINA_COST_REDUCTION = register("stamina_cost_reduction", 0, 0, 0.5);
+    /** 受けるダメージ -○%（最大60%） */
+    public static final DeferredHolder<Attribute, Attribute> DAMAGE_REDUCTION = register("damage_reduction", 0, 0, 0.6);
+    /** 吸血：与えたダメージの○%だけHPが回復 */
+    public static final DeferredHolder<Attribute, Attribute> LIFESTEAL = register("lifesteal", 0, 0, 1);
+    /** 職業経験値 +○% */
+    public static final DeferredHolder<Attribute, Attribute> JOB_XP_BONUS = register("job_xp_bonus", 0, 0, 10);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -47,6 +60,12 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, MINING_FORTUNE);
         event.add(EntityType.PLAYER, CRIT_CHANCE);
         event.add(EntityType.PLAYER, CRIT_DAMAGE);
+        event.add(EntityType.PLAYER, SKILL_DAMAGE);
+        event.add(EntityType.PLAYER, COOLDOWN_REDUCTION);
+        event.add(EntityType.PLAYER, STAMINA_COST_REDUCTION);
+        event.add(EntityType.PLAYER, DAMAGE_REDUCTION);
+        event.add(EntityType.PLAYER, LIFESTEAL);
+        event.add(EntityType.PLAYER, JOB_XP_BONUS);
     }
 
     private ModAttributes() {}

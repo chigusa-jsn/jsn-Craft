@@ -265,12 +265,49 @@ public class JobScreen extends Screen {
         g.drawString(font, sp, left + panelW - 10 - font.width(sp), top + 32, 0x55FFFF);
     }
 
+    /** 六角形のパネル1枚の半径（ふつう／★） */
+    private static final int HEX_R = 11, HEX_R_BIG = 14;
+    private static final int HEX_W = 24, HEX_H = 21;
+
+    private static boolean isHex(BoardView v) {
+        return "hex".equals(v.style());
+    }
+
+    private int nodeX(BoardView v, int originX, NodeView n) {
+        return originX + (int) Math.round(n.x() * (isHex(v) ? HEX_W : GAP_X));
+    }
+
+    private int nodeY(BoardView v, int originY, NodeView n) {
+        return originY + (int) Math.round(n.y() * (isHex(v) ? HEX_H : GAP_Y));
+    }
+
+    private int boardOriginY(BoardView v, int areaT, int areaB) {
+        return (isHex(v) ? (areaT + areaB) / 2 : areaT + 14) + (int) panY;
+    }
+
+    private static int nodeRadius(BoardView v, NodeView n) {
+        if (!isHex(v)) return NODE / 2;
+        return n.big() ? HEX_R_BIG : HEX_R;
+    }
+
+    private static boolean overNode(BoardView v, NodeView n, int cx, int cy, double mx, double my) {
+        int r = nodeRadius(v, n);
+        if (isHex(v)) return (mx - cx) * (mx - cx) + (my - cy) * (my - cy) <= r * r;
+        return mx >= cx - r && mx < cx + r && my >= cy - r && my < cy + r;
+    }
+
+    /** このパネルを今開けられるか */
+    private static boolean canUnlock(BoardView v, NodeView n) {
+        return !v.isUnlocked(n.id()) && v.isReachable(n) && v.points() >= n.cost() && v.level() >= n.minLevel();
+    }
+
     private void renderBoard(GuiGraphics g, BoardView v, int mouseX, int mouseY) {
         renderBoardHeader(g, v);
 
         int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 20;
         int originX = (areaL + areaR) / 2 + (int) panX;
-        int originY = areaT + 14 + (int) panY;
+        int originY = boardOriginY(v, areaT, areaB);
+        boolean hex = isHex(v);
 
         g.enableScissor(areaL, areaT, areaR, areaB);
 
@@ -280,38 +317,66 @@ public class JobScreen extends Screen {
                 NodeView other = find(v, linkId);
                 if (other == null) continue;
                 boolean lit = v.isUnlocked(n.id()) && v.isUnlocked(other.id());
-                int color = lit ? 0xFFFFC14D : 0xFF4A4A5A;
-                connect(g, cx(originX, other), cy(originY, other), cx(originX, n), cy(originY, n), color);
+                int color = lit ? 0xFFFFC14D : 0xFF3A3A4A;
+                int ax = nodeX(v, originX, other), ay = nodeY(v, originY, other);
+                int bx = nodeX(v, originX, n), by = nodeY(v, originY, n);
+                if (hex) straight(g, ax, ay, bx, by, color);
+                else connect(g, ax, ay, bx, by, color);
             }
         }
 
-        // マス
+        // パネル
         NodeView hovered = null;
+        boolean inArea = mouseX >= areaL && mouseX < areaR && mouseY >= areaT && mouseY < areaB;
         for (NodeView n : v.nodes()) {
-            int x = cx(originX, n) - NODE / 2;
-            int y = cy(originY, n) - NODE / 2;
+            int cx = nodeX(v, originX, n), cy = nodeY(v, originY, n);
+            int r = nodeRadius(v, n);
             boolean unlocked = v.isUnlocked(n.id());
             boolean reachable = v.isReachable(n);
+            boolean levelOk = v.level() >= n.minLevel();
             boolean affordable = v.points() >= n.cost();
 
             int border = unlocked ? 0xFFFFC14D
+                    : !levelOk && reachable ? 0xFF994444
                     : reachable && affordable ? 0xFF55DD77
                     : reachable ? 0xFF5588AA
-                    : 0xFF3A3A44;
-            g.fill(x - 1, y - 1, x + NODE + 1, y + NODE + 1, border);
-            g.fill(x + 1, y + 1, x + NODE - 1, y + NODE - 1, unlocked ? 0xFF3A2E10 : 0xFF1A1A22);
-
-            Item item = n.icon().map(BuiltInRegistries.ITEM::get).orElse(Items.AIR);
-            if (item != Items.AIR) {
-                g.renderItem(new ItemStack(item), x + 3, y + 3);
-                if (!unlocked) g.fill(x + 1, y + 1, x + NODE - 1, y + NODE - 1, 0x88000000); // 未解放は暗く
+                    : 0xFF34343E;
+            int inner = unlocked ? 0xFF3A2E10 : n.masked() ? 0xFF2A1A3A : 0xFF1A1A22;
+            if (hex) {
+                if (n.big()) fillHex(g, cx, cy, r + 2, unlocked ? 0x80FFC14D : 0x40FFFFFF); // ★は光る縁
+                fillHex(g, cx, cy, r, border);
+                fillHex(g, cx, cy, r - 2, inner);
             } else {
-                String c = n.name().getString().isEmpty() ? "?" : n.name().getString().substring(0, 1);
-                g.drawCenteredString(font, c, x + NODE / 2, y + 7, unlocked ? 0xFFE08A : 0x888888);
+                g.fill(cx - r - 1, cy - r - 1, cx + r + 1, cy + r + 1, border);
+                g.fill(cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1, inner);
             }
 
-            boolean inArea = mouseX >= areaL && mouseX < areaR && mouseY >= areaT && mouseY < areaB;
-            if (inArea && mouseX >= x && mouseX < x + NODE && mouseY >= y && mouseY < y + NODE) hovered = n;
+            Item item = n.icon().map(BuiltInRegistries.ITEM::get).orElse(Items.AIR);
+            if (n.masked()) {
+                g.drawCenteredString(font, "？", cx, cy - 4, 0xD0A0FF);
+            } else if (item != Items.AIR) {
+                g.renderItem(new ItemStack(item), cx - 8, cy - 8);
+                if (!unlocked) {
+                    g.pose().pushPose();
+                    g.pose().translate(0, 0, 200);
+                    if (hex) fillHex(g, cx, cy, r - 2, 0x88000000);
+                    else g.fill(cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1, 0x88000000);
+                    g.pose().popPose();
+                }
+            } else {
+                String c = n.name().getString().isEmpty() ? "?" : n.name().getString().substring(0, 1);
+                g.drawCenteredString(font, c, cx, cy - 4, unlocked ? 0xFFE08A : 0x888888);
+            }
+            if (!levelOk && !unlocked) {
+                g.pose().pushPose();
+                g.pose().translate(0, 0, 250);
+                g.pose().scale(0.5F, 0.5F, 1F);
+                String lv = "Lv" + n.minLevel();
+                g.drawString(font, lv, (cx * 2) - font.width(lv) / 2, (cy + r - 6) * 2, 0xFFFF7777);
+                g.pose().popPose();
+            }
+
+            if (inArea && overNode(v, n, cx, cy, mouseX, mouseY)) hovered = n;
         }
 
         g.disableScissor();
@@ -321,18 +386,47 @@ public class JobScreen extends Screen {
         if (hovered != null) {
             List<Component> tip = new ArrayList<>();
             tip.add(hovered.name().copy().withStyle(ChatFormatting.BOLD));
-            tip.addAll(hovered.effects());
+            if (hovered.masked()) {
+                tip.add(Component.literal("隣のパネルを開けると、中身がわかる").withStyle(ChatFormatting.LIGHT_PURPLE));
+            } else {
+                for (Component e : hovered.effects()) {
+                    for (var line : font.split(e, 220)) tip.add(Component.literal(toStr(line)).withStyle(e.getStyle()));
+                }
+            }
             tip.add(Component.literal("コスト: " + hovered.cost() + " SP").withStyle(ChatFormatting.GRAY));
             if (v.isUnlocked(hovered.id())) {
                 tip.add(Component.literal("解放済み").withStyle(ChatFormatting.GOLD));
             } else if (!v.isReachable(hovered)) {
-                tip.add(Component.literal("つながったマスを先に解放").withStyle(ChatFormatting.DARK_GRAY));
+                tip.add(Component.literal("つながったパネルを先に解放").withStyle(ChatFormatting.DARK_GRAY));
+            } else if (v.level() < hovered.minLevel()) {
+                tip.add(Component.literal("Lv." + hovered.minLevel() + " から開けられます（今 Lv." + v.level() + "）").withStyle(ChatFormatting.RED));
             } else if (v.points() < hovered.cost()) {
                 tip.add(Component.literal("ポイントが足りません").withStyle(ChatFormatting.RED));
             } else {
                 tip.add(Component.literal("クリックで解放").withStyle(ChatFormatting.GREEN));
             }
             g.renderComponentTooltip(font, tip, mouseX, mouseY);
+        }
+    }
+
+    /** 先のとがった六角形（上下がとがる）を塗る */
+    private static void fillHex(GuiGraphics g, int cx, int cy, int r, int color) {
+        float halfW = r * 0.866F;
+        for (int dy = -r; dy < r; dy++) {
+            float ady = Math.abs(dy + 0.5F);
+            float w = ady <= r / 2F ? halfW : halfW * (r - ady) / (r / 2F);
+            if (w <= 0) continue;
+            g.fill(Math.round(cx - w), cy + dy, Math.round(cx + w), cy + dy + 1, color);
+        }
+    }
+
+    /** 2点をまっすぐな線でつなぐ（六角形ボード用） */
+    private static void straight(GuiGraphics g, int ax, int ay, int bx, int by, int color) {
+        int steps = Math.max(Math.abs(bx - ax), Math.abs(by - ay));
+        for (int i = 0; i <= steps; i++) {
+            int x = ax + (bx - ax) * i / Math.max(1, steps);
+            int y = ay + (by - ay) * i / Math.max(1, steps);
+            g.fill(x - 1, y - 1, x + 1, y + 1, color);
         }
     }
 
@@ -406,15 +500,12 @@ public class JobScreen extends Screen {
         int areaL = left + 2, areaT = top + 44, areaR = left + panelW - 2, areaB = top + panelH - 20;
         if (mouseX < areaL || mouseX >= areaR || mouseY < areaT || mouseY >= areaB) return false;
         int originX = (areaL + areaR) / 2 + (int) panX;
-        int originY = areaT + 14 + (int) panY;
+        int originY = boardOriginY(v, areaT, areaB);
 
         for (NodeView n : v.nodes()) {
-            int x = cx(originX, n) - NODE / 2;
-            int y = cy(originY, n) - NODE / 2;
-            if (mouseX >= x && mouseX < x + NODE && mouseY >= y && mouseY < y + NODE) {
-                if (!v.isUnlocked(n.id()) && v.isReachable(n) && v.points() >= n.cost()) {
-                    PacketDistributor.sendToServer(new UnlockNodePayload(v.jobId(), n.id()));
-                }
+            int cx = nodeX(v, originX, n), cy = nodeY(v, originY, n);
+            if (overNode(v, n, cx, cy, mouseX, mouseY)) {
+                if (canUnlock(v, n)) PacketDistributor.sendToServer(new UnlockNodePayload(v.jobId(), n.id()));
                 return true;
             }
         }
@@ -775,13 +866,6 @@ public class JobScreen extends Screen {
 
     // ---- 小道具 ----
 
-    private static int cx(int originX, NodeView n) {
-        return originX + n.x() * GAP_X;
-    }
-
-    private static int cy(int originY, NodeView n) {
-        return originY + n.y() * GAP_Y;
-    }
 
     @Nullable
     private static NodeView find(BoardView v, String id) {

@@ -55,6 +55,7 @@ public final class JobService {
         JobProgress prog = data(player).progress(jobId);
         if (prog.level >= def.maxLevel()) return;
 
+        amount = (int) Math.round(amount * (1 + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.JOB_XP_BONUS)));
         prog.xp += amount;
         int oldLevel = prog.level;
         boolean leveledUp = false;

@@ -94,9 +94,29 @@ public final class SkillEvents {
         // 自分の近接攻撃が強くなる系
         if (event.getSource().getEntity() instanceof ServerPlayer player && event.getSource().getDirectEntity() == player) {
             float amount = event.getAmount();
-            // HP満タンで攻撃アップ
+            // HP満タンで攻撃アップ（chance を書けば「HPが○%以上」に緩められる）
             SkillDefinition full = SkillService.passive(player, "full_hp_bonus");
-            if (full != null && player.getHealth() >= player.getMaxHealth()) amount *= (float) (1 + full.power());
+            double fullLine = full != null && full.chance() > 0 ? full.chance() : 1.0;
+            if (full != null && player.getHealth() >= player.getMaxHealth() * fullLine - 0.01) amount *= (float) (1 + full.power());
+            // 背水の陣：HPが少ないほど強い
+            SkillDefinition last = SkillService.passive(player, "last_stand");
+            if (last != null && player.getHealth() <= player.getMaxHealth() * last.chance()) {
+                amount *= (float) (1 + last.power());
+                com.chigusa.jsncraft.vfx.Vfx.sparks(player.serverLevel(), event.getEntity().getBoundingBox().getCenter(), 6);
+            }
+            // 連撃：○回目ごとの一撃が強い
+            SkillDefinition combo = SkillService.passive(player, "combo");
+            if (combo != null) {
+                PlayerSkillData cd = SkillService.data(player);
+                cd.comboCount++;
+                int every = Math.max(2, combo.amplifier() > 0 ? combo.amplifier() : 3);
+                if (cd.comboCount % every == 0) {
+                    amount *= (float) (1 + combo.power());
+                    HitFlags.CRIT.set(true);
+                    com.chigusa.jsncraft.vfx.Vfx.slash(player.serverLevel(), event.getEntity().getBoundingBox().getCenter(), 1.4F,
+                            com.chigusa.jsncraft.vfx.Vfx.WHITE, 120);
+                }
+            }
             // 踏み込み直後の一撃
             PlayerSkillData d = SkillService.data(player);
             if (d.empowered > 0 && player.level().getGameTime() <= d.empoweredUntil) {
@@ -110,6 +130,36 @@ public final class SkillEvents {
             }
             event.setAmount(amount);
         }
+    }
+
+    /** 不屈：やられるダメージを受けても、HP1で耐える（cooldown 秒に1回） */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onFinalDamage(net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Pre event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (event.getNewDamage() < player.getHealth()) return;
+        SkillDefinition endure = SkillService.passive(player, "endure");
+        if (endure == null) return;
+        PlayerSkillData d = SkillService.data(player);
+        long now = player.level().getGameTime();
+        if (now < d.endureReadyAt) return;
+        d.endureReadyAt = now + Math.round(Math.max(1, endure.cooldown()) * 20);
+        event.setNewDamage(Math.max(0, player.getHealth() - 1));
+        player.serverLevel().sendParticles(ParticleTypes.TOTEM_OF_UNDYING, player.getX(), player.getY() + 1, player.getZ(), 40, 0.4, 0.8, 0.4, 0.3);
+        com.chigusa.jsncraft.vfx.Vfx.ring(player.serverLevel(), player.position(), 3.0F, 14, com.chigusa.jsncraft.vfx.Vfx.GOLD);
+        player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.6F, 1.3F);
+        player.displayClientMessage(net.minecraft.network.chat.Component.literal("✦ 不屈！ ✦")
+                .withStyle(net.minecraft.ChatFormatting.GOLD, net.minecraft.ChatFormatting.BOLD), true);
+    }
+
+    /** 戦意高揚：敵を倒すとSTが回復 */
+    @SubscribeEvent
+    public static void onKill(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event) {
+        if (!(event.getSource().getEntity() instanceof ServerPlayer player) || event.getEntity() instanceof net.minecraft.world.entity.player.Player) return;
+        SkillDefinition high = SkillService.passive(player, "battle_high");
+        if (high == null) return;
+        var r = ResourceService.get(player);
+        r.stamina = (float) Math.min(ResourceService.maxStamina(player), r.stamina + high.power());
+        com.chigusa.jsncraft.vfx.Vfx.ring(player.serverLevel(), player.position(), 1.4F, 8, com.chigusa.jsncraft.vfx.Vfx.GOLD);
     }
 
     // ---------------- 生活のパッシブ ----------------
