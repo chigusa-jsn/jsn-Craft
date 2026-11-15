@@ -59,5 +59,17 @@ public final class JobChangePayloads {
         }
     }
 
+    /** 本人 → サーバー：忘却の宝珠を使って、戦闘（combat）か生活（life）のボードをリセットしたい */
+    public record ResetBoard(String jobType) implements CustomPacketPayload {
+        public static final Type<ResetBoard> TYPE = new Type<>(JsnCraft.id("reset_board"));
+        public static final StreamCodec<RegistryFriendlyByteBuf, ResetBoard> STREAM_CODEC =
+                StreamCodec.composite(ByteBufCodecs.STRING_UTF8, ResetBoard::jobType, ResetBoard::new);
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
+
     private JobChangePayloads() {}
 }

@@ -5,7 +5,7 @@
   },
   "type": "combat",
   "tier": "basic",
-  "max_level": 30,
+  "max_level": 50,
   "skill_points_per_level": 1,
   "xp": [
     {

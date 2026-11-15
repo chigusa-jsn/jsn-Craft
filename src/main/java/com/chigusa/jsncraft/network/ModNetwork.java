@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("11");
+        PayloadRegistrar registrar = event.registrar("12");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -44,6 +44,10 @@ public final class ModNetwork {
                     com.chigusa.jsncraft.job.JobService.data(sp).setTitle(t);
                     com.chigusa.jsncraft.job.JobService.sync(sp);
                     SkillBoardService.sendSnapshot(sp, false);
+                }));
+        registrar.playToServer(JobChangePayloads.ResetBoard.TYPE, JobChangePayloads.ResetBoard.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.npc.JobChangeService.resetBoard(sp, p.jobType());
                 }));
         registrar.playToClient(CastBarPayload.TYPE, CastBarPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.CastBarHud.start(p.name(), p.ticks())));

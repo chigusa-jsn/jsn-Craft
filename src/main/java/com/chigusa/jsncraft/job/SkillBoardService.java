@@ -139,6 +139,14 @@ public final class SkillBoardService {
         return null;
     }
 
+    /** その枠の職業と、通ってきた職業のボードを全部リセットする（忘却の宝珠）。 */
+    public static void resetChain(ServerPlayer player, JobType type) {
+        PlayerJobData data = JobService.data(player);
+        for (ResourceLocation jobId : boardChain(data, type)) data.progress(jobId).unlocked.clear();
+        applyBonuses(player);
+        sendSnapshot(player, false);
+    }
+
     /** 今就いている職業のボードをリセットして、ポイントを戻す。 */
     public static void reset(ServerPlayer player, JobType type) {
         PlayerJobData data = JobService.data(player);

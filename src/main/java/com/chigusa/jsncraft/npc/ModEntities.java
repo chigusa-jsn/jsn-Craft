@@ -39,6 +39,10 @@ public final class ModEntities {
             "job_master_spawn_egg",
             () -> new DeferredSpawnEggItem(JOB_MASTER, 0x2A2A2A, 0xD4AF37, new Item.Properties()));
 
+    /** 忘却の宝珠：転職の神官のところで、スキルボードを1つリセットできる */
+    public static final DeferredItem<Item> OBLIVION_ORB = ITEMS.registerSimpleItem("oblivion_orb",
+            new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC));
+
     public static final DeferredItem<DeferredSpawnEggItem> RECEPTIONIST_EGG = ITEMS.register(
             "receptionist_spawn_egg",
             () -> new DeferredSpawnEggItem(RECEPTIONIST, 0xE8DDF5, 0x9A7CC8, new Item.Properties()));
@@ -54,6 +58,9 @@ public final class ModEntities {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(RECEPTIONIST_EGG);
             event.accept(JOB_MASTER_EGG);
+        }
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(OBLIVION_ORB);
         }
     }
 

@@ -64,6 +64,40 @@ public final class JobChangeService {
         open(player); // 画面を新しくする
     }
 
+    /** 忘却の宝珠を1つ使って、ボードをリセットする（神官のそばでだけ） */
+    public static void resetBoard(ServerPlayer player, String typeText) {
+        if (!isNearMaster(player)) {
+            player.displayClientMessage(Component.literal("リセットは転職の神官のそばでしかできません").withStyle(ChatFormatting.RED), true);
+            return;
+        }
+        com.chigusa.jsncraft.job.JobType type = "life".equals(typeText)
+                ? com.chigusa.jsncraft.job.JobType.LIFE : com.chigusa.jsncraft.job.JobType.COMBAT;
+        if (JobService.data(player).getJob(type) == null) {
+            player.displayClientMessage(Component.literal(type.displayName() + "ジョブに就いていません").withStyle(ChatFormatting.RED), true);
+            return;
+        }
+        var inv = player.getInventory();
+        int slot = -1;
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            if (inv.getItem(i).is(ModEntities.OBLIVION_ORB.get())) {
+                slot = i;
+                break;
+            }
+        }
+        if (slot < 0 && !player.isCreative()) {
+            player.displayClientMessage(Component.literal("忘却の宝珠を持っていません").withStyle(ChatFormatting.RED), true);
+            return;
+        }
+        if (slot >= 0 && !player.isCreative()) inv.getItem(slot).shrink(1);
+        com.chigusa.jsncraft.job.SkillBoardService.resetChain(player, type);
+        player.sendSystemMessage(Component.literal("✦ " + type.displayName() + "ジョブのスキルボードをリセットしました。SPがすべて戻りました")
+                .withStyle(ChatFormatting.LIGHT_PURPLE));
+        player.level().playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0F, 0.7F);
+        player.serverLevel().sendParticles(net.minecraft.core.particles.ParticleTypes.WITCH,
+                player.getX(), player.getY() + 1, player.getZ(), 40, 0.5, 0.8, 0.5, 0.1);
+        open(player);
+    }
+
     private static List<JobEntry> build(ServerPlayer player) {
         PlayerJobData data = JobService.data(player);
         List<JobEntry> out = new ArrayList<>();

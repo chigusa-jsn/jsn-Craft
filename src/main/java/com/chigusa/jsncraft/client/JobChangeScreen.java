@@ -25,7 +25,8 @@ public class JobChangeScreen extends Screen {
     private List<JobEntry> jobs;
     private String type = lastType;
     @Nullable private String selected;
-    private Button changeBtn;
+    private Button changeBtn, resetBtn, resetCombatBtn, resetLifeBtn;
+    private boolean resetMode;
     private int left, top, w, h, scroll;
 
     public JobChangeScreen(List<JobEntry> jobs) {
@@ -52,6 +53,31 @@ public class JobChangeScreen extends Screen {
             JobEntry e = selectedEntry();
             if (e != null) PacketDistributor.sendToServer(new JobChangePayloads.Change(e.id()));
         }).bounds(left + LIST_W + 16, top + h - 24, 90, 18).build());
+
+        // 忘却の宝珠でボードをリセット
+        resetBtn = addRenderableWidget(Button.builder(Component.literal("ボードをリセット").withStyle(ChatFormatting.LIGHT_PURPLE),
+                b -> resetMode = !resetMode).bounds(left + w - 96, top + h - 24, 90, 18).build());
+        int rx = left + LIST_W + 16, ry = top + h - 48;
+        resetCombatBtn = addRenderableWidget(Button.builder(Component.literal("戦闘ボード").withStyle(ChatFormatting.RED), b -> {
+            PacketDistributor.sendToServer(new JobChangePayloads.ResetBoard("combat"));
+            resetMode = false;
+        }).bounds(rx, ry, 80, 18).build());
+        resetLifeBtn = addRenderableWidget(Button.builder(Component.literal("生活ボード").withStyle(ChatFormatting.GREEN), b -> {
+            PacketDistributor.sendToServer(new JobChangePayloads.ResetBoard("life"));
+            resetMode = false;
+        }).bounds(rx + 84, ry, 80, 18).build());
+    }
+
+    /** 持っている忘却の宝珠の数 */
+    private int orbCount() {
+        var mc = net.minecraft.client.Minecraft.getInstance();
+        if (mc.player == null) return 0;
+        int n = 0;
+        var inv = mc.player.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            if (inv.getItem(i).is(com.chigusa.jsncraft.npc.ModEntities.OBLIVION_ORB.get())) n += inv.getItem(i).getCount();
+        }
+        return n;
     }
 
     private void setType(String t) {
@@ -104,8 +130,13 @@ public class JobChangeScreen extends Screen {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         JobEntry sel = selectedEntry();
-        changeBtn.visible = sel != null;
+        changeBtn.visible = sel != null && !resetMode;
         changeBtn.active = sel != null && sel.canChange();
+        boolean creative = minecraft != null && minecraft.player != null && minecraft.player.isCreative();
+        int orbs = orbCount();
+        resetBtn.setMessage(Component.literal(resetMode ? "やめる" : "ボードをリセット").withStyle(ChatFormatting.LIGHT_PURPLE));
+        resetCombatBtn.visible = resetLifeBtn.visible = resetMode;
+        resetCombatBtn.active = resetLifeBtn.active = orbs > 0 || creative;
         super.render(g, mouseX, mouseY, partialTick);
 
         // 一覧
@@ -161,7 +192,14 @@ public class JobChangeScreen extends Screen {
         }
         int reasonColor = sel.current() ? 0xFFD700 : sel.canChange() ? 0x55FF55 : 0xFF5555;
         g.drawString(font, sel.reason(), x, y, reasonColor);
-        g.drawString(font, "転職しても、前の職業のレベルとボードは残ります", left + LIST_W + 16, top + h - 36, 0x666677);
+        if (resetMode) {
+            int ry = top + h - 74;
+            g.fill(left + LIST_W + 12, ry - 4, left + w - 6, top + h - 28, 0xC0201030);
+            g.drawString(font, "忘却の宝珠を1つ使って、ボードを", left + LIST_W + 16, ry, 0xE0B0FF);
+            g.drawString(font, "リセットします（所持：" + orbs + "個）", left + LIST_W + 16, ry + 10, orbs > 0 || creative ? 0xE0B0FF : 0xFF5555);
+        } else {
+            g.drawString(font, "転職しても、前の職業のレベルとボードは残ります", left + LIST_W + 16, top + h - 36, 0x666677);
+        }
     }
 
     @Override
