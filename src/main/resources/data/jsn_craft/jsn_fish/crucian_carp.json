@@ -1,0 +1,15 @@
+{
+  "no": 5,
+  "item": "jsn_craft:fish/crucian_carp",
+  "rank": "common",
+  "weight": 12,
+  "biomes": [
+    "freshwater"
+  ],
+  "size": [
+    10,
+    30
+  ],
+  "behavior": "smooth",
+  "hint": "川や池"
+}

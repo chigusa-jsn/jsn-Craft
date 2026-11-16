@@ -1,0 +1,18 @@
+{
+  "no": 30,
+  "item": "jsn_craft:fish/glacier_salmon",
+  "rank": "epic",
+  "biomes": [
+    "#c:is_snowy",
+    "minecraft:frozen_river",
+    "minecraft:frozen_ocean",
+    "minecraft:deep_frozen_ocean"
+  ],
+  "weather": "rain",
+  "size": [
+    60,
+    120
+  ],
+  "behavior": "dart",
+  "hint": "雪が降っているときの、雪の土地"
+}

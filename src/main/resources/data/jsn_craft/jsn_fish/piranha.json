@@ -1,0 +1,14 @@
+{
+  "no": 19,
+  "item": "jsn_craft:fish/piranha",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_jungle"
+  ],
+  "size": [
+    15,
+    35
+  ],
+  "behavior": "dart",
+  "hint": "ジャングルの水辺"
+}

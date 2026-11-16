@@ -1,0 +1,16 @@
+{
+  "no": 22,
+  "item": "jsn_craft:fish/moonlight_crucian",
+  "rank": "rare",
+  "biomes": [
+    "freshwater"
+  ],
+  "time": "night",
+  "weather": "clear",
+  "size": [
+    20,
+    40
+  ],
+  "behavior": "smooth",
+  "hint": "晴れた夜の川や池"
+}

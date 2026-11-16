@@ -1,0 +1,15 @@
+{
+  "no": 24,
+  "item": "jsn_craft:fish/anglerfish",
+  "rank": "rare",
+  "biomes": [
+    "#minecraft:is_deep_ocean"
+  ],
+  "time": "night",
+  "size": [
+    30,
+    90
+  ],
+  "behavior": "sinker",
+  "hint": "夜の深い海"
+}

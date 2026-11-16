@@ -1,0 +1,17 @@
+{
+  "no": 34,
+  "item": "jsn_craft:fish/ghost_fish",
+  "rank": "epic",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp"
+  ],
+  "time": "night",
+  "moon": 4,
+  "size": [
+    30,
+    70
+  ],
+  "behavior": "smooth",
+  "hint": "新月の夜の沼"
+}

@@ -1,0 +1,13 @@
+{
+  "no": 29,
+  "item": "jsn_craft:fish/thunder_eel",
+  "rank": "epic",
+  "time": "night",
+  "weather": "thunder",
+  "size": [
+    80,
+    180
+  ],
+  "behavior": "dart",
+  "hint": "雷雨の夜"
+}

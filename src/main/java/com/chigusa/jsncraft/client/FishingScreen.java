@@ -45,6 +45,7 @@ public class FishingScreen extends Screen {
         this.d = Mth.clamp(p.difficulty() / 100F, 0, 1);
         float size = 0.32F * (1 + p.zone());
         if (p.kind() == KIND_LORD) size *= 0.8F;
+        if (p.rank() == 4) size *= 0.85F; // レジェンドは枠が少し小さい
         this.zoneSize = Mth.clamp(size, 0.1F, 0.7F);
         if (p.behavior() == SINKER) fish = prevFish = target = 0.2F;
         if (p.behavior() == FLOATER) fish = prevFish = target = 0.8F;
@@ -160,12 +161,13 @@ public class FishingScreen extends Screen {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
-        int shake = (p.kind() == KIND_LORD && !done) ? (int) (Math.sin((ticks + pt) * 1.7) * 1.5) : 0;
+        int shake = ((p.kind() == KIND_LORD || p.rank() == 4) && !done) ? (int) (Math.sin((ticks + pt) * 1.7) * 1.5) : 0;
         int left = width / 2 + 50 + shake;
         int top = height / 2 - BAR_H / 2;
 
         // 枠
-        int frame = p.kind() == KIND_LORD ? 0xFFB03030 : p.kind() == KIND_TREASURE ? 0xFFD0A030 : 0xFF6A4A2A;
+        int frame = p.kind() == KIND_LORD ? 0xFFB03030 : p.kind() == KIND_TREASURE ? 0xFFD0A030
+                : p.rank() < 5 ? com.chigusa.jsncraft.fishing.FishRank.byIndex(p.rank()).frameColor : 0xFF6A4A2A;
         g.fill(left - 5, top - 5, left + BAR_W + 17, top + BAR_H + 5, frame);
         g.fill(left - 3, top - 3, left + BAR_W + 15, top + BAR_H + 3, 0xF0141A22);
         // 水
@@ -185,7 +187,14 @@ public class FishingScreen extends Screen {
         int fy = top + BAR_H - Math.round(f * BAR_H) - 8;
         fy = Mth.clamp(fy, top - 4, top + BAR_H - 12);
         int fx = left + BAR_W / 2 - 8;
-        if (p.kind() == KIND_TREASURE || p.kind() == KIND_LORD) {
+        if (p.icon().isEmpty() && p.kind() == KIND_FISH && p.rank() < 5) {
+            var rk = com.chigusa.jsncraft.fishing.FishRank.byIndex(p.rank());
+            g.pose().pushPose();
+            g.pose().translate(fx + 8, fy + 8, 200);
+            g.pose().scale(2, 2, 1);
+            g.drawString(font, "?", -font.width("?") / 2, -4, 0xFF000000 | (rk.color.getColor() == null ? 0xFFFFFF : rk.color.getColor()), true);
+            g.pose().popPose();
+        } else if (p.kind() == KIND_TREASURE || p.kind() == KIND_LORD) {
             boolean lord = p.kind() == KIND_LORD;
             g.pose().pushPose();
             g.pose().translate(fx + 8, fy + 8, 200);
@@ -207,7 +216,9 @@ public class FishingScreen extends Screen {
 
         // 文字
         int cx = left + (BAR_W + 12) / 2;
-        String title = p.kind() == KIND_LORD ? "§c§l海の主だ！" : p.kind() == KIND_TREASURE ? "§6§l何か光ってる！" : "§b§lかかった！";
+        String title = p.kind() == KIND_LORD ? "§c§l海の主だ！" : p.kind() == KIND_TREASURE ? "§6§l何か光ってる！"
+                : p.rank() == 4 ? "§6§lレジェンドだ！！" : p.rank() == 3 ? "§d§l大物の気配！"
+                : p.rank() == 2 ? "§9§l手ごたえあり！" : "§b§lかかった！";
         g.drawCenteredString(font, title, cx, top - 18, 0xFFFFFF);
         g.drawCenteredString(font, "§7右クリック長押しで引く", cx, top + BAR_H + 9, 0xFFFFFF);
         if (perfect && !done) g.drawCenteredString(font, "§6PERFECT", cx, top + BAR_H + 20, 0xFFFFFF);

@@ -23,6 +23,7 @@ public class JsnCraft {
         ModAttributes.ATTRIBUTES.register(modEventBus);
         // 受付嬢NPCとスポーンエッグ
         ModEntities.ENTITY_TYPES.register(modEventBus);
+        com.chigusa.jsncraft.fishing.FishItems.init(); // 魚アイテム
         ModEntities.ITEMS.register(modEventBus);
         // スキル用の専用エフェクト
         com.chigusa.jsncraft.vfx.ModParticles.PARTICLE_TYPES.register(modEventBus);

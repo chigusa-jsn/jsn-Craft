@@ -1,0 +1,16 @@
+{
+  "no": 32,
+  "item": "jsn_craft:fish/golden_carp",
+  "rank": "epic",
+  "biomes": [
+    "freshwater"
+  ],
+  "time": "day",
+  "weather": "clear",
+  "size": [
+    50,
+    100
+  ],
+  "behavior": "smooth",
+  "hint": "晴れた昼の川や池"
+}

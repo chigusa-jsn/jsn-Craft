@@ -1,0 +1,12 @@
+{
+  "no": 1,
+  "item": "minecraft:cod",
+  "rank": "common",
+  "weight": 30,
+  "size": [
+    30,
+    80
+  ],
+  "behavior": "smooth",
+  "hint": "どこでも"
+}

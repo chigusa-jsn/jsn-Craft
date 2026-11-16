@@ -1,0 +1,17 @@
+{
+  "no": 11,
+  "item": "jsn_craft:fish/iwana",
+  "rank": "uncommon",
+  "biomes": [
+    "#c:is_snowy",
+    "minecraft:frozen_river",
+    "minecraft:frozen_ocean",
+    "minecraft:deep_frozen_ocean"
+  ],
+  "size": [
+    20,
+    40
+  ],
+  "behavior": "normal",
+  "hint": "雪の積もる土地の水辺"
+}

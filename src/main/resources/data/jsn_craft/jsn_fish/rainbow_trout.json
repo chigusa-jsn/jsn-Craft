@@ -1,0 +1,18 @@
+{
+  "no": 23,
+  "item": "jsn_craft:fish/rainbow_trout",
+  "rank": "rare",
+  "biomes": [
+    "#minecraft:is_river",
+    "#minecraft:is_mountain",
+    "#minecraft:is_taiga",
+    "#minecraft:is_hill"
+  ],
+  "weather": "rain",
+  "size": [
+    30,
+    60
+  ],
+  "behavior": "normal",
+  "hint": "雨の日の川や山の水辺"
+}

@@ -1,0 +1,17 @@
+{
+  "no": 18,
+  "item": "jsn_craft:fish/eel",
+  "rank": "uncommon",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "#minecraft:is_river"
+  ],
+  "time": "night",
+  "size": [
+    40,
+    90
+  ],
+  "behavior": "dart",
+  "hint": "夜の沼や川"
+}

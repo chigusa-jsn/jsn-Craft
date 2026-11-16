@@ -1,0 +1,18 @@
+{
+  "no": 16,
+  "item": "jsn_craft:fish/flounder",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "y": [
+    -64,
+    50
+  ],
+  "size": [
+    30,
+    80
+  ],
+  "behavior": "sinker",
+  "hint": "海の底のほう（高さ50より下）"
+}

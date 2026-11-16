@@ -1,0 +1,15 @@
+{
+  "no": 7,
+  "item": "jsn_craft:fish/sardine",
+  "rank": "common",
+  "weight": 14,
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "size": [
+    10,
+    25
+  ],
+  "behavior": "dart",
+  "hint": "海"
+}

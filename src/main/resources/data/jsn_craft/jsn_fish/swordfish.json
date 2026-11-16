@@ -1,0 +1,16 @@
+{
+  "no": 26,
+  "item": "jsn_craft:fish/swordfish",
+  "rank": "rare",
+  "biomes": [
+    "minecraft:warm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean"
+  ],
+  "size": [
+    150,
+    350
+  ],
+  "behavior": "dart",
+  "hint": "暖かい海"
+}

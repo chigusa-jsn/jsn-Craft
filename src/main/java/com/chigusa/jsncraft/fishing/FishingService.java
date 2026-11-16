@@ -11,6 +11,7 @@ import com.chigusa.jsncraft.vfx.Vfx;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -79,7 +80,8 @@ public final class FishingService {
 
     public enum Kind { JUNK, FISH, TREASURE, LORD }
 
-    private record Session(List<ItemStack> drops, Kind kind, long start, Vec3 pos) {}
+    private record Session(List<ItemStack> drops, Kind kind, long start, Vec3 pos,
+                           @Nullable ResourceLocation species, float size) {}
 
     private record Buff(double power, long until) {}
 
@@ -138,7 +140,21 @@ public final class FishingService {
             }
         }
 
-        Session session = new Session(drops, kind, level.getGameTime(), hook.position());
+        // 図鑑の魚：バニラの魚が釣れたときは、場所・時間・天気に合った魚に入れ替える（他MODの魚はそのまま）
+        ResourceLocation species = null;
+        if (kind == Kind.FISH) {
+            ItemStack main = drops.get(0);
+            boolean vanillaFish = BuiltInRegistries.ITEM.getKey(main.getItem()).getNamespace().equals("minecraft");
+            if (vanillaFish) {
+                species = FishSpeciesManager.INSTANCE.roll(player, level, hook.blockPosition(), "water");
+                FishSpecies sp = species == null ? null : FishSpeciesManager.INSTANCE.get(species);
+                if (sp != null) drops = new ArrayList<>(List.of(new ItemStack(BuiltInRegistries.ITEM.get(sp.item()))));
+            }
+            if (species == null) species = FishSpeciesManager.INSTANCE.byItem(main);
+        }
+        FishSpecies sp = species == null ? null : FishSpeciesManager.INSTANCE.get(species);
+        float size = sp == null ? 0 : sp.rollSize(r);
+        Session session = new Session(drops, kind, level.getGameTime(), hook.position(), species, size);
 
         // 一本釣り：ミニゲームなしで釣れる（主は除く）
         SkillDefinition instant = SkillService.passive(player, "fish_instant");
@@ -149,9 +165,11 @@ public final class FishingService {
         }
 
         SESSIONS.put(player.getUUID(), session);
-        int[] st = FishingManager.INSTANCE.settings(drops.get(0), kind);
-        ItemStack icon = (kind == Kind.FISH || kind == Kind.JUNK) ? drops.get(0).copyWithCount(1) : ItemStack.EMPTY;
-        PacketDistributor.sendToPlayer(player, new FishingPayloads.Start(st[0], kind.ordinal() * 8 + st[1],
+        int[] st = sp != null ? new int[]{sp.difficultyValue(), sp.behaviorIndex()} : FishingManager.INSTANCE.settings(drops.get(0), kind);
+        int rank = sp != null ? sp.rankEnum().ordinal() : 7;
+        boolean hide = kind == Kind.TREASURE || kind == Kind.LORD || (sp != null && sp.rankEnum().ordinal() >= FishRank.RARE.ordinal());
+        ItemStack icon = hide ? ItemStack.EMPTY : drops.get(0).copyWithCount(1);
+        PacketDistributor.sendToPlayer(player, new FishingPayloads.Start(st[0], kind.ordinal() * 64 + rank * 8 + st[1],
                 (float) zoneBonus(player), (float) calm(player), (float) reel(player), icon));
     }
 
@@ -184,6 +202,8 @@ public final class FishingService {
         int times = dup ? 1 + extra : 1;
 
         ItemStack main = s.drops().get(0);
+        FishSpecies sp = s.species() == null ? null : FishSpeciesManager.INSTANCE.get(s.species());
+        int dexResult = sp == null ? -1 : FishSpeciesManager.dex(player).record(s.species().toString(), s.size());
         for (int t = 0; t < times; t++) {
             for (ItemStack stack : s.drops()) give(player, stack.copy());
         }
@@ -194,7 +214,7 @@ public final class FishingService {
         // 職業経験値（パーフェクトは1.5倍、増えた分も入る）
         if (!player.isCreative()) {
             String cat = s.kind().name().toLowerCase(java.util.Locale.ROOT);
-            double mult = (perfect ? 1.5 : 1.0) * times;
+            double mult = (perfect ? 1.5 : 1.0) * times * (sp != null ? sp.rankEnum().xpMultiplier : 1.0);
             JobService.onAction(player, rule -> rule.action().equals("fish") && rule.matchesItem(main, cat), mult);
         }
 
@@ -206,6 +226,22 @@ public final class FishingService {
         MutableComponent msg = Component.literal(s.kind() == Kind.LORD ? "海の主を釣り上げた！ " : "釣れた！ ")
                 .withStyle(s.kind() == Kind.LORD ? ChatFormatting.GOLD : ChatFormatting.AQUA)
                 .append(main.getHoverName().copy().withStyle(ChatFormatting.WHITE));
+        if (sp != null) {
+            msg.append(Component.literal(" " + s.size() + "cm").withStyle(ChatFormatting.GRAY));
+            msg.append(Component.literal(" [" + sp.rankEnum().label + "]").withStyle(sp.rankEnum().color));
+            if (dexResult == FishDexData.NEW) msg.append(Component.literal(" NEW!").withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD));
+            else if (dexResult == FishDexData.BEST) msg.append(Component.literal(" 自己ベスト！").withStyle(ChatFormatting.YELLOW));
+            if (sp.rankEnum() == FishRank.LEGEND) {
+                level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("✦ " + player.getGameProfile().getName()
+                        + " がレジェンドの魚「").withStyle(ChatFormatting.GOLD).append(main.getHoverName().copy())
+                        .append(Component.literal("」（" + s.size() + "cm）を釣り上げた！").withStyle(ChatFormatting.GOLD)), false);
+                Vfx.magicCircle(level, player.position(), 3.0F, 30, Vfx.GOLD);
+                level.playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.2F);
+            } else if (sp.rankEnum() == FishRank.EPIC) {
+                Vfx.ring(level, player.position().add(0, 0.05, 0), 2.4F, 16, Vfx.WHITE);
+                level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.6F, 1.2F);
+            }
+        }
         if (times > 1) msg.append(Component.literal(" ×" + times).withStyle(ChatFormatting.YELLOW));
         if (perfect) msg.append(Component.literal("  PERFECT!").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
         player.displayClientMessage(msg, true);
@@ -371,7 +407,19 @@ public final class FishingService {
             int count = Math.max(1, s.amplifier());
             int caught = 0;
             for (int i = 0; i < count; i++) {
-                for (ItemStack stack : roll(level, BuiltInLootTables.FISHING, null, player, c)) {
+                for (ItemStack rolled : roll(level, BuiltInLootTables.FISHING, null, player, c)) {
+                    ItemStack stack = rolled;
+                    if (classify(stack) == Kind.FISH && BuiltInRegistries.ITEM.getKey(stack.getItem()).getNamespace().equals("minecraft")) {
+                        ResourceLocation id = FishSpeciesManager.INSTANCE.roll(player, level, waterPos, "water");
+                        FishSpecies sp = id == null ? null : FishSpeciesManager.INSTANCE.get(id);
+                        if (sp != null) {
+                            stack = new ItemStack(BuiltInRegistries.ITEM.get(sp.item()));
+                            if (FishSpeciesManager.dex(player).record(id.toString(), sp.rollSize(player.getRandom())) == FishDexData.NEW) {
+                                player.sendSystemMessage(Component.literal("図鑑に登録：").withStyle(ChatFormatting.YELLOW)
+                                        .append(stack.getHoverName().copy()));
+                            }
+                        }
+                    }
                     ItemEntity item = new ItemEntity(level, c.x, c.y + 0.3, c.z, stack.copy());
                     double dx = player.getX() - c.x, dy = player.getY() - c.y, dz = player.getZ() - c.z;
                     item.setDeltaMovement(dx * 0.1, dy * 0.1 + Math.sqrt(Math.sqrt(dx * dx + dy * dy + dz * dz)) * 0.08, dz * 0.1);
@@ -379,7 +427,8 @@ public final class FishingService {
                     caught++;
                     if (!player.isCreative()) {
                         String cat = classify(stack).name().toLowerCase(java.util.Locale.ROOT);
-                        JobService.onAction(player, rule -> rule.action().equals("fish") && rule.matchesItem(stack, cat), 0.5);
+                        ItemStack fs = stack;
+                        JobService.onAction(player, rule -> rule.action().equals("fish") && rule.matchesItem(fs, cat), 0.5);
                     }
                 }
             }

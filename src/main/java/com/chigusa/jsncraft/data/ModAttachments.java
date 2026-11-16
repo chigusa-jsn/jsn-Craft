@@ -44,5 +44,13 @@ public final class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    /** 魚図鑑（釣った数と最大サイズ）。死んでも消えない。 */
+    public static final Supplier<AttachmentType<com.chigusa.jsncraft.fishing.FishDexData>> FISH_DEX = ATTACHMENT_TYPES.register(
+            "fish_dex",
+            () -> AttachmentType.builder(() -> new com.chigusa.jsncraft.fishing.FishDexData())
+                    .serialize(com.chigusa.jsncraft.fishing.FishDexData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
     private ModAttachments() {}
 }

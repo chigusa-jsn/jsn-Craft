@@ -1,0 +1,12 @@
+{
+  "no": 21,
+  "item": "jsn_craft:fish/goldfish",
+  "rank": "uncommon",
+  "weight": 1.5,
+  "size": [
+    5,
+    15
+  ],
+  "behavior": "floater",
+  "hint": "どこでも（とても珍しい）"
+}

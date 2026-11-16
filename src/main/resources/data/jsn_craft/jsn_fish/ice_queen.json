@@ -1,0 +1,19 @@
+{
+  "no": 37,
+  "item": "jsn_craft:fish/ice_queen",
+  "rank": "legend",
+  "biomes": [
+    "#c:is_snowy",
+    "minecraft:frozen_river",
+    "minecraft:frozen_ocean",
+    "minecraft:deep_frozen_ocean"
+  ],
+  "time": "night",
+  "weather": "rain",
+  "size": [
+    150,
+    300
+  ],
+  "behavior": "normal",
+  "hint": "雪が降る夜の、雪の土地"
+}

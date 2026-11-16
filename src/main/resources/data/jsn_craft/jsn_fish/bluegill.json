@@ -1,0 +1,15 @@
+{
+  "no": 9,
+  "item": "jsn_craft:fish/bluegill",
+  "rank": "common",
+  "weight": 8,
+  "biomes": [
+    "freshwater"
+  ],
+  "size": [
+    10,
+    25
+  ],
+  "behavior": "normal",
+  "hint": "川や池"
+}

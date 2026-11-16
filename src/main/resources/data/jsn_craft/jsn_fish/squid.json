@@ -1,0 +1,15 @@
+{
+  "no": 20,
+  "item": "jsn_craft:fish/squid",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "time": "night",
+  "size": [
+    20,
+    40
+  ],
+  "behavior": "floater",
+  "hint": "夜の海"
+}

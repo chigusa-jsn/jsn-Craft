@@ -12,7 +12,8 @@ public final class FishingPayloads {
 
     /**
      * サーバー → 本人：ミニゲーム開始。
-     * kindBehavior = 種類 × 8 + 動き方（種類 0ゴミ 1魚 2お宝 3主 ／ 動き方 0ふつう 1なめらか 2すばやい 3沈む 4浮く）
+     * kindBehavior = 種類 × 64 + ランク × 8 + 動き方
+     * （種類 0ゴミ 1魚 2お宝 3主 ／ ランク 0コモン〜4レジェンド、7なし ／ 動き方 0ふつう 1なめらか 2すばやい 3沈む 4浮く）
      */
     public record Start(int difficulty, int kindBehavior, float zone, float calm, float reel, ItemStack icon)
             implements CustomPacketPayload {
@@ -26,7 +27,8 @@ public final class FishingPayloads {
                 ItemStack.OPTIONAL_STREAM_CODEC, Start::icon,
                 Start::new);
 
-        public int kind() { return kindBehavior / 8; }
+        public int kind() { return kindBehavior / 64; }
+        public int rank() { return (kindBehavior / 8) % 8; }
         public int behavior() { return kindBehavior % 8; }
 
         @Override

@@ -1,5 +1,8 @@
 package com.chigusa.jsncraft.client;
 
+import com.chigusa.jsncraft.fishing.FishRank;
+import com.chigusa.jsncraft.network.FishDexPayload;
+
 import com.chigusa.jsncraft.network.BoardSnapshotPayload;
 import com.chigusa.jsncraft.network.BoardSnapshotPayload.BoardView;
 import com.chigusa.jsncraft.network.BoardSnapshotPayload.NodeView;
@@ -35,14 +38,14 @@ import java.util.Optional;
  */
 public class JobScreen extends Screen {
 
-    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2, TAB_QUEST = 3, TAB_SKILL = 4;
+    private static final int TAB_STATUS = 0, TAB_COMBAT = 1, TAB_LIFE = 2, TAB_QUEST = 3, TAB_SKILL = 4, TAB_DEX = 5;
     private static final int LIST_W = 120, ROW_H = 12;
     private static final int NODE = 22, GAP_X = 38, GAP_Y = 34;
 
     private static int lastTab = TAB_STATUS;
 
     public static void startOnTab(int tab) {
-        if (tab >= TAB_STATUS && tab <= TAB_SKILL) lastTab = tab;
+        if (tab >= TAB_STATUS && tab <= TAB_DEX) lastTab = tab;
     }
 
     private BoardSnapshotPayload data;
@@ -80,7 +83,7 @@ public class JobScreen extends Screen {
         left = (width - panelW) / 2;
         top = (height - panelH) / 2;
 
-        int tabW = (panelW - 24) / 5;
+        int tabW = (panelW - 28) / 6;
         addRenderableWidget(Button.builder(Component.literal("ステータス"), b -> setTab(TAB_STATUS))
                 .bounds(left + 4, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("戦闘ボード").withStyle(ChatFormatting.RED), b -> setTab(TAB_COMBAT))
@@ -91,6 +94,8 @@ public class JobScreen extends Screen {
                 .bounds(left + 16 + tabW * 3, top + 4, tabW, 18).build());
         addRenderableWidget(Button.builder(Component.literal("スキル").withStyle(ChatFormatting.LIGHT_PURPLE), b -> setTab(TAB_SKILL))
                 .bounds(left + 20 + tabW * 4, top + 4, tabW, 18).build());
+        addRenderableWidget(Button.builder(Component.literal("図鑑").withStyle(ChatFormatting.AQUA), b -> setTab(TAB_DEX))
+                .bounds(left + 24 + tabW * 5, top + 4, tabW, 18).build());
 
         // 肩書の変更（ステータスタブ）
         titleBtn = addRenderableWidget(Button.builder(Component.literal("肩書を変更"), b -> titleMenu = !titleMenu)
@@ -180,6 +185,8 @@ public class JobScreen extends Screen {
             if (titleMenu) renderTitleMenu(g, mouseX, mouseY);
         } else if (tab == TAB_SKILL) {
             renderSkills(g, mouseX, mouseY);
+        } else if (tab == TAB_DEX) {
+            renderDex(g, mouseX, mouseY);
         } else if (tab == TAB_QUEST) {
             renderQuests(g, mouseX, mouseY);
         } else {
@@ -758,6 +765,10 @@ public class JobScreen extends Screen {
             skillScroll = (int) Math.max(0, Math.min(max, skillScroll - scrollY * SKILL_ROW));
             return true;
         }
+        if (tab == TAB_DEX) {
+            dexScroll = Math.max(0, Math.min(dexMaxScroll(), dexScroll - (int) Math.signum(scrollY)));
+            return true;
+        }
         if (tab == TAB_QUEST) {
             int rows = questRows().size();
             int max = Math.max(0, rows * ROW_H + 10 - (panelH - 34));
@@ -765,6 +776,94 @@ public class JobScreen extends Screen {
             return true;
         }
         return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+    }
+
+    // ---- 魚図鑑タブ ----
+
+    private static final int DEX_CELL = 20;
+    private int dexScroll;
+
+    private int dexCols() {
+        return Math.max(1, (panelW - 20) / DEX_CELL);
+    }
+
+    private int dexVisibleRows() {
+        return Math.max(1, (panelH - 58) / DEX_CELL);
+    }
+
+    private int dexMaxScroll() {
+        int rows = (FishDexPayload.client.entries().size() + dexCols() - 1) / dexCols();
+        return Math.max(0, rows - dexVisibleRows());
+    }
+
+    private void renderDex(GuiGraphics g, int mouseX, int mouseY) {
+        List<FishDexPayload.Entry> list = FishDexPayload.client.entries();
+        int x0 = left + 10, y0 = top + 30;
+        int caught = 0;
+        int[] perRank = new int[5], perRankCaught = new int[5];
+        for (FishDexPayload.Entry e : list) {
+            int r = Math.min(4, e.rank());
+            perRank[r]++;
+            if (e.count() > 0) {
+                caught++;
+                perRankCaught[r]++;
+            }
+        }
+        int pct = list.isEmpty() ? 0 : caught * 100 / list.size();
+        g.drawString(font, Component.literal("魚図鑑  " + caught + " / " + list.size() + "（" + pct + "%）").withStyle(ChatFormatting.AQUA), x0, y0, 0xFFFFFF);
+        int rx = x0 + 130;
+        for (int r = 0; r < 5; r++) {
+            FishRank rank = FishRank.byIndex(r);
+            String t = perRankCaught[r] + "/" + perRank[r];
+            g.drawString(font, Component.literal(t).withStyle(rank.color), rx, y0, 0xFFFFFF);
+            rx += font.width(t) + 8;
+        }
+
+        int cols = dexCols();
+        int gx = left + (panelW - cols * DEX_CELL) / 2, gy = top + 44;
+        int visible = dexVisibleRows();
+        dexScroll = Math.min(dexScroll, dexMaxScroll());
+        FishDexPayload.Entry hovered = null;
+        for (int i = 0; i < list.size(); i++) {
+            int row = i / cols - dexScroll;
+            if (row < 0 || row >= visible) continue;
+            FishDexPayload.Entry e = list.get(i);
+            int cx = gx + (i % cols) * DEX_CELL, cy = gy + row * DEX_CELL;
+            int frame = FishRank.byIndex(e.rank()).frameColor;
+            g.fill(cx, cy, cx + DEX_CELL - 2, cy + DEX_CELL - 2, frame);
+            g.fill(cx + 1, cy + 1, cx + DEX_CELL - 3, cy + DEX_CELL - 3, e.count() > 0 ? 0xFF2A2A40 : 0xFF151520);
+            if (e.count() > 0) {
+                g.renderItem(e.icon(), cx + 1, cy + 1);
+            } else {
+                g.drawCenteredString(font, "?", cx + (DEX_CELL - 2) / 2, cy + 5, 0x666677);
+            }
+            if (mouseX >= cx && mouseX < cx + DEX_CELL - 2 && mouseY >= cy && mouseY < cy + DEX_CELL - 2) hovered = e;
+        }
+        if (dexMaxScroll() > 0) {
+            g.drawString(font, "↕ " + (dexScroll + 1) + "/" + (dexMaxScroll() + 1), left + panelW - 40, top + panelH - 12, 0x888899);
+        }
+        if (hovered != null) {
+            FishRank rank = FishRank.byIndex(hovered.rank());
+            List<Component> lines = new ArrayList<>();
+            lines.add(hovered.count() > 0 ? hovered.icon().getHoverName().copy().withStyle(rank.color, ChatFormatting.BOLD)
+                    : Component.literal("？？？").withStyle(ChatFormatting.DARK_GRAY));
+            String place = switch (hovered.dimension()) {
+                case "the_nether" -> "ネザー";
+                case "the_end" -> "エンド";
+                default -> "地上";
+            };
+            lines.add(Component.literal("No." + hovered.no() + "  ").withStyle(ChatFormatting.GRAY)
+                    .append(Component.literal(rank.label).withStyle(rank.color))
+                    .append(Component.literal("  " + place).withStyle(ChatFormatting.GRAY)));
+            if (!hovered.hint().isEmpty()) lines.add(Component.literal("釣れる所：" + hovered.hint()).withStyle(ChatFormatting.YELLOW));
+            if (hovered.count() > 0) {
+                lines.add(Component.literal("釣った数 " + hovered.count() + "  最大 " + hovered.best() + "cm").withStyle(ChatFormatting.WHITE));
+            } else if (rank.ordinal() >= FishRank.RARE.ordinal()) {
+                lines.add(Component.literal(rank == FishRank.LEGEND ? "大海の網主にならないと釣れない"
+                        : "水辺の釣り師 Lv." + (rank == FishRank.RARE ? 10 : 25) + " から釣れる").withStyle(ChatFormatting.DARK_GRAY));
+            }
+            g.renderComponentTooltip(font, lines, mouseX, mouseY);
+        }
     }
 
     // ---- スキルタブ ----

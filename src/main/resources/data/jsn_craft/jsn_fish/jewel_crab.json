@@ -1,0 +1,15 @@
+{
+  "no": 28,
+  "item": "jsn_craft:fish/jewel_crab",
+  "rank": "rare",
+  "biomes": [
+    "#minecraft:is_beach",
+    "minecraft:stony_shore"
+  ],
+  "size": [
+    10,
+    25
+  ],
+  "behavior": "sinker",
+  "hint": "浜辺や岩の海岸"
+}

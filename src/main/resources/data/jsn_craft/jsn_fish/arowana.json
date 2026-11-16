@@ -1,0 +1,15 @@
+{
+  "no": 33,
+  "item": "jsn_craft:fish/arowana",
+  "rank": "epic",
+  "biomes": [
+    "#minecraft:is_jungle"
+  ],
+  "weather": "rain",
+  "size": [
+    60,
+    120
+  ],
+  "behavior": "floater",
+  "hint": "雨の日のジャングル"
+}

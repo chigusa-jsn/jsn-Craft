@@ -1,0 +1,18 @@
+{
+  "no": 31,
+  "item": "jsn_craft:fish/coelacanth",
+  "rank": "epic",
+  "biomes": [
+    "#minecraft:is_deep_ocean"
+  ],
+  "y": [
+    -64,
+    40
+  ],
+  "size": [
+    100,
+    200
+  ],
+  "behavior": "sinker",
+  "hint": "深い海のさらに底（高さ40より下）"
+}

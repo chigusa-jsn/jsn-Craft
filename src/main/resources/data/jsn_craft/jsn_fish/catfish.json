@@ -1,0 +1,16 @@
+{
+  "no": 17,
+  "item": "jsn_craft:fish/catfish",
+  "rank": "uncommon",
+  "biomes": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "#minecraft:is_river"
+  ],
+  "size": [
+    40,
+    100
+  ],
+  "behavior": "sinker",
+  "hint": "沼や川"
+}

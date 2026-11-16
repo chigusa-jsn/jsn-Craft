@@ -1,0 +1,16 @@
+{
+  "no": 10,
+  "item": "jsn_craft:fish/yamame",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_mountain",
+    "#minecraft:is_taiga",
+    "#minecraft:is_hill"
+  ],
+  "size": [
+    15,
+    30
+  ],
+  "behavior": "dart",
+  "hint": "山や針葉樹林の水辺"
+}

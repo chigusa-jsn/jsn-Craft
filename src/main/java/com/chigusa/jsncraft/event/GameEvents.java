@@ -29,6 +29,7 @@ public final class GameEvents {
         event.addListener(JobManager.INSTANCE);
         event.addListener(QuestManager.INSTANCE);
         event.addListener(com.chigusa.jsncraft.fishing.FishingManager.INSTANCE);
+        event.addListener(com.chigusa.jsncraft.fishing.FishSpeciesManager.INSTANCE);
     }
 
     @SubscribeEvent

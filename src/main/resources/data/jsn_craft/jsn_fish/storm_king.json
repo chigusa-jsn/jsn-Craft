@@ -1,0 +1,15 @@
+{
+  "no": 36,
+  "item": "jsn_craft:fish/storm_king",
+  "rank": "legend",
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "weather": "thunder",
+  "size": [
+    300,
+    600
+  ],
+  "behavior": "dart",
+  "hint": "雷雨の海"
+}

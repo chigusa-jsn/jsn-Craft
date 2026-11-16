@@ -1,0 +1,14 @@
+{
+  "no": 13,
+  "item": "jsn_craft:fish/horse_mackerel",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "size": [
+    15,
+    35
+  ],
+  "behavior": "normal",
+  "hint": "海"
+}

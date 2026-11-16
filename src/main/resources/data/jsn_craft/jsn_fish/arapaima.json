@@ -1,0 +1,14 @@
+{
+  "no": 27,
+  "item": "jsn_craft:fish/arapaima",
+  "rank": "rare",
+  "biomes": [
+    "#minecraft:is_jungle"
+  ],
+  "size": [
+    150,
+    300
+  ],
+  "behavior": "normal",
+  "hint": "ジャングルの水辺"
+}

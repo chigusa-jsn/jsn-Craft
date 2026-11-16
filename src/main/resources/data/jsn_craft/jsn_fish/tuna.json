@@ -1,0 +1,14 @@
+{
+  "no": 25,
+  "item": "jsn_craft:fish/tuna",
+  "rank": "rare",
+  "biomes": [
+    "#minecraft:is_deep_ocean"
+  ],
+  "size": [
+    100,
+    250
+  ],
+  "behavior": "dart",
+  "hint": "深い海"
+}

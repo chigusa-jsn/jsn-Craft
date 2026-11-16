@@ -1,0 +1,12 @@
+{
+  "no": 3,
+  "item": "minecraft:tropical_fish",
+  "rank": "common",
+  "weight": 4,
+  "size": [
+    5,
+    20
+  ],
+  "behavior": "floater",
+  "hint": "どこでも"
+}

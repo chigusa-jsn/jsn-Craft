@@ -1,0 +1,16 @@
+{
+  "no": 12,
+  "item": "jsn_craft:fish/ayu",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_river"
+  ],
+  "time": "day",
+  "weather": "clear",
+  "size": [
+    15,
+    25
+  ],
+  "behavior": "dart",
+  "hint": "晴れた昼の川"
+}

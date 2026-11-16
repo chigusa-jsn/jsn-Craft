@@ -1,0 +1,15 @@
+{
+  "no": 6,
+  "item": "jsn_craft:fish/carp",
+  "rank": "common",
+  "weight": 8,
+  "biomes": [
+    "freshwater"
+  ],
+  "size": [
+    30,
+    90
+  ],
+  "behavior": "normal",
+  "hint": "川や池"
+}

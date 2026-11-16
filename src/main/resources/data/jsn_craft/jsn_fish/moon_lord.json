@@ -1,0 +1,14 @@
+{
+  "no": 35,
+  "item": "jsn_craft:fish/moon_lord",
+  "rank": "legend",
+  "time": "night",
+  "weather": "clear",
+  "moon": 0,
+  "size": [
+    200,
+    400
+  ],
+  "behavior": "normal",
+  "hint": "晴れた満月の夜"
+}

@@ -1,0 +1,14 @@
+{
+  "no": 14,
+  "item": "jsn_craft:fish/mackerel",
+  "rank": "uncommon",
+  "biomes": [
+    "#minecraft:is_ocean"
+  ],
+  "size": [
+    25,
+    45
+  ],
+  "behavior": "dart",
+  "hint": "海"
+}

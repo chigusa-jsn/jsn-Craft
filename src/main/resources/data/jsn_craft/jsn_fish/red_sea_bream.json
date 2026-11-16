@@ -1,0 +1,16 @@
+{
+  "no": 15,
+  "item": "jsn_craft:fish/red_sea_bream",
+  "rank": "uncommon",
+  "biomes": [
+    "minecraft:warm_ocean",
+    "minecraft:lukewarm_ocean",
+    "minecraft:deep_lukewarm_ocean"
+  ],
+  "size": [
+    30,
+    80
+  ],
+  "behavior": "normal",
+  "hint": "暖かい海"
+}

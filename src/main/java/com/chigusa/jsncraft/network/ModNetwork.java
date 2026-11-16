@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("14");
+        PayloadRegistrar registrar = event.registrar("15");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -70,6 +70,8 @@ public final class ModNetwork {
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.fishing.FishingService.onResult(sp, p.success(), p.perfect());
                 }));
+        registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> FishDexPayload.client = p));
         registrar.playToClient(OreRevealPayload.TYPE, OreRevealPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.OreHighlight.show(p)));
         // クライアント → サーバー
@@ -99,6 +101,7 @@ public final class ModNetwork {
             if (context.player() instanceof ServerPlayer player) {
                 QuestService.leftReceptionist(player); // Kキーは受付嬢の外
                 QuestService.sendList(player); // 先に依頼一覧を送ってから、メニューを開かせる
+                net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, FishDexPayload.of(player));
                 SkillBoardService.sendSnapshot(player, true);
             }
         });

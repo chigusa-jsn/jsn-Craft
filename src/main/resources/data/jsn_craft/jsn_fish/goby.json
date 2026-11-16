@@ -1,0 +1,17 @@
+{
+  "no": 8,
+  "item": "jsn_craft:fish/goby",
+  "rank": "common",
+  "weight": 10,
+  "biomes": [
+    "#minecraft:is_beach",
+    "#minecraft:is_ocean",
+    "#minecraft:is_river"
+  ],
+  "size": [
+    5,
+    15
+  ],
+  "behavior": "sinker",
+  "hint": "浜辺や川"
+}
