@@ -1,0 +1,16 @@
+{
+  "no": 41,
+  "item": "jsn_craft:fish/warped_catfish",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:warped_forest"
+  ],
+  "size": [
+    40,
+    90
+  ],
+  "behavior": "sinker",
+  "hint": "歪んだ森の溶岩"
+}

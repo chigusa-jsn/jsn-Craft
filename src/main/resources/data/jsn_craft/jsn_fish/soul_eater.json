@@ -1,0 +1,16 @@
+{
+  "no": 46,
+  "item": "jsn_craft:fish/soul_eater",
+  "rank": "epic",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:soul_sand_valley"
+  ],
+  "size": [
+    60,
+    140
+  ],
+  "behavior": "normal",
+  "hint": "ソウルサンドの谷の溶岩"
+}

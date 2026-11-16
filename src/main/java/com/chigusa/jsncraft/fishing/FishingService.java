@@ -152,9 +152,16 @@ public final class FishingService {
             }
             if (species == null) species = FishSpeciesManager.INSTANCE.byItem(main);
         }
+        begin(player, drops, kind, species, hook.position());
+    }
+
+    /** 釣果が決まったら、ミニゲームを始める（一本釣りならその場で釣れる）。溶岩釣りからも使う */
+    static void begin(ServerPlayer player, List<ItemStack> drops, Kind kind, @Nullable ResourceLocation species, Vec3 pos) {
+        ServerLevel level = player.serverLevel();
+        RandomSource r = player.getRandom();
         FishSpecies sp = species == null ? null : FishSpeciesManager.INSTANCE.get(species);
         float size = sp == null ? 0 : sp.rollSize(r);
-        Session session = new Session(drops, kind, level.getGameTime(), hook.position(), species, size);
+        Session session = new Session(drops, kind, level.getGameTime(), pos, species, size);
 
         // 一本釣り：ミニゲームなしで釣れる（主は除く）
         SkillDefinition instant = SkillService.passive(player, "fish_instant");
@@ -286,7 +293,7 @@ public final class FishingService {
         return v;
     }
 
-    private static double treasureChance(ServerPlayer player) {
+    static double treasureChance(ServerPlayer player) {
         double c = player.getAttributeValue(ModAttributes.FISHING_TREASURE);
         SkillDefinition scent = SkillService.passive(player, "fish_treasure");
         if (scent != null) c += scent.chance();
@@ -295,7 +302,7 @@ public final class FishingService {
         return c;
     }
 
-    private static double biteSpeed(ServerPlayer player) {
+    static double biteSpeed(ServerPlayer player) {
         double b = player.getAttributeValue(ModAttributes.FISHING_BITE) + buffPower(player, "bait");
         SkillDefinition rain = SkillService.passive(player, "rain_luck");
         if (rain != null && player.level().isRaining()) b += rain.bonus();
@@ -441,7 +448,7 @@ public final class FishingService {
 
     // ================= 道具 =================
 
-    private static List<ItemStack> roll(ServerLevel level, ResourceKey<LootTable> table, @Nullable Entity hook,
+    static List<ItemStack> roll(ServerLevel level, ResourceKey<LootTable> table, @Nullable Entity hook,
                                         ServerPlayer player, Vec3 origin) {
         LootParams.Builder b = new LootParams.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, origin)

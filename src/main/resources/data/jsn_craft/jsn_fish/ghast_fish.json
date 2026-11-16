@@ -1,0 +1,17 @@
+{
+  "no": 44,
+  "item": "jsn_craft:fish/ghast_fish",
+  "rank": "rare",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:nether_wastes",
+    "minecraft:soul_sand_valley"
+  ],
+  "size": [
+    30,
+    70
+  ],
+  "behavior": "floater",
+  "hint": "ネザーの荒地やソウルサンドの谷の溶岩"
+}

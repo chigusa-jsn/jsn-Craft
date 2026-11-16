@@ -1,0 +1,17 @@
+{
+  "no": 48,
+  "item": "jsn_craft:fish/inferno_dragonfish",
+  "rank": "legend",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "y": [
+    0,
+    32
+  ],
+  "size": [
+    300,
+    600
+  ],
+  "behavior": "dart",
+  "hint": "ネザーの溶岩の海（高さ32より下）"
+}

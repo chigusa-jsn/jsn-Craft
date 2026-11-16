@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "溶岩釣り"
+  },
+  "description": {
+    "text": "溶岩でも釣りができるようになる。浮きが溶岩に浮かび、沈んだときに引くとミニゲームが始まる。ネザーの溶岩では、ネザーにしかいない魚が釣れる。"
+  },
+  "icon": "minecraft:lava_bucket",
+  "type": "passive",
+  "effect": "lava_fishing"
+}

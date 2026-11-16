@@ -1,0 +1,13 @@
+{
+  "no": 38,
+  "item": "jsn_craft:fish/lava_goby",
+  "rank": "common",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "size": [
+    8,
+    20
+  ],
+  "behavior": "sinker",
+  "hint": "ネザーの溶岩"
+}

@@ -1,0 +1,16 @@
+{
+  "no": 40,
+  "item": "jsn_craft:fish/ash_eel",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:soul_sand_valley"
+  ],
+  "size": [
+    40,
+    90
+  ],
+  "behavior": "dart",
+  "hint": "ソウルサンドの谷の溶岩"
+}

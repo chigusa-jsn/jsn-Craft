@@ -1,0 +1,16 @@
+{
+  "no": 42,
+  "item": "jsn_craft:fish/crimson_piranha",
+  "rank": "rare",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:crimson_forest"
+  ],
+  "size": [
+    20,
+    40
+  ],
+  "behavior": "dart",
+  "hint": "深紅の森の溶岩"
+}

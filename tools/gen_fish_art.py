@@ -169,7 +169,37 @@ def angler(cv, f):
     lure = hx(f.get("lure", "#fff070"))
     cv.set(2, 2, lure); cv.set(2, 3, light(lure, 0.5)); cv.set(1, 2, light(lure, 0.5))
 
-SHAPES = {"fish": fish, "eel": eel, "flat": flat, "squid": squid, "crab": crab, "angler": angler}
+def shrimp(cv, f):
+    body = hx(f["body"]); acc = hx(f.get("accent", "#ffffff"))
+    # 丸まった体（右上から左下へ弧）
+    for i in range(9):
+        a = math.pi * (0.15 + i * 0.09)
+        cx = 8 + 5.0 * math.cos(a); cy = 6 + 5.0 * math.sin(a)
+        r = 2.0 - i * 0.12
+        for x in range(16):
+            for y in range(16):
+                if inside_ellipse(x, y, cx, cy, r, r): cv.set(x, y, body if i % 2 else light(body, 0.15))
+    for x, y in ((13, 4), (14, 3), (12, 3)): cv.set(x, y, dark(body, 0.3))  # 尾
+    cv.set(3, 7, (16, 16, 16))
+    for x, y in ((2, 6), (1, 5), (0, 4), (2, 5), (1, 3)): cv.set(x, y, acc)  # ひげ
+    for x, y in ((6, 12), (8, 13), (10, 12)): cv.set(x, y, dark(body, 0.25))  # 脚
+
+def turtle(cv, f):
+    body = hx(f["body"]); shell = hx(f.get("shell", "#6a4a3a")); acc = hx(f.get("accent", "#3a2a20"))
+    for x in range(16):
+        for y in range(16):
+            if inside_ellipse(x, y, 8.5, 8.5, 5.2, 4.0):
+                rim = not inside_ellipse(x, y, 8.5, 8.5, 4.2, 3.0)
+                plate = (x % 3 == 1 and y % 3 == 1)
+                cv.set(x, y, dark(shell, 0.3) if rim else light(shell, 0.25) if plate else shell)
+    for x, y in ((2, 8), (3, 8), (2, 9), (3, 9), (1, 8)): cv.set(x, y, body)  # 頭
+    cv.set(1, 8, (16, 16, 16))
+    for x, y in ((5, 4), (4, 4), (12, 4), (13, 4), (5, 13), (4, 13), (12, 13), (13, 13), (14, 8)): cv.set(x, y, body)
+    if f.get("glow"):
+        g = hx(f["glow"])
+        for x, y in ((7, 7), (10, 9), (8, 10)): cv.set(x, y, g)
+
+SHAPES = {"shrimp": shrimp, "turtle": turtle, "fish": fish, "eel": eel, "flat": flat, "squid": squid, "crab": crab, "angler": angler}
 
 def make(f):
     cv = Canvas()
@@ -217,6 +247,19 @@ FISH = [
     # レジェンド
     dict(id="moon_lord", body="#2a3a6a", fin="#8ab0ff", h=8, dorsal=2, tail=1.2, pattern="spots", accent="#fff6a0", n=7, eye_glow="#fff6a0"),
     dict(id="storm_king", body="#303848", fin="#6080c0", h=7.5, dorsal=2, tail=1.2, pattern="zigzag", accent="#ffe040", eye_glow="#ffe040"),
+    # ---- ネザー ----
+    dict(id="lava_goby", body="#d0502a", h=4.5, pattern="spots", accent="#ffd040", n=5, outline="#4a1000"),
+    dict(id="flame_shrimp", shape="shrimp", body="#ff6a20", accent="#ffe060"),
+    dict(id="ash_eel", shape="eel", body="#5a5a62", pattern="zigzag", accent="#ff8030"),
+    dict(id="warped_catfish", body="#2a8a80", h=5, whiskers=True, whisker_color="#5ef0d0", pattern="spots", accent="#5ef0d0", n=5),
+    dict(id="crimson_piranha", body="#a0202a", belly="#ff6040", h=7.5, teeth=True, pattern="spots", accent="#ff9070", n=3),
+    dict(id="basalt_catfish", body="#3a3a42", h=5.5, whiskers=True, whisker_color="#20202a", pattern="spots", accent="#707078", n=6),
+    dict(id="ghast_fish", body="#f0f0f0", fin="#d8d8d8", h=7, eye="#404040", pattern="spots", accent="#a0e0ff", n=2, outline="#808080"),
+    dict(id="inferno_shachihoko", body="#f0b020", fin="#ff6020", h=7, dorsal=2, tail=1.4, pattern="spots", accent="#fff0a0", n=4, outline="#6a3a00"),
+    dict(id="soul_eater", body="#3a2a20", fin="#5a4030", h=7, teeth=True, eye_glow="#60e0ff", pattern="spots", accent="#60e0ff", n=3),
+    dict(id="debris_turtle", shape="turtle", body="#7a5a48", shell="#5a3a2a", accent="#3a2018", glow="#c08060"),
+    dict(id="inferno_dragonfish", body="#c02010", fin="#ffb020", h=6.5, rx=6.0, dorsal=2, tail=1.3, crown="#ffd040", pattern="zigzag", accent="#ffe060", eye_glow="#ffff80", outline="#400000"),
+    dict(id="soulflame_catfish", body="#203040", fin="#3a6080", h=7.5, whiskers=True, whisker_color="#60e0ff", tail=1.2, pattern="spots", accent="#60e0ff", n=7, eye_glow="#60e0ff"),
     dict(id="ice_queen", body="#e0f6ff", fin="#80d0ff", h=6.5, dorsal=0, crown="#ffd040", pattern="spots", accent="#a0e8ff", n=4, outline="#3a7aa0"),
 ]
 

@@ -1,0 +1,20 @@
+{
+  "no": 45,
+  "item": "jsn_craft:fish/inferno_shachihoko",
+  "rank": "epic",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:nether_wastes"
+  ],
+  "y": [
+    0,
+    40
+  ],
+  "size": [
+    80,
+    160
+  ],
+  "behavior": "dart",
+  "hint": "ネザーの荒地の溶岩の海（高さ40より下）"
+}

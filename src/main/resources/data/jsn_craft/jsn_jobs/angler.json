@@ -75,6 +75,10 @@
       "level": 20
     },
     {
+      "skill": "jsn_craft:angler/lava_fishing",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:angler/one_shot",
       "level": 25
     },

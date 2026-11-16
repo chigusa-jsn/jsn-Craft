@@ -1,0 +1,17 @@
+{
+  "no": 39,
+  "item": "jsn_craft:fish/flame_shrimp",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:nether_wastes",
+    "minecraft:crimson_forest"
+  ],
+  "size": [
+    5,
+    15
+  ],
+  "behavior": "dart",
+  "hint": "ネザーの荒地や深紅の森の溶岩"
+}

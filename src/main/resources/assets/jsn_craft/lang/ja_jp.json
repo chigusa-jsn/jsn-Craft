@@ -61,5 +61,17 @@
   "item.jsn_craft.fish.moon_lord": "月の主",
   "item.jsn_craft.fish.storm_king": "嵐の王",
   "item.jsn_craft.fish.ice_queen": "氷の女王",
-  "attribute.name.jsn_craft.harvest_fortune": "収穫の幸運"
+  "attribute.name.jsn_craft.harvest_fortune": "収穫の幸運",
+  "item.jsn_craft.fish.lava_goby": "溶岩ハゼ",
+  "item.jsn_craft.fish.flame_shrimp": "火焔エビ",
+  "item.jsn_craft.fish.ash_eel": "灰燼ウナギ",
+  "item.jsn_craft.fish.warped_catfish": "歪みナマズ",
+  "item.jsn_craft.fish.crimson_piranha": "紅蓮ピラニア",
+  "item.jsn_craft.fish.basalt_catfish": "玄武岩ナマズ",
+  "item.jsn_craft.fish.ghast_fish": "ガストフィッシュ",
+  "item.jsn_craft.fish.inferno_shachihoko": "業火のシャチホコ",
+  "item.jsn_craft.fish.soul_eater": "魂喰らい",
+  "item.jsn_craft.fish.debris_turtle": "残骸ガメ",
+  "item.jsn_craft.fish.inferno_dragonfish": "炎獄の竜魚",
+  "item.jsn_craft.fish.soulflame_catfish": "魂炎の大鯰"
 }

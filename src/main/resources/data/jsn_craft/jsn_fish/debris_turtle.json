@@ -1,0 +1,17 @@
+{
+  "no": 47,
+  "item": "jsn_craft:fish/debris_turtle",
+  "rank": "epic",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "y": [
+    0,
+    24
+  ],
+  "size": [
+    50,
+    120
+  ],
+  "behavior": "sinker",
+  "hint": "ネザーの深い溶岩（高さ24より下）"
+}

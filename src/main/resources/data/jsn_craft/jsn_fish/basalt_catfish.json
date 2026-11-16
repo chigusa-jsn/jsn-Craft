@@ -1,0 +1,16 @@
+{
+  "no": 43,
+  "item": "jsn_craft:fish/basalt_catfish",
+  "rank": "rare",
+  "dimension": "minecraft:the_nether",
+  "fluid": "lava",
+  "biomes": [
+    "minecraft:basalt_deltas"
+  ],
+  "size": [
+    60,
+    130
+  ],
+  "behavior": "sinker",
+  "hint": "玄武岩の三角州の溶岩"
+}
