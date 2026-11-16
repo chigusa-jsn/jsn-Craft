@@ -1,0 +1,667 @@
+{
+  "job": "sword_saint",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "剣聖の心得",
+    "icon": "minecraft:diamond_sword",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.0
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛力",
+          "icon": "minecraft:iron_sword",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "必殺",
+          "icon": "minecraft:spectral_arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "痛撃",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "神速",
+          "icon": "minecraft:feather",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_speed",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.033
+            }
+          ]
+        },
+        {
+          "name": "血刃",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.007
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "闘気",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "練気",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.33
+            }
+          ]
+        },
+        {
+          "name": "極技",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.027
+            }
+          ]
+        },
+        {
+          "name": "瞬身",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "省気",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "斬り払い・覚醒",
+          "icon": "minecraft:iron_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/sweep",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "旋風斬・覚醒",
+          "icon": "minecraft:breeze_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/whirlwind",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "蒼閃・覚醒",
+          "icon": "minecraft:diamond_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/azure_flash",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "居合・覚醒",
+          "icon": "minecraft:netherite_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/iai",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "受け流し・覚醒",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/parry",
+              "field": "power_pct",
+              "amount": 0.133
+            }
+          ]
+        },
+        {
+          "name": "天翔蒼刃・覚醒",
+          "icon": "minecraft:mace",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword_saint/sky_rend",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "千刃乱舞・覚醒",
+          "icon": "minecraft:golden_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword_saint/thousand_blades",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "天穹蒼月・覚醒",
+          "icon": "minecraft:end_crystal",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword_saint/azure_moon",
+              "field": "power_pct",
+              "amount": 0.067
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "金剛体",
+          "icon": "minecraft:golden_apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "鋼の肌",
+          "icon": "minecraft:iron_block",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "守護",
+          "icon": "minecraft:diamond_chestplate",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.013
+            }
+          ]
+        },
+        {
+          "name": "不動",
+          "icon": "minecraft:iron_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.knockback_resistance",
+              "amount": 0.033
+            }
+          ]
+        },
+        {
+          "name": "再生",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "疾駆",
+          "icon": "minecraft:leather_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.013,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "追撃",
+      "icon": "minecraft:prismarine_shard",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/pursuit"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★剛剣・覚醒",
+      "icon": "minecraft:netherite_sword",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.1,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "炎刃",
+      "icon": "minecraft:blaze_powder",
+      "cost": 4,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/ignite"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 2,
+      "name": "凍刃",
+      "icon": "minecraft:blue_ice",
+      "cost": 4,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/frost"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -2,
+      "name": "★紅蓮の蒼閃",
+      "icon": "minecraft:fire_charge",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/azure_flash",
+          "field": "power_pct",
+          "amount": 0.5
+        },
+        {
+          "skill": "jsn_craft:sword/azure_flash",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 2,
+      "name": "★剣聖の極み",
+      "icon": "minecraft:nether_star",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.15,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -2,
+      "name": "天翔・広域",
+      "icon": "minecraft:mace",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 0,
+      "name": "居合・真打",
+      "icon": "minecraft:netherite_sword",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/iai",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:sword/iai",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★旋風斬・覚醒",
+      "icon": "minecraft:wind_charge",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/whirlwind",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": -3,
+      "name": "★千刃・極",
+      "icon": "minecraft:golden_sword",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/thousand_blades",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 75
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★技の極み",
+      "icon": "minecraft:glowstone",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -3,
+      "name": "★天穹・極",
+      "icon": "minecraft:end_crystal",
+      "cost": 8,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 95
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 0,
+      "name": "★無尽",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "守護の陣",
+      "icon": "minecraft:beacon",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/guard_aura"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★金剛",
+      "icon": "minecraft:diamond_chestplate",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 8
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "光の盾",
+      "icon": "minecraft:shield",
+      "cost": 4,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/barrier"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★鼓舞の陣",
+      "icon": "minecraft:goat_horn",
+      "cost": 7,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword_saint/board/rally_aura"
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★不動明王",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.3
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 5
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

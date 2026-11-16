@@ -1,0 +1,514 @@
+{
+  "job": "warrior",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "剣の心得",
+    "icon": "minecraft:wooden_sword",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 0.5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "鋭刃",
+          "icon": "minecraft:iron_sword",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "会心撃",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "速剣",
+          "icon": "minecraft:feather",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_speed",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "吸血の刃",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.015
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "斬り払い修練",
+          "icon": "minecraft:iron_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/sweep",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "旋風斬修練",
+          "icon": "minecraft:breeze_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/whirlwind",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "蒼閃修練",
+          "icon": "minecraft:diamond_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/azure_flash",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "居合修練",
+          "icon": "minecraft:netherite_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/iai",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "踏み込み修練",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/lunge",
+              "field": "cooldown",
+              "amount": -0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "鉄の肌",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "踏ん張り",
+          "icon": "minecraft:iron_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.knockback_resistance",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "守りの心得",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "軽身",
+          "icon": "minecraft:leather_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.02,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        },
+        {
+          "name": "受け流し修練",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/parry",
+              "field": "duration",
+              "amount": 0.15
+            }
+          ]
+        },
+        {
+          "name": "見切り修練",
+          "icon": "minecraft:phantom_membrane",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sword/foresight",
+              "field": "chance",
+              "amount": 0.025
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "背水の陣",
+      "icon": "minecraft:redstone",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/last_stand"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 2,
+      "name": "剣気の極意",
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/spirit",
+          "field": "chance",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★剛剣",
+      "icon": "minecraft:netherite_sword",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.1,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "連撃",
+      "icon": "minecraft:flint",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/combo"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "戦意高揚",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/battle_high"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 2,
+      "name": "居合の極意",
+      "icon": "minecraft:netherite_sword",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/iai",
+          "field": "cast_time",
+          "amount": -0.2
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -3,
+      "name": "斬り払い奥伝",
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/sweep",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★旋風斬・極",
+      "icon": "minecraft:wind_charge",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/whirlwind",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 0,
+      "name": "★居合・極",
+      "icon": "minecraft:netherite_sword",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/iai",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 2,
+      "name": "蒼閃奥伝",
+      "icon": "minecraft:diamond_sword",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/azure_flash",
+          "field": "radius",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 1,
+      "name": "受け流し・返し",
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/parry",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★不屈",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 4,
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/endure"
+        }
+      ],
+      "big": true,
+      "min_level": 35
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 0,
+      "name": "★鉄壁",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    }
+  ]
+}

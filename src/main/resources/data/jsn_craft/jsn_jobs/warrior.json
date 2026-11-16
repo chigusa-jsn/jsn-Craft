@@ -63,9 +63,9 @@
       "x": -0.5,
       "y": -1,
       "name": {
-        "text": "鋭刃"
+        "text": "鋭刃 I"
       },
-      "icon": "minecraft:stone_sword",
+      "icon": "minecraft:iron_sword",
       "cost": 1,
       "links": [
         "center"
@@ -82,9 +82,9 @@
       "x": 0.5,
       "y": -1,
       "name": {
-        "text": "急所狙い"
+        "text": "会心 I"
       },
-      "icon": "minecraft:spectral_arrow",
+      "icon": "minecraft:arrow",
       "cost": 1,
       "links": [
         "atk1_0",
@@ -102,7 +102,7 @@
       "x": 1.0,
       "y": 0,
       "name": {
-        "text": "気力"
+        "text": "気力 I"
       },
       "icon": "minecraft:bread",
       "cost": 1,
@@ -122,9 +122,9 @@
       "x": 0.5,
       "y": 1,
       "name": {
-        "text": "斬り払い修練"
+        "text": "呼吸法 I"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:honey_bottle",
       "cost": 1,
       "links": [
         "tec1_0",
@@ -132,9 +132,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
-          "field": "power_pct",
-          "amount": 0.1
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
         }
       ]
     },
@@ -143,7 +142,7 @@
       "x": -0.5,
       "y": 1,
       "name": {
-        "text": "頑健"
+        "text": "頑健 I"
       },
       "icon": "minecraft:apple",
       "cost": 1,
@@ -163,9 +162,9 @@
       "x": -1.0,
       "y": 0,
       "name": {
-        "text": "鉄の肌"
+        "text": "鉄の肌 I"
       },
-      "icon": "minecraft:iron_nugget",
+      "icon": "minecraft:iron_ingot",
       "cost": 1,
       "links": [
         "center",
@@ -184,74 +183,13 @@
       "x": -1.5,
       "y": -1,
       "name": {
-        "text": "鋭刃 II"
+        "text": "会心撃 II"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:blaze_powder",
       "cost": 1,
       "links": [
         "atk1_0",
         "grd1_1"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.attack_damage",
-          "amount": 0.5
-        }
-      ]
-    },
-    {
-      "id": "atk2_1",
-      "x": -1.0,
-      "y": -2,
-      "name": {
-        "text": "会心 I"
-      },
-      "icon": "minecraft:arrow",
-      "cost": 1,
-      "links": [
-        "atk2_0",
-        "atk1_0"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:crit_chance",
-          "amount": 0.03
-        }
-      ]
-    },
-    {
-      "id": "atk2_2",
-      "x": 0.0,
-      "y": -2,
-      "name": {
-        "text": "速剣"
-      },
-      "icon": "minecraft:feather",
-      "cost": 1,
-      "links": [
-        "atk2_1",
-        "atk1_0",
-        "atk1_1"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.1
-        }
-      ]
-    },
-    {
-      "id": "atk2_3",
-      "x": 1.0,
-      "y": -2,
-      "name": {
-        "text": "会心撃 I"
-      },
-      "icon": "minecraft:blaze_powder",
-      "cost": 2,
-      "links": [
-        "atk2_2",
-        "atk1_1"
       ],
       "effects": [
         {
@@ -261,13 +199,74 @@
       ]
     },
     {
+      "id": "atk2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "速剣 II"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "atk2_0",
+        "atk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "atk2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "鋭刃 II"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "atk2_1",
+        "atk1_0",
+        "atk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "atk2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "吸血の刃 II"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 1,
+      "links": [
+        "atk2_2",
+        "atk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
       "id": "tec2_0",
       "x": 1.5,
       "y": -1,
       "name": {
-        "text": "呼吸法"
+        "text": "省力 II"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:leather",
       "cost": 1,
       "links": [
         "atk2_3",
@@ -276,8 +275,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.5
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
         }
       ]
     },
@@ -286,9 +285,9 @@
       "x": 2.0,
       "y": 0,
       "name": {
-        "text": "省力"
+        "text": "技の冴え II"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:glowstone_dust",
       "cost": 1,
       "links": [
         "tec2_0",
@@ -296,8 +295,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.05
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
         }
       ]
     },
@@ -306,9 +305,9 @@
       "x": 1.5,
       "y": 1,
       "name": {
-        "text": "踏み込み修練"
+        "text": "早業 II"
       },
-      "icon": "minecraft:feather",
+      "icon": "minecraft:clock",
       "cost": 1,
       "links": [
         "tec2_1",
@@ -317,9 +316,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/lunge",
-          "field": "cooldown",
-          "amount": -1
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.04
         }
       ]
     },
@@ -328,9 +326,9 @@
       "x": 1.0,
       "y": 2,
       "name": {
-        "text": "気力 II"
+        "text": "斬り払い修練 II"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:iron_sword",
       "cost": 1,
       "links": [
         "tec2_2",
@@ -338,8 +336,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 10
+          "skill": "jsn_craft:sword/sweep",
+          "field": "power_pct",
+          "amount": 0.1
         }
       ]
     },
@@ -348,55 +347,14 @@
       "x": 0.0,
       "y": 2,
       "name": {
-        "text": "頑健 II"
+        "text": "踏ん張り II"
       },
-      "icon": "minecraft:apple",
+      "icon": "minecraft:iron_boots",
       "cost": 1,
       "links": [
         "tec2_3",
         "tec1_1",
         "grd1_0"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.max_health",
-          "amount": 2
-        }
-      ]
-    },
-    {
-      "id": "grd2_1",
-      "x": -1.0,
-      "y": 2,
-      "name": {
-        "text": "鉄の肌 II"
-      },
-      "icon": "minecraft:iron_ingot",
-      "cost": 1,
-      "links": [
-        "grd2_0",
-        "grd1_0"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.armor",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "grd2_2",
-      "x": -1.5,
-      "y": 1,
-      "name": {
-        "text": "踏ん張り"
-      },
-      "icon": "minecraft:iron_boots",
-      "cost": 1,
-      "links": [
-        "grd1_0",
-        "grd1_1",
-        "grd2_1"
       ],
       "effects": [
         {
@@ -406,14 +364,56 @@
       ]
     },
     {
+      "id": "grd2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守りの心得 II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "grd2_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "grd2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "軽身 II"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "grd1_0",
+        "grd1_1",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
       "id": "grd2_3",
       "x": -2.0,
       "y": 0,
       "name": {
-        "text": "受け流し修練"
+        "text": "頑健 II"
       },
-      "icon": "minecraft:shield",
-      "cost": 2,
+      "icon": "minecraft:apple",
+      "cost": 1,
       "links": [
         "grd1_1",
         "atk2_0",
@@ -421,9 +421,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
-          "field": "duration",
-          "amount": 0.3
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
         }
       ]
     },
@@ -432,9 +431,9 @@
       "x": -2.0,
       "y": -2,
       "name": {
-        "text": "鋭刃 III"
+        "text": "会心 III"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:arrow",
       "cost": 2,
       "links": [
         "atk2_1",
@@ -442,8 +441,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_damage",
-          "amount": 1.0
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.045
         }
       ]
     },
@@ -452,55 +451,13 @@
       "x": -1.5,
       "y": -3,
       "name": {
-        "text": "会心 II"
-      },
-      "icon": "minecraft:arrow",
-      "cost": 2,
-      "links": [
-        "atk3_0",
-        "atk2_1"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:crit_chance",
-          "amount": 0.04
-        }
-      ]
-    },
-    {
-      "id": "atk3_2",
-      "x": -0.5,
-      "y": -3,
-      "name": {
-        "text": "背水の陣"
-      },
-      "icon": "minecraft:redstone",
-      "cost": 3,
-      "links": [
-        "atk3_1",
-        "atk2_1",
-        "atk2_2"
-      ],
-      "effects": [
-        {
-          "grant": "jsn_craft:sword/board/last_stand"
-        }
-      ],
-      "hidden": true
-    },
-    {
-      "id": "atk3_3",
-      "x": 0.5,
-      "y": -3,
-      "name": {
-        "text": "会心撃 II"
+        "text": "会心撃 III"
       },
       "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
-        "atk3_2",
-        "atk2_2",
-        "atk2_3"
+        "atk3_0",
+        "atk2_1"
       ],
       "effects": [
         {
@@ -510,13 +467,55 @@
       ]
     },
     {
+      "id": "atk3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "速剣 III"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "atk3_1",
+        "atk2_1",
+        "atk2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "atk3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "背水の陣"
+      },
+      "icon": "minecraft:redstone",
+      "cost": 3,
+      "links": [
+        "atk3_2",
+        "atk2_2",
+        "atk2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/last_stand"
+        }
+      ],
+      "hidden": true
+    },
+    {
       "id": "atk3_4",
       "x": 1.5,
       "y": -3,
       "name": {
-        "text": "速剣 II"
+        "text": "鋭刃 III"
       },
-      "icon": "minecraft:feather",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "atk3_3",
@@ -524,8 +523,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.15
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.75
         }
       ]
     },
@@ -556,33 +555,13 @@
       "x": 2.5,
       "y": -1,
       "name": {
-        "text": "技の冴え"
-      },
-      "icon": "minecraft:glowstone_dust",
-      "cost": 2,
-      "links": [
-        "atk3_5",
-        "tec2_0",
-        "tec2_1"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.05
-        }
-      ]
-    },
-    {
-      "id": "tec3_1",
-      "x": 3.0,
-      "y": 0,
-      "name": {
-        "text": "旋風斬修練"
+        "text": "旋風斬修練 III"
       },
       "icon": "minecraft:breeze_rod",
       "cost": 2,
       "links": [
-        "tec3_0",
+        "atk3_5",
+        "tec2_0",
         "tec2_1"
       ],
       "effects": [
@@ -594,18 +573,61 @@
       ]
     },
     {
+      "id": "tec3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "蒼閃修練 III"
+      },
+      "icon": "minecraft:diamond_sword",
+      "cost": 2,
+      "links": [
+        "tec3_0",
+        "tec2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/azure_flash",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
       "id": "tec3_2",
       "x": 2.5,
       "y": 1,
+      "name": {
+        "text": "居合修練 III"
+      },
+      "icon": "minecraft:netherite_sword",
+      "cost": 2,
+      "links": [
+        "tec3_1",
+        "tec2_1",
+        "tec2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/iai",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "tec3_3",
+      "x": 2.0,
+      "y": 2,
       "name": {
         "text": "戦意高揚"
       },
       "icon": "minecraft:glistering_melon_slice",
       "cost": 3,
       "links": [
-        "tec3_1",
-        "tec2_1",
-        "tec2_2"
+        "tec3_2",
+        "tec2_2",
+        "tec2_3"
       ],
       "effects": [
         {
@@ -615,35 +637,13 @@
       "hidden": true
     },
     {
-      "id": "tec3_3",
-      "x": 2.0,
-      "y": 2,
-      "name": {
-        "text": "蒼閃修練"
-      },
-      "icon": "minecraft:diamond_sword",
-      "cost": 2,
-      "links": [
-        "tec3_2",
-        "tec2_2",
-        "tec2_3"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/azure_flash",
-          "field": "power_pct",
-          "amount": 0.2
-        }
-      ]
-    },
-    {
       "id": "tec3_4",
       "x": 1.5,
       "y": 3,
       "name": {
-        "text": "早業"
+        "text": "踏み込み修練 III"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:feather",
       "cost": 2,
       "links": [
         "tec3_3",
@@ -651,8 +651,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.05
+          "skill": "jsn_craft:sword/lunge",
+          "field": "cooldown",
+          "amount": -0.75
         }
       ]
     },
@@ -661,7 +662,7 @@
       "x": 0.5,
       "y": 3,
       "name": {
-        "text": "居合修練"
+        "text": "居合の極意"
       },
       "icon": "minecraft:netherite_sword",
       "cost": 2,
@@ -683,9 +684,9 @@
       "x": -0.5,
       "y": 3,
       "name": {
-        "text": "頑健 III"
+        "text": "受け流し修練 III"
       },
-      "icon": "minecraft:golden_apple",
+      "icon": "minecraft:shield",
       "cost": 2,
       "links": [
         "tec3_5",
@@ -694,8 +695,9 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.max_health",
-          "amount": 4
+          "skill": "jsn_craft:sword/parry",
+          "field": "duration",
+          "amount": 0.225
         }
       ]
     },
@@ -704,9 +706,9 @@
       "x": -1.5,
       "y": 3,
       "name": {
-        "text": "守りの心得"
+        "text": "見切り修練 III"
       },
-      "icon": "minecraft:iron_chestplate",
+      "icon": "minecraft:phantom_membrane",
       "cost": 2,
       "links": [
         "grd3_0",
@@ -714,8 +716,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.03
+          "skill": "jsn_craft:sword/foresight",
+          "field": "chance",
+          "amount": 0.038
         }
       ]
     },
@@ -724,9 +727,9 @@
       "x": -2.0,
       "y": 2,
       "name": {
-        "text": "見切り修練"
+        "text": "修練の証 III"
       },
-      "icon": "minecraft:phantom_membrane",
+      "icon": "minecraft:experience_bottle",
       "cost": 2,
       "links": [
         "grd2_1",
@@ -735,9 +738,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/foresight",
-          "field": "chance",
-          "amount": 0.05
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
         }
       ]
     },
@@ -748,7 +750,7 @@
       "name": {
         "text": "鉄の肌 III"
       },
-      "icon": "minecraft:iron_block",
+      "icon": "minecraft:iron_ingot",
       "cost": 2,
       "links": [
         "grd2_2",
@@ -758,7 +760,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.armor",
-          "amount": 2
+          "amount": 1.5
         }
       ]
     },
@@ -767,36 +769,13 @@
       "x": -3.0,
       "y": 0,
       "name": {
-        "text": "軽身"
-      },
-      "icon": "minecraft:leather_boots",
-      "cost": 2,
-      "links": [
-        "grd2_3",
-        "grd3_3"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.03,
-          "operation": "add_multiplied_base"
-        }
-      ]
-    },
-    {
-      "id": "grd3_5",
-      "x": -2.5,
-      "y": -1,
-      "name": {
         "text": "受け流し・返し"
       },
       "icon": "minecraft:shield",
       "cost": 2,
       "links": [
-        "atk2_0",
-        "atk3_0",
-        "grd3_4",
-        "grd2_3"
+        "grd2_3",
+        "grd3_3"
       ],
       "effects": [
         {
@@ -807,13 +786,35 @@
       ]
     },
     {
+      "id": "grd3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "atk2_0",
+        "atk3_0",
+        "grd3_4",
+        "grd2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
       "id": "atk4_0",
       "x": -3.0,
       "y": -2,
       "name": {
         "text": "鋭刃 IV"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "atk3_0",
@@ -831,9 +832,9 @@
       "x": -2.5,
       "y": -3,
       "name": {
-        "text": "会心 III"
+        "text": "会心 IV"
       },
-      "icon": "minecraft:spectral_arrow",
+      "icon": "minecraft:arrow",
       "cost": 2,
       "links": [
         "atk3_1",
@@ -843,7 +844,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_chance",
-          "amount": 0.05
+          "amount": 0.06
         }
       ]
     },
@@ -852,10 +853,10 @@
       "x": -2.0,
       "y": -4,
       "name": {
-        "text": "会心撃 III"
+        "text": "会心撃 IV"
       },
-      "icon": "minecraft:blaze_rod",
-      "cost": 3,
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
       "links": [
         "atk4_1",
         "atk3_1"
@@ -900,35 +901,14 @@
       "x": 0.0,
       "y": -4,
       "name": {
-        "text": "連撃"
+        "text": "速剣 IV"
       },
-      "icon": "minecraft:flint",
-      "cost": 3,
+      "icon": "minecraft:feather",
+      "cost": 2,
       "links": [
         "atk4_3",
         "atk3_2",
         "atk3_3"
-      ],
-      "effects": [
-        {
-          "grant": "jsn_craft:sword/board/combo"
-        }
-      ],
-      "hidden": true
-    },
-    {
-      "id": "atk4_5",
-      "x": 1.0,
-      "y": -4,
-      "name": {
-        "text": "速剣 III"
-      },
-      "icon": "minecraft:sugar",
-      "cost": 3,
-      "links": [
-        "atk4_4",
-        "atk3_3",
-        "atk3_4"
       ],
       "effects": [
         {
@@ -938,14 +918,35 @@
       ]
     },
     {
+      "id": "atk4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "連撃"
+      },
+      "icon": "minecraft:flint",
+      "cost": 3,
+      "links": [
+        "atk4_4",
+        "atk3_3",
+        "atk3_4"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:sword/board/combo"
+        }
+      ],
+      "hidden": true
+    },
+    {
       "id": "atk4_6",
       "x": 2.0,
       "y": -4,
       "name": {
-        "text": "鋭刃 V"
+        "text": "鋭刃 IV"
       },
-      "icon": "minecraft:diamond_sword",
-      "cost": 3,
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
       "links": [
         "atk4_5",
         "atk3_4"
@@ -953,20 +954,19 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_damage",
-          "amount": 1.5
+          "amount": 1.0
         }
-      ],
-      "min_level": 35
+      ]
     },
     {
       "id": "atk4_7",
       "x": 2.5,
       "y": -3,
       "name": {
-        "text": "吸血の刃"
+        "text": "吸血の刃 IV"
       },
       "icon": "minecraft:fermented_spider_eye",
-      "cost": 3,
+      "cost": 2,
       "links": [
         "atk4_6",
         "atk3_4",
@@ -984,14 +984,35 @@
       "x": 3.0,
       "y": -2,
       "name": {
-        "text": "斬り払い奥伝"
+        "text": "気力 IV"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "atk4_7",
         "atk3_5",
         "tec3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "tec4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "斬り払い奥伝"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "tec4_0",
+        "tec3_0",
+        "tec3_1"
       ],
       "effects": [
         {
@@ -1002,43 +1023,22 @@
       ]
     },
     {
-      "id": "tec4_1",
-      "x": 3.5,
-      "y": -1,
-      "name": {
-        "text": "呼吸法 II"
-      },
-      "icon": "minecraft:honey_bottle",
-      "cost": 2,
-      "links": [
-        "tec4_0",
-        "tec3_0",
-        "tec3_1"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.5
-        }
-      ]
-    },
-    {
       "id": "tec4_2",
       "x": 4.0,
       "y": 0,
       "name": {
-        "text": "技の冴え II"
+        "text": "呼吸法 IV"
       },
-      "icon": "minecraft:glowstone",
-      "cost": 3,
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
       "links": [
         "tec4_1",
         "tec3_1"
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.1
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
         }
       ]
     },
@@ -1095,10 +1095,10 @@
       "x": 2.5,
       "y": 3,
       "name": {
-        "text": "早業 II"
+        "text": "気力 IV"
       },
-      "icon": "minecraft:clock",
-      "cost": 3,
+      "icon": "minecraft:bread",
+      "cost": 2,
       "links": [
         "tec4_4",
         "tec3_3",
@@ -1106,8 +1106,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.05
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
         }
       ]
     },
@@ -1137,9 +1137,9 @@
       "x": 1.0,
       "y": 4,
       "name": {
-        "text": "省力 II"
+        "text": "呼吸法 IV"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
         "tec4_6",
@@ -1148,8 +1148,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.05
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
         }
       ]
     },
@@ -1160,7 +1160,7 @@
       "name": {
         "text": "頑健 IV"
       },
-      "icon": "minecraft:golden_apple",
+      "icon": "minecraft:apple",
       "cost": 2,
       "links": [
         "tec4_7",
@@ -1179,10 +1179,10 @@
       "x": -1.0,
       "y": 4,
       "name": {
-        "text": "守りの心得 II"
+        "text": "鉄の肌 IV"
       },
-      "icon": "minecraft:diamond_chestplate",
-      "cost": 3,
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
       "links": [
         "grd4_0",
         "grd3_0",
@@ -1190,8 +1190,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.04
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
         }
       ]
     },
@@ -1200,7 +1200,7 @@
       "x": -2.0,
       "y": 4,
       "name": {
-        "text": "踏ん張り II"
+        "text": "踏ん張り IV"
       },
       "icon": "minecraft:iron_boots",
       "cost": 2,
@@ -1269,10 +1269,10 @@
       "x": -3.5,
       "y": 1,
       "name": {
-        "text": "見切り奥伝"
+        "text": "守りの心得 IV"
       },
-      "icon": "minecraft:phantom_membrane",
-      "cost": 3,
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
       "links": [
         "grd3_3",
         "grd3_4",
@@ -1280,9 +1280,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/foresight",
-          "field": "chance",
-          "amount": 0.05
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
         }
       ]
     },
@@ -1291,9 +1290,9 @@
       "x": -4.0,
       "y": 0,
       "name": {
-        "text": "鉄の肌 IV"
+        "text": "軽身 IV"
       },
-      "icon": "minecraft:diamond_block",
+      "icon": "minecraft:leather_boots",
       "cost": 2,
       "links": [
         "grd3_4",
@@ -1301,8 +1300,9 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.armor",
-          "amount": 2
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.04,
+          "operation": "add_multiplied_base"
         }
       ]
     },
@@ -1311,10 +1311,10 @@
       "x": -3.5,
       "y": -1,
       "name": {
-        "text": "修練の証"
+        "text": "頑健 IV"
       },
-      "icon": "minecraft:experience_bottle",
-      "cost": 1,
+      "icon": "minecraft:apple",
+      "cost": 2,
       "links": [
         "grd3_5",
         "atk4_0",
@@ -1323,8 +1323,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:job_xp_bonus",
-          "amount": 0.05
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
         }
       ]
     }

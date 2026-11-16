@@ -133,9 +133,9 @@
       "x": 0.5,
       "y": 1,
       "name": {
-        "text": "斬り払い・覚醒 I"
+        "text": "練気 I"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:honey_bottle",
       "cost": 1,
       "links": [
         "tec1_0",
@@ -143,9 +143,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
-          "field": "power_pct",
-          "amount": 0.1
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.495
         }
       ]
     },
@@ -206,7 +205,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_damage",
-          "amount": 0.1
+          "amount": 0.101
         }
       ]
     },
@@ -226,7 +225,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.1
+          "amount": 0.101
         }
       ]
     },
@@ -267,7 +266,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:lifesteal",
-          "amount": 0.01
+          "amount": 0.011
         }
       ]
     },
@@ -276,9 +275,9 @@
       "x": 1.5,
       "y": -1,
       "name": {
-        "text": "練気 II"
+        "text": "極技 II"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:glowstone_dust",
       "cost": 1,
       "links": [
         "atk2_3",
@@ -287,8 +286,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.5
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.041
         }
       ]
     },
@@ -297,9 +296,9 @@
       "x": 2.0,
       "y": 0,
       "name": {
-        "text": "旋風斬・覚醒 II"
+        "text": "瞬身 II"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:clock",
       "cost": 1,
       "links": [
         "tec2_0",
@@ -307,9 +306,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
-          "field": "power_pct",
-          "amount": 0.1
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.03
         }
       ]
     },
@@ -318,9 +316,9 @@
       "x": 1.5,
       "y": 1,
       "name": {
-        "text": "極技 II"
+        "text": "省気 II"
       },
-      "icon": "minecraft:glowstone_dust",
+      "icon": "minecraft:leather",
       "cost": 1,
       "links": [
         "tec2_1",
@@ -329,8 +327,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.04
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.03
         }
       ]
     },
@@ -339,9 +337,9 @@
       "x": 1.0,
       "y": 2,
       "name": {
-        "text": "蒼閃・覚醒 II"
+        "text": "斬り払い・覚醒 II"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:iron_sword",
       "cost": 1,
       "links": [
         "tec2_2",
@@ -349,9 +347,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
+          "skill": "jsn_craft:sword/sweep",
           "field": "power_pct",
-          "amount": 0.1
+          "amount": 0.101
         }
       ]
     },
@@ -372,7 +370,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.02
+          "amount": 0.019
         }
       ]
     },
@@ -413,7 +411,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:hp_regen",
-          "amount": 0.1
+          "amount": 0.101
         }
       ]
     },
@@ -434,7 +432,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.02,
+          "amount": 0.019,
           "operation": "add_multiplied_base"
         }
       ]
@@ -455,7 +453,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_damage",
-          "amount": 0.975
+          "amount": 1.0
         }
       ]
     },
@@ -475,7 +473,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_chance",
-          "amount": 0.039
+          "amount": 0.04
         }
       ]
     },
@@ -496,7 +494,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_damage",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -537,7 +535,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -546,9 +544,9 @@
       "x": 2.0,
       "y": -2,
       "name": {
-        "text": "ボス殺し III"
+        "text": "剛力 III"
       },
-      "icon": "minecraft:wither_skeleton_skull",
+      "icon": "minecraft:iron_sword",
       "cost": 1,
       "links": [
         "atk3_4",
@@ -557,8 +555,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.065
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.0
         }
       ]
     },
@@ -567,9 +565,9 @@
       "x": 2.5,
       "y": -1,
       "name": {
-        "text": "瞬身 III"
+        "text": "旋風斬・覚醒 III"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:breeze_rod",
       "cost": 1,
       "links": [
         "atk3_5",
@@ -578,8 +576,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.039
+          "skill": "jsn_craft:sword/whirlwind",
+          "field": "power_pct",
+          "amount": 0.134
         }
       ]
     },
@@ -588,9 +587,9 @@
       "x": 3.0,
       "y": 0,
       "name": {
-        "text": "居合・覚醒 III"
+        "text": "蒼閃・覚醒 III"
       },
-      "icon": "minecraft:netherite_sword",
+      "icon": "minecraft:diamond_sword",
       "cost": 1,
       "links": [
         "tec3_0",
@@ -598,9 +597,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/iai",
+          "skill": "jsn_craft:sword/azure_flash",
           "field": "power_pct",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -609,9 +608,9 @@
       "x": 2.5,
       "y": 1,
       "name": {
-        "text": "省気 III"
+        "text": "居合・覚醒 III"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:netherite_sword",
       "cost": 1,
       "links": [
         "tec3_1",
@@ -620,8 +619,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.039
+          "skill": "jsn_craft:sword/iai",
+          "field": "power_pct",
+          "amount": 0.134
         }
       ]
     },
@@ -643,7 +643,7 @@
         {
           "skill": "jsn_craft:sword/parry",
           "field": "power_pct",
-          "amount": 0.26
+          "amount": 0.266
         }
       ]
     },
@@ -664,7 +664,7 @@
         {
           "skill": "jsn_craft:sword_saint/sky_rend",
           "field": "power_pct",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -686,7 +686,7 @@
         {
           "skill": "jsn_craft:sword_saint/thousand_blades",
           "field": "power_pct",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -707,7 +707,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.max_health",
-          "amount": 3.9
+          "amount": 4
         }
       ]
     },
@@ -727,7 +727,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.armor",
-          "amount": 1.95
+          "amount": 2
         }
       ]
     },
@@ -778,9 +778,9 @@
       "x": -3.0,
       "y": 0,
       "name": {
-        "text": "不動 III"
+        "text": "金剛体 III"
       },
-      "icon": "minecraft:iron_boots",
+      "icon": "minecraft:golden_apple",
       "cost": 1,
       "links": [
         "grd2_3",
@@ -788,8 +788,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.065
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
         }
       ]
     },
@@ -798,9 +798,9 @@
       "x": -2.5,
       "y": -1,
       "name": {
-        "text": "再生 III"
+        "text": "鋼の肌 III"
       },
-      "icon": "minecraft:glistering_melon_slice",
+      "icon": "minecraft:iron_block",
       "cost": 1,
       "links": [
         "atk2_0",
@@ -810,8 +810,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:hp_regen",
-          "amount": 0.13
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
         }
       ]
     },
@@ -820,9 +820,9 @@
       "x": -3.0,
       "y": -2,
       "name": {
-        "text": "血刃 IV"
+        "text": "必殺 IV"
       },
-      "icon": "minecraft:fermented_spider_eye",
+      "icon": "minecraft:spectral_arrow",
       "cost": 1,
       "links": [
         "atk3_0",
@@ -830,8 +830,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.013
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.04
         }
       ]
     },
@@ -840,9 +840,9 @@
       "x": -2.5,
       "y": -3,
       "name": {
-        "text": "剛力 IV"
+        "text": "痛撃 IV"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
         "atk3_1",
@@ -851,8 +851,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_damage",
-          "amount": 0.975
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
         }
       ]
     },
@@ -861,9 +861,9 @@
       "x": -2.0,
       "y": -4,
       "name": {
-        "text": "必殺 IV"
+        "text": "神速 IV"
       },
-      "icon": "minecraft:spectral_arrow",
+      "icon": "minecraft:feather",
       "cost": 1,
       "links": [
         "atk4_1",
@@ -871,8 +871,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:crit_chance",
-          "amount": 0.039
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.134
         }
       ]
     },
@@ -881,9 +881,9 @@
       "x": -1.0,
       "y": -4,
       "name": {
-        "text": "痛撃 IV"
+        "text": "ボス殺し IV"
       },
-      "icon": "minecraft:blaze_powder",
+      "icon": "minecraft:wither_skeleton_skull",
       "cost": 2,
       "links": [
         "atk4_2",
@@ -892,8 +892,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:crit_damage",
-          "amount": 0.13
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.066
         }
       ]
     },
@@ -902,9 +902,9 @@
       "x": 0.0,
       "y": -4,
       "name": {
-        "text": "神速 IV"
+        "text": "血刃 IV"
       },
-      "icon": "minecraft:feather",
+      "icon": "minecraft:fermented_spider_eye",
       "cost": 1,
       "links": [
         "atk4_3",
@@ -913,8 +913,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.13
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.014
         }
       ]
     },
@@ -923,9 +923,9 @@
       "x": 1.0,
       "y": -4,
       "name": {
-        "text": "ボス殺し IV"
+        "text": "剛力 IV"
       },
-      "icon": "minecraft:wither_skeleton_skull",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "atk4_4",
@@ -934,8 +934,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.065
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.0
         }
       ]
     },
@@ -944,9 +944,9 @@
       "x": 2.0,
       "y": -4,
       "name": {
-        "text": "血刃 IV"
+        "text": "必殺 IV"
       },
-      "icon": "minecraft:fermented_spider_eye",
+      "icon": "minecraft:spectral_arrow",
       "cost": 1,
       "links": [
         "atk4_5",
@@ -954,8 +954,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.013
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.04
         }
       ]
     },
@@ -964,9 +964,9 @@
       "x": 2.5,
       "y": -3,
       "name": {
-        "text": "剛力 IV"
+        "text": "痛撃 IV"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
         "atk4_6",
@@ -975,8 +975,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_damage",
-          "amount": 0.975
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
         }
       ]
     },
@@ -998,7 +998,7 @@
         {
           "skill": "jsn_craft:sword_saint/azure_moon",
           "field": "power_pct",
-          "amount": 0.13
+          "amount": 0.134
         }
       ]
     },
@@ -1019,7 +1019,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:max_stamina",
-          "amount": 19.5
+          "amount": 20
         }
       ]
     },
@@ -1049,9 +1049,9 @@
       "x": 3.5,
       "y": 1,
       "name": {
-        "text": "斬り払い・覚醒 IV"
+        "text": "練気 IV"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
         "tec4_2",
@@ -1060,9 +1060,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
-          "field": "power_pct",
-          "amount": 0.13
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.66
         }
       ]
     },
@@ -1099,9 +1098,9 @@
       "x": 2.5,
       "y": 3,
       "name": {
-        "text": "練気 IV"
+        "text": "極技 IV"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "tec4_4",
@@ -1110,8 +1109,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.65
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.054
         }
       ]
     },
@@ -1120,9 +1119,9 @@
       "x": 2.0,
       "y": 4,
       "name": {
-        "text": "旋風斬・覚醒 IV"
+        "text": "闘気 IV"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:bread",
       "cost": 1,
       "links": [
         "tec4_5",
@@ -1130,9 +1129,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
-          "field": "power_pct",
-          "amount": 0.13
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
         }
       ]
     },
@@ -1141,9 +1139,9 @@
       "x": 1.0,
       "y": 4,
       "name": {
-        "text": "極技 IV"
+        "text": "練気 IV"
       },
-      "icon": "minecraft:glowstone_dust",
+      "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
         "tec4_6",
@@ -1152,8 +1150,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.052
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.66
         }
       ]
     },
@@ -1162,77 +1160,14 @@
       "x": 0.0,
       "y": 4,
       "name": {
-        "text": "疾駆 IV"
+        "text": "守護 IV"
       },
-      "icon": "minecraft:leather_boots",
+      "icon": "minecraft:diamond_chestplate",
       "cost": 1,
       "links": [
         "tec4_7",
         "tec3_5",
         "grd3_0"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.026,
-          "operation": "add_multiplied_base"
-        }
-      ]
-    },
-    {
-      "id": "grd4_1",
-      "x": -1.0,
-      "y": 4,
-      "name": {
-        "text": "金剛体 IV"
-      },
-      "icon": "minecraft:golden_apple",
-      "cost": 2,
-      "links": [
-        "grd4_0",
-        "grd3_0",
-        "grd3_1"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.max_health",
-          "amount": 3.9
-        }
-      ]
-    },
-    {
-      "id": "grd4_2",
-      "x": -2.0,
-      "y": 4,
-      "name": {
-        "text": "鋼の肌 IV"
-      },
-      "icon": "minecraft:iron_block",
-      "cost": 1,
-      "links": [
-        "grd4_1",
-        "grd3_1"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.armor",
-          "amount": 1.95
-        }
-      ]
-    },
-    {
-      "id": "grd4_3",
-      "x": -2.5,
-      "y": 3,
-      "name": {
-        "text": "守護 IV"
-      },
-      "icon": "minecraft:diamond_chestplate",
-      "cost": 2,
-      "links": [
-        "grd3_1",
-        "grd3_2",
-        "grd4_2"
       ],
       "effects": [
         {
@@ -1242,13 +1177,76 @@
       ]
     },
     {
-      "id": "grd4_4",
-      "x": -3.0,
-      "y": 2,
+      "id": "grd4_1",
+      "x": -1.0,
+      "y": 4,
       "name": {
         "text": "不動 IV"
       },
       "icon": "minecraft:iron_boots",
+      "cost": 2,
+      "links": [
+        "grd4_0",
+        "grd3_0",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.066
+        }
+      ]
+    },
+    {
+      "id": "grd4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "grd4_1",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.134
+        }
+      ]
+    },
+    {
+      "id": "grd4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "疾駆 IV"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "grd3_1",
+        "grd3_2",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.026,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "grd4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "金剛体 IV"
+      },
+      "icon": "minecraft:golden_apple",
       "cost": 1,
       "links": [
         "grd3_2",
@@ -1257,8 +1255,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.065
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
         }
       ]
     },
@@ -1267,9 +1265,9 @@
       "x": -3.5,
       "y": 1,
       "name": {
-        "text": "再生 IV"
+        "text": "鋼の肌 IV"
       },
-      "icon": "minecraft:glistering_melon_slice",
+      "icon": "minecraft:iron_block",
       "cost": 2,
       "links": [
         "grd3_3",
@@ -1278,8 +1276,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:hp_regen",
-          "amount": 0.13
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
         }
       ]
     },
@@ -1288,9 +1286,9 @@
       "x": -4.0,
       "y": 0,
       "name": {
-        "text": "疾駆 IV"
+        "text": "守護 IV"
       },
-      "icon": "minecraft:leather_boots",
+      "icon": "minecraft:diamond_chestplate",
       "cost": 1,
       "links": [
         "grd3_4",
@@ -1298,9 +1296,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.026,
-          "operation": "add_multiplied_base"
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
         }
       ]
     },
@@ -1322,7 +1319,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.max_health",
-          "amount": 3.9
+          "amount": 4
         }
       ]
     },
@@ -1331,13 +1328,54 @@
       "x": -3.5,
       "y": -3,
       "name": {
+        "text": "神速 V"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "atk4_1",
+        "atk4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "atk5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "剛力 V"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "atk4_2",
+        "atk5_0",
+        "atk4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "atk5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
         "text": "必殺 V"
       },
       "icon": "minecraft:spectral_arrow",
       "cost": 2,
       "links": [
-        "atk4_1",
-        "atk4_0"
+        "atk5_1",
+        "atk4_2"
       ],
       "effects": [
         {
@@ -1347,54 +1385,13 @@
       ]
     },
     {
-      "id": "atk5_1",
-      "x": -3.0,
-      "y": -4,
-      "name": {
-        "text": "痛撃 V"
-      },
-      "icon": "minecraft:blaze_powder",
-      "cost": 2,
-      "links": [
-        "atk4_2",
-        "atk5_0",
-        "atk4_1"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:crit_damage",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "atk5_2",
-      "x": -2.5,
-      "y": -5,
-      "name": {
-        "text": "神速 V"
-      },
-      "icon": "minecraft:feather",
-      "cost": 2,
-      "links": [
-        "atk5_1",
-        "atk4_2"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
       "id": "atk5_3",
       "x": -1.5,
       "y": -5,
       "name": {
-        "text": "ボス殺し V"
+        "text": "痛撃 V"
       },
-      "icon": "minecraft:wither_skeleton_skull",
+      "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
         "atk5_2",
@@ -1403,8 +1400,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.08
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
         }
       ]
     },
@@ -1413,9 +1410,9 @@
       "x": -0.5,
       "y": -5,
       "name": {
-        "text": "血刃 V"
+        "text": "神速 V"
       },
-      "icon": "minecraft:fermented_spider_eye",
+      "icon": "minecraft:feather",
       "cost": 2,
       "links": [
         "atk5_3",
@@ -1424,8 +1421,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.016
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.161
         }
       ]
     },
@@ -1462,14 +1459,55 @@
       "x": 1.5,
       "y": -5,
       "name": {
-        "text": "剛力 V"
+        "text": "ボス殺し V"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:wither_skeleton_skull",
       "cost": 2,
       "links": [
         "atk5_5",
         "atk4_5",
         "atk4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.079
+        }
+      ]
+    },
+    {
+      "id": "atk5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "血刃 V"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 2,
+      "links": [
+        "atk5_6",
+        "atk4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.017
+        }
+      ]
+    },
+    {
+      "id": "atk5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "剛力 V"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "atk5_7",
+        "atk4_6",
+        "atk4_7"
       ],
       "effects": [
         {
@@ -1479,17 +1517,18 @@
       ]
     },
     {
-      "id": "atk5_7",
-      "x": 2.5,
-      "y": -5,
+      "id": "atk5_9",
+      "x": 3.5,
+      "y": -3,
       "name": {
         "text": "必殺 V"
       },
       "icon": "minecraft:spectral_arrow",
       "cost": 2,
       "links": [
-        "atk5_6",
-        "atk4_6"
+        "atk5_8",
+        "atk4_7",
+        "tec4_0"
       ],
       "effects": [
         {
@@ -1499,55 +1538,13 @@
       ]
     },
     {
-      "id": "atk5_8",
-      "x": 3.0,
-      "y": -4,
-      "name": {
-        "text": "痛撃 V"
-      },
-      "icon": "minecraft:blaze_powder",
-      "cost": 2,
-      "links": [
-        "atk5_7",
-        "atk4_6",
-        "atk4_7"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:crit_damage",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "atk5_9",
-      "x": 3.5,
-      "y": -3,
-      "name": {
-        "text": "神速 V"
-      },
-      "icon": "minecraft:feather",
-      "cost": 2,
-      "links": [
-        "atk5_8",
-        "atk4_7",
-        "tec4_0"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
       "id": "tec5_0",
       "x": 4.0,
       "y": -2,
       "name": {
-        "text": "蒼閃・覚醒 V"
+        "text": "極技 V"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "atk5_9",
@@ -1556,9 +1553,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
-          "field": "power_pct",
-          "amount": 0.16
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.065
         }
       ]
     },
@@ -1588,35 +1584,13 @@
       "x": 5.0,
       "y": 0,
       "name": {
-        "text": "居合・覚醒 V"
-      },
-      "icon": "minecraft:netherite_sword",
-      "cost": 2,
-      "links": [
-        "tec5_1",
-        "tec4_2"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/iai",
-          "field": "power_pct",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "tec5_3",
-      "x": 4.5,
-      "y": 1,
-      "name": {
         "text": "省気 V"
       },
       "icon": "minecraft:leather",
       "cost": 2,
       "links": [
-        "tec5_2",
-        "tec4_2",
-        "tec4_3"
+        "tec5_1",
+        "tec4_2"
       ],
       "effects": [
         {
@@ -1626,13 +1600,35 @@
       ]
     },
     {
+      "id": "tec5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "斬り払い・覚醒 V"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "tec5_2",
+        "tec4_2",
+        "tec4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/sweep",
+          "field": "power_pct",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
       "id": "tec5_4",
       "x": 4.0,
       "y": 2,
       "name": {
-        "text": "受け流し・覚醒 V"
+        "text": "旋風斬・覚醒 V"
       },
-      "icon": "minecraft:shield",
+      "icon": "minecraft:breeze_rod",
       "cost": 2,
       "links": [
         "tec5_3",
@@ -1641,9 +1637,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
+          "skill": "jsn_craft:sword/whirlwind",
           "field": "power_pct",
-          "amount": 0.32
+          "amount": 0.161
         }
       ]
     },
@@ -1676,9 +1672,9 @@
       "x": 3.0,
       "y": 4,
       "name": {
-        "text": "天翔蒼刃・覚醒 V"
+        "text": "蒼閃・覚醒 V"
       },
-      "icon": "minecraft:mace",
+      "icon": "minecraft:diamond_sword",
       "cost": 2,
       "links": [
         "tec5_5",
@@ -1687,9 +1683,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword_saint/sky_rend",
+          "skill": "jsn_craft:sword/azure_flash",
           "field": "power_pct",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -1698,9 +1694,9 @@
       "x": 2.5,
       "y": 5,
       "name": {
-        "text": "千刃乱舞・覚醒 V"
+        "text": "居合・覚醒 V"
       },
-      "icon": "minecraft:golden_sword",
+      "icon": "minecraft:netherite_sword",
       "cost": 2,
       "links": [
         "tec5_6",
@@ -1708,9 +1704,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword_saint/thousand_blades",
+          "skill": "jsn_craft:sword/iai",
           "field": "power_pct",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -1719,9 +1715,9 @@
       "x": 1.5,
       "y": 5,
       "name": {
-        "text": "天穹蒼月・覚醒 V"
+        "text": "受け流し・覚醒 V"
       },
-      "icon": "minecraft:end_crystal",
+      "icon": "minecraft:shield",
       "cost": 2,
       "links": [
         "tec5_7",
@@ -1730,9 +1726,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword_saint/azure_moon",
+          "skill": "jsn_craft:sword/parry",
           "field": "power_pct",
-          "amount": 0.16
+          "amount": 0.319
         }
       ]
     },
@@ -1741,9 +1737,9 @@
       "x": 0.5,
       "y": 5,
       "name": {
-        "text": "闘気 V"
+        "text": "天翔蒼刃・覚醒 V"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:mace",
       "cost": 2,
       "links": [
         "tec5_8",
@@ -1752,8 +1748,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 24.0
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "power_pct",
+          "amount": 0.161
         }
       ]
     },
@@ -1795,7 +1792,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.032
+          "amount": 0.031
         }
       ]
     },
@@ -1815,7 +1812,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.08
+          "amount": 0.079
         }
       ]
     },
@@ -1836,7 +1833,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:hp_regen",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -1857,7 +1854,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.032,
+          "amount": 0.031,
           "operation": "add_multiplied_base"
         }
       ]
@@ -1947,7 +1944,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.032
+          "amount": 0.031
         }
       ]
     },
@@ -1956,9 +1953,9 @@
       "x": -4.0,
       "y": -2,
       "name": {
-        "text": "不動 V"
+        "text": "金剛体 V"
       },
-      "icon": "minecraft:iron_boots",
+      "icon": "minecraft:golden_apple",
       "cost": 2,
       "links": [
         "atk4_0",
@@ -1968,8 +1965,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.08
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
         }
       ]
     },
@@ -1978,9 +1975,9 @@
       "x": -4.5,
       "y": -3,
       "name": {
-        "text": "ボス殺し VI"
+        "text": "痛撃 VI"
       },
-      "icon": "minecraft:wither_skeleton_skull",
+      "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
         "atk5_0",
@@ -1988,8 +1985,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.08
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
         }
       ]
     },
@@ -1998,9 +1995,9 @@
       "x": -4.0,
       "y": -4,
       "name": {
-        "text": "血刃 VI"
+        "text": "神速 VI"
       },
-      "icon": "minecraft:fermented_spider_eye",
+      "icon": "minecraft:feather",
       "cost": 2,
       "links": [
         "atk5_1",
@@ -2009,8 +2006,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.016
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.161
         }
       ]
     },
@@ -2093,7 +2090,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_damage",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -2114,7 +2111,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -2135,7 +2132,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:boss_damage",
-          "amount": 0.08
+          "amount": 0.079
         }
       ]
     },
@@ -2176,7 +2173,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:lifesteal",
-          "amount": 0.016
+          "amount": 0.017
         }
       ]
     },
@@ -2227,9 +2224,9 @@
       "x": 4.5,
       "y": -3,
       "name": {
-        "text": "斬り払い・覚醒 VI"
+        "text": "千刃乱舞・覚醒 VI"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:golden_sword",
       "cost": 2,
       "links": [
         "atk6_11",
@@ -2238,9 +2235,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
+          "skill": "jsn_craft:sword_saint/thousand_blades",
           "field": "power_pct",
-          "amount": 0.16
+          "amount": 0.161
         }
       ]
     },
@@ -2249,9 +2246,9 @@
       "x": 5.0,
       "y": -2,
       "name": {
-        "text": "練気 VI"
+        "text": "天穹蒼月・覚醒 VI"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:end_crystal",
       "cost": 2,
       "links": [
         "tec6_0",
@@ -2260,8 +2257,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.8
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.161
         }
       ]
     },
@@ -2270,9 +2268,9 @@
       "x": 5.5,
       "y": -1,
       "name": {
-        "text": "旋風斬・覚醒 VI"
+        "text": "闘気 VI"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "tec6_1",
@@ -2281,9 +2279,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
-          "field": "power_pct",
-          "amount": 0.16
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
         }
       ]
     },
@@ -2315,9 +2312,9 @@
       "x": 5.5,
       "y": 1,
       "name": {
-        "text": "極技 VI"
+        "text": "練気 VI"
       },
-      "icon": "minecraft:glowstone_dust",
+      "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
         "tec6_3",
@@ -2326,8 +2323,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.064
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.792
         }
       ]
     },
@@ -2336,9 +2333,9 @@
       "x": 5.0,
       "y": 2,
       "name": {
-        "text": "蒼閃・覚醒 VI"
+        "text": "極技 VI"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "tec6_4",
@@ -2347,9 +2344,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
-          "field": "power_pct",
-          "amount": 0.16
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.065
         }
       ]
     },
@@ -2381,14 +2377,76 @@
       "x": 4.0,
       "y": 4,
       "name": {
-        "text": "瞬身 VI"
+        "text": "闘気 VI"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "tec6_6",
         "tec5_5",
         "tec5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "tec6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "練気 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec6_7",
+        "tec5_6",
+        "tec5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.792
+        }
+      ]
+    },
+    {
+      "id": "tec6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "極技 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "tec6_8",
+        "tec5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.065
+        }
+      ]
+    },
+    {
+      "id": "tec6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "瞬身 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "tec6_9",
+        "tec5_7",
+        "tec5_8"
       ],
       "effects": [
         {
@@ -2398,30 +2456,8 @@
       ]
     },
     {
-      "id": "tec6_8",
-      "x": 3.5,
-      "y": 5,
-      "name": {
-        "text": "居合・覚醒 VI"
-      },
-      "icon": "minecraft:netherite_sword",
-      "cost": 2,
-      "links": [
-        "tec6_7",
-        "tec5_6",
-        "tec5_7"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/iai",
-          "field": "power_pct",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "tec6_9",
-      "x": 3.0,
+      "id": "tec6_11",
+      "x": 1.0,
       "y": 6,
       "name": {
         "text": "省気 VI"
@@ -2429,8 +2465,9 @@
       "icon": "minecraft:leather",
       "cost": 2,
       "links": [
-        "tec6_8",
-        "tec5_7"
+        "tec6_10",
+        "tec5_8",
+        "tec5_9"
       ],
       "effects": [
         {
@@ -2440,116 +2477,8 @@
       ]
     },
     {
-      "id": "tec6_10",
-      "x": 2.0,
-      "y": 6,
-      "name": {
-        "text": "受け流し・覚醒 VI"
-      },
-      "icon": "minecraft:shield",
-      "cost": 2,
-      "links": [
-        "tec6_9",
-        "tec5_7",
-        "tec5_8"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/parry",
-          "field": "power_pct",
-          "amount": 0.32
-        }
-      ]
-    },
-    {
-      "id": "tec6_11",
-      "x": 1.0,
-      "y": 6,
-      "name": {
-        "text": "天翔蒼刃・覚醒 VI"
-      },
-      "icon": "minecraft:mace",
-      "cost": 2,
-      "links": [
-        "tec6_10",
-        "tec5_8",
-        "tec5_9"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword_saint/sky_rend",
-          "field": "power_pct",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
       "id": "grd6_0",
       "x": 0.0,
-      "y": 6,
-      "name": {
-        "text": "再生 VI"
-      },
-      "icon": "minecraft:glistering_melon_slice",
-      "cost": 2,
-      "links": [
-        "tec6_11",
-        "tec5_9",
-        "grd5_0"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:hp_regen",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "grd6_1",
-      "x": -1.0,
-      "y": 6,
-      "name": {
-        "text": "疾駆 VI"
-      },
-      "icon": "minecraft:leather_boots",
-      "cost": 2,
-      "links": [
-        "grd6_0",
-        "grd5_0",
-        "grd5_1"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.032,
-          "operation": "add_multiplied_base"
-        }
-      ]
-    },
-    {
-      "id": "grd6_2",
-      "x": -2.0,
-      "y": 6,
-      "name": {
-        "text": "金剛体 VI"
-      },
-      "icon": "minecraft:golden_apple",
-      "cost": 2,
-      "links": [
-        "grd6_1",
-        "grd5_1",
-        "grd5_2"
-      ],
-      "effects": [
-        {
-          "attribute": "minecraft:generic.max_health",
-          "amount": 4.8
-        }
-      ]
-    },
-    {
-      "id": "grd6_3",
-      "x": -3.0,
       "y": 6,
       "name": {
         "text": "鋼の肌 VI"
@@ -2557,8 +2486,9 @@
       "icon": "minecraft:iron_block",
       "cost": 2,
       "links": [
-        "grd6_2",
-        "grd5_2"
+        "tec6_11",
+        "tec5_9",
+        "grd5_0"
       ],
       "effects": [
         {
@@ -2568,13 +2498,75 @@
       ]
     },
     {
-      "id": "grd6_4",
-      "x": -3.5,
-      "y": 5,
+      "id": "grd6_1",
+      "x": -1.0,
+      "y": 6,
       "name": {
         "text": "守護 VI"
       },
       "icon": "minecraft:diamond_chestplate",
+      "cost": 2,
+      "links": [
+        "grd6_0",
+        "grd5_0",
+        "grd5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "不動 VI"
+      },
+      "icon": "minecraft:iron_boots",
+      "cost": 2,
+      "links": [
+        "grd6_1",
+        "grd5_1",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.079
+        }
+      ]
+    },
+    {
+      "id": "grd6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_2",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "grd6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "疾駆 VI"
+      },
+      "icon": "minecraft:leather_boots",
       "cost": 2,
       "links": [
         "grd5_2",
@@ -2583,8 +2575,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.032
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.031,
+          "operation": "add_multiplied_base"
         }
       ]
     },
@@ -2593,9 +2586,9 @@
       "x": -4.0,
       "y": 4,
       "name": {
-        "text": "不動 VI"
+        "text": "金剛体 VI"
       },
-      "icon": "minecraft:iron_boots",
+      "icon": "minecraft:golden_apple",
       "cost": 2,
       "links": [
         "grd5_3",
@@ -2604,8 +2597,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.08
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
         }
       ]
     },
@@ -2635,9 +2628,9 @@
       "x": -5.0,
       "y": 2,
       "name": {
-        "text": "再生 VI"
+        "text": "鋼の肌 VI"
       },
-      "icon": "minecraft:glistering_melon_slice",
+      "icon": "minecraft:iron_block",
       "cost": 2,
       "links": [
         "grd5_5",
@@ -2646,8 +2639,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:hp_regen",
-          "amount": 0.16
+          "attribute": "minecraft:generic.armor",
+          "amount": 2.4
         }
       ]
     },
@@ -2656,9 +2649,9 @@
       "x": -5.5,
       "y": 1,
       "name": {
-        "text": "疾駆 VI"
+        "text": "守護 VI"
       },
-      "icon": "minecraft:leather_boots",
+      "icon": "minecraft:diamond_chestplate",
       "cost": 2,
       "links": [
         "grd5_6",
@@ -2667,9 +2660,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.032,
-          "operation": "add_multiplied_base"
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
         }
       ]
     },
@@ -2732,7 +2724,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.032
+          "amount": 0.031
         }
       ]
     },
@@ -2752,7 +2744,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:crit_damage",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -2773,7 +2765,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -2782,9 +2774,9 @@
       "x": -4.0,
       "y": -6,
       "name": {
-        "text": "ボス殺し VII"
+        "text": "剛力 VII"
       },
-      "icon": "minecraft:wither_skeleton_skull",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "atk6_3",
@@ -2793,8 +2785,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.1
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.5
         }
       ]
     },
@@ -2803,9 +2795,9 @@
       "x": -3.5,
       "y": -7,
       "name": {
-        "text": "血刃 VII"
+        "text": "必殺 VII"
       },
-      "icon": "minecraft:fermented_spider_eye",
+      "icon": "minecraft:spectral_arrow",
       "cost": 3,
       "links": [
         "atk7_2",
@@ -2813,8 +2805,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.02
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
         }
       ]
     },
@@ -2823,9 +2815,9 @@
       "x": -2.5,
       "y": -7,
       "name": {
-        "text": "剛力 VII"
+        "text": "痛撃 VII"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:blaze_powder",
       "cost": 2,
       "links": [
         "atk7_3",
@@ -2834,8 +2826,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_damage",
-          "amount": 1.5
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.201
         }
       ]
     },
@@ -2873,9 +2865,9 @@
       "x": -0.5,
       "y": -7,
       "name": {
-        "text": "必殺 VII"
+        "text": "神速 VII"
       },
-      "icon": "minecraft:spectral_arrow",
+      "icon": "minecraft:feather",
       "cost": 2,
       "links": [
         "atk7_5",
@@ -2884,8 +2876,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:crit_chance",
-          "amount": 0.06
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.201
         }
       ]
     },
@@ -2894,9 +2886,9 @@
       "x": 0.5,
       "y": -7,
       "name": {
-        "text": "痛撃 VII"
+        "text": "ボス殺し VII"
       },
-      "icon": "minecraft:blaze_powder",
+      "icon": "minecraft:wither_skeleton_skull",
       "cost": 3,
       "links": [
         "atk7_6",
@@ -2905,8 +2897,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:crit_damage",
-          "amount": 0.2
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.099
         }
       ]
     },
@@ -2915,9 +2907,9 @@
       "x": 1.5,
       "y": -7,
       "name": {
-        "text": "神速 VII"
+        "text": "血刃 VII"
       },
-      "icon": "minecraft:feather",
+      "icon": "minecraft:fermented_spider_eye",
       "cost": 2,
       "links": [
         "atk7_7",
@@ -2926,8 +2918,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.attack_speed",
-          "amount": 0.2
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.021
         }
       ]
     },
@@ -2964,55 +2956,13 @@
       "x": 3.5,
       "y": -7,
       "name": {
-        "text": "ボス殺し VII"
-      },
-      "icon": "minecraft:wither_skeleton_skull",
-      "cost": 2,
-      "links": [
-        "atk7_9",
-        "atk6_9"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:boss_damage",
-          "amount": 0.1
-        }
-      ]
-    },
-    {
-      "id": "atk7_11",
-      "x": 4.0,
-      "y": -6,
-      "name": {
-        "text": "血刃 VII"
-      },
-      "icon": "minecraft:fermented_spider_eye",
-      "cost": 3,
-      "links": [
-        "atk7_10",
-        "atk6_9",
-        "atk6_10"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:lifesteal",
-          "amount": 0.02
-        }
-      ]
-    },
-    {
-      "id": "atk7_12",
-      "x": 4.5,
-      "y": -5,
-      "name": {
         "text": "剛力 VII"
       },
       "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
-        "atk7_11",
-        "atk6_10",
-        "atk6_11"
+        "atk7_9",
+        "atk6_9"
       ],
       "effects": [
         {
@@ -3022,18 +2972,18 @@
       ]
     },
     {
-      "id": "atk7_13",
-      "x": 5.0,
-      "y": -4,
+      "id": "atk7_11",
+      "x": 4.0,
+      "y": -6,
       "name": {
         "text": "必殺 VII"
       },
       "icon": "minecraft:spectral_arrow",
       "cost": 3,
       "links": [
-        "atk7_12",
-        "atk6_11",
-        "tec6_0"
+        "atk7_10",
+        "atk6_9",
+        "atk6_10"
       ],
       "effects": [
         {
@@ -3043,13 +2993,55 @@
       ]
     },
     {
+      "id": "atk7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "痛撃 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "atk7_11",
+        "atk6_10",
+        "atk6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.201
+        }
+      ]
+    },
+    {
+      "id": "atk7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "神速 VII"
+      },
+      "icon": "minecraft:feather",
+      "cost": 3,
+      "links": [
+        "atk7_12",
+        "atk6_11",
+        "tec6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.201
+        }
+      ]
+    },
+    {
       "id": "tec7_0",
       "x": 5.5,
       "y": -3,
       "name": {
-        "text": "千刃乱舞・覚醒 VII"
+        "text": "斬り払い・覚醒 VII"
       },
-      "icon": "minecraft:golden_sword",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "atk7_13",
@@ -3058,9 +3050,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword_saint/thousand_blades",
+          "skill": "jsn_craft:sword/sweep",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3069,9 +3061,9 @@
       "x": 6.0,
       "y": -2,
       "name": {
-        "text": "天穹蒼月・覚醒 VII"
+        "text": "旋風斬・覚醒 VII"
       },
-      "icon": "minecraft:end_crystal",
+      "icon": "minecraft:breeze_rod",
       "cost": 3,
       "links": [
         "tec7_0",
@@ -3080,9 +3072,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword_saint/azure_moon",
+          "skill": "jsn_craft:sword/whirlwind",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3091,9 +3083,9 @@
       "x": 6.5,
       "y": -1,
       "name": {
-        "text": "闘気 VII"
+        "text": "蒼閃・覚醒 VII"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:diamond_sword",
       "cost": 2,
       "links": [
         "tec7_1",
@@ -3102,8 +3094,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 30.0
+          "skill": "jsn_craft:sword/azure_flash",
+          "field": "power_pct",
+          "amount": 0.201
         }
       ]
     },
@@ -3112,9 +3105,9 @@
       "x": 7.0,
       "y": 0,
       "name": {
-        "text": "斬り払い・覚醒 VII"
+        "text": "居合・覚醒 VII"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:netherite_sword",
       "cost": 3,
       "links": [
         "tec7_2",
@@ -3122,9 +3115,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
+          "skill": "jsn_craft:sword/iai",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3162,9 +3155,9 @@
       "x": 6.0,
       "y": 2,
       "name": {
-        "text": "練気 VII"
+        "text": "受け流し・覚醒 VII"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:shield",
       "cost": 3,
       "links": [
         "tec7_4",
@@ -3173,8 +3166,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 1.0
+          "skill": "jsn_craft:sword/parry",
+          "field": "power_pct",
+          "amount": 0.399
         }
       ]
     },
@@ -3183,9 +3177,9 @@
       "x": 5.5,
       "y": 3,
       "name": {
-        "text": "旋風斬・覚醒 VII"
+        "text": "天翔蒼刃・覚醒 VII"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:mace",
       "cost": 2,
       "links": [
         "tec7_5",
@@ -3194,9 +3188,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
+          "skill": "jsn_craft:sword_saint/sky_rend",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3232,9 +3226,9 @@
       "x": 4.5,
       "y": 5,
       "name": {
-        "text": "極技 VII"
+        "text": "千刃乱舞・覚醒 VII"
       },
-      "icon": "minecraft:glowstone_dust",
+      "icon": "minecraft:golden_sword",
       "cost": 2,
       "links": [
         "tec7_7",
@@ -3243,8 +3237,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.08
+          "skill": "jsn_craft:sword_saint/thousand_blades",
+          "field": "power_pct",
+          "amount": 0.201
         }
       ]
     },
@@ -3253,9 +3248,9 @@
       "x": 4.0,
       "y": 6,
       "name": {
-        "text": "蒼閃・覚醒 VII"
+        "text": "天穹蒼月・覚醒 VII"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:end_crystal",
       "cost": 3,
       "links": [
         "tec7_8",
@@ -3264,9 +3259,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
+          "skill": "jsn_craft:sword_saint/azure_moon",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3275,9 +3270,9 @@
       "x": 3.5,
       "y": 7,
       "name": {
-        "text": "瞬身 VII"
+        "text": "闘気 VII"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "tec7_9",
@@ -3285,8 +3280,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.06
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
         }
       ]
     },
@@ -3295,9 +3290,9 @@
       "x": 2.5,
       "y": 7,
       "name": {
-        "text": "居合・覚醒 VII"
+        "text": "練気 VII"
       },
-      "icon": "minecraft:netherite_sword",
+      "icon": "minecraft:honey_bottle",
       "cost": 3,
       "links": [
         "tec7_10",
@@ -3306,9 +3301,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/iai",
-          "field": "power_pct",
-          "amount": 0.2
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.99
         }
       ]
     },
@@ -3317,9 +3311,9 @@
       "x": 1.5,
       "y": 7,
       "name": {
-        "text": "省気 VII"
+        "text": "極技 VII"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "tec7_11",
@@ -3328,8 +3322,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.06
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.081
         }
       ]
     },
@@ -3338,9 +3332,9 @@
       "x": 0.5,
       "y": 7,
       "name": {
-        "text": "受け流し・覚醒 VII"
+        "text": "闘気 VII"
       },
-      "icon": "minecraft:shield",
+      "icon": "minecraft:bread",
       "cost": 3,
       "links": [
         "tec7_12",
@@ -3349,9 +3343,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
-          "field": "power_pct",
-          "amount": 0.4
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
         }
       ]
     },
@@ -3372,7 +3365,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.1
+          "amount": 0.099
         }
       ]
     },
@@ -3393,7 +3386,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:hp_regen",
-          "amount": 0.2
+          "amount": 0.201
         }
       ]
     },
@@ -3414,7 +3407,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.04,
+          "amount": 0.039,
           "operation": "add_multiplied_base"
         }
       ]
@@ -3435,7 +3428,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.max_health",
-          "amount": 6.0
+          "amount": 6
         }
       ]
     },
@@ -3456,7 +3449,7 @@
       "effects": [
         {
           "attribute": "minecraft:generic.armor",
-          "amount": 3.0
+          "amount": 3
         }
       ]
     },
@@ -3499,7 +3492,7 @@
       "effects": [
         {
           "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.04
+          "amount": 0.039
         }
       ]
     },
@@ -3508,9 +3501,9 @@
       "x": -5.5,
       "y": 3,
       "name": {
-        "text": "不動 VII"
+        "text": "金剛体 VII"
       },
-      "icon": "minecraft:iron_boots",
+      "icon": "minecraft:golden_apple",
       "cost": 3,
       "links": [
         "grd6_6",
@@ -3519,8 +3512,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.knockback_resistance",
-          "amount": 0.1
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
         }
       ]
     },
@@ -3529,9 +3522,9 @@
       "x": -6.0,
       "y": 2,
       "name": {
-        "text": "再生 VII"
+        "text": "鋼の肌 VII"
       },
-      "icon": "minecraft:glistering_melon_slice",
+      "icon": "minecraft:iron_block",
       "cost": 2,
       "links": [
         "grd6_7",
@@ -3540,8 +3533,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:hp_regen",
-          "amount": 0.2
+          "attribute": "minecraft:generic.armor",
+          "amount": 3
         }
       ]
     },
@@ -3581,9 +3574,9 @@
       "x": -7.0,
       "y": 0,
       "name": {
-        "text": "疾駆 VII"
+        "text": "守護 VII"
       },
-      "icon": "minecraft:leather_boots",
+      "icon": "minecraft:diamond_chestplate",
       "cost": 2,
       "links": [
         "grd6_9",
@@ -3591,9 +3584,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.04,
-          "operation": "add_multiplied_base"
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.039
         }
       ]
     },
@@ -3602,9 +3594,9 @@
       "x": -6.5,
       "y": -1,
       "name": {
-        "text": "金剛体 VII"
+        "text": "不動 VII"
       },
-      "icon": "minecraft:golden_apple",
+      "icon": "minecraft:iron_boots",
       "cost": 3,
       "links": [
         "grd6_10",
@@ -3613,8 +3605,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.max_health",
-          "amount": 6.0
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.099
         }
       ]
     },
@@ -3623,9 +3615,9 @@
       "x": -6.0,
       "y": -2,
       "name": {
-        "text": "鋼の肌 VII"
+        "text": "再生 VII"
       },
-      "icon": "minecraft:iron_block",
+      "icon": "minecraft:glistering_melon_slice",
       "cost": 2,
       "links": [
         "grd6_11",
@@ -3634,8 +3626,8 @@
       ],
       "effects": [
         {
-          "attribute": "minecraft:generic.armor",
-          "amount": 3.0
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.201
         }
       ]
     },
@@ -3644,9 +3636,9 @@
       "x": -5.5,
       "y": -3,
       "name": {
-        "text": "守護 VII"
+        "text": "疾駆 VII"
       },
-      "icon": "minecraft:diamond_chestplate",
+      "icon": "minecraft:leather_boots",
       "cost": 3,
       "links": [
         "atk6_0",
@@ -3656,8 +3648,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:damage_reduction",
-          "amount": 0.04
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.039,
+          "operation": "add_multiplied_base"
         }
       ]
     }
