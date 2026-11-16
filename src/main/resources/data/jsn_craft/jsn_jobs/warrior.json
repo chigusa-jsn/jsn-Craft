@@ -6,7 +6,7 @@
   "type": "combat",
   "tier": "basic",
   "max_level": 50,
-  "skill_points_per_level": 1,
+  "skill_points_per_level": 2,
   "xp": [
     {
       "action": "kill_entity",
