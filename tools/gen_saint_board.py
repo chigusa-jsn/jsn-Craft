@@ -22,6 +22,7 @@ def A(attr, amt, op=None):
     if op: d["operation"]=op
     return d
 def S(skill, field, amt): return {"skill":"jsn_craft:sword/"+skill,"field":field,"amount":r3(amt)}
+def SS(skill, field, amt): return {"skill":"jsn_craft:sword_saint/"+skill,"field":field,"amount":r3(amt)}  # 剣聖の技
 def G(name): return {"grant":"jsn_craft:sword_saint/board/"+name}
 
 ROMAN = ["I","II","III","IV","V","VI","VII"]
@@ -50,6 +51,9 @@ TECH_POOL = [
     ("居合・覚醒","minecraft:netherite_sword",lambda s:[S("iai","power_pct",0.1*s)]),
     ("省気","minecraft:leather",lambda s:[A(SCR,0.03*s)]),
     ("受け流し・覚醒","minecraft:shield",lambda s:[S("parry","power_pct",0.2*s)]),
+    ("天翔蒼刃・覚醒","minecraft:mace",lambda s:[SS("sky_rend","power_pct",0.1*s)]),
+    ("千刃乱舞・覚醒","minecraft:golden_sword",lambda s:[SS("thousand_blades","power_pct",0.1*s)]),
+    ("天穹蒼月・覚醒","minecraft:end_crystal",lambda s:[SS("azure_moon","power_pct",0.1*s)]),
 ]
 GUARD_POOL = [
     ("金剛体","minecraft:golden_apple",lambda s:[A(HP,3*s)]),
@@ -74,6 +78,9 @@ SPECIAL = {
     (1,4,0): SP("居合・真打","minecraft:netherite_sword",4,[S("iai","radius",3),S("iai","power_pct",0.3)],hidden=True),
     (1,5,0): SP("★旋風斬・覚醒","minecraft:wind_charge",6,[S("whirlwind","amplifier",1)],big=True,min_level=60),
     (1,6,0): SP("★技の極み","minecraft:glowstone",7,[A(SKD,0.15)],big=True,min_level=80),
+    (1,4,-2): SP("天翔・広域","minecraft:mace",3,[SS("sky_rend","radius",2)]),
+    (1,6,-3): SP("★千刃・極","minecraft:golden_sword",7,[SS("thousand_blades","amplifier",4)],big=True,min_level=75),
+    (1,7,-3): SP("★天穹・極","minecraft:end_crystal",8,[SS("azure_moon","radius",2),SS("azure_moon","power_pct",0.3)],big=True,min_level=95),
     (1,7,0): SP("★無尽","minecraft:heart_of_the_sea",8,[A(SCR,0.1),A(STR,1.5)],big=True,min_level=90),
     (2,3,0): SP("守護の陣","minecraft:beacon",3,[G("guard_aura")],hidden=True),
     (2,5,0): SP("★金剛","minecraft:diamond_chestplate",6,[A(DR,0.05),A(HP,8)],big=True,min_level=60),

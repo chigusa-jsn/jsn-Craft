@@ -56,6 +56,9 @@ public final class SkillEffects {
             case "buff" -> buff(player, s);
             case "potion" -> potion(player, s);
             case "heal_area" -> healArea(player, s);
+            case "leap_slam" -> leapSlam(player, s);
+            case "flurry" -> flurry(player, s);
+            case "moon_fall" -> moonFall(player, s);
             default -> {
                 JsnCraft.LOGGER.warn("[jsn-Craft] 知らないスキル効果です: {}", s.effect());
                 yield false;
@@ -256,6 +259,158 @@ public final class SkillEffects {
         if (count > 0) {
             player.displayClientMessage(Component.literal("一閃：" + count + "体を斬った").withStyle(net.minecraft.ChatFormatting.AQUA), true);
         }
+        return true;
+    }
+
+    // ================= 天翔蒼刃：高く跳び、着地の衝撃で周りを打ち上げる =================
+
+    private static boolean leapSlam(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        Vec3 look = flatLook(player);
+        double up = s.bonus() > 0 ? s.bonus() : 1.15;
+        player.setDeltaMovement(look.x * 0.5, up, look.z * 0.5);
+        player.hurtMarked = true;
+        Vfx.ring(level, player.position(), 2.5F, 10, Vfx.WHITE);
+        level.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 0.2, player.getZ(), 12, 0.4, 0.1, 0.4, 0.05);
+        level.playSound(null, player.blockPosition(), SoundEvents.BREEZE_JUMP, SoundSource.PLAYERS, 1.0F, 0.8F);
+        waitForLanding(player, s, 0);
+        return true;
+    }
+
+    /** 地面に着くまで毎tick見て、着いたら叩きつける（最大3秒） */
+    private static void waitForLanding(ServerPlayer player, SkillDefinition s, int elapsed) {
+        later(player, 1, () -> {
+            if (!player.isAlive()) return;
+            player.fallDistance = 0; // 落下ダメージなし
+            if (elapsed > 5 && (player.onGround() || elapsed > 60)) {
+                slam(player, s);
+            } else {
+                if (elapsed > 8 && player.getDeltaMovement().y < 0.2) {
+                    player.setDeltaMovement(player.getDeltaMovement().add(0, -0.25, 0)); // 頂点を過ぎたら一気に落ちる
+                    player.hurtMarked = true;
+                }
+                player.serverLevel().sendParticles(ParticleTypes.SOUL_FIRE_FLAME, player.getX(), player.getY() + 0.5, player.getZ(), 2, 0.2, 0.2, 0.2, 0);
+                waitForLanding(player, s, elapsed + 1);
+            }
+        });
+    }
+
+    private static void slam(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        Vec3 c = player.position();
+        float damage = attackDamage(player) * (float) s.power();
+        for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class,
+                player.getBoundingBox().inflate(s.radius(), 2.0, s.radius()), e -> isEnemy(player, e))) {
+            if (e.distanceToSqr(player) > s.radius() * s.radius()) continue;
+            hit(player, e, damage);
+            e.setDeltaMovement(e.getDeltaMovement().add(0, 0.7, 0)); // 打ち上げる
+            e.hurtMarked = true;
+        }
+        Vfx.ring(level, c, (float) s.radius() * 1.2F, 12, Vfx.AZURE);
+        Vfx.ring(level, c, (float) s.radius() * 0.7F, 8, Vfx.WHITE);
+        Vfx.magicCircle(level, c, (float) s.radius() * 0.8F, 16, Vfx.AZURE);
+        for (int k = 0; k < 8; k++) {
+            double a = Math.toRadians(k * 45);
+            Vec3 p = c.add(Math.cos(a) * s.radius() * 0.6, 0.6, Math.sin(a) * s.radius() * 0.6);
+            Vfx.slash(level, p, 1.8F, k % 2 == 0 ? Vfx.AZURE : Vfx.WHITE, 90);
+        }
+        level.sendParticles(ParticleTypes.EXPLOSION, c.x, c.y + 0.3, c.z, 2, 0.5, 0.1, 0.5, 0);
+        level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 0.8F, 0.6F);
+        level.playSound(null, player.blockPosition(), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.PLAYERS, 0.7F, 1.2F);
+    }
+
+    // ================= 千刃乱舞：目の前の敵に連撃。最後の一撃は大きい =================
+
+    private static boolean flurry(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        int hits = Math.max(2, s.amplifier() > 0 ? s.amplifier() : 8);
+        float damage = attackDamage(player) * (float) s.power();
+        for (int n = 0; n < hits; n++) {
+            int i = n;
+            boolean last = n == hits - 1;
+            later(player, n * 3, () -> {
+                if (!player.isAlive()) return;
+                Vec3 look = flatLook(player);
+                Vec3 front = player.position().add(look.scale(s.radius() * 0.5)).add(0, 1.1, 0);
+                for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class,
+                        player.getBoundingBox().inflate(s.radius(), 1.0, s.radius()), e -> isEnemy(player, e))) {
+                    Vec3 to = e.position().subtract(player.position()).multiply(1, 0, 1);
+                    if (to.lengthSqr() > 0.01 && to.normalize().dot(look) < 0.3) continue;
+                    hit(player, e, last ? damage * 3 : damage);
+                    if (last) e.knockback(1.2, -look.x, -look.z);
+                }
+                float roll = (i * 67) % 180;
+                if (last) {
+                    Vfx.slash(level, front, 3.2F, Vfx.GOLD, 0);
+                    Vfx.ring(level, player.position(), 3.0F, 10, Vfx.GOLD);
+                    Vfx.sparks(level, front, 25);
+                    level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 0.6F);
+                    level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 0.3F, 1.8F);
+                } else {
+                    Vec3 jitter = new Vec3(player.getRandom().nextGaussian() * 0.4, player.getRandom().nextGaussian() * 0.3, player.getRandom().nextGaussian() * 0.4);
+                    Vfx.slash(level, front.add(jitter), 1.6F, i % 2 == 0 ? Vfx.AZURE : Vfx.WHITE, roll);
+                    level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.6F, 1.2F + i * 0.08F);
+                }
+            });
+        }
+        return true;
+    }
+
+    // ================= 奥義・天穹蒼月：狙った場所に、空から蒼い月が落ちる =================
+
+    private static boolean moonFall(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        // 目線の先（最大20ブロック）の地面をねらう
+        Vec3 eye = player.getEyePosition();
+        Vec3 end = eye.add(player.getLookAngle().scale(20));
+        var clip = level.clip(new net.minecraft.world.level.ClipContext(eye, end,
+                net.minecraft.world.level.ClipContext.Block.COLLIDER, net.minecraft.world.level.ClipContext.Fluid.NONE, player));
+        Vec3 target = clip.getLocation();
+        for (int i = 0; i < 8; i++) { // 空中を狙ったら、下の地面まで下ろす
+            BlockPos below = BlockPos.containing(target.x, target.y - 0.5, target.z);
+            if (!level.getBlockState(below).getCollisionShape(level, below).isEmpty()) break;
+            target = target.subtract(0, 1, 0);
+        }
+        Vec3 ground = target;
+        float radius = (float) s.radius();
+        int fall = 14;
+        Vfx.magicCircle(level, ground, radius, fall + 10, Vfx.AZURE);
+        Vfx.magicCircle(level, ground, radius * 0.55F, fall + 10, Vfx.WHITE);
+        level.playSound(null, BlockPos.containing(ground), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 0.6F);
+        // 空から三日月が降りてくる
+        for (int t = 0; t < fall; t++) {
+            int tick = t;
+            later(player, t, () -> {
+                double h = (fall - tick) * 1.1;
+                Vfx.slash(level, ground.add(0, h + 1, 0), 4.5F, Vfx.AZURE, 0);
+                Vfx.slash(level, ground.add(0, h + 1.3, 0), 3.2F, Vfx.WHITE, 0);
+                level.sendParticles(ParticleTypes.END_ROD, ground.x, ground.y + h + 1, ground.z, 4, 0.8, 0.3, 0.8, 0.01);
+            });
+        }
+        float damage = attackDamage(player) * (float) s.power();
+        later(player, fall, () -> {
+            if (!player.isAlive()) return;
+            int count = 0;
+            for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, new AABB(ground, ground).inflate(radius, 3, radius),
+                    e -> isEnemy(player, e))) {
+                if (e.position().distanceToSqr(ground) > radius * radius) continue;
+                hit(player, e, damage);
+                e.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
+                count++;
+            }
+            Vfx.ring(level, ground, radius * 1.4F, 16, Vfx.AZURE);
+            Vfx.ring(level, ground, radius * 0.9F, 12, Vfx.WHITE);
+            for (int k = 0; k < 12; k++) {
+                double a = Math.toRadians(k * 30);
+                Vec3 p = ground.add(Math.cos(a) * radius * 0.7, 0.8, Math.sin(a) * radius * 0.7);
+                Vfx.slash(level, p, 2.2F, k % 2 == 0 ? Vfx.AZURE : Vfx.WHITE, k * 30);
+            }
+            Vfx.sparks(level, ground.add(0, 1, 0), 40);
+            level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, ground.x, ground.y + 0.5, ground.z, 1, 0, 0, 0, 0);
+            level.playSound(null, BlockPos.containing(ground), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1.0F, 0.8F);
+            level.playSound(null, BlockPos.containing(ground), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.PLAYERS, 1.0F, 0.7F);
+            player.displayClientMessage(Component.literal("天穹蒼月：" + count + "体に命中").withStyle(net.minecraft.ChatFormatting.AQUA), true);
+        });
         return true;
     }
 

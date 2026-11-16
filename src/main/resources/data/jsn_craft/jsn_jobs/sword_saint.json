@@ -652,9 +652,9 @@
       "x": 1.5,
       "y": 3,
       "name": {
-        "text": "闘気 III"
+        "text": "天翔蒼刃・覚醒 III"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:mace",
       "cost": 1,
       "links": [
         "tec3_3",
@@ -662,8 +662,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 19.5
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "power_pct",
+          "amount": 0.13
         }
       ]
     },
@@ -672,9 +673,9 @@
       "x": 0.5,
       "y": 3,
       "name": {
-        "text": "斬り払い・覚醒 III"
+        "text": "千刃乱舞・覚醒 III"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:golden_sword",
       "cost": 1,
       "links": [
         "tec3_4",
@@ -683,7 +684,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
+          "skill": "jsn_craft:sword_saint/thousand_blades",
           "field": "power_pct",
           "amount": 0.13
         }
@@ -984,9 +985,9 @@
       "x": 3.0,
       "y": -2,
       "name": {
-        "text": "練気 IV"
+        "text": "天穹蒼月・覚醒 IV"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:end_crystal",
       "cost": 1,
       "links": [
         "atk4_7",
@@ -995,8 +996,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.65
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.13
         }
       ]
     },
@@ -1005,9 +1007,9 @@
       "x": 3.5,
       "y": -1,
       "name": {
-        "text": "旋風斬・覚醒 IV"
+        "text": "闘気 IV"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "tec4_0",
@@ -1016,9 +1018,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
-          "field": "power_pct",
-          "amount": 0.13
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 19.5
         }
       ]
     },
@@ -1027,18 +1028,19 @@
       "x": 4.0,
       "y": 0,
       "name": {
-        "text": "極技 IV"
+        "text": "天翔・広域"
       },
-      "icon": "minecraft:glowstone_dust",
-      "cost": 1,
+      "icon": "minecraft:mace",
+      "cost": 3,
       "links": [
         "tec4_1",
         "tec3_1"
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.052
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "radius",
+          "amount": 2
         }
       ]
     },
@@ -1047,9 +1049,9 @@
       "x": 3.5,
       "y": 1,
       "name": {
-        "text": "蒼閃・覚醒 IV"
+        "text": "斬り払い・覚醒 IV"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
         "tec4_2",
@@ -1058,7 +1060,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
+          "skill": "jsn_craft:sword/sweep",
           "field": "power_pct",
           "amount": 0.13
         }
@@ -1097,9 +1099,9 @@
       "x": 2.5,
       "y": 3,
       "name": {
-        "text": "瞬身 IV"
+        "text": "練気 IV"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
         "tec4_4",
@@ -1108,8 +1110,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.039
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.65
         }
       ]
     },
@@ -1118,9 +1120,9 @@
       "x": 2.0,
       "y": 4,
       "name": {
-        "text": "居合・覚醒 IV"
+        "text": "旋風斬・覚醒 IV"
       },
-      "icon": "minecraft:netherite_sword",
+      "icon": "minecraft:breeze_rod",
       "cost": 1,
       "links": [
         "tec4_5",
@@ -1128,7 +1130,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/iai",
+          "skill": "jsn_craft:sword/whirlwind",
           "field": "power_pct",
           "amount": 0.13
         }
@@ -1139,9 +1141,9 @@
       "x": 1.0,
       "y": 4,
       "name": {
-        "text": "省気 IV"
+        "text": "極技 IV"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "tec4_6",
@@ -1150,8 +1152,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.039
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.052
         }
       ]
     },
@@ -1543,9 +1545,9 @@
       "x": 4.0,
       "y": -2,
       "name": {
-        "text": "受け流し・覚醒 V"
+        "text": "蒼閃・覚醒 V"
       },
-      "icon": "minecraft:shield",
+      "icon": "minecraft:diamond_sword",
       "cost": 2,
       "links": [
         "atk5_9",
@@ -1554,9 +1556,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
+          "skill": "jsn_craft:sword/azure_flash",
           "field": "power_pct",
-          "amount": 0.32
+          "amount": 0.16
         }
       ]
     },
@@ -1565,9 +1567,9 @@
       "x": 4.5,
       "y": -1,
       "name": {
-        "text": "闘気 V"
+        "text": "瞬身 V"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:clock",
       "cost": 2,
       "links": [
         "tec5_0",
@@ -1576,8 +1578,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 24.0
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.048
         }
       ]
     },
@@ -1586,9 +1588,9 @@
       "x": 5.0,
       "y": 0,
       "name": {
-        "text": "斬り払い・覚醒 V"
+        "text": "居合・覚醒 V"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:netherite_sword",
       "cost": 2,
       "links": [
         "tec5_1",
@@ -1596,7 +1598,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
+          "skill": "jsn_craft:sword/iai",
           "field": "power_pct",
           "amount": 0.16
         }
@@ -1607,9 +1609,9 @@
       "x": 4.5,
       "y": 1,
       "name": {
-        "text": "練気 V"
+        "text": "省気 V"
       },
-      "icon": "minecraft:honey_bottle",
+      "icon": "minecraft:leather",
       "cost": 2,
       "links": [
         "tec5_2",
@@ -1618,8 +1620,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_regen",
-          "amount": 0.8
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
         }
       ]
     },
@@ -1628,9 +1630,9 @@
       "x": 4.0,
       "y": 2,
       "name": {
-        "text": "旋風斬・覚醒 V"
+        "text": "受け流し・覚醒 V"
       },
-      "icon": "minecraft:breeze_rod",
+      "icon": "minecraft:shield",
       "cost": 2,
       "links": [
         "tec5_3",
@@ -1639,9 +1641,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
+          "skill": "jsn_craft:sword/parry",
           "field": "power_pct",
-          "amount": 0.16
+          "amount": 0.32
         }
       ]
     },
@@ -1674,9 +1676,9 @@
       "x": 3.0,
       "y": 4,
       "name": {
-        "text": "極技 V"
+        "text": "天翔蒼刃・覚醒 V"
       },
-      "icon": "minecraft:glowstone_dust",
+      "icon": "minecraft:mace",
       "cost": 2,
       "links": [
         "tec5_5",
@@ -1685,8 +1687,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.064
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "power_pct",
+          "amount": 0.16
         }
       ]
     },
@@ -1695,9 +1698,9 @@
       "x": 2.5,
       "y": 5,
       "name": {
-        "text": "蒼閃・覚醒 V"
+        "text": "千刃乱舞・覚醒 V"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:golden_sword",
       "cost": 2,
       "links": [
         "tec5_6",
@@ -1705,7 +1708,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
+          "skill": "jsn_craft:sword_saint/thousand_blades",
           "field": "power_pct",
           "amount": 0.16
         }
@@ -1716,9 +1719,9 @@
       "x": 1.5,
       "y": 5,
       "name": {
-        "text": "瞬身 V"
+        "text": "天穹蒼月・覚醒 V"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:end_crystal",
       "cost": 2,
       "links": [
         "tec5_7",
@@ -1727,8 +1730,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.048
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.16
         }
       ]
     },
@@ -1737,9 +1741,9 @@
       "x": 0.5,
       "y": 5,
       "name": {
-        "text": "居合・覚醒 V"
+        "text": "闘気 V"
       },
-      "icon": "minecraft:netherite_sword",
+      "icon": "minecraft:bread",
       "cost": 2,
       "links": [
         "tec5_8",
@@ -1748,9 +1752,8 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/iai",
-          "field": "power_pct",
-          "amount": 0.16
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
         }
       ]
     },
@@ -2224,77 +2227,14 @@
       "x": 4.5,
       "y": -3,
       "name": {
-        "text": "省気 VI"
-      },
-      "icon": "minecraft:leather",
-      "cost": 2,
-      "links": [
-        "atk6_11",
-        "atk5_9",
-        "tec5_0"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.048
-        }
-      ]
-    },
-    {
-      "id": "tec6_1",
-      "x": 5.0,
-      "y": -2,
-      "name": {
-        "text": "受け流し・覚醒 VI"
-      },
-      "icon": "minecraft:shield",
-      "cost": 2,
-      "links": [
-        "tec6_0",
-        "tec5_0",
-        "tec5_1"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/parry",
-          "field": "power_pct",
-          "amount": 0.32
-        }
-      ]
-    },
-    {
-      "id": "tec6_2",
-      "x": 5.5,
-      "y": -1,
-      "name": {
-        "text": "闘気 VI"
-      },
-      "icon": "minecraft:bread",
-      "cost": 2,
-      "links": [
-        "tec6_1",
-        "tec5_1",
-        "tec5_2"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 24.0
-        }
-      ]
-    },
-    {
-      "id": "tec6_3",
-      "x": 6.0,
-      "y": 0,
-      "name": {
         "text": "斬り払い・覚醒 VI"
       },
       "icon": "minecraft:iron_sword",
       "cost": 2,
       "links": [
-        "tec6_2",
-        "tec5_2"
+        "atk6_11",
+        "atk5_9",
+        "tec5_0"
       ],
       "effects": [
         {
@@ -2305,18 +2245,18 @@
       ]
     },
     {
-      "id": "tec6_4",
-      "x": 5.5,
-      "y": 1,
+      "id": "tec6_1",
+      "x": 5.0,
+      "y": -2,
       "name": {
         "text": "練気 VI"
       },
       "icon": "minecraft:honey_bottle",
       "cost": 2,
       "links": [
-        "tec6_3",
-        "tec5_2",
-        "tec5_3"
+        "tec6_0",
+        "tec5_0",
+        "tec5_1"
       ],
       "effects": [
         {
@@ -2326,13 +2266,79 @@
       ]
     },
     {
-      "id": "tec6_5",
-      "x": 5.0,
-      "y": 2,
+      "id": "tec6_2",
+      "x": 5.5,
+      "y": -1,
       "name": {
         "text": "旋風斬・覚醒 VI"
       },
       "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "tec6_1",
+        "tec5_1",
+        "tec5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/whirlwind",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "tec6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "★千刃・極"
+      },
+      "icon": "minecraft:golden_sword",
+      "cost": 7,
+      "links": [
+        "tec6_2",
+        "tec5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/thousand_blades",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 75
+    },
+    {
+      "id": "tec6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "極技 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "tec6_3",
+        "tec5_2",
+        "tec5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.064
+        }
+      ]
+    },
+    {
+      "id": "tec6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "蒼閃・覚醒 VI"
+      },
+      "icon": "minecraft:diamond_sword",
       "cost": 2,
       "links": [
         "tec6_4",
@@ -2341,7 +2347,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/whirlwind",
+          "skill": "jsn_craft:sword/azure_flash",
           "field": "power_pct",
           "amount": 0.16
         }
@@ -2375,56 +2381,14 @@
       "x": 4.0,
       "y": 4,
       "name": {
-        "text": "極技 VI"
-      },
-      "icon": "minecraft:glowstone_dust",
-      "cost": 2,
-      "links": [
-        "tec6_6",
-        "tec5_5",
-        "tec5_6"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.064
-        }
-      ]
-    },
-    {
-      "id": "tec6_8",
-      "x": 3.5,
-      "y": 5,
-      "name": {
-        "text": "蒼閃・覚醒 VI"
-      },
-      "icon": "minecraft:diamond_sword",
-      "cost": 2,
-      "links": [
-        "tec6_7",
-        "tec5_6",
-        "tec5_7"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/azure_flash",
-          "field": "power_pct",
-          "amount": 0.16
-        }
-      ]
-    },
-    {
-      "id": "tec6_9",
-      "x": 3.0,
-      "y": 6,
-      "name": {
         "text": "瞬身 VI"
       },
       "icon": "minecraft:clock",
       "cost": 2,
       "links": [
-        "tec6_8",
-        "tec5_7"
+        "tec6_6",
+        "tec5_5",
+        "tec5_6"
       ],
       "effects": [
         {
@@ -2434,18 +2398,18 @@
       ]
     },
     {
-      "id": "tec6_10",
-      "x": 2.0,
-      "y": 6,
+      "id": "tec6_8",
+      "x": 3.5,
+      "y": 5,
       "name": {
         "text": "居合・覚醒 VI"
       },
       "icon": "minecraft:netherite_sword",
       "cost": 2,
       "links": [
-        "tec6_9",
-        "tec5_7",
-        "tec5_8"
+        "tec6_7",
+        "tec5_6",
+        "tec5_7"
       ],
       "effects": [
         {
@@ -2456,13 +2420,55 @@
       ]
     },
     {
-      "id": "tec6_11",
-      "x": 1.0,
+      "id": "tec6_9",
+      "x": 3.0,
       "y": 6,
       "name": {
         "text": "省気 VI"
       },
       "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "tec6_8",
+        "tec5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "tec6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "受け流し・覚醒 VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "tec6_9",
+        "tec5_7",
+        "tec5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword/parry",
+          "field": "power_pct",
+          "amount": 0.32
+        }
+      ]
+    },
+    {
+      "id": "tec6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "天翔蒼刃・覚醒 VI"
+      },
+      "icon": "minecraft:mace",
       "cost": 2,
       "links": [
         "tec6_10",
@@ -2471,8 +2477,9 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
-          "amount": 0.048
+          "skill": "jsn_craft:sword_saint/sky_rend",
+          "field": "power_pct",
+          "amount": 0.16
         }
       ]
     },
@@ -3040,9 +3047,9 @@
       "x": 5.5,
       "y": -3,
       "name": {
-        "text": "受け流し・覚醒 VII"
+        "text": "千刃乱舞・覚醒 VII"
       },
-      "icon": "minecraft:shield",
+      "icon": "minecraft:golden_sword",
       "cost": 2,
       "links": [
         "atk7_13",
@@ -3051,9 +3058,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
+          "skill": "jsn_craft:sword_saint/thousand_blades",
           "field": "power_pct",
-          "amount": 0.4
+          "amount": 0.2
         }
       ]
     },
@@ -3062,14 +3069,36 @@
       "x": 6.0,
       "y": -2,
       "name": {
-        "text": "闘気 VII"
+        "text": "天穹蒼月・覚醒 VII"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:end_crystal",
       "cost": 3,
       "links": [
         "tec7_0",
         "tec6_1",
         "tec6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tec7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "闘気 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec7_1",
+        "tec6_2",
+        "tec6_3"
       ],
       "effects": [
         {
@@ -3079,17 +3108,16 @@
       ]
     },
     {
-      "id": "tec7_2",
-      "x": 6.5,
-      "y": -1,
+      "id": "tec7_3",
+      "x": 7.0,
+      "y": 0,
       "name": {
         "text": "斬り払い・覚醒 VII"
       },
       "icon": "minecraft:iron_sword",
-      "cost": 2,
+      "cost": 3,
       "links": [
-        "tec7_1",
-        "tec6_2",
+        "tec7_2",
         "tec6_3"
       ],
       "effects": [
@@ -3101,17 +3129,47 @@
       ]
     },
     {
-      "id": "tec7_3",
-      "x": 7.0,
-      "y": 0,
+      "id": "tec7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "★天穹・極"
+      },
+      "icon": "minecraft:end_crystal",
+      "cost": 8,
+      "links": [
+        "tec7_3",
+        "tec6_3",
+        "tec6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:sword_saint/azure_moon",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 95
+    },
+    {
+      "id": "tec7_5",
+      "x": 6.0,
+      "y": 2,
       "name": {
         "text": "練気 VII"
       },
       "icon": "minecraft:honey_bottle",
       "cost": 3,
       "links": [
-        "tec7_2",
-        "tec6_3"
+        "tec7_4",
+        "tec6_4",
+        "tec6_5"
       ],
       "effects": [
         {
@@ -3121,56 +3179,13 @@
       ]
     },
     {
-      "id": "tec7_4",
-      "x": 6.5,
-      "y": 1,
-      "name": {
-        "text": "旋風斬・覚醒 VII"
-      },
-      "icon": "minecraft:breeze_rod",
-      "cost": 2,
-      "links": [
-        "tec7_3",
-        "tec6_3",
-        "tec6_4"
-      ],
-      "effects": [
-        {
-          "skill": "jsn_craft:sword/whirlwind",
-          "field": "power_pct",
-          "amount": 0.2
-        }
-      ]
-    },
-    {
-      "id": "tec7_5",
-      "x": 6.0,
-      "y": 2,
-      "name": {
-        "text": "極技 VII"
-      },
-      "icon": "minecraft:glowstone_dust",
-      "cost": 3,
-      "links": [
-        "tec7_4",
-        "tec6_4",
-        "tec6_5"
-      ],
-      "effects": [
-        {
-          "attribute": "jsn_craft:skill_damage",
-          "amount": 0.08
-        }
-      ]
-    },
-    {
       "id": "tec7_6",
       "x": 5.5,
       "y": 3,
       "name": {
-        "text": "蒼閃・覚醒 VII"
+        "text": "旋風斬・覚醒 VII"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "minecraft:breeze_rod",
       "cost": 2,
       "links": [
         "tec7_5",
@@ -3179,7 +3194,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/azure_flash",
+          "skill": "jsn_craft:sword/whirlwind",
           "field": "power_pct",
           "amount": 0.2
         }
@@ -3217,9 +3232,9 @@
       "x": 4.5,
       "y": 5,
       "name": {
-        "text": "瞬身 VII"
+        "text": "極技 VII"
       },
-      "icon": "minecraft:clock",
+      "icon": "minecraft:glowstone_dust",
       "cost": 2,
       "links": [
         "tec7_7",
@@ -3228,8 +3243,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:cooldown_reduction",
-          "amount": 0.06
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.08
         }
       ]
     },
@@ -3238,9 +3253,9 @@
       "x": 4.0,
       "y": 6,
       "name": {
-        "text": "居合・覚醒 VII"
+        "text": "蒼閃・覚醒 VII"
       },
-      "icon": "minecraft:netherite_sword",
+      "icon": "minecraft:diamond_sword",
       "cost": 3,
       "links": [
         "tec7_8",
@@ -3249,7 +3264,7 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/iai",
+          "skill": "jsn_craft:sword/azure_flash",
           "field": "power_pct",
           "amount": 0.2
         }
@@ -3260,9 +3275,9 @@
       "x": 3.5,
       "y": 7,
       "name": {
-        "text": "省気 VII"
+        "text": "瞬身 VII"
       },
-      "icon": "minecraft:leather",
+      "icon": "minecraft:clock",
       "cost": 2,
       "links": [
         "tec7_9",
@@ -3270,7 +3285,7 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:stamina_cost_reduction",
+          "attribute": "jsn_craft:cooldown_reduction",
           "amount": 0.06
         }
       ]
@@ -3280,9 +3295,9 @@
       "x": 2.5,
       "y": 7,
       "name": {
-        "text": "受け流し・覚醒 VII"
+        "text": "居合・覚醒 VII"
       },
-      "icon": "minecraft:shield",
+      "icon": "minecraft:netherite_sword",
       "cost": 3,
       "links": [
         "tec7_10",
@@ -3291,9 +3306,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/parry",
+          "skill": "jsn_craft:sword/iai",
           "field": "power_pct",
-          "amount": 0.4
+          "amount": 0.2
         }
       ]
     },
@@ -3302,9 +3317,9 @@
       "x": 1.5,
       "y": 7,
       "name": {
-        "text": "闘気 VII"
+        "text": "省気 VII"
       },
-      "icon": "minecraft:bread",
+      "icon": "minecraft:leather",
       "cost": 2,
       "links": [
         "tec7_11",
@@ -3313,8 +3328,8 @@
       ],
       "effects": [
         {
-          "attribute": "jsn_craft:max_stamina",
-          "amount": 30.0
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
         }
       ]
     },
@@ -3323,9 +3338,9 @@
       "x": 0.5,
       "y": 7,
       "name": {
-        "text": "斬り払い・覚醒 VII"
+        "text": "受け流し・覚醒 VII"
       },
-      "icon": "minecraft:iron_sword",
+      "icon": "minecraft:shield",
       "cost": 3,
       "links": [
         "tec7_12",
@@ -3334,9 +3349,9 @@
       ],
       "effects": [
         {
-          "skill": "jsn_craft:sword/sweep",
+          "skill": "jsn_craft:sword/parry",
           "field": "power_pct",
-          "amount": 0.2
+          "amount": 0.4
         }
       ]
     },
@@ -3647,5 +3662,18 @@
       ]
     }
   ],
-  "skills": []
+  "skills": [
+    {
+      "skill": "jsn_craft:sword_saint/sky_rend",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:sword_saint/thousand_blades",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:sword_saint/azure_moon",
+      "level": 70
+    }
+  ]
 }

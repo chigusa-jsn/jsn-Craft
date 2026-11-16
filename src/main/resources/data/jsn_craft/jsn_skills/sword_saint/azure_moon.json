@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "奥義・天穹蒼月"
+  },
+  "description": {
+    "text": "1秒ためて、目線の先（最大20ブロック）に巨大な魔法陣を出す。空から蒼い月が落ち、範囲（6ブロック）の敵に攻撃力の4倍のダメージを与えて動きを止める。"
+  },
+  "icon": "minecraft:end_crystal",
+  "type": "active",
+  "effect": "moon_fall",
+  "stamina": 60,
+  "cooldown": 60,
+  "power": 4.0,
+  "radius": 6,
+  "cast_time": 1.0
+}
