@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "収穫の宴"
+  },
+  "description": {
+    "text": "作物を収穫するたびに、満腹度が1回復する。"
+  },
+  "icon": "minecraft:bread",
+  "type": "passive",
+  "effect": "harvest_feast",
+  "power": 1
+}

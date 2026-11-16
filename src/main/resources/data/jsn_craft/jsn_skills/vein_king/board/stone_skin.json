@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "岩の肌"
+  },
+  "description": {
+    "text": "地下（空が見えない高さ50より下）では、受けるダメージが15%減る。"
+  },
+  "icon": "minecraft:cobbled_deepslate",
+  "type": "passive",
+  "effect": "stone_skin",
+  "power": 0.15
+}

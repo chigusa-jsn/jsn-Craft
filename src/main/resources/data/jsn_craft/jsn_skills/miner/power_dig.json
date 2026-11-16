@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "剛掘"
+  },
+  "description": {
+    "text": "30秒間、掘る速さが2倍になり、採掘の幸運が+50%される。"
+  },
+  "icon": "minecraft:golden_pickaxe",
+  "type": "active",
+  "effect": "power_dig",
+  "power": 1.0,
+  "bonus": 0.5,
+  "duration": 30,
+  "stamina": 40,
+  "cooldown": 120
+}

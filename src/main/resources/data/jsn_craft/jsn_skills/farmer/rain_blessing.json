@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "恵みの雨"
+  },
+  "description": {
+    "text": "周り（5ブロック）に雨を降らせて、畑を湿らせ、作物を1段階育てる。"
+  },
+  "icon": "minecraft:water_bucket",
+  "type": "active",
+  "effect": "rain_blessing",
+  "radius": 5,
+  "amplifier": 1,
+  "stamina": 15,
+  "cooldown": 30
+}

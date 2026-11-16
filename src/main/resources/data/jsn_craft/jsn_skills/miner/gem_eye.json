@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "宝石の目"
+  },
+  "description": {
+    "text": "石を掘ると、2%の確率で石炭・原石・ラピスなどのかけらが出る（まれにダイヤやエメラルド）。"
+  },
+  "icon": "minecraft:emerald",
+  "type": "passive",
+  "effect": "gem_eye",
+  "chance": 0.02
+}

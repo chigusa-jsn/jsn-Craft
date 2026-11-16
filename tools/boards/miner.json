@@ -1,0 +1,407 @@
+{
+  "job": "miner",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "採掘の心得",
+    "icon": "minecraft:wooden_pickaxe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:player.block_break_speed",
+        "amount": 0.1
+      },
+      {
+        "attribute": "jsn_craft:mining_fortune",
+        "amount": 0.05
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "dig",
+      "pool": [
+        {
+          "name": "剛腕",
+          "icon": "minecraft:stone_pickaxe",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:player.block_break_speed",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "鉱脈掘り修練",
+          "icon": "minecraft:iron_pickaxe",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/vein_mining",
+              "field": "amplifier",
+              "amount": 2
+            }
+          ],
+          "scale": false
+        },
+        {
+          "name": "鉱脈の省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/vein_mining",
+              "field": "stamina",
+              "amount": -0.2
+            }
+          ]
+        },
+        {
+          "name": "石工修練",
+          "icon": "minecraft:stone_bricks",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/stone_mastery",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "広域掘り修練",
+          "icon": "minecraft:diamond_pickaxe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/wide_dig",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "gem",
+      "pool": [
+        {
+          "name": "採掘の幸運",
+          "icon": "minecraft:raw_iron",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mining_fortune",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "長持ち",
+          "icon": "minecraft:anvil",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:tool_durability",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "幸運の鉱夫",
+          "icon": "minecraft:raw_gold",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/ore_fortune",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "宝石の目修練",
+          "icon": "minecraft:emerald",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/gem_eye",
+              "field": "chance",
+              "amount": 0.002
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "頑丈",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "鉱石感知修練",
+          "icon": "minecraft:spyglass",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/ore_sense",
+              "field": "radius",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "坑道の灯修練",
+          "icon": "minecraft:lantern",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:miner/tunnel_light",
+              "field": "duration",
+              "amount": 20
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "掘削の極意",
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.15
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★鉱脈掘り・極",
+      "icon": "minecraft:netherite_pickaxe",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 32
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "広域掘り・極",
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/wide_dig",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "鉱石の勘",
+      "icon": "minecraft:raw_copper",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_fortune",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★黄金の鶴嘴",
+      "icon": "minecraft:gold_block",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.3
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "宝石の目・極",
+      "icon": "minecraft:diamond",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/gem_eye",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "岩の体",
+      "icon": "minecraft:cobblestone",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★鉱夫の魂",
+      "icon": "minecraft:iron_block",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "鉱石感知・極",
+      "icon": "minecraft:ender_eye",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    }
+  ]
+}

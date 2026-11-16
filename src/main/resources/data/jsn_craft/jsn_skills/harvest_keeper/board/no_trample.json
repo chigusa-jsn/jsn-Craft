@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "畑の守り"
+  },
+  "description": {
+    "text": "畑の上に飛び乗っても、畑が荒れない。"
+  },
+  "icon": "minecraft:farmland",
+  "type": "passive",
+  "effect": "no_trample"
+}

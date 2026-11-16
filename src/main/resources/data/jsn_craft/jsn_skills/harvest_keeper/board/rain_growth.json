@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "雨乞い"
+  },
+  "description": {
+    "text": "雨の日は、大地の恵みで作物が育つ速さが2倍になる。"
+  },
+  "icon": "minecraft:blue_orchid",
+  "type": "passive",
+  "effect": "rain_growth",
+  "power": 1.0
+}

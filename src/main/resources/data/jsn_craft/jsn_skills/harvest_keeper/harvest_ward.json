@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "豊穣の結界"
+  },
+  "description": {
+    "text": "60秒間、足元に結界（半径6）を張る。結界の中の作物は毎秒育つ。"
+  },
+  "icon": "minecraft:beacon",
+  "type": "active",
+  "effect": "harvest_ward",
+  "radius": 6,
+  "duration": 60,
+  "amplifier": 1,
+  "stamina": 40,
+  "cooldown": 180
+}

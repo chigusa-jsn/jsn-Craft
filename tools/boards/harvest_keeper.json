@@ -1,0 +1,515 @@
+{
+  "job": "harvest_keeper",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "守り手の心得",
+    "icon": "minecraft:golden_hoe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:harvest_fortune",
+        "amount": 0.1
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "scy",
+      "pool": [
+        {
+          "name": "大鎌・広域",
+          "icon": "minecraft:iron_hoe",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+              "field": "radius",
+              "amount": 0.15
+            }
+          ]
+        },
+        {
+          "name": "大鎌・省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+              "field": "stamina",
+              "amount": -1
+            }
+          ]
+        },
+        {
+          "name": "結界・広域",
+          "icon": "minecraft:beacon",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:harvest_keeper/harvest_ward",
+              "field": "radius",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "結界・長持ち",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:harvest_keeper/harvest_ward",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "省力",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "足取り",
+          "icon": "minecraft:leather_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.013,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "hrv",
+      "pool": [
+        {
+          "name": "収穫の幸運",
+          "icon": "minecraft:wheat",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:harvest_fortune",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "豊穣の知恵",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "豊作・覚醒",
+          "icon": "minecraft:hay_block",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/bountiful",
+              "field": "chance",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "奇跡の気配",
+          "icon": "minecraft:golden_apple",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+              "field": "chance",
+              "amount": 0.0008
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "丈夫",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "再生",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 7
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.2
+            }
+          ]
+        },
+        {
+          "name": "大地の恵み・覚醒",
+          "icon": "minecraft:moss_block",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/earth_grace",
+              "field": "radius",
+              "amount": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "畑の守り",
+      "icon": "minecraft:farmland",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/no_trample"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大鎌・覚醒",
+      "icon": "minecraft:netherite_hoe",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "結界・極",
+      "icon": "minecraft:beacon",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★豊穣の舞・覚醒",
+      "icon": "minecraft:sunflower",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "cooldown",
+          "amount": -40
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★大地の守護者",
+      "icon": "minecraft:conduit",
+      "cost": 8,
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "収穫の宴",
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/harvest_feast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★豊穣の極み",
+      "icon": "minecraft:hay_block",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.4
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "奇跡の兆し",
+      "icon": "minecraft:golden_apple",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★黄金郷",
+      "icon": "minecraft:gold_block",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★豊穣の賢者",
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "雨乞い",
+      "icon": "minecraft:blue_orchid",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/rain_growth"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大地の恵み・極",
+      "icon": "minecraft:flowering_azalea",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "雨乞い・極",
+      "icon": "minecraft:water_bucket",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/board/rain_growth",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★恵みの雨・覚醒",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★大地の加護",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

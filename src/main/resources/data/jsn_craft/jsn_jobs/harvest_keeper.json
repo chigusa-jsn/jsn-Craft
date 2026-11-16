@@ -1,0 +1,3691 @@
+{
+  "name": {
+    "text": "豊穣の守り手",
+    "color": "gold"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:farmer",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "harvest",
+      "target": "minecraft:nether_wart",
+      "xp": 6
+    },
+    {
+      "action": "harvest",
+      "target": "minecraft:melon",
+      "xp": 6
+    },
+    {
+      "action": "harvest",
+      "target": "minecraft:pumpkin",
+      "xp": 6
+    },
+    {
+      "action": "harvest",
+      "target": "*",
+      "xp": 5
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:harvest_keeper/harvest_ward",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "守り手の心得"
+      },
+      "icon": "minecraft:golden_hoe",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.1
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "scy1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "大鎌・広域 I"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.225
+        }
+      ]
+    },
+    {
+      "id": "scy1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "大鎌・省力 I"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "scy1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -1.5
+        }
+      ]
+    },
+    {
+      "id": "hrv1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 I"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "scy1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "hrv1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "豊穣の知恵 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "hrv1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "grd1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "hrv1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "grd1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "再生 I"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "center",
+        "scy1_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "scy2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "結界・広域 II"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 1,
+      "links": [
+        "scy1_0",
+        "grd1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "scy2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "結界・長持ち II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "scy2_0",
+        "scy1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "scy2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "省力 II"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "scy2_1",
+        "scy1_0",
+        "scy1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "scy2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "足取り II"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "scy2_2",
+        "scy1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.019,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "hrv2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "豊作・覚醒 II"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 1,
+      "links": [
+        "scy2_3",
+        "scy1_1",
+        "hrv1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "hrv2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "hrv2_0",
+        "hrv1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "hrv2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "奇跡の気配 II"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 1,
+      "links": [
+        "hrv2_1",
+        "hrv1_0",
+        "hrv1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "hrv2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "収穫の幸運 II"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "hrv2_2",
+        "hrv1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "grd2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "hrv2_3",
+        "hrv1_1",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10.5
+        }
+      ]
+    },
+    {
+      "id": "grd2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "grd2_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "grd2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "大地の恵み・覚醒 II"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 1,
+      "links": [
+        "grd1_0",
+        "grd1_1",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "grd2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd1_1",
+        "scy2_0",
+        "grd2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "scy3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "大鎌・広域 III"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 1,
+      "links": [
+        "scy2_1",
+        "scy2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "scy3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "大鎌・広域 III"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 1,
+      "links": [
+        "scy3_0",
+        "scy2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "scy3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "大鎌・省力 III"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "scy3_1",
+        "scy2_1",
+        "scy2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "scy3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "畑の守り"
+      },
+      "icon": "minecraft:farmland",
+      "cost": 3,
+      "links": [
+        "scy3_2",
+        "scy2_2",
+        "scy2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/no_trample"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "scy3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "結界・広域 III"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 1,
+      "links": [
+        "scy3_3",
+        "scy2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "scy3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "結界・長持ち III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "scy3_4",
+        "scy2_3",
+        "hrv2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "hrv3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "豊穣の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "scy3_5",
+        "hrv2_0",
+        "hrv2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "豊作・覚醒 III"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 1,
+      "links": [
+        "hrv3_0",
+        "hrv2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "hrv3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 III"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "hrv3_1",
+        "hrv2_1",
+        "hrv2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "収穫の宴"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "hrv3_2",
+        "hrv2_2",
+        "hrv2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/harvest_feast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hrv3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "豊穣の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "hrv3_3",
+        "hrv2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "豊作・覚醒 III"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 1,
+      "links": [
+        "hrv3_4",
+        "hrv2_3",
+        "grd2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "grd3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "再生 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hrv3_5",
+        "grd2_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "grd3_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd2_1",
+        "grd2_2",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "雨乞い"
+      },
+      "icon": "minecraft:blue_orchid",
+      "cost": 3,
+      "links": [
+        "grd2_2",
+        "grd2_3",
+        "grd3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:harvest_keeper/board/rain_growth"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "grd3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "再生 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "grd2_3",
+        "grd3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "scy2_0",
+        "scy3_0",
+        "grd3_4",
+        "grd2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "scy4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "省力 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "scy3_0",
+        "grd3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "scy4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "足取り IV"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "scy3_1",
+        "scy4_0",
+        "scy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.026,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・広域 IV"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 1,
+      "links": [
+        "scy4_1",
+        "scy3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "scy4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・広域 IV"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy4_2",
+        "scy3_1",
+        "scy3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "scy4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・省力 IV"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "scy4_3",
+        "scy3_2",
+        "scy3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "scy4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "結界・広域 IV"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "scy4_4",
+        "scy3_3",
+        "scy3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "scy4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "結界・長持ち IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "scy4_5",
+        "scy3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "scy4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "省力 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "scy4_6",
+        "scy3_4",
+        "scy3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "scy4_7",
+        "scy3_5",
+        "hrv3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "hrv4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "奇跡の気配 IV"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "hrv4_0",
+        "hrv3_0",
+        "hrv3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "hrv4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 IV"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "hrv4_1",
+        "hrv3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "豊穣の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv4_2",
+        "hrv3_1",
+        "hrv3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "豊作・覚醒 IV"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 1,
+      "links": [
+        "hrv4_3",
+        "hrv3_2",
+        "hrv3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "hrv4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "収穫の幸運 IV"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv4_4",
+        "hrv3_3",
+        "hrv3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "豊穣の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "hrv4_5",
+        "hrv3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hrv4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "豊作・覚醒 IV"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv4_6",
+        "hrv3_4",
+        "hrv3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "grd4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "hrv4_7",
+        "hrv3_5",
+        "grd3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "grd4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "大地の恵み・覚醒 IV"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "grd4_0",
+        "grd3_0",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd4_1",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd3_1",
+        "grd3_2",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "grd3_2",
+        "grd3_3",
+        "grd4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd3_3",
+        "grd3_4",
+        "grd4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "grd3_4",
+        "grd4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd3_5",
+        "scy4_0",
+        "grd4_6",
+        "grd3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "scy5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "足取り V"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "scy4_1",
+        "scy4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.031,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・広域 V"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy4_2",
+        "scy5_0",
+        "scy4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "scy5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "大鎌・広域 V"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy5_1",
+        "scy4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "scy5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "大鎌・省力 V"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "scy5_2",
+        "scy4_2",
+        "scy4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "scy5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "結界・広域 V"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "scy5_3",
+        "scy4_3",
+        "scy4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "scy5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★大鎌・覚醒"
+      },
+      "icon": "minecraft:netherite_hoe",
+      "cost": 6,
+      "links": [
+        "scy5_4",
+        "scy4_4",
+        "scy4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "scy5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "結界・長持ち V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "scy5_5",
+        "scy4_5",
+        "scy4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "scy5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "省力 V"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "scy5_6",
+        "scy4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "scy5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "足取り V"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "scy5_7",
+        "scy4_6",
+        "scy4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.031,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "大鎌・広域 V"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy5_8",
+        "scy4_7",
+        "hrv4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "hrv5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "scy5_9",
+        "hrv4_0",
+        "hrv4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "hrv5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "奇跡の気配 V"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "hrv5_0",
+        "hrv4_1",
+        "hrv4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "hrv5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 V"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv5_1",
+        "hrv4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "豊穣の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv5_2",
+        "hrv4_2",
+        "hrv4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "豊作・覚醒 V"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv5_3",
+        "hrv4_3",
+        "hrv4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "hrv5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★豊穣の極み"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 6,
+      "links": [
+        "hrv5_4",
+        "hrv4_4",
+        "hrv4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.4
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "hrv5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "収穫の幸運 V"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv5_5",
+        "hrv4_5",
+        "hrv4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "豊穣の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv5_6",
+        "hrv4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "豊作・覚醒 V"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv5_7",
+        "hrv4_6",
+        "hrv4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "hrv5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "hrv5_8",
+        "hrv4_7",
+        "grd4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "hrv5_9",
+        "grd4_0",
+        "grd4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "大地の恵み・覚醒 V"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "grd5_0",
+        "grd4_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "丈夫 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "再生 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd4_2",
+        "grd4_3",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd4_3",
+        "grd4_4",
+        "grd5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★大地の恵み・極"
+      },
+      "icon": "minecraft:flowering_azalea",
+      "cost": 6,
+      "links": [
+        "grd4_4",
+        "grd4_5",
+        "grd5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "grd5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd4_5",
+        "grd4_6",
+        "grd5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "再生 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd4_6",
+        "grd5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd4_7",
+        "grd5_7",
+        "grd4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "scy4_0",
+        "scy5_0",
+        "grd5_8",
+        "grd4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "scy6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "大鎌・広域 VI"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy5_0",
+        "grd5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "scy6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・省力 VI"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "scy5_1",
+        "scy6_0",
+        "scy5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "scy6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "結界・広域 VI"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "scy5_2",
+        "scy6_1",
+        "scy5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "scy6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "結界・長持ち VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "scy6_2",
+        "scy5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "scy6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "結界・極"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 4,
+      "links": [
+        "scy6_3",
+        "scy5_2",
+        "scy5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "scy6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "省力 VI"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "scy6_4",
+        "scy5_3",
+        "scy5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "scy6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "足取り VI"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "scy6_5",
+        "scy5_4",
+        "scy5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.031,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "大鎌・広域 VI"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy6_6",
+        "scy5_5",
+        "scy5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "scy6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "大鎌・広域 VI"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy6_7",
+        "scy5_6",
+        "scy5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "scy6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "大鎌・省力 VI"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "scy6_8",
+        "scy5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "scy6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "結界・広域 VI"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "scy6_9",
+        "scy5_7",
+        "scy5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "scy6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "結界・長持ち VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "scy6_10",
+        "scy5_8",
+        "scy5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "hrv6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "奇跡の気配 VI"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "scy6_11",
+        "scy5_9",
+        "hrv5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "hrv6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv6_0",
+        "hrv5_0",
+        "hrv5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "豊穣の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv6_1",
+        "hrv5_1",
+        "hrv5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "豊作・覚醒 VI"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv6_2",
+        "hrv5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "hrv6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv6_3",
+        "hrv5_2",
+        "hrv5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "豊穣の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv6_4",
+        "hrv5_3",
+        "hrv5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "奇跡の兆し"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 4,
+      "links": [
+        "hrv6_5",
+        "hrv5_4",
+        "hrv5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "hrv6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "豊作・覚醒 VI"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv6_6",
+        "hrv5_5",
+        "hrv5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "hrv6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "hrv6_7",
+        "hrv5_6",
+        "hrv5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "hrv6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "奇跡の気配 VI"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "hrv6_8",
+        "hrv5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "hrv6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "hrv6_9",
+        "hrv5_7",
+        "hrv5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hrv6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "豊穣の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv6_10",
+        "hrv5_8",
+        "hrv5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "grd6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "大地の恵み・覚醒 VI"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "hrv6_11",
+        "hrv5_9",
+        "grd5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd6_0",
+        "grd5_0",
+        "grd5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_1",
+        "grd5_1",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd6_2",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_2",
+        "grd5_3",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd5_3",
+        "grd5_4",
+        "grd6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "雨乞い・極"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 4,
+      "links": [
+        "grd5_4",
+        "grd5_5",
+        "grd6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/board/rain_growth",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "grd6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd5_5",
+        "grd5_6",
+        "grd6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd5_6",
+        "grd5_7",
+        "grd6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "大地の恵み・覚醒 VI"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "grd5_7",
+        "grd6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_8",
+        "grd6_9",
+        "grd5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd5_9",
+        "scy6_0",
+        "grd6_10",
+        "grd5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "scy7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "scy6_1",
+        "scy6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "scy7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "足取り VII"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 3,
+      "links": [
+        "scy6_2",
+        "scy7_0",
+        "scy6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.039,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "大鎌・広域 VII"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy6_3",
+        "scy7_1",
+        "scy6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "scy7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "大鎌・広域 VII"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 3,
+      "links": [
+        "scy7_2",
+        "scy6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "scy7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★豊穣の舞・覚醒"
+      },
+      "icon": "minecraft:sunflower",
+      "cost": 7,
+      "links": [
+        "scy7_3",
+        "scy6_3",
+        "scy6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "cooldown",
+          "amount": -40
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "scy7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "大鎌・省力 VII"
+      },
+      "icon": "minecraft:leather",
+      "cost": 3,
+      "links": [
+        "scy7_4",
+        "scy6_4",
+        "scy6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -3
+        }
+      ]
+    },
+    {
+      "id": "scy7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "結界・広域 VII"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "scy7_5",
+        "scy6_5",
+        "scy6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "scy7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★大地の守護者"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 8,
+      "links": [
+        "scy7_6",
+        "scy6_6",
+        "scy6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "scy7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "結界・長持ち VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "scy7_7",
+        "scy6_7",
+        "scy6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_ward",
+          "field": "duration",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "scy7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:feather",
+      "cost": 3,
+      "links": [
+        "scy7_8",
+        "scy6_8",
+        "scy6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "scy7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "足取り VII"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "scy7_9",
+        "scy6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.039,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "scy7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "大鎌・広域 VII"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 3,
+      "links": [
+        "scy7_10",
+        "scy6_9",
+        "scy6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "scy7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "大鎌・広域 VII"
+      },
+      "icon": "minecraft:iron_hoe",
+      "cost": 2,
+      "links": [
+        "scy7_11",
+        "scy6_10",
+        "scy6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "scy7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "大鎌・省力 VII"
+      },
+      "icon": "minecraft:leather",
+      "cost": 3,
+      "links": [
+        "scy7_12",
+        "scy6_11",
+        "hrv6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/scythe_sweep",
+          "field": "stamina",
+          "amount": -3
+        }
+      ]
+    },
+    {
+      "id": "hrv7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "豊作・覚醒 VII"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "scy7_13",
+        "hrv6_0",
+        "hrv6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "hrv7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 3,
+      "links": [
+        "hrv7_0",
+        "hrv6_1",
+        "hrv6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "豊穣の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv7_1",
+        "hrv6_2",
+        "hrv6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "豊作・覚醒 VII"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 3,
+      "links": [
+        "hrv7_2",
+        "hrv6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "hrv7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "hrv7_3",
+        "hrv6_3",
+        "hrv6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "hrv7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★黄金郷"
+      },
+      "icon": "minecraft:gold_block",
+      "cost": 7,
+      "links": [
+        "hrv7_4",
+        "hrv6_4",
+        "hrv6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "hrv7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "奇跡の気配 VII"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "hrv7_5",
+        "hrv6_5",
+        "hrv6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:harvest_keeper/harvest_miracle",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "hrv7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 3,
+      "links": [
+        "hrv7_6",
+        "hrv6_6",
+        "hrv6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "豊穣の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv7_7",
+        "hrv6_7",
+        "hrv6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★豊穣の賢者"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "links": [
+        "hrv7_8",
+        "hrv6_8",
+        "hrv6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "hrv7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "豊作・覚醒 VII"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "hrv7_9",
+        "hrv6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "hrv7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 3,
+      "links": [
+        "hrv7_10",
+        "hrv6_9",
+        "hrv6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "豊穣の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "hrv7_11",
+        "hrv6_10",
+        "hrv6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hrv7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "豊作・覚醒 VII"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 3,
+      "links": [
+        "hrv7_12",
+        "hrv6_11",
+        "grd6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "grd7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "hrv7_13",
+        "grd6_0",
+        "grd6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "grd7_0",
+        "grd6_1",
+        "grd6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd7_1",
+        "grd6_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "grd7_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd6_3",
+        "grd6_4",
+        "grd7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★恵みの雨・覚醒"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 7,
+      "links": [
+        "grd6_4",
+        "grd6_5",
+        "grd7_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "grd7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "大地の恵み・覚醒 VII"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "grd6_5",
+        "grd6_6",
+        "grd7_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "grd7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "grd6_6",
+        "grd6_7",
+        "grd7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_7",
+        "grd6_8",
+        "grd7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★大地の加護"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "links": [
+        "grd6_8",
+        "grd6_9",
+        "grd7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "grd7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd6_9",
+        "grd7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "grd6_10",
+        "grd7_10",
+        "grd6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_11",
+        "grd7_11",
+        "grd6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "scy6_0",
+        "scy7_0",
+        "grd7_12",
+        "grd6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "鉱石感知"
+  },
+  "description": {
+    "text": "周り（8ブロック）の鉱石を、15秒間 壁越しに光らせる。鉱石の種類ごとに色が違う。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "active",
+  "effect": "reveal_ores",
+  "radius": 8,
+  "duration": 15,
+  "stamina": 15,
+  "cooldown": 30
+}

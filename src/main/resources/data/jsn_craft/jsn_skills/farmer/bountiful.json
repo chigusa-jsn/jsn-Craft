@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "豊作"
+  },
+  "description": {
+    "text": "実った作物を収穫したとき、15%の確率でドロップが2倍になる。"
+  },
+  "icon": "minecraft:hay_block",
+  "type": "passive",
+  "effect": "bountiful_harvest",
+  "chance": 0.15
+}

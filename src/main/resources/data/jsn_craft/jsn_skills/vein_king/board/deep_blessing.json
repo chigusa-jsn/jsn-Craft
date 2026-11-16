@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "深層の加護"
+  },
+  "description": {
+    "text": "高さ0より下では、掘る速さが30%上がる。"
+  },
+  "icon": "minecraft:deepslate",
+  "type": "passive",
+  "effect": "deep_blessing",
+  "power": 0.3
+}

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "豊穣神の加護"
+  },
+  "description": {
+    "text": "実った作物を収穫したとき、3%の確率で周り（6ブロック）の作物がすべて一瞬で実る。"
+  },
+  "icon": "minecraft:enchanted_golden_apple",
+  "type": "passive",
+  "effect": "harvest_miracle",
+  "chance": 0.03,
+  "radius": 6
+}

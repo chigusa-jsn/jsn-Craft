@@ -65,6 +65,9 @@ public final class ModAttributes {
     /** 釣り：魚がかかるまでの速さ +○%（最大80%） */
     public static final DeferredHolder<Attribute, Attribute> FISHING_BITE = register("fishing_bite", 0, 0, 0.8);
 
+    /** 収穫の幸運：実った作物のドロップが増える確率。0.25 なら 25% で2倍 */
+    public static final DeferredHolder<Attribute, Attribute> HARVEST_FORTUNE = register("harvest_fortune", 0, 0, 10);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -93,6 +96,7 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, FISHING_REEL);
         event.add(EntityType.PLAYER, FISHING_TREASURE);
         event.add(EntityType.PLAYER, FISHING_BITE);
+        event.add(EntityType.PLAYER, HARVEST_FORTUNE);
     }
 
     private ModAttributes() {}

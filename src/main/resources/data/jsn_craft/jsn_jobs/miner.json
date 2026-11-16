@@ -1,0 +1,1420 @@
+{
+  "name": {
+    "text": "岩窟の掘り師",
+    "color": "gray"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "break_block",
+      "target": "#c:ores/netherite_scrap",
+      "xp": 40
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/emerald",
+      "xp": 30
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/diamond",
+      "xp": 25
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/gold",
+      "xp": 10
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/lapis",
+      "xp": 10
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/iron",
+      "xp": 8
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/redstone",
+      "xp": 8
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/quartz",
+      "xp": 6
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/copper",
+      "xp": 5
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/coal",
+      "xp": 5
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores",
+      "xp": 6
+    },
+    {
+      "action": "break_block",
+      "target": "#minecraft:base_stone_overworld",
+      "xp": 1
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:miner/vein_mining",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:miner/ore_sense",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:miner/stone_mastery",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:miner/ore_fortune",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:miner/tunnel_light",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:miner/wide_dig",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:miner/gem_eye",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:miner/power_dig",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "採掘の心得"
+      },
+      "icon": "minecraft:wooden_pickaxe",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.05
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "dig1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "剛腕 I"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "dig1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "鉱脈掘り修練 I"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "dig1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gem1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "採掘の幸運 I"
+      },
+      "icon": "minecraft:raw_iron",
+      "cost": 1,
+      "links": [
+        "dig1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "修練の証 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "gem1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "頑丈 I"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "gem1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "center",
+        "dig1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "dig2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "鉱脈の省力 II"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "dig1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "stamina",
+          "amount": -0.2
+        }
+      ]
+    },
+    {
+      "id": "dig2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "剛腕 II"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 1,
+      "links": [
+        "dig2_0",
+        "dig1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "dig2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "石工修練 II"
+      },
+      "icon": "minecraft:stone_bricks",
+      "cost": 1,
+      "links": [
+        "dig2_1",
+        "dig1_0",
+        "dig1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/stone_mastery",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "dig2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "広域掘り修練 II"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 1,
+      "links": [
+        "dig2_2",
+        "dig1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/wide_dig",
+          "field": "duration",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "gem2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "長持ち II"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "dig2_3",
+        "dig1_1",
+        "gem1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "gem2_0",
+        "gem1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "gem2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "採掘の幸運 II"
+      },
+      "icon": "minecraft:raw_iron",
+      "cost": 1,
+      "links": [
+        "gem2_1",
+        "gem1_0",
+        "gem1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "幸運の鉱夫 II"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 1,
+      "links": [
+        "gem2_2",
+        "gem1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_fortune",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "gem2_3",
+        "gem1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "鉱石感知修練 II"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "坑道の灯修練 II"
+      },
+      "icon": "minecraft:lantern",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "dig2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/tunnel_light",
+          "field": "duration",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "dig3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "鉱脈掘り修練 III"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig2_1",
+        "dig2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "dig3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig3_0",
+        "dig2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "dig3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig3_1",
+        "dig2_1",
+        "dig2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "dig3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "掘削の極意"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 3,
+      "links": [
+        "dig3_2",
+        "dig2_2",
+        "dig2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.15
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dig3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "鉱脈掘り修練 III"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig3_3",
+        "dig2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "dig3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "鉱脈の省力 III"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "dig3_4",
+        "dig2_3",
+        "gem2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "stamina",
+          "amount": -0.3
+        }
+      ]
+    },
+    {
+      "id": "gem3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "宝石の目修練 III"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 2,
+      "links": [
+        "dig3_5",
+        "gem2_0",
+        "gem2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/gem_eye",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "gem3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "gem3_0",
+        "gem2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gem3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "長持ち III"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "gem3_1",
+        "gem2_1",
+        "gem2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gem3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "鉱石の勘"
+      },
+      "icon": "minecraft:raw_copper",
+      "cost": 3,
+      "links": [
+        "gem3_2",
+        "gem2_2",
+        "gem2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_fortune",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "gem3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "採掘の幸運 III"
+      },
+      "icon": "minecraft:raw_iron",
+      "cost": 2,
+      "links": [
+        "gem3_3",
+        "gem2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gem3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "採掘の幸運 III"
+      },
+      "icon": "minecraft:raw_iron",
+      "cost": 2,
+      "links": [
+        "gem3_4",
+        "gem2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "頑丈 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "gem3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "岩の体"
+      },
+      "icon": "minecraft:cobblestone",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "頑丈 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "dig2_0",
+        "dig3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "dig4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "dig4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "石工修練 IV"
+      },
+      "icon": "minecraft:stone_bricks",
+      "cost": 2,
+      "links": [
+        "dig3_1",
+        "dig4_0",
+        "dig3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/stone_mastery",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dig4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "広域掘り修練 IV"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig4_1",
+        "dig3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/wide_dig",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "dig4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★鉱脈掘り・極"
+      },
+      "icon": "minecraft:netherite_pickaxe",
+      "cost": 5,
+      "links": [
+        "dig4_2",
+        "dig3_1",
+        "dig3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 32
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "dig4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "鉱脈掘り修練 IV"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig4_3",
+        "dig3_2",
+        "dig3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "dig4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "広域掘り・極"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 4,
+      "links": [
+        "dig4_4",
+        "dig3_3",
+        "dig3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/wide_dig",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "id": "dig4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig4_5",
+        "dig3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "dig4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_pickaxe",
+      "cost": 2,
+      "links": [
+        "dig4_6",
+        "dig3_4",
+        "dig3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "gem4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dig4_7",
+        "dig3_5",
+        "gem3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gem4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "長持ち IV"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "gem4_0",
+        "gem3_0",
+        "gem3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gem4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "gem4_1",
+        "gem3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "gem4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★黄金の鶴嘴"
+      },
+      "icon": "minecraft:gold_block",
+      "cost": 5,
+      "links": [
+        "gem4_2",
+        "gem3_1",
+        "gem3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.3
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "gem4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "採掘の幸運 IV"
+      },
+      "icon": "minecraft:raw_iron",
+      "cost": 2,
+      "links": [
+        "gem4_3",
+        "gem3_2",
+        "gem3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gem4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "宝石の目・極"
+      },
+      "icon": "minecraft:diamond",
+      "cost": 3,
+      "links": [
+        "gem4_4",
+        "gem3_3",
+        "gem3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/gem_eye",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gem4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "幸運の鉱夫 IV"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "gem4_5",
+        "gem3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_fortune",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gem4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "宝石の目修練 IV"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 2,
+      "links": [
+        "gem4_6",
+        "gem3_4",
+        "gem3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/gem_eye",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "gem4_7",
+        "gem3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "鉱石感知修練 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★鉱夫の魂"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 5,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "坑道の灯修練 IV"
+      },
+      "icon": "minecraft:lantern",
+      "cost": 2,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/tunnel_light",
+          "field": "duration",
+          "amount": 40
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "鉱石感知・極"
+      },
+      "icon": "minecraft:ender_eye",
+      "cost": 4,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:miner/ore_sense",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "頑丈 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "dig4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    }
+  ]
+}

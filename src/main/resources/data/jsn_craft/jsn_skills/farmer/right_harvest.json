@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "収穫の心得"
+  },
+  "description": {
+    "text": "実った作物を右クリックすると、収穫して自動で植え直す（しゃがむと普通の右クリック）。"
+  },
+  "icon": "minecraft:wheat",
+  "type": "passive",
+  "effect": "right_harvest"
+}

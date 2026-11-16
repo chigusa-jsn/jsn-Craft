@@ -65,6 +65,15 @@ public final class SkillEffects {
             case "mass_fell" -> massFell(player, s);
             case "grove" -> grove(player, s);
             case "summon_guardian" -> summonGuardian(player, s);
+            case "reveal_ores" -> com.chigusa.jsncraft.mining.MiningService.revealOres(player, s);
+            case "power_dig" -> com.chigusa.jsncraft.mining.MiningService.powerDig(player, s);
+            case "wide_dig" -> com.chigusa.jsncraft.mining.MiningService.wideDig(player, s);
+            case "blast_mine" -> com.chigusa.jsncraft.mining.MiningService.blastMine(player, s);
+            case "rain_blessing" -> com.chigusa.jsncraft.farming.FarmingService.rainBlessing(player, s);
+            case "mass_sow" -> com.chigusa.jsncraft.farming.FarmingService.massSow(player, s);
+            case "harvest_dance" -> com.chigusa.jsncraft.farming.FarmingService.harvestDance(player, s);
+            case "scythe_sweep" -> com.chigusa.jsncraft.farming.FarmingService.scytheSweep(player, s);
+            case "harvest_ward" -> com.chigusa.jsncraft.farming.FarmingService.harvestWard(player, s);
             case "fish_buff" -> com.chigusa.jsncraft.fishing.FishingService.fishBuff(player, s);
             case "water_blessing" -> com.chigusa.jsncraft.fishing.FishingService.waterBlessing(player, s);
             case "cast_net" -> com.chigusa.jsncraft.fishing.FishingService.castNet(player, s);
@@ -717,6 +726,18 @@ public final class SkillEffects {
         Vfx.magicCircle(player.serverLevel(), player.position(), 1.6F, 20, Vfx.GOLD);
         player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 0.6F, 1.5F);
         return true;
+    }
+
+    /** 能力値を一時的に上げる（ほかの職業のスキルから使う道具）。key は同じ強化を上書きするための名前 */
+    public static void attributeBuff(ServerPlayer player, Holder<Attribute> attr, String key, double amount,
+                                     AttributeModifier.Operation op, double seconds) {
+        AttributeInstance inst = player.getAttribute(attr);
+        if (inst == null) return;
+        ResourceLocation mod = JsnCraft.id("skill_buff/" + key);
+        inst.removeModifier(mod);
+        inst.addTransientModifier(new AttributeModifier(mod, amount, op));
+        long until = player.level().getGameTime() + Math.round(seconds * 20);
+        BUFFS.put(player.getUUID() + "|" + mod, new Buff(player.getUUID(), attr, mod, until));
     }
 
     private static boolean potion(ServerPlayer player, SkillDefinition s) {

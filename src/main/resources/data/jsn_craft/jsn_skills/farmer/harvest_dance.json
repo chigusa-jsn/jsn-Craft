@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "豊穣の舞"
+  },
+  "description": {
+    "text": "広い範囲（8ブロック）の作物を、花びらと光の輪とともに一気に3段階育てる。"
+  },
+  "icon": "minecraft:sunflower",
+  "type": "active",
+  "effect": "harvest_dance",
+  "radius": 8,
+  "amplifier": 3,
+  "stamina": 40,
+  "cooldown": 120
+}

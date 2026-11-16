@@ -1,0 +1,1391 @@
+{
+  "name": {
+    "text": "大地の耕し手",
+    "color": "yellow"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "harvest",
+      "target": "minecraft:nether_wart",
+      "xp": 4
+    },
+    {
+      "action": "harvest",
+      "target": "minecraft:melon",
+      "xp": 4
+    },
+    {
+      "action": "harvest",
+      "target": "minecraft:pumpkin",
+      "xp": 4
+    },
+    {
+      "action": "harvest",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:farmer/right_harvest",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:farmer/wide_till",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:farmer/rain_blessing",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:farmer/bountiful",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:farmer/mass_sow",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:farmer/earth_grace",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:farmer/golden_harvest",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:farmer/harvest_dance",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "耕作の心得"
+      },
+      "icon": "minecraft:wooden_hoe",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "til1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "恵みの雨修練 I"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "til1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "種まき修練 I"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 1,
+      "links": [
+        "til1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/mass_sow",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "yld1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 I"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "til1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "修練の証 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "yld1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "yld1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "til1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "til2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "足取り II"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "til1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "til2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "恵みの雨・省力 II"
+      },
+      "icon": "minecraft:bucket",
+      "cost": 1,
+      "links": [
+        "til2_0",
+        "til1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "stamina",
+          "amount": -1
+        }
+      ]
+    },
+    {
+      "id": "til2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "大地の恵み修練 II"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 1,
+      "links": [
+        "til2_1",
+        "til1_0",
+        "til1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "til2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "恵みの雨修練 II"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 1,
+      "links": [
+        "til2_2",
+        "til1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "yld2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "豊作修練 II"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 1,
+      "links": [
+        "til2_3",
+        "til1_1",
+        "yld1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "yld2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "yld2_0",
+        "yld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "yld2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 II"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "yld2_1",
+        "yld1_0",
+        "yld1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "黄金の実り修練 II"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "yld2_2",
+        "yld1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "丈夫 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "yld2_3",
+        "yld1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "豊穣の舞修練 II"
+      },
+      "icon": "minecraft:sunflower",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "豊穣の舞・早業 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "cooldown",
+          "amount": -3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "til2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "til3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "種まき修練 III"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 2,
+      "links": [
+        "til2_1",
+        "til2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/mass_sow",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "til3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "足取り III"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "til3_0",
+        "til2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "til3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "恵みの雨修練 III"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 2,
+      "links": [
+        "til3_1",
+        "til2_1",
+        "til2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "til3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "耕作の極意"
+      },
+      "icon": "minecraft:farmland",
+      "cost": 3,
+      "links": [
+        "til3_2",
+        "til2_2",
+        "til2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "til3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "種まき修練 III"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 2,
+      "links": [
+        "til3_3",
+        "til2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/mass_sow",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "til3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "足取り III"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "til3_4",
+        "til2_3",
+        "yld2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "yld3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "til3_5",
+        "yld2_0",
+        "yld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "yld3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "豊作修練 III"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "yld3_0",
+        "yld2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "yld3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 III"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld3_1",
+        "yld2_1",
+        "yld2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "yld3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "豊作の極意"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 3,
+      "links": [
+        "yld3_2",
+        "yld2_2",
+        "yld2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "yld3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "収穫の幸運 III"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld3_3",
+        "yld2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "yld3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "yld3_4",
+        "yld2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "yld3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "農夫の体"
+      },
+      "icon": "minecraft:baked_potato",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "til2_0",
+        "til3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "til4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "恵みの雨・省力 IV"
+      },
+      "icon": "minecraft:bucket",
+      "cost": 2,
+      "links": [
+        "til3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "stamina",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "til4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "大地の恵み修練 IV"
+      },
+      "icon": "minecraft:moss_block",
+      "cost": 2,
+      "links": [
+        "til3_1",
+        "til4_0",
+        "til3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "til4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "恵みの雨修練 IV"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 2,
+      "links": [
+        "til4_1",
+        "til3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "til4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★大耕し"
+      },
+      "icon": "minecraft:diamond_hoe",
+      "cost": 5,
+      "links": [
+        "til4_2",
+        "til3_1",
+        "til3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/wide_till",
+          "field": "radius",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "til4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "種まき修練 IV"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 2,
+      "links": [
+        "til4_3",
+        "til3_2",
+        "til3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/mass_sow",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "til4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "大地の恵み・極"
+      },
+      "icon": "minecraft:rooted_dirt",
+      "cost": 4,
+      "links": [
+        "til4_4",
+        "til3_3",
+        "til3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "til4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "足取り IV"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "til4_5",
+        "til3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.04,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "til4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "恵みの雨修練 IV"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 2,
+      "links": [
+        "til4_6",
+        "til3_4",
+        "til3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "yld4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "豊作修練 IV"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "til4_7",
+        "til3_5",
+        "yld3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "yld4_0",
+        "yld3_0",
+        "yld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "yld4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 IV"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld4_1",
+        "yld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "yld4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★豊年満作"
+      },
+      "icon": "minecraft:pumpkin",
+      "cost": 5,
+      "links": [
+        "yld4_2",
+        "yld3_1",
+        "yld3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.3
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "yld4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "黄金の実り修練 IV"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "yld4_3",
+        "yld3_2",
+        "yld3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "yld4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "黄金の実り・極"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "yld4_4",
+        "yld3_3",
+        "yld3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "yld4_5",
+        "yld3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "yld4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "豊作修練 IV"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 2,
+      "links": [
+        "yld4_6",
+        "yld3_4",
+        "yld3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "豊穣の舞修練 IV"
+      },
+      "icon": "minecraft:sunflower",
+      "cost": 2,
+      "links": [
+        "yld4_7",
+        "yld3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "豊穣の舞・早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "cooldown",
+          "amount": -6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★豊穣の舞・極"
+      },
+      "icon": "minecraft:peony",
+      "cost": 5,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "無尽の気"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "til4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    }
+  ]
+}

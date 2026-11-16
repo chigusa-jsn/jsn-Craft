@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "黄金の実り"
+  },
+  "description": {
+    "text": "実った作物を収穫したとき、2%の確率で金のニンジンやきらめくスイカ（まれに金のリンゴ）が出る。"
+  },
+  "icon": "minecraft:golden_carrot",
+  "type": "passive",
+  "effect": "golden_harvest",
+  "chance": 0.02
+}

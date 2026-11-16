@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "採掘の幸運"
+  },
+  "description": {
+    "text": "鉱石を掘ったとき、15%の確率でドロップが2倍になる。"
+  },
+  "icon": "minecraft:raw_gold",
+  "type": "passive",
+  "effect": "ore_fortune",
+  "chance": 0.15
+}

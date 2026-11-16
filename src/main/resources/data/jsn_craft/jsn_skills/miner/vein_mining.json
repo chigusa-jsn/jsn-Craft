@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "鉱脈掘り"
+  },
+  "description": {
+    "text": "ツルハシでしゃがみながら鉱石を掘ると、つながった同じ鉱石をまとめて掘る（最大16個）。1個ごとにスタミナを2使う。"
+  },
+  "icon": "minecraft:iron_pickaxe",
+  "type": "passive",
+  "effect": "vein_miner",
+  "stamina": 2,
+  "amplifier": 16
+}

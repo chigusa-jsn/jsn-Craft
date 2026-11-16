@@ -1,0 +1,388 @@
+{
+  "job": "farmer",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "耕作の心得",
+    "icon": "minecraft:wooden_hoe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:harvest_fortune",
+        "amount": 0.05
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "til",
+      "pool": [
+        {
+          "name": "恵みの雨修練",
+          "icon": "minecraft:water_bucket",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/rain_blessing",
+              "field": "radius",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "恵みの雨・省力",
+          "icon": "minecraft:bucket",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/rain_blessing",
+              "field": "stamina",
+              "amount": -1
+            }
+          ]
+        },
+        {
+          "name": "種まき修練",
+          "icon": "minecraft:wheat_seeds",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/mass_sow",
+              "field": "radius",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "足取り",
+          "icon": "minecraft:leather_boots",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.02,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        },
+        {
+          "name": "大地の恵み修練",
+          "icon": "minecraft:moss_block",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/earth_grace",
+              "field": "amplifier",
+              "amount": 1
+            }
+          ],
+          "scale": false
+        }
+      ]
+    },
+    {
+      "prefix": "yld",
+      "pool": [
+        {
+          "name": "収穫の幸運",
+          "icon": "minecraft:wheat",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:harvest_fortune",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "豊作修練",
+          "icon": "minecraft:hay_block",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/bountiful",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "黄金の実り修練",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/golden_harvest",
+              "field": "chance",
+              "amount": 0.002
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "丈夫",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "豊穣の舞修練",
+          "icon": "minecraft:sunflower",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/harvest_dance",
+              "field": "radius",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "豊穣の舞・早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:farmer/harvest_dance",
+              "field": "cooldown",
+              "amount": -3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "耕作の極意",
+      "icon": "minecraft:farmland",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/rain_blessing",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★大耕し",
+      "icon": "minecraft:diamond_hoe",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/wide_till",
+          "field": "radius",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "大地の恵み・極",
+      "icon": "minecraft:rooted_dirt",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:farmer/earth_grace",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "豊作の極意",
+      "icon": "minecraft:hay_block",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/bountiful",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★豊年満作",
+      "icon": "minecraft:pumpkin",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.3
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "黄金の実り・極",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/golden_harvest",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "農夫の体",
+      "icon": "minecraft:baked_potato",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★豊穣の舞・極",
+      "icon": "minecraft:peony",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "radius",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:farmer/harvest_dance",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "無尽の気",
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    }
+  ]
+}

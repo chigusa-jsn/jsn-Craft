@@ -1,0 +1,3706 @@
+{
+  "name": {
+    "text": "深淵の鉱脈王",
+    "color": "dark_purple"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:miner",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "break_block",
+      "target": "#c:ores/netherite_scrap",
+      "xp": 64
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/emerald",
+      "xp": 48
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/diamond",
+      "xp": 40
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/gold",
+      "xp": 16
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/lapis",
+      "xp": 16
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/iron",
+      "xp": 13
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/redstone",
+      "xp": 13
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/quartz",
+      "xp": 10
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/copper",
+      "xp": 8
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores/coal",
+      "xp": 8
+    },
+    {
+      "action": "break_block",
+      "target": "#c:ores",
+      "xp": 10
+    },
+    {
+      "action": "break_block",
+      "target": "#minecraft:base_stone_overworld",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:vein_king/blast_mine",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:vein_king/earth_pulse",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:vein_king/rich_vein",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "鉱脈王の心得"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.1
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "blt1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "剛腕 I"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "blt1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "爆破・広域 I"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 1,
+      "links": [
+        "blt1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "dep1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "採掘の幸運 I"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 1,
+      "links": [
+        "blt1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "dep1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "深淵の知恵 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "dep1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rck1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "岩の肌 I"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "dep1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "rck1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "center",
+        "blt1_0",
+        "rck1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10.5
+        }
+      ]
+    },
+    {
+      "id": "blt2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "爆破・省力 II"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 1,
+      "links": [
+        "blt1_0",
+        "rck1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -1.5
+        }
+      ]
+    },
+    {
+      "id": "blt2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "鉱脈掘り・覚醒 II"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt2_0",
+        "blt1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "blt2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "省力 II"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "blt2_1",
+        "blt1_0",
+        "blt1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "blt2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "剛掘・覚醒 II"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt2_2",
+        "blt1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "dep2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "長持ち II"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "blt2_3",
+        "blt1_1",
+        "dep1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "dep2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "dep2_0",
+        "dep1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "dep2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "鉱脈の気配 II"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 1,
+      "links": [
+        "dep2_1",
+        "dep1_0",
+        "dep1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.001
+        }
+      ]
+    },
+    {
+      "id": "dep2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "鼓動・広域 II"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 1,
+      "links": [
+        "dep2_2",
+        "dep1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "rck2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "再生 II"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "dep2_3",
+        "dep1_1",
+        "rck1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "rck2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "rck2_0",
+        "rck1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "rck2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "鎧 II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "rck1_0",
+        "rck1_1",
+        "rck2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "rck2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "rck1_1",
+        "blt2_0",
+        "rck2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "blt3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt2_1",
+        "blt2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "blt3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt3_0",
+        "blt2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "blt3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "爆破・広域 III"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 1,
+      "links": [
+        "blt3_1",
+        "blt2_1",
+        "blt2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "blt3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "深層の加護"
+      },
+      "icon": "minecraft:deepslate",
+      "cost": 3,
+      "links": [
+        "blt3_2",
+        "blt2_2",
+        "blt2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:vein_king/board/deep_blessing"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "blt3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "爆破・省力 III"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 1,
+      "links": [
+        "blt3_3",
+        "blt2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "blt3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "鉱脈掘り・覚醒 III"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt3_4",
+        "blt2_3",
+        "dep2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "dep3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "採掘の幸運 III"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 1,
+      "links": [
+        "blt3_5",
+        "dep2_0",
+        "dep2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "深淵の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "dep3_0",
+        "dep2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "長持ち III"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "dep3_1",
+        "dep2_1",
+        "dep2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "溶岩の守り"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 3,
+      "links": [
+        "dep3_2",
+        "dep2_2",
+        "dep2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:vein_king/board/lava_ward"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dep3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "採掘の幸運 III"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 1,
+      "links": [
+        "dep3_3",
+        "dep2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "深淵の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "dep3_4",
+        "dep2_3",
+        "rck2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "rck3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "岩の肌 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "dep3_5",
+        "rck2_0",
+        "rck2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "rck3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "rck3_0",
+        "rck2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "rck3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "岩の肌 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "rck2_1",
+        "rck2_2",
+        "rck3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "rck3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "岩の肌"
+      },
+      "icon": "minecraft:cobbled_deepslate",
+      "cost": 3,
+      "links": [
+        "rck2_2",
+        "rck2_3",
+        "rck3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:vein_king/board/stone_skin"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "rck3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "rck2_3",
+        "rck3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "rck3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "再生 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "blt2_0",
+        "blt3_0",
+        "rck3_4",
+        "rck2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "blt4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "省力 IV"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "blt3_0",
+        "rck3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "blt4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "剛掘・覚醒 IV"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt3_1",
+        "blt4_0",
+        "blt3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "blt4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt4_1",
+        "blt3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "blt4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt4_2",
+        "blt3_1",
+        "blt3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "blt4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "爆破・広域 IV"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 1,
+      "links": [
+        "blt4_3",
+        "blt3_2",
+        "blt3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "blt4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "爆破・省力 IV"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 2,
+      "links": [
+        "blt4_4",
+        "blt3_3",
+        "blt3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "blt4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "鉱脈掘り・覚醒 IV"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 1,
+      "links": [
+        "blt4_5",
+        "blt3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "blt4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "省力 IV"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "blt4_6",
+        "blt3_4",
+        "blt3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "長持ち IV"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "blt4_7",
+        "blt3_5",
+        "dep3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "dep4_0",
+        "dep3_0",
+        "dep3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "dep4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "鉱脈の気配 IV"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 1,
+      "links": [
+        "dep4_1",
+        "dep3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "dep4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "鼓動・広域 IV"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 2,
+      "links": [
+        "dep4_2",
+        "dep3_1",
+        "dep3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "dep4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "採掘の幸運 IV"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 1,
+      "links": [
+        "dep4_3",
+        "dep3_2",
+        "dep3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "深淵の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep4_4",
+        "dep3_3",
+        "dep3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "長持ち IV"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "dep4_5",
+        "dep3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "dep4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "採掘の幸運 IV"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "dep4_6",
+        "dep3_4",
+        "dep3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "rck4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "dep4_7",
+        "dep3_5",
+        "rck3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
+        }
+      ]
+    },
+    {
+      "id": "rck4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "鎧 IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "rck4_0",
+        "rck3_0",
+        "rck3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "rck4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "rck4_1",
+        "rck3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "rck4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "岩の肌 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck3_1",
+        "rck3_2",
+        "rck4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "rck4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "rck3_2",
+        "rck3_3",
+        "rck4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "rck4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "岩の肌 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck3_3",
+        "rck3_4",
+        "rck4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "rck4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "rck3_4",
+        "rck4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "rck4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "rck3_5",
+        "blt4_0",
+        "rck4_6",
+        "rck3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "blt5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "剛掘・覚醒 V"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt4_1",
+        "blt4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "blt5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "剛腕 V"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt4_2",
+        "blt5_0",
+        "blt4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "blt5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "剛腕 V"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt5_1",
+        "blt4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "blt5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "爆破・広域 V"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "blt5_2",
+        "blt4_2",
+        "blt4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "爆破・省力 V"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 2,
+      "links": [
+        "blt5_3",
+        "blt4_3",
+        "blt4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "blt5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★爆破採掘・覚醒"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 6,
+      "links": [
+        "blt5_4",
+        "blt4_4",
+        "blt4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "cooldown",
+          "amount": -8
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "blt5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "鉱脈掘り・覚醒 V"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt5_5",
+        "blt4_5",
+        "blt4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "blt5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "省力 V"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "blt5_6",
+        "blt4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "blt5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "剛掘・覚醒 V"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt5_7",
+        "blt4_6",
+        "blt4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "blt5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 V"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt5_8",
+        "blt4_7",
+        "dep4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "dep5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "深淵の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "blt5_9",
+        "dep4_0",
+        "dep4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "長持ち V"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep5_0",
+        "dep4_1",
+        "dep4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "dep5_1",
+        "dep4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "dep5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "鉱脈の気配 V"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 2,
+      "links": [
+        "dep5_2",
+        "dep4_2",
+        "dep4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "dep5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "鼓動・広域 V"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 2,
+      "links": [
+        "dep5_3",
+        "dep4_3",
+        "dep4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "dep5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★大鉱脈"
+      },
+      "icon": "minecraft:deepslate_diamond_ore",
+      "cost": 6,
+      "links": [
+        "dep5_4",
+        "dep4_4",
+        "dep4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.02
+        },
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "dep5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "採掘の幸運 V"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "dep5_5",
+        "dep4_5",
+        "dep4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "深淵の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep5_6",
+        "dep4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "長持ち V"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep5_7",
+        "dep4_6",
+        "dep4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "採掘の幸運 V"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "dep5_8",
+        "dep4_7",
+        "rck4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "rck5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "dep5_9",
+        "rck4_0",
+        "rck4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "rck5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "鎧 V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "rck5_0",
+        "rck4_1",
+        "rck4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "rck5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "rck5_1",
+        "rck4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "rck5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "岩の肌 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck4_2",
+        "rck4_3",
+        "rck5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "rck5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck4_3",
+        "rck4_4",
+        "rck5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "rck5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★大地の鼓動・極"
+      },
+      "icon": "minecraft:sculk_sensor",
+      "cost": 6,
+      "links": [
+        "rck4_4",
+        "rck4_5",
+        "rck5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "rck5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "岩の肌 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck4_5",
+        "rck4_6",
+        "rck5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "rck5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck4_6",
+        "rck5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "rck5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "再生 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "rck4_7",
+        "rck5_7",
+        "rck4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "rck5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "blt4_0",
+        "blt5_0",
+        "rck5_8",
+        "rck4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "blt6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 VI"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt5_0",
+        "rck5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "blt6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "爆破・広域 VI"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "blt5_1",
+        "blt6_0",
+        "blt5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "爆破・省力 VI"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 2,
+      "links": [
+        "blt5_2",
+        "blt6_1",
+        "blt5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "blt6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "鉱脈掘り・覚醒 VI"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_2",
+        "blt5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "blt6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "広域掘り・真"
+      },
+      "icon": "minecraft:netherite_pickaxe",
+      "cost": 4,
+      "links": [
+        "blt6_3",
+        "blt5_2",
+        "blt5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/wide_dig",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "blt6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "省力 VI"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "blt6_4",
+        "blt5_3",
+        "blt5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "blt6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "剛掘・覚醒 VI"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_5",
+        "blt5_4",
+        "blt5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "blt6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "剛腕 VI"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_6",
+        "blt5_5",
+        "blt5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "blt6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "剛腕 VI"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_7",
+        "blt5_6",
+        "blt5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "blt6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "爆破・広域 VI"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "blt6_8",
+        "blt5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "爆破・省力 VI"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 2,
+      "links": [
+        "blt6_9",
+        "blt5_7",
+        "blt5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "blt6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "鉱脈掘り・覚醒 VI"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_10",
+        "blt5_8",
+        "blt5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "dep6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "深淵の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "blt6_11",
+        "blt5_9",
+        "dep5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "長持ち VI"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep6_0",
+        "dep5_0",
+        "dep5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "dep6_1",
+        "dep5_1",
+        "dep5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "dep6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "鉱脈の気配 VI"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 2,
+      "links": [
+        "dep6_2",
+        "dep5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "dep6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "鼓動・広域 VI"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 2,
+      "links": [
+        "dep6_3",
+        "dep5_2",
+        "dep5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "dep6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "採掘の幸運 VI"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "dep6_4",
+        "dep5_3",
+        "dep5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "溶岩の守り・極"
+      },
+      "icon": "minecraft:lava_bucket",
+      "cost": 4,
+      "links": [
+        "dep6_5",
+        "dep5_4",
+        "dep5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/board/lava_ward",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "dep6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "深淵の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep6_6",
+        "dep5_5",
+        "dep5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "長持ち VI"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep6_7",
+        "dep5_6",
+        "dep5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "採掘の幸運 VI"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 2,
+      "links": [
+        "dep6_8",
+        "dep5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "深淵の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep6_9",
+        "dep5_7",
+        "dep5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "dep6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "長持ち VI"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep6_10",
+        "dep5_8",
+        "dep5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "rck6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "鎧 VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "dep6_11",
+        "dep5_9",
+        "rck5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "rck6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "rck6_0",
+        "rck5_0",
+        "rck5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "rck6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "岩の肌 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck6_1",
+        "rck5_1",
+        "rck5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "rck6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck6_2",
+        "rck5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "rck6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "岩の肌 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck5_2",
+        "rck5_3",
+        "rck6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "rck6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck5_3",
+        "rck5_4",
+        "rck6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "rck6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "岩の肌・厚"
+      },
+      "icon": "minecraft:polished_deepslate",
+      "cost": 4,
+      "links": [
+        "rck5_4",
+        "rck5_5",
+        "rck6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/board/stone_skin",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "rck6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "rck5_5",
+        "rck5_6",
+        "rck6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "rck6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "rck5_6",
+        "rck5_7",
+        "rck6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "rck6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "鎧 VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "rck5_7",
+        "rck6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "rck6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "rck5_8",
+        "rck6_9",
+        "rck5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "rck6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "岩の肌 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck5_9",
+        "blt6_0",
+        "rck6_10",
+        "rck5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "blt7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "blt6_1",
+        "blt6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "blt7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "剛掘・覚醒 VII"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 3,
+      "links": [
+        "blt6_2",
+        "blt7_0",
+        "blt6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "blt7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "剛腕 VII"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt6_3",
+        "blt7_1",
+        "blt6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "剛腕 VII"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 3,
+      "links": [
+        "blt7_2",
+        "blt6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★剛掘・覚醒極"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 7,
+      "links": [
+        "blt7_3",
+        "blt6_3",
+        "blt6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "blt7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "爆破・広域 VII"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 3,
+      "links": [
+        "blt7_4",
+        "blt6_4",
+        "blt6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "blt7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "爆破・省力 VII"
+      },
+      "icon": "minecraft:gunpowder",
+      "cost": 2,
+      "links": [
+        "blt7_5",
+        "blt6_5",
+        "blt6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -3
+        }
+      ]
+    },
+    {
+      "id": "blt7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★大地を穿つ者"
+      },
+      "icon": "minecraft:netherite_block",
+      "cost": 8,
+      "links": [
+        "blt7_6",
+        "blt6_6",
+        "blt6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.3
+        },
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "stamina",
+          "amount": -10
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "blt7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "鉱脈掘り・覚醒 VII"
+      },
+      "icon": "minecraft:diamond_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt7_7",
+        "blt6_7",
+        "blt6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/vein_mining",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "blt7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:leather",
+      "cost": 3,
+      "links": [
+        "blt7_8",
+        "blt6_8",
+        "blt6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "blt7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "剛掘・覚醒 VII"
+      },
+      "icon": "minecraft:golden_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt7_9",
+        "blt6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:miner/power_dig",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "blt7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "剛腕 VII"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 3,
+      "links": [
+        "blt7_10",
+        "blt6_9",
+        "blt6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "剛腕 VII"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "blt7_11",
+        "blt6_10",
+        "blt6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "blt7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "爆破・広域 VII"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 3,
+      "links": [
+        "blt7_12",
+        "blt6_11",
+        "dep6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/blast_mine",
+          "field": "radius",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "dep7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "blt7_13",
+        "dep6_0",
+        "dep6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "dep7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "鉱脈の気配 VII"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 3,
+      "links": [
+        "dep7_0",
+        "dep6_1",
+        "dep6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "dep7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "鼓動・広域 VII"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 2,
+      "links": [
+        "dep7_1",
+        "dep6_2",
+        "dep6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "dep7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "採掘の幸運 VII"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 3,
+      "links": [
+        "dep7_2",
+        "dep6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "深淵の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep7_3",
+        "dep6_3",
+        "dep6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★鶴嘴の極み"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 7,
+      "links": [
+        "dep7_4",
+        "dep6_4",
+        "dep6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "dep7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "長持ち VII"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep7_5",
+        "dep6_5",
+        "dep6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "採掘の幸運 VII"
+      },
+      "icon": "minecraft:raw_gold",
+      "cost": 3,
+      "links": [
+        "dep7_6",
+        "dep6_6",
+        "dep6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "深淵の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "dep7_7",
+        "dep6_7",
+        "dep6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★深淵の賢者"
+      },
+      "icon": "minecraft:amethyst_cluster",
+      "cost": 8,
+      "links": [
+        "dep7_8",
+        "dep6_8",
+        "dep6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "dep7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "長持ち VII"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "dep7_9",
+        "dep6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dep7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "dep7_10",
+        "dep6_9",
+        "dep6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "dep7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "鉱脈の気配 VII"
+      },
+      "icon": "minecraft:deepslate_iron_ore",
+      "cost": 2,
+      "links": [
+        "dep7_11",
+        "dep6_10",
+        "dep6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/rich_vein",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "dep7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "鼓動・広域 VII"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 3,
+      "links": [
+        "dep7_12",
+        "dep6_11",
+        "rck6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:vein_king/earth_pulse",
+          "field": "radius",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "rck7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "dep7_13",
+        "rck6_0",
+        "rck6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "rck7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "岩の肌 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "rck7_0",
+        "rck6_1",
+        "rck6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "rck7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck7_1",
+        "rck6_2",
+        "rck6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "rck7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "rck7_2",
+        "rck6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "rck7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "rck6_3",
+        "rck6_4",
+        "rck7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.039
+        }
+      ]
+    },
+    {
+      "id": "rck7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★不動の岩"
+      },
+      "icon": "minecraft:obsidian",
+      "cost": 7,
+      "links": [
+        "rck6_4",
+        "rck6_5",
+        "rck7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "rck7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "鎧 VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "rck6_5",
+        "rck6_6",
+        "rck7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "rck7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 3,
+      "links": [
+        "rck6_6",
+        "rck6_7",
+        "rck7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "rck7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "岩の肌 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "rck6_7",
+        "rck6_8",
+        "rck7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "rck7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★深淵の守護"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 8,
+      "links": [
+        "rck6_8",
+        "rck6_9",
+        "rck7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "rck7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck6_9",
+        "rck7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "rck7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "岩の肌 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "rck6_10",
+        "rck7_10",
+        "rck6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "rck7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "rck6_11",
+        "rck7_11",
+        "rck6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "rck7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "blt6_0",
+        "blt7_0",
+        "rck7_12",
+        "rck6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    }
+  ]
+}

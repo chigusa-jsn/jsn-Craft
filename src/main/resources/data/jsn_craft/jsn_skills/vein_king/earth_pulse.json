@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "大地の鼓動"
+  },
+  "description": {
+    "text": "広い範囲（24ブロック）の鉱石を、60秒間 壁越しに光らせる。"
+  },
+  "icon": "minecraft:echo_shard",
+  "type": "active",
+  "effect": "reveal_ores",
+  "radius": 24,
+  "duration": 60,
+  "stamina": 40,
+  "cooldown": 120
+}

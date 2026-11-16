@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "種まき上手"
+  },
+  "description": {
+    "text": "周り（5ブロック）の空いた畑に、持っている種をまとめて植える（手に持っている種が優先）。"
+  },
+  "icon": "minecraft:wheat_seeds",
+  "type": "active",
+  "effect": "mass_sow",
+  "radius": 5,
+  "stamina": 15,
+  "cooldown": 20
+}

@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "大鎌の一閃"
+  },
+  "description": {
+    "text": "周り（5ブロック）の実った作物を一振りで刈り取って、植え直す。"
+  },
+  "icon": "minecraft:golden_hoe",
+  "type": "active",
+  "effect": "scythe_sweep",
+  "radius": 5,
+  "stamina": 20,
+  "cooldown": 15
+}

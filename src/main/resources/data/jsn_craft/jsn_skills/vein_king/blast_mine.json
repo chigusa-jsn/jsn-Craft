@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "爆破採掘"
+  },
+  "description": {
+    "text": "前に向かって爆発を起こし、石と鉱石だけをまとめて砕く（半径2.5ブロック）。土や木、チェストなどは壊さない。"
+  },
+  "icon": "minecraft:tnt",
+  "type": "active",
+  "effect": "blast_mine",
+  "radius": 2.5,
+  "stamina": 35,
+  "cooldown": 20
+}

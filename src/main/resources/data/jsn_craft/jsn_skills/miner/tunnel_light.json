@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "坑道の灯"
+  },
+  "description": {
+    "text": "120秒間、暗視がつく。"
+  },
+  "icon": "minecraft:lantern",
+  "type": "active",
+  "effect": "potion",
+  "target": "minecraft:night_vision",
+  "duration": 120,
+  "stamina": 10,
+  "cooldown": 60
+}

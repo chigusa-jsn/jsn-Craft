@@ -64,7 +64,7 @@ public record JobDefinition(
 
     /**
      * 経験値のもらえる行動。
-     * action: "break_block"（ブロックを壊す） / "place_block"（置く） / "kill_entity"（モブを倒す） / "fish"（釣る）
+     * action: "break_block"（ブロックを壊す） / "place_block"（置く） / "kill_entity"（モブを倒す） / "fish"（釣る） / "harvest"（実った作物を収穫する）
      * target: "minecraft:stone" のようなID、"#minecraft:logs" のようなタグ、"*" で何でも
      */
     public record XpRule(String action, String target, int xp) {

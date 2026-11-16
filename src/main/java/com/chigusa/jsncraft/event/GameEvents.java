@@ -52,10 +52,25 @@ public final class GameEvents {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if (event.getPlayer() instanceof ServerPlayer player && !player.isCreative()) {
-            var state = event.getState();
-            JobService.onAction(player, rule -> rule.action().equals("break_block") && rule.matchesBlock(state));
-            QuestService.onBreak(player, state);
+            awardBreak(player, event.getState(), hasSilkTouch(player));
         }
+    }
+
+    /**
+     * ブロックを壊したときの経験値と依頼。まとめ掘りなどのスキルからも呼ぶ。
+     * シルクタッチで鉱石を掘ったときは経験値なし（置いて掘ってを繰り返せないように）。
+     */
+    public static void awardBreak(ServerPlayer player, net.minecraft.world.level.block.state.BlockState state, boolean silk) {
+        if (!(silk && state.is(net.neoforged.neoforge.common.Tags.Blocks.ORES))) {
+            JobService.onAction(player, rule -> rule.action().equals("break_block") && rule.matchesBlock(state));
+        }
+        QuestService.onBreak(player, state);
+    }
+
+    public static boolean hasSilkTouch(ServerPlayer player) {
+        var reg = player.level().registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT);
+        return net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(
+                reg.getHolderOrThrow(net.minecraft.world.item.enchantment.Enchantments.SILK_TOUCH), player.getMainHandItem()) > 0;
     }
 
     /** ブロックを置いたとき（苗木を植えるなど） */

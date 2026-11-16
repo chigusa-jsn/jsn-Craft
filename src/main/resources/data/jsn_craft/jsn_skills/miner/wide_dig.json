@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "広域掘り"
+  },
+  "description": {
+    "text": "30秒間、ツルハシで掘ると周りもまとめて3×3で掘れる（固いブロックは巻き込まない）。"
+  },
+  "icon": "minecraft:diamond_pickaxe",
+  "type": "active",
+  "effect": "wide_dig",
+  "amplifier": 1,
+  "duration": 30,
+  "stamina": 30,
+  "cooldown": 90
+}

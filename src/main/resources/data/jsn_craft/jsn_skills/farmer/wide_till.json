@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "耕しの鍬"
+  },
+  "description": {
+    "text": "鍬で耕すと、周りの3×3もまとめて耕す（しゃがむと1マスだけ）。"
+  },
+  "icon": "minecraft:iron_hoe",
+  "type": "passive",
+  "effect": "wide_till",
+  "radius": 1
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "石工の腕"
+  },
+  "description": {
+    "text": "石・深層岩・ネザーラックなどを掘る速さが30%上がる。"
+  },
+  "icon": "minecraft:stone",
+  "type": "passive",
+  "effect": "stone_mastery",
+  "power": 0.3
+}
