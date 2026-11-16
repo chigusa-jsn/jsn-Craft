@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "守りの森"
+  },
+  "description": {
+    "text": "その場に20秒間、森の結界（6ブロック）を張る。中のパーティーの仲間は毎秒HPが1回復し、敵は遅くなる。"
+  },
+  "icon": "minecraft:flowering_azalea",
+  "type": "active",
+  "effect": "grove",
+  "stamina": 35,
+  "cooldown": 45,
+  "radius": 6,
+  "duration": 20,
+  "power": 1
+}

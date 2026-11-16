@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "落葉払い"
+  },
+  "description": {
+    "text": "周り（6ブロック）の葉っぱを一気に払う。苗木やリンゴもまとめて落ちる。"
+  },
+  "icon": "minecraft:oak_leaves",
+  "type": "active",
+  "effect": "leaf_clear",
+  "stamina": 20,
+  "cooldown": 15,
+  "radius": 6
+}

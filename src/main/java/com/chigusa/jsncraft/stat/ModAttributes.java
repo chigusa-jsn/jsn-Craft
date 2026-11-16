@@ -51,6 +51,9 @@ public final class ModAttributes {
     /** 1秒あたりのHP自然回復 */
     public static final DeferredHolder<Attribute, Attribute> HP_REGEN = register("hp_regen", 0, 0, 100);
 
+    /** 道具の長持ち：ブロックを壊したとき、○%の確率で道具の耐久が減らない */
+    public static final DeferredHolder<Attribute, Attribute> TOOL_DURABILITY = register("tool_durability", 0, 0, 1);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -73,6 +76,7 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, JOB_XP_BONUS);
         event.add(EntityType.PLAYER, BOSS_DAMAGE);
         event.add(EntityType.PLAYER, HP_REGEN);
+        event.add(EntityType.PLAYER, TOOL_DURABILITY);
     }
 
     private ModAttributes() {}

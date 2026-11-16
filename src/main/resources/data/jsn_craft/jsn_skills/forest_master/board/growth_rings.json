@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "年輪"
+  },
+  "description": {
+    "text": "原木を続けて切るほど、職業経験値のおまけが増える（1本ごとに+1、最大+10。3秒あくとリセット）。"
+  },
+  "icon": "minecraft:stripped_oak_log",
+  "type": "passive",
+  "effect": "streak_xp",
+  "power": 1,
+  "amplifier": 10
+}

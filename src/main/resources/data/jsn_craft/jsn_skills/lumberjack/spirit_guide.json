@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "木霊の導き"
+  },
+  "description": {
+    "text": "周り（32ブロック）の木の根元を、10秒間 光の柱で教えてくれる（自分にだけ見える）。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "active",
+  "effect": "reveal_logs",
+  "stamina": 10,
+  "cooldown": 20,
+  "radius": 32,
+  "duration": 10
+}

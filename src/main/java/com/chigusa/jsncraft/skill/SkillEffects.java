@@ -59,6 +59,12 @@ public final class SkillEffects {
             case "leap_slam" -> leapSlam(player, s);
             case "flurry" -> flurry(player, s);
             case "moon_fall" -> moonFall(player, s);
+            case "leaf_clear" -> leafClear(player, s);
+            case "grow_area" -> growArea(player, s);
+            case "reveal_logs" -> revealLogs(player, s);
+            case "mass_fell" -> massFell(player, s);
+            case "grove" -> grove(player, s);
+            case "summon_guardian" -> summonGuardian(player, s);
             default -> {
                 JsnCraft.LOGGER.warn("[jsn-Craft] 知らないスキル効果です: {}", s.effect());
                 yield false;
@@ -410,6 +416,208 @@ public final class SkillEffects {
             level.playSound(null, BlockPos.containing(ground), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1.0F, 0.8F);
             level.playSound(null, BlockPos.containing(ground), SoundEvents.DRAGON_FIREBALL_EXPLODE, SoundSource.PLAYERS, 1.0F, 0.7F);
             player.displayClientMessage(Component.literal("天穹蒼月：" + count + "体に命中").withStyle(net.minecraft.ChatFormatting.AQUA), true);
+        });
+        return true;
+    }
+
+    // ================= 伐り手：落葉払い（周りの葉を一気に払う） =================
+
+    private static boolean leafClear(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        int r = (int) Math.round(s.radius());
+        BlockPos c = player.blockPosition();
+        int count = 0;
+        for (BlockPos p : BlockPos.betweenClosed(c.offset(-r, -2, -r), c.offset(r, r + 6, r))) {
+            if (count >= 400) break;
+            var state = level.getBlockState(p);
+            if (!state.is(net.minecraft.tags.BlockTags.LEAVES)) continue;
+            if (p.distSqr(c) > (r + 3) * (r + 3)) continue;
+            level.destroyBlock(p.immutable(), true, player);
+            count++;
+        }
+        if (count == 0) {
+            player.displayClientMessage(Component.literal("近くに葉っぱがありません"), true);
+            return false;
+        }
+        Vfx.ring(level, player.position(), r * 1.2F, 12, Vfx.GREEN);
+        level.sendParticles(ParticleTypes.CHERRY_LEAVES, player.getX(), player.getY() + 3, player.getZ(), 40, r * 0.5, 2, r * 0.5, 0.05);
+        level.playSound(null, player.blockPosition(), SoundEvents.AZALEA_LEAVES_BREAK, SoundSource.PLAYERS, 1.0F, 0.8F);
+        level.playSound(null, player.blockPosition(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.PLAYERS, 0.4F, 1.6F);
+        player.displayClientMessage(Component.literal("落葉払い：" + count + "枚の葉を払った").withStyle(net.minecraft.ChatFormatting.GREEN), true);
+        return true;
+    }
+
+    // ================= 伐り手：苗木の祝福（周りの苗木や作物を一気に育てる） =================
+
+    private static boolean growArea(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        int r = (int) Math.round(s.radius());
+        int times = Math.max(1, s.amplifier() > 0 ? s.amplifier() : 2);
+        BlockPos c = player.blockPosition();
+        int grown = 0;
+        for (BlockPos p : BlockPos.betweenClosed(c.offset(-r, -2, -r), c.offset(r, 3, r))) {
+            BlockPos pos = p.immutable();
+            boolean any = false;
+            for (int t = 0; t < times; t++) {
+                if (net.minecraft.world.item.BoneMealItem.growCrop(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.BONE_MEAL), level, pos)) any = true;
+            }
+            if (any) {
+                level.levelEvent(1505, pos, 0); // 骨粉のキラキラ
+                grown++;
+            }
+        }
+        Vfx.magicCircle(level, player.position(), r, 24, Vfx.GREEN);
+        Vfx.ring(level, player.position(), r * 1.2F, 14, Vfx.GREEN);
+        level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0F, 1.4F);
+        player.displayClientMessage(Component.literal("苗木の祝福：" + grown + "か所が育った").withStyle(net.minecraft.ChatFormatting.GREEN), true);
+        return true;
+    }
+
+    // ================= 伐り手：木霊の導き（周りの木の場所を光らせる。自分にだけ見える） =================
+
+    private static boolean revealLogs(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        int r = (int) Math.round(s.radius());
+        BlockPos c = player.blockPosition();
+        List<BlockPos> roots = new ArrayList<>();
+        for (BlockPos p : BlockPos.betweenClosed(c.offset(-r, -8, -r), c.offset(r, 8, r))) {
+            var state = level.getBlockState(p);
+            if (state.is(net.minecraft.tags.BlockTags.LOGS) && !level.getBlockState(p.below()).is(net.minecraft.tags.BlockTags.LOGS)) {
+                roots.add(p.immutable());
+                if (roots.size() >= 60) break;
+            }
+        }
+        int ticks = (int) Math.round(Math.max(2, s.duration()) * 20);
+        for (int t = 0; t < ticks; t += 10) {
+            later(player, t, () -> {
+                for (BlockPos p : roots) {
+                    if (!level.getBlockState(p).is(net.minecraft.tags.BlockTags.LOGS)) continue;
+                    // 自分にだけ、光の柱を見せる
+                    level.sendParticles(player, ParticleTypes.END_ROD, true, p.getX() + 0.5, p.getY() + 1.5, p.getZ() + 0.5, 3, 0.1, 1.2, 0.1, 0.0);
+                }
+            });
+        }
+        Vfx.ring(level, player.position(), r * 0.5F, 16, Vfx.GREEN);
+        level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_CLUSTER_STEP, SoundSource.PLAYERS, 1.0F, 1.2F);
+        player.displayClientMessage(Component.literal("木霊の導き：" + roots.size() + "本の木を見つけた").withStyle(net.minecraft.ChatFormatting.GREEN), true);
+        return true;
+    }
+
+    // ================= 古樹の守り人：千年樹伐り（周りの木をまとめて倒す） =================
+
+    private static boolean massFell(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        int r = (int) Math.round(s.radius());
+        BlockPos c = player.blockPosition();
+        // 周りの木の根元を探す
+        List<BlockPos> roots = new ArrayList<>();
+        for (BlockPos p : BlockPos.betweenClosed(c.offset(-r, -3, -r), c.offset(r, 3, r))) {
+            if (level.getBlockState(p).is(net.minecraft.tags.BlockTags.LOGS)
+                    && !level.getBlockState(p.below()).is(net.minecraft.tags.BlockTags.LOGS)) roots.add(p.immutable());
+        }
+        if (roots.isEmpty()) {
+            player.displayClientMessage(Component.literal("近くに木がありません"), true);
+            return false;
+        }
+        float perLog = (float) Math.max(0, s.bonus());
+        int cut = 0, trees = 0;
+        int limit = s.amplifier() > 0 ? s.amplifier() : 300;
+        outer:
+        for (BlockPos root : roots) {
+            var rootState = level.getBlockState(root);
+            if (!rootState.is(net.minecraft.tags.BlockTags.LOGS)) continue;
+            List<BlockPos> tree = new ArrayList<>();
+            tree.add(root);
+            tree.addAll(SkillEvents.findTree(level, root, rootState.getBlock(), 128));
+            trees++;
+            for (BlockPos p : tree) {
+                if (cut >= limit) break outer;
+                if (perLog > 0 && !com.chigusa.jsncraft.stat.ResourceService.tryUseStamina(player, perLog)) {
+                    player.displayClientMessage(Component.literal("スタミナ切れ！"), true);
+                    break outer;
+                }
+                var st = level.getBlockState(p);
+                if (!st.is(net.minecraft.tags.BlockTags.LOGS)) continue;
+                level.destroyBlock(p, true, player);
+                com.chigusa.jsncraft.job.JobService.onAction(player, rule -> rule.action().equals("break_block") && rule.matchesBlock(st));
+                com.chigusa.jsncraft.quest.QuestService.onBreak(player, st);
+                cut++;
+            }
+        }
+        Vfx.ring(level, player.position(), r * 1.3F, 14, Vfx.GREEN);
+        Vfx.magicCircle(level, player.position(), r * 0.8F, 16, Vfx.GOLD);
+        for (int k = 0; k < 6; k++) {
+            double a = Math.toRadians(k * 60);
+            Vfx.slash(level, player.position().add(Math.cos(a) * r * 0.6, 1.0, Math.sin(a) * r * 0.6), 1.8F, Vfx.GREEN, k * 60);
+        }
+        level.playSound(null, player.blockPosition(), SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 0.5F);
+        level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0F, 0.6F);
+        player.displayClientMessage(Component.literal("千年樹伐り：" + trees + "本の木、" + cut + "個の原木").withStyle(net.minecraft.ChatFormatting.GREEN), true);
+        return true;
+    }
+
+    // ================= 古樹の守り人：守りの森（結界：仲間は回復、敵は遅くなる） =================
+
+    private static boolean grove(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        Vec3 center = player.position();
+        float radius = (float) s.radius();
+        int ticks = (int) Math.round(Math.max(2, s.duration()) * 20);
+        Vfx.magicCircle(level, center, radius, ticks, Vfx.GREEN);
+        PartyManager.Party party = PartyManager.partyOf(player);
+        for (int t = 0; t < ticks; t += 20) {
+            later(player, t, () -> {
+                for (ServerPlayer p : level.players()) {
+                    boolean ally = p == player || (party != null && party.members.contains(p.getUUID()));
+                    if (ally && p.position().distanceTo(center) <= radius) {
+                        p.heal((float) s.power());
+                        level.sendParticles(ParticleTypes.HAPPY_VILLAGER, p.getX(), p.getY() + 1, p.getZ(), 4, 0.3, 0.5, 0.3, 0);
+                    }
+                }
+                for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, new AABB(center, center).inflate(radius, 3, radius),
+                        e -> isEnemy(player, e))) {
+                    if (e.position().distanceTo(center) > radius) continue;
+                    e.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 30, 1));
+                }
+                Vfx.ring(level, center, radius, 14, Vfx.GREEN);
+                level.sendParticles(ParticleTypes.CHERRY_LEAVES, center.x, center.y + 3, center.z, 15, radius * 0.5, 1, radius * 0.5, 0.02);
+            });
+        }
+        level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.8F, 1.3F);
+        return true;
+    }
+
+    // ================= 古樹の守り人：奥義・樹霊招来（樹の精霊が一緒に戦う） =================
+
+    private static boolean summonGuardian(ServerPlayer player, SkillDefinition s) {
+        ServerLevel level = player.serverLevel();
+        Vec3 look = flatLook(player);
+        Vec3 pos = player.position().add(look.scale(2));
+        var golem = net.minecraft.world.entity.EntityType.IRON_GOLEM.create(level);
+        if (golem == null) return false;
+        golem.moveTo(pos.x, pos.y, pos.z, player.getYRot(), 0);
+        golem.setPlayerCreated(true);
+        golem.setCustomName(Component.literal("樹霊").withStyle(net.minecraft.ChatFormatting.GREEN));
+        golem.setCustomNameVisible(true);
+        var hp = golem.getAttribute(Attributes.MAX_HEALTH);
+        if (hp != null) hp.setBaseValue(100 * Math.max(0.5, s.power()));
+        var atk = golem.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (atk != null) atk.setBaseValue(15 * Math.max(0.5, s.power()));
+        golem.setHealth(golem.getMaxHealth());
+        golem.addTag("jsn_craft_guardian");
+        level.addFreshEntity(golem);
+        Vfx.magicCircle(level, pos, 2.5F, 30, Vfx.GREEN);
+        Vfx.ring(level, pos, 4.0F, 16, Vfx.GREEN);
+        level.sendParticles(ParticleTypes.CHERRY_LEAVES, pos.x, pos.y + 2, pos.z, 40, 1, 1.5, 1, 0.05);
+        level.playSound(null, BlockPos.containing(pos), SoundEvents.IRON_GOLEM_REPAIR, SoundSource.PLAYERS, 1.0F, 0.7F);
+        level.playSound(null, BlockPos.containing(pos), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 1.0F, 0.8F);
+        // 時間がたったら森へ帰る
+        int ticks = (int) Math.round(Math.max(5, s.duration()) * 20);
+        later(player, ticks, () -> {
+            if (!golem.isAlive()) return;
+            level.sendParticles(ParticleTypes.CHERRY_LEAVES, golem.getX(), golem.getY() + 1.5, golem.getZ(), 40, 0.8, 1.2, 0.8, 0.05);
+            level.sendParticles(ParticleTypes.HAPPY_VILLAGER, golem.getX(), golem.getY() + 1.5, golem.getZ(), 20, 0.8, 1.2, 0.8, 0);
+            golem.discard();
         });
         return true;
     }

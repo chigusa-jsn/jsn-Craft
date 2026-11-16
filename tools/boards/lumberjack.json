@@ -1,0 +1,423 @@
+{
+  "job": "lumberjack",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "伐採の心得",
+    "icon": "minecraft:wooden_axe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:player.block_break_speed",
+        "amount": 0.1
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "fel",
+      "pool": [
+        {
+          "name": "剛腕",
+          "icon": "minecraft:stone_axe",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:player.block_break_speed",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "一刀伐採の心得",
+          "icon": "minecraft:iron_axe",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/felling",
+              "field": "amplifier",
+              "amount": 8
+            }
+          ],
+          "scale": false
+        },
+        {
+          "name": "伐採の省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/felling",
+              "field": "stamina",
+              "amount": -0.3
+            }
+          ]
+        },
+        {
+          "name": "剛斧修練",
+          "icon": "minecraft:golden_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/mighty_axe",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "長い腕",
+          "icon": "minecraft:stick",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:player.block_interaction_range",
+              "amount": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "gft",
+      "pool": [
+        {
+          "name": "森の恵み修練",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/forest_blessing",
+              "field": "chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "長持ち",
+          "icon": "minecraft:anvil",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:tool_durability",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "落葉払い修練",
+          "icon": "minecraft:oak_leaves",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/leaf_clear",
+              "field": "radius",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "祝福修練",
+          "icon": "minecraft:bone_meal",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/blessing_growth",
+              "field": "radius",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "wlk",
+      "pool": [
+        {
+          "name": "軽身",
+          "icon": "minecraft:leather_boots",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.02,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        },
+        {
+          "name": "跳躍",
+          "icon": "minecraft:rabbit_hide",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.jump_strength",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "受け身",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.safe_fall_distance",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "木霊修練",
+          "icon": "minecraft:spyglass",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/spirit_guide",
+              "field": "radius",
+              "amount": 8
+            }
+          ]
+        },
+        {
+          "name": "樹霊の加護修練",
+          "icon": "minecraft:azalea",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/spirit_of_trees",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "伐採の極意",
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "stamina",
+          "amount": -1
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★一刀伐採・極",
+      "icon": "minecraft:diamond_axe",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 48
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "★剛斧・極",
+      "icon": "minecraft:netherite_axe",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "power_pct",
+          "amount": 0.5
+        },
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "duration",
+          "amount": 15
+        }
+      ],
+      "big": true,
+      "min_level": 35
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "恵みの極意",
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★豊穣の森",
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.15
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "祝福・極",
+      "icon": "minecraft:bone_block",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/blessing_growth",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "森の抜け道",
+      "icon": "minecraft:vine",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.05,
+          "operation": "add_multiplied_base"
+        },
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★森の主",
+      "icon": "minecraft:oak_sapling",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.1,
+          "operation": "add_multiplied_base"
+        },
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.1
+        },
+        {
+          "attribute": "minecraft:generic.safe_fall_distance",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "無尽の気",
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "樹皮の鎧"
+  },
+  "description": {
+    "text": "近くに原木がたくさんある（森の中）とき、受けるダメージが20%減る。"
+  },
+  "icon": "minecraft:oak_log",
+  "type": "passive",
+  "effect": "bark_armor",
+  "power": 0.2
+}

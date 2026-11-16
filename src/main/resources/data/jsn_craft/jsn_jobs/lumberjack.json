@@ -6,91 +6,880 @@
   "type": "life",
   "tier": "basic",
   "max_level": 50,
-  "skill_points_per_level": 1,
+  "skill_points_per_level": 2,
   "xp": [
+    {
+      "action": "break_block",
+      "target": "minecraft:cherry_log",
+      "xp": 7
+    },
+    {
+      "action": "break_block",
+      "target": "minecraft:mangrove_log",
+      "xp": 7
+    },
+    {
+      "action": "break_block",
+      "target": "minecraft:dark_oak_log",
+      "xp": 7
+    },
+    {
+      "action": "break_block",
+      "target": "minecraft:crimson_stem",
+      "xp": 6
+    },
+    {
+      "action": "break_block",
+      "target": "minecraft:warped_stem",
+      "xp": 6
+    },
     {
       "action": "break_block",
       "target": "#minecraft:logs",
       "xp": 5
+    },
+    {
+      "action": "place_block",
+      "target": "#minecraft:saplings",
+      "xp": 1
     }
   ],
   "board": [
     {
-      "id": "root",
-      "x": 0,
+      "id": "center",
+      "x": 0.0,
       "y": 0,
-      "start": true,
-      "cost": 1,
-      "name": "伐採の心得",
+      "name": {
+        "text": "伐採の心得"
+      },
       "icon": "minecraft:wooden_axe",
+      "cost": 1,
+      "links": [],
       "effects": [
         {
           "attribute": "minecraft:player.block_break_speed",
           "amount": 0.1
         }
-      ]
+      ],
+      "start": true
     },
     {
-      "id": "chop1",
-      "x": -2,
-      "y": 1,
+      "id": "fel1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "剛腕 I"
+      },
+      "icon": "minecraft:stone_axe",
       "cost": 1,
       "links": [
-        "root"
+        "center"
       ],
-      "name": "斧さばき I",
-      "icon": "minecraft:stone_axe",
       "effects": [
         {
           "attribute": "minecraft:player.block_break_speed",
-          "amount": 0.1
+          "amount": 0.05
         }
       ]
     },
     {
-      "id": "chop2",
-      "x": -2,
-      "y": 2,
-      "cost": 2,
-      "links": [
-        "chop1"
-      ],
-      "name": "斧さばき II",
+      "id": "fel1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "一刀伐採の心得 I"
+      },
       "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "fel1_0",
+        "center"
+      ],
       "effects": [
         {
-          "attribute": "minecraft:player.block_break_speed",
-          "amount": 0.2
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 8
         }
       ]
     },
     {
-      "id": "chop3",
-      "x": -2,
-      "y": 3,
-      "cost": 3,
+      "id": "gft1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "森の恵み修練 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
       "links": [
-        "chop2"
+        "fel1_1",
+        "center"
       ],
-      "name": "★ 豪腕",
-      "icon": "minecraft:diamond_axe",
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gft1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 I"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "gft1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "wlk1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "軽身 I"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "gft1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "wlk1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "跳躍 I"
+      },
+      "icon": "minecraft:rabbit_hide",
+      "cost": 1,
+      "links": [
+        "center",
+        "fel1_0",
+        "wlk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "fel2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "伐採の省力 II"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "fel1_0",
+        "wlk1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "stamina",
+          "amount": -0.3
+        }
+      ]
+    },
+    {
+      "id": "fel2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "剛腕 II"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 1,
+      "links": [
+        "fel2_0",
+        "fel1_0"
+      ],
       "effects": [
         {
           "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "fel2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "剛斧修練 II"
+      },
+      "icon": "minecraft:golden_axe",
+      "cost": 1,
+      "links": [
+        "fel2_1",
+        "fel1_0",
+        "fel1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "duration",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "fel2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "長い腕 II"
+      },
+      "icon": "minecraft:stick",
+      "cost": 1,
+      "links": [
+        "fel2_2",
+        "fel1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_interaction_range",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "id": "gft2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "fel2_3",
+        "fel1_1",
+        "gft1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gft2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "長持ち II"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "gft2_0",
+        "gft1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gft2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "落葉払い修練 II"
+      },
+      "icon": "minecraft:oak_leaves",
+      "cost": 1,
+      "links": [
+        "gft2_1",
+        "gft1_0",
+        "gft1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/leaf_clear",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "gft2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "祝福修練 II"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 1,
+      "links": [
+        "gft2_2",
+        "gft1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/blessing_growth",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "wlk2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "gft2_3",
+        "gft1_1",
+        "wlk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "wlk2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "wlk2_0",
+        "wlk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
           "amount": 0.3
         }
       ]
     },
     {
-      "id": "reach1",
-      "x": 0,
+      "id": "wlk2_2",
+      "x": -1.5,
       "y": 1,
+      "name": {
+        "text": "受け身 II"
+      },
+      "icon": "minecraft:feather",
       "cost": 1,
       "links": [
-        "root"
+        "wlk1_0",
+        "wlk1_1",
+        "wlk2_1"
       ],
-      "name": "高枝伸ばし I",
+      "effects": [
+        {
+          "attribute": "minecraft:generic.safe_fall_distance",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "wlk2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "木霊修練 II"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "wlk1_1",
+        "fel2_0",
+        "wlk2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/spirit_guide",
+          "field": "radius",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "fel3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "一刀伐採の心得 III"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "fel2_1",
+        "fel2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "fel3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "fel3_0",
+        "fel2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "fel3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 III"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "fel3_1",
+        "fel2_1",
+        "fel2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "fel3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "伐採の極意"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "fel3_2",
+        "fel2_2",
+        "fel2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "stamina",
+          "amount": -1
+        }
+      ]
+    },
+    {
+      "id": "fel3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "一刀伐採の心得 III"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "fel3_3",
+        "fel2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "fel3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "伐採の省力 III"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "fel3_4",
+        "fel2_3",
+        "gft2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "stamina",
+          "amount": -0.45
+        }
+      ]
+    },
+    {
+      "id": "gft3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "森の恵み修練 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fel3_5",
+        "gft2_0",
+        "gft2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gft3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "gft3_0",
+        "gft2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "gft3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "gft3_1",
+        "gft2_1",
+        "gft2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gft3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "恵みの極意"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "links": [
+        "gft3_2",
+        "gft2_2",
+        "gft2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "gft3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "長持ち III"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "gft3_3",
+        "gft2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gft3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "森の恵み修練 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gft3_4",
+        "gft2_3",
+        "wlk2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wlk3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "樹霊の加護修練 III"
+      },
+      "icon": "minecraft:azalea",
+      "cost": 2,
+      "links": [
+        "gft3_5",
+        "wlk2_0",
+        "wlk2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/spirit_of_trees",
+          "field": "duration",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "wlk3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "軽身 III"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "wlk3_0",
+        "wlk2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03,
+          "operation": "add_multiplied_base"
+        }
+      ]
+    },
+    {
+      "id": "wlk3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "跳躍 III"
+      },
+      "icon": "minecraft:rabbit_hide",
+      "cost": 2,
+      "links": [
+        "wlk2_1",
+        "wlk2_2",
+        "wlk3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wlk3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "森の抜け道"
+      },
+      "icon": "minecraft:vine",
+      "cost": 3,
+      "links": [
+        "wlk2_2",
+        "wlk2_3",
+        "wlk3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.05,
+          "operation": "add_multiplied_base"
+        },
+        {
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.05
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "wlk3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wlk2_3",
+        "wlk3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "wlk3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "fel2_0",
+        "fel3_0",
+        "wlk3_4",
+        "wlk2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "fel4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "fel3_0",
+        "wlk3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "fel4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "剛斧修練 IV"
+      },
+      "icon": "minecraft:golden_axe",
+      "cost": 2,
+      "links": [
+        "fel3_1",
+        "fel4_0",
+        "fel3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "fel4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "長い腕 IV"
+      },
       "icon": "minecraft:stick",
+      "cost": 2,
+      "links": [
+        "fel4_1",
+        "fel3_1"
+      ],
       "effects": [
         {
           "attribute": "minecraft:player.block_interaction_range",
@@ -99,92 +888,479 @@
       ]
     },
     {
-      "id": "reach2",
-      "x": 0,
-      "y": 2,
-      "cost": 2,
+      "id": "fel4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★一刀伐採・極"
+      },
+      "icon": "minecraft:diamond_axe",
+      "cost": 5,
       "links": [
-        "reach1"
+        "fel4_2",
+        "fel3_1",
+        "fel3_2"
       ],
-      "name": "高枝伸ばし II",
-      "icon": "minecraft:bamboo",
       "effects": [
         {
-          "attribute": "minecraft:player.block_interaction_range",
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 48
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "fel4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "一刀伐採の心得 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "fel4_3",
+        "fel3_2",
+        "fel3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "fel4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "★剛斧・極"
+      },
+      "icon": "minecraft:netherite_axe",
+      "cost": 4,
+      "links": [
+        "fel4_4",
+        "fel3_3",
+        "fel3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "power_pct",
+          "amount": 0.5
+        },
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "duration",
+          "amount": 15
+        }
+      ],
+      "big": true,
+      "min_level": 35
+    },
+    {
+      "id": "fel4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "fel4_5",
+        "fel3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "fel4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "剛腕 IV"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "fel4_6",
+        "fel3_4",
+        "fel3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "gft4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "fel4_7",
+        "fel3_5",
+        "gft3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
           "amount": 1.0
         }
       ]
     },
     {
-      "id": "reach3",
-      "x": 0,
-      "y": 3,
-      "cost": 3,
+      "id": "gft4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
       "links": [
-        "reach2"
+        "gft4_0",
+        "gft3_0",
+        "gft3_1"
       ],
-      "name": "★ 森の恵み",
-      "icon": "minecraft:golden_apple",
       "effects": [
         {
-          "attribute": "minecraft:generic.luck",
-          "amount": 1
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
         }
       ]
     },
     {
-      "id": "walk1",
-      "x": 2,
-      "y": 1,
-      "cost": 1,
+      "id": "gft4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "長持ち IV"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
       "links": [
-        "root"
+        "gft4_1",
+        "gft3_1"
       ],
-      "name": "森歩き",
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gft4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★豊穣の森"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 5,
+      "links": [
+        "gft4_2",
+        "gft3_1",
+        "gft3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.15
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "gft4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "落葉払い修練 IV"
+      },
+      "icon": "minecraft:oak_leaves",
+      "cost": 2,
+      "links": [
+        "gft4_3",
+        "gft3_2",
+        "gft3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/leaf_clear",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gft4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "祝福・極"
+      },
+      "icon": "minecraft:bone_block",
+      "cost": 3,
+      "links": [
+        "gft4_4",
+        "gft3_3",
+        "gft3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/blessing_growth",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gft4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "祝福修練 IV"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "gft4_5",
+        "gft3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/blessing_growth",
+          "field": "radius",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gft4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "森の恵み修練 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gft4_6",
+        "gft3_4",
+        "gft3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "wlk4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "軽身 IV"
+      },
       "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "gft4_7",
+        "gft3_5",
+        "wlk3_0"
+      ],
       "effects": [
         {
           "attribute": "minecraft:generic.movement_speed",
-          "amount": 0.05,
+          "amount": 0.04,
           "operation": "add_multiplied_base"
         }
       ]
     },
     {
-      "id": "walk2",
-      "x": 2,
-      "y": 2,
+      "id": "wlk4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "跳躍 IV"
+      },
+      "icon": "minecraft:rabbit_hide",
       "cost": 2,
       "links": [
-        "walk1"
+        "wlk4_0",
+        "wlk3_0",
+        "wlk3_1"
       ],
-      "name": "身軽",
-      "icon": "minecraft:feather",
       "effects": [
         {
-          "attribute": "minecraft:generic.safe_fall_distance",
-          "amount": 2
+          "attribute": "minecraft:generic.jump_strength",
+          "amount": 0.04
         }
       ]
     },
     {
-      "id": "walk3",
-      "x": 2,
-      "y": 3,
-      "cost": 3,
+      "id": "wlk4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
       "links": [
-        "walk2"
+        "wlk4_1",
+        "wlk3_1"
       ],
-      "name": "★ 木登り名人",
-      "icon": "minecraft:vine",
       "effects": [
         {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wlk4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★森の主"
+      },
+      "icon": "minecraft:oak_sapling",
+      "cost": 5,
+      "links": [
+        "wlk3_1",
+        "wlk3_2",
+        "wlk4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.1,
+          "operation": "add_multiplied_base"
+        },
+        {
           "attribute": "minecraft:generic.jump_strength",
-          "amount": 0.08
+          "amount": 0.1
         },
         {
           "attribute": "minecraft:generic.safe_fall_distance",
-          "amount": 2
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "wlk4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wlk3_2",
+        "wlk3_3",
+        "wlk4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "wlk4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "無尽の気"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "links": [
+        "wlk3_3",
+        "wlk3_4",
+        "wlk4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "wlk4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "受け身 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "wlk3_4",
+        "wlk4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.safe_fall_distance",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wlk4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "木霊修練 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "wlk3_5",
+        "fel4_0",
+        "wlk4_6",
+        "wlk3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/spirit_guide",
+          "field": "radius",
+          "amount": 16
         }
       ]
     }
@@ -199,16 +1375,29 @@
       "level": 5
     },
     {
+      "skill": "jsn_craft:lumberjack/leaf_clear",
+      "level": 8
+    },
+    {
       "skill": "jsn_craft:lumberjack/forest_blessing",
       "level": 10
+    },
+    {
+      "skill": "jsn_craft:lumberjack/blessing_growth",
+      "level": 15
     },
     {
       "skill": "jsn_craft:lumberjack/mighty_axe",
       "level": 20
     },
     {
+      "skill": "jsn_craft:lumberjack/spirit_guide",
+      "level": 25
+    },
+    {
       "skill": "jsn_craft:lumberjack/spirit_of_trees",
       "level": 30
     }
-  ]
+  ],
+  "board_style": "hex"
 }

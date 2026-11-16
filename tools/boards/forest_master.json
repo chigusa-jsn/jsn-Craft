@@ -1,0 +1,581 @@
+{
+  "job": "forest_master",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "古樹の心得",
+    "icon": "minecraft:diamond_axe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:player.block_break_speed",
+        "amount": 0.1
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "mfl",
+      "pool": [
+        {
+          "name": "剛腕",
+          "icon": "minecraft:iron_axe",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:player.block_break_speed",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "千年樹伐り・広域",
+          "icon": "minecraft:diamond_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/millennium_fell",
+              "field": "radius",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "千年樹伐り・省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/millennium_fell",
+              "field": "stamina",
+              "amount": -1
+            }
+          ]
+        },
+        {
+          "name": "一刀伐採・覚醒",
+          "icon": "minecraft:iron_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/felling",
+              "field": "amplifier",
+              "amount": 6
+            }
+          ],
+          "scale": false
+        },
+        {
+          "name": "省力",
+          "icon": "minecraft:rabbit_hide",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "剛斧・覚醒",
+          "icon": "minecraft:golden_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/mighty_axe",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "長い腕",
+          "icon": "minecraft:stick",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:player.block_interaction_range",
+              "amount": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "abd",
+      "pool": [
+        {
+          "name": "恵み・覚醒",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/forest_blessing",
+              "field": "chance",
+              "amount": 0.013
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.33
+            }
+          ]
+        },
+        {
+          "name": "年輪の知恵",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "長持ち",
+          "icon": "minecraft:anvil",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:tool_durability",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "祝福・覚醒",
+          "icon": "minecraft:bone_meal",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/blessing_growth",
+              "field": "radius",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "落葉払い・覚醒",
+          "icon": "minecraft:oak_leaves",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:lumberjack/leaf_clear",
+              "field": "radius",
+              "amount": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "樹皮の肌",
+          "icon": "minecraft:oak_log",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "再生",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.013
+            }
+          ]
+        },
+        {
+          "name": "結界・広域",
+          "icon": "minecraft:flowering_azalea",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/guardian_grove",
+              "field": "radius",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "結界・癒し",
+          "icon": "minecraft:glow_berries",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/guardian_grove",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "樹霊・強化",
+          "icon": "minecraft:carved_pumpkin",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/tree_spirit",
+              "field": "power_pct",
+              "amount": 0.07
+            }
+          ]
+        },
+        {
+          "name": "樹霊・長居",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:forest_master/tree_spirit",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "軽身",
+          "icon": "minecraft:leather_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.013,
+              "operation": "add_multiplied_base"
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "年輪",
+      "icon": "minecraft:stripped_oak_log",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:forest_master/board/growth_rings"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★千年樹伐り・覚醒",
+      "icon": "minecraft:netherite_axe",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:forest_master/millennium_fell",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "一刀伐採・真",
+      "icon": "minecraft:diamond_axe",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/felling",
+          "field": "amplifier",
+          "amount": 64
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★剛斧・覚醒極",
+      "icon": "minecraft:netherite_axe",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/mighty_axe",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★森を拓く者",
+      "icon": "minecraft:nether_star",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:player.block_break_speed",
+          "amount": 0.3,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "skill": "jsn_craft:forest_master/millennium_fell",
+          "field": "amplifier",
+          "amount": 300
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "黄金の果実",
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:forest_master/board/golden_fruit"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大豊穣",
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:lumberjack/forest_blessing",
+          "field": "chance",
+          "amount": 0.2
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "黄金の果実・極",
+      "icon": "minecraft:golden_apple",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:forest_master/board/golden_fruit",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★斧の極み",
+      "icon": "minecraft:anvil",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "jsn_craft:tool_durability",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★森の賢者",
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "樹皮の鎧",
+      "icon": "minecraft:oak_log",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:forest_master/board/bark_armor"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★結界・極",
+      "icon": "minecraft:flowering_azalea",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:forest_master/guardian_grove",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:forest_master/guardian_grove",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "樹皮の鎧・厚",
+      "icon": "minecraft:dark_oak_log",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:forest_master/board/bark_armor",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★樹霊・王",
+      "icon": "minecraft:carved_pumpkin",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:forest_master/tree_spirit",
+          "field": "power_pct",
+          "amount": 1.0
+        },
+        {
+          "skill": "jsn_craft:forest_master/tree_spirit",
+          "field": "duration",
+          "amount": 30
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★古樹の守護",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

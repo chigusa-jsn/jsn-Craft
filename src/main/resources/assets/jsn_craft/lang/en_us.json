@@ -21,5 +21,6 @@
   "attribute.name.jsn_craft.lifesteal": "Lifesteal",
   "attribute.name.jsn_craft.job_xp_bonus": "Job XP Bonus",
   "attribute.name.jsn_craft.boss_damage": "Boss Damage",
-  "attribute.name.jsn_craft.hp_regen": "HP Regen"
+  "attribute.name.jsn_craft.hp_regen": "HP Regen",
+  "attribute.name.jsn_craft.tool_durability": "Tool Durability"
 }

@@ -36,6 +36,9 @@ public class PlayerSkillData {
     public transient int comboCount = 0;
     /** 不屈：次に使えるようになるゲーム時間 */
     public transient long endureReadyAt = 0;
+    /** 年輪：続けて原木を切った回数と、最後に切った時間 */
+    public transient int streak = 0;
+    public transient long lastStreakTick = 0;
 
     public PlayerSkillData() {
         while (slots.size() < SLOTS) slots.add("");

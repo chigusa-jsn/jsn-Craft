@@ -240,7 +240,8 @@ public final class SkillEvents {
         SkillDefinition feller = player.isShiftKeyDown() ? SkillService.passive(player, "tree_feller") : null;
         List<BlockPos> felled = new ArrayList<>();
         if (feller != null) {
-            felled = findTree(level, origin, state.getBlock());
+            // 倒せる本数は amplifier（ボードで増やせる）
+            felled = findTree(level, origin, state.getBlock(), feller.amplifier() > 0 ? feller.amplifier() : MAX_LOGS);
             int cut = 0;
             for (BlockPos pos : felled) {
                 if (!ResourceService.tryUseStamina(player, feller.stamina())) {
@@ -273,13 +274,13 @@ public final class SkillEvents {
     }
 
     /** つながった同じ種類の原木を探す（斜めも含む、上と横方向へ） */
-    private static List<BlockPos> findTree(ServerLevel level, BlockPos origin, Block log) {
+    static List<BlockPos> findTree(ServerLevel level, BlockPos origin, Block log, int limit) {
         List<BlockPos> out = new ArrayList<>();
         Set<BlockPos> seen = new HashSet<>();
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();
         queue.add(origin);
         seen.add(origin);
-        while (!queue.isEmpty() && out.size() < MAX_LOGS) {
+        while (!queue.isEmpty() && out.size() < limit) {
             BlockPos p = queue.poll();
             for (int dx = -1; dx <= 1; dx++) for (int dy = 0; dy <= 1; dy++) for (int dz = -1; dz <= 1; dz++) {
                 BlockPos n = p.offset(dx, dy, dz);
@@ -290,6 +291,50 @@ public final class SkillEvents {
             }
         }
         return out;
+    }
+
+    /** 年輪：原木を続けて切るほど、職業経験値のおまけが増える（3秒あくとリセット） */
+    @SubscribeEvent
+    public static void onLogStreak(BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player) || player.isCreative()) return;
+        if (!event.getState().is(BlockTags.LOGS)) return;
+        SkillDefinition rings = SkillService.passive(player, "streak_xp");
+        if (rings == null) return;
+        PlayerSkillData d = SkillService.data(player);
+        long now = player.level().getGameTime();
+        d.streak = now - d.lastStreakTick <= 60 ? d.streak + 1 : 1;
+        d.lastStreakTick = now;
+        int max = rings.amplifier() > 0 ? rings.amplifier() : 10;
+        int bonus = (int) Math.round(Math.min(d.streak, max) * rings.power());
+        ResourceLocation life = JobService.data(player).getJob(com.chigusa.jsncraft.job.JobType.LIFE);
+        if (bonus > 0 && life != null) JobService.addXp(player, life, bonus);
+    }
+
+    /** 黄金の果実：葉っぱを壊すと、たまに金のリンゴ */
+    @SubscribeEvent
+    public static void onLeafDrops(BlockDropsEvent event) {
+        if (!(event.getBreaker() instanceof ServerPlayer player)) return;
+        if (!event.getState().is(BlockTags.LEAVES)) return;
+        SkillDefinition fruit = SkillService.passive(player, "golden_fruit");
+        if (fruit == null || player.getRandom().nextDouble() >= fruit.chance()) return;
+        BlockPos p = event.getPos();
+        event.getDrops().add(new ItemEntity(event.getLevel(), p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5,
+                new ItemStack(net.minecraft.world.item.Items.GOLDEN_APPLE)));
+        event.getLevel().sendParticles(ParticleTypes.WAX_ON, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5, 10, 0.3, 0.3, 0.3, 0.1);
+    }
+
+    /** 樹皮の鎧：近くに原木がたくさんある（森の中）と、受けるダメージが減る */
+    @SubscribeEvent
+    public static void onBarkArmor(LivingIncomingDamageEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        SkillDefinition bark = SkillService.passive(player, "bark_armor");
+        if (bark == null) return;
+        int logs = 0;
+        BlockPos c = player.blockPosition();
+        for (BlockPos p : BlockPos.betweenClosed(c.offset(-4, -1, -4), c.offset(4, 3, 4))) {
+            if (player.level().getBlockState(p).is(BlockTags.LOGS) && ++logs >= 6) break;
+        }
+        if (logs >= 6) event.setAmount((float) (event.getAmount() * (1 - Math.min(0.6, bark.power()))));
     }
 
     /** オークの原木 → オークの苗木 のように名前から探す */

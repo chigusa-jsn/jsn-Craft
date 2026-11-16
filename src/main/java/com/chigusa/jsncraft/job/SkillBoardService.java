@@ -325,7 +325,7 @@ public final class SkillBoardService {
 
     /** 0.05 を「5%」と見せたい能力値 */
     private static final Set<String> PERCENT_STATS = Set.of("crit_chance", "crit_damage", "skill_damage", "cooldown_reduction",
-            "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "boss_damage", "generic.knockback_resistance");
+            "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "boss_damage", "tool_durability", "generic.knockback_resistance");
 
     // ---------------- 技の強化・覚えたパッシブ（他から使う） ----------------
 

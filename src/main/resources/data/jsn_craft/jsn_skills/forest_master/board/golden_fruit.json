@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "黄金の果実"
+  },
+  "description": {
+    "text": "葉っぱを壊すと、2%の確率で金のリンゴが落ちる。"
+  },
+  "icon": "minecraft:golden_apple",
+  "type": "passive",
+  "effect": "golden_fruit",
+  "chance": 0.02
+}

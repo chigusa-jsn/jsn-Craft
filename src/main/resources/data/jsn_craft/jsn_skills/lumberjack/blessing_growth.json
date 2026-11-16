@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "苗木の祝福"
+  },
+  "description": {
+    "text": "周り（5ブロック）の苗木や作物に、骨粉を2回分ふりかけて一気に育てる。"
+  },
+  "icon": "minecraft:bone_meal",
+  "type": "active",
+  "effect": "grow_area",
+  "stamina": 25,
+  "cooldown": 30,
+  "radius": 5,
+  "amplifier": 2
+}

@@ -57,6 +57,15 @@ public final class GameEvents {
         }
     }
 
+    /** ブロックを置いたとき（苗木を植えるなど） */
+    @SubscribeEvent
+    public static void onPlace(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && !player.isCreative()) {
+            var state = event.getPlacedBlock();
+            JobService.onAction(player, rule -> rule.action().equals("place_block") && rule.matchesBlock(state));
+        }
+    }
+
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         // 矢などで倒した場合も getEntity() は撃ったプレイヤーになる

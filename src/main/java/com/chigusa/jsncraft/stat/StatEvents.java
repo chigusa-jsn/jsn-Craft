@@ -46,6 +46,21 @@ public final class StatEvents {
         }
     }
 
+    /** 道具の長持ち：ブロックを壊したとき、確率で減った耐久を1戻す */
+    @SubscribeEvent
+    public static void onToolUse(net.neoforged.neoforge.event.level.BlockEvent.BreakEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer player) || player.isCreative()) return;
+        ItemStack tool = player.getMainHandItem();
+        if (!tool.isDamageableItem()) return;
+        double chance = player.getAttributeValue(ModAttributes.TOOL_DURABILITY);
+        if (chance <= 0 || player.getRandom().nextDouble() >= chance) return;
+        int before = tool.getDamageValue();
+        player.getServer().execute(() -> {
+            ItemStack now = player.getMainHandItem();
+            if (now == tool && now.getDamageValue() > before) now.setDamageValue(before);
+        });
+    }
+
     /** 採掘の幸運：鉱石を掘ったとき、確率でドロップが増える */
     @SubscribeEvent
     public static void onBlockDrops(BlockDropsEvent event) {
