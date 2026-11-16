@@ -31,7 +31,7 @@ public class FishingScreen extends Screen {
 
     private float zone, zoneVel, prevZone;
     private float fish = 0.5F, fishVel, prevFish = 0.5F, target = 0.5F;
-    private float progress = 0.35F, prevProgress = 0.35F;
+    private float progress = 0.3F, prevProgress = 0.3F;
     private boolean perfect = true, overlap, done, won, sent;
     private int ticks, endTicks;
 
@@ -117,9 +117,9 @@ public class FishingScreen extends Screen {
         // ---- ゲージ ----
         overlap = fish >= zone - 0.03F && fish <= zone + zoneSize + 0.03F; // 少しはみ出してもOK
         if (overlap) {
-            progress += 0.014F * (1 + p.reel()) * (p.kind() == KIND_LORD ? 0.6F : 1F);
+            progress += 0.008F * (1 + p.reel()) * (p.kind() == KIND_LORD ? 0.6F : 1F);
         } else {
-            progress -= 0.004F + d * 0.004F;
+            progress -= 0.0024F + d * 0.0024F;
             perfect = false;
         }
         if (progress >= 1) finish(true);
