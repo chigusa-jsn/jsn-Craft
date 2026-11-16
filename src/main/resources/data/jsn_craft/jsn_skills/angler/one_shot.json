@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "一本釣り"
+  },
+  "description": {
+    "text": "魚がかかったとき、10%の確率でミニゲームなしで釣れる。"
+  },
+  "icon": "minecraft:cod",
+  "type": "passive",
+  "effect": "fish_instant",
+  "chance": 0.1
+}

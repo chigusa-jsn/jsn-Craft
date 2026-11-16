@@ -28,6 +28,7 @@ public final class GameEvents {
     public static void onAddReloadListeners(AddReloadListenerEvent event) {
         event.addListener(JobManager.INSTANCE);
         event.addListener(QuestManager.INSTANCE);
+        event.addListener(com.chigusa.jsncraft.fishing.FishingManager.INSTANCE);
     }
 
     @SubscribeEvent

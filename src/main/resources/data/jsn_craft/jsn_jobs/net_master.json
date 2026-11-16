@@ -1,0 +1,3694 @@
+{
+  "name": {
+    "text": "大海の網主",
+    "color": "dark_aqua"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:angler",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "fish",
+      "target": "@lord",
+      "xp": 300
+    },
+    {
+      "action": "fish",
+      "target": "@treasure",
+      "xp": 60
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:cod",
+      "xp": 25
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:salmon",
+      "xp": 30
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:tropical_fish",
+      "xp": 36
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:pufferfish",
+      "xp": 36
+    },
+    {
+      "action": "fish",
+      "target": "@fish",
+      "xp": 30
+    },
+    {
+      "action": "fish",
+      "target": "*",
+      "xp": 6
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:net_master/cast_net",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:net_master/tide_blessing",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:net_master/sea_lord",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "網主の心得"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        },
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.05
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "net1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "枠広げ I"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "net1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "見切り I"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "net1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "sea1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 I"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "net1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "sea1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "宝の勘 I"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "sea1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "tid1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "sea1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10.5
+        }
+      ]
+    },
+    {
+      "id": "tid1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "net1_0",
+        "tid1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "net2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "巻き上げ II"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "net1_0",
+        "tid1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "net2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "投網・大網 II"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 1,
+      "links": [
+        "net2_0",
+        "net1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "投網・遠投 II"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "net2_1",
+        "net1_0",
+        "net1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "net2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "潮の恵み・長潮 II"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "net2_2",
+        "net1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "sea2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "海の知恵 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "net2_3",
+        "net1_1",
+        "sea1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "sea2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "主の気配 II"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 1,
+      "links": [
+        "sea2_0",
+        "sea1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "sea2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "投網・早業 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "sea2_1",
+        "sea1_0",
+        "sea1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -1.5
+        }
+      ]
+    },
+    {
+      "id": "sea2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "sea2_2",
+        "sea1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "tid2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "潮読み II"
+      },
+      "icon": "minecraft:compass",
+      "cost": 1,
+      "links": [
+        "sea2_3",
+        "sea1_1",
+        "tid1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "tid2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "潮風の体 II"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 1,
+      "links": [
+        "tid2_0",
+        "tid1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "tid2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "泳ぎ II"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 1,
+      "links": [
+        "tid1_0",
+        "tid1_1",
+        "tid2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "tid2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "tid1_1",
+        "net2_0",
+        "tid2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10.5
+        }
+      ]
+    },
+    {
+      "id": "net3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "枠広げ III"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "net2_1",
+        "net2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "net3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "見切り III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "net3_0",
+        "net2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "net3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "巻き上げ III"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "net3_1",
+        "net2_1",
+        "net2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "net3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "波乗り"
+      },
+      "icon": "minecraft:oak_boat",
+      "cost": 3,
+      "links": [
+        "net3_2",
+        "net2_2",
+        "net2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/wave_rider"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "net3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "枠広げ III"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "net3_3",
+        "net2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "net3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "見切り III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "net3_4",
+        "net2_3",
+        "sea2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "sea3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "宝の勘 III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "net3_5",
+        "sea2_0",
+        "sea2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "sea3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "海の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "sea3_0",
+        "sea2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "sea3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "sea3_1",
+        "sea2_1",
+        "sea2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "sea3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "慈雨の釣り"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 3,
+      "links": [
+        "sea3_2",
+        "sea2_2",
+        "sea2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/rain_luck"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "sea3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "宝の勘 III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "sea3_3",
+        "sea2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "sea3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "海の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "sea3_4",
+        "sea2_3",
+        "tid2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "tid3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "sea3_5",
+        "tid2_0",
+        "tid2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "tid3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "潮読み III"
+      },
+      "icon": "minecraft:compass",
+      "cost": 1,
+      "links": [
+        "tid3_0",
+        "tid2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "tid3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "tid2_1",
+        "tid2_2",
+        "tid3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "tid3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "漁師の宴"
+      },
+      "icon": "minecraft:cooked_cod",
+      "cost": 3,
+      "links": [
+        "tid2_2",
+        "tid2_3",
+        "tid3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/fisher_feast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "tid3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tid2_3",
+        "tid3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "tid3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "潮読み III"
+      },
+      "icon": "minecraft:compass",
+      "cost": 1,
+      "links": [
+        "net2_0",
+        "net3_0",
+        "tid3_4",
+        "tid2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "net4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "巻き上げ IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "net3_0",
+        "tid3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "net4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "投網・大網 IV"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 2,
+      "links": [
+        "net3_1",
+        "net4_0",
+        "net3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "投網・遠投 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "net4_1",
+        "net3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "net4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "潮の恵み・長潮 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "net4_2",
+        "net3_1",
+        "net3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "net4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "枠広げ IV"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "net4_3",
+        "net3_2",
+        "net3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "net4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "見切り IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net4_4",
+        "net3_3",
+        "net3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "net4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "巻き上げ IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "net4_5",
+        "net3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "net4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "枠広げ IV"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net4_6",
+        "net3_4",
+        "net3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "sea4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "主の気配 IV"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 1,
+      "links": [
+        "net4_7",
+        "net3_5",
+        "sea3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "sea4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "投網・早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "sea4_0",
+        "sea3_0",
+        "sea3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -2
+        }
+      ]
+    },
+    {
+      "id": "sea4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "sea4_1",
+        "sea3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "sea4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "宝の勘 IV"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea4_2",
+        "sea3_1",
+        "sea3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "sea4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "海の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "sea4_3",
+        "sea3_2",
+        "sea3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "sea4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea4_4",
+        "sea3_3",
+        "sea3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "sea4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "宝の勘 IV"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "sea4_5",
+        "sea3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "sea4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "海の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea4_6",
+        "sea3_4",
+        "sea3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "tid4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "潮風の体 IV"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 1,
+      "links": [
+        "sea4_7",
+        "sea3_5",
+        "tid3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "tid4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "泳ぎ IV"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "tid4_0",
+        "tid3_0",
+        "tid3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "tid4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "tid4_1",
+        "tid3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "tid4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid3_1",
+        "tid3_2",
+        "tid4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "tid4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "潮読み IV"
+      },
+      "icon": "minecraft:compass",
+      "cost": 1,
+      "links": [
+        "tid3_2",
+        "tid3_3",
+        "tid4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "tid4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid3_3",
+        "tid3_4",
+        "tid4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "tid4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tid3_4",
+        "tid4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "tid4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "潮読み IV"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid3_5",
+        "net4_0",
+        "tid4_6",
+        "tid3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "net5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "見切り V"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net4_1",
+        "net4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "net5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "巻き上げ V"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net4_2",
+        "net5_0",
+        "net4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "net5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "投網・大網 V"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 2,
+      "links": [
+        "net5_1",
+        "net4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "投網・遠投 V"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "net5_2",
+        "net4_2",
+        "net4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "net5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "潮の恵み・長潮 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "net5_3",
+        "net4_3",
+        "net4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "net5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★投網・覚醒"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 6,
+      "links": [
+        "net5_4",
+        "net4_4",
+        "net4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "net5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "枠広げ V"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net5_5",
+        "net4_5",
+        "net4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "net5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "見切り V"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net5_6",
+        "net4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "net5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "巻き上げ V"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net5_7",
+        "net4_6",
+        "net4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "net5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "枠広げ V"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net5_8",
+        "net4_7",
+        "sea4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "sea5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "主の気配 V"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "net5_9",
+        "sea4_0",
+        "sea4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "sea5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "投網・早業 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "sea5_0",
+        "sea4_1",
+        "sea4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "sea5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea5_1",
+        "sea4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sea5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "宝の勘 V"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea5_2",
+        "sea4_2",
+        "sea4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "sea5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "海の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea5_3",
+        "sea4_3",
+        "sea4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "sea5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★大海の宝庫"
+      },
+      "icon": "minecraft:chest",
+      "cost": 6,
+      "links": [
+        "sea5_4",
+        "sea4_4",
+        "sea4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "sea5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea5_5",
+        "sea4_5",
+        "sea4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sea5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "宝の勘 V"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea5_6",
+        "sea4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "sea5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "海の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea5_7",
+        "sea4_6",
+        "sea4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "sea5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "主の気配 V"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "sea5_8",
+        "sea4_7",
+        "tid4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "tid5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "潮風の体 V"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 2,
+      "links": [
+        "sea5_9",
+        "tid4_0",
+        "tid4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "tid5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "泳ぎ V"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "tid5_0",
+        "tid4_1",
+        "tid4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "tid5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid5_1",
+        "tid4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "tid5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid4_2",
+        "tid4_3",
+        "tid5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "tid5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "潮読み V"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid4_3",
+        "tid4_4",
+        "tid5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "tid5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★潮の恵み・極"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 6,
+      "links": [
+        "tid4_4",
+        "tid4_5",
+        "tid5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "cooldown",
+          "amount": -60
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "tid5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid4_5",
+        "tid4_6",
+        "tid5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "tid5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid4_6",
+        "tid5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "tid5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "潮読み V"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid4_7",
+        "tid5_7",
+        "tid4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "tid5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "潮風の体 V"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 2,
+      "links": [
+        "net4_0",
+        "net5_0",
+        "tid5_8",
+        "tid4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "net6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "見切り VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net5_0",
+        "tid5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "net6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "巻き上げ VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net5_1",
+        "net6_0",
+        "net5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "net6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "投網・大網 VI"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 2,
+      "links": [
+        "net5_2",
+        "net6_1",
+        "net5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "投網・遠投 VI"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "net6_2",
+        "net5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "net6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "波乗り・極"
+      },
+      "icon": "minecraft:dark_oak_boat",
+      "cost": 4,
+      "links": [
+        "net6_3",
+        "net5_2",
+        "net5_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/wave_rider"
+        },
+        {
+          "skill": "jsn_craft:net_master/board/wave_rider",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "net6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "潮の恵み・長潮 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "net6_4",
+        "net5_3",
+        "net5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "net6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "枠広げ VI"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net6_5",
+        "net5_4",
+        "net5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "net6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "見切り VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net6_6",
+        "net5_5",
+        "net5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "net6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "巻き上げ VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net6_7",
+        "net5_6",
+        "net5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "net6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "枠広げ VI"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net6_8",
+        "net5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "net6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "見切り VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "net6_9",
+        "net5_7",
+        "net5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "net6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "巻き上げ VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net6_10",
+        "net5_8",
+        "net5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "sea6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "投網・早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "net6_11",
+        "net5_9",
+        "sea5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "sea6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea6_0",
+        "sea5_0",
+        "sea5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sea6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "宝の勘 VI"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea6_1",
+        "sea5_1",
+        "sea5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "sea6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "海の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea6_2",
+        "sea5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "sea6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea6_3",
+        "sea5_2",
+        "sea5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sea6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "宝の勘 VI"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea6_4",
+        "sea5_3",
+        "sea5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "sea6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "主の呼び声"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 4,
+      "links": [
+        "sea6_5",
+        "sea5_4",
+        "sea5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "sea6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "海の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea6_6",
+        "sea5_5",
+        "sea5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "sea6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "主の気配 VI"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "sea6_7",
+        "sea5_6",
+        "sea5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "sea6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "投網・早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "sea6_8",
+        "sea5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -2.4
+        }
+      ]
+    },
+    {
+      "id": "sea6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "sea6_9",
+        "sea5_7",
+        "sea5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "sea6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "宝の勘 VI"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea6_10",
+        "sea5_8",
+        "sea5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "tid6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "泳ぎ VI"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "sea6_11",
+        "sea5_9",
+        "tid5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "tid6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid6_0",
+        "tid5_0",
+        "tid5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "tid6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid6_1",
+        "tid5_1",
+        "tid5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "tid6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "潮読み VI"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid6_2",
+        "tid5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "tid6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid5_2",
+        "tid5_3",
+        "tid6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "tid6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid5_3",
+        "tid5_4",
+        "tid6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "tid6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "撒き餌・覚醒"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 4,
+      "links": [
+        "tid5_4",
+        "tid5_5",
+        "tid6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "power_pct",
+          "amount": 0.6
+        },
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "duration",
+          "amount": 60
+        }
+      ]
+    },
+    {
+      "id": "tid6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "潮読み VI"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid5_5",
+        "tid5_6",
+        "tid6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "tid6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "潮風の体 VI"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 2,
+      "links": [
+        "tid5_6",
+        "tid5_7",
+        "tid6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "tid6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "泳ぎ VI"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "tid5_7",
+        "tid6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "tid6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tid5_8",
+        "tid6_9",
+        "tid5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "tid6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid5_9",
+        "net6_0",
+        "tid6_10",
+        "tid5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "net7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "投網・大網 VII"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 2,
+      "links": [
+        "net6_1",
+        "net6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "投網・遠投 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 3,
+      "links": [
+        "net6_2",
+        "net7_0",
+        "net6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "net7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "潮の恵み・長潮 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "net6_3",
+        "net7_1",
+        "net6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "net7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "枠広げ VII"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 3,
+      "links": [
+        "net7_2",
+        "net6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "net7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★大漁旗・覚醒"
+      },
+      "icon": "minecraft:cyan_banner",
+      "cost": 7,
+      "links": [
+        "net7_3",
+        "net6_3",
+        "net6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "power_pct",
+          "amount": 1.0
+        },
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 15
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "net7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "見切り VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "net7_4",
+        "net6_4",
+        "net6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "net7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "巻き上げ VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net7_5",
+        "net6_5",
+        "net6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "net7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★網の達人"
+      },
+      "icon": "minecraft:fishing_rod",
+      "cost": 8,
+      "links": [
+        "net7_6",
+        "net6_6",
+        "net6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.08
+        },
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "net7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "枠広げ VII"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "net7_7",
+        "net6_7",
+        "net6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "net7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "見切り VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "net7_8",
+        "net6_8",
+        "net6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "net7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "巻き上げ VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "net7_9",
+        "net6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "net7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "投網・大網 VII"
+      },
+      "icon": "minecraft:cobweb",
+      "cost": 3,
+      "links": [
+        "net7_10",
+        "net6_9",
+        "net6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "net7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "投網・遠投 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "net7_11",
+        "net6_10",
+        "net6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "net7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "潮の恵み・長潮 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "net7_12",
+        "net6_11",
+        "sea6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "sea7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "海の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "net7_13",
+        "sea6_0",
+        "sea6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "sea7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "sea7_0",
+        "sea6_1",
+        "sea6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "sea7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "宝の勘 VII"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea7_1",
+        "sea6_2",
+        "sea6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "sea7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "海の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "sea7_2",
+        "sea6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "sea7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "主の気配 VII"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "sea7_3",
+        "sea6_3",
+        "sea6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "sea7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★一本釣り・極"
+      },
+      "icon": "minecraft:cod",
+      "cost": 7,
+      "links": [
+        "sea7_4",
+        "sea6_4",
+        "sea6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "sea7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "投網・早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "sea7_5",
+        "sea6_5",
+        "sea6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "cooldown",
+          "amount": -3
+        }
+      ]
+    },
+    {
+      "id": "sea7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "sea7_6",
+        "sea6_6",
+        "sea6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "sea7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "宝の勘 VII"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea7_7",
+        "sea6_7",
+        "sea6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "sea7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★海の賢者"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 8,
+      "links": [
+        "sea7_8",
+        "sea6_8",
+        "sea6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "sea7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "海の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "sea7_9",
+        "sea6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "sea7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "sea7_10",
+        "sea6_9",
+        "sea6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "sea7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "宝の勘 VII"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "sea7_11",
+        "sea6_10",
+        "sea6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "sea7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "海の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "sea7_12",
+        "sea6_11",
+        "tid6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "tid7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "潮読み VII"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "sea7_13",
+        "tid6_0",
+        "tid6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "tid7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tid7_0",
+        "tid6_1",
+        "tid6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "tid7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid7_1",
+        "tid6_2",
+        "tid6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "tid7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "潮読み VII"
+      },
+      "icon": "minecraft:compass",
+      "cost": 3,
+      "links": [
+        "tid7_2",
+        "tid6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "tid7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "潮風の体 VII"
+      },
+      "icon": "minecraft:kelp",
+      "cost": 2,
+      "links": [
+        "tid6_3",
+        "tid6_4",
+        "tid7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "tid7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★海の申し子"
+      },
+      "icon": "minecraft:trident",
+      "cost": 7,
+      "links": [
+        "tid6_4",
+        "tid6_5",
+        "tid7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 2
+        },
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.3
+        },
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "tid7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "泳ぎ VII"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "tid6_5",
+        "tid6_6",
+        "tid7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "tid7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tid6_6",
+        "tid6_7",
+        "tid7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "tid7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid6_7",
+        "tid6_8",
+        "tid7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "tid7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★大海の守り"
+      },
+      "icon": "minecraft:turtle_helmet",
+      "cost": 8,
+      "links": [
+        "tid6_8",
+        "tid6_9",
+        "tid7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "tid7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "潮読み VII"
+      },
+      "icon": "minecraft:compass",
+      "cost": 2,
+      "links": [
+        "tid6_9",
+        "tid7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "tid7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tid6_10",
+        "tid7_10",
+        "tid6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "tid7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tid6_11",
+        "tid7_11",
+        "tid6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "tid7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "潮読み VII"
+      },
+      "icon": "minecraft:compass",
+      "cost": 3,
+      "links": [
+        "net6_0",
+        "net7_0",
+        "tid7_12",
+        "tid6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.018
+        }
+      ]
+    }
+  ]
+}

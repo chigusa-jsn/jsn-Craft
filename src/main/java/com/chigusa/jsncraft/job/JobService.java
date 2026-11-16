@@ -34,6 +34,11 @@ public final class JobService {
 
     /** 行動したときに呼ぶ。今就いている生活・戦闘ジョブそれぞれで、条件に合うルールの経験値を入れる。 */
     public static void onAction(ServerPlayer player, Predicate<JobDefinition.XpRule> matcher) {
+        onAction(player, matcher, 1.0);
+    }
+
+    /** multiplier 倍の経験値を入れる版（釣りのパーフェクトなど） */
+    public static void onAction(ServerPlayer player, Predicate<JobDefinition.XpRule> matcher, double multiplier) {
         PlayerJobData data = data(player);
         for (JobType type : JobType.values()) {
             ResourceLocation jobId = data.getJob(type);
@@ -41,7 +46,7 @@ public final class JobService {
             if (def == null) continue;
             for (JobDefinition.XpRule rule : def.xp()) {
                 if (matcher.test(rule)) {
-                    addXp(player, jobId, rule.xp());
+                    addXp(player, jobId, (int) Math.round(rule.xp() * multiplier));
                     break; // 最初に当てはまったルールだけ使う
                 }
             }

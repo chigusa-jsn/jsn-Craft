@@ -22,5 +22,10 @@
   "attribute.name.jsn_craft.job_xp_bonus": "Job XP Bonus",
   "attribute.name.jsn_craft.boss_damage": "Boss Damage",
   "attribute.name.jsn_craft.hp_regen": "HP Regen",
-  "attribute.name.jsn_craft.tool_durability": "Tool Durability"
+  "attribute.name.jsn_craft.tool_durability": "Tool Durability",
+  "attribute.name.jsn_craft.fishing_zone": "Catch Zone",
+  "attribute.name.jsn_craft.fishing_calm": "Fish Calm",
+  "attribute.name.jsn_craft.fishing_reel": "Reel Speed",
+  "attribute.name.jsn_craft.fishing_treasure": "Treasure Chance",
+  "attribute.name.jsn_craft.fishing_bite": "Bite Speed"
 }

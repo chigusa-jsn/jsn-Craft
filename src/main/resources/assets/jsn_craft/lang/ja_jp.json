@@ -22,5 +22,10 @@
   "attribute.name.jsn_craft.job_xp_bonus": "職業経験値",
   "attribute.name.jsn_craft.boss_damage": "ボス特効",
   "attribute.name.jsn_craft.hp_regen": "HP自然回復",
-  "attribute.name.jsn_craft.tool_durability": "道具の長持ち"
+  "attribute.name.jsn_craft.tool_durability": "道具の長持ち",
+  "attribute.name.jsn_craft.fishing_zone": "キャッチ枠",
+  "attribute.name.jsn_craft.fishing_calm": "魚の鈍り",
+  "attribute.name.jsn_craft.fishing_reel": "巻き上げ速度",
+  "attribute.name.jsn_craft.fishing_treasure": "お宝確率",
+  "attribute.name.jsn_craft.fishing_bite": "アタリの速さ"
 }

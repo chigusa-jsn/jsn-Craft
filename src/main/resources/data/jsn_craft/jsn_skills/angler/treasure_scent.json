@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "宝の匂い"
+  },
+  "description": {
+    "text": "釣ったとき、8%の確率でお宝に化ける。"
+  },
+  "icon": "minecraft:name_tag",
+  "type": "passive",
+  "effect": "fish_treasure",
+  "chance": 0.08
+}

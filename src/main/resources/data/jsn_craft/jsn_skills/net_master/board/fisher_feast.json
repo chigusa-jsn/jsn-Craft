@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "漁師の宴"
+  },
+  "description": {
+    "text": "ゴミ以外を釣ると、満腹度が2回復する。"
+  },
+  "icon": "minecraft:cooked_cod",
+  "type": "passive",
+  "effect": "fisher_feast",
+  "power": 2
+}

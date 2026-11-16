@@ -1,0 +1,1390 @@
+{
+  "name": {
+    "text": "水辺の釣り師",
+    "color": "aqua"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "fish",
+      "target": "@lord",
+      "xp": 120
+    },
+    {
+      "action": "fish",
+      "target": "@treasure",
+      "xp": 35
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:cod",
+      "xp": 15
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:salmon",
+      "xp": 18
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:tropical_fish",
+      "xp": 22
+    },
+    {
+      "action": "fish",
+      "target": "minecraft:pufferfish",
+      "xp": 22
+    },
+    {
+      "action": "fish",
+      "target": "@fish",
+      "xp": 18
+    },
+    {
+      "action": "fish",
+      "target": "*",
+      "xp": 4
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:angler/anglers_sense",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:angler/chum",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:angler/calm_water",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:angler/lucky_catch",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:angler/water_blessing",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:angler/treasure_scent",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:angler/one_shot",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:angler/big_catch",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "釣りの心得"
+      },
+      "icon": "minecraft:fishing_rod",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "skl1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "枠広げ I"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "skl1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "見切り I"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "skl1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "lck1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 I"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "skl1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "lck1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "宝の勘 I"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "lck1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "lck1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "skl1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "skl2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "巻き上げ II"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "skl1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "skl2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "撒き餌修練 II"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 1,
+      "links": [
+        "skl2_0",
+        "skl1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "duration",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "skl2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "枠広げ II"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 1,
+      "links": [
+        "skl2_1",
+        "skl1_0",
+        "skl1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "skl2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "大漁旗修練 II"
+      },
+      "icon": "minecraft:blue_banner",
+      "cost": 1,
+      "links": [
+        "skl2_2",
+        "skl1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "lck2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "skl2_3",
+        "skl1_1",
+        "lck1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "lck2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "宝の匂い修練 II"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "lck2_0",
+        "lck1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/treasure_scent",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "lck2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "一本釣り修練 II"
+      },
+      "icon": "minecraft:cod",
+      "cost": 1,
+      "links": [
+        "lck2_1",
+        "lck1_0",
+        "lck1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "lck2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "会心修練 II"
+      },
+      "icon": "minecraft:salmon",
+      "cost": 1,
+      "links": [
+        "lck2_2",
+        "lck1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/lucky_catch",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "潮読み II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "lck2_3",
+        "lck1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "泳ぎ II"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "息継ぎ II"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "水の加護修練 II"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "skl2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "duration",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "skl3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "見切り III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "skl2_1",
+        "skl2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.022
+        }
+      ]
+    },
+    {
+      "id": "skl3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "巻き上げ III"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "skl3_0",
+        "skl2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "skl3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "枠広げ III"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "skl3_1",
+        "skl2_1",
+        "skl2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "skl3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "見切りの極意"
+      },
+      "icon": "minecraft:ender_eye",
+      "cost": 3,
+      "links": [
+        "skl3_2",
+        "skl2_2",
+        "skl2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.06
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "skl3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "枠広げ III"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "skl3_3",
+        "skl2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "skl3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "見切り III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "skl3_4",
+        "skl2_3",
+        "lck2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.022
+        }
+      ]
+    },
+    {
+      "id": "lck3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "skl3_5",
+        "lck2_0",
+        "lck2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "lck3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "宝の勘 III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "lck3_0",
+        "lck2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "lck3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "lck3_1",
+        "lck2_1",
+        "lck2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "lck3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "宝探しの極意"
+      },
+      "icon": "minecraft:chest",
+      "cost": 3,
+      "links": [
+        "lck3_2",
+        "lck2_2",
+        "lck2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.03
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "lck3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "lck3_3",
+        "lck2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "lck3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "宝の勘 III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "lck3_4",
+        "lck2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "lck3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "潮読み III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "潮の呼吸"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 1
+        },
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "skl2_0",
+        "skl3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "skl4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "巻き上げ IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "skl3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "skl4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "撒き餌修練 IV"
+      },
+      "icon": "minecraft:wheat_seeds",
+      "cost": 2,
+      "links": [
+        "skl3_1",
+        "skl4_0",
+        "skl3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "duration",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "skl4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "枠広げ IV"
+      },
+      "icon": "minecraft:lime_dye",
+      "cost": 2,
+      "links": [
+        "skl4_1",
+        "skl3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "skl4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★名人の竿"
+      },
+      "icon": "minecraft:fishing_rod",
+      "cost": 5,
+      "links": [
+        "skl4_2",
+        "skl3_1",
+        "skl3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.12
+        },
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "skl4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "大漁旗修練 IV"
+      },
+      "icon": "minecraft:blue_banner",
+      "cost": 2,
+      "links": [
+        "skl4_3",
+        "skl3_2",
+        "skl3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "skl4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "大漁旗・極"
+      },
+      "icon": "minecraft:cyan_banner",
+      "cost": 4,
+      "links": [
+        "skl4_4",
+        "skl3_3",
+        "skl3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "id": "skl4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "見切り IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "skl4_5",
+        "skl3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "skl4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "巻き上げ IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "skl4_6",
+        "skl3_4",
+        "skl3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "lck4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "skl4_7",
+        "skl3_5",
+        "lck3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "lck4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "宝の匂い修練 IV"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "lck4_0",
+        "lck3_0",
+        "lck3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/treasure_scent",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "lck4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "一本釣り修練 IV"
+      },
+      "icon": "minecraft:cod",
+      "cost": 2,
+      "links": [
+        "lck4_1",
+        "lck3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "lck4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★幸運の釣り人"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 5,
+      "links": [
+        "lck4_2",
+        "lck3_1",
+        "lck3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "lck4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "会心修練 IV"
+      },
+      "icon": "minecraft:salmon",
+      "cost": 2,
+      "links": [
+        "lck4_3",
+        "lck3_2",
+        "lck3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/lucky_catch",
+          "field": "chance",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "lck4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "会心・極"
+      },
+      "icon": "minecraft:tropical_fish",
+      "cost": 3,
+      "links": [
+        "lck4_4",
+        "lck3_3",
+        "lck3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/lucky_catch",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "lck4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "lck4_5",
+        "lck3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "lck4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "宝の勘 IV"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "lck4_6",
+        "lck3_4",
+        "lck3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "潮読み IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "lck4_7",
+        "lck3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_bite",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "泳ぎ IV"
+      },
+      "icon": "minecraft:turtle_scute",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "息継ぎ IV"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★人魚の加護"
+      },
+      "icon": "minecraft:prismarine_shard",
+      "cost": 5,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "水の加護修練 IV"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 2,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "duration",
+          "amount": 16
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "撒き餌・極"
+      },
+      "icon": "minecraft:pumpkin_seeds",
+      "cost": 4,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "power_pct",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "skl4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "会心の一匹"
+  },
+  "description": {
+    "text": "パーフェクトで釣ると、30%の確率でもう1匹釣れる。"
+  },
+  "icon": "minecraft:salmon",
+  "type": "passive",
+  "effect": "fish_double",
+  "chance": 0.3
+}

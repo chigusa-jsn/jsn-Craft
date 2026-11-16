@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "釣り人の勘"
+  },
+  "description": {
+    "text": "釣りミニゲームのキャッチ枠が15%大きくなる。"
+  },
+  "icon": "minecraft:fishing_rod",
+  "type": "passive",
+  "effect": "fish_zone",
+  "power": 0.15
+}

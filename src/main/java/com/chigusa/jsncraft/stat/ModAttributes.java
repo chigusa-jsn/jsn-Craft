@@ -54,6 +54,17 @@ public final class ModAttributes {
     /** 道具の長持ち：ブロックを壊したとき、○%の確率で道具の耐久が減らない */
     public static final DeferredHolder<Attribute, Attribute> TOOL_DURABILITY = register("tool_durability", 0, 0, 1);
 
+    /** 釣り：キャッチ枠の大きさ +○% */
+    public static final DeferredHolder<Attribute, Attribute> FISHING_ZONE = register("fishing_zone", 0, 0, 1);
+    /** 釣り：魚の動き -○%（最大60%） */
+    public static final DeferredHolder<Attribute, Attribute> FISHING_CALM = register("fishing_calm", 0, 0, 0.6);
+    /** 釣り：釣りゲージの溜まる速さ +○% */
+    public static final DeferredHolder<Attribute, Attribute> FISHING_REEL = register("fishing_reel", 0, 0, 3);
+    /** 釣り：釣った物がお宝に化ける確率 */
+    public static final DeferredHolder<Attribute, Attribute> FISHING_TREASURE = register("fishing_treasure", 0, 0, 0.5);
+    /** 釣り：魚がかかるまでの速さ +○%（最大80%） */
+    public static final DeferredHolder<Attribute, Attribute> FISHING_BITE = register("fishing_bite", 0, 0, 0.8);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -77,6 +88,11 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, BOSS_DAMAGE);
         event.add(EntityType.PLAYER, HP_REGEN);
         event.add(EntityType.PLAYER, TOOL_DURABILITY);
+        event.add(EntityType.PLAYER, FISHING_ZONE);
+        event.add(EntityType.PLAYER, FISHING_CALM);
+        event.add(EntityType.PLAYER, FISHING_REEL);
+        event.add(EntityType.PLAYER, FISHING_TREASURE);
+        event.add(EntityType.PLAYER, FISHING_BITE);
     }
 
     private ModAttributes() {}

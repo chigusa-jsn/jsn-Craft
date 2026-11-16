@@ -64,7 +64,7 @@ public record JobDefinition(
 
     /**
      * 経験値のもらえる行動。
-     * action: "break_block"（ブロックを壊す） / "kill_entity"（モブを倒す）
+     * action: "break_block"（ブロックを壊す） / "place_block"（置く） / "kill_entity"（モブを倒す） / "fish"（釣る）
      * target: "minecraft:stone" のようなID、"#minecraft:logs" のようなタグ、"*" で何でも
      */
     public record XpRule(String action, String target, int xp) {
@@ -82,6 +82,21 @@ public record JobDefinition(
             }
             ResourceLocation id = ResourceLocation.tryParse(target);
             return id != null && id.equals(BuiltInRegistries.BLOCK.getKey(state.getBlock()));
+        }
+
+        /**
+         * 釣った物に当てはまるか。category は "fish" / "junk" / "treasure" / "lord"。
+         * target に "@treasure" のように書くと、その種類ぜんぶに当てはまる。
+         */
+        public boolean matchesItem(net.minecraft.world.item.ItemStack stack, String category) {
+            if (target.equals("*")) return true;
+            if (target.startsWith("@")) return target.substring(1).equals(category);
+            if (target.startsWith("#")) {
+                ResourceLocation tag = ResourceLocation.tryParse(target.substring(1));
+                return tag != null && stack.is(TagKey.create(Registries.ITEM, tag));
+            }
+            ResourceLocation id = ResourceLocation.tryParse(target);
+            return id != null && id.equals(BuiltInRegistries.ITEM.getKey(stack.getItem()));
         }
 
         public boolean matchesEntity(Entity entity) {

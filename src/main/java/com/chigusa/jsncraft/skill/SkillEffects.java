@@ -65,6 +65,9 @@ public final class SkillEffects {
             case "mass_fell" -> massFell(player, s);
             case "grove" -> grove(player, s);
             case "summon_guardian" -> summonGuardian(player, s);
+            case "fish_buff" -> com.chigusa.jsncraft.fishing.FishingService.fishBuff(player, s);
+            case "water_blessing" -> com.chigusa.jsncraft.fishing.FishingService.waterBlessing(player, s);
+            case "cast_net" -> com.chigusa.jsncraft.fishing.FishingService.castNet(player, s);
             default -> {
                 JsnCraft.LOGGER.warn("[jsn-Craft] 知らないスキル効果です: {}", s.effect());
                 yield false;
@@ -108,7 +111,7 @@ public final class SkillEffects {
 
     private static final List<Task> TASKS = new ArrayList<>();
 
-    private static void later(ServerPlayer player, int ticks, Runnable run) {
+    public static void later(ServerPlayer player, int ticks, Runnable run) {
         TASKS.add(new Task(player.level().getGameTime() + ticks, run));
     }
 

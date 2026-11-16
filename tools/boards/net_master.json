@@ -1,0 +1,535 @@
+{
+  "job": "net_master",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "網主の心得",
+    "icon": "minecraft:cobweb",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:fishing_zone",
+        "amount": 0.05
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "amount": 0.5
+      },
+      {
+        "attribute": "jsn_craft:fishing_reel",
+        "amount": 0.05
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "net",
+      "pool": [
+        {
+          "name": "枠広げ",
+          "icon": "minecraft:lime_dye",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_zone",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "見切り",
+          "icon": "minecraft:spyglass",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_calm",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "巻き上げ",
+          "icon": "minecraft:string",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_reel",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "投網・大網",
+          "icon": "minecraft:cobweb",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:net_master/cast_net",
+              "field": "amplifier",
+              "amount": 1
+            }
+          ],
+          "scale": false
+        },
+        {
+          "name": "投網・遠投",
+          "icon": "minecraft:lead",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:net_master/cast_net",
+              "field": "radius",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "潮の恵み・長潮",
+          "icon": "minecraft:prismarine_crystals",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:net_master/tide_blessing",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "sea",
+      "pool": [
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "宝の勘",
+          "icon": "minecraft:gold_nugget",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_treasure",
+              "amount": 0.0025
+            }
+          ]
+        },
+        {
+          "name": "海の知恵",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "主の気配",
+          "icon": "minecraft:nautilus_shell",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:net_master/sea_lord",
+              "field": "chance",
+              "amount": 0.0012
+            }
+          ]
+        },
+        {
+          "name": "投網・早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:net_master/cast_net",
+              "field": "cooldown",
+              "amount": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tid",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 7
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.2
+            }
+          ]
+        },
+        {
+          "name": "潮読み",
+          "icon": "minecraft:compass",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_bite",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "潮風の体",
+          "icon": "minecraft:kelp",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "泳ぎ",
+          "icon": "minecraft:turtle_scute",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.water_movement_efficiency",
+              "amount": 0.012
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "波乗り",
+      "icon": "minecraft:oak_boat",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/wave_rider"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★投網・覚醒",
+      "icon": "minecraft:cobweb",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "amplifier",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:net_master/cast_net",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "波乗り・極",
+      "icon": "minecraft:dark_oak_boat",
+      "cost": 4,
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/wave_rider"
+        },
+        {
+          "skill": "jsn_craft:net_master/board/wave_rider",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★大漁旗・覚醒",
+      "icon": "minecraft:cyan_banner",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "power_pct",
+          "amount": 1.0
+        },
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 15
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★網の達人",
+      "icon": "minecraft:fishing_rod",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.08
+        },
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "慈雨の釣り",
+      "icon": "minecraft:water_bucket",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/rain_luck"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大海の宝庫",
+      "icon": "minecraft:chest",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "主の呼び声",
+      "icon": "minecraft:nautilus_shell",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/sea_lord",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★一本釣り・極",
+      "icon": "minecraft:cod",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★海の賢者",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "漁師の宴",
+      "icon": "minecraft:cooked_cod",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:net_master/board/fisher_feast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★潮の恵み・極",
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:net_master/tide_blessing",
+          "field": "cooldown",
+          "amount": -60
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "撒き餌・覚醒",
+      "icon": "minecraft:wheat_seeds",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "power_pct",
+          "amount": 0.6
+        },
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "duration",
+          "amount": 60
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★海の申し子",
+      "icon": "minecraft:trident",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 2
+        },
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.3
+        },
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★大海の守り",
+      "icon": "minecraft:turtle_helmet",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

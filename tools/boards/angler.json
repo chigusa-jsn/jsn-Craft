@@ -1,0 +1,400 @@
+{
+  "job": "angler",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "釣りの心得",
+    "icon": "minecraft:fishing_rod",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:fishing_zone",
+        "amount": 0.05
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "amount": 0.5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "skl",
+      "pool": [
+        {
+          "name": "枠広げ",
+          "icon": "minecraft:lime_dye",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_zone",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "見切り",
+          "icon": "minecraft:spyglass",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_calm",
+              "amount": 0.015
+            }
+          ]
+        },
+        {
+          "name": "巻き上げ",
+          "icon": "minecraft:string",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_reel",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "撒き餌修練",
+          "icon": "minecraft:wheat_seeds",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/chum",
+              "field": "duration",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "大漁旗修練",
+          "icon": "minecraft:blue_banner",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/big_catch",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "lck",
+      "pool": [
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "宝の勘",
+          "icon": "minecraft:gold_nugget",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_treasure",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "宝の匂い修練",
+          "icon": "minecraft:name_tag",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/treasure_scent",
+              "field": "chance",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "一本釣り修練",
+          "icon": "minecraft:cod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/one_shot",
+              "field": "chance",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "会心修練",
+          "icon": "minecraft:salmon",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/lucky_catch",
+              "field": "chance",
+              "amount": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "潮読み",
+          "icon": "minecraft:clock",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:fishing_bite",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "泳ぎ",
+          "icon": "minecraft:turtle_scute",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.water_movement_efficiency",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "息継ぎ",
+          "icon": "minecraft:glass_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.oxygen_bonus",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "水の加護修練",
+          "icon": "minecraft:heart_of_the_sea",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:angler/water_blessing",
+              "field": "duration",
+              "amount": 8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "見切りの極意",
+      "icon": "minecraft:ender_eye",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_calm",
+          "amount": 0.06
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★名人の竿",
+      "icon": "minecraft:fishing_rod",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_zone",
+          "amount": 0.12
+        },
+        {
+          "attribute": "jsn_craft:fishing_reel",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "大漁旗・極",
+      "icon": "minecraft:cyan_banner",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/big_catch",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "宝探しの極意",
+      "icon": "minecraft:chest",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:fishing_treasure",
+          "amount": 0.03
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★幸運の釣り人",
+      "icon": "minecraft:emerald",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:angler/one_shot",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "会心・極",
+      "icon": "minecraft:tropical_fish",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/lucky_catch",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "潮の呼吸",
+      "icon": "minecraft:conduit",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.oxygen_bonus",
+          "amount": 1
+        },
+        {
+          "attribute": "minecraft:generic.water_movement_efficiency",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★人魚の加護",
+      "icon": "minecraft:prismarine_shard",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:angler/water_blessing",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "撒き餌・極",
+      "icon": "minecraft:pumpkin_seeds",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:angler/chum",
+          "field": "power_pct",
+          "amount": 0.4
+        }
+      ]
+    }
+  ]
+}

@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("12");
+        PayloadRegistrar registrar = event.registrar("13");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -63,6 +63,12 @@ public final class ModNetwork {
         registrar.playToServer(QuestEditorPayloads.Save.TYPE, QuestEditorPayloads.Save.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) QuestEditorService.save(sp, p.data());
+                }));
+        registrar.playToClient(FishingPayloads.Start.TYPE, FishingPayloads.Start.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.FishingScreen.open(p)));
+        registrar.playToServer(FishingPayloads.Result.TYPE, FishingPayloads.Result.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.fishing.FishingService.onResult(sp, p.success(), p.perfect());
                 }));
         // クライアント → サーバー
         registrar.playToServer(OpenMenuPayload.TYPE, OpenMenuPayload.STREAM_CODEC, ModNetwork::handleOpenMenu);

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "波乗り"
+  },
+  "description": {
+    "text": "水の中かボートの上で釣ると、キャッチ枠が20%大きくなる。"
+  },
+  "icon": "minecraft:oak_boat",
+  "type": "passive",
+  "effect": "wave_rider",
+  "power": 0.2
+}

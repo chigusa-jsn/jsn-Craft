@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "撒き餌"
+  },
+  "description": {
+    "text": "60秒間、魚がかかるまでの時間が短くなる（約1.5倍の速さ）。"
+  },
+  "icon": "minecraft:wheat_seeds",
+  "type": "active",
+  "effect": "fish_buff",
+  "target": "bait",
+  "power": 0.5,
+  "duration": 60,
+  "stamina": 20,
+  "cooldown": 90
+}

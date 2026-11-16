@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "慈雨の釣り"
+  },
+  "description": {
+    "text": "雨の日は、お宝に化ける確率+10%、魚がかかる速さ+30%。"
+  },
+  "icon": "minecraft:water_bucket",
+  "type": "passive",
+  "effect": "rain_luck",
+  "power": 0.1,
+  "bonus": 0.3
+}

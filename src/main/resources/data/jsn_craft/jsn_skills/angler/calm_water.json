@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "凪の水面"
+  },
+  "description": {
+    "text": "釣りミニゲームの魚の動きが15%ゆっくりになる。"
+  },
+  "icon": "minecraft:lily_pad",
+  "type": "passive",
+  "effect": "fish_calm",
+  "power": 0.15
+}
