@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "鼓舞の陣"
+  },
+  "description": {
+    "text": "近く（8ブロック）のパーティーの仲間と自分に、攻撃力上昇Iをかけ続ける。"
+  },
+  "icon": "minecraft:goat_horn",
+  "type": "passive",
+  "effect": "aura",
+  "target": "minecraft:strength",
+  "amplifier": 0,
+  "radius": 8
+}

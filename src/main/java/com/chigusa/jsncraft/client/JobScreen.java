@@ -59,6 +59,8 @@ public class JobScreen extends Screen {
     private int choiceX = -1000, choiceY = -1000;
     private int questScroll;
     private double panX, panY;
+    /** ボードの拡大率（マウスホイールで変える） */
+    private float zoom = 1.0F;
 
     private int left, top, panelW, panelH;
 
@@ -133,6 +135,7 @@ public class JobScreen extends Screen {
     private void setTab(int t) {
         tab = t;
         lastTab = t;
+        zoom = 1.0F;
         boardIndex = 0;
         panX = 0;
         panY = 0;
@@ -256,7 +259,7 @@ public class JobScreen extends Screen {
 
     private void renderBoardHeader(GuiGraphics g, BoardView v) {
         Component head = v.jobName().copy().append(Component.literal(" Lv." + v.level()).withStyle(ChatFormatting.WHITE));
-        if (v.inherited()) head = head.copy().append(Component.literal(" (引き継ぎ)").withStyle(ChatFormatting.GRAY));
+        if (v.inherited()) head = head.copy().append(Component.literal(" (引き継ぎ：技とパッシブだけ有効)").withStyle(ChatFormatting.GRAY));
         g.drawString(font, head, left + 10, top + 32, 0xFFFFFF);
         if (boards().size() > 1) {
             g.drawCenteredString(font, (boardIndex + 1) + "/" + boards().size(), left + panelW - 33, top + panelH - 14, 0xAAAAAA);
@@ -310,6 +313,12 @@ public class JobScreen extends Screen {
         boolean hex = isHex(v);
 
         g.enableScissor(areaL, areaT, areaR, areaB);
+        // 拡大・縮小：真ん中を中心に描く大きさを変える。マウスの位置も同じだけ戻して考える
+        g.pose().pushPose();
+        g.pose().translate(originX, originY, 0);
+        g.pose().scale(zoom, zoom, 1F);
+        g.pose().translate(-originX, -originY, 0);
+        double mx = originX + (mouseX - originX) / zoom, my = originY + (mouseY - originY) / zoom;
 
         // 線
         for (NodeView n : v.nodes()) {
@@ -376,12 +385,13 @@ public class JobScreen extends Screen {
                 g.pose().popPose();
             }
 
-            if (inArea && overNode(v, n, cx, cy, mouseX, mouseY)) hovered = n;
+            if (inArea && overNode(v, n, cx, cy, mx, my)) hovered = n;
         }
 
+        g.pose().popPose();
         g.disableScissor();
 
-        g.drawString(font, "ドラッグで移動 / クリックで解放", areaL + 6, top + panelH - 14, 0x666677);
+        g.drawString(font, "ドラッグで移動 / ホイールで拡大縮小 / クリックで解放", areaL + 6, top + panelH - 14, 0x666677);
 
         if (hovered != null) {
             List<Component> tip = new ArrayList<>();
@@ -502,9 +512,10 @@ public class JobScreen extends Screen {
         int originX = (areaL + areaR) / 2 + (int) panX;
         int originY = boardOriginY(v, areaT, areaB);
 
+        double mx = originX + (mouseX - originX) / zoom, my = originY + (mouseY - originY) / zoom;
         for (NodeView n : v.nodes()) {
             int cx = nodeX(v, originX, n), cy = nodeY(v, originY, n);
-            if (overNode(v, n, cx, cy, mouseX, mouseY)) {
+            if (overNode(v, n, cx, cy, mx, my)) {
                 if (canUnlock(v, n)) PacketDistributor.sendToServer(new UnlockNodePayload(v.jobId(), n.id()));
                 return true;
             }
@@ -734,6 +745,14 @@ public class JobScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+        if (isBoardTab()) {
+            float old = zoom;
+            zoom = Math.max(0.4F, Math.min(1.6F, zoom + (float) Math.signum(scrollY) * 0.1F));
+            // 拡大しても、見ている場所がずれないように
+            panX *= zoom / old;
+            panY *= zoom / old;
+            return true;
+        }
         if (tab == TAB_SKILL) {
             int max = Math.max(0, ClientSkills.state().skills().size() * SKILL_ROW - (panelH - 92));
             skillScroll = (int) Math.max(0, Math.min(max, skillScroll - scrollY * SKILL_ROW));

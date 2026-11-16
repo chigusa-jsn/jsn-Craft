@@ -37,8 +37,9 @@ import java.util.Set;
  *
  * - スキルポイントは職業ごと。(レベル - 1) × skill_points_per_level がもらえる分で、
  *   解放したマスのコストの合計を引いた残りが使える分。
- * - 能力が上がるのは「今就いている職業」と「その職業になるまでに通ってきた職業」のボード。
- *   たとえば古樹の守り人なら、樹海の伐り手のボードも効いたまま。
+ * - ステータスのパネルが効くのは「今就いている職業」のボードだけ。
+ * - 技・パッシブ・技の強化パネル・ボードで覚えたパッシブは、通ってきた職業のボードからも引き継ぐ。
+ *   たとえば蒼天の剣聖なら、蒼刃の剣士で開けた「旋風斬・極」は効くが、「攻撃力+1」は効かない。
  */
 public final class SkillBoardService {
 
@@ -59,6 +60,7 @@ public final class SkillBoardService {
             ResourceLocation.withDefaultNamespace("generic.movement_speed"),
             ResourceLocation.withDefaultNamespace("player.block_break_speed"),
             JsnCraft.id("mining_fortune"),
+            JsnCraft.id("hp_regen"),
             ResourceLocation.withDefaultNamespace("generic.luck"));
 
     // ---------------- 効いているボード ----------------
@@ -74,6 +76,16 @@ public final class SkillBoardService {
         JobDefinition def = JobManager.INSTANCE.get(jobId);
         if (def == null || !out.add(jobId)) return;
         for (JobDefinition.Requirement req : def.requires()) collect(req.job(), out);
+    }
+
+    /** 今就いている職業（生活・戦闘）。ステータスのパネルはこのボードだけ効く。 */
+    public static Set<ResourceLocation> currentJobs(PlayerJobData data) {
+        Set<ResourceLocation> out = new LinkedHashSet<>();
+        for (JobType type : JobType.values()) {
+            ResourceLocation id = data.getJob(type);
+            if (id != null && JobManager.INSTANCE.get(id) != null) out.add(id);
+        }
+        return out;
     }
 
     /** 生活・戦闘の両方で、今効いているボードの職業（重複なし）。 */
@@ -175,7 +187,7 @@ public final class SkillBoardService {
 
         Map<Key, Double> totals = new LinkedHashMap<>();
         PlayerJobData data = JobService.data(player);
-        for (ResourceLocation jobId : allActiveBoards(data)) {
+        for (ResourceLocation jobId : currentJobs(data)) {
             JobDefinition def = JobManager.INSTANCE.get(jobId);
             if (def == null) continue;
             for (String nodeId : data.progress(jobId).unlocked) {
@@ -219,7 +231,7 @@ public final class SkillBoardService {
         PlayerJobData data = JobService.data(player);
 
         Set<ResourceLocation> statIds = new LinkedHashSet<>(BASE_STATS);
-        for (ResourceLocation jobId : allActiveBoards(data)) {
+        for (ResourceLocation jobId : currentJobs(data)) {
             JobDefinition def = JobManager.INSTANCE.get(jobId);
             if (def == null) continue;
             for (BoardNode node : def.board()) {
@@ -313,7 +325,7 @@ public final class SkillBoardService {
 
     /** 0.05 を「5%」と見せたい能力値 */
     private static final Set<String> PERCENT_STATS = Set.of("crit_chance", "crit_damage", "skill_damage", "cooldown_reduction",
-            "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "generic.knockback_resistance");
+            "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "boss_damage", "generic.knockback_resistance");
 
     // ---------------- 技の強化・覚えたパッシブ（他から使う） ----------------
 

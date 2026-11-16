@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "追撃"
+  },
+  "description": {
+    "text": "近接攻撃のとき15%の確率で、追いかける斬撃が出る（攻撃力の0.5倍）。"
+  },
+  "icon": "minecraft:prismarine_shard",
+  "type": "passive",
+  "effect": "pursuit",
+  "chance": 0.15,
+  "power": 0.5
+}

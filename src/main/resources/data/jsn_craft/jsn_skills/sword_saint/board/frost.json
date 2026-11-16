@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "凍刃"
+  },
+  "description": {
+    "text": "近接攻撃のとき20%の確率で、相手を3秒間とても遅くする（鈍足II）。"
+  },
+  "icon": "minecraft:blue_ice",
+  "type": "passive",
+  "effect": "frost",
+  "chance": 0.2,
+  "duration": 3,
+  "amplifier": 1
+}

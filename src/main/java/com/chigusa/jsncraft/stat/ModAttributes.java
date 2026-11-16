@@ -46,6 +46,11 @@ public final class ModAttributes {
     /** 職業経験値 +○% */
     public static final DeferredHolder<Attribute, Attribute> JOB_XP_BONUS = register("job_xp_bonus", 0, 0, 10);
 
+    /** ボス（最大HPが100以上の相手）へのダメージ +○% */
+    public static final DeferredHolder<Attribute, Attribute> BOSS_DAMAGE = register("boss_damage", 0, 0, 10);
+    /** 1秒あたりのHP自然回復 */
+    public static final DeferredHolder<Attribute, Attribute> HP_REGEN = register("hp_regen", 0, 0, 100);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -66,6 +71,8 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, DAMAGE_REDUCTION);
         event.add(EntityType.PLAYER, LIFESTEAL);
         event.add(EntityType.PLAYER, JOB_XP_BONUS);
+        event.add(EntityType.PLAYER, BOSS_DAMAGE);
+        event.add(EntityType.PLAYER, HP_REGEN);
     }
 
     private ModAttributes() {}

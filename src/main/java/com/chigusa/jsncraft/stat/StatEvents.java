@@ -22,6 +22,11 @@ public final class StatEvents {
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             ResourceService.tick(player);
+            // HP自然回復（1秒ごと）
+            if (player.tickCount % 20 == 0 && player.isAlive() && player.getHealth() < player.getMaxHealth()) {
+                double regen = player.getAttributeValue(ModAttributes.HP_REGEN);
+                if (regen > 0) player.heal((float) regen);
+            }
         }
     }
 
@@ -69,6 +74,15 @@ public final class StatEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         double red = Math.min(0.6, player.getAttributeValue(ModAttributes.DAMAGE_REDUCTION));
         if (red > 0) event.setAmount((float) (event.getAmount() * (1 - red)));
+    }
+
+    /** ボス特効：最大HPが100以上の相手へのダメージアップ */
+    @SubscribeEvent
+    public static void onHitBoss(LivingIncomingDamageEvent event) {
+        if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
+        if (event.getEntity().getMaxHealth() < 100) return;
+        double bonus = player.getAttributeValue(ModAttributes.BOSS_DAMAGE);
+        if (bonus > 0) event.setAmount((float) (event.getAmount() * (1 + bonus)));
     }
 
     /** 吸血：与えたダメージの一部だけHPが回復 */

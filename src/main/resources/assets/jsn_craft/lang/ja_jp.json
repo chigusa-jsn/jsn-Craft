@@ -19,5 +19,7 @@
   "attribute.name.jsn_craft.stamina_cost_reduction": "消費ST軽減",
   "attribute.name.jsn_craft.damage_reduction": "被ダメージ軽減",
   "attribute.name.jsn_craft.lifesteal": "吸血",
-  "attribute.name.jsn_craft.job_xp_bonus": "職業経験値"
+  "attribute.name.jsn_craft.job_xp_bonus": "職業経験値",
+  "attribute.name.jsn_craft.boss_damage": "ボス特効",
+  "attribute.name.jsn_craft.hp_regen": "HP自然回復"
 }

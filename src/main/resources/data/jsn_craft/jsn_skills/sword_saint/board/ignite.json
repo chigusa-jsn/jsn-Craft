@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "炎刃"
+  },
+  "description": {
+    "text": "近接攻撃のとき20%の確率で、相手を4秒燃やす。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "passive",
+  "effect": "ignite",
+  "chance": 0.2,
+  "duration": 4
+}

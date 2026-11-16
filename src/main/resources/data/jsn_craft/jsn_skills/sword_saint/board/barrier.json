@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "光の盾"
+  },
+  "description": {
+    "text": "攻撃を受けたとき15%の確率で、吸収ハートを4得る（最大8）。"
+  },
+  "icon": "minecraft:shield",
+  "type": "passive",
+  "effect": "barrier",
+  "chance": 0.15,
+  "power": 4
+}

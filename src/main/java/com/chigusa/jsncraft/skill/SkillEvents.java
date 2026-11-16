@@ -50,6 +50,7 @@ public final class SkillEvents {
     public static void onServerTick(ServerTickEvent.Post event) {
         SkillEffects.tickBuffs(event.getServer());
         SkillService.tickCasts(event.getServer());
+        if (event.getServer().getTickCount() % 40 == 0) tickAuras(event.getServer());
     }
 
     @SubscribeEvent
@@ -57,6 +58,25 @@ public final class SkillEvents {
         if (event.getEntity() instanceof ServerPlayer p) {
             SkillService.autoFill(p);
             SkillService.sync(p);
+        }
+    }
+
+    /** オーラ：近くのパーティーの仲間（と自分）に、ポーション効果をかけ続ける（2秒ごと） */
+    private static void tickAuras(net.minecraft.server.MinecraftServer server) {
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
+            SkillDefinition aura = SkillService.passive(p, "aura");
+            if (aura == null || !p.isAlive()) continue;
+            ResourceLocation id = ResourceLocation.tryParse(aura.target());
+            var effect = id == null ? java.util.Optional.<net.minecraft.core.Holder.Reference<net.minecraft.world.effect.MobEffect>>empty()
+                    : BuiltInRegistries.MOB_EFFECT.getHolder(id);
+            if (effect.isEmpty()) continue;
+            var party = com.chigusa.jsncraft.party.PartyManager.partyOf(p);
+            for (ServerPlayer other : p.serverLevel().players()) {
+                boolean ally = other == p || (party != null && party.members.contains(other.getUUID()));
+                if (!ally || other.distanceTo(p) > aura.radius()) continue;
+                other.addEffect(new net.minecraft.world.effect.MobEffectInstance(effect.get(), 60, Math.max(0, aura.amplifier()), true, false, true));
+            }
+            com.chigusa.jsncraft.vfx.Vfx.ring(p.serverLevel(), p.position(), (float) aura.radius() * 0.6F, 16, com.chigusa.jsncraft.vfx.Vfx.GOLD);
         }
     }
 
@@ -129,6 +149,50 @@ public final class SkillEvents {
                         com.chigusa.jsncraft.vfx.Vfx.GOLD, 30);
             }
             event.setAmount(amount);
+
+            // ここから先は、ふつうの近接攻撃のときだけ（スキルの攻撃で連鎖しないように）
+            if (!HitFlags.SKILL.get()) onMeleeExtras(player, event.getEntity(), amount);
+        }
+
+        // 光の盾（バリア）：殴られたとき、たまに吸収ハートを得る
+        if (event.getEntity() instanceof ServerPlayer victim && event.getAmount() > 0) {
+            SkillDefinition barrier = SkillService.passive(victim, "barrier");
+            if (barrier != null && victim.getRandom().nextDouble() < barrier.chance()) {
+                float max = (float) (barrier.power() * 2);
+                victim.setAbsorptionAmount(Math.min(max, victim.getAbsorptionAmount() + (float) barrier.power()));
+                com.chigusa.jsncraft.vfx.Vfx.ring(victim.serverLevel(), victim.position(), 1.8F, 10, com.chigusa.jsncraft.vfx.Vfx.WHITE);
+                victim.level().playSound(null, victim.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.8F);
+            }
+        }
+    }
+
+    /** 近接攻撃のおまけ：追撃・炎刃・凍刃 */
+    private static void onMeleeExtras(ServerPlayer player, LivingEntity target, float amount) {
+        var level = player.serverLevel();
+        SkillDefinition pursuit = SkillService.passive(player, "pursuit");
+        if (pursuit != null && player.getRandom().nextDouble() < pursuit.chance()) {
+            float dmg = (float) (SkillEffects.attackDamage(player) * pursuit.power());
+            // 少し遅れて追いかける斬撃
+            level.getServer().execute(() -> {
+                if (!target.isAlive()) return;
+                SkillEffects.hit(player, target, dmg);
+                com.chigusa.jsncraft.vfx.Vfx.slash(level, target.getBoundingBox().getCenter(), 1.5F, com.chigusa.jsncraft.vfx.Vfx.AZURE,
+                        player.getRandom().nextInt(180));
+                level.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.7F, 1.5F);
+            });
+        }
+        SkillDefinition ignite = SkillService.passive(player, "ignite");
+        if (ignite != null && player.getRandom().nextDouble() < ignite.chance()) {
+            target.igniteForSeconds((float) Math.max(1, ignite.duration()));
+            level.sendParticles(ParticleTypes.FLAME, target.getX(), target.getY() + 1, target.getZ(), 12, 0.3, 0.4, 0.3, 0.03);
+            com.chigusa.jsncraft.vfx.Vfx.slash(level, target.getBoundingBox().getCenter(), 1.3F, com.chigusa.jsncraft.vfx.Vfx.RED, 60);
+        }
+        SkillDefinition frost = SkillService.passive(player, "frost");
+        if (frost != null && player.getRandom().nextDouble() < frost.chance()) {
+            target.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN,
+                    (int) Math.round(Math.max(1, frost.duration()) * 20), Math.max(0, frost.amplifier())));
+            level.sendParticles(ParticleTypes.SNOWFLAKE, target.getX(), target.getY() + 1, target.getZ(), 15, 0.3, 0.5, 0.3, 0.02);
+            com.chigusa.jsncraft.vfx.Vfx.slash(level, target.getBoundingBox().getCenter(), 1.3F, com.chigusa.jsncraft.vfx.Vfx.WHITE, 120);
         }
     }
 
