@@ -2,22 +2,22 @@
   "entries": [
     {
       "target": "minecraft:cod",
-      "difficulty": 25,
+      "difficulty": 20,
       "behavior": "smooth"
     },
     {
       "target": "minecraft:salmon",
-      "difficulty": 40,
+      "difficulty": 30,
       "behavior": "normal"
     },
     {
       "target": "minecraft:tropical_fish",
-      "difficulty": 50,
+      "difficulty": 40,
       "behavior": "floater"
     },
     {
       "target": "minecraft:pufferfish",
-      "difficulty": 60,
+      "difficulty": 50,
       "behavior": "dart"
     }
   ]

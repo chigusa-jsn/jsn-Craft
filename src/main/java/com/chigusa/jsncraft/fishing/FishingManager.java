@@ -71,14 +71,14 @@ public class FishingManager extends SimpleJsonResourceReloadListener {
 
     /** 難しさ（0〜100）と動き方の番号 */
     public int[] settings(ItemStack stack, FishingService.Kind kind) {
-        if (kind == FishingService.Kind.LORD) return new int[]{92, 0};
+        if (kind == FishingService.Kind.LORD) return new int[]{85, 0};
         for (Entry e : entries) {
             if (e.matches(stack)) return new int[]{e.difficulty(), Math.max(0, BEHAVIORS.indexOf(e.behavior()))};
         }
         return switch (kind) {
-            case JUNK -> new int[]{10, 3};
-            case TREASURE -> new int[]{70, 2};
-            default -> new int[]{Math.min(90, 35 + stack.getRarity().ordinal() * 15), 0};
+            case JUNK -> new int[]{8, 3};
+            case TREASURE -> new int[]{60, 2};
+            default -> new int[]{Math.min(80, 30 + stack.getRarity().ordinal() * 15), 0};
         };
     }
 }

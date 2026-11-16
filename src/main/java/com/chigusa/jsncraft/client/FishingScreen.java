@@ -31,7 +31,7 @@ public class FishingScreen extends Screen {
 
     private float zone, zoneVel, prevZone;
     private float fish = 0.5F, fishVel, prevFish = 0.5F, target = 0.5F;
-    private float progress = 0.3F, prevProgress = 0.3F;
+    private float progress = 0.35F, prevProgress = 0.35F;
     private boolean perfect = true, overlap, done, won, sent;
     private int ticks, endTicks;
 
@@ -43,7 +43,7 @@ public class FishingScreen extends Screen {
         super(Component.literal("釣り"));
         this.p = p;
         this.d = Mth.clamp(p.difficulty() / 100F, 0, 1);
-        float size = 0.26F * (1 + p.zone());
+        float size = 0.32F * (1 + p.zone());
         if (p.kind() == KIND_LORD) size *= 0.8F;
         this.zoneSize = Mth.clamp(size, 0.1F, 0.7F);
         if (p.behavior() == SINKER) fish = prevFish = target = 0.2F;
@@ -75,8 +75,9 @@ public class FishingScreen extends Screen {
         ticks++;
 
         // ---- キャッチ枠 ----
-        zoneVel += holding() ? 0.0065F : -0.0065F;
-        zoneVel = Mth.clamp(zoneVel, -0.045F, 0.045F);
+        zoneVel += holding() ? 0.005F : -0.0045F;
+        zoneVel *= 0.96F; // ふわっと止まるように
+        zoneVel = Mth.clamp(zoneVel, -0.035F, 0.035F);
         zone += zoneVel;
         if (zone < 0) {
             zone = 0;
@@ -91,9 +92,9 @@ public class FishingScreen extends Screen {
         // ---- 魚 ----
         int b = p.behavior();
         float change = switch (b) {
-            case SMOOTH -> 0.015F + d * 0.03F;
-            case DART -> 0.03F + d * 0.08F;
-            default -> 0.02F + d * 0.05F;
+            case SMOOTH -> 0.01F + d * 0.02F;
+            case DART -> 0.02F + d * 0.055F;
+            default -> 0.014F + d * 0.035F;
         };
         if (rnd.nextFloat() < change) {
             float t = rnd.nextFloat();
@@ -103,9 +104,9 @@ public class FishingScreen extends Screen {
             target = Mth.clamp(t, 0.02F, 0.98F);
         }
         float slow = 1 - Math.min(0.6F, p.calm());
-        float accel = (0.003F + d * 0.012F) * slow * (b == DART ? 1.6F : 1F);
+        float accel = (0.002F + d * 0.008F) * slow * (b == DART ? 1.6F : 1F);
         fishVel += (target - fish) * accel;
-        fishVel += (rnd.nextFloat() - 0.5F) * 0.004F * d * slow;
+        fishVel += (rnd.nextFloat() - 0.5F) * 0.002F * d * slow;
         fishVel *= 0.88F;
         fish += fishVel;
         if (fish < 0 || fish > 1) {
@@ -114,11 +115,11 @@ public class FishingScreen extends Screen {
         }
 
         // ---- ゲージ ----
-        overlap = fish >= zone && fish <= zone + zoneSize;
+        overlap = fish >= zone - 0.03F && fish <= zone + zoneSize + 0.03F; // 少しはみ出してもOK
         if (overlap) {
-            progress += 0.011F * (1 + p.reel()) * (p.kind() == KIND_LORD ? 0.6F : 1F);
+            progress += 0.014F * (1 + p.reel()) * (p.kind() == KIND_LORD ? 0.6F : 1F);
         } else {
-            progress -= 0.006F + d * 0.006F;
+            progress -= 0.004F + d * 0.004F;
             perfect = false;
         }
         if (progress >= 1) finish(true);
