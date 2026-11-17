@@ -71,11 +71,16 @@ class Dish:
     def plate(self, r=7.0, h=1.0):
         self.disc(8, 8, r, 0, h, top="porcelain_top", side="porcelain_side")
 
-    def bowl(self, r=7.0, h=6.0, soup=None, soup_y=None):
-        self.disc(8, 8, r * 0.6, 0, 0.6, mat="bowl_outer")
-        self.disc(8, 8, r - 0.6, 0.6, (soup_y or h - 0.8) - 0.4, mat="bowl_inner")
-        self.ring(8, 8, r, r - 1.0, 0.6, h, "bowl_outer", "bowl_inner", "bowl_rim")
-        if soup: self.disc(8, 8, r - 1.0, (soup_y or h - 0.8) - 0.4, soup_y or h - 0.8, top=soup, side=soup, bottom=soup)
+    def bowl(self, r=7.3, soup=None, soup_y=3.9, layers=((3.6, 0.0, 0.6), (5.0, 0.6, 1.5), (6.0, 1.5, 2.5), (6.8, 2.5, 3.5), (7.3, 3.5, 4.4))):
+        """どんぶり：下がすぼまって、上に向かって広がる形。layers は (半径, 下, 上)"""
+        for i, (rr, y1, y2) in enumerate(layers):
+            if i == 0:
+                self.disc(8, 8, rr, y1, y2, mat="bowl_outer")
+                continue
+            self.ring(8, 8, rr, rr - 0.9, y1, y2, "bowl_outer", "bowl_inner", "bowl_rim")
+            if y1 < soup_y - 0.3:
+                self.disc(8, 8, rr - 0.9, y1, min(y2, soup_y - 0.3), mat="bowl_inner")
+        if soup: self.disc(8, 8, layers[-1][0] - 0.9, soup_y - 0.3, soup_y, top=soup, side=soup, bottom=soup)
 
     def json(self, textures):
         used = sorted({f["texture"][1:] for e in self.els for f in e["faces"].values()})
@@ -119,15 +124,16 @@ def curry_rice(d):
 
 @dish
 def ramen(d):
-    d.bowl(r=7.2, h=6.0, soup="broth", soup_y=5.0)
-    d.disc(8, 8.6, 3.6, 5.0, 5.3, rz=3.0, mat="noodles")
-    d.box([2.6, 5.0, 5.2], [6.2, 5.7, 8.8], top="chashu", side="chashu_side", bottom="chashu_side", fit=("up",))
-    d.box([4.4, 5.1, 8.2], [7.8, 5.9, 11.6], top="chashu", side="chashu_side", bottom="chashu_side", fit=("up",))
-    d.box([9.4, 5.0, 9.4], [11.8, 6.1, 11.8], top="ajitama", side="ajitama_side", bottom="ajitama_side", fit=("up",))
-    d.box([9.6, 5.0, 5.4], [11.8, 5.5, 7.6], top="naruto", side="bowl_rim", bottom="bowl_rim", fit=("up",))
-    d.box([8.6, 5.0, 2.4], [12.6, 9.4, 2.9], mat="nori")
-    for (x, z) in ((7.4, 11.6), (6.2, 12.4), (12.4, 8.4), (8.4, 6.4), (5.2, 9.6)):
-        d.box([x, 5.25, z], [x + 0.8, 5.55, z + 0.8], top="negi", side="parsley", bottom="parsley", fit=("up",))
+    y = 3.9  # スープの高さ
+    d.bowl(soup="broth", soup_y=y)
+    d.disc(8, 8.6, 3.8, y, y + 0.3, rz=3.2, mat="noodles")
+    d.box([2.4, y, 5.0], [6.0, y + 0.7, 8.6], top="chashu", side="chashu_side", bottom="chashu_side", fit=("up",))
+    d.box([4.2, y + 0.1, 8.0], [7.6, y + 0.9, 11.4], top="chashu", side="chashu_side", bottom="chashu_side", fit=("up",))
+    d.box([9.4, y, 9.4], [11.8, y + 1.1, 11.8], top="ajitama", side="ajitama_side", bottom="ajitama_side", fit=("up",))
+    d.box([9.6, y, 5.2], [11.8, y + 0.5, 7.4], top="naruto", side="bowl_rim", bottom="bowl_rim", fit=("up",))
+    d.box([8.4, y - 0.4, 2.0], [12.4, y + 3.6, 2.5], mat="nori")
+    for (x, z) in ((7.4, 11.6), (6.2, 12.4), (12.4, 8.4), (8.4, 6.4), (5.2, 9.6), (11.0, 12.2)):
+        d.box([x, y + 0.25, z], [x + 0.8, y + 0.55, z + 0.8], top="negi", side="parsley", bottom="parsley", fit=("up",))
 
 @dish
 def omurice(d):

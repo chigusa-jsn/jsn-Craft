@@ -76,16 +76,16 @@ def board_side():
 @mat
 def bowl_outer():
     a = fill("#f4f2ec", 6, 3, 2)
-    band = (yy >= 21) & (yy <= 25)
+    band = (yy >= 24) & (yy <= 27)
     a = blend(a, band, "#c62a24", 1.0)
-    meander = band & (((xx // 2) + (yy - 21)) % 4 == 0)         # 雷紋っぽい模様
+    meander = band & (((xx // 2) + (yy - 24)) % 4 == 0)         # 雷紋っぽい模様
     a = blend(a, meander, "#f4f2ec", 0.9)
-    a = blend(a, yy > 28, "#d8d4cc", 0.6)
+    a = blend(a, yy > 29, "#d8d4cc", 0.6)
     return img(a)
 @mat
 def bowl_inner():
     a = fill("#f2f0ea", 7, 3, 2)
-    return img(blend(a, (yy >= 20) & (yy <= 21), "#c62a24", 1.0))
+    return img(blend(a, (yy >= 23) & (yy <= 23), "#c62a24", 1.0))
 @mat
 def bowl_rim():
     return img(fill("#faf8f2", 8, 2, 1))
