@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:copper_bracelet",
+    "jsn_craft:iron_bracelet",
+    "jsn_craft:gold_bracelet",
+    "jsn_craft:diamond_bracelet",
+    "jsn_craft:netherite_bracelet",
+    "jsn_craft:moon_silver_bracelet",
+    "jsn_craft:star_silver_bracelet",
+    "jsn_craft:sea_bracelet"
+  ]
+}

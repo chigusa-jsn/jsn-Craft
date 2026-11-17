@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "閃光の宝石"
+  },
+  "description": {
+    "text": "宝石の光で、周り（6ブロック）の敵の目を4秒間くらませて、鈍くする。"
+  },
+  "icon": "minecraft:glowstone_dust",
+  "type": "active",
+  "effect": "dazzle",
+  "radius": 6,
+  "duration": 4,
+  "stamina": 25,
+  "cooldown": 30
+}

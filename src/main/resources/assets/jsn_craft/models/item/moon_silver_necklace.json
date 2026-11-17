@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "jsn_craft:item/jewelry/moon_silver_necklace",
+    "layer1": "jsn_craft:item/jewelry/necklace_gem"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MEM",
+    "MSM",
+    "MEM"
+  ],
+  "key": {
+    "M": {
+      "item": "jsn_craft:moon_silver_ingot"
+    },
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:star_silver_ingot",
+    "count": 6
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:copper_charm",
+    "jsn_craft:iron_charm",
+    "jsn_craft:gold_charm",
+    "jsn_craft:diamond_charm",
+    "jsn_craft:netherite_charm",
+    "jsn_craft:moon_silver_charm",
+    "jsn_craft:star_silver_charm",
+    "jsn_craft:harvest_charm",
+    "jsn_craft:phoenix_charm"
+  ]
+}

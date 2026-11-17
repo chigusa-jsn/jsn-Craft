@@ -68,6 +68,17 @@ public final class Transmutes {
         r("薬草", jsn("herb"), 16, jsn("mandrake"), 1, 50);
         r2("薬草", v(Items.BONE_MEAL), 4, jsn("herb"), 1, jsn("dust_base"), 3, 1);
         r("料理", v(Items.SAND), 4, jsn("salt"), 2, 1);
+        // ---- 細工師の宝石（原石） ----
+        r("宝石", v(Items.COAL_BLOCK), 2, jsn("raw_onyx"), 1, 15);
+        r("宝石", v(Items.NETHER_WART), 8, jsn("raw_garnet"), 1, 15);
+        r("宝石", v(Items.EMERALD), 1, jsn("raw_peridot"), 2, 15);
+        r("宝石", v(Items.PRISMARINE_CRYSTALS), 8, jsn("raw_aquamarine"), 1, 15);
+        r("宝石", v(Items.REDSTONE_BLOCK), 1, jsn("raw_ruby"), 1, 20);
+        r("宝石", v(Items.LAPIS_BLOCK), 1, jsn("raw_sapphire"), 1, 20);
+        r("宝石", v(Items.GOLD_INGOT), 4, jsn("raw_topaz"), 1, 20);
+        r("宝石", v(Items.AMETHYST_SHARD), 8, jsn("raw_crystal"), 1, 20);
+        r2("宝石", v(Items.QUARTZ), 12, v(Items.GLOWSTONE_DUST), 4, jsn("raw_moonstone"), 1, 30);
+        r2("宝石", v(Items.GLOW_INK_SAC), 2, v(Items.QUARTZ), 8, jsn("raw_opal"), 1, 35);
         // ---- 鍛冶師・付与術師の素材 ----
         r("鍛冶", jsn("enhance_stone_iron"), 3, jsn("enhance_stone_gold"), 1, 15);
         r("鍛冶", jsn("enhance_stone_gold"), 3, jsn("enhance_stone_diamond"), 1, 25);

@@ -1,0 +1,1366 @@
+{
+  "name": {
+    "text": "宝石の細工師",
+    "color": "aqua"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "jewel",
+      "target": "*",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:jeweler/gem_eye",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:jeweler/polish_bonus",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:jeweler/jewel_quality",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:jeweler/metal_save",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:jeweler/dazzle",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:jeweler/socket_master",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:jeweler/gem_guard",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:jeweler/fine_setting",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "細工の心得"
+      },
+      "icon": "minecraft:smithing_table",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "gem1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "宝石の目修練 I"
+      },
+      "icon": "jsn_craft:raw_ruby",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "研磨修練 I"
+      },
+      "icon": "jsn_craft:ruby",
+      "cost": 1,
+      "links": [
+        "gem1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "shn1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "閃光修練 I"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "gem1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shn1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "魔法の威力 I"
+      },
+      "icon": "jsn_craft:crystal",
+      "cost": 1,
+      "links": [
+        "shn1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "体力 I"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 1,
+      "links": [
+        "shn1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ I"
+      },
+      "icon": "jsn_craft:peridot",
+      "cost": 1,
+      "links": [
+        "center",
+        "gem1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "gem2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "丁寧な細工修練 II"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "gem1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gem2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "節約修練 II"
+      },
+      "icon": "minecraft:gold_ingot",
+      "cost": 1,
+      "links": [
+        "gem2_0",
+        "gem1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/metal_save",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gem2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "宝石の目修練 II"
+      },
+      "icon": "jsn_craft:raw_ruby",
+      "cost": 1,
+      "links": [
+        "gem2_1",
+        "gem1_0",
+        "gem1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "穴あけ修練 II"
+      },
+      "icon": "minecraft:iron_nugget",
+      "cost": 1,
+      "links": [
+        "gem2_2",
+        "gem1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/socket_master",
+          "field": "chance",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "shn2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "会心 II"
+      },
+      "icon": "jsn_craft:topaz",
+      "cost": 1,
+      "links": [
+        "gem2_3",
+        "gem1_1",
+        "shn1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "shn2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "宝石の守り修練 II"
+      },
+      "icon": "minecraft:amethyst_cluster",
+      "cost": 1,
+      "links": [
+        "shn2_0",
+        "shn1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_guard",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "shn2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "最大マナ II"
+      },
+      "icon": "jsn_craft:sapphire",
+      "cost": 1,
+      "links": [
+        "shn2_1",
+        "shn1_0",
+        "shn1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "shn2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "閃光修練 II"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "shn2_2",
+        "shn1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "shn2_3",
+        "shn1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "jsn_craft:opal",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "採掘の幸運 II"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "gem2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "gem3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "研磨修練 III"
+      },
+      "icon": "jsn_craft:ruby",
+      "cost": 2,
+      "links": [
+        "gem2_1",
+        "gem2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "gem3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "丁寧な細工修練 III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "gem3_0",
+        "gem2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "gem3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "宝石の目修練 III"
+      },
+      "icon": "jsn_craft:raw_ruby",
+      "cost": 2,
+      "links": [
+        "gem3_1",
+        "gem2_1",
+        "gem2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gem3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "宝石の目・覚醒"
+      },
+      "icon": "jsn_craft:raw_sapphire",
+      "cost": 3,
+      "links": [
+        "gem3_2",
+        "gem2_2",
+        "gem2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.3
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "gem3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "宝石の目修練 III"
+      },
+      "icon": "jsn_craft:raw_ruby",
+      "cost": 2,
+      "links": [
+        "gem3_3",
+        "gem2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "gem3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "研磨修練 III"
+      },
+      "icon": "jsn_craft:ruby",
+      "cost": 2,
+      "links": [
+        "gem3_4",
+        "gem2_3",
+        "shn2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "shn3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "魔法の威力 III"
+      },
+      "icon": "jsn_craft:crystal",
+      "cost": 2,
+      "links": [
+        "gem3_5",
+        "shn2_0",
+        "shn2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "shn3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "jsn_craft:topaz",
+      "cost": 2,
+      "links": [
+        "shn3_0",
+        "shn2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "shn3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "閃光修練 III"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "shn3_1",
+        "shn2_1",
+        "shn2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "shn3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "輝きの心"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 3,
+      "links": [
+        "shn3_2",
+        "shn2_2",
+        "shn2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.04
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.02
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "shn3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "魔法の威力 III"
+      },
+      "icon": "jsn_craft:crystal",
+      "cost": 2,
+      "links": [
+        "shn3_3",
+        "shn2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "shn3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "jsn_craft:topaz",
+      "cost": 2,
+      "links": [
+        "shn3_4",
+        "shn2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ III"
+      },
+      "icon": "jsn_craft:peridot",
+      "cost": 2,
+      "links": [
+        "shn3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 2,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "宝石の体"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ III"
+      },
+      "icon": "jsn_craft:peridot",
+      "cost": 2,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "gem2_0",
+        "gem3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "gem4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "丁寧な細工修練 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "gem3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gem4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "節約修練 IV"
+      },
+      "icon": "minecraft:gold_ingot",
+      "cost": 2,
+      "links": [
+        "gem3_1",
+        "gem4_0",
+        "gem3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/metal_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gem4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "宝石の目修練 IV"
+      },
+      "icon": "jsn_craft:raw_ruby",
+      "cost": 2,
+      "links": [
+        "gem4_1",
+        "gem3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gem4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★研磨の腕・極"
+      },
+      "icon": "jsn_craft:sapphire",
+      "cost": 5,
+      "links": [
+        "gem4_2",
+        "gem3_1",
+        "gem3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "gem4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "穴あけ修練 IV"
+      },
+      "icon": "minecraft:iron_nugget",
+      "cost": 2,
+      "links": [
+        "gem4_3",
+        "gem3_2",
+        "gem3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/socket_master",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gem4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "穴あけ・極"
+      },
+      "icon": "minecraft:diamond",
+      "cost": 4,
+      "links": [
+        "gem4_4",
+        "gem3_3",
+        "gem3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/socket_master",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "gem4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "研磨修練 IV"
+      },
+      "icon": "jsn_craft:ruby",
+      "cost": 2,
+      "links": [
+        "gem4_5",
+        "gem3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "gem4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "丁寧な細工修練 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "gem4_6",
+        "gem3_4",
+        "gem3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "shn4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "宝石の守り修練 IV"
+      },
+      "icon": "minecraft:amethyst_cluster",
+      "cost": 2,
+      "links": [
+        "gem4_7",
+        "gem3_5",
+        "shn3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_guard",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "shn4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "最大マナ IV"
+      },
+      "icon": "jsn_craft:sapphire",
+      "cost": 2,
+      "links": [
+        "shn4_0",
+        "shn3_0",
+        "shn3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "shn4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "閃光修練 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "shn4_1",
+        "shn3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "shn4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★閃光の宝石・極"
+      },
+      "icon": "minecraft:glowstone",
+      "cost": 5,
+      "links": [
+        "shn4_2",
+        "shn3_1",
+        "shn3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "shn4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "魔法の威力 IV"
+      },
+      "icon": "jsn_craft:crystal",
+      "cost": 2,
+      "links": [
+        "shn4_3",
+        "shn3_2",
+        "shn3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "shn4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "宝石の守り・極"
+      },
+      "icon": "minecraft:amethyst_block",
+      "cost": 4,
+      "links": [
+        "shn4_4",
+        "shn3_3",
+        "shn3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_guard",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "id": "shn4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "jsn_craft:topaz",
+      "cost": 2,
+      "links": [
+        "shn4_5",
+        "shn3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "shn4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "閃光修練 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "shn4_6",
+        "shn3_4",
+        "shn3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "jsn_craft:opal",
+      "cost": 2,
+      "links": [
+        "shn4_7",
+        "shn3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "採掘の幸運 IV"
+      },
+      "icon": "minecraft:iron_pickaxe",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mining_fortune",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 2,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★丁寧な細工・極"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 5,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "スタミナ IV"
+      },
+      "icon": "jsn_craft:peridot",
+      "cost": 2,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "節約・極"
+      },
+      "icon": "minecraft:gold_block",
+      "cost": 4,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/metal_save",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "jsn_craft:garnet",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "gem4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    }
+  ]
+}

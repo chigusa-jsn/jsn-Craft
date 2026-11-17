@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "精巧な細工"
+  },
+  "description": {
+    "text": "作る装飾品の品質が、必ず★3以上になる。"
+  },
+  "icon": "minecraft:diamond",
+  "type": "passive",
+  "effect": "fine_setting"
+}

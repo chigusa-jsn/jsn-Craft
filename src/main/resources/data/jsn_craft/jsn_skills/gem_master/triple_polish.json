@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "一石三鳥"
+  },
+  "description": {
+    "text": "原石を磨いたとき、10%の確率で宝石が3個になる。"
+  },
+  "icon": "jsn_craft:moonstone",
+  "type": "passive",
+  "effect": "triple_polish",
+  "chance": 0.1
+}

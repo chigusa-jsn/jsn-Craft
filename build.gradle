@@ -36,6 +36,16 @@ neoForge {
     }
 }
 
+repositories {
+    // 装飾品の枠（Curios API）
+    maven { url = "https://maven.theillusivec4.top/" }
+}
+
+dependencies {
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }

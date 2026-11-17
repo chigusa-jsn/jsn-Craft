@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "輝石の閃光"
+  },
+  "description": {
+    "text": "周り（6ブロック）の敵に魔法のダメージ10を与え、目をくらませる。"
+  },
+  "icon": "minecraft:end_rod",
+  "type": "active",
+  "effect": "prism_burst",
+  "power": 10,
+  "radius": 6,
+  "stamina": 40,
+  "cooldown": 25
+}

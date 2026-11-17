@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "金属の節約"
+  },
+  "description": {
+    "text": "装飾品を作ったとき、20%の確率で台座の金属がなくならない。"
+  },
+  "icon": "minecraft:gold_ingot",
+  "type": "passive",
+  "effect": "metal_save",
+  "chance": 0.2
+}
