@@ -27,6 +27,8 @@ MMO風の職業システムを追加する Minecraft MOD（NeoForge 1.21.1）。
 
 コマンドで動かす場合：`./gradlew runClient`（Windows は `gradlew.bat runClient`）
 
+**レシピ**：jsn-Craft のクラフトのレシピは、ログインすると全部レシピ本（作業台の緑の本）に出る。JEI を入れると、さらに材料から逆引きできる
+
 **クリエイティブのタブ**：jsn-Craft の物は職業ごとのタブ（共通・釣り・農業・料理・鍛冶・付与・調合・細工・牧場）にまとめてある
 
 **必要なMOD**：[Curios API](https://modrinth.com/mod/curios)（9.0.0 以上・1.21.1 用）。装飾品の枠に使う。jar を遊ぶときは mods フォルダに一緒に入れる（開発中の runClient では自動で入る）
