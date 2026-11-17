@@ -139,7 +139,7 @@ public final class SmithingService {
         boolean echo = mat.is(net.minecraft.world.item.Items.ECHO_SHARD);
         SmithTraits.Trait t = pool.get(r.nextInt(pool.size()));
         double ratio = r.nextDouble();
-        if (echo) ratio = 0.5 + ratio * 0.5;                        // エコーの欠片は強めに出る
+        if (echo) ratio = 0.5 + ratio * 0.5;                        // 残響の欠片は強めに出る
         SkillDefinition eye = SkillService.passive(player, "reforge_luck");
         if (eye != null) ratio = Math.max(ratio, Math.min(1, r.nextDouble() + eye.power()));
         if (SkillService.passive(player, "reforge_twice") != null) ratio = Math.max(ratio, r.nextDouble());
