@@ -71,6 +71,13 @@ public final class ModAttributes {
     /** 料理の腕前：料理の品質が上がりやすくなる */
     public static final DeferredHolder<Attribute, Attribute> COOKING_MASTERY = register("cooking_mastery", 0, 0, 1);
 
+    /** 魔法の威力 +○%（今はスキルのダメージ全般、魔法使いの魔法にも効く） */
+    public static final DeferredHolder<Attribute, Attribute> MAGIC_POWER = register("magic_power", 0, 0, 10);
+    /** 詠唱の速さ：ため時間 -○%（最大60%） */
+    public static final DeferredHolder<Attribute, Attribute> CAST_SPEED = register("cast_speed", 0, 0, 0.6);
+    /** 回復の力：回復スキルの回復量 +○% */
+    public static final DeferredHolder<Attribute, Attribute> HEALING_POWER = register("healing_power", 0, 0, 10);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -101,6 +108,9 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, FISHING_BITE);
         event.add(EntityType.PLAYER, HARVEST_FORTUNE);
         event.add(EntityType.PLAYER, COOKING_MASTERY);
+        event.add(EntityType.PLAYER, MAGIC_POWER);
+        event.add(EntityType.PLAYER, CAST_SPEED);
+        event.add(EntityType.PLAYER, HEALING_POWER);
     }
 
     private ModAttributes() {}

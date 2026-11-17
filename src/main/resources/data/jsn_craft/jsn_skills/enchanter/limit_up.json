@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "限界を超えて"
+  },
+  "description": {
+    "text": "上限突破で、エンチャントの最大レベルを+2まで超えられるようになる（ふつうは+1）。"
+  },
+  "icon": "minecraft:diamond",
+  "type": "passive",
+  "effect": "limit_up"
+}

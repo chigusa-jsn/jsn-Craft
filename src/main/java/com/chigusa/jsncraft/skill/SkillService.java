@@ -97,7 +97,8 @@ public final class SkillService {
                 s.chance() + m.getOrDefault("chance", 0.0),
                 s.target(),
                 (int) Math.round(s.amplifier() + m.getOrDefault("amplifier", 0.0)),
-                (float) Math.max(0, s.castTime() + m.getOrDefault("cast_time", 0.0)));
+                (float) (Math.max(0, s.castTime() + m.getOrDefault("cast_time", 0.0))
+                        * (1 - Math.min(0.6, player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.CAST_SPEED)))));
     }
 
     // ---------------- 発動 ----------------

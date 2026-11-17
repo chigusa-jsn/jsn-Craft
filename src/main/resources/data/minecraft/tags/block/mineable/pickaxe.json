@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "jsn_craft:cooking_station",
-    "jsn_craft:forge"
+    "jsn_craft:forge",
+    "jsn_craft:rune_altar"
   ]
 }

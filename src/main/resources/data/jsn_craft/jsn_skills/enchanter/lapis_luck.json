@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "ラピスの恵み"
+  },
+  "description": {
+    "text": "ラピスラズリ鉱石を掘ると、30%の確率でラピスが2〜4個増える。"
+  },
+  "icon": "minecraft:lapis_ore",
+  "type": "passive",
+  "effect": "lapis_luck",
+  "chance": 0.3
+}

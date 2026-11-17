@@ -1,0 +1,3692 @@
+{
+  "name": {
+    "text": "神紋の刻印師",
+    "color": "dark_purple"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:enchanter",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "enchant",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:rune_master/rune_slot",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:rune_master/runic_aura",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:rune_master/limit_master",
+      "level": 40
+    },
+    {
+      "skill": "jsn_craft:rune_master/divine_inscription",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "神紋の心得"
+      },
+      "icon": "minecraft:enchanting_table",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        },
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "rne1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "節約修練 I"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "rne1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "経験の知恵修練 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "rne1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "mag1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 I"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "rne1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "mag1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "瞑想 I"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 1,
+      "links": [
+        "mag1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "体力 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "mag1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "rne1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "ラピス節約修練 II"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "rne1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "rne2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "節約修練 II"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne2_0",
+        "rne1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "rne2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "重ね刻み修練 II"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 1,
+      "links": [
+        "rne2_1",
+        "rne1_0",
+        "rne1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "rne2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "経験の知恵修練 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "rne2_2",
+        "rne1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "mag2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "魔導 II"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne2_3",
+        "rne1_1",
+        "mag1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "mag2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱 II"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "mag2_0",
+        "mag1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "mag2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "魔紋の嵐修練 II"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "mag2_1",
+        "mag1_0",
+        "mag1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "mag2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "mag2_2",
+        "mag1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "mag2_3",
+        "mag1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "障壁修練 II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "rne2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "rne3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "節約修練 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne2_1",
+        "rne2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "節約修練 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne3_0",
+        "rne2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "経験の知恵修練 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "rne3_1",
+        "rne2_1",
+        "rne2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "刻印の集中・覚醒"
+      },
+      "icon": "minecraft:lapis_block",
+      "cost": 3,
+      "links": [
+        "rne3_2",
+        "rne2_2",
+        "rne2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "rne3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "ラピス節約修練 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "rne3_3",
+        "rne2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "節約修練 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne3_4",
+        "rne2_3",
+        "mag2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "mag3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "瞑想 III"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 1,
+      "links": [
+        "rne3_5",
+        "mag2_0",
+        "mag2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mag3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "魔導 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "mag3_0",
+        "mag2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "mag3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "mag3_1",
+        "mag2_1",
+        "mag2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "mag3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "魔力の泉・覚醒"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "mag3_2",
+        "mag2_2",
+        "mag2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 1.0
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "mag3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "瞑想 III"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 1,
+      "links": [
+        "mag3_3",
+        "mag2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mag3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "魔導 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "mag3_4",
+        "mag2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "mag3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "守りの紋・覚醒"
+      },
+      "icon": "minecraft:shield",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "障壁修練 III"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "rne2_0",
+        "rne3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "rne4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "重ね刻み修練 IV"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 1,
+      "links": [
+        "rne3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "rne4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "経験の知恵修練 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne3_1",
+        "rne4_0",
+        "rne3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne4_1",
+        "rne3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne4_2",
+        "rne3_1",
+        "rne3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "経験の知恵修練 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "rne4_3",
+        "rne3_2",
+        "rne3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "ラピス節約修練 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "rne4_4",
+        "rne3_3",
+        "rne3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "rne4_5",
+        "rne3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "rne4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "重ね刻み修練 IV"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 2,
+      "links": [
+        "rne4_6",
+        "rne3_4",
+        "rne3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "mag4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "rne4_7",
+        "rne3_5",
+        "mag3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "mag4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "魔紋の嵐修練 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "mag4_0",
+        "mag3_0",
+        "mag3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "mag4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "mag4_1",
+        "mag3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "mag4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "瞑想 IV"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag4_2",
+        "mag3_1",
+        "mag3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mag4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "魔導 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "mag4_3",
+        "mag3_2",
+        "mag3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "mag4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag4_4",
+        "mag3_3",
+        "mag3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "mag4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "瞑想 IV"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 1,
+      "links": [
+        "mag4_5",
+        "mag3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mag4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "魔導 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag4_6",
+        "mag3_4",
+        "mag3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "mag4_7",
+        "mag3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "障壁修練 IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "rne4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "rne5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "経験の知恵修練 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne4_1",
+        "rne4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne4_2",
+        "rne5_0",
+        "rne4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne5_1",
+        "rne4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "経験の知恵修練 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne5_2",
+        "rne4_2",
+        "rne4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "ラピス節約修練 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "rne5_3",
+        "rne4_3",
+        "rne4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★魔紋の節約・極"
+      },
+      "icon": "minecraft:amethyst_cluster",
+      "cost": 6,
+      "links": [
+        "rne5_4",
+        "rne4_4",
+        "rne4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "rne5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne5_5",
+        "rne4_5",
+        "rne4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "重ね刻み修練 V"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 2,
+      "links": [
+        "rne5_6",
+        "rne4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "rne5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "経験の知恵修練 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne5_7",
+        "rne4_6",
+        "rne4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "節約修練 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne5_8",
+        "rne4_7",
+        "mag4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "rne5_9",
+        "mag4_0",
+        "mag4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "魔紋の嵐修練 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "mag5_0",
+        "mag4_1",
+        "mag4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "mag5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag5_1",
+        "mag4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "mag5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "瞑想 V"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag5_2",
+        "mag4_2",
+        "mag4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "mag5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "魔導 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag5_3",
+        "mag4_3",
+        "mag4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★魔紋の加護・極"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 6,
+      "links": [
+        "mag5_4",
+        "mag4_4",
+        "mag4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rune_master/runic_aura",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "skill": "jsn_craft:rune_master/runic_aura",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "mag5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag5_5",
+        "mag4_5",
+        "mag4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "mag5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "瞑想 V"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag5_6",
+        "mag4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "mag5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "魔導 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag5_7",
+        "mag4_6",
+        "mag4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "mag5_8",
+        "mag4_7",
+        "bdy4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "bdy5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "mag5_9",
+        "bdy4_0",
+        "bdy4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_0",
+        "bdy4_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy4_2",
+        "bdy4_3",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy4_3",
+        "bdy4_4",
+        "bdy5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★魔紋の障壁・覚醒"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 6,
+      "links": [
+        "bdy4_4",
+        "bdy4_5",
+        "bdy5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "bdy5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "障壁修練 V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "bdy4_5",
+        "bdy4_6",
+        "bdy5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy4_6",
+        "bdy5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy4_7",
+        "bdy5_7",
+        "bdy4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne4_0",
+        "rne5_0",
+        "bdy5_8",
+        "bdy4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "rne6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne5_0",
+        "bdy5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "経験の知恵修練 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne5_1",
+        "rne6_0",
+        "rne5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "ラピス節約修練 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "rne5_2",
+        "rne6_1",
+        "rne5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne6_2",
+        "rne5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "重ね刻み・覚醒"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 4,
+      "links": [
+        "rne6_3",
+        "rne5_2",
+        "rne5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "rne6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "重ね刻み修練 VI"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 2,
+      "links": [
+        "rne6_4",
+        "rne5_3",
+        "rne5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "rne6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "経験の知恵修練 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne6_5",
+        "rne5_4",
+        "rne5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne6_6",
+        "rne5_5",
+        "rne5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne6_7",
+        "rne5_6",
+        "rne5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "経験の知恵修練 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne6_8",
+        "rne5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "ラピス節約修練 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "rne6_9",
+        "rne5_7",
+        "rne5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "rne6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne6_10",
+        "rne5_8",
+        "rne5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "魔紋の嵐修練 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "rne6_11",
+        "rne5_9",
+        "mag5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "mag6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag6_0",
+        "mag5_0",
+        "mag5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "mag6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "瞑想 VI"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag6_1",
+        "mag5_1",
+        "mag5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "mag6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "魔導 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag6_2",
+        "mag5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag6_3",
+        "mag5_2",
+        "mag5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "mag6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "瞑想 VI"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag6_4",
+        "mag5_3",
+        "mag5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "mag6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "魔紋の嵐・覚醒"
+      },
+      "icon": "minecraft:blaze_rod",
+      "cost": 4,
+      "links": [
+        "mag6_5",
+        "mag5_4",
+        "mag5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "cooldown",
+          "amount": -8
+        }
+      ]
+    },
+    {
+      "id": "mag6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "魔導 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag6_6",
+        "mag5_5",
+        "mag5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "mag6_7",
+        "mag5_6",
+        "mag5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "mag6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "魔紋の嵐修練 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "mag6_8",
+        "mag5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "mag6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "mag6_9",
+        "mag5_7",
+        "mag5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "mag6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "瞑想 VI"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag6_10",
+        "mag5_8",
+        "mag5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "bdy6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "mag6_11",
+        "mag5_9",
+        "bdy5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_0",
+        "bdy5_0",
+        "bdy5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy6_1",
+        "bdy5_1",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "障壁修練 VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "bdy6_2",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy5_2",
+        "bdy5_3",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_3",
+        "bdy5_4",
+        "bdy6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "ラピスの恵み・覚醒"
+      },
+      "icon": "minecraft:lapis_ore",
+      "cost": 4,
+      "links": [
+        "bdy5_4",
+        "bdy5_5",
+        "bdy6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/lapis_luck",
+          "field": "chance",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_5",
+        "bdy5_6",
+        "bdy6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_6",
+        "bdy5_7",
+        "bdy6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_7",
+        "bdy6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy5_8",
+        "bdy6_9",
+        "bdy5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "障壁修練 VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "bdy5_9",
+        "rne6_0",
+        "bdy6_10",
+        "bdy5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "rne7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "重ね刻み修練 VII"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 2,
+      "links": [
+        "rne6_1",
+        "rne6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "rne7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "経験の知恵修練 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "rne6_2",
+        "rne7_0",
+        "rne6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne6_3",
+        "rne7_1",
+        "rne6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "rne7_2",
+        "rne6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★神紋の祝福・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 7,
+      "links": [
+        "rne7_3",
+        "rne6_3",
+        "rne6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rune_master/divine_inscription",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:rune_master/divine_inscription",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "rne7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "経験の知恵修練 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "rne7_4",
+        "rne6_4",
+        "rne6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "ラピス節約修練 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "rne7_5",
+        "rne6_5",
+        "rne6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★賢者の知恵"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 8,
+      "links": [
+        "rne7_6",
+        "rne6_6",
+        "rne6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.2
+        },
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "rne7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne7_7",
+        "rne6_7",
+        "rne6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "重ね刻み修練 VII"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 3,
+      "links": [
+        "rne7_8",
+        "rne6_8",
+        "rne6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "rne7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "経験の知恵修練 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "rne7_9",
+        "rne6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "rne7_10",
+        "rne6_9",
+        "rne6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne7_11",
+        "rne6_10",
+        "rne6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "rne7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "経験の知恵修練 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "rne7_12",
+        "rne6_11",
+        "mag6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "mag7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "魔導 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "rne7_13",
+        "mag6_0",
+        "mag6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "mag7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "mag7_0",
+        "mag6_1",
+        "mag6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "mag7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "瞑想 VII"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag7_1",
+        "mag6_2",
+        "mag6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "mag7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "魔導 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "mag7_2",
+        "mag6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "mag7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "mag7_3",
+        "mag6_3",
+        "mag6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "mag7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★大魔導の器"
+      },
+      "icon": "minecraft:amethyst_block",
+      "cost": 7,
+      "links": [
+        "mag7_4",
+        "mag6_4",
+        "mag6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.12
+        },
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "mag7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "魔紋の嵐修練 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "mag7_5",
+        "mag6_5",
+        "mag6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "mag7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "mag7_6",
+        "mag6_6",
+        "mag6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "mag7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "瞑想 VII"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag7_7",
+        "mag6_7",
+        "mag6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "mag7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★慈愛の紋"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 8,
+      "links": [
+        "mag7_8",
+        "mag6_8",
+        "mag6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.2
+        },
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "mag7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "魔導 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "mag7_9",
+        "mag6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "mag7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "mag7_10",
+        "mag6_9",
+        "mag6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "mag7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "瞑想 VII"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 2,
+      "links": [
+        "mag7_11",
+        "mag6_10",
+        "mag6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "mag7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "魔導 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "mag7_12",
+        "mag6_11",
+        "bdy6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "mag7_13",
+        "bdy6_0",
+        "bdy6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "bdy7_0",
+        "bdy6_1",
+        "bdy6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy7_1",
+        "bdy6_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "bdy7_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_3",
+        "bdy6_4",
+        "bdy7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★不壊の体"
+      },
+      "icon": "minecraft:obsidian",
+      "cost": 7,
+      "links": [
+        "bdy6_4",
+        "bdy6_5",
+        "bdy7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "bdy7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy6_5",
+        "bdy6_6",
+        "bdy7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "障壁修練 VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 3,
+      "links": [
+        "bdy6_6",
+        "bdy6_7",
+        "bdy7_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy6_7",
+        "bdy6_8",
+        "bdy7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★刻印師の守り"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "links": [
+        "bdy6_8",
+        "bdy6_9",
+        "bdy7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "bdy7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy6_9",
+        "bdy7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "bdy6_10",
+        "bdy7_10",
+        "bdy6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy6_11",
+        "bdy7_11",
+        "bdy6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "rne6_0",
+        "rne7_0",
+        "bdy7_12",
+        "bdy6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    }
+  ]
+}

@@ -587,3 +587,47 @@ def coals():
 def forge_glow():
     a = fill("#ff6a10", 93, 10, 5)
     return img(shine(a, [(16, 16)], "#ffe060", 0.9, 10))
+
+# ---- 魔紋の祭壇 ----
+@mat
+def rune_stone():
+    a = fill("#2a2236", 120, 10, 6)
+    return img(blend(a, (yy % 16 == 15) | (((xx + (yy // 16) * 8) % 16) == 15), "#1a1424", 0.8))
+@mat
+def rune_glyph():
+    a = fill("#2a2236", 121, 10, 6)
+    rng = np.random.default_rng(122)
+    m = np.zeros((N, N), bool)
+    for cx in range(2, N - 2, 6):                       # 魔紋の文字を横に並べる
+        top, bot = 10, 21
+        m[top:bot, cx] = True
+        for _ in range(2):
+            y = rng.integers(top, bot); L = rng.integers(2, 4); d = rng.choice([-1, 1])
+            for i in range(L): m[min(N - 1, y + i), np.clip(cx + d * i, 0, N - 1)] = True
+        if rng.random() < 0.5: m[top, cx - 1:cx + 2] = True
+    a = blend(a, m, "#c890ff", 1.0)
+    glow = np.zeros((N, N), bool); glow[:-1] |= m[1:]; glow[1:] |= m[:-1]; glow[:, :-1] |= m[:, 1:]; glow[:, 1:] |= m[:, :-1]
+    a = blend(a, glow & ~m, "#6a3a9a", 0.7)
+    return img(a)
+@mat
+def rune_top():
+    a = fill("#2e2640", 123, 8, 5)
+    a = blend(a, (R > 10.5) & (R < 12.0), "#3a6aff", 0.9)          # ラピスの円
+    a = blend(a, (R > 6.0) & (R < 6.8), "#c890ff", 0.8)
+    ang = np.arctan2(yy + 0.5 - 16, xx + 0.5 - 16)
+    a = blend(a, (R > 6.8) & (R < 10.5) & (np.abs(np.sin(ang * 4)) < 0.12), "#8a5ac8", 0.8)
+    return img(a)
+simple("book_cover", "#5a1e3a", 6, 4, pts=[(10, 10)], shine_col="#8a3a5a", strength=0.3)
+@mat
+def book_page():
+    a = fill("#f0e6cc", 124, 4, 3)
+    a = blend(a, (yy % 4 == 2) & (xx > 3) & (xx < 28), "#b0a080", 0.6)
+    return img(a)
+@mat
+def amethyst():
+    a = fill("#9a5ad8", 125, 14, 6, cell=4)
+    return img(shine(a, [(10, 8), (22, 20)], "#f0d0ff", 0.8, 3))
+@mat
+def lapis_inlay():
+    a = fill("#2a4ac8", 126, 10, 6)
+    return img(shine(a, [(8, 8), (24, 20)], "#a0c0ff", 0.6, 2))

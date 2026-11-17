@@ -222,5 +222,10 @@
   "item.jsn_craft.enhance_stone_diamond": "ダイヤの強化石",
   "item.jsn_craft.enhance_stone_netherite": "ネザライトの強化石",
   "item.jsn_craft.enhance_stone_star": "星鉄の強化石",
-  "block.jsn_craft.forge": "鍛冶台"
+  "block.jsn_craft.forge": "鍛冶台",
+  "block.jsn_craft.rune_altar": "魔紋の祭壇",
+  "item.jsn_craft.rune_book": "魔紋の書",
+  "attribute.name.jsn_craft.magic_power": "魔法の威力",
+  "attribute.name.jsn_craft.cast_speed": "詠唱の速さ",
+  "attribute.name.jsn_craft.healing_power": "回復の力"
 }

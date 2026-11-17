@@ -222,5 +222,10 @@
   "item.jsn_craft.enhance_stone_diamond": "Diamond Enhancement Stone",
   "item.jsn_craft.enhance_stone_netherite": "Netherite Enhancement Stone",
   "item.jsn_craft.enhance_stone_star": "Star Iron Enhancement Stone",
-  "block.jsn_craft.forge": "Forge"
+  "block.jsn_craft.forge": "Forge",
+  "block.jsn_craft.rune_altar": "Rune Altar",
+  "item.jsn_craft.rune_book": "Book of Runes",
+  "attribute.name.jsn_craft.magic_power": "Magic Power",
+  "attribute.name.jsn_craft.cast_speed": "Cast Speed",
+  "attribute.name.jsn_craft.healing_power": "Healing Power"
 }
