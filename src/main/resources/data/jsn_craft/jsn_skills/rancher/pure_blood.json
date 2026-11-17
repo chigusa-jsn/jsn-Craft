@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "純血の系譜"
+  },
+  "description": {
+    "text": "★4の子どもが生まれるとき、30%の確率で★5になる。"
+  },
+  "icon": "minecraft:golden_apple",
+  "type": "passive",
+  "effect": "pure_blood",
+  "power": 0.3
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "すくすく育つ"
+  },
+  "description": {
+    "text": "生まれた子どもが大人になるまでの時間が30%短くなる。"
+  },
+  "icon": "minecraft:bone_meal",
+  "type": "passive",
+  "effect": "fast_growth",
+  "power": 0.3
+}

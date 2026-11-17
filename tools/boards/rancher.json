@@ -1,0 +1,363 @@
+{
+  "job": "rancher",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "牧場の心得",
+    "icon": "minecraft:hay_block",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:rancher/good_breed",
+        "field": "power",
+        "amount": 0.05
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 1
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "brd",
+      "pool": [
+        {
+          "name": "双子修練",
+          "icon": "minecraft:egg",
+          "weight": 3,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/twin_birth",
+              "field": "chance",
+              "amount": 0.005
+            }
+          ]
+        },
+        {
+          "name": "血統の目修練",
+          "icon": "minecraft:name_tag",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/good_breed",
+              "field": "power",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "すくすく修練",
+          "icon": "minecraft:bone_meal",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/fast_growth",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "純血修練",
+          "icon": "minecraft:golden_apple",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/pure_blood",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "yld",
+      "pool": [
+        {
+          "name": "豊かな恵み修練",
+          "icon": "minecraft:white_wool",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/rich_yield",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "搾乳修練",
+          "icon": "minecraft:milk_bucket",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/milk_master",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "群れの恵み修練",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:rancher/herd_blessing",
+              "field": "cooldown",
+              "amount": -5
+            }
+          ]
+        },
+        {
+          "name": "収穫の幸運",
+          "icon": "minecraft:wheat",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:harvest_fortune",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "スタミナ",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "足腰",
+          "icon": "minecraft:leather_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.002
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:leather_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "血統の目・覚醒",
+      "icon": "minecraft:name_tag",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★双子の恵み・極",
+      "icon": "minecraft:egg",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "すくすく・極",
+      "icon": "minecraft:bone_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "恵みの手",
+      "icon": "minecraft:shears",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★呼び寄せ・極",
+      "icon": "minecraft:goat_horn",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/animal_call",
+          "field": "radius",
+          "amount": 16
+        },
+        {
+          "skill": "jsn_craft:rancher/animal_call",
+          "field": "cooldown",
+          "amount": -15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "搾乳・極",
+      "icon": "jsn_craft:fresh_milk",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "牧場の体",
+      "icon": "minecraft:cooked_beef",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★純血の系譜・極",
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "修練・極",
+      "icon": "minecraft:experience_bottle",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.08
+        }
+      ]
+    }
+  ]
+}

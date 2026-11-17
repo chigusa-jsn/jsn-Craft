@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/golden_omelette",
+  "ingredients": [
+    "jsn_craft:golden_egg",
+    "jsn_craft:fresh_milk",
+    "jsn_craft:butter"
+  ],
+  "level": 40,
+  "time": 220,
+  "xp": 40,
+  "nutrition": 14,
+  "saturation": 1.5,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 3,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:job_xp_bonus",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "fine",
+  "no": 85
+}

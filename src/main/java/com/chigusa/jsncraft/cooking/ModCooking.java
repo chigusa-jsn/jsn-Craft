@@ -63,7 +63,9 @@ public final class ModCooking {
             "lemon_chicken", "paella", "cheese_fondue", "golden_feast", "toro_don",
             "swordfish_steak", "anglerfish_hotpot", "eel_kabayaki", "golden_carp_nitsuke", "glacier_sashimi",
             "coelacanth_stew", "crimson_curry", "soul_eater_skewer", "void_jelly_dessert", "moon_lord_sashimi",
-            "storm_king_steak", "ice_queen_carpaccio", "inferno_dragon_roast", "soulflame_nabe", "ender_dragon_feast"};
+            "storm_king_steak", "ice_queen_carpaccio", "inferno_dragon_roast", "soulflame_nabe", "ender_dragon_feast",
+            // 牧場の料理
+            "marbled_steak", "herb_roast_lamb", "jidori_karaage", "golden_omelette", "milk_pudding", "cheesecake"};
 
     public static final List<DeferredItem<Item>> DISH_ITEMS = new ArrayList<>();
 

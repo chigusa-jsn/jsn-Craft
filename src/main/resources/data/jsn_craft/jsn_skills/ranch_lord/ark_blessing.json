@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "方舟の祝福"
+  },
+  "description": {
+    "text": "120秒間、生まれる子どもの★がひとつ上がる。"
+  },
+  "icon": "minecraft:oak_boat",
+  "type": "active",
+  "effect": "ark_blessing",
+  "duration": 120,
+  "stamina": 60,
+  "cooldown": 1200
+}

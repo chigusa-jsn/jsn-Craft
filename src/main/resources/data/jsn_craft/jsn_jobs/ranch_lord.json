@@ -1,0 +1,3704 @@
+{
+  "name": {
+    "text": "千獣の牧主",
+    "color": "yellow"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:rancher",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "ranch",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:ranch_lord/triplets",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:ranch_lord/golden_touch",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:ranch_lord/stampede",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:ranch_lord/good_breed2",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:ranch_lord/ark_blessing",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "牧主の心得"
+      },
+      "icon": "minecraft:saddle",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "brd1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "双子修練 I"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "brd1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "血統の目修練 I"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "brd1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "豊かな恵み修練 I"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 1,
+      "links": [
+        "brd1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "yld1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 I"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "yld1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "体力 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "yld1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "center",
+        "brd1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "brd2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "すくすく修練 II"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 1,
+      "links": [
+        "brd1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "双子修練 II"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "brd2_0",
+        "brd1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "brd2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "純血修練 II"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 1,
+      "links": [
+        "brd2_1",
+        "brd1_0",
+        "brd1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "血統の目修練 II"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "brd2_2",
+        "brd1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "搾乳修練 II"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 1,
+      "links": [
+        "brd2_3",
+        "brd1_1",
+        "yld1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "yld2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "群れの恵み修練 II"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "yld2_0",
+        "yld1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -7.5
+        }
+      ]
+    },
+    {
+      "id": "yld2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "yld2_1",
+        "yld1_0",
+        "yld1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "yld2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "豊かな恵み修練 II"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 1,
+      "links": [
+        "yld2_2",
+        "yld1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "yld2_3",
+        "yld1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "足腰 II"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "brd2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "brd3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "すくすく修練 III"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 1,
+      "links": [
+        "brd2_1",
+        "brd2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brd3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "双子修練 III"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "brd3_0",
+        "brd2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "brd3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "双子修練 III"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "brd3_1",
+        "brd2_1",
+        "brd2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "brd3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "血統の目・極"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 3,
+      "links": [
+        "brd3_2",
+        "brd2_2",
+        "brd2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.15
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "brd3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "血統の目修練 III"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "brd3_3",
+        "brd2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "brd3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "すくすく修練 III"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 1,
+      "links": [
+        "brd3_4",
+        "brd2_3",
+        "yld2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "収穫の幸運 III"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "brd3_5",
+        "yld2_0",
+        "yld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "豊かな恵み修練 III"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 1,
+      "links": [
+        "yld3_0",
+        "yld2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 III"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "yld3_1",
+        "yld2_1",
+        "yld2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "恵みの手・覚醒"
+      },
+      "icon": "minecraft:shears",
+      "cost": 3,
+      "links": [
+        "yld3_2",
+        "yld2_2",
+        "yld2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "yld3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "搾乳修練 III"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 1,
+      "links": [
+        "yld3_3",
+        "yld2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "群れの恵み修練 III"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "yld3_4",
+        "yld2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -10
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "yld3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "牧場の体・覚醒"
+      },
+      "icon": "minecraft:cooked_beef",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "brd2_0",
+        "brd3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "brd4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "双子修練 IV"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "brd3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "brd4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "純血修練 IV"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "brd3_1",
+        "brd4_0",
+        "brd3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brd4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "血統の目修練 IV"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "brd4_1",
+        "brd3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "brd4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "すくすく修練 IV"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd4_2",
+        "brd3_1",
+        "brd3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brd4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "双子修練 IV"
+      },
+      "icon": "minecraft:egg",
+      "cost": 1,
+      "links": [
+        "brd4_3",
+        "brd3_2",
+        "brd3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "brd4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "双子修練 IV"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd4_4",
+        "brd3_3",
+        "brd3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "brd4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "血統の目修練 IV"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 1,
+      "links": [
+        "brd4_5",
+        "brd3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "brd4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "すくすく修練 IV"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd4_6",
+        "brd3_4",
+        "brd3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "brd4_7",
+        "brd3_5",
+        "yld3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "yld4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "豊かな恵み修練 IV"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld4_0",
+        "yld3_0",
+        "yld3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "収穫の幸運 IV"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "yld4_1",
+        "yld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "豊かな恵み修練 IV"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld4_2",
+        "yld3_1",
+        "yld3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "収穫の幸運 IV"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 1,
+      "links": [
+        "yld4_3",
+        "yld3_2",
+        "yld3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "搾乳修練 IV"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 2,
+      "links": [
+        "yld4_4",
+        "yld3_3",
+        "yld3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "yld4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "群れの恵み修練 IV"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "yld4_5",
+        "yld3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -10
+        }
+      ]
+    },
+    {
+      "id": "yld4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "yld4_6",
+        "yld3_4",
+        "yld3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "足腰 IV"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 1,
+      "links": [
+        "yld4_7",
+        "yld3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "brd4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "brd5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "双子修練 V"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd4_1",
+        "brd4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "純血修練 V"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "brd4_2",
+        "brd5_0",
+        "brd4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "血統の目修練 V"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd5_1",
+        "brd4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brd5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "すくすく修練 V"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd5_2",
+        "brd4_2",
+        "brd4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "双子修練 V"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd5_3",
+        "brd4_3",
+        "brd4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★三つ子の奇跡・極"
+      },
+      "icon": "minecraft:turtle_egg",
+      "cost": 6,
+      "links": [
+        "brd5_4",
+        "brd4_4",
+        "brd4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/triplets",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "brd5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "双子修練 V"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd5_5",
+        "brd4_5",
+        "brd4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "血統の目修練 V"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd5_6",
+        "brd4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brd5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "すくすく修練 V"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd5_7",
+        "brd4_6",
+        "brd4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "双子修練 V"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd5_8",
+        "brd4_7",
+        "yld4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "yld5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "豊かな恵み修練 V"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "brd5_9",
+        "yld4_0",
+        "yld4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "収穫の幸運 V"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld5_0",
+        "yld4_1",
+        "yld4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "豊かな恵み修練 V"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld5_1",
+        "yld4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 V"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld5_2",
+        "yld4_2",
+        "yld4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "搾乳修練 V"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 2,
+      "links": [
+        "yld5_3",
+        "yld4_3",
+        "yld4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★黄金の手・極"
+      },
+      "icon": "jsn_craft:golden_egg",
+      "cost": 6,
+      "links": [
+        "yld5_4",
+        "yld4_4",
+        "yld4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/golden_touch",
+          "field": "power",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "yld5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "群れの恵み修練 V"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "yld5_5",
+        "yld4_5",
+        "yld4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -12.0
+        }
+      ]
+    },
+    {
+      "id": "yld5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "yld5_6",
+        "yld4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "yld5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "豊かな恵み修練 V"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld5_7",
+        "yld4_6",
+        "yld4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "収穫の幸運 V"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld5_8",
+        "yld4_7",
+        "bdy4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "bdy5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "足腰 V"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "yld5_9",
+        "bdy4_0",
+        "bdy4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "bdy5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy5_0",
+        "bdy4_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "スタミナ V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_2",
+        "bdy4_3",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy4_3",
+        "bdy4_4",
+        "bdy5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★純血の系譜・覚醒"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 6,
+      "links": [
+        "bdy4_4",
+        "bdy4_5",
+        "bdy5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "bdy5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy4_5",
+        "bdy4_6",
+        "bdy5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_6",
+        "bdy5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy4_7",
+        "bdy5_7",
+        "bdy4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "足腰 V"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "brd4_0",
+        "brd5_0",
+        "bdy5_8",
+        "bdy4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "brd6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "純血修練 VI"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "brd5_0",
+        "bdy5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "血統の目修練 VI"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd5_1",
+        "brd6_0",
+        "brd5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brd6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "すくすく修練 VI"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd5_2",
+        "brd6_1",
+        "brd5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "双子修練 VI"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd6_2",
+        "brd5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "双子・覚醒"
+      },
+      "icon": "minecraft:egg",
+      "cost": 4,
+      "links": [
+        "brd6_3",
+        "brd5_2",
+        "brd5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "brd6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "双子修練 VI"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd6_4",
+        "brd5_3",
+        "brd5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "血統の目修練 VI"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd6_5",
+        "brd5_4",
+        "brd5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brd6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "すくすく修練 VI"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd6_6",
+        "brd5_5",
+        "brd5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "双子修練 VI"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd6_7",
+        "brd5_6",
+        "brd5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "brd6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "純血修練 VI"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "brd6_8",
+        "brd5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brd6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "血統の目修練 VI"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd6_9",
+        "brd5_7",
+        "brd5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brd6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "すくすく修練 VI"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 2,
+      "links": [
+        "brd6_10",
+        "brd5_8",
+        "brd5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "豊かな恵み修練 VI"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "brd6_11",
+        "brd5_9",
+        "yld5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld6_0",
+        "yld5_0",
+        "yld5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "搾乳修練 VI"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 2,
+      "links": [
+        "yld6_1",
+        "yld5_1",
+        "yld5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "群れの恵み修練 VI"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "yld6_2",
+        "yld5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -12.0
+        }
+      ]
+    },
+    {
+      "id": "yld6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "yld6_3",
+        "yld5_2",
+        "yld5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "yld6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "豊かな恵み修練 VI"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld6_4",
+        "yld5_3",
+        "yld5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "群れの恵み・覚醒"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "links": [
+        "yld6_5",
+        "yld5_4",
+        "yld5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -120
+        }
+      ]
+    },
+    {
+      "id": "yld6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld6_6",
+        "yld5_5",
+        "yld5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "豊かな恵み修練 VI"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld6_7",
+        "yld5_6",
+        "yld5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "収穫の幸運 VI"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld6_8",
+        "yld5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "搾乳修練 VI"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 2,
+      "links": [
+        "yld6_9",
+        "yld5_7",
+        "yld5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "yld6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "群れの恵み修練 VI"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "yld6_10",
+        "yld5_8",
+        "yld5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -12.0
+        }
+      ]
+    },
+    {
+      "id": "bdy6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 2,
+      "links": [
+        "yld6_11",
+        "yld5_9",
+        "bdy5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy6_0",
+        "bdy5_0",
+        "bdy5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy6_1",
+        "bdy5_1",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_2",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_2",
+        "bdy5_3",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy5_3",
+        "bdy5_4",
+        "bdy6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "すくすく・覚醒"
+      },
+      "icon": "minecraft:bone_block",
+      "cost": 4,
+      "links": [
+        "bdy5_4",
+        "bdy5_5",
+        "bdy6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_5",
+        "bdy5_6",
+        "bdy6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "足腰 VI"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "bdy5_6",
+        "bdy5_7",
+        "bdy6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "bdy6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy5_7",
+        "bdy6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bdy6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy5_8",
+        "bdy6_9",
+        "bdy5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy5_9",
+        "brd6_0",
+        "bdy6_10",
+        "bdy5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "brd7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "双子修練 VII"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd6_1",
+        "brd6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "双子修練 VII"
+      },
+      "icon": "minecraft:egg",
+      "cost": 3,
+      "links": [
+        "brd6_2",
+        "brd7_0",
+        "brd6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "血統の目修練 VII"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd6_3",
+        "brd7_1",
+        "brd6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "brd7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "すくすく修練 VII"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 3,
+      "links": [
+        "brd7_2",
+        "brd6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brd7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★方舟の祝福・極"
+      },
+      "icon": "minecraft:oak_boat",
+      "cost": 7,
+      "links": [
+        "brd7_3",
+        "brd6_3",
+        "brd6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/ark_blessing",
+          "field": "duration",
+          "amount": 60
+        },
+        {
+          "skill": "jsn_craft:ranch_lord/ark_blessing",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "brd7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "双子修練 VII"
+      },
+      "icon": "minecraft:egg",
+      "cost": 3,
+      "links": [
+        "brd7_4",
+        "brd6_4",
+        "brd6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "純血修練 VII"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "links": [
+        "brd7_5",
+        "brd6_5",
+        "brd6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/pure_blood",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brd7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★千獣の王"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 8,
+      "links": [
+        "brd7_6",
+        "brd6_6",
+        "brd6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/good_breed2",
+          "field": "power",
+          "amount": 0.3
+        },
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "brd7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "血統の目修練 VII"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd7_7",
+        "brd6_7",
+        "brd6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "brd7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "すくすく修練 VII"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 3,
+      "links": [
+        "brd7_8",
+        "brd6_8",
+        "brd6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brd7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "双子修練 VII"
+      },
+      "icon": "minecraft:egg",
+      "cost": 2,
+      "links": [
+        "brd7_9",
+        "brd6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "双子修練 VII"
+      },
+      "icon": "minecraft:egg",
+      "cost": 3,
+      "links": [
+        "brd7_10",
+        "brd6_9",
+        "brd6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/twin_birth",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brd7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "血統の目修練 VII"
+      },
+      "icon": "minecraft:name_tag",
+      "cost": 2,
+      "links": [
+        "brd7_11",
+        "brd6_10",
+        "brd6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/good_breed",
+          "field": "power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "brd7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "すくすく修練 VII"
+      },
+      "icon": "minecraft:bone_meal",
+      "cost": 3,
+      "links": [
+        "brd7_12",
+        "brd6_11",
+        "yld6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/fast_growth",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "brd7_13",
+        "yld6_0",
+        "yld6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "yld7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "豊かな恵み修練 VII"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 3,
+      "links": [
+        "yld7_0",
+        "yld6_1",
+        "yld6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld7_1",
+        "yld6_2",
+        "yld6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "豊かな恵み修練 VII"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 3,
+      "links": [
+        "yld7_2",
+        "yld6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 2,
+      "links": [
+        "yld7_3",
+        "yld6_3",
+        "yld6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★群れの突進・極"
+      },
+      "icon": "minecraft:leather",
+      "cost": 7,
+      "links": [
+        "yld7_4",
+        "yld6_4",
+        "yld6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/stampede",
+          "field": "power",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:ranch_lord/stampede",
+          "field": "radius",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "yld7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "搾乳修練 VII"
+      },
+      "icon": "minecraft:milk_bucket",
+      "cost": 2,
+      "links": [
+        "yld7_5",
+        "yld6_5",
+        "yld6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/milk_master",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "群れの恵み修練 VII"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 3,
+      "links": [
+        "yld7_6",
+        "yld6_6",
+        "yld6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/herd_blessing",
+          "field": "cooldown",
+          "amount": -15
+        }
+      ]
+    },
+    {
+      "id": "yld7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "yld7_7",
+        "yld6_7",
+        "yld6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "yld7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★豊穣の牧場"
+      },
+      "icon": "minecraft:hay_block",
+      "cost": 8,
+      "links": [
+        "yld7_8",
+        "yld6_8",
+        "yld6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.2
+        },
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "yld7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "豊かな恵み修練 VII"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld7_9",
+        "yld6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 3,
+      "links": [
+        "yld7_10",
+        "yld6_9",
+        "yld6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "豊かな恵み修練 VII"
+      },
+      "icon": "minecraft:white_wool",
+      "cost": 2,
+      "links": [
+        "yld7_11",
+        "yld6_10",
+        "yld6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:rancher/rich_yield",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "yld7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "収穫の幸運 VII"
+      },
+      "icon": "minecraft:wheat",
+      "cost": 3,
+      "links": [
+        "yld7_12",
+        "yld6_11",
+        "bdy6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:harvest_fortune",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "yld7_13",
+        "bdy6_0",
+        "bdy6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "bdy7_0",
+        "bdy6_1",
+        "bdy6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy7_1",
+        "bdy6_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "bdy7_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "足腰 VII"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 2,
+      "links": [
+        "bdy6_3",
+        "bdy6_4",
+        "bdy7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "bdy7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★獣の皮"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 7,
+      "links": [
+        "bdy6_4",
+        "bdy6_5",
+        "bdy7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "bdy7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 2,
+      "links": [
+        "bdy6_5",
+        "bdy6_6",
+        "bdy7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "bdy6_6",
+        "bdy6_7",
+        "bdy7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy6_7",
+        "bdy6_8",
+        "bdy7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★大地の守り"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "links": [
+        "bdy6_8",
+        "bdy6_9",
+        "bdy7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "bdy7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_9",
+        "bdy7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "bdy6_10",
+        "bdy7_10",
+        "bdy6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy6_11",
+        "bdy7_11",
+        "bdy6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "brd6_0",
+        "brd7_0",
+        "bdy7_12",
+        "bdy6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    }
+  ]
+}

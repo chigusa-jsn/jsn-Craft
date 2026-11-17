@@ -671,3 +671,55 @@ simple("gem_red", "#e02040", 6, 3, pts=[(10, 10)], shine_col="#ffd0d8", strength
 simple("gem_blue", "#2050e0", 6, 3, pts=[(10, 10)], shine_col="#d0e0ff", strength=0.9, r=3)
 simple("gem_green", "#9ad040", 6, 3, pts=[(10, 10)], shine_col="#f0ffd0", strength=0.9, r=3)
 simple("anvil_dark", "#4a4a52", 8, 5, pts=[(12, 8)], shine_col="#9a9aa8", strength=0.4, r=4)
+
+# ---- 牧場の料理 ----
+@mat
+def marbled_top():
+    a = fill("#8a3a20", 150, 8, 4)
+    grill = (np.abs(((xx + yy) % 8) - 4) < 1)
+    a = blend(a, grill, "#2a1008", 0.9)
+    a = blend(a, np.random.default_rng(151).random((N, N)) > 0.93, "#e8b090", 0.6)   # 霜降り
+    return img(shine(a, [(10, 10), (22, 18)], "#d08a5a", 0.6, 3))
+@mat
+def lamb_top():
+    a = fill("#8a4a20", 152, 10, 5)
+    rng = np.random.default_rng(153)
+    for _ in range(26):
+        x, y = rng.integers(0, N, 2); a[y, x] = rgb("#3a7a2a")              # 香草
+    return img(shine(a, [(9, 9), (20, 14)], "#d09a5a", 0.6, 2.5))
+simple("lamb_side", "#6a3418", 8, 4)
+@mat
+def karaage():
+    a = fill("#c87a28", 154, 16, 8, cell=2)
+    return img(shine(a, [(8, 8), (20, 20), (14, 24)], "#f8c070", 0.7, 2))
+@mat
+def gold_omelette():
+    a = fill("#ffcc20", 155, 8, 3, cell=8)
+    a = blend(a, np.random.default_rng(156).random((N, N)) > 0.96, "#fff8d0", 1.0)
+    return img(shine(a, [(9, 8), (20, 6), (24, 20)], "#fffbe0", 0.9, 2.5))
+@mat
+def pudding_top():
+    a = fill("#7a3a10", 157, 6, 3)
+    return img(shine(a, [(10, 9)], "#d0803a", 0.8, 3))
+simple("pudding_side", "#f8e090", 4, 2, pts=[(10, 10)], shine_col="#fffbe0", strength=0.6)
+@mat
+def cheesecake_top():
+    a = fill("#c88a3a", 158, 8, 4, cell=6)
+    return img(shine(a, [(10, 9), (20, 18)], "#e8b060", 0.5, 3))
+simple("cheesecake_side", "#fff2c8", 4, 2)
+simple("cookie_crust", "#a0703a", 10, 6, cell=2)
+simple("berry_sauce", "#a01830", 6, 3, pts=[(8, 8)], shine_col="#ff8090", strength=0.7)
+
+# ---- エサ箱 ----
+@mat
+def feeder_wood():
+    a = fill("#9a6a3a", 160, 8, 5, cell=8)
+    return img(blend(a, (yy % 8 == 7), "#6a4420", 0.7))
+@mat
+def hay_top():
+    a = fill("#d8b040", 161, 14, 8, cell=2)
+    rng = np.random.default_rng(162)
+    for _ in range(40):
+        x, y = rng.integers(0, N, 2)
+        for k in range(4): a[y, (x + k) % N] = rgb("#f0d070") if k % 2 else rgb("#a88020")
+    return img(a)

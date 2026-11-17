@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "三つ子の奇跡"
+  },
+  "description": {
+    "text": "繁殖させたとき、5%の確率で三つ子が生まれる。"
+  },
+  "icon": "minecraft:turtle_egg",
+  "type": "passive",
+  "effect": "triplets",
+  "chance": 0.05
+}

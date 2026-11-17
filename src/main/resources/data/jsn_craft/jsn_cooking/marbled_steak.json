@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:dish/marbled_steak",
+  "ingredients": [
+    "jsn_craft:premium_beef",
+    "jsn_craft:butter",
+    "jsn_craft:salt",
+    "minecraft:baked_potato"
+  ],
+  "level": 32,
+  "time": 200,
+  "xp": 30,
+  "nutrition": 16,
+  "saturation": 1.4,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 3,
+      "operation": "add_value",
+      "seconds": 480
+    },
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 6,
+      "operation": "add_value",
+      "seconds": 480
+    }
+  ],
+  "rank": "fine",
+  "no": 82
+}

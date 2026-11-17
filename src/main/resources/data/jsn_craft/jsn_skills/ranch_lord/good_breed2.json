@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "名伯楽"
+  },
+  "description": {
+    "text": "生まれる子どもの★がさらに上がりやすくなる。"
+  },
+  "icon": "minecraft:saddle",
+  "type": "passive",
+  "effect": "good_breed2",
+  "power": 0.4
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "黄金の手"
+  },
+  "description": {
+    "text": "家畜から高級肉が出やすくなる（+50%）。"
+  },
+  "icon": "jsn_craft:premium_beef",
+  "type": "passive",
+  "effect": "golden_touch",
+  "power": 0.5
+}

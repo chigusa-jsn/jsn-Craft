@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:dish/cheesecake",
+  "ingredients": [
+    "jsn_craft:cheese",
+    "jsn_craft:fresh_milk",
+    "minecraft:egg",
+    "minecraft:sugar"
+  ],
+  "level": 25,
+  "time": 180,
+  "xp": 24,
+  "nutrition": 12,
+  "saturation": 1.2,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:max_mana",
+      "amount": 20,
+      "operation": "add_value",
+      "seconds": 480
+    },
+    {
+      "attribute": "jsn_craft:magic_power",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 480
+    }
+  ],
+  "rank": "feast",
+  "no": 87
+}

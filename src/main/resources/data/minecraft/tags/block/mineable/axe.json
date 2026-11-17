@@ -3,6 +3,7 @@
   "values": [
     "jsn_craft:brewing_barrel",
     "jsn_craft:alchemy_table",
-    "jsn_craft:jeweler_table"
+    "jsn_craft:jeweler_table",
+    "jsn_craft:feeder"
   ]
 }
