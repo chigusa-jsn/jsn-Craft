@@ -273,26 +273,31 @@ public final class RuneEffects {
         arrow.getPersistentData().put(ARROW_KEY, tag);
         int split = runes.getOrDefault("split", 0);
         if (split > 0) {
-            SkillEffects.later(owner, 1, () -> {
-                if (arrow.isRemoved()) return;
-                Vec3 v = arrow.getDeltaMovement();
-                for (int i = 1; i <= split; i++) {
-                    float angle = (float) Math.toRadians(8 * ((i + 1) / 2) * (i % 2 == 0 ? 1 : -1));
-                    AbstractArrow child = arrow instanceof SpectralArrow
+            Vec3 v = arrow.getDeltaMovement();
+            boolean spectral = arrow instanceof SpectralArrow;
+            double damage = arrow.getBaseDamage();
+            boolean crit = arrow.isCritArrow();
+            for (int i = 1; i <= split; i++) {
+                // 4tick ずつ間をあけて、少しだけ左右にずらして飛ばす（一度に重ならないように）
+                float angle = (float) Math.toRadians(3 * ((i + 1) / 2) * (i % 2 == 0 ? 1 : -1));
+                SkillEffects.later(owner, 4 * i, () -> {
+                    if (!owner.isAlive()) return;
+                    AbstractArrow child = spectral
                             ? new SpectralArrow(owner.level(), owner, new ItemStack(Items.SPECTRAL_ARROW), null)
                             : new Arrow(owner.level(), owner, new ItemStack(Items.ARROW), null);
-                    child.setPos(arrow.getX(), arrow.getY(), arrow.getZ());
+                    child.setPos(owner.getX(), owner.getEyeY() - 0.1, owner.getZ());
                     child.setDeltaMovement(v.yRot(angle));
-                    child.setBaseDamage(arrow.getBaseDamage());
-                    child.setCritArrow(arrow.isCritArrow());
+                    child.setBaseDamage(damage);
+                    child.setCritArrow(crit);
                     child.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                     CompoundTag ct = tag.copy();
                     ct.remove("split");
                     ct.remove("recovery");
                     child.getPersistentData().put(ARROW_KEY, ct);
                     owner.level().addFreshEntity(child);
-                }
-            });
+                    owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 0.6F, 1.4F);
+                });
+            }
         }
     }
 
@@ -301,37 +306,53 @@ public final class RuneEffects {
         return t.getInt(id);
     }
 
-    /** 追尾：飛んでいる矢が近くの敵へ曲がる */
+    /**
+     * 追尾：飛んでいる矢が近くの敵へ曲がる。
+     * 毎tick、狙った敵のほうへ「1tickに曲がれる角度」（6°＋6°×レベル）まで向きを変える。一度狙った敵は追い続ける。
+     */
     @SubscribeEvent
     public static void onArrowTick(EntityTickEvent.Post event) {
         if (!(event.getEntity() instanceof AbstractArrow arrow) || arrow.level().isClientSide()) return;
         if (!arrow.getPersistentData().contains(ARROW_KEY)) return;
-        int homing = arrowRune(arrow, "homing");
-        if (homing <= 0 || arrow.tickCount < 3 || arrow.tickCount > 100 || arrow.tickCount % 2 != 0) return;
+        CompoundTag tag = arrow.getPersistentData().getCompound(ARROW_KEY);
+        int homing = tag.getInt("homing");
+        if (homing <= 0 || arrow.tickCount < 1 || arrow.tickCount > 120 || tag.getBoolean("done")) return;
         Vec3 v = arrow.getDeltaMovement();
         double speed = v.length();
-        if (speed < 0.4) return; // 刺さった・落ちかけ
-        double range = 6 + 3 * homing;
+        if (speed < 0.3) return; // 刺さった・落ちかけ
         Vec3 dir = v.normalize();
-        LivingEntity best = null;
-        double bestD = Double.MAX_VALUE;
-        for (LivingEntity e : arrow.level().getEntitiesOfClass(LivingEntity.class, arrow.getBoundingBox().inflate(range))) {
-            if (!(e instanceof Enemy) || !e.isAlive() || e == arrow.getOwner()) continue;
-            Vec3 to = e.getBoundingBox().getCenter().subtract(arrow.position());
-            double d = to.length();
-            if (d > range || to.normalize().dot(dir) < 0.3) continue;
-            if (d < bestD) {
-                bestD = d;
-                best = e;
+        LivingEntity target = null;
+        // 狙っている敵がいれば、その敵を追い続ける
+        if (tag.hasUUID("target") && arrow.level() instanceof ServerLevel sl
+                && sl.getEntity(tag.getUUID("target")) instanceof LivingEntity le && le.isAlive()) target = le;
+        if (target == null) {
+            double range = 8 + 4 * homing, bestD = Double.MAX_VALUE;
+            for (LivingEntity e : arrow.level().getEntitiesOfClass(LivingEntity.class, arrow.getBoundingBox().inflate(range))) {
+                if (!e.isAlive() || e == arrow.getOwner() || !isHostile(e, arrow)) continue;
+                Vec3 to = e.getBoundingBox().getCenter().subtract(arrow.position());
+                double d = to.length();
+                if (d > range || to.normalize().dot(dir) < 0.0) continue; // 前のほう（左右90°まで）
+                if (d < bestD) {
+                    bestD = d;
+                    target = e;
+                }
             }
+            if (target == null) return;
+            tag.putUUID("target", target.getUUID());
         }
-        if (best == null) return;
-        Vec3 to = best.getBoundingBox().getCenter().subtract(arrow.position()).normalize();
-        double k = 0.15 + 0.1 * homing;
-        Vec3 nv = dir.scale(1 - k).add(to.scale(k)).normalize().scale(speed);
-        arrow.setDeltaMovement(nv);
+        Vec3 to = target.getBoundingBox().getCenter().subtract(arrow.position()).normalize();
+        double angle = Math.acos(Math.max(-1, Math.min(1, dir.dot(to))));
+        double maxTurn = Math.toRadians(6 + 6 * homing);
+        Vec3 nd = angle <= maxTurn ? to : dir.scale(1 - maxTurn / angle).add(to.scale(maxTurn / angle)).normalize();
+        arrow.setDeltaMovement(nd.scale(Math.max(speed, 1.2)));
         arrow.hurtMarked = true;
-        if (arrow.level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.PORTAL, arrow.getX(), arrow.getY(), arrow.getZ(), 2, 0.05, 0.05, 0.05, 0);
+        if (arrow.level() instanceof ServerLevel sl && arrow.tickCount % 2 == 0)
+            sl.sendParticles(ParticleTypes.PORTAL, arrow.getX(), arrow.getY(), arrow.getZ(), 2, 0.05, 0.05, 0.05, 0);
+    }
+
+    /** 追う相手：モンスターだけ（動物は追わない） */
+    private static boolean isHostile(LivingEntity e, AbstractArrow arrow) {
+        return e instanceof Enemy;
     }
 
     /** 当たったとき：爆裂矢・雷矢・回収 */
@@ -348,6 +369,16 @@ public final class RuneEffects {
         var r = level.getRandom();
         Vec3 at = hit.getLocation();
 
+        int rec = t.getInt("recovery");
+        if (rec > 0 && owner != null && arrow.pickup == AbstractArrow.Pickup.ALLOWED && !owner.isCreative() && r.nextDouble() < 0.3 * rec) {
+            ItemStack back = arrow.getPickupItemStackOrigin().copyWithCount(1);
+            if (back.isEmpty()) back = new ItemStack(arrow instanceof SpectralArrow ? Items.SPECTRAL_ARROW : Items.ARROW);
+            if (!owner.getInventory().add(back)) owner.drop(back, false);
+            arrow.pickup = AbstractArrow.Pickup.DISALLOWED; // 二重にもらえないように
+            if (hit.getType() == HitResult.Type.BLOCK) SkillEffects.later(owner, 1, arrow::discard);   // 地面に刺さった矢は消える
+            owner.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.4F, 1.6F);
+        }
+
         int blast = t.getInt("blast");
         if (blast > 0) {
             level.explode(arrow, at.x, at.y, at.z, 0.6F + 0.4F * blast, Level.ExplosionInteraction.NONE);
@@ -357,12 +388,6 @@ public final class RuneEffects {
             if (th > 0 && r.nextDouble() < 0.2 * th) {
                 strike(level, target);
                 runeHurt(target, owner.damageSources().indirectMagic(arrow, owner), 4 * th);
-            }
-            int rec = t.getInt("recovery");
-            if (rec > 0 && arrow.pickup == AbstractArrow.Pickup.ALLOWED && !owner.isCreative() && r.nextDouble() < 0.3 * rec) {
-                ItemStack back = new ItemStack(arrow instanceof SpectralArrow ? Items.SPECTRAL_ARROW : Items.ARROW);
-                if (!owner.getInventory().add(back)) owner.drop(back, false);
-                arrow.pickup = AbstractArrow.Pickup.DISALLOWED; // 二重にもらえないように
             }
         }
     }

@@ -67,10 +67,10 @@ public final class Runes {
         add("wave", "斬撃波", "W", Items.BREEZE_ROD, 3, 30, l -> "当てた敵の周りの敵にも" + 20 * l + "%のダメージ");
         add("reaper", "魂狩り", "W", Items.SOUL_SAND, 3, 40, l -> "倒した敵の経験値 +" + 50 * l + "%、倒すとHPが" + l + "回復");
         // ---- 弓・クロスボウ ----
-        add("recovery", "回収", "B", Items.STRING, 3, 1, l -> "敵に当たった矢が" + 30 * l + "%で手元に戻る");
-        add("homing", "追尾", "B", Items.ENDER_EYE, 3, 10, l -> "矢が近くの敵（" + (6 + 3 * l) + "ブロック）を追いかける");
+        add("recovery", "回収", "B", Items.STRING, 3, 1, l -> "当たった矢（敵でも地面でも）が" + 30 * l + "%で持ち物に戻る。光の矢・効果つきの矢も");
+        add("homing", "追尾", "B", Items.ENDER_EYE, 3, 10, l -> "矢が近くの敵（" + (8 + 4 * l) + "ブロック）を追いかける");
         add("thunder_arrow", "雷矢", "B", Items.GLOWSTONE_DUST, 3, 15, l -> "敵に当たると" + 20 * l + "%で落雷（+" + 4 * l + "ダメージ）");
-        add("split", "分裂矢", "B", Items.PRISMARINE_SHARD, 3, 25, l -> "矢が" + (l + 1) + "本に分かれて飛ぶ");
+        add("split", "分裂矢", "B", Items.PRISMARINE_SHARD, 3, 25, l -> "少しずつ時間をずらして、矢がもう" + l + "本飛ぶ");
         add("blast", "爆裂矢", "B", Items.TNT, 3, 30, l -> "当たると小さく爆発する（威力" + pct(0.6 + 0.4 * l) + "、地形は壊れない）");
         // ---- 防具 ----
         add("swift", "疾風", "A", Items.SUGAR, 3, 1, l -> "移動速度 +" + 4 * l + "%");
