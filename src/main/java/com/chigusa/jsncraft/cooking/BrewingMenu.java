@@ -79,6 +79,8 @@ public class BrewingMenu extends AbstractContainerMenu {
         if (be == null || !(player instanceof ServerPlayer sp)) return false;
         if (id == 0) return BrewingService.start(sp, be);
         if (id == 1) return BrewingService.bottle(sp, be);
+        // 100+n：レシピ n の材料を持ち物から入れる
+        if (id >= 100) return RecipeFill.fill(sp, be.items(), BrewingBarrelBlockEntity.INGREDIENTS, CookingManager.get(CookingManager.BREWING, id - 100));
         return false;
     }
 

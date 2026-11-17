@@ -26,9 +26,16 @@ public class CookingScreen extends AbstractContainerScreen<CookingMenu> {
         inventoryLabelY = 74;
     }
 
+    private final RecipePanel panel = new RecipePanel(() -> CookingRecipesPayload.client.recipes(), i -> {
+        if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 100 + i);
+    }, 0xFF3A2A20, 0xFFE8DCC4, 0xFF3A2A20);
+
+    private int panelX() { return leftPos + imageWidth + 4; }
+
     @Override
     protected void init() {
         super.init();
+        leftPos = Math.max(4, (width - imageWidth - RecipePanel.W - 4) / 2);   // 右のレシピ一覧の分、左に寄せる
         cookBtn = addRenderableWidget(Button.builder(Component.literal("調理する"), b -> {
             if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 0);
         }).bounds(leftPos + 110, topPos + 46, 58, 14).build());
@@ -94,7 +101,21 @@ public class CookingScreen extends AbstractContainerScreen<CookingMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
+        panel.render(g, font, panelX(), topPos, imageHeight, mouseX, mouseY);
         renderTooltip(g, mouseX, mouseY);
+        panel.renderTooltip(g, font, panelX(), topPos, imageHeight, mouseX, mouseY);
+    }
+
+    @Override
+    public boolean mouseClicked(double mx, double my, int button) {
+        if (panel.click(panelX(), topPos, imageHeight, mx, my)) return true;
+        return super.mouseClicked(mx, my, button);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mx, double my, double sx, double sy) {
+        if (panel.scroll(panelX(), topPos, imageHeight, mx, my, sy)) return true;
+        return super.mouseScrolled(mx, my, sx, sy);
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

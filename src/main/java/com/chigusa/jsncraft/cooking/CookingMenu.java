@@ -80,6 +80,9 @@ public class CookingMenu extends AbstractContainerMenu {
     @Override
     public boolean clickMenuButton(Player player, int id) {
         if (id == 0 && be != null && player instanceof ServerPlayer sp) return CookingService.startCooking(sp, be);
+        // 100+n：レシピ n の材料を持ち物から入れる
+        if (id >= 100 && be != null && player instanceof ServerPlayer sp)
+            return RecipeFill.fill(sp, be.items(), CookingStationBlockEntity.INGREDIENTS, CookingManager.get(CookingManager.RECIPES, id - 100));
         return false;
     }
 
