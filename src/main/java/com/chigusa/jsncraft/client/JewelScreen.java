@@ -360,6 +360,19 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         public static void onScreens(RegisterMenuScreensEvent event) {
             event.register(ModJewelry.TABLE_MENU.get(), JewelScreen::new);
         }
+
+        /** 装飾品の宝石の部分に、1つめの宝石の色をつける（宝石なしは灰色） */
+        @SubscribeEvent
+        public static void onColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event) {
+            for (var item : ModJewelry.JEWELRY.values()) {
+                event.register((stack, tint) -> {
+                    if (tint != 1 || !(stack.getItem() instanceof JewelryItem j)) return -1;
+                    var gems = j.data(stack).gems();
+                    Jewels.Gem gem = gems.isEmpty() ? null : Jewels.gem(gems.get(0));
+                    return 0xFF000000 | (gem == null ? 0x505860 : gem.color());
+                }, item.get());
+            }
+        }
     }
 
     /** 宝石・原石のツールチップ */

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:copper_earring",
+    "jsn_craft:iron_earring",
+    "jsn_craft:gold_earring",
+    "jsn_craft:diamond_earring",
+    "jsn_craft:netherite_earring",
+    "jsn_craft:moon_silver_earring",
+    "jsn_craft:star_silver_earring",
+    "jsn_craft:night_earring",
+    "jsn_craft:echo_earring"
+  ]
+}

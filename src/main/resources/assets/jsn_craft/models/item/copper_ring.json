@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "jsn_craft:item/jewelry/copper_ring",
+    "layer1": "jsn_craft:item/jewelry/ring_gem"
+  }
+}

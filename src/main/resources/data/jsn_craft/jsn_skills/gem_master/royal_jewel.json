@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "王の宝冠"
+  },
+  "description": {
+    "text": "自分と周り（10ブロック）の仲間の攻撃力+4・防御力+6・魔法の威力+20%を90秒間。"
+  },
+  "icon": "minecraft:golden_helmet",
+  "type": "active",
+  "effect": "royal_jewel",
+  "power": 0.2,
+  "radius": 10,
+  "duration": 90,
+  "stamina": 60,
+  "cooldown": 600
+}

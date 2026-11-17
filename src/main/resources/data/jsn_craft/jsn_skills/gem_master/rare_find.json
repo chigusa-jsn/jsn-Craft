@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "輝石の導き"
+  },
+  "description": {
+    "text": "掘って見つかる原石が、めずらしい宝石になりやすい。"
+  },
+  "icon": "jsn_craft:raw_opal",
+  "type": "passive",
+  "effect": "rare_find"
+}

@@ -62,7 +62,31 @@ def alchemy_table(d):
     # 薬草の束
     d.box([9, 11, 2.5], [14, 12.2, 4.5], mat="herb_bundle")
 
-BLOCKS = {"forge": forge, "rune_altar": rune_altar, "alchemy_table": alchemy_table}
+def jeweler_table(d):
+    # 脚と引き出し
+    for x, z in ((1, 1), (13, 1), (1, 13), (13, 13)):
+        d.box([x, 0, z], [x + 2, 9, z + 2], mat="jewel_wood")
+    d.box([1.5, 6, 1.5], [14.5, 9, 14.5], mat="jewel_wood")
+    d.box([5, 6.8, 0.9], [11, 8.2, 1.5], mat="brass")              # 引き出しの取っ手
+    # 天板（緑の布張り）
+    d.box([0, 9, 0], [16, 10.5, 16], top="jewel_top", side="jewel_wood", bottom="jewel_wood", fit=("up",))
+    # 小さな金床
+    d.box([2.5, 10.5, 9.5], [6.5, 11.5, 13.5], mat="anvil_dark")
+    d.box([3.5, 11.5, 10.5], [5.5, 12.5, 12.5], mat="anvil_dark")
+    d.box([2.0, 12.5, 10.0], [7.0, 13.5, 13.0], mat="anvil_dark")
+    # 拡大鏡（スタンド）
+    d.box([10.5, 10.5, 10.5], [12.5, 11, 12.5], mat="brass")
+    d.box([11.2, 11, 11.2], [11.8, 14.5, 11.8], mat="brass")
+    d.box([9.5, 14.0, 11.0], [13.5, 17.0, 12.0], mat="brass")
+    d.box([10.0, 14.5, 10.9], [13.0, 16.5, 12.1], mat="lens")
+    # 宝石
+    d.box([3, 10.5, 3], [4.5, 11.6, 4.5], mat="gem_red")
+    d.box([5.5, 10.5, 3.5], [6.8, 11.4, 4.8], mat="gem_blue")
+    d.box([4.2, 10.5, 5.5], [5.4, 11.3, 6.7], mat="gem_green")
+    # 指輪（小さな輪）
+    d.ring(10.5, 4.5, 1.6, 1.0, 10.5, 11.2, "brass", "brass", "brass")
+
+BLOCKS = {"forge": forge, "rune_altar": rune_altar, "alchemy_table": alchemy_table, "jeweler_table": jeweler_table}
 
 if __name__ == "__main__":
     built = {}

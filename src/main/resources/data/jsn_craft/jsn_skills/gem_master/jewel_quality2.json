@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "名匠の細工"
+  },
+  "description": {
+    "text": "装飾品の品質（★）がさらに上がりやすくなる。"
+  },
+  "icon": "minecraft:diamond_block",
+  "type": "passive",
+  "effect": "jewel_quality2",
+  "power": 0.2
+}

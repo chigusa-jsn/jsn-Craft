@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "至宝の細工"
+  },
+  "description": {
+    "text": "特別な装飾品（固有品）が作れるようになる。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "passive",
+  "effect": "unique_craft"
+}

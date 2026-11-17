@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "研磨の腕"
+  },
+  "description": {
+    "text": "原石を磨いたとき、20%の確率で宝石が2個になる。"
+  },
+  "icon": "jsn_craft:ruby",
+  "type": "passive",
+  "effect": "polish_bonus",
+  "chance": 0.2
+}

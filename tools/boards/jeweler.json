@@ -1,0 +1,378 @@
+{
+  "job": "jeweler",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "細工の心得",
+    "icon": "minecraft:smithing_table",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:jeweler/gem_eye",
+        "field": "power",
+        "amount": 0.1
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 1
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "gem",
+      "pool": [
+        {
+          "name": "宝石の目修練",
+          "icon": "jsn_craft:raw_ruby",
+          "weight": 3,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/gem_eye",
+              "field": "power",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "研磨修練",
+          "icon": "jsn_craft:ruby",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/polish_bonus",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "丁寧な細工修練",
+          "icon": "minecraft:spyglass",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/jewel_quality",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "節約修練",
+          "icon": "minecraft:gold_ingot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/metal_save",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "穴あけ修練",
+          "icon": "minecraft:iron_nugget",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/socket_master",
+              "field": "chance",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "shn",
+      "pool": [
+        {
+          "name": "閃光修練",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/dazzle",
+              "field": "duration",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "宝石の守り修練",
+          "icon": "minecraft:amethyst_cluster",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:jeweler/gem_guard",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "魔法の威力",
+          "icon": "jsn_craft:crystal",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "jsn_craft:topaz",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.005
+            }
+          ]
+        },
+        {
+          "name": "最大マナ",
+          "icon": "jsn_craft:sapphire",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "体力",
+          "icon": "jsn_craft:garnet",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "スタミナ",
+          "icon": "jsn_craft:peridot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "jsn_craft:opal",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "採掘の幸運",
+          "icon": "minecraft:iron_pickaxe",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mining_fortune",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "宝石の目・覚醒",
+      "icon": "jsn_craft:raw_sapphire",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_eye",
+          "field": "power",
+          "amount": 0.3
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★研磨の腕・極",
+      "icon": "jsn_craft:sapphire",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/polish_bonus",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "穴あけ・極",
+      "icon": "minecraft:diamond",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/socket_master",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "輝きの心",
+      "icon": "minecraft:end_rod",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.04
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.02
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★閃光の宝石・極",
+      "icon": "minecraft:glowstone",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:jeweler/dazzle",
+          "field": "duration",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "宝石の守り・極",
+      "icon": "minecraft:amethyst_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/gem_guard",
+          "field": "duration",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "宝石の体",
+      "icon": "jsn_craft:garnet",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★丁寧な細工・極",
+      "icon": "minecraft:spyglass",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/jewel_quality",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "節約・極",
+      "icon": "minecraft:gold_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:jeweler/metal_save",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    }
+  ]
+}

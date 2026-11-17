@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "穴あけの名人"
+  },
+  "description": {
+    "text": "装飾品を作ったとき、15%の確率で宝石の穴がひとつ多くなる。"
+  },
+  "icon": "minecraft:iron_nugget",
+  "type": "passive",
+  "effect": "socket_master",
+  "chance": 0.15
+}

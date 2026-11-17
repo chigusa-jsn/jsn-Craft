@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "丁寧な細工"
+  },
+  "description": {
+    "text": "装飾品の品質（★）が上がりやすくなる。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "passive",
+  "effect": "jewel_quality",
+  "power": 0.1
+}

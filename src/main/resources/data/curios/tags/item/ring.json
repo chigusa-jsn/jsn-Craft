@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:copper_ring",
+    "jsn_craft:iron_ring",
+    "jsn_craft:gold_ring",
+    "jsn_craft:diamond_ring",
+    "jsn_craft:netherite_ring",
+    "jsn_craft:moon_silver_ring",
+    "jsn_craft:star_silver_ring",
+    "jsn_craft:wanderer_ring",
+    "jsn_craft:sovereign_ring"
+  ]
+}

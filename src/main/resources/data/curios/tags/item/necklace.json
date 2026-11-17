@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:copper_necklace",
+    "jsn_craft:iron_necklace",
+    "jsn_craft:gold_necklace",
+    "jsn_craft:diamond_necklace",
+    "jsn_craft:netherite_necklace",
+    "jsn_craft:moon_silver_necklace",
+    "jsn_craft:star_silver_necklace",
+    "jsn_craft:dragon_necklace"
+  ]
+}

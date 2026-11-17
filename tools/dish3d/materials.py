@@ -655,3 +655,19 @@ def mortar_top():
 def herb_bundle():
     a = fill("#4aa040", 133, 14, 8, cell=2)
     return img(blend(a, (yy % 6 == 2), "#c8a060", 0.6))
+
+# ---- 細工台 ----
+@mat
+def jewel_wood():
+    a = fill("#5a3a2a", 140, 8, 5, cell=8)
+    return img(blend(a, (yy % 8 == 7), "#3a2418", 0.7))
+@mat
+def jewel_top():
+    a = fill("#2a5a4a", 141, 6, 4, cell=4)                 # 緑の布張り
+    return img(blend(a, (xx < 2) | (xx > 29) | (yy < 2) | (yy > 29), "#c8a050", 0.9))
+simple("brass", "#c8a050", 8, 5, pts=[(10, 10)], shine_col="#fff0b0", strength=0.6, r=2.5)
+simple("lens", "#c8e8ff", 4, 3, pts=[(10, 10)], shine_col="#ffffff", strength=0.9, r=3)
+simple("gem_red", "#e02040", 6, 3, pts=[(10, 10)], shine_col="#ffd0d8", strength=0.9, r=3)
+simple("gem_blue", "#2050e0", 6, 3, pts=[(10, 10)], shine_col="#d0e0ff", strength=0.9, r=3)
+simple("gem_green", "#9ad040", 6, 3, pts=[(10, 10)], shine_col="#f0ffd0", strength=0.9, r=3)
+simple("anvil_dark", "#4a4a52", 8, 5, pts=[(12, 8)], shine_col="#9a9aa8", strength=0.4, r=4)

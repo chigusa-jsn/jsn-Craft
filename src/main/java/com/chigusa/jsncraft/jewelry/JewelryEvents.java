@@ -49,6 +49,7 @@ public final class JewelryEvents {
         event.getDrops().add(new ItemEntity(event.getLevel(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(raw)));
         event.getLevel().sendParticles(ParticleTypes.WAX_OFF, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8, 0.3, 0.3, 0.3, 0.1);
         event.getLevel().playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.8F, 1.6F);
+        com.chigusa.jsncraft.job.JobService.onAction(player, rule -> rule.action().equals("jewel"), 3 + 2 * g.rarity());
         if (g.rarity() == 2) player.displayClientMessage(Component.literal("✦ めずらしい原石を見つけた！").withStyle(ChatFormatting.LIGHT_PURPLE), true);
     }
 
