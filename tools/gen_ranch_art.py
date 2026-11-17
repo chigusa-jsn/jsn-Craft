@@ -87,6 +87,25 @@ MILK = [
     "................",
 ]
 
+TRUFFLE = [
+    "................",
+    "................",
+    "................",
+    "................",
+    "......oooo......",
+    "....oommlmoo....",
+    "...omlmmmmwmo...",
+    "..ommmmlmmmmmo..",
+    "..omwmmmmmlmmo..",
+    "..ommmlmmmmmmo..",
+    "..ommmmmmwmmmo..",
+    "...ommlmmmmmo...",
+    "....oommmmoo....",
+    "......oooo......",
+    "................",
+    "................",
+]
+
 def meat(base, fat):
     return draw(MEAT, {"o": "#3a1a10", "m": base, "w": fat, "b": "#e8e0d0"})
 
@@ -98,6 +117,7 @@ if __name__ == "__main__":
         "premium_mutton": meat("#a83838", "#f8e0d0"),
         "premium_chicken": draw(DRUM, {"o": "#5a3a1a", "m": "#f0c890", "w": "#fff8e8", "b": "#e8e0d0"}),
         "golden_egg": draw(EGG, {"o": "#7a5a10", "l": "#fff8c0", "w": "#ffffff", "m": "#f0c020", "d": "#c08a10"}),
+        "truffle": draw(TRUFFLE, {"o": "#1a120c", "m": "#3a2a1e", "l": "#5a4636", "w": "#8a7058"}),
         "fresh_milk": draw(MILK, {"o": "#282837", "k": "#6e4b28", "c": "#966939", "C": "#6e4b28", "g": "#c8e1f0", "G": "#7896af",
                                   "w": "#fafaf5", "h": "#ffffff", "b": "#3a3a3a", "d": "#c8c8c0"}),
     }

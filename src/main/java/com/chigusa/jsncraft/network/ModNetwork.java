@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("19");
+        PayloadRegistrar registrar = event.registrar("20");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -52,7 +52,7 @@ public final class ModNetwork {
         registrar.playToClient(CastBarPayload.TYPE, CastBarPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.CastBarHud.start(p.name(), p.ticks())));
         registrar.playToClient(AnimalRankPayload.TYPE, AnimalRankPayload.STREAM_CODEC,
-                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.RanchHud.setRank(p.entityId(), p.rank())));
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.RanchHud.setRank(p.entityId(), p.rank(), p.mutant())));
         registrar.playToClient(DamageNumberPayload.TYPE, DamageNumberPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.particle.ParticleSetup.spawnDamageNumber(
                         p.x(), p.y(), p.z(), p.amount(), p.style())));

@@ -1,0 +1,19 @@
+{
+  "item": "jsn_craft:truffle",
+  "name": "トリュフの香り",
+  "quality": 0.35,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 0.3,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

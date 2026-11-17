@@ -36,6 +36,7 @@ public final class RanchService {
     public static final ResourceLocation RANCHER = JsnCraft.id("rancher");
     public static final ResourceLocation LORD = JsnCraft.id("ranch_lord");
     private static final String KEY = "jsn_rank";
+    private static final String MUTANT_KEY = "jsn_mutant";
 
     // ================= 職業 =================
 
@@ -67,12 +68,38 @@ public final class RanchService {
         rank = Math.max(1, Math.min(5, rank));
         a.getPersistentData().putInt(KEY, rank);
         if (a instanceof AbstractHorse horse) horseBonus(horse, rank);
-        if (a.level() instanceof ServerLevel) PacketDistributor.sendToPlayersTrackingEntity(a, new AnimalRankPayload(a.getId(), rank));
+        if (a.level() instanceof ServerLevel) PacketDistributor.sendToPlayersTrackingEntity(a, new AnimalRankPayload(a.getId(), rank, mutant(a).ordinal()));
     }
 
     public static void sync(ServerPlayer to, Entity e) {
         int r = rank(e);
-        if (r > 0) PacketDistributor.sendToPlayer(to, new AnimalRankPayload(e.getId(), r));
+        if (r > 0) PacketDistributor.sendToPlayer(to, new AnimalRankPayload(e.getId(), r, mutant(e).ordinal()));
+    }
+
+    // ================= 突然変異 =================
+
+    public static Mutant mutant(Entity e) {
+        return Mutant.byId(e.getPersistentData().getInt(MUTANT_KEY));
+    }
+
+    public static void setMutant(Animal a, Mutant m) {
+        a.getPersistentData().putInt(MUTANT_KEY, m.ordinal());
+        if (a instanceof AbstractHorse horse) horseBonus(horse, rankOr1(a));
+        if (a.level() instanceof ServerLevel) PacketDistributor.sendToPlayersTrackingEntity(a, new AnimalRankPayload(a.getId(), rankOr1(a), m.ordinal()));
+    }
+
+    /** 突然変異するか：ふだんは 1%＋親の★、突然変異の親1頭につき +25%、スキルで上がる */
+    public static boolean rollMutation(ServerPlayer breeder, Animal child, Animal a, Animal b, RandomSource r) {
+        Mutant m = Mutant.forEntity(child);
+        if (m == Mutant.NONE) return false;
+        double chance = 0.01 + 0.0025 * (rankOr1(a) + rankOr1(b) - 2);
+        if (mutant(a) == m) chance += 0.25;
+        if (mutant(b) == m) chance += 0.25;
+        if (breeder != null) {
+            SkillDefinition s = SkillService.passive(breeder, "mutation_luck");
+            if (s != null) chance += s.power();
+        }
+        return r.nextDouble() < chance;
     }
 
     /** 野生の動物：だいたい★1、ときどき★2、まれに★3 */
@@ -104,9 +131,10 @@ public final class RanchService {
     /** ウマ（ロバ・ラバ・ラマも）は★で足の速さ・ジャンプ力・体力が上がる */
     private static void horseBonus(AbstractHorse horse, int rank) {
         int k = rank - 1;
-        put(horse, Attributes.MOVEMENT_SPEED, "speed", 0.05 * k, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-        put(horse, Attributes.JUMP_STRENGTH, "jump", 0.04 * k, AttributeModifier.Operation.ADD_VALUE);
-        put(horse, Attributes.MAX_HEALTH, "health", 2.0 * k, AttributeModifier.Operation.ADD_VALUE);
+        boolean pegasus = mutant(horse) == Mutant.PEGASUS;
+        put(horse, Attributes.MOVEMENT_SPEED, "speed", 0.05 * k + (pegasus ? 0.3 : 0), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        put(horse, Attributes.JUMP_STRENGTH, "jump", 0.04 * k + (pegasus ? 0.3 : 0), AttributeModifier.Operation.ADD_VALUE);
+        put(horse, Attributes.MAX_HEALTH, "health", 2.0 * k + (pegasus ? 10 : 0), AttributeModifier.Operation.ADD_VALUE);
     }
 
     private static void put(LivingEntity e, Holder<Attribute> attr, String name, double amount, AttributeModifier.Operation op) {

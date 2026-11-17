@@ -496,6 +496,21 @@
       ],
       "big": true,
       "min_level": 90
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 2,
+      "name": "突然変異の兆し・覚醒",
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:ranch_lord/mutation_luck",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
     }
   ]
 }
