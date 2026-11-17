@@ -76,6 +76,8 @@ public final class RuneEffects {
     private static final ThreadLocal<Boolean> BREAKING = ThreadLocal.withInitial(() -> false);
     private static final String ARROW_KEY = "jsn_runes";
     private static final String SOUL_KEY = "jsn_soulbound";
+    /** エンチャントテーブルを使った回数（増えたら経験値） */
+    private static final Map<java.util.UUID, Integer> ENCHANTS = new java.util.HashMap<>();
 
     // ================= 能力値になる魔紋 =================
 
@@ -434,6 +436,7 @@ public final class RuneEffects {
         BlockState state = event.getState();
         BlockPos pos = event.getPos();
 
+        if (state.is(Tags.Blocks.ORES_LAPIS)) com.chigusa.jsncraft.job.JobService.onAction(player, rule -> rule.action().equals("enchant"), 2);
         SkillDefinition lapis = state.is(Tags.Blocks.ORES_LAPIS) ? SkillService.passive(player, "lapis_luck") : null;
         if (lapis != null && player.getRandom().nextDouble() < lapis.chance()) {
             event.getDrops().add(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
@@ -499,6 +502,10 @@ public final class RuneEffects {
             }
         }
         if (t % 20 == 0) {
+            // エンチャントテーブルを使っても、付与術師の経験値が入る
+            int done = p.getStats().getValue(net.minecraft.stats.Stats.CUSTOM.get(net.minecraft.stats.Stats.ENCHANT_ITEM));
+            Integer before = ENCHANTS.put(p.getUUID(), done);
+            if (before != null && done > before) com.chigusa.jsncraft.job.JobService.onAction(p, rule -> rule.action().equals("enchant"), 10.0 * (done - before));
             boolean night = false;
             for (ItemStack armor : p.getArmorSlots()) if (RuneData.level(armor, "night_eye") > 0) night = true;
             if (night) {
