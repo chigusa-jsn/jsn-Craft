@@ -83,5 +83,17 @@
   "item.jsn_craft.fish.shulker_fish": "シュルカーフィッシュ",
   "item.jsn_craft.fish.void_jelly": "虚空クラゲ",
   "item.jsn_craft.fish.elytra_ray": "エリトラエイ",
-  "item.jsn_craft.fish.ender_dragonfish": "終焉の龍魚"
+  "item.jsn_craft.fish.ender_dragonfish": "終焉の龍魚",
+  "item.jsn_craft.dish.grilled_fish_set": "焼き魚定食",
+  "item.jsn_craft.dish.vegetable_soup": "野菜スープ",
+  "item.jsn_craft.dish.meat_stew": "肉の煮込み",
+  "item.jsn_craft.dish.honey_toast": "はちみつトースト",
+  "item.jsn_craft.dish.fish_and_chips": "フィッシュ＆チップス",
+  "item.jsn_craft.dish.berry_tart": "ベリータルト",
+  "item.jsn_craft.dish.sashimi_platter": "刺身の盛り合わせ",
+  "item.jsn_craft.dish.miner_lunch": "炭鉱弁当",
+  "item.jsn_craft.dish.warrior_steak": "戦士のステーキ",
+  "item.jsn_craft.dish.golden_feast": "黄金のごちそう",
+  "block.jsn_craft.cooking_station": "調理台",
+  "attribute.name.jsn_craft.cooking_mastery": "料理の腕前"
 }

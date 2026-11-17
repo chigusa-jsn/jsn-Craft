@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "火加減"
+  },
+  "description": {
+    "text": "調理にかかる時間が25%短くなる。"
+  },
+  "icon": "minecraft:campfire",
+  "type": "passive",
+  "effect": "cook_speed",
+  "power": 0.25
+}

@@ -1,0 +1,21 @@
+{
+  "result": "jsn_craft:dish/grilled_fish_set",
+  "ingredients": [
+    "#c:foods/raw_fish",
+    "minecraft:baked_potato",
+    "minecraft:dried_kelp"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 6,
+  "nutrition": 10,
+  "saturation": 0.8,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:fishing_zone",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "result": "jsn_craft:dish/honey_toast",
+  "ingredients": [
+    "minecraft:bread",
+    "minecraft:honey_bottle"
+  ],
+  "level": 5,
+  "time": 100,
+  "xp": 6,
+  "nutrition": 7,
+  "saturation": 0.9,
+  "buffs": [
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ]
+}

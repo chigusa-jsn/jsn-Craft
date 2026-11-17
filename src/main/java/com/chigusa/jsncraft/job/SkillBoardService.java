@@ -300,6 +300,7 @@ public final class SkillBoardService {
             Component name = s != null ? s.name() : Component.literal(e.skill().get().toString());
             String what = switch (e.field()) {
                 case "power_pct" -> "威力 " + signed(e.amount() * 100) + "%";
+                case "power" -> "効果 " + (Math.abs(e.amount()) < 1 ? signed(e.amount() * 100) + "%" : signed(e.amount()));
                 case "radius" -> "範囲 " + signed(e.amount());
                 case "cooldown" -> "待ち時間 " + signed(e.amount()) + "秒";
                 case "stamina" -> "消費ST " + signed(e.amount());
@@ -326,7 +327,7 @@ public final class SkillBoardService {
     /** 0.05 を「5%」と見せたい能力値 */
     private static final Set<String> PERCENT_STATS = Set.of("crit_chance", "crit_damage", "skill_damage", "cooldown_reduction",
             "stamina_cost_reduction", "damage_reduction", "lifesteal", "job_xp_bonus", "boss_damage", "tool_durability", "generic.knockback_resistance",
-            "fishing_zone", "fishing_calm", "fishing_reel", "fishing_treasure", "fishing_bite", "generic.water_movement_efficiency", "harvest_fortune");
+            "fishing_zone", "fishing_calm", "fishing_reel", "fishing_treasure", "fishing_bite", "generic.water_movement_efficiency", "harvest_fortune", "cooking_mastery");
 
     // ---------------- 技の強化・覚えたパッシブ（他から使う） ----------------
 

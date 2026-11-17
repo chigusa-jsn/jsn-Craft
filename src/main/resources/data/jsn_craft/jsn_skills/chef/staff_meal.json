@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "まかない"
+  },
+  "description": {
+    "text": "自分と周り（6ブロック）の仲間のおなかを、満腹度6だけ満たす。"
+  },
+  "icon": "minecraft:bread",
+  "type": "active",
+  "effect": "feed_area",
+  "power": 6,
+  "radius": 6,
+  "stamina": 20,
+  "cooldown": 60
+}

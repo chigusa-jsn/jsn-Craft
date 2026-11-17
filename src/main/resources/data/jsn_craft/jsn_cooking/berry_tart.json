@@ -1,0 +1,21 @@
+{
+  "result": "jsn_craft:dish/berry_tart",
+  "ingredients": [
+    "minecraft:sweet_berries",
+    "minecraft:wheat",
+    "minecraft:sugar",
+    "minecraft:egg"
+  ],
+  "level": 10,
+  "time": 100,
+  "xp": 9,
+  "nutrition": 9,
+  "saturation": 0.8,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 180
+    }
+  ]
+}

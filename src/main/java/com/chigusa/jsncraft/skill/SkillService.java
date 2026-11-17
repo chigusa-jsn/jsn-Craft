@@ -90,7 +90,7 @@ public final class SkillService {
         float cooldown = (float) Math.max(0, (s.cooldown() + m.getOrDefault("cooldown", 0.0)) * (1 - Math.min(0.5, cdr)));
         return new SkillDefinition(s.name(), s.description(), s.icon(), s.type(), s.effect(),
                 stamina, s.mana(), cooldown,
-                s.power() * (1 + m.getOrDefault("power_pct", 0.0)),
+                s.power() * (1 + m.getOrDefault("power_pct", 0.0)) + m.getOrDefault("power", 0.0),
                 s.bonus(),
                 s.radius() + m.getOrDefault("radius", 0.0),
                 s.duration() + m.getOrDefault("duration", 0.0),

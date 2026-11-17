@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "宴会の卓"
+  },
+  "description": {
+    "text": "その場に120秒間、宴会の場（半径8）を作る。中にいる仲間は、2秒ごとに回復して、おなかも満たされる。"
+  },
+  "icon": "minecraft:oak_trapdoor",
+  "type": "active",
+  "effect": "banquet",
+  "radius": 8,
+  "duration": 120,
+  "amplifier": 0,
+  "stamina": 40,
+  "cooldown": 240
+}

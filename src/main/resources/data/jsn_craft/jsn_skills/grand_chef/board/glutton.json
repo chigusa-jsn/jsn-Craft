@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "大食漢"
+  },
+  "description": {
+    "text": "料理を食べたときのバフの時間が30%長くなる。"
+  },
+  "icon": "minecraft:cooked_beef",
+  "type": "passive",
+  "effect": "glutton",
+  "power": 0.3
+}

@@ -1,0 +1,22 @@
+{
+  "result": "jsn_craft:dish/meat_stew",
+  "ingredients": [
+    "#c:foods/raw_meat",
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:brown_mushroom"
+  ],
+  "level": 5,
+  "time": 100,
+  "xp": 8,
+  "nutrition": 12,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ]
+}

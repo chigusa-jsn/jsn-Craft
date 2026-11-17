@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:glowstone_dust",
+  "name": "光の粉",
+  "buffs": [
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.05,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ]
+}

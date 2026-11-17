@@ -1,0 +1,508 @@
+{
+  "job": "grand_chef",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "料理長の心得",
+    "icon": "minecraft:cake",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:cooking_mastery",
+        "amount": 0.05
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "ktc",
+      "pool": [
+        {
+          "name": "包丁さばき",
+          "icon": "minecraft:iron_sword",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooking_mastery",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "火加減・覚醒",
+          "icon": "minecraft:campfire",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/heat_control",
+              "field": "power_pct",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "大量調理・覚醒",
+          "icon": "minecraft:cauldron",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/mass_cooking",
+              "field": "chance",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "省力",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "神の厨房・延長",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:grand_chef/divine_kitchen",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bnq",
+      "pool": [
+        {
+          "name": "宴会・広間",
+          "icon": "minecraft:oak_trapdoor",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:grand_chef/banquet",
+              "field": "radius",
+              "amount": 0.15
+            }
+          ]
+        },
+        {
+          "name": "宴会・長宴",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:grand_chef/banquet",
+              "field": "duration",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "name": "料理長の知恵",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "至高の気配",
+          "icon": "minecraft:enchanted_golden_apple",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:grand_chef/supreme_dish",
+              "field": "chance",
+              "amount": 0.003
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "丈夫",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "再生",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.013
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 7
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "炎の手",
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/fire_hands"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★神の厨房・極",
+      "icon": "minecraft:nether_star",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "cooldown",
+          "amount": -120
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "炎の手・極",
+      "icon": "minecraft:fire_charge",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/board/fire_hands",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★料理の神髄",
+      "icon": "minecraft:golden_shovel",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★千皿の料理長",
+      "icon": "minecraft:cauldron",
+      "cost": 8,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.2
+        },
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "大食漢",
+      "icon": "minecraft:cooked_beef",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/glutton"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大宴会",
+      "icon": "minecraft:cake",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "至高の兆し",
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★宴・覚醒",
+      "icon": "minecraft:firework_rocket",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "radius",
+          "amount": 10
+        },
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★料理長の賢者",
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "鉄の胃袋",
+      "icon": "minecraft:iron_block",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/iron_stomach"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大食漢・極",
+      "icon": "minecraft:rabbit_stew",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/board/glutton",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "まかない・大鍋",
+      "icon": "minecraft:cauldron",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "power",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★香りの誘い・覚醒",
+      "icon": "minecraft:honey_block",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "duration",
+          "amount": 20
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★料理長の加護",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

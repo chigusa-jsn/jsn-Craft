@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:ghast_tear",
+  "name": "ガストの涙",
+  "quality": 0.15,
+  "buffs": [
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 1,
+      "seconds": 60
+    }
+  ]
+}

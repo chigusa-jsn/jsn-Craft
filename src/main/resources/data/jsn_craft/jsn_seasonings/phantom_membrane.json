@@ -1,0 +1,11 @@
+{
+  "item": "minecraft:phantom_membrane",
+  "name": "浮遊の皮",
+  "buffs": [
+    {
+      "effect": "minecraft:slow_falling",
+      "amplifier": 0,
+      "seconds": 90
+    }
+  ]
+}

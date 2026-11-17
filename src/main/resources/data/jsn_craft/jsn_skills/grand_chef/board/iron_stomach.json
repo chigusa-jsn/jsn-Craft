@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "鉄の胃袋"
+  },
+  "description": {
+    "text": "料理を食べると、空腹・毒・吐き気が治る。"
+  },
+  "icon": "minecraft:iron_block",
+  "type": "passive",
+  "effect": "iron_stomach"
+}

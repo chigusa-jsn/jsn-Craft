@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "炎の手"
+  },
+  "description": {
+    "text": "炎や溶岩で受けるダメージが40%減る。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "passive",
+  "effect": "lava_ward",
+  "power": 0.4
+}

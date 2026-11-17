@@ -1,0 +1,359 @@
+{
+  "job": "chef",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "料理の心得",
+    "icon": "minecraft:bowl",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:cooking_mastery",
+        "amount": 0.03
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "skl",
+      "pool": [
+        {
+          "name": "包丁さばき",
+          "icon": "minecraft:iron_sword",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooking_mastery",
+              "amount": 0.015
+            }
+          ]
+        },
+        {
+          "name": "火加減修練",
+          "icon": "minecraft:campfire",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/heat_control",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "大量調理修練",
+          "icon": "minecraft:cauldron",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/mass_cooking",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "味見修練",
+          "icon": "minecraft:wooden_shovel",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/taste",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tst",
+      "pool": [
+        {
+          "name": "隠し味修練",
+          "icon": "minecraft:sugar",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/seasoning_master",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "名料理人修練",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/master_chef",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "丈夫",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "まかない修練",
+          "icon": "minecraft:baked_potato",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/staff_meal",
+              "field": "power",
+              "amount": 1
+            }
+          ],
+          "scale": false
+        },
+        {
+          "name": "香り修練",
+          "icon": "minecraft:flower_pot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:chef/aroma",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "料理の極意",
+      "icon": "minecraft:golden_shovel",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.06
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★神速の火加減",
+      "icon": "minecraft:soul_campfire",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "大量調理・極",
+      "icon": "minecraft:cauldron",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "隠し味の勘",
+      "icon": "minecraft:glow_berries",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power",
+          "amount": 0.2
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★料理人の舌",
+      "icon": "minecraft:golden_apple",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.12
+        },
+        {
+          "skill": "jsn_craft:chef/master_chef",
+          "field": "power",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "宴・延長",
+      "icon": "minecraft:cake",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "duration",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "料理人の体",
+      "icon": "minecraft:cooked_porkchop",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★香りの誘い・極",
+      "icon": "minecraft:honey_block",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "無尽の気",
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    }
+  ]
+}

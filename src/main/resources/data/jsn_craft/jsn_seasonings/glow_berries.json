@@ -1,0 +1,11 @@
+{
+  "item": "minecraft:glow_berries",
+  "name": "光る実",
+  "buffs": [
+    {
+      "effect": "minecraft:night_vision",
+      "amplifier": 0,
+      "seconds": 180
+    }
+  ]
+}

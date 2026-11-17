@@ -57,6 +57,7 @@ public record BoardNode(
      *  能力値アップ   { "attribute": "minecraft:generic.attack_damage", "amount": 0.5 }
      *                 operation: add_value（そのまま足す） / add_multiplied_base / add_multiplied_total（○%足す）
      *  技の強化       { "skill": "jsn_craft:sword/sweep", "field": "power_pct", "amount": 0.15 }
+     *                 field は power_pct（威力％）/ power（効果をそのまま足す）/ radius / cooldown / stamina / amplifier / duration / cast_time / chance
      *                 field: power_pct（威力○%） / radius（範囲） / cooldown（待ち時間・秒） / stamina（消費ST）
      *                        amplifier（回数） / duration（時間・秒） / cast_time（ため・秒） / chance（確率）
      *  パッシブを覚える { "grant": "jsn_craft:sword/board/last_stand" }

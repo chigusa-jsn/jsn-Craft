@@ -1,0 +1,11 @@
+{
+  "item": "minecraft:sweet_berries",
+  "name": "甘酸っぱさ",
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 60
+    }
+  ]
+}

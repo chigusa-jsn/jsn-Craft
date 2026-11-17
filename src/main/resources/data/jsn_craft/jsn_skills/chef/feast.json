@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "宴"
+  },
+  "description": {
+    "text": "60秒間、自分が料理を食べると、周り（10ブロック）の仲間にも同じバフがかかる。"
+  },
+  "icon": "minecraft:cake",
+  "type": "active",
+  "effect": "feast",
+  "radius": 10,
+  "duration": 60,
+  "stamina": 40,
+  "cooldown": 180
+}

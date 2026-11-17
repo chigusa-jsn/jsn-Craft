@@ -1,0 +1,3668 @@
+{
+  "name": {
+    "text": "宴の料理長",
+    "color": "gold"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:chef",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "cook",
+      "target": "*",
+      "xp": 5
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:grand_chef/banquet",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:grand_chef/supreme_dish",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:grand_chef/divine_kitchen",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "料理長の心得"
+      },
+      "icon": "minecraft:cake",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.05
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "ktc1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "包丁さばき I"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "ktc1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "火加減・覚醒 I"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 1,
+      "links": [
+        "ktc1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "bnq1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "宴会・広間 I"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 1,
+      "links": [
+        "ktc1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.225
+        }
+      ]
+    },
+    {
+      "id": "bnq1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "料理長の知恵 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bnq1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "grd1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "bnq1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "grd1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "center",
+        "ktc1_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10.5
+        }
+      ]
+    },
+    {
+      "id": "ktc2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "大量調理・覚醒 II"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 1,
+      "links": [
+        "ktc1_0",
+        "grd1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "ktc2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "省力 II"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "ktc2_0",
+        "ktc1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "ktc2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "神の厨房・延長 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "ktc2_1",
+        "ktc1_0",
+        "ktc1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "ktc2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき II"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "ktc2_2",
+        "ktc1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "bnq2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "宴会・長宴 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "ktc2_3",
+        "ktc1_1",
+        "bnq1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 6.0
+        }
+      ]
+    },
+    {
+      "id": "bnq2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "bnq2_0",
+        "bnq1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "bnq2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "至高の気配 II"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 1,
+      "links": [
+        "bnq2_1",
+        "bnq1_0",
+        "bnq1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "bnq2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "宴会・広間 II"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 1,
+      "links": [
+        "bnq2_2",
+        "bnq1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.225
+        }
+      ]
+    },
+    {
+      "id": "grd2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "再生 II"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "bnq2_3",
+        "bnq1_1",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "grd2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "grd2_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "grd2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "grd1_0",
+        "grd1_1",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "grd2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd1_1",
+        "ktc2_0",
+        "grd2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "ktc3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき III"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "ktc2_1",
+        "ktc2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ktc3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "火加減・覚醒 III"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 1,
+      "links": [
+        "ktc3_0",
+        "ktc2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ktc3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "大量調理・覚醒 III"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 1,
+      "links": [
+        "ktc3_1",
+        "ktc2_1",
+        "ktc2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ktc3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "炎の手"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "ktc3_2",
+        "ktc2_2",
+        "ktc2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/fire_hands"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "ktc3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "省力 III"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "ktc3_3",
+        "ktc2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "ktc3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "神の厨房・延長 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "ktc3_4",
+        "ktc2_3",
+        "bnq2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "bnq3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "料理長の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "ktc3_5",
+        "bnq2_0",
+        "bnq2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bnq3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "宴会・広間 III"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 1,
+      "links": [
+        "bnq3_0",
+        "bnq2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bnq3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "料理長の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bnq3_1",
+        "bnq2_1",
+        "bnq2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bnq3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "大食漢"
+      },
+      "icon": "minecraft:cooked_beef",
+      "cost": 3,
+      "links": [
+        "bnq3_2",
+        "bnq2_2",
+        "bnq2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/glutton"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bnq3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "宴会・長宴 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "bnq3_3",
+        "bnq2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "bnq3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "bnq3_4",
+        "bnq2_3",
+        "grd2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "grd3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bnq3_5",
+        "grd2_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd3_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "grd2_1",
+        "grd2_2",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "鉄の胃袋"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 3,
+      "links": [
+        "grd2_2",
+        "grd2_3",
+        "grd3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:grand_chef/board/iron_stomach"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "grd3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "再生 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "grd2_3",
+        "grd3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "ktc2_0",
+        "ktc3_0",
+        "grd3_4",
+        "grd2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
+        }
+      ]
+    },
+    {
+      "id": "ktc4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "ktc3_0",
+        "grd3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ktc4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc3_1",
+        "ktc4_0",
+        "ktc3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ktc4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "火加減・覚醒 IV"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 1,
+      "links": [
+        "ktc4_1",
+        "ktc3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ktc4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・覚醒 IV"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc4_2",
+        "ktc3_1",
+        "ktc3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ktc4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "省力 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "ktc4_3",
+        "ktc3_2",
+        "ktc3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "ktc4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "神の厨房・延長 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "ktc4_4",
+        "ktc3_3",
+        "ktc3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "ktc4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "ktc4_5",
+        "ktc3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ktc4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc4_6",
+        "ktc3_4",
+        "ktc3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bnq4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "至高の気配 IV"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 1,
+      "links": [
+        "ktc4_7",
+        "ktc3_5",
+        "bnq3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "bnq4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "宴会・広間 IV"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq4_0",
+        "bnq3_0",
+        "bnq3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bnq4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "料理長の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bnq4_1",
+        "bnq3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bnq4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "宴会・広間 IV"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq4_2",
+        "bnq3_1",
+        "bnq3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bnq4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "料理長の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bnq4_3",
+        "bnq3_2",
+        "bnq3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bnq4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "宴会・長宴 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bnq4_4",
+        "bnq3_3",
+        "bnq3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "bnq4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "bnq4_5",
+        "bnq3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bnq4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "至高の気配 IV"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "bnq4_6",
+        "bnq3_4",
+        "bnq3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "grd4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "bnq4_7",
+        "bnq3_5",
+        "grd3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "grd4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd4_0",
+        "grd3_0",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "grd4_1",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd3_1",
+        "grd3_2",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "grd3_2",
+        "grd3_3",
+        "grd4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 14
+        }
+      ]
+    },
+    {
+      "id": "grd4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd3_3",
+        "grd3_4",
+        "grd4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "grd3_4",
+        "grd4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
+        }
+      ]
+    },
+    {
+      "id": "grd4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd3_5",
+        "ktc4_0",
+        "grd4_6",
+        "grd3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "ktc5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "火加減・覚醒 V"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "ktc4_1",
+        "ktc4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "ktc5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・覚醒 V"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc4_2",
+        "ktc5_0",
+        "ktc4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ktc5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "省力 V"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "ktc5_1",
+        "ktc4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "ktc5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "神の厨房・延長 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "ktc5_2",
+        "ktc4_2",
+        "ktc4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "ktc5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "包丁さばき V"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc5_3",
+        "ktc4_3",
+        "ktc4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★神の厨房・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 6,
+      "links": [
+        "ktc5_4",
+        "ktc4_4",
+        "ktc4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "cooldown",
+          "amount": -120
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "ktc5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "包丁さばき V"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc5_5",
+        "ktc4_5",
+        "ktc4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "火加減・覚醒 V"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "ktc5_6",
+        "ktc4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "ktc5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・覚醒 V"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc5_7",
+        "ktc4_6",
+        "ktc4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ktc5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "省力 V"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "ktc5_8",
+        "ktc4_7",
+        "bnq4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "宴会・広間 V"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "ktc5_9",
+        "bnq4_0",
+        "bnq4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "料理長の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq5_0",
+        "bnq4_1",
+        "bnq4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "宴会・広間 V"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq5_1",
+        "bnq4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "料理長の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq5_2",
+        "bnq4_2",
+        "bnq4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "宴会・長宴 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bnq5_3",
+        "bnq4_3",
+        "bnq4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 9.6
+        }
+      ]
+    },
+    {
+      "id": "bnq5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★大宴会"
+      },
+      "icon": "minecraft:cake",
+      "cost": 6,
+      "links": [
+        "bnq5_4",
+        "bnq4_4",
+        "bnq4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "bnq5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bnq5_5",
+        "bnq4_5",
+        "bnq4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bnq5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "至高の気配 V"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "bnq5_6",
+        "bnq4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "bnq5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "宴会・広間 V"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq5_7",
+        "bnq4_6",
+        "bnq4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "料理長の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq5_8",
+        "bnq4_7",
+        "grd4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "grd5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "丈夫 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bnq5_9",
+        "grd4_0",
+        "grd4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd5_0",
+        "grd4_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "丈夫 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd4_2",
+        "grd4_3",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "再生 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd4_3",
+        "grd4_4",
+        "grd5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★大食漢・極"
+      },
+      "icon": "minecraft:rabbit_stew",
+      "cost": 6,
+      "links": [
+        "grd4_4",
+        "grd4_5",
+        "grd5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/board/glutton",
+          "field": "power_pct",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "grd5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd4_5",
+        "grd4_6",
+        "grd5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd4_6",
+        "grd5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "丈夫 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd4_7",
+        "grd5_7",
+        "grd4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "ktc4_0",
+        "ktc5_0",
+        "grd5_8",
+        "grd4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "ktc6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "神の厨房・延長 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "ktc5_0",
+        "grd5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "ktc6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "包丁さばき VI"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc5_1",
+        "ktc6_0",
+        "ktc5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "包丁さばき VI"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc5_2",
+        "ktc6_1",
+        "ktc5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "火加減・覚醒 VI"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "ktc6_2",
+        "ktc5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "ktc6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "炎の手・極"
+      },
+      "icon": "minecraft:fire_charge",
+      "cost": 4,
+      "links": [
+        "ktc6_3",
+        "ktc5_2",
+        "ktc5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/board/fire_hands",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "ktc6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "大量調理・覚醒 VI"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc6_4",
+        "ktc5_3",
+        "ktc5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ktc6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "省力 VI"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "ktc6_5",
+        "ktc5_4",
+        "ktc5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "ktc6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "神の厨房・延長 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "ktc6_6",
+        "ktc5_5",
+        "ktc5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "ktc6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "包丁さばき VI"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc6_7",
+        "ktc5_6",
+        "ktc5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "包丁さばき VI"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc6_8",
+        "ktc5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "ktc6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "火加減・覚醒 VI"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "ktc6_9",
+        "ktc5_7",
+        "ktc5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "ktc6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・覚醒 VI"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc6_10",
+        "ktc5_8",
+        "ktc5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bnq6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "宴会・広間 VI"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "ktc6_11",
+        "ktc5_9",
+        "bnq5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "料理長の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq6_0",
+        "bnq5_0",
+        "bnq5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "宴会・長宴 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bnq6_1",
+        "bnq5_1",
+        "bnq5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 9.6
+        }
+      ]
+    },
+    {
+      "id": "bnq6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bnq6_2",
+        "bnq5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bnq6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "至高の気配 VI"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "bnq6_3",
+        "bnq5_2",
+        "bnq5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "bnq6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "宴会・広間 VI"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq6_4",
+        "bnq5_3",
+        "bnq5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "至高の兆し"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 4,
+      "links": [
+        "bnq6_5",
+        "bnq5_4",
+        "bnq5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "bnq6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "料理長の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq6_6",
+        "bnq5_5",
+        "bnq5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "宴会・広間 VI"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq6_7",
+        "bnq5_6",
+        "bnq5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "bnq6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "料理長の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq6_8",
+        "bnq5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bnq6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "宴会・長宴 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bnq6_9",
+        "bnq5_7",
+        "bnq5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 9.6
+        }
+      ]
+    },
+    {
+      "id": "bnq6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bnq6_10",
+        "bnq5_8",
+        "bnq5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bnq6_11",
+        "bnq5_9",
+        "grd5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd6_0",
+        "grd5_0",
+        "grd5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_1",
+        "grd5_1",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd6_2",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd5_2",
+        "grd5_3",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_3",
+        "grd5_4",
+        "grd6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "まかない・大鍋"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 4,
+      "links": [
+        "grd5_4",
+        "grd5_5",
+        "grd6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "power",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd5_5",
+        "grd5_6",
+        "grd6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd5_6",
+        "grd5_7",
+        "grd6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd5_7",
+        "grd6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd5_8",
+        "grd6_9",
+        "grd5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd5_9",
+        "ktc6_0",
+        "grd6_10",
+        "grd5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "ktc7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "ktc6_1",
+        "ktc6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ktc7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "神の厨房・延長 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "ktc6_2",
+        "ktc7_0",
+        "ktc6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ktc7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "包丁さばき VII"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc6_3",
+        "ktc7_1",
+        "ktc6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "ktc7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "包丁さばき VII"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 3,
+      "links": [
+        "ktc7_2",
+        "ktc6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "ktc7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★料理の神髄"
+      },
+      "icon": "minecraft:golden_shovel",
+      "cost": 7,
+      "links": [
+        "ktc7_3",
+        "ktc6_3",
+        "ktc6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "ktc7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "火加減・覚醒 VII"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 3,
+      "links": [
+        "ktc7_4",
+        "ktc6_4",
+        "ktc6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "ktc7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "大量調理・覚醒 VII"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "ktc7_5",
+        "ktc6_5",
+        "ktc6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ktc7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★千皿の料理長"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 8,
+      "links": [
+        "ktc7_6",
+        "ktc6_6",
+        "ktc6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.2
+        },
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "ktc7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "省力 VII"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "ktc7_7",
+        "ktc6_7",
+        "ktc6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_cost_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ktc7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "神の厨房・延長 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "ktc7_8",
+        "ktc6_8",
+        "ktc6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/divine_kitchen",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ktc7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "包丁さばき VII"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "ktc7_9",
+        "ktc6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "ktc7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "包丁さばき VII"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 3,
+      "links": [
+        "ktc7_10",
+        "ktc6_9",
+        "ktc6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "ktc7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "火加減・覚醒 VII"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "ktc7_11",
+        "ktc6_10",
+        "ktc6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "ktc7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・覚醒 VII"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 3,
+      "links": [
+        "ktc7_12",
+        "ktc6_11",
+        "bnq6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "bnq7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "至高の気配 VII"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "ktc7_13",
+        "bnq6_0",
+        "bnq6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "bnq7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "宴会・広間 VII"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 3,
+      "links": [
+        "bnq7_0",
+        "bnq6_1",
+        "bnq6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bnq7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "料理長の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq7_1",
+        "bnq6_2",
+        "bnq6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bnq7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "宴会・広間 VII"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 3,
+      "links": [
+        "bnq7_2",
+        "bnq6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bnq7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "料理長の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bnq7_3",
+        "bnq6_3",
+        "bnq6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bnq7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★宴・覚醒"
+      },
+      "icon": "minecraft:firework_rocket",
+      "cost": 7,
+      "links": [
+        "bnq7_4",
+        "bnq6_4",
+        "bnq6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "radius",
+          "amount": 10
+        },
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "duration",
+          "amount": 60
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "bnq7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "宴会・長宴 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "bnq7_5",
+        "bnq6_5",
+        "bnq6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "duration",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "bnq7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "bnq7_6",
+        "bnq6_6",
+        "bnq6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "bnq7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "至高の気配 VII"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "bnq7_7",
+        "bnq6_7",
+        "bnq6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/supreme_dish",
+          "field": "chance",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "bnq7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★料理長の賢者"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "links": [
+        "bnq7_8",
+        "bnq6_8",
+        "bnq6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "bnq7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "宴会・広間 VII"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq7_9",
+        "bnq6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bnq7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "料理長の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "bnq7_10",
+        "bnq6_9",
+        "bnq6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bnq7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "宴会・広間 VII"
+      },
+      "icon": "minecraft:oak_trapdoor",
+      "cost": 2,
+      "links": [
+        "bnq7_11",
+        "bnq6_10",
+        "bnq6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:grand_chef/banquet",
+          "field": "radius",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bnq7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "料理長の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "bnq7_12",
+        "bnq6_11",
+        "grd6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "grd7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bnq7_13",
+        "grd6_0",
+        "grd6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "grd7_0",
+        "grd6_1",
+        "grd6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd7_1",
+        "grd6_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "grd7_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "grd6_3",
+        "grd6_4",
+        "grd7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★香りの誘い・覚醒"
+      },
+      "icon": "minecraft:honey_block",
+      "cost": 7,
+      "links": [
+        "grd6_4",
+        "grd6_5",
+        "grd7_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "duration",
+          "amount": 20
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "grd7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_5",
+        "grd6_6",
+        "grd7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 3,
+      "links": [
+        "grd6_6",
+        "grd6_7",
+        "grd7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.039
+        }
+      ]
+    },
+    {
+      "id": "grd7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "grd6_7",
+        "grd6_8",
+        "grd7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★料理長の加護"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "links": [
+        "grd6_8",
+        "grd6_9",
+        "grd7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "grd7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd6_9",
+        "grd7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "grd6_10",
+        "grd7_10",
+        "grd6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    },
+    {
+      "id": "grd7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "丈夫 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd6_11",
+        "grd7_11",
+        "grd6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "ktc6_0",
+        "ktc7_0",
+        "grd7_12",
+        "grd6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 21
+        }
+      ]
+    }
+  ]
+}

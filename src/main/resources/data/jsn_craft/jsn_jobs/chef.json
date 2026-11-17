@@ -1,0 +1,1367 @@
+{
+  "name": {
+    "text": "炎の調理師",
+    "color": "red"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "cook",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:chef/taste",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:chef/heat_control",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:chef/staff_meal",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:chef/mass_cooking",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:chef/aroma",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:chef/seasoning_master",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:chef/master_chef",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:chef/feast",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "料理の心得"
+      },
+      "icon": "minecraft:bowl",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.03
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "skl1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "包丁さばき I"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "skl1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "火加減修練 I"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 1,
+      "links": [
+        "skl1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tst1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "隠し味修練 I"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "skl1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tst1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "修練の証 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "tst1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "tst1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "skl1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "skl2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "大量調理修練 II"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 1,
+      "links": [
+        "skl1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "skl2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき II"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 1,
+      "links": [
+        "skl2_0",
+        "skl1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "skl2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "味見修練 II"
+      },
+      "icon": "minecraft:wooden_shovel",
+      "cost": 1,
+      "links": [
+        "skl2_1",
+        "skl1_0",
+        "skl1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/taste",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "skl2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "火加減修練 II"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 1,
+      "links": [
+        "skl2_2",
+        "skl1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tst2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "skl2_3",
+        "skl1_1",
+        "tst1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "tst2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "名料理人修練 II"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "tst2_0",
+        "tst1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/master_chef",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "tst2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "隠し味修練 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "tst2_1",
+        "tst1_0",
+        "tst1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tst2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "tst2_2",
+        "tst1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "丈夫 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "tst2_3",
+        "tst1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "まかない修練 II"
+      },
+      "icon": "minecraft:baked_potato",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "power",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "香り修練 II"
+      },
+      "icon": "minecraft:flower_pot",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "duration",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "skl2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "skl3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき III"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "skl2_1",
+        "skl2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.022
+        }
+      ]
+    },
+    {
+      "id": "skl3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "包丁さばき III"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "skl3_0",
+        "skl2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.022
+        }
+      ]
+    },
+    {
+      "id": "skl3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "火加減修練 III"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "skl3_1",
+        "skl2_1",
+        "skl2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "skl3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "料理の極意"
+      },
+      "icon": "minecraft:golden_shovel",
+      "cost": 3,
+      "links": [
+        "skl3_2",
+        "skl2_2",
+        "skl2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.06
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "skl3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "大量調理修練 III"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "skl3_3",
+        "skl2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "skl3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "包丁さばき III"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "skl3_4",
+        "skl2_3",
+        "tst2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.022
+        }
+      ]
+    },
+    {
+      "id": "tst3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "隠し味修練 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "skl3_5",
+        "tst2_0",
+        "tst2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "tst3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "tst3_0",
+        "tst2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "tst3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "tst3_1",
+        "tst2_1",
+        "tst2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "tst3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "隠し味の勘"
+      },
+      "icon": "minecraft:glow_berries",
+      "cost": 3,
+      "links": [
+        "tst3_2",
+        "tst2_2",
+        "tst2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power",
+          "amount": 0.2
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "tst3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "名料理人修練 III"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "tst3_3",
+        "tst2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/master_chef",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "tst3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "隠し味修練 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tst3_4",
+        "tst2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tst3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "料理人の体"
+      },
+      "icon": "minecraft:cooked_porkchop",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "skl2_0",
+        "skl3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "skl4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "味見修練 IV"
+      },
+      "icon": "minecraft:wooden_shovel",
+      "cost": 2,
+      "links": [
+        "skl3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/taste",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "skl4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "火加減修練 IV"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "skl3_1",
+        "skl4_0",
+        "skl3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "skl4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "skl4_1",
+        "skl3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "skl4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★神速の火加減"
+      },
+      "icon": "minecraft:soul_campfire",
+      "cost": 5,
+      "links": [
+        "skl4_2",
+        "skl3_1",
+        "skl3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "skl4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "包丁さばき IV"
+      },
+      "icon": "minecraft:iron_sword",
+      "cost": 2,
+      "links": [
+        "skl4_3",
+        "skl3_2",
+        "skl3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "skl4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "大量調理・極"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 4,
+      "links": [
+        "skl4_4",
+        "skl3_3",
+        "skl3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "skl4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "火加減修練 IV"
+      },
+      "icon": "minecraft:campfire",
+      "cost": 2,
+      "links": [
+        "skl4_5",
+        "skl3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/heat_control",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "skl4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "大量調理修練 IV"
+      },
+      "icon": "minecraft:cauldron",
+      "cost": 2,
+      "links": [
+        "skl4_6",
+        "skl3_4",
+        "skl3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/mass_cooking",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "tst4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "skl4_7",
+        "skl3_5",
+        "tst3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "tst4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "隠し味修練 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tst4_0",
+        "tst3_0",
+        "tst3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "tst4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "tst4_1",
+        "tst3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "tst4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★料理人の舌"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 5,
+      "links": [
+        "tst4_2",
+        "tst3_1",
+        "tst3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooking_mastery",
+          "amount": 0.12
+        },
+        {
+          "skill": "jsn_craft:chef/master_chef",
+          "field": "power",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "tst4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "tst4_3",
+        "tst3_2",
+        "tst3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "tst4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "宴・延長"
+      },
+      "icon": "minecraft:cake",
+      "cost": 3,
+      "links": [
+        "tst4_4",
+        "tst3_3",
+        "tst3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/feast",
+          "field": "duration",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "tst4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "名料理人修練 IV"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "tst4_5",
+        "tst3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/master_chef",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tst4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "隠し味修練 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tst4_6",
+        "tst3_4",
+        "tst3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/seasoning_master",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "まかない修練 IV"
+      },
+      "icon": "minecraft:baked_potato",
+      "cost": 2,
+      "links": [
+        "tst4_7",
+        "tst3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/staff_meal",
+          "field": "power",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "香り修練 IV"
+      },
+      "icon": "minecraft:flower_pot",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★香りの誘い・極"
+      },
+      "icon": "minecraft:honey_block",
+      "cost": 5,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:chef/aroma",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "無尽の気"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "skl4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    }
+  ]
+}

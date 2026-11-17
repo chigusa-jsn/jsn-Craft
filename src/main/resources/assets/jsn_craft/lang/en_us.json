@@ -83,5 +83,17 @@
   "item.jsn_craft.fish.shulker_fish": "Shulker Fish",
   "item.jsn_craft.fish.void_jelly": "Void Jelly",
   "item.jsn_craft.fish.elytra_ray": "Elytra Ray",
-  "item.jsn_craft.fish.ender_dragonfish": "Ender Dragonfish"
+  "item.jsn_craft.fish.ender_dragonfish": "Ender Dragonfish",
+  "item.jsn_craft.dish.grilled_fish_set": "Grilled Fish Set",
+  "item.jsn_craft.dish.vegetable_soup": "Vegetable Soup",
+  "item.jsn_craft.dish.meat_stew": "Meat Stew",
+  "item.jsn_craft.dish.honey_toast": "Honey Toast",
+  "item.jsn_craft.dish.fish_and_chips": "Fish and Chips",
+  "item.jsn_craft.dish.berry_tart": "Berry Tart",
+  "item.jsn_craft.dish.sashimi_platter": "Sashimi Platter",
+  "item.jsn_craft.dish.miner_lunch": "Miner's Lunch",
+  "item.jsn_craft.dish.warrior_steak": "Warrior's Steak",
+  "item.jsn_craft.dish.golden_feast": "Golden Feast",
+  "block.jsn_craft.cooking_station": "Cooking Station",
+  "attribute.name.jsn_craft.cooking_mastery": "Cooking Mastery"
 }

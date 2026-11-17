@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:honey_bottle",
+  "name": "はちみつ",
+  "quality": 0.05,
+  "buffs": [
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 60
+    }
+  ]
+}

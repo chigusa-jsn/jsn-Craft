@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "香りの誘い"
+  },
+  "description": {
+    "text": "おいしそうな香りで、周り（8ブロック）の仲間に20秒間 再生と移動速度アップをかける。"
+  },
+  "icon": "minecraft:honey_bottle",
+  "type": "active",
+  "effect": "aroma",
+  "radius": 8,
+  "duration": 20,
+  "amplifier": 0,
+  "stamina": 25,
+  "cooldown": 90
+}

@@ -1,0 +1,21 @@
+{
+  "result": "jsn_craft:dish/fish_and_chips",
+  "ingredients": [
+    "#c:foods/raw_fish",
+    "minecraft:potato",
+    "minecraft:wheat"
+  ],
+  "level": 10,
+  "time": 100,
+  "xp": 9,
+  "nutrition": 11,
+  "saturation": 0.9,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:fishing_bite",
+      "amount": 0.15,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

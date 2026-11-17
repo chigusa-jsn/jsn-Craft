@@ -1,0 +1,27 @@
+{
+  "result": "jsn_craft:dish/sashimi_platter",
+  "ingredients": [
+    "#c:foods/raw_fish",
+    "#c:foods/raw_fish",
+    "minecraft:dried_kelp"
+  ],
+  "level": 15,
+  "time": 100,
+  "xp": 12,
+  "nutrition": 10,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:fishing_zone",
+      "amount": 0.15,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:fishing_treasure",
+      "amount": 0.03,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

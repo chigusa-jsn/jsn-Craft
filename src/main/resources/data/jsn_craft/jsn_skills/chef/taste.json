@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "味見"
+  },
+  "description": {
+    "text": "料理の品質（★）が上がりやすくなる（+10%）。"
+  },
+  "icon": "minecraft:wooden_shovel",
+  "type": "passive",
+  "effect": "cook_quality",
+  "power": 0.1
+}

@@ -1,0 +1,17 @@
+{
+  "item": "minecraft:dried_kelp",
+  "name": "磯の香り",
+  "buffs": [
+    {
+      "effect": "minecraft:water_breathing",
+      "amplifier": 0,
+      "seconds": 120
+    },
+    {
+      "attribute": "jsn_craft:fishing_zone",
+      "amount": 0.05,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ]
+}

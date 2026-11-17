@@ -1,0 +1,19 @@
+{
+  "item": "minecraft:nautilus_shell",
+  "name": "潮の香り",
+  "quality": 0.1,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:fishing_zone",
+      "amount": 0.15,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:fishing_bite",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

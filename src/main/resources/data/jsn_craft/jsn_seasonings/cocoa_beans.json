@@ -1,0 +1,11 @@
+{
+  "item": "minecraft:cocoa_beans",
+  "name": "カカオ",
+  "buffs": [
+    {
+      "effect": "minecraft:haste",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ]
+}

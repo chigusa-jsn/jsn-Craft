@@ -1,0 +1,21 @@
+{
+  "result": "jsn_craft:dish/vegetable_soup",
+  "ingredients": [
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:beetroot"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 5,
+  "nutrition": 8,
+  "saturation": 0.7,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:stamina_regen",
+      "amount": 0.5,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ]
+}

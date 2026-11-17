@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "大量調理"
+  },
+  "description": {
+    "text": "調理したとき、20%の確率で料理が2倍できる。"
+  },
+  "icon": "minecraft:cauldron",
+  "type": "passive",
+  "effect": "cook_double",
+  "chance": 0.2
+}

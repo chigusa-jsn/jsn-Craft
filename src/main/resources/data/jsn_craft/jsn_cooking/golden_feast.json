@@ -1,0 +1,32 @@
+{
+  "result": "jsn_craft:dish/golden_feast",
+  "ingredients": [
+    "minecraft:golden_carrot",
+    "minecraft:glistering_melon_slice",
+    "minecraft:golden_apple",
+    "minecraft:cooked_beef"
+  ],
+  "level": 30,
+  "time": 160,
+  "xp": 30,
+  "nutrition": 16,
+  "saturation": 1.4,
+  "buffs": [
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 1,
+      "seconds": 300
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 30
+    },
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ]
+}

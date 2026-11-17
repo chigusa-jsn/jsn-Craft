@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "至高の一皿"
+  },
+  "description": {
+    "text": "★3の料理が、15%の確率で★4「至高」になる（満腹度・効果時間・効果の強さが大きく上がる）。"
+  },
+  "icon": "minecraft:enchanted_golden_apple",
+  "type": "passive",
+  "effect": "cook_perfect",
+  "chance": 0.15
+}

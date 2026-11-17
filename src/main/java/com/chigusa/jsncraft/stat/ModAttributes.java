@@ -68,6 +68,9 @@ public final class ModAttributes {
     /** 収穫の幸運：実った作物のドロップが増える確率。0.25 なら 25% で2倍 */
     public static final DeferredHolder<Attribute, Attribute> HARVEST_FORTUNE = register("harvest_fortune", 0, 0, 10);
 
+    /** 料理の腕前：料理の品質が上がりやすくなる */
+    public static final DeferredHolder<Attribute, Attribute> COOKING_MASTERY = register("cooking_mastery", 0, 0, 1);
+
     private static DeferredHolder<Attribute, Attribute> register(String name, double def, double min, double max) {
         return ATTRIBUTES.register(name, () ->
                 new RangedAttribute("attribute.name." + JsnCraft.MODID + "." + name, def, min, max).setSyncable(true));
@@ -97,6 +100,7 @@ public final class ModAttributes {
         event.add(EntityType.PLAYER, FISHING_TREASURE);
         event.add(EntityType.PLAYER, FISHING_BITE);
         event.add(EntityType.PLAYER, HARVEST_FORTUNE);
+        event.add(EntityType.PLAYER, COOKING_MASTERY);
     }
 
     private ModAttributes() {}

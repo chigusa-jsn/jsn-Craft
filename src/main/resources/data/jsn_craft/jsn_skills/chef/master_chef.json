@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "名料理人"
+  },
+  "description": {
+    "text": "料理が★3になりやすくなる（+10%）。"
+  },
+  "icon": "minecraft:golden_carrot",
+  "type": "passive",
+  "effect": "cook_star",
+  "power": 0.1
+}

@@ -1,0 +1,11 @@
+{
+  "item": "minecraft:sugar",
+  "name": "甘み",
+  "buffs": [
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 20
+    }
+  ]
+}

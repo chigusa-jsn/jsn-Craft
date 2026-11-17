@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:redstone",
+  "name": "刺激",
+  "buffs": [
+    {
+      "attribute": "minecraft:player.block_break_speed",
+      "amount": 0.15,
+      "operation": "add_multiplied_base",
+      "seconds": 180
+    }
+  ]
+}

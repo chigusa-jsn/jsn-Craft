@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "隠し味の極意"
+  },
+  "description": {
+    "text": "隠し味でつくバフの時間と強さが30%上がる。"
+  },
+  "icon": "minecraft:sugar",
+  "type": "passive",
+  "effect": "seasoning_master",
+  "power": 0.3
+}
