@@ -2,6 +2,7 @@ package com.chigusa.jsncraft.client;
 
 import com.chigusa.jsncraft.fishing.FishRank;
 import com.chigusa.jsncraft.network.FishDexPayload;
+import com.chigusa.jsncraft.network.DishDexPayload;
 
 import com.chigusa.jsncraft.network.BoardSnapshotPayload;
 import com.chigusa.jsncraft.network.BoardSnapshotPayload.BoardView;
@@ -97,6 +98,12 @@ public class JobScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal("図鑑").withStyle(ChatFormatting.AQUA), b -> setTab(TAB_DEX))
                 .bounds(left + 24 + tabW * 5, top + 4, tabW, 18).build());
 
+        // 図鑑タブの切り替え（魚 / 料理）
+        fishDexBtn = addRenderableWidget(Button.builder(Component.literal("魚"), b -> { dishMode = false; dexScroll = 0; })
+                .bounds(left + panelW - 64, top + 27, 26, 13).build());
+        dishDexBtn = addRenderableWidget(Button.builder(Component.literal("料理"), b -> { dishMode = true; dexScroll = 0; })
+                .bounds(left + panelW - 36, top + 27, 30, 13).build());
+
         // 肩書の変更（ステータスタブ）
         titleBtn = addRenderableWidget(Button.builder(Component.literal("肩書を変更"), b -> titleMenu = !titleMenu)
                 .bounds(left + panelW - 80, top + 32, 70, 14).build());
@@ -156,6 +163,10 @@ public class JobScreen extends Screen {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         titleBtn.visible = tab == TAB_STATUS;
+        fishDexBtn.visible = tab == TAB_DEX;
+        dishDexBtn.visible = tab == TAB_DEX;
+        fishDexBtn.active = dishMode;
+        dishDexBtn.active = !dishMode;
         if (tab != TAB_STATUS) titleMenu = false;
         boolean multi = isBoardTab() && boards().size() > 1;
         QuestView selected = selectedQuest();
@@ -782,6 +793,9 @@ public class JobScreen extends Screen {
 
     private static final int DEX_CELL = 20;
     private int dexScroll;
+    /** 図鑑タブ：false なら魚図鑑、true なら料理図鑑 */
+    private static boolean dishMode;
+    private Button fishDexBtn, dishDexBtn;
 
     private int dexCols() {
         return Math.max(1, (panelW - 20) / DEX_CELL);
@@ -792,11 +806,16 @@ public class JobScreen extends Screen {
     }
 
     private int dexMaxScroll() {
-        int rows = (FishDexPayload.client.entries().size() + dexCols() - 1) / dexCols();
+        int size = dishMode ? DishDexPayload.client.entries().size() : FishDexPayload.client.entries().size();
+        int rows = (size + dexCols() - 1) / dexCols();
         return Math.max(0, rows - dexVisibleRows());
     }
 
     private void renderDex(GuiGraphics g, int mouseX, int mouseY) {
+        if (dishMode) {
+            renderDishDex(g, mouseX, mouseY);
+            return;
+        }
         List<FishDexPayload.Entry> list = FishDexPayload.client.entries();
         int x0 = left + 10, y0 = top + 30;
         int caught = 0;
@@ -811,12 +830,12 @@ public class JobScreen extends Screen {
         }
         int pct = list.isEmpty() ? 0 : caught * 100 / list.size();
         g.drawString(font, Component.literal("魚図鑑  " + caught + " / " + list.size() + "（" + pct + "%）").withStyle(ChatFormatting.AQUA), x0, y0, 0xFFFFFF);
-        int rx = x0 + 130;
+        int rx = x0 + 114;
         for (int r = 0; r < 5; r++) {
             FishRank rank = FishRank.byIndex(r);
             String t = perRankCaught[r] + "/" + perRank[r];
             g.drawString(font, Component.literal(t).withStyle(rank.color), rx, y0, 0xFFFFFF);
-            rx += font.width(t) + 8;
+            rx += font.width(t) + 6;
         }
 
         int cols = dexCols();
@@ -861,6 +880,82 @@ public class JobScreen extends Screen {
             } else if (rank.ordinal() >= FishRank.RARE.ordinal()) {
                 lines.add(Component.literal(rank == FishRank.LEGEND ? "大海の網主にならないと釣れない"
                         : "水辺の釣り師 Lv." + (rank == FishRank.RARE ? 10 : 25) + " から釣れる").withStyle(ChatFormatting.DARK_GRAY));
+            }
+            g.renderComponentTooltip(font, lines, mouseX, mouseY);
+        }
+    }
+
+    private static String ingredientName(String spec) {
+        return switch (spec) {
+            case "#c:foods/raw_fish" -> "魚（どれでも）";
+            case "#c:foods/raw_meat" -> "生肉（どれでも）";
+            case "#c:foods/cooked_meat" -> "焼いた肉（どれでも）";
+            default -> {
+                if (spec.startsWith("#")) yield spec;
+                var id = net.minecraft.resources.ResourceLocation.tryParse(spec);
+                yield id == null ? spec : net.minecraft.core.registries.BuiltInRegistries.ITEM.get(id).getDescription().getString();
+            }
+        };
+    }
+
+    private void renderDishDex(GuiGraphics g, int mouseX, int mouseY) {
+        List<DishDexPayload.Entry> list = DishDexPayload.client.entries();
+        int x0 = left + 10, y0 = top + 30;
+        int made = 0;
+        int[] perRank = new int[4], perRankMade = new int[4];
+        for (DishDexPayload.Entry e : list) {
+            int r = Math.min(3, e.rank());
+            perRank[r]++;
+            if (e.count() > 0) {
+                made++;
+                perRankMade[r]++;
+            }
+        }
+        int pct = list.isEmpty() ? 0 : made * 100 / list.size();
+        g.drawString(font, Component.literal("料理図鑑  " + made + " / " + list.size() + "（" + pct + "%）").withStyle(ChatFormatting.GOLD), x0, y0, 0xFFFFFF);
+        int rx = x0 + 120;
+        for (int r = 0; r < 4; r++) {
+            var rank = com.chigusa.jsncraft.cooking.DishRank.byIndex(r);
+            String t = perRankMade[r] + "/" + perRank[r];
+            g.drawString(font, Component.literal(t).withStyle(rank.color), rx, y0, 0xFFFFFF);
+            rx += font.width(t) + 7;
+        }
+        int cols = dexCols();
+        int gx = left + (panelW - cols * DEX_CELL) / 2, gy = top + 44;
+        int visible = dexVisibleRows();
+        dexScroll = Math.min(dexScroll, dexMaxScroll());
+        DishDexPayload.Entry hovered = null;
+        for (int i = 0; i < list.size(); i++) {
+            int row = i / cols - dexScroll;
+            if (row < 0 || row >= visible) continue;
+            DishDexPayload.Entry e = list.get(i);
+            int cx = gx + (i % cols) * DEX_CELL, cy = gy + row * DEX_CELL;
+            g.fill(cx, cy, cx + DEX_CELL - 2, cy + DEX_CELL - 2, com.chigusa.jsncraft.cooking.DishRank.byIndex(e.rank()).frameColor);
+            g.fill(cx + 1, cy + 1, cx + DEX_CELL - 3, cy + DEX_CELL - 3, e.count() > 0 ? 0xFF3A2E24 : 0xFF151520);
+            if (e.count() > 0) g.renderItem(e.icon(), cx + 1, cy + 1);
+            else g.drawCenteredString(font, "?", cx + (DEX_CELL - 2) / 2, cy + 5, 0x666677);
+            if (mouseX >= cx && mouseX < cx + DEX_CELL - 2 && mouseY >= cy && mouseY < cy + DEX_CELL - 2) hovered = e;
+        }
+        if (dexMaxScroll() > 0) {
+            g.drawString(font, "↕ " + (dexScroll + 1) + "/" + (dexMaxScroll() + 1), left + panelW - 40, top + panelH - 12, 0x888899);
+        }
+        if (hovered != null) {
+            var rank = com.chigusa.jsncraft.cooking.DishRank.byIndex(hovered.rank());
+            List<Component> lines = new ArrayList<>();
+            lines.add(hovered.count() > 0 ? hovered.icon().getHoverName().copy().withStyle(rank.color, ChatFormatting.BOLD)
+                    : Component.literal("？？？").withStyle(ChatFormatting.DARK_GRAY));
+            lines.add(Component.literal("No." + hovered.no() + "  ").withStyle(ChatFormatting.GRAY)
+                    .append(Component.literal(rank.label).withStyle(rank.color))
+                    .append(Component.literal("  調理師Lv." + hovered.level()).withStyle(ChatFormatting.GRAY)));
+            StringBuilder sb = new StringBuilder("材料：");
+            for (int i = 0; i < hovered.ingredients().size(); i++) {
+                if (i > 0) sb.append("、");
+                sb.append(ingredientName(hovered.ingredients().get(i)));
+            }
+            lines.add(Component.literal(sb.toString()).withStyle(ChatFormatting.YELLOW));
+            if (hovered.count() > 0) {
+                lines.add(Component.literal("作った数 " + hovered.count() + "  最高 " + com.chigusa.jsncraft.cooking.DishItem.stars(hovered.best()))
+                        .withStyle(ChatFormatting.WHITE));
             }
             g.renderComponentTooltip(font, lines, mouseX, mouseY);
         }

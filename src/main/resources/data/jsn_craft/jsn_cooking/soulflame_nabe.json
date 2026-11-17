@@ -1,0 +1,36 @@
+{
+  "result": "jsn_craft:dish/soulflame_nabe",
+  "ingredients": [
+    "jsn_craft:fish/soulflame_catfish",
+    "jsn_craft:miso",
+    "jsn_craft:dashi",
+    "jsn_craft:cabbage"
+  ],
+  "level": 48,
+  "time": 300,
+  "xp": 180,
+  "nutrition": 20,
+  "saturation": 1.7,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 16,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 1.0,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:lifesteal",
+      "amount": 0.06,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "legend",
+  "no": 49
+}

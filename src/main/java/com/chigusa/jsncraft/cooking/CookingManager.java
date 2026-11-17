@@ -53,15 +53,18 @@ public class CookingManager<T> extends SimpleJsonResourceReloadListener {
 
     // ---- レシピ用 ----
 
-    /** 材料に合うレシピの番号（なければ -1）。材料が多いレシピを優先 */
+    /** 材料に合うレシピの番号（なければ -1）。材料が多いレシピ、次に「#タグ」でなく名指しの材料が多いレシピを優先 */
     public static int findRecipe(List<ItemStack> slots) {
-        int best = -1, bestSize = -1;
+        int best = -1, bestScore = -1;
         List<Map.Entry<ResourceLocation, CookingRecipe>> list = RECIPES.entries();
         for (int i = 0; i < list.size(); i++) {
             CookingRecipe r = list.get(i).getValue();
-            if (r.ingredients().size() > bestSize && r.match(slots) != null) {
+            int specific = 0;
+            for (String s : r.ingredients()) if (!s.startsWith("#")) specific++;
+            int score = r.ingredients().size() * 10 + specific;
+            if (score > bestScore && r.match(slots) != null) {
                 best = i;
-                bestSize = r.ingredients().size();
+                bestScore = score;
             }
         }
         return best;

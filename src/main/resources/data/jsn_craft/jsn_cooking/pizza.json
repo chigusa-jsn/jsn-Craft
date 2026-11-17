@@ -1,0 +1,24 @@
+{
+  "result": "jsn_craft:dish/pizza",
+  "ingredients": [
+    "jsn_craft:dough",
+    "jsn_craft:tomato_sauce",
+    "jsn_craft:cheese",
+    "minecraft:brown_mushroom"
+  ],
+  "level": 20,
+  "time": 160,
+  "xp": 18,
+  "nutrition": 12,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ],
+  "rank": "feast",
+  "no": 23
+}

@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:dish/mushroom_omelette",
+  "ingredients": [
+    "minecraft:egg",
+    "minecraft:brown_mushroom",
+    "jsn_craft:butter"
+  ],
+  "level": 8,
+  "time": 100,
+  "xp": 8,
+  "nutrition": 8,
+  "saturation": 0.8,
+  "buffs": [
+    {
+      "attribute": "minecraft:player.block_break_speed",
+      "amount": 0.1,
+      "operation": "add_multiplied_base",
+      "seconds": 240
+    }
+  ],
+  "rank": "normal",
+  "no": 11
+}

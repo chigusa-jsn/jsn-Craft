@@ -1,0 +1,35 @@
+{
+  "result": "jsn_craft:dish/storm_king_steak",
+  "ingredients": [
+    "jsn_craft:fish/storm_king",
+    "jsn_craft:butter",
+    "jsn_craft:chili",
+    "jsn_craft:salt"
+  ],
+  "level": 45,
+  "time": 300,
+  "xp": 150,
+  "nutrition": 20,
+  "saturation": 1.6,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": 0.4,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 1,
+      "seconds": 600
+    }
+  ],
+  "rank": "legend",
+  "no": 46
+}

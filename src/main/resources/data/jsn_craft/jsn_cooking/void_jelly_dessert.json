@@ -1,0 +1,34 @@
+{
+  "result": "jsn_craft:dish/void_jelly_dessert",
+  "ingredients": [
+    "jsn_craft:fish/void_jelly",
+    "minecraft:sugar",
+    "minecraft:chorus_fruit"
+  ],
+  "level": 40,
+  "time": 220,
+  "xp": 60,
+  "nutrition": 12,
+  "saturation": 1.2,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:slow_falling",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ],
+  "rank": "fine",
+  "no": 44
+}

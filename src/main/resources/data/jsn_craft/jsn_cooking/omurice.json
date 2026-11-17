@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/omurice",
+  "ingredients": [
+    "jsn_craft:cooked_rice",
+    "minecraft:egg",
+    "jsn_craft:tomato_sauce",
+    "jsn_craft:onion"
+  ],
+  "level": 18,
+  "time": 160,
+  "xp": 16,
+  "nutrition": 12,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ],
+  "rank": "feast",
+  "no": 19
+}

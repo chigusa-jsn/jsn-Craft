@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("16");
+        PayloadRegistrar registrar = event.registrar("17");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -72,6 +72,8 @@ public final class ModNetwork {
                 }));
         registrar.playToClient(CookingRecipesPayload.TYPE, CookingRecipesPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> CookingRecipesPayload.client = p));
+        registrar.playToClient(DishDexPayload.TYPE, DishDexPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> DishDexPayload.client = p));
         registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> FishDexPayload.client = p));
         registrar.playToClient(OreRevealPayload.TYPE, OreRevealPayload.STREAM_CODEC,
@@ -104,6 +106,7 @@ public final class ModNetwork {
                 QuestService.leftReceptionist(player); // Kキーは受付嬢の外
                 QuestService.sendList(player); // 先に依頼一覧を送ってから、メニューを開かせる
                 net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, FishDexPayload.of(player));
+                net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, DishDexPayload.of(player));
                 SkillBoardService.sendSnapshot(player, true);
             }
         });

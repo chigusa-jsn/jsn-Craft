@@ -1,0 +1,22 @@
+{
+  "result": "jsn_craft:dish/salad",
+  "ingredients": [
+    "jsn_craft:cabbage",
+    "jsn_craft:tomato",
+    "jsn_craft:onion"
+  ],
+  "level": 3,
+  "time": 100,
+  "xp": 6,
+  "nutrition": 6,
+  "saturation": 0.6,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ],
+  "rank": "normal",
+  "no": 6
+}

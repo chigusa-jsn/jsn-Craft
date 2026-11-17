@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:dish/onigiri",
+  "ingredients": [
+    "jsn_craft:cooked_rice",
+    "jsn_craft:salt",
+    "minecraft:dried_kelp"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 5,
+  "nutrition": 7,
+  "saturation": 0.7,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:stamina_regen",
+      "amount": 0.4,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ],
+  "rank": "normal",
+  "no": 1
+}

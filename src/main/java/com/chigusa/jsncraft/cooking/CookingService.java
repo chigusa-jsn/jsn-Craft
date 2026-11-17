@@ -135,6 +135,13 @@ public final class CookingService {
         if (divine) time = 10;
         be.start(result, (int) Math.round(time));
 
+        // 料理図鑑に記録
+        int dexResult = -1;
+        if (result.getItem() instanceof DishItem && recipe.no() < 999) {
+            var id = CookingManager.RECIPES.entries().get(idx).getKey();
+            dexResult = player.getData(com.chigusa.jsncraft.data.ModAttachments.DISH_DEX).record(id.toString(), quality);
+        }
+
         // 職業経験値（品質が高いほど多い）
         JobService.onAction(player, rule -> rule.action().equals("cook"), recipe.xp() * FOOD_MULT[quality - 1]);
 
@@ -152,6 +159,12 @@ public final class CookingService {
         var msg = Component.literal("調理開始：").withStyle(ChatFormatting.GRAY).append(result.getHoverName().copy().withStyle(ChatFormatting.WHITE))
                 .append(Component.literal(" " + DishItem.stars(quality)).withStyle(color));
         if (doubled) msg.append(Component.literal(" ×2 大量調理！").withStyle(ChatFormatting.AQUA));
+        if (dexResult == com.chigusa.jsncraft.fishing.FishDexData.NEW) msg.append(Component.literal(" 図鑑に登録！").withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD));
+        if (recipe.rankEnum() == DishRank.LEGEND && level instanceof ServerLevel sl2) {
+            sl2.getServer().getPlayerList().broadcastSystemMessage(Component.literal("✦ " + player.getGameProfile().getName()
+                    + " が伝説の料理「").withStyle(ChatFormatting.GOLD).append(result.getHoverName().copy())
+                    .append(Component.literal("」" + DishItem.stars(quality) + " を作った！").withStyle(ChatFormatting.GOLD)), false);
+        }
         player.displayClientMessage(msg, true);
         return true;
     }

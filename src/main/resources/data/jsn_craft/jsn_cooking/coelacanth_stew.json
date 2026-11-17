@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:dish/coelacanth_stew",
+  "ingredients": [
+    "jsn_craft:fish/coelacanth",
+    "jsn_craft:miso",
+    "jsn_craft:onion",
+    "jsn_craft:dashi"
+  ],
+  "level": 38,
+  "time": 220,
+  "xp": 55,
+  "nutrition": 16,
+  "saturation": 1.4,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 10,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:damage_reduction",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 41
+}

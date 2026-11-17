@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:dish/golden_carp_nitsuke",
+  "ingredients": [
+    "jsn_craft:fish/golden_carp",
+    "jsn_craft:soy_sauce",
+    "minecraft:sugar",
+    "jsn_craft:dashi"
+  ],
+  "level": 35,
+  "time": 220,
+  "xp": 50,
+  "nutrition": 15,
+  "saturation": 1.3,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:job_xp_bonus",
+      "amount": 0.15,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 39
+}

@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:dish/mapo_tofu",
+  "ingredients": [
+    "jsn_craft:soybean",
+    "jsn_craft:chili",
+    "#c:foods/raw_meat",
+    "jsn_craft:miso"
+  ],
+  "level": 24,
+  "time": 160,
+  "xp": 22,
+  "nutrition": 12,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "effect": "minecraft:strength",
+      "amplifier": 0,
+      "seconds": 120
+    },
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 180
+    }
+  ],
+  "rank": "feast",
+  "no": 30
+}

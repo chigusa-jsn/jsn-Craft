@@ -1,0 +1,22 @@
+{
+  "result": "jsn_craft:dish/edamame",
+  "ingredients": [
+    "jsn_craft:soybean",
+    "jsn_craft:salt"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 4,
+  "nutrition": 4,
+  "saturation": 0.5,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 0.5,
+      "operation": "add_value",
+      "seconds": 180
+    }
+  ],
+  "rank": "normal",
+  "no": 2
+}

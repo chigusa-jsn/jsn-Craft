@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:dish/cabbage_roll",
+  "ingredients": [
+    "jsn_craft:cabbage",
+    "#c:foods/raw_meat",
+    "jsn_craft:tomato_sauce"
+  ],
+  "level": 10,
+  "time": 100,
+  "xp": 10,
+  "nutrition": 10,
+  "saturation": 0.9,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 240
+    }
+  ],
+  "rank": "normal",
+  "no": 15
+}

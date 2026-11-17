@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/curry_rice",
+  "ingredients": [
+    "jsn_craft:cooked_rice",
+    "jsn_craft:chili",
+    "jsn_craft:onion",
+    "#c:foods/raw_meat"
+  ],
+  "level": 15,
+  "time": 160,
+  "xp": 15,
+  "nutrition": 12,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ],
+  "rank": "feast",
+  "no": 17
+}

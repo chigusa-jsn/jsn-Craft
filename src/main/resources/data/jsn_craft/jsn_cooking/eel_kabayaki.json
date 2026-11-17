@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/eel_kabayaki",
+  "ingredients": [
+    "jsn_craft:fish/thunder_eel",
+    "jsn_craft:cooked_rice",
+    "jsn_craft:soy_sauce",
+    "minecraft:sugar"
+  ],
+  "level": 35,
+  "time": 220,
+  "xp": 50,
+  "nutrition": 16,
+  "saturation": 1.4,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.attack_speed",
+      "amount": 0.3,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 1,
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 38
+}

@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/lemon_chicken",
+  "ingredients": [
+    "minecraft:chicken",
+    "jsn_craft:lemon",
+    "jsn_craft:butter",
+    "jsn_craft:salt"
+  ],
+  "level": 25,
+  "time": 160,
+  "xp": 22,
+  "nutrition": 13,
+  "saturation": 1.1,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 240
+    },
+    {
+      "attribute": "jsn_craft:lifesteal",
+      "amount": 0.03,
+      "operation": "add_value",
+      "seconds": 240
+    }
+  ],
+  "rank": "feast",
+  "no": 31
+}

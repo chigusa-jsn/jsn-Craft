@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:dish/glacier_sashimi",
+  "ingredients": [
+    "jsn_craft:fish/glacier_salmon",
+    "jsn_craft:soy_sauce",
+    "jsn_craft:lemon"
+  ],
+  "level": 36,
+  "time": 220,
+  "xp": 50,
+  "nutrition": 14,
+  "saturation": 1.3,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 40
+}

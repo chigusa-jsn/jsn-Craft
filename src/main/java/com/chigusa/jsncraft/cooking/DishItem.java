@@ -67,6 +67,25 @@ public class DishItem extends Item {
         if (q == 0) tooltip.add(Component.literal("調理台で炎の調理師が作る料理").withStyle(ChatFormatting.DARK_GRAY));
     }
 
+    /** しゃがみ右クリックで、ブロックの上に料理を置く */
+    @Override
+    public net.minecraft.world.InteractionResult useOn(net.minecraft.world.item.context.UseOnContext ctx) {
+        var player = ctx.getPlayer();
+        if (player == null || !player.isShiftKeyDown() || ctx.getClickedFace() != net.minecraft.core.Direction.UP) return super.useOn(ctx);
+        Level level = ctx.getLevel();
+        net.minecraft.core.BlockPos pos = ctx.getClickedPos().above();
+        if (!level.getBlockState(pos).canBeReplaced()) return net.minecraft.world.InteractionResult.FAIL;
+        if (!level.isClientSide) {
+            var state = ModCooking.PLACED_DISH.get().defaultBlockState()
+                    .setValue(PlacedDishBlock.FACING, player.getDirection().getOpposite());
+            level.setBlock(pos, state, 3);
+            if (level.getBlockEntity(pos) instanceof PlacedDishBlockEntity be) be.setDish(ctx.getItemInHand().copyWithCount(1));
+            if (!player.getAbilities().instabuild) ctx.getItemInHand().shrink(1);
+            level.playSound(null, pos, net.minecraft.sounds.SoundEvents.WOOD_PLACE, net.minecraft.sounds.SoundSource.BLOCKS, 0.7F, 1.4F);
+        }
+        return net.minecraft.world.InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!level.isClientSide && entity instanceof ServerPlayer player) CookingService.onEat(player, stack);

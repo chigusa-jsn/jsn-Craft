@@ -1,0 +1,46 @@
+{
+  "result": "jsn_craft:dish/ender_dragon_feast",
+  "ingredients": [
+    "jsn_craft:fish/ender_dragonfish",
+    "minecraft:golden_apple",
+    "jsn_craft:cooked_rice",
+    "jsn_craft:soy_sauce"
+  ],
+  "level": 50,
+  "time": 300,
+  "xp": 250,
+  "nutrition": 20,
+  "saturation": 2.0,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 900
+    },
+    {
+      "attribute": "jsn_craft:crit_chance",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 900
+    },
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 10,
+      "operation": "add_value",
+      "seconds": 900
+    },
+    {
+      "effect": "minecraft:slow_falling",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 1,
+      "seconds": 60
+    }
+  ],
+  "rank": "legend",
+  "no": 50
+}

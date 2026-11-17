@@ -1,0 +1,24 @@
+{
+  "result": "jsn_craft:dish/hamburger",
+  "ingredients": [
+    "minecraft:bread",
+    "minecraft:beef",
+    "jsn_craft:cheese",
+    "jsn_craft:tomato"
+  ],
+  "level": 22,
+  "time": 160,
+  "xp": 20,
+  "nutrition": 14,
+  "saturation": 1.1,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 6,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ],
+  "rank": "feast",
+  "no": 27
+}

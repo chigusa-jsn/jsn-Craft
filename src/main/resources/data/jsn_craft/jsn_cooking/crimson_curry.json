@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/crimson_curry",
+  "ingredients": [
+    "jsn_craft:fish/crimson_piranha",
+    "jsn_craft:chili",
+    "jsn_craft:cooked_rice",
+    "jsn_craft:onion"
+  ],
+  "level": 38,
+  "time": 220,
+  "xp": 55,
+  "nutrition": 16,
+  "saturation": 1.4,
+  "buffs": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 600
+    },
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 3,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 42
+}

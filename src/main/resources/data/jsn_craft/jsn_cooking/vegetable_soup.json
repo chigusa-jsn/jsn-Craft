@@ -17,5 +17,7 @@
       "operation": "add_value",
       "seconds": 180
     }
-  ]
+  ],
+  "rank": "normal",
+  "no": 3
 }

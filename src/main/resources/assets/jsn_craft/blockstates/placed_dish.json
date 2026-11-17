@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "jsn_craft:block/placed_dish"
+    },
+    "facing=south": {
+      "model": "jsn_craft:block/placed_dish"
+    },
+    "facing=east": {
+      "model": "jsn_craft:block/placed_dish"
+    },
+    "facing=west": {
+      "model": "jsn_craft:block/placed_dish"
+    }
+  }
+}

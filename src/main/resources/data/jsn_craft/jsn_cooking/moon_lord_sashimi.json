@@ -1,0 +1,41 @@
+{
+  "result": "jsn_craft:dish/moon_lord_sashimi",
+  "ingredients": [
+    "jsn_craft:fish/moon_lord",
+    "jsn_craft:soy_sauce",
+    "jsn_craft:lemon",
+    "minecraft:glow_berries"
+  ],
+  "level": 45,
+  "time": 300,
+  "xp": 150,
+  "nutrition": 20,
+  "saturation": 1.6,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 3,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "effect": "minecraft:night_vision",
+      "amplifier": 0,
+      "seconds": 900
+    },
+    {
+      "attribute": "jsn_craft:job_xp_bonus",
+      "amount": 0.25,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 1.0,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "legend",
+  "no": 45
+}

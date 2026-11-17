@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:dish/pancake",
+  "ingredients": [
+    "jsn_craft:flour",
+    "minecraft:egg",
+    "minecraft:milk_bucket",
+    "minecraft:sugar"
+  ],
+  "level": 5,
+  "time": 100,
+  "xp": 8,
+  "nutrition": 8,
+  "saturation": 0.8,
+  "buffs": [
+    {
+      "effect": "minecraft:haste",
+      "amplifier": 0,
+      "seconds": 180
+    }
+  ],
+  "rank": "normal",
+  "no": 9
+}

@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:dish/grape_jelly",
+  "ingredients": [
+    "jsn_craft:grape",
+    "minecraft:sugar",
+    "minecraft:slime_ball"
+  ],
+  "level": 20,
+  "time": 160,
+  "xp": 16,
+  "nutrition": 6,
+  "saturation": 0.8,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.06,
+      "operation": "add_value",
+      "seconds": 240
+    }
+  ],
+  "rank": "feast",
+  "no": 25
+}

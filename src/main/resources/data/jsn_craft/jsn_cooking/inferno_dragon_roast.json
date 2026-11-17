@@ -1,0 +1,34 @@
+{
+  "result": "jsn_craft:dish/inferno_dragon_roast",
+  "ingredients": [
+    "jsn_craft:fish/inferno_dragonfish",
+    "jsn_craft:chili",
+    "jsn_craft:salt",
+    "minecraft:blaze_powder"
+  ],
+  "level": 48,
+  "time": 300,
+  "xp": 180,
+  "nutrition": 20,
+  "saturation": 1.6,
+  "buffs": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 1200
+    },
+    {
+      "effect": "minecraft:strength",
+      "amplifier": 1,
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.15,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "legend",
+  "no": 48
+}

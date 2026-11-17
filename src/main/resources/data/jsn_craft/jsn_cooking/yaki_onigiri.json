@@ -1,0 +1,21 @@
+{
+  "result": "jsn_craft:dish/yaki_onigiri",
+  "ingredients": [
+    "jsn_craft:cooked_rice",
+    "jsn_craft:soy_sauce"
+  ],
+  "level": 8,
+  "time": 100,
+  "xp": 8,
+  "nutrition": 8,
+  "saturation": 0.9,
+  "buffs": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 90
+    }
+  ],
+  "rank": "normal",
+  "no": 12
+}

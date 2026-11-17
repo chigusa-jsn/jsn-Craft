@@ -42,13 +42,28 @@ public final class ModCooking {
     public static final Supplier<BlockEntityType<CookingStationBlockEntity>> COOKING_STATION_BE = BLOCK_ENTITIES.register(
             "cooking_station", () -> BlockEntityType.Builder.of(CookingStationBlockEntity::new, COOKING_STATION.get()).build(null));
 
+    /** 置いた料理（アイテムはなし。料理を持ってしゃがみ右クリックで置く） */
+    public static final DeferredBlock<PlacedDishBlock> PLACED_DISH = BLOCKS.register("placed_dish",
+            () -> new PlacedDishBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.2F)
+                    .sound(SoundType.WOOD).noOcclusion().pushReaction(net.minecraft.world.level.material.PushReaction.DESTROY)));
+    public static final Supplier<BlockEntityType<PlacedDishBlockEntity>> PLACED_DISH_BE = BLOCK_ENTITIES.register(
+            "placed_dish", () -> BlockEntityType.Builder.of(PlacedDishBlockEntity::new, PLACED_DISH.get()).build(null));
+
     public static final DeferredHolder<MenuType<?>, MenuType<CookingMenu>> COOKING_MENU = MENUS.register("cooking_station",
             () -> IMenuTypeExtension.create(CookingMenu::new));
 
     /** 料理の一覧（ここに足すと登録される。絵は tools/gen_dish_art.py） */
     public static final String[] DISHES = {
-            "grilled_fish_set", "vegetable_soup", "meat_stew", "honey_toast", "fish_and_chips",
-            "berry_tart", "sashimi_platter", "miner_lunch", "warrior_steak", "golden_feast"};
+            "onigiri", "edamame", "vegetable_soup", "grilled_fish_set", "miso_soup",
+            "salad", "honey_toast", "meat_stew", "pancake", "lemonade",
+            "mushroom_omelette", "yaki_onigiri", "fish_and_chips", "berry_tart", "cabbage_roll",
+            "sashimi_platter", "curry_rice", "sushi", "omurice", "ramen",
+            "miner_lunch", "warrior_steak", "pizza", "tempura", "grape_jelly",
+            "gyudon", "hamburger", "ume_ochazuke", "gratin", "mapo_tofu",
+            "lemon_chicken", "paella", "cheese_fondue", "golden_feast", "toro_don",
+            "swordfish_steak", "anglerfish_hotpot", "eel_kabayaki", "golden_carp_nitsuke", "glacier_sashimi",
+            "coelacanth_stew", "crimson_curry", "soul_eater_skewer", "void_jelly_dessert", "moon_lord_sashimi",
+            "storm_king_steak", "ice_queen_carpaccio", "inferno_dragon_roast", "soulflame_nabe", "ender_dragon_feast"};
 
     public static final List<DeferredItem<Item>> DISH_ITEMS = new ArrayList<>();
 

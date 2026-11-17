@@ -52,5 +52,13 @@ public final class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    /** 料理図鑑（作った数と最高の★）。中身は魚図鑑と同じ形。死んでも消えない。 */
+    public static final Supplier<AttachmentType<com.chigusa.jsncraft.fishing.FishDexData>> DISH_DEX = ATTACHMENT_TYPES.register(
+            "dish_dex",
+            () -> AttachmentType.builder(() -> new com.chigusa.jsncraft.fishing.FishDexData())
+                    .serialize(com.chigusa.jsncraft.fishing.FishDexData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
     private ModAttachments() {}
 }
