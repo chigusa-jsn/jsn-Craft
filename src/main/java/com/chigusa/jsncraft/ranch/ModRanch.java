@@ -41,6 +41,8 @@ public final class ModRanch {
     public static final DeferredItem<Item> PREMIUM_PORK = ModEntities.ITEMS.registerSimpleItem("premium_pork", new Item.Properties().food(raw(4, 0.4F)).rarity(Rarity.UNCOMMON));
     public static final DeferredItem<Item> PREMIUM_MUTTON = ModEntities.ITEMS.registerSimpleItem("premium_mutton", new Item.Properties().food(raw(3, 0.4F)).rarity(Rarity.UNCOMMON));
     public static final DeferredItem<Item> PREMIUM_CHICKEN = ModEntities.ITEMS.registerSimpleItem("premium_chicken", new Item.Properties().food(raw(3, 0.4F)).rarity(Rarity.UNCOMMON));
+    /** トリュフ：トリュフ豚が見つける。料理の香りづけ（調味料）にすると品質がとても上がりやすい */
+    public static final DeferredItem<Item> TRUFFLE_HINT = ModEntities.ITEMS.registerSimpleItem("truffle", new Item.Properties().rarity(Rarity.RARE));
     public static final DeferredItem<Item> GOLDEN_EGG = ModEntities.ITEMS.registerSimpleItem("golden_egg", new Item.Properties().stacksTo(16).rarity(Rarity.RARE));
 
     public static void init() {}
@@ -55,6 +57,7 @@ public final class ModRanch {
             event.accept(PREMIUM_MUTTON);
             event.accept(PREMIUM_CHICKEN);
             event.accept(GOLDEN_EGG);
+            event.accept(TRUFFLE_HINT);
         }
     }
 

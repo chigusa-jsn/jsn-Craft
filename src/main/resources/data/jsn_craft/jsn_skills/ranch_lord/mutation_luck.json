@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "突然変異の兆し"
+  },
+  "description": {
+    "text": "繁殖させたとき、突然変異の子が生まれやすくなる（+2%）。"
+  },
+  "icon": "minecraft:fermented_spider_eye",
+  "type": "passive",
+  "effect": "mutation_luck",
+  "power": 0.02
+}

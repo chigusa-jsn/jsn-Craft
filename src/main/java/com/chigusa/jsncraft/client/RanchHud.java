@@ -33,10 +33,17 @@ import java.util.Map;
  */
 public final class RanchHud {
     private static final Map<Integer, Integer> RANKS = new HashMap<>();
+    private static final Map<Integer, com.chigusa.jsncraft.ranch.Mutant> MUTANTS = new HashMap<>();
     private static final int[] COLORS = {0xFFFFFFFF, 0xFFC8C8C8, 0xFF7CE07C, 0xFF60B8FF, 0xFFD080FF, 0xFFFFC830};
 
-    public static void setRank(int entityId, int rank) {
+    public static void setRank(int entityId, int rank, int mutant) {
         RANKS.put(entityId, rank);
+        if (mutant > 0) MUTANTS.put(entityId, com.chigusa.jsncraft.ranch.Mutant.byId(mutant));
+        else MUTANTS.remove(entityId);
+    }
+
+    public static com.chigusa.jsncraft.ranch.Mutant mutant(Entity e) {
+        return MUTANTS.getOrDefault(e.getId(), com.chigusa.jsncraft.ranch.Mutant.NONE);
     }
 
     public static int rank(Entity e) {
@@ -52,11 +59,14 @@ public final class RanchHud {
         Font font = mc.font;
         int cx = g.guiWidth() / 2, y = g.guiHeight() / 2 + 10;
         String stars = "★".repeat(rank) + "☆".repeat(5 - rank);
-        String name = a.getName().getString() + (a.isBaby() ? "（子ども）" : "");
+        var mut = mutant(a);
+        String name = (mut != com.chigusa.jsncraft.ranch.Mutant.NONE ? "✦" + mut.label : a.getName().getString()) + (a.isBaby() ? "（子ども）" : "");
         String line = stars + " " + name;
-        g.drawString(font, line, cx - font.width(line) / 2, y, COLORS[rank], true);
+        int color = mut == com.chigusa.jsncraft.ranch.Mutant.NONE ? COLORS[rank]
+                : java.awt.Color.HSBtoRGB((mc.level.getGameTime() % 60) / 60F, 0.5F, 1F) | 0xFF000000;   // 突然変異は虹色に光る文字
+        g.drawString(font, line, cx - font.width(line) / 2, y, color, true);
         if (!mc.player.isShiftKeyDown()) return;
-        List<String> info = new ArrayList<>();
+        List<String> info = new ArrayList<>(mut.perks);
         if (rank > 1) info.add("取れる量 +" + 25 * (rank - 1) + "%");
         if (rank >= 3 && (a instanceof Cow || a instanceof Pig || a instanceof Sheep || a instanceof Chicken))
             info.add("高級肉 " + 25 * (rank - 2) + "%");
@@ -91,9 +101,19 @@ public final class RanchHud {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level == null || mc.player == null || mc.isPaused() || RANKS.isEmpty()) return;
             var r = mc.level.getRandom();
-            if (mc.level.getGameTime() % 600 == 0) RANKS.keySet().removeIf(id -> mc.level.getEntity(id) == null);   // いなくなった動物を忘れる
+            if (mc.level.getGameTime() % 600 == 0) {   // いなくなった動物を忘れる
+                RANKS.keySet().removeIf(id -> mc.level.getEntity(id) == null);
+                MUTANTS.keySet().removeIf(id -> mc.level.getEntity(id) == null);
+            }
             for (Animal a : mc.level.getEntitiesOfClass(Animal.class, mc.player.getBoundingBox().inflate(24))) {
                 int rank = rank(a);
+                var mut = mutant(a);
+                if (mut != com.chigusa.jsncraft.ranch.Mutant.NONE && r.nextInt(8) == 0) {   // 突然変異はよく光る
+                    mc.level.addParticle(mut == com.chigusa.jsncraft.ranch.Mutant.PEGASUS ? ParticleTypes.CLOUD : ParticleTypes.END_ROD,
+                            a.getX() + (r.nextDouble() - 0.5) * a.getBbWidth(), a.getY() + r.nextDouble() * a.getBbHeight() + 0.2,
+                            a.getZ() + (r.nextDouble() - 0.5) * a.getBbWidth(), 0, 0.01, 0);
+                    continue;
+                }
                 if (rank < 4 || r.nextInt(rank == 5 ? 25 : 50) != 0) continue;
                 double x = a.getX() + (r.nextDouble() - 0.5) * a.getBbWidth();
                 double y = a.getY() + r.nextDouble() * a.getBbHeight() + 0.2;
@@ -105,11 +125,13 @@ public final class RanchHud {
         @SubscribeEvent
         public static void onLogout(ClientPlayerNetworkEvent.LoggingOut event) {
             RANKS.clear();
+            MUTANTS.clear();
         }
 
         @SubscribeEvent
         public static void onRespawn(ClientPlayerNetworkEvent.Clone event) {
             RANKS.clear();   // ディメンションを移ると番号が変わるので、届き直すのを待つ
+            MUTANTS.clear();
         }
     }
 
