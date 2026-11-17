@@ -1,0 +1,16 @@
+{
+  "no": 57,
+  "item": "jsn_craft:fish/void_jelly",
+  "rank": "epic",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:small_end_islands",
+    "minecraft:end_barrens"
+  ],
+  "size": [
+    30,
+    80
+  ],
+  "behavior": "floater",
+  "hint": "小さな浮島や島のはずれの水"
+}

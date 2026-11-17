@@ -1,0 +1,15 @@
+{
+  "no": 51,
+  "item": "jsn_craft:fish/chorus_fish",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:end_highlands"
+  ],
+  "size": [
+    20,
+    45
+  ],
+  "behavior": "normal",
+  "hint": "コーラスの木が生える島の水"
+}

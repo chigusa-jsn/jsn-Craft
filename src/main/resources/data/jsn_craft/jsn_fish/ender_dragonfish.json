@@ -1,0 +1,13 @@
+{
+  "no": 59,
+  "item": "jsn_craft:fish/ender_dragonfish",
+  "rank": "legend",
+  "dimension": "minecraft:the_end",
+  "after_dragon": true,
+  "size": [
+    400,
+    800
+  ],
+  "behavior": "dart",
+  "hint": "エンダードラゴンを倒した後の、エンドの水"
+}

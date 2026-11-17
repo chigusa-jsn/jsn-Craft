@@ -199,7 +199,30 @@ def turtle(cv, f):
         g = hx(f["glow"])
         for x, y in ((7, 7), (10, 9), (8, 10)): cv.set(x, y, g)
 
-SHAPES = {"shrimp": shrimp, "turtle": turtle, "fish": fish, "eel": eel, "flat": flat, "squid": squid, "crab": crab, "angler": angler}
+def jelly(cv, f):
+    body = hx(f["body"]); acc = hx(f.get("accent", "#ffffff"))
+    for x in range(16):
+        for y in range(16):
+            if inside_ellipse(x, y, 8.0, 6.5, 5.5, 4.5) and y <= 7:
+                cv.set(x, y, light(body, 0.3) if y < 4 else body)
+    for x in range(3, 14): cv.set(x, 7, dark(body, 0.2))
+    for i, x in enumerate((4, 6, 8, 10, 12)):
+        for y in range(8, 14 + (i % 2)):
+            cv.set(x + (1 if (y + i) % 4 == 0 else 0), y, acc if y % 3 == 0 else light(body, 0.1))
+    for x, y in ((6, 4), (9, 3), (10, 5)): cv.set(x, y, acc)
+
+def ray(cv, f):
+    body = hx(f["body"]); acc = hx(f.get("accent", "#ffffff"))
+    for x in range(16):
+        for y in range(16):
+            dx = abs(x + 0.5 - 8); dy = y + 0.5 - 7
+            if abs(dy) <= 3.5 - dx * 0.45 and dx < 7.5:
+                cv.set(x, y, dark(body, 0.2) if dy < -1 else body)
+    for i, (x, y) in enumerate(((8, 10), (9, 11), (10, 12), (11, 13), (12, 14), (13, 15))): cv.set(x, y, dark(body, 0.3))
+    cv.set(6, 5, (16, 16, 16)); cv.set(10, 5, (16, 16, 16))
+    for x, y in ((3, 7), (13, 7), (8, 8), (5, 8), (11, 8)): cv.set(x, y, acc)
+
+SHAPES = {"jelly": jelly, "ray": ray, "shrimp": shrimp, "turtle": turtle, "fish": fish, "eel": eel, "flat": flat, "squid": squid, "crab": crab, "angler": angler}
 
 def make(f):
     cv = Canvas()
@@ -260,6 +283,17 @@ FISH = [
     dict(id="debris_turtle", shape="turtle", body="#7a5a48", shell="#5a3a2a", accent="#3a2018", glow="#c08060"),
     dict(id="inferno_dragonfish", body="#c02010", fin="#ffb020", h=6.5, rx=6.0, dorsal=2, tail=1.3, crown="#ffd040", pattern="zigzag", accent="#ffe060", eye_glow="#ffff80", outline="#400000"),
     dict(id="soulflame_catfish", body="#203040", fin="#3a6080", h=7.5, whiskers=True, whisker_color="#60e0ff", tail=1.2, pattern="spots", accent="#60e0ff", n=7, eye_glow="#60e0ff"),
+    # ---- エンド ----
+    dict(id="hollow_goby", body="#dcd9a0", h=4.5, pattern="spots", accent="#8a8660", n=5),
+    dict(id="chorus_fish", body="#9a6a9a", fin="#c8a0c8", h=6, pattern="spots", accent="#e8c0f0", n=5),
+    dict(id="purpur_pleco", body="#a77aa7", h=5, whiskers=True, whisker_color="#6a4a6a", pattern="stripes", accent="#c8a0c8"),
+    dict(id="ender_medaka", body="#1a1a24", fin="#2a2a3a", h=4, rx=4.5, eye_glow="#e080ff", pattern="spots", accent="#7a40a0", n=2),
+    dict(id="stardust_sardine", body="#20284a", belly="#3a4470", h=4, pattern="spots", accent="#ffffff", n=6),
+    dict(id="crystal_shrimp", shape="shrimp", body="#f0c8f0", accent="#80ffff"),
+    dict(id="shulker_fish", body="#8a5a8a", fin="#c8a0c8", h=7, dorsal=2, pattern="waves", accent="#e8c8e8", eye_glow="#ffff80"),
+    dict(id="void_jelly", shape="jelly", body="#5a3a8a", accent="#e0a0ff"),
+    dict(id="elytra_ray", shape="ray", body="#7a7aa8", accent="#c0c0e8"),
+    dict(id="ender_dragonfish", body="#1a1020", fin="#a040e0", h=7, rx=6.0, dorsal=2, tail=1.3, crown="#c060ff", pattern="zigzag", accent="#c060ff", eye_glow="#ff80ff", outline="#000000"),
     dict(id="ice_queen", body="#e0f6ff", fin="#80d0ff", h=6.5, dorsal=0, crown="#ffd040", pattern="spots", accent="#a0e8ff", n=4, outline="#3a7aa0"),
 ]
 

@@ -1,0 +1,15 @@
+{
+  "no": 55,
+  "item": "jsn_craft:fish/crystal_shrimp",
+  "rank": "rare",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:the_end"
+  ],
+  "size": [
+    5,
+    15
+  ],
+  "behavior": "floater",
+  "hint": "はじまりの島（ドラゴンの島）の水"
+}

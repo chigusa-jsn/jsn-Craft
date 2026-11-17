@@ -1,0 +1,16 @@
+{
+  "no": 58,
+  "item": "jsn_craft:fish/elytra_ray",
+  "rank": "epic",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:end_highlands",
+    "minecraft:end_midlands"
+  ],
+  "size": [
+    100,
+    250
+  ],
+  "behavior": "smooth",
+  "hint": "外側の島の水"
+}

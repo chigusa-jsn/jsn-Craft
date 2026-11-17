@@ -1,0 +1,12 @@
+{
+  "no": 53,
+  "item": "jsn_craft:fish/ender_medaka",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_end",
+  "size": [
+    3,
+    8
+  ],
+  "behavior": "dart",
+  "hint": "エンドの水"
+}

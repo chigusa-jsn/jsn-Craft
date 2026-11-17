@@ -1,0 +1,15 @@
+{
+  "no": 56,
+  "item": "jsn_craft:fish/shulker_fish",
+  "rank": "epic",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:end_highlands"
+  ],
+  "size": [
+    40,
+    90
+  ],
+  "behavior": "sinker",
+  "hint": "エンドシティのある島の水"
+}

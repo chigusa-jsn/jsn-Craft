@@ -1,0 +1,12 @@
+{
+  "no": 50,
+  "item": "jsn_craft:fish/hollow_goby",
+  "rank": "common",
+  "dimension": "minecraft:the_end",
+  "size": [
+    8,
+    20
+  ],
+  "behavior": "sinker",
+  "hint": "エンドの水"
+}

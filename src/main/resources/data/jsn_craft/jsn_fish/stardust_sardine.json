@@ -1,0 +1,18 @@
+{
+  "no": 54,
+  "item": "jsn_craft:fish/stardust_sardine",
+  "rank": "rare",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:end_highlands",
+    "minecraft:end_midlands",
+    "minecraft:end_barrens",
+    "minecraft:small_end_islands"
+  ],
+  "size": [
+    10,
+    25
+  ],
+  "behavior": "dart",
+  "hint": "外側の島の水"
+}

@@ -1,0 +1,16 @@
+{
+  "no": 52,
+  "item": "jsn_craft:fish/purpur_pleco",
+  "rank": "uncommon",
+  "dimension": "minecraft:the_end",
+  "biomes": [
+    "minecraft:end_highlands",
+    "minecraft:end_midlands"
+  ],
+  "size": [
+    20,
+    50
+  ],
+  "behavior": "sinker",
+  "hint": "外側の島の水"
+}

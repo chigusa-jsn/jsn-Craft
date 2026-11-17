@@ -22,12 +22,12 @@ public final class FishItems {
 
     /** ランクごとの魚の一覧（ここに足すと登録される。絵は tools/gen_fish_art.py） */
     private static final String[][] FISH = {
-            {"common", "crucian_carp", "carp", "sardine", "goby", "bluegill", "lava_goby"},
+            {"common", "crucian_carp", "carp", "sardine", "goby", "bluegill", "lava_goby", "hollow_goby"},
             {"uncommon", "yamame", "iwana", "ayu", "horse_mackerel", "mackerel", "red_sea_bream", "flounder", "catfish",
-                    "eel", "piranha", "squid", "goldfish", "flame_shrimp", "ash_eel", "warped_catfish"},
-            {"rare", "moonlight_crucian", "rainbow_trout", "anglerfish", "tuna", "swordfish", "arapaima", "jewel_crab", "crimson_piranha", "basalt_catfish", "ghast_fish"},
-            {"epic", "thunder_eel", "glacier_salmon", "coelacanth", "golden_carp", "arowana", "ghost_fish", "inferno_shachihoko", "soul_eater", "debris_turtle"},
-            {"legend", "moon_lord", "storm_king", "ice_queen", "inferno_dragonfish", "soulflame_catfish"},
+                    "eel", "piranha", "squid", "goldfish", "flame_shrimp", "ash_eel", "warped_catfish", "chorus_fish", "purpur_pleco", "ender_medaka"},
+            {"rare", "moonlight_crucian", "rainbow_trout", "anglerfish", "tuna", "swordfish", "arapaima", "jewel_crab", "crimson_piranha", "basalt_catfish", "ghast_fish", "stardust_sardine", "crystal_shrimp"},
+            {"epic", "thunder_eel", "glacier_salmon", "coelacanth", "golden_carp", "arowana", "ghost_fish", "inferno_shachihoko", "soul_eater", "debris_turtle", "shulker_fish", "void_jelly", "elytra_ray"},
+            {"legend", "moon_lord", "storm_king", "ice_queen", "inferno_dragonfish", "soulflame_catfish", "ender_dragonfish"},
     };
 
     public static final List<DeferredItem<Item>> ALL = new ArrayList<>();
