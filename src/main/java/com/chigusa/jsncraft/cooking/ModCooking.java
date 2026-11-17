@@ -98,17 +98,5 @@ public final class ModCooking {
         MENUS.register(bus);
     }
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(COOKING_STATION_ITEM);
-            event.accept(BREWING_BARREL_ITEM);
-        }
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            for (var d : DISH_ITEMS) event.accept(d);
-            for (var d : DRINK_ITEMS) event.accept(d);
-        }
-    }
-
     private ModCooking() {}
 }

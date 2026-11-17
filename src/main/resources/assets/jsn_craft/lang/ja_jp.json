@@ -348,5 +348,11 @@
   "item.jsn_craft.dish.golden_omelette": "黄金のオムレツ",
   "item.jsn_craft.dish.milk_pudding": "ミルクプリン",
   "item.jsn_craft.dish.cheesecake": "濃厚チーズケーキ",
-  "item.jsn_craft.truffle": "トリュフ"
+  "item.jsn_craft.truffle": "トリュフ",
+  "item.jsn_craft.mutant_egg_golden_chicken": "金のニワトリのスポーンエッグ",
+  "item.jsn_craft.mutant_egg_rainbow_sheep": "虹色の羊のスポーンエッグ",
+  "item.jsn_craft.mutant_egg_marbled_cow": "霜降り牛のスポーンエッグ",
+  "item.jsn_craft.mutant_egg_truffle_pig": "トリュフ豚のスポーンエッグ",
+  "item.jsn_craft.mutant_egg_pegasus": "天馬のスポーンエッグ",
+  "item.jsn_craft.mutant_egg_queen_bee": "女王バチのスポーンエッグ"
 }

@@ -47,19 +47,5 @@ public final class ModRanch {
 
     public static void init() {}
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(FEEDER_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            event.accept(FRESH_MILK);
-            event.accept(PREMIUM_BEEF);
-            event.accept(PREMIUM_PORK);
-            event.accept(PREMIUM_MUTTON);
-            event.accept(PREMIUM_CHICKEN);
-            event.accept(GOLDEN_EGG);
-            event.accept(TRUFFLE_HINT);
-        }
-    }
-
     private ModRanch() {}
 }

@@ -348,5 +348,11 @@
   "item.jsn_craft.dish.golden_omelette": "Golden Omelette",
   "item.jsn_craft.dish.milk_pudding": "Milk Pudding",
   "item.jsn_craft.dish.cheesecake": "Rich Cheesecake",
-  "item.jsn_craft.truffle": "Truffle"
+  "item.jsn_craft.truffle": "Truffle",
+  "item.jsn_craft.mutant_egg_golden_chicken": "Golden Chicken Spawn Egg",
+  "item.jsn_craft.mutant_egg_rainbow_sheep": "Rainbow Sheep Spawn Egg",
+  "item.jsn_craft.mutant_egg_marbled_cow": "Marbled Cow Spawn Egg",
+  "item.jsn_craft.mutant_egg_truffle_pig": "Truffle Pig Spawn Egg",
+  "item.jsn_craft.mutant_egg_pegasus": "Pegasus Spawn Egg",
+  "item.jsn_craft.mutant_egg_queen_bee": "Queen Bee Spawn Egg"
 }

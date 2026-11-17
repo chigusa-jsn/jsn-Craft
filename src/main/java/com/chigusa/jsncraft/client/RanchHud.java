@@ -91,6 +91,15 @@ public final class RanchHud {
         public static void onRegisterLayers(RegisterGuiLayersEvent event) {
             event.registerAbove(VanillaGuiLayers.CROSSHAIR, JsnCraft.id("animal_rank"), RanchHud::render);
         }
+
+        /** 突然変異のスポーンエッグの色 */
+        @SubscribeEvent
+        public static void onColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event) {
+            for (var egg : com.chigusa.jsncraft.ModTabs.MUTANT_EGGS) {
+                event.register((stack, tint) -> stack.getItem() instanceof com.chigusa.jsncraft.ranch.MutantEggItem m
+                        ? 0xFF000000 | (tint == 0 ? m.base : m.spots) : -1, egg.get());
+            }
+        }
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, value = Dist.CLIENT)

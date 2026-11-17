@@ -40,11 +40,5 @@ public final class ModEnchanting {
 
     public static void init() {}
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(ALTAR_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) event.accept(RUNE_BOOK);
-    }
-
     private ModEnchanting() {}
 }

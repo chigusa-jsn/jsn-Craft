@@ -53,11 +53,5 @@ public final class ModSmithing {
 
     public static void init() {}
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(FORGE_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) for (var s : STONES) event.accept(s);
-    }
-
     private ModSmithing() {}
 }

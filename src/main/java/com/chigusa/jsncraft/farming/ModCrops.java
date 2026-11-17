@@ -149,18 +149,7 @@ public final class ModCrops {
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
-    public static final class Tabs {
-        @SubscribeEvent
-        public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-            if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-                for (String n : SEEDS.keySet()) if (SEEDS.get(n) != PRODUCE.get(n)) event.accept(SEEDS.get(n));
-            }
-            if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-                for (var p : PRODUCE.values()) event.accept(p);
-                for (var i : INGREDIENT_ITEMS) event.accept(i);
-            }
-        }
-    }
+    public static final class Tabs {    }
 
     private ModCrops() {}
 }

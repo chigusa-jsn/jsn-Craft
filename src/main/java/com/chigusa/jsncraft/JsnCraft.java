@@ -31,7 +31,9 @@ public class JsnCraft {
         com.chigusa.jsncraft.ranch.ModRanch.init(); // エサ箱と畜産物
         com.chigusa.jsncraft.cooking.ModCooking.register(modEventBus); // 調理台と料理
         com.chigusa.jsncraft.farming.ModCrops.register(modEventBus); // 新しい作物と食材
+        ModTabs.init(); // クリエイティブのタブ（突然変異のスポーンエッグもここ）
         ModEntities.ITEMS.register(modEventBus);
+        ModTabs.TABS.register(modEventBus);
         // スキル用の専用エフェクト
         com.chigusa.jsncraft.vfx.ModParticles.PARTICLE_TYPES.register(modEventBus);
         // サーバー→クライアントへ職業情報を送る通信を登録

@@ -78,20 +78,5 @@ public final class ModJewelry {
 
     public static void init() {}
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(TABLE_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            for (var g : RAW_GEMS) event.accept(g);
-            for (var g : GEMS) event.accept(g);
-            event.accept(MOON_SILVER);
-            event.accept(STAR_SILVER);
-        }
-        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            for (var j : JEWELRY.values()) event.accept(new ItemStack(j.get()));
-            for (var u : UNIQUES) event.accept(u);
-        }
-    }
-
     private ModJewelry() {}
 }

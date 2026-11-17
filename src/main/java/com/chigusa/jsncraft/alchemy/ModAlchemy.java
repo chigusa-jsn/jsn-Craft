@@ -64,14 +64,5 @@ public final class ModAlchemy {
 
     public static void init() {}
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(TABLE_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            for (Elixirs.Type t : Elixirs.TYPES) event.accept(make(t, ElixirData.DEFAULT, 1));
-        }
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) event.accept(DUST_BASE);
-    }
-
     private ModAlchemy() {}
 }

@@ -65,12 +65,5 @@ public final class FishItems {
         }
     }
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            for (DeferredItem<Item> item : ALL) event.accept(item);
-        }
-    }
-
     private FishItems() {}
 }

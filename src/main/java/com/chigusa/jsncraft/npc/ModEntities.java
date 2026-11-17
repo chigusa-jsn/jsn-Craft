@@ -53,16 +53,5 @@ public final class ModEntities {
         event.put(JOB_MASTER.get(), ReceptionistEntity.createAttributes().build());
     }
 
-    @SubscribeEvent
-    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(RECEPTIONIST_EGG);
-            event.accept(JOB_MASTER_EGG);
-        }
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(OBLIVION_ORB);
-        }
-    }
-
     private ModEntities() {}
 }
