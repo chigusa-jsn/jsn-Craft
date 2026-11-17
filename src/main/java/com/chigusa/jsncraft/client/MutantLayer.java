@@ -10,17 +10,18 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.util.Mth;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Bee;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 /**
- * 突然変異の動物の体に色をかける（金のニワトリは金色に、天馬は白く光る…）。
- * 同じ形・同じ絵をもう一度、色をつけて半透明で重ねて描く。色はゆっくり明るくなったり暗くなったりする。
+ * 突然変異の動物を、専用の絵で描きなおす（金のニワトリ・霜降り牛・トリュフ豚・天馬・女王バチ）。
+ * ふつうの絵の上に、同じ形で専用の絵をぴったり重ねて描く。
  */
 public class MutantLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
 
@@ -28,16 +29,33 @@ public class MutantLayer<T extends LivingEntity, M extends EntityModel<T>> exten
         super(parent);
     }
 
+    private static ResourceLocation tex(String name) {
+        return JsnCraft.id("textures/entity/mutant/" + name + ".png");
+    }
+
+    private static ResourceLocation textureFor(Mutant m, LivingEntity e) {
+        return switch (m) {
+            case GOLDEN_CHICKEN -> tex("golden_chicken");
+            case MARBLED_COW -> tex("marbled_cow");
+            case TRUFFLE_PIG -> tex("truffle_pig");
+            case PEGASUS -> tex("pegasus");
+            case QUEEN_BEE -> {
+                Bee bee = (Bee) e;
+                yield tex("queen_bee" + (bee.isAngry() ? "_angry" : "") + (bee.hasNectar() ? "_nectar" : ""));
+            }
+            default -> null;
+        };
+    }
+
     @Override
     public void render(PoseStack pose, MultiBufferSource buffers, int light, T entity, float limbSwing, float limbSwingAmount,
                        float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         Mutant m = RanchHud.mutant(entity);
-        if (m == Mutant.NONE || m.tint == 0 || entity.isInvisible()) return;
-        float pulse = 0.45F + 0.15F * Mth.sin(ageInTicks * 0.12F);
-        int alpha = (int) (pulse * 255) << 24;
-        int color = alpha | (m.tint & 0xFFFFFF);
-        var vc = buffers.getBuffer(RenderType.entityTranslucentEmissive(getTextureLocation(entity)));
-        getParentModel().renderToBuffer(pose, vc, light, OverlayTexture.NO_OVERLAY, color);
+        if (m == Mutant.NONE || entity.isInvisible()) return;
+        ResourceLocation tex = textureFor(m, entity);
+        if (tex == null) return;
+        int overlay = LivingEntityRenderer.getOverlayCoords(entity, 0.0F);
+        getParentModel().renderToBuffer(pose, buffers.getBuffer(RenderType.entityCutoutNoCull(tex)), light, overlay, 0xFFFFFFFF);
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
