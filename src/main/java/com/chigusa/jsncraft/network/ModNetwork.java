@@ -13,7 +13,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public final class ModNetwork {
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("20");
+        PayloadRegistrar registrar = event.registrar("21");
         // サーバー → クライアント
         registrar.playToClient(JobSyncPayload.TYPE, JobSyncPayload.STREAM_CODEC, ModNetwork::handleJobSync);
         registrar.playToClient(BoardSnapshotPayload.TYPE, BoardSnapshotPayload.STREAM_CODEC, ModNetwork::handleSnapshot);
@@ -77,6 +77,8 @@ public final class ModNetwork {
                     if (p.brewing()) com.chigusa.jsncraft.client.BrewingScreen.BrewingRecipesCache.brewing = p;
                     else CookingRecipesPayload.client = p;
                 }));
+        registrar.playToClient(SeasoningsPayload.TYPE, SeasoningsPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> SeasoningsPayload.client = p));
         registrar.playToClient(DishDexPayload.TYPE, DishDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> DishDexPayload.client = p));
         registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,

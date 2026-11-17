@@ -32,6 +32,12 @@ public class CookingScreen extends AbstractContainerScreen<CookingMenu> {
 
     private int panelX() { return leftPos + imageWidth + 4; }
 
+    /** 右の一覧：false レシピ / true 隠し味 */
+    private boolean showSeasoning = false;
+    private final SeasoningPanel seasonings = new SeasoningPanel(i -> {
+        if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, 50 + i);
+    });
+
     @Override
     protected void init() {
         super.init();
@@ -101,21 +107,46 @@ public class CookingScreen extends AbstractContainerScreen<CookingMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
-        panel.render(g, font, panelX(), topPos, imageHeight, mouseX, mouseY);
+        int px = panelX();
+        panel.renderFrame(g, px, topPos, imageHeight);
+        // 見出しのタブ：レシピ／隠し味
+        String a = "レシピ", b = "隠し味";
+        int aw = font.width(a), bw = font.width(b);
+        g.fill(px + 4, topPos + 4, px + 10 + aw, topPos + 16, showSeasoning ? 0x00000000 : 0xFF3A2A20);
+        g.fill(px + 14 + aw, topPos + 4, px + 20 + aw + bw, topPos + 16, showSeasoning ? 0xFF5A3A7A : 0x00000000);
+        g.drawString(font, a, px + 7, topPos + 6, showSeasoning ? 0xFF6A5A4A : 0xFFE8DCC4, false);
+        g.drawString(font, b, px + 17 + aw, topPos + 6, showSeasoning ? 0xFFE8DCC4 : 0xFF6A5A4A, false);
+        if (showSeasoning) seasonings.render(g, font, px, topPos, imageHeight, mouseX, mouseY, 0xFF3A2A20);
+        else panel.render(g, font, px, topPos, imageHeight, mouseX, mouseY, false);
         renderTooltip(g, mouseX, mouseY);
-        panel.renderTooltip(g, font, panelX(), topPos, imageHeight, mouseX, mouseY);
+        if (showSeasoning) seasonings.renderTooltip(g, font, px, topPos, imageHeight, mouseX, mouseY);
+        else panel.renderTooltip(g, font, px, topPos, imageHeight, mouseX, mouseY);
     }
 
     @Override
     public boolean mouseClicked(double mx, double my, int button) {
-        if (panel.click(panelX(), topPos, imageHeight, mx, my)) return true;
+        int px = panelX();
+        if (my >= topPos + 4 && my < topPos + 16 && mx >= px + 4 && mx < px + RecipePanel.W) {
+            showSeasoning = mx >= px + 12 + font.width("レシピ");
+            return true;
+        }
+        if (showSeasoning ? seasonings.click(px, topPos, imageHeight, mx, my) : panel.click(px, topPos, imageHeight, mx, my)) return true;
         return super.mouseClicked(mx, my, button);
     }
 
     @Override
     public boolean mouseScrolled(double mx, double my, double sx, double sy) {
-        if (panel.scroll(panelX(), topPos, imageHeight, mx, my, sy)) return true;
+        if (showSeasoning ? seasonings.scroll(panelX(), topPos, imageHeight, mx, my, sy) : panel.scroll(panelX(), topPos, imageHeight, mx, my, sy)) return true;
         return super.mouseScrolled(mx, my, sx, sy);
+    }
+
+    @EventBusSubscriber(modid = JsnCraft.MODID, value = Dist.CLIENT)
+    public static final class Tooltips {
+        @SubscribeEvent
+        public static void onTooltip(net.neoforged.neoforge.event.entity.player.ItemTooltipEvent event) {
+            var s = SeasoningPanel.of(event.getItemStack());
+            if (s != null) event.getToolTip().add(Component.literal("隠し味：" + s.name()).withStyle(net.minecraft.ChatFormatting.LIGHT_PURPLE));
+        }
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

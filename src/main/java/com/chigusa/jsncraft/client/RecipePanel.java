@@ -56,11 +56,19 @@ public final class RecipePanel {
     }
 
     public void render(GuiGraphics g, Font font, int x, int y, int h, int mx, int my) {
+        render(g, font, x, y, h, mx, my, true);
+    }
+
+    public void renderFrame(GuiGraphics g, int x, int y, int h) {
         g.fill(x, y, x + W, y + h, frame);
         g.fill(x + 2, y + 2, x + W - 2, y + h - 2, fill);
+    }
+
+    public void render(GuiGraphics g, Font font, int x, int y, int h, int mx, int my, boolean header) {
+        if (header) renderFrame(g, x, y, h);
         List<CookingRecipesPayload.Entry> list = source.get();
         List<Integer> ord = order();
-        g.drawString(font, "レシピ（" + list.size() + "）", x + 6, y + 6, text, false);
+        if (header) g.drawString(font, "レシピ（" + list.size() + "）", x + 6, y + 6, text, false);
         if (list.isEmpty()) {
             g.drawString(font, "§8読み込み中…", x + 6, y + 24, text, false);
             return;

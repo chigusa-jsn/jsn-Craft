@@ -29,7 +29,9 @@ public final class GameEvents {
     public static void onDatapackSync(net.neoforged.neoforge.event.OnDatapackSyncEvent event) {
         var payload = com.chigusa.jsncraft.network.CookingRecipesPayload.create(false);
         var brewing = com.chigusa.jsncraft.network.CookingRecipesPayload.create(true);
+        var seasonings = com.chigusa.jsncraft.network.SeasoningsPayload.create();
         event.getRelevantPlayers().forEach(p -> {
+            net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, seasonings);
             net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, payload);
             net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, brewing);
         });

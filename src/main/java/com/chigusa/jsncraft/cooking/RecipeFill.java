@@ -36,5 +36,24 @@ public final class RecipeFill {
         return true;
     }
 
+    /** 隠し味の枠に、持ち物から1つ入れる（入っていた物は持ち物に戻す） */
+    public static boolean fillSeasoning(ServerPlayer player, Container box, int slot, Seasoning seasoning) {
+        var inv = player.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack s = inv.getItem(i);
+            if (s.isEmpty() || !CookingRecipe.matchesOne(seasoning.item(), s)) continue;
+            ItemStack old = box.getItem(slot);
+            if (!old.isEmpty() && CookingRecipe.matchesOne(seasoning.item(), old)) return true;   // もう入っている
+            if (!old.isEmpty() && !inv.add(old)) player.drop(old, false);
+            box.setItem(slot, s.split(1));
+            box.setChanged();
+            inv.setChanged();
+            return true;
+        }
+        player.displayClientMessage(net.minecraft.network.chat.Component.literal("持ち物に「" + seasoning.name() + "」の材料がない")
+                .withStyle(net.minecraft.ChatFormatting.GRAY), true);
+        return false;
+    }
+
     private RecipeFill() {}
 }
