@@ -84,7 +84,7 @@ public final class ModCooking {
             () -> IMenuTypeExtension.create(BrewingMenu::new));
 
     static {
-        for (String d : DISHES) DISH_ITEMS.add(ModEntities.ITEMS.register("dish/" + d, DishItem::new));
+        for (String d : DISHES) DISH_ITEMS.add(ModEntities.ITEMS.register("dish/" + d, (java.util.function.Supplier<Item>) () -> new DishItem()));
         for (String d : DRINKS) DRINK_ITEMS.add(ModEntities.ITEMS.register("drink/" + d, (java.util.function.Supplier<Item>) DrinkItem::new));
     }
 
