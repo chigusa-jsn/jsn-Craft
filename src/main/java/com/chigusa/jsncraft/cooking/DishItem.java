@@ -24,8 +24,15 @@ import java.util.List;
 public class DishItem extends Item {
 
     public DishItem() {
-        super(new Item.Properties().stacksTo(16)
-                .food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build()));
+        this(new Item.Properties().stacksTo(16).food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build()));
+    }
+
+    protected DishItem(Item.Properties props) {
+        super(props);
+    }
+
+    public static int alcohol(ItemStack stack) {
+        return stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("jsn_alcohol");
     }
 
     public static int quality(ItemStack stack) {
@@ -41,8 +48,13 @@ public class DishItem extends Item {
 
     /** 品質とバフを書き込む */
     public static void write(ItemStack stack, int quality, List<FoodBuff> buffs) {
+        write(stack, quality, buffs, 0);
+    }
+
+    public static void write(ItemStack stack, int quality, List<FoodBuff> buffs, int alcohol) {
         CompoundTag tag = new CompoundTag();
         tag.putInt("jsn_quality", quality);
+        if (alcohol > 0) tag.putInt("jsn_alcohol", alcohol);
         var list = new net.minecraft.nbt.ListTag();
         for (FoodBuff b : buffs) list.add(b.save());
         tag.put("jsn_buffs", list);
@@ -64,6 +76,8 @@ public class DishItem extends Item {
             tooltip.add(Component.literal(stars(q) + (q >= 4 ? " 至高" : "")).withStyle(color));
         }
         for (FoodBuff b : buffs(stack)) tooltip.add(Component.literal(" ").append(b.describe()));
+        int alc = alcohol(stack);
+        if (alc > 0) tooltip.add(Component.literal("お酒の強さ " + "●".repeat(Math.min(5, alc)) + "○".repeat(Math.max(0, 5 - alc))).withStyle(ChatFormatting.LIGHT_PURPLE));
         if (q == 0) tooltip.add(Component.literal("調理台で炎の調理師が作る料理").withStyle(ChatFormatting.DARK_GRAY));
     }
 

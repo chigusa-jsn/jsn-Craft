@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/lemon_sour",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/shochu",
+    "jsn_craft:drink/soda_water",
+    "jsn_craft:lemon"
+  ],
+  "level": 20,
+  "time": 120,
+  "xp": 22,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:stamina_regen",
+      "amount": 0.6,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ],
+  "rank": "feast",
+  "no": 60,
+  "alcohol": 2
+}

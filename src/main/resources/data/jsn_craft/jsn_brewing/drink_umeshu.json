@@ -1,0 +1,32 @@
+{
+  "result": "jsn_craft:drink/umeshu",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:ume",
+    "jsn_craft:ume",
+    "minecraft:sugar",
+    "jsn_craft:drink/shochu"
+  ],
+  "level": 20,
+  "time": 12000,
+  "xp": 22,
+  "nutrition": 2,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 0.4,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.05,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "feast",
+  "no": 58,
+  "alcohol": 3
+}

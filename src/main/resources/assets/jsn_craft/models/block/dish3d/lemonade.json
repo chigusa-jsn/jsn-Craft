@@ -3,6 +3,7 @@
  "ambientocclusion": false,
  "textures": {
   "glass": "jsn_craft:block/dish3d/glass",
+  "glass_lemonade_liquid_82": "jsn_craft:block/dish3d/glass_lemonade_liquid_82",
   "ice": "jsn_craft:block/dish3d/ice",
   "lemon_m": "jsn_craft:block/dish3d/lemon_m",
   "lemon_slice": "jsn_craft:block/dish3d/lemon_slice",
@@ -14,7 +15,7 @@
   {
    "from": [
     7.0,
-    0,
+    0.0,
     4.5
    ],
    "to": [
@@ -46,7 +47,7 @@
   {
    "from": [
     6.0,
-    0,
+    0.0,
     5.0
    ],
    "to": [
@@ -78,7 +79,7 @@
   {
    "from": [
     9.0,
-    0,
+    0.0,
     5.0
    ],
    "to": [
@@ -110,7 +111,7 @@
   {
    "from": [
     5.5,
-    0,
+    0.0,
     5.5
    ],
    "to": [
@@ -142,7 +143,7 @@
   {
    "from": [
     10.0,
-    0,
+    0.0,
     5.5
    ],
    "to": [
@@ -174,7 +175,7 @@
   {
    "from": [
     5.0,
-    0,
+    0.0,
     6.0
    ],
    "to": [
@@ -206,7 +207,7 @@
   {
    "from": [
     10.5,
-    0,
+    0.0,
     6.0
    ],
    "to": [
@@ -238,7 +239,7 @@
   {
    "from": [
     4.5,
-    0,
+    0.0,
     7.0
    ],
    "to": [
@@ -270,7 +271,7 @@
   {
    "from": [
     11.0,
-    0,
+    0.0,
     7.0
    ],
    "to": [
@@ -315,10 +316,10 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
@@ -327,7 +328,7 @@
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -347,16 +348,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -379,7 +380,7 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
@@ -388,7 +389,7 @@
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -408,13 +409,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -437,10 +438,10 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
@@ -449,7 +450,7 @@
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -469,16 +470,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -501,16 +502,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -530,13 +531,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -559,16 +560,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -588,13 +589,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -617,19 +618,19 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -649,16 +650,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -681,16 +682,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -710,13 +711,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -739,19 +740,19 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "south": {
      "texture": "#glass"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -771,19 +772,19 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -803,16 +804,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -832,13 +833,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -861,19 +862,19 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -893,16 +894,16 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "south": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -925,7 +926,7 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
@@ -934,7 +935,7 @@
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -954,13 +955,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "north": {
      "texture": "#glass"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -983,13 +984,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -1009,10 +1010,10 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"
@@ -1035,13 +1036,13 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
      "texture": "#glass"
     },
     "west": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     }
    }
   },
@@ -1061,10 +1062,10 @@
      "texture": "#glass"
     },
     "down": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "east": {
-     "texture": "#glass"
+     "texture": "#glass_lemonade_liquid_82"
     },
     "west": {
      "texture": "#glass"

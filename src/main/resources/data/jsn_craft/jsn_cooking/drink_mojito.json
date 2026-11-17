@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/mojito",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/rum",
+    "jsn_craft:drink/soda_water",
+    "jsn_craft:lemon",
+    "minecraft:sugar"
+  ],
+  "level": 25,
+  "time": 120,
+  "xp": 26,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:water_breathing",
+      "amplifier": 0,
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 360
+    }
+  ],
+  "rank": "feast",
+  "no": 62,
+  "alcohol": 2
+}

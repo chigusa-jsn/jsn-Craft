@@ -1,0 +1,23 @@
+{
+  "result": "jsn_craft:drink/soda_water",
+  "count": 3,
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "minecraft:amethyst_shard",
+    "minecraft:water_bucket"
+  ],
+  "level": 1,
+  "time": 60,
+  "xp": 2,
+  "nutrition": 1,
+  "saturation": 0.1,
+  "buffs": [
+    {
+      "effect": "minecraft:jump_boost",
+      "amplifier": 0,
+      "seconds": 60
+    }
+  ],
+  "rank": "normal",
+  "no": 51
+}

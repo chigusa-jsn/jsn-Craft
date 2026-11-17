@@ -177,5 +177,21 @@
   "item.jsn_craft.dish.ice_queen_carpaccio": "氷の女王のカルパッチョ",
   "item.jsn_craft.dish.inferno_dragon_roast": "炎獄の竜魚の姿焼き",
   "item.jsn_craft.dish.soulflame_nabe": "魂炎の大鯰鍋",
-  "item.jsn_craft.dish.ender_dragon_feast": "終焉の龍魚の満漢全席"
+  "item.jsn_craft.dish.ender_dragon_feast": "終焉の龍魚の満漢全席",
+  "item.jsn_craft.drink.soda_water": "炭酸水",
+  "item.jsn_craft.drink.beer": "ビール",
+  "item.jsn_craft.drink.mead": "蜂蜜酒",
+  "item.jsn_craft.drink.wine": "ワイン",
+  "item.jsn_craft.drink.sake": "日本酒",
+  "item.jsn_craft.drink.shochu": "焼酎",
+  "item.jsn_craft.drink.rum": "ラム酒",
+  "item.jsn_craft.drink.umeshu": "梅酒",
+  "item.jsn_craft.drink.highball": "ハイボール",
+  "item.jsn_craft.drink.lemon_sour": "レモンサワー",
+  "item.jsn_craft.drink.sangria": "サングリア",
+  "item.jsn_craft.drink.mojito": "モヒート",
+  "item.jsn_craft.drink.whisky": "ウイスキー",
+  "item.jsn_craft.drink.nether_fire": "ネザーの炎",
+  "item.jsn_craft.drink.ender_elixir": "エンドの霊酒",
+  "block.jsn_craft.brewing_barrel": "酒樽"
 }

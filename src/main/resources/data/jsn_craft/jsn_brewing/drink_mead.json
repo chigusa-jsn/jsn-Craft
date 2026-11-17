@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:drink/mead",
+  "count": 3,
+  "ingredients": [
+    "minecraft:honey_bottle",
+    "minecraft:honey_bottle",
+    "minecraft:water_bucket"
+  ],
+  "level": 5,
+  "time": 6000,
+  "xp": 12,
+  "nutrition": 3,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 180
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 20
+    }
+  ],
+  "rank": "normal",
+  "no": 53,
+  "alcohol": 2
+}

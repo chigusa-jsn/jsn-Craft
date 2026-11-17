@@ -1,0 +1,32 @@
+{
+  "result": "jsn_craft:drink/whisky",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:malt",
+    "jsn_craft:malt",
+    "minecraft:water_bucket",
+    "minecraft:oak_log"
+  ],
+  "level": 30,
+  "time": 24000,
+  "xp": 40,
+  "nutrition": 1,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:crit_damage",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 63,
+  "alcohol": 5
+}

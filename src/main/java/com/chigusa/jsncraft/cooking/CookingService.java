@@ -111,22 +111,14 @@ public final class CookingService {
             double sm = 1 + (master != null ? master.power() : 0);
             for (FoodBuff b : season.buffs()) mergeBuff(merged, b.scaled(sm, sm));
         }
-        List<FoodBuff> buffs = new ArrayList<>();
-        for (FoodBuff b : merged.values()) buffs.add(b.scaled(TIME_MULT[quality - 1], AMOUNT_MULT[quality - 1]));
+        List<FoodBuff> buffs = new ArrayList<>(merged.values());
 
         // 出来上がり
         int count = recipe.count();
         SkillDefinition dbl = SkillService.passive(player, "cook_double");
         boolean doubled = dbl != null && r.nextDouble() < dbl.chance();
         if (doubled) count *= 2;
-        ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(recipe.result()), count);
-        if (result.getItem() instanceof DishItem) {
-            double fm = FOOD_MULT[quality - 1];
-            result.set(DataComponents.FOOD, new FoodProperties.Builder()
-                    .nutrition((int) Math.round(recipe.nutrition() * fm))
-                    .saturationModifier((float) (recipe.saturation() * fm)).build());
-            DishItem.write(result, quality, buffs);
-        }
+        ItemStack result = buildResult(recipe, count, quality, buffs);
 
         // 調理時間
         double time = recipe.time();
@@ -169,11 +161,33 @@ public final class CookingService {
         return true;
     }
 
-    private static void consume(CookingStationBlockEntity be, int slot, Level level, BlockPos pos) {
-        ItemStack stack = be.items().getItem(slot);
+    /** 料理・お酒のアイテムを作る（品質に合わせて満腹度とバフを強くし、★とバフを書き込む） */
+    public static ItemStack buildResult(CookingRecipe recipe, int count, int quality, List<FoodBuff> baseBuffs) {
+        ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(recipe.result()), count);
+        if (result.getItem() instanceof DishItem) {
+            int q = Math.max(1, Math.min(4, quality));
+            double fm = FOOD_MULT[q - 1];
+            FoodProperties.Builder fb = new FoodProperties.Builder()
+                    .nutrition((int) Math.round(recipe.nutrition() * fm))
+                    .saturationModifier((float) (recipe.saturation() * fm));
+            if (result.getItem() instanceof DrinkItem) fb.alwaysEdible().fast();
+            result.set(DataComponents.FOOD, fb.build());
+            List<FoodBuff> buffs = new ArrayList<>();
+            for (FoodBuff b : baseBuffs) buffs.add(b.scaled(TIME_MULT[q - 1], AMOUNT_MULT[q - 1]));
+            DishItem.write(result, q, buffs, recipe.alcohol());
+        }
+        return result;
+    }
+
+    static void consume(CookingStationBlockEntity be, int slot, Level level, BlockPos pos) {
+        consume(be.items(), slot, level, pos);
+    }
+
+    static void consume(net.minecraft.world.Container items, int slot, Level level, BlockPos pos) {
+        ItemStack stack = items.getItem(slot);
         ItemStack remainder = stack.getCraftingRemainingItem();
         stack.shrink(1);
-        be.items().setItem(slot, stack.isEmpty() ? ItemStack.EMPTY : stack);
+        items.setItem(slot, stack.isEmpty() ? ItemStack.EMPTY : stack);
         if (!remainder.isEmpty()) Block.popResource(level, pos.above(), remainder.copy());
     }
 
@@ -188,7 +202,7 @@ public final class CookingService {
     }
 
     /** 品質（★1〜★4）を決める */
-    private static int rollQuality(ServerPlayer player, Seasoning season, int fishRank, boolean divine, RandomSource r) {
+    static int rollQuality(ServerPlayer player, Seasoning season, int fishRank, boolean divine, RandomSource r) {
         double score = 0.15 + Math.max(0, cookLevel(player)) * 0.006
                 + player.getAttributeValue(ModAttributes.COOKING_MASTERY);
         SkillDefinition taste = SkillService.passive(player, "cook_quality");
@@ -230,8 +244,40 @@ public final class CookingService {
             }
             Vfx.ring(level, player.position().add(0, 0.05, 0), (float) share, 16, Vfx.GOLD);
         }
+        int alc = DishItem.alcohol(stack);
+        if (alc > 0) drink(player, alc);
         int q = DishItem.quality(stack);
         if (q >= 3) level.sendParticles(ParticleTypes.WAX_ON, player.getX(), player.getY() + 1.2, player.getZ(), 10, 0.4, 0.4, 0.4, 0.1);
+    }
+
+    // ================= 酔い =================
+
+    /** プレイヤーの酔いの量（20秒で1ずつ抜ける） */
+    private static final Map<UUID, Double> DRUNK = new java.util.concurrent.ConcurrentHashMap<>();
+
+    private static void drink(ServerPlayer player, int alcohol) {
+        if (SkillService.passive(player, "iron_stomach") != null) return; // 鉄の胃袋は酔わない
+        double v = DRUNK.merge(player.getUUID(), (double) alcohol, Double::sum);
+        if (v >= 12) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 600, 0));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 1));
+            player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600, 0));
+            player.displayClientMessage(Component.literal("飲みすぎた…世界が回る").withStyle(ChatFormatting.DARK_PURPLE), true);
+        } else if (v >= 8) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0));
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300, 0));
+            player.displayClientMessage(Component.literal("酔っぱらってきた…").withStyle(ChatFormatting.LIGHT_PURPLE), true);
+        } else if (v >= 5) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 160, 0));
+            player.displayClientMessage(Component.literal("ほろ酔い").withStyle(ChatFormatting.LIGHT_PURPLE), true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onDrunkTick(ServerTickEvent.Post event) {
+        if (DRUNK.isEmpty() || event.getServer().getTickCount() % 400 != 0) return;
+        DRUNK.replaceAll((k, v) -> v - 1);
+        DRUNK.values().removeIf(v -> v <= 0);
     }
 
     // ================= スキル =================

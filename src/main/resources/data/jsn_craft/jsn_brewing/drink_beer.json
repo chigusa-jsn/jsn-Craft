@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/beer",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:malt",
+    "jsn_craft:hops",
+    "minecraft:water_bucket"
+  ],
+  "level": 5,
+  "time": 6000,
+  "xp": 12,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:haste",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "minecraft:generic.attack_damage",
+      "amount": 1,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ],
+  "rank": "normal",
+  "no": 52,
+  "alcohol": 2
+}

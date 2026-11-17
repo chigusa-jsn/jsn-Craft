@@ -1,0 +1,31 @@
+{
+  "result": "jsn_craft:drink/sangria",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/wine",
+    "jsn_craft:grape",
+    "jsn_craft:lemon",
+    "minecraft:sugar"
+  ],
+  "level": 20,
+  "time": 120,
+  "xp": 22,
+  "nutrition": 3,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 30
+    },
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 1.5,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "feast",
+  "no": 61,
+  "alcohol": 2
+}

@@ -465,3 +465,79 @@ simple("chili_m", "#d8201a", 8, 4, pts=[(10, 8)], strength=0.6)
 simple("fork", "#c8ccd4", 4, 2)
 simple("chopsticks", "#8a5a30", 4, 2)
 simple("stick", "#a8844a", 4, 2)
+
+# ======================== お酒 ========================
+
+def bubbles(a, seed, col="#ffffff", n=10, k=0.6):
+    rng = np.random.default_rng(seed)
+    for _ in range(n):
+        x, y = rng.integers(1, N - 1, 2)
+        a = shine(a, [(x, y)], col, k, 1.0)
+    return a
+
+def liquid(name, col, bub=0, glow=None):
+    def f():
+        a = fill(col, zlib.crc32(name.encode()) % 999, 6, 3, cell=8)
+        if bub: a = bubbles(a, 5, n=bub)
+        if glow: a = shine(a, [(10, 10), (22, 18)], glow, 0.7, 3)
+        return img(shine(a, [(9, 8)], strength=0.5, r=2))
+    f.__name__ = name; M[name] = f
+
+liquid("beer_liquid", "#e8a020", bub=12)
+liquid("mead_liquid", "#d88a18", bub=3)
+liquid("wine_liquid", "#7a0e24")
+liquid("sake_liquid", "#f4f0dc")
+liquid("shochu_liquid", "#eef4f4", bub=2)
+liquid("rum_liquid", "#8a4210")
+liquid("umeshu_liquid", "#e0a830")
+liquid("whisky_liquid", "#c06a14")
+liquid("soda_liquid", "#e0f4ff", bub=16)
+liquid("highball_liquid", "#f0c060", bub=14)
+liquid("sour_liquid", "#fff4b0", bub=10)
+liquid("sangria_liquid", "#a01830")
+liquid("mojito_liquid", "#d8f4d0", bub=8)
+liquid("nether_liquid", "#e83a0c", glow="#ffd040")
+liquid("ender_liquid", "#6a1aa8", glow="#e0a0ff")
+
+@mat
+def foam():
+    a = fill("#fbf6ea", 80, 4, 3)
+    return img(bubbles(a, 81, "#ffffff", 14, 0.5))
+
+TINTS = {}
+def tinted(liq_name, liq_hex, liquid_y):
+    """液体が入ったグラスの側面：液面より下は液体の色が透けて見える"""
+    name = f"glass_{liq_name}_{int(liquid_y * 10)}"
+    if name in M: return name
+    def f():
+        a = fill("#e4f2f8", zlib.crc32(name.encode()) % 999, 3, 2)
+        line = int((16 - liquid_y) * 2)
+        below = yy >= line
+        a = blend(a, below, liq_hex, 0.75)
+        a = blend(a, yy == line, "#ffffff", 0.6)
+        a = blend(a, (xx % 16 == 3), "#ffffff", 0.45)          # 光の筋
+        return img(a)
+    f.__name__ = name; M[name] = f
+    return name
+
+simple("tankard_wood", "#8a5a2c", 8, 5, cell=8)
+@mat
+def tankard_band():
+    a = fill("#8a5a2c", 82, 8, 5)
+    return img(blend(a, ((yy >= 26) & (yy <= 27)) | ((yy >= 8) & (yy <= 9)), "#4a4a50", 1.0))
+@mat
+def tokkuri():
+    a = fill("#f2f0ea", 83, 3, 2)
+    return img(blend(a, (np.sin(xx * 0.8) > 0.5) & (yy > 14) & (yy < 22), "#2a4a9a", 0.9))
+simple("bottle_green", "#1e4a2a", 6, 3, pts=[(6, 10)], strength=0.6, r=1.5)
+simple("bottle_brown", "#5a2a0e", 6, 3, pts=[(6, 10)], strength=0.6, r=1.5)
+simple("bottle_clear", "#cce8f4", 4, 2, pts=[(6, 10)], strength=0.7, r=1.5)
+simple("cork", "#b8884a", 8, 5)
+simple("cap_red", "#d02a2a", 4, 2)
+@mat
+def label():
+    a = fill("#f4ecd4", 84, 3, 2)
+    a = blend(a, (yy >= 12) & (yy <= 14), "#a02020", 1.0)
+    return img(blend(a, (yy >= 18) & (yy <= 19) & (xx > 6) & (xx < 26), "#3a2a1a", 0.8))
+simple("mint", "#3ab048", 10, 6)
+simple("orange_slice", "#ff9a2a", 6, 3)

@@ -1,0 +1,31 @@
+{
+  "result": "jsn_craft:drink/rum",
+  "count": 3,
+  "ingredients": [
+    "minecraft:sugar_cane",
+    "minecraft:sugar_cane",
+    "minecraft:sugar_cane",
+    "minecraft:sugar"
+  ],
+  "level": 22,
+  "time": 18000,
+  "xp": 24,
+  "nutrition": 1,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:dolphins_grace",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "minecraft:generic.water_movement_efficiency",
+      "amount": 0.3,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "feast",
+  "no": 57,
+  "alcohol": 4
+}

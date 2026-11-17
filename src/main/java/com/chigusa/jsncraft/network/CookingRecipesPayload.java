@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** サーバー → クライアント：調理台のレシピ一覧（画面に「何ができるか」を出すため）。番号はサーバーと同じ順。 */
-public record CookingRecipesPayload(List<Entry> recipes) implements CustomPacketPayload {
+public record CookingRecipesPayload(boolean brewing, List<Entry> recipes) implements CustomPacketPayload {
 
     public record Entry(ItemStack result, int level, List<String> ingredients) {
         public static final StreamCodec<RegistryFriendlyByteBuf, Entry> STREAM_CODEC = StreamCodec.composite(
@@ -26,18 +26,23 @@ public record CookingRecipesPayload(List<Entry> recipes) implements CustomPacket
 
     public static final Type<CookingRecipesPayload> TYPE = new Type<>(JsnCraft.id("cooking_recipes"));
     public static final StreamCodec<RegistryFriendlyByteBuf, CookingRecipesPayload> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.BOOL, CookingRecipesPayload::brewing,
             Entry.STREAM_CODEC.apply(ByteBufCodecs.list()), CookingRecipesPayload::recipes,
             CookingRecipesPayload::new);
 
-    public static CookingRecipesPayload client = new CookingRecipesPayload(List.of());
+    public static CookingRecipesPayload client = new CookingRecipesPayload(false, List.of());
 
     public static CookingRecipesPayload create() {
+        return create(false);
+    }
+
+    public static CookingRecipesPayload create(boolean brewing) {
         List<Entry> list = new ArrayList<>();
-        for (var e : CookingManager.RECIPES.entries()) {
+        for (var e : (brewing ? CookingManager.BREWING : CookingManager.RECIPES).entries()) {
             CookingRecipe r = e.getValue();
             list.add(new Entry(new ItemStack(BuiltInRegistries.ITEM.get(r.result()), r.count()), r.level(), r.ingredients()));
         }
-        return new CookingRecipesPayload(list);
+        return new CookingRecipesPayload(brewing, list);
     }
 
     @Override

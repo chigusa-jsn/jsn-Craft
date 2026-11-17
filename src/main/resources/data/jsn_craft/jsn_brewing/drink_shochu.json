@@ -1,0 +1,32 @@
+{
+  "result": "jsn_craft:drink/shochu",
+  "count": 3,
+  "ingredients": [
+    "minecraft:potato",
+    "minecraft:potato",
+    "jsn_craft:koji",
+    "minecraft:water_bucket"
+  ],
+  "level": 18,
+  "time": 12000,
+  "xp": 20,
+  "nutrition": 1,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:max_stamina",
+      "amount": 30,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:stamina_regen",
+      "amount": 0.5,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "feast",
+  "no": 56,
+  "alcohol": 4
+}

@@ -27,8 +27,12 @@ public final class GameEvents {
     /** ログインしたとき・/reload したときに、調理台のレシピ一覧を送る */
     @SubscribeEvent
     public static void onDatapackSync(net.neoforged.neoforge.event.OnDatapackSyncEvent event) {
-        var payload = com.chigusa.jsncraft.network.CookingRecipesPayload.create();
-        event.getRelevantPlayers().forEach(p -> net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, payload));
+        var payload = com.chigusa.jsncraft.network.CookingRecipesPayload.create(false);
+        var brewing = com.chigusa.jsncraft.network.CookingRecipesPayload.create(true);
+        event.getRelevantPlayers().forEach(p -> {
+            net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, payload);
+            net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(p, brewing);
+        });
     }
 
     @SubscribeEvent
@@ -39,6 +43,7 @@ public final class GameEvents {
         event.addListener(com.chigusa.jsncraft.fishing.FishSpeciesManager.INSTANCE);
         event.addListener(com.chigusa.jsncraft.cooking.CookingManager.RECIPES);
         event.addListener(com.chigusa.jsncraft.cooking.CookingManager.SEASONINGS);
+        event.addListener(com.chigusa.jsncraft.cooking.CookingManager.BREWING);
     }
 
     @SubscribeEvent

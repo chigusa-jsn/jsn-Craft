@@ -1,0 +1,37 @@
+{
+  "result": "jsn_craft:drink/ender_elixir",
+  "count": 1,
+  "ingredients": [
+    "jsn_craft:drink/wine",
+    "minecraft:chorus_fruit",
+    "minecraft:ender_pearl",
+    "jsn_craft:fish/crystal_shrimp"
+  ],
+  "level": 40,
+  "time": 160,
+  "xp": 60,
+  "nutrition": 2,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "effect": "minecraft:slow_falling",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.12,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:cooldown_reduction",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 65,
+  "alcohol": 4
+}

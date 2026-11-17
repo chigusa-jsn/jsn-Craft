@@ -46,7 +46,9 @@ public record DishDexPayload(List<Entry> entries) implements CustomPacketPayload
     public static DishDexPayload of(ServerPlayer player) {
         FishDexData dex = player.getData(ModAttachments.DISH_DEX);
         List<Entry> list = new ArrayList<>();
-        for (var e : CookingManager.RECIPES.entries()) {
+        List<java.util.Map.Entry<net.minecraft.resources.ResourceLocation, CookingRecipe>> all = new ArrayList<>(CookingManager.RECIPES.entries());
+        all.addAll(CookingManager.BREWING.entries());
+        for (var e : all) {
             CookingRecipe r = e.getValue();
             if (r.no() >= 999 || !BuiltInRegistries.ITEM.containsKey(r.result())) continue;
             ItemStack icon = new ItemStack(BuiltInRegistries.ITEM.get(r.result()));

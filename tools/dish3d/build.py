@@ -134,10 +134,22 @@ class Dish:
         self.box([x2, y0 + h * 0.1, cz - w * 0.55], [x2 + 1.6, y0 + h * 0.6, cz + w * 0.55], mat=tail or body)
         if head: self.box([x1 - 0.01, y0 + h * 0.4, cz - w * 0.3], [x1 + 0.4, y0 + h * 0.7, cz - w * 0.05], mat=head)
 
-    def glass(self, cx, cz, r, h, liquid, liquid_y, mat="glass"):
-        self.disc(cx, cz, r, 0, 0.5, mat=mat)
-        self.ring(cx, cz, r, r - 0.5, 0.5, h, mat, mat, mat)
-        self.disc(cx, cz, r - 0.5, 0.5, liquid_y, top=liquid, side=liquid, bottom=liquid)
+    def glass(self, cx, cz, r, h, liquid, liquid_y, mat="glass", y0=0.0):
+        """グラス。側面は中の液体が透けて見える"""
+        side = mat
+        if mat == "glass" and liquid in LIQ:
+            side = materials.tinted(liquid, LIQ[liquid], y0 + liquid_y)
+        self.disc(cx, cz, r, y0, y0 + 0.5, mat=mat)
+        self.ring(cx, cz, r, r - 0.5, y0 + 0.5, y0 + h, side, mat, "glass")
+        self.disc(cx, cz, r - 0.5, y0 + 0.5, y0 + liquid_y, top=liquid, side=liquid, bottom=liquid)
+
+    def bottle(self, cx, cz, r, h, mat, cap="cork", lbl="label"):
+        """瓶：胴・肩・首・栓（ラベルつき）"""
+        self.disc(cx, cz, r, 0, h * 0.6, mat=mat)
+        if lbl: self.disc(cx, cz, r + 0.05, h * 0.18, h * 0.45, top=mat, side=lbl, bottom=mat)
+        self.disc(cx, cz, r * 0.7, h * 0.6, h * 0.7, mat=mat)
+        self.disc(cx, cz, r * 0.35 + 0.2, h * 0.7, h * 0.92, mat=mat)
+        self.disc(cx, cz, r * 0.35 + 0.25, h * 0.92, h, mat=cap)
 
     def slices(self, pts, w, d, h, y, mat, side=None):
         for (x, z) in pts:
@@ -155,8 +167,18 @@ class Dish:
                             "firstperson_righthand": {"rotation": [0, 45, 0], "translation": [0, 3, 0], "scale": [0.45, 0.45, 0.45]},
                             "firstperson_lefthand": {"rotation": [0, 225, 0], "translation": [0, 3, 0], "scale": [0.45, 0.45, 0.45]}}}
 
+# お酒の液体の色（グラスの側面に透けさせる）
+LIQ = {"beer_liquid": "#e8a020", "mead_liquid": "#d88a18", "wine_liquid": "#7a0e24", "sake_liquid": "#f4f0dc",
+       "shochu_liquid": "#eef4f4", "rum_liquid": "#8a4210", "umeshu_liquid": "#e0a830", "whisky_liquid": "#c06a14",
+       "soda_liquid": "#cfeaff", "highball_liquid": "#f0c060", "sour_liquid": "#fff4b0", "sangria_liquid": "#a01830",
+       "mojito_liquid": "#c8f0c0", "nether_liquid": "#e83a0c", "ender_liquid": "#6a1aa8", "lemonade_liquid": "#fff080",
+       "grape_jelly_m": "#7a2a9a", "void_jelly_m": "#3a1a6a"}
+
 DISHES = {}
 def dish(f): DISHES[f.__name__] = f; return f
+
+DRINKS = {}
+def drink(f): DRINKS[f.__name__] = f; return f
 
 # ======================== 料理 ========================
 
@@ -619,23 +641,137 @@ def ender_dragon_feast(d):
     for (x, z, y) in ((7.0, 13.6, 2.0), (14.0, 8.0, 2.4), (1.6, 7.8, 2.6), (11.0, 2.0, 3.0)):
         d.box([x, y, z], [x + 0.5, y + 0.5, z + 0.5], mat="glow_purple")
 
+
+# ======================== お酒・飲み物 ========================
+
+@drink
+def soda_water(d):
+    d.bottle(8, 8, 2.6, 11, "bottle_clear", cap="cap_red", lbl=None)
+    for (x, y, z) in ((7.4, 3.0, 10.5), (8.6, 5.0, 10.5), (7.8, 7.2, 10.5)):
+        d.box([x, y, z], [x + 0.5, y + 0.5, z + 0.2], mat="foam")
+
+@drink
+def beer(d):
+    d.glass(7, 8, 3.6, 8.0, "beer_liquid", 7.0)
+    d.disc(7, 8, 3.7, 7.0, 8.6, mat="foam")
+    d.box([10.4, 6.6, 7.8], [11.4, 8.0, 8.4], mat="foam")
+    for (y1, y2) in ((2.0, 2.8), (5.6, 6.4)):
+        d.box([10.5, y1, 7.4], [12.6, y2, 8.6], mat="glass")
+    d.box([11.8, 2.8, 7.4], [12.6, 5.6, 8.6], mat="glass")
+
+@drink
+def mead(d):
+    d.disc(7, 8, 3.6, 0, 7.0, top="mead_liquid", side="tankard_band", bottom="tankard_wood")
+    d.ring(7, 8, 3.6, 2.9, 6.6, 7.4, "tankard_wood", "tankard_wood", "tankard_wood")
+    for (y1, y2) in ((1.4, 2.2), (5.0, 5.8)):
+        d.box([10.5, y1, 7.4], [12.6, y2, 8.6], mat="iron")
+    d.box([11.8, 2.2, 7.4], [12.6, 5.0, 8.6], mat="iron")
+
+@drink
+def wine(d):
+    d.disc(6, 9, 2.4, 0, 0.4, mat="glass"); d.box([5.6, 0.4, 8.6], [6.4, 4.0, 9.4], mat="glass")
+    d.glass(6, 9, 2.8, 4.6, "wine_liquid", 2.6, y0=4.0)
+    d.bottle(11.4, 5.4, 2.0, 12, "bottle_green")
+
+@drink
+def sake(d):
+    d.box([1.5, 0, 4.0], [14.5, 0.6, 12.0], mat="lacquer_black")
+    for (r, y1, y2) in ((2.6, 0.6, 4.6), (2.0, 4.6, 6.0), (1.2, 6.0, 8.2), (1.6, 8.2, 8.8)):
+        d.disc(6, 8, r, y1, y2, top="sake_liquid" if y2 == 8.8 else "tokkuri", side="tokkuri", bottom="tokkuri")
+    for x in (10.6, 13.0):
+        d.glass(x, 8, 1.4, 1.6, "sake_liquid", 1.3, mat="porcelain_side", y0=0.6)
+
+@drink
+def shochu(d):
+    d.glass(8, 8, 3.4, 5.6, "shochu_liquid", 4.6)
+    for (x, z, y) in ((6.6, 6.6, 3.8), (8.6, 7.4, 4.2), (7.2, 8.8, 4.0)):
+        d.box([x, y, z], [x + 1.6, y + 1.4, z + 1.6], mat="ice")
+
+@drink
+def rum(d):
+    d.bottle(6.4, 7, 2.4, 12, "bottle_brown")
+    d.glass(11.6, 10, 2.0, 3.6, "rum_liquid", 2.4)
+
+@drink
+def umeshu(d):
+    d.glass(8, 8, 3.4, 5.6, "umeshu_liquid", 4.6)
+    d.box([6.6, 3.6, 6.6], [8.2, 5.0, 8.2], mat="ume_m")
+    d.box([8.4, 4.0, 7.8], [10.0, 5.4, 9.4], mat="ice")
+
+@drink
+def whisky(d):
+    d.box([9.6, 0, 3.0], [13.6, 9.0, 7.0], top="bottle_brown", side="bottle_brown", bottom="bottle_brown")
+    d.box([9.5, 2.4, 2.9], [13.7, 6.0, 7.1], top="bottle_brown", side="label", bottom="bottle_brown")
+    d.box([10.8, 9.0, 4.2], [12.4, 11.0, 5.8], mat="bottle_brown"); d.box([10.6, 11.0, 4.0], [12.6, 12.0, 6.0], mat="cork")
+    d.glass(6, 10, 3.2, 4.4, "whisky_liquid", 2.8)
+    d.box([5.0, 2.0, 9.0], [7.4, 4.6, 11.4], mat="ice")
+
+@drink
+def highball(d):
+    d.glass(8, 8, 2.8, 10.0, "highball_liquid", 9.0)
+    for (x, z, y) in ((6.8, 6.8, 7.6), (8.2, 7.6, 8.2)):
+        d.box([x, y, z], [x + 1.4, y + 1.2, z + 1.4], mat="ice")
+    d.box([9.6, 8.2, 5.2], [11.2, 10.6, 5.6], top="lemon_slice", side="lemon_m", fit=("north", "south"))
+
+@drink
+def lemon_sour(d):
+    d.glass(7, 8, 3.6, 8.0, "sour_liquid", 7.2)
+    for (y1, y2) in ((2.0, 2.8), (5.6, 6.4)):
+        d.box([10.5, y1, 7.4], [12.6, y2, 8.6], mat="glass")
+    d.box([11.8, 2.8, 7.4], [12.6, 5.6, 8.6], mat="glass")
+    d.box([5.4, 6.2, 6.6], [7.6, 7.4, 6.9], top="lemon_slice", side="lemon_slice", fit=("north", "south"))
+    d.box([6.8, 6.6, 8.6], [8.4, 7.8, 10.2], mat="ice")
+
+@drink
+def sangria(d):
+    d.glass(6.6, 7.4, 3.8, 8.6, "sangria_liquid", 7.4)
+    d.box([9.8, 7.4, 6.6], [11.4, 8.6, 8.2], mat="glass")
+    for (x, z, m) in ((5.0, 6.0, "orange_slice"), (7.4, 8.4, "lemon_m"), (6.0, 8.6, "grape_m")):
+        d.box([x, 6.8, z], [x + 1.6, 7.6, z + 1.4], mat=m)
+    d.glass(12.4, 11.6, 1.8, 3.6, "sangria_liquid", 2.8)
+
+@drink
+def mojito(d):
+    d.glass(8, 8, 3.0, 9.0, "mojito_liquid", 8.0)
+    for (x, z, y) in ((6.6, 6.8, 7.0), (8.4, 8.6, 7.4), (7.2, 9.0, 6.4)):
+        d.box([x, y, z], [x + 1.4, y + 0.4, z + 1.0], mat="mint")
+    d.box([7.0, 7.2, 7.2], [8.6, 8.4, 8.8], mat="ice")
+    d.box([9.0, 7.6, 7.4], [9.6, 12.0, 8.0], mat="straw_red")
+
+@drink
+def nether_fire(d):
+    d.glass(8, 8, 3.4, 5.2, "nether_liquid", 4.4)
+    for (x, z, h) in ((7.0, 7.0, 2.0), (8.6, 8.2, 2.8), (7.6, 9.0, 1.6)):
+        d.box([x, 4.4, z], [x + 0.8, 4.4 + h, z + 0.8], mat="flame")
+
+@drink
+def ender_elixir(d):
+    d.disc(8, 8, 2.4, 0, 0.4, mat="glass"); d.box([7.6, 0.4, 7.6], [8.4, 4.0, 8.4], mat="glass")
+    d.glass(8, 8, 3.0, 5.0, "ender_liquid", 3.4, y0=4.0)
+    for (x, z, y) in ((6.0, 7.0, 9.6), (9.6, 6.4, 10.4), (8.4, 10.0, 9.0), (5.4, 10.0, 8.6)):
+        d.box([x, y, z], [x + 0.5, y + 0.5, z + 0.5], mat="glow_purple")
+
 # ======================== 出力 ========================
 
 def build(preview_dir=None):
-    tex = materials.build_all(TEX)
     os.makedirs(MODEL, exist_ok=True); os.makedirs(ITEM, exist_ok=True)
+    DRINK_ITEM = os.path.join(os.path.dirname(ITEM), "drink"); os.makedirs(DRINK_ITEM, exist_ok=True)
+    built = {}
+    for name, f in list(DISHES.items()) + list(DRINKS.items()):
+        d = Dish(); f(d); built[name] = d
+    tex = materials.build_all(TEX)  # グラスの色つき素材も、モデルを組んだあとでまとめて作る
     out = {}
-    for name, f in DISHES.items():
-        d = Dish(); f(d)
+    for name, d in built.items():
         m = d.json(tex)
         json.dump(m, open(os.path.join(MODEL, name + ".json"), "w"), indent=1)
-        json.dump({"parent": f"jsn_craft:block/dish3d/{name}"}, open(os.path.join(ITEM, name + ".json"), "w"), indent=2)
+        folder = DRINK_ITEM if name in DRINKS else ITEM
+        json.dump({"parent": f"jsn_craft:block/dish3d/{name}"}, open(os.path.join(folder, name + ".json"), "w"), indent=2)
         out[name] = (m, d.els)
         print(name, len(d.els), "個の箱")
     if preview_dir:
         os.makedirs(preview_dir, exist_ok=True)
         for name, (m, _) in out.items():
-            r = Renderer(260, 200, 9, 130, 40)
+            r = Renderer(260, 260, 9, 130, 90)
             r.model(m, tex)
             r.img.save(os.path.join(preview_dir, name + ".png"))
     return out, tex

@@ -177,5 +177,21 @@
   "item.jsn_craft.dish.ice_queen_carpaccio": "Ice Queen Carpaccio",
   "item.jsn_craft.dish.inferno_dragon_roast": "Roasted Inferno Dragonfish",
   "item.jsn_craft.dish.soulflame_nabe": "Soulflame Catfish Hotpot",
-  "item.jsn_craft.dish.ender_dragon_feast": "Ender Dragonfish Grand Banquet"
+  "item.jsn_craft.dish.ender_dragon_feast": "Ender Dragonfish Grand Banquet",
+  "item.jsn_craft.drink.soda_water": "Soda Water",
+  "item.jsn_craft.drink.beer": "Beer",
+  "item.jsn_craft.drink.mead": "Mead",
+  "item.jsn_craft.drink.wine": "Wine",
+  "item.jsn_craft.drink.sake": "Sake",
+  "item.jsn_craft.drink.shochu": "Shochu",
+  "item.jsn_craft.drink.rum": "Rum",
+  "item.jsn_craft.drink.umeshu": "Umeshu",
+  "item.jsn_craft.drink.highball": "Highball",
+  "item.jsn_craft.drink.lemon_sour": "Lemon Sour",
+  "item.jsn_craft.drink.sangria": "Sangria",
+  "item.jsn_craft.drink.mojito": "Mojito",
+  "item.jsn_craft.drink.whisky": "Whisky",
+  "item.jsn_craft.drink.nether_fire": "Nether Fire",
+  "item.jsn_craft.drink.ender_elixir": "Ender Elixir",
+  "block.jsn_craft.brewing_barrel": "Brewing Barrel"
 }

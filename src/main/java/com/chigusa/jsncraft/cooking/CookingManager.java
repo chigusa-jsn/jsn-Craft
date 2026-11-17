@@ -24,6 +24,8 @@ public class CookingManager<T> extends SimpleJsonResourceReloadListener {
 
     public static final CookingManager<CookingRecipe> RECIPES = new CookingManager<>("jsn_cooking", CookingRecipe.CODEC);
     public static final CookingManager<Seasoning> SEASONINGS = new CookingManager<>("jsn_seasonings", Seasoning.CODEC);
+    /** 酒樽で熟成させるお酒（中身の形は調理台のレシピと同じ。time は熟成にかかる tick） */
+    public static final CookingManager<CookingRecipe> BREWING = new CookingManager<>("jsn_brewing", CookingRecipe.CODEC);
 
     private final Codec<T> codec;
     private final String folder;
@@ -55,8 +57,12 @@ public class CookingManager<T> extends SimpleJsonResourceReloadListener {
 
     /** 材料に合うレシピの番号（なければ -1）。材料が多いレシピ、次に「#タグ」でなく名指しの材料が多いレシピを優先 */
     public static int findRecipe(List<ItemStack> slots) {
+        return find(RECIPES, slots);
+    }
+
+    public static int find(CookingManager<CookingRecipe> manager, List<ItemStack> slots) {
         int best = -1, bestScore = -1;
-        List<Map.Entry<ResourceLocation, CookingRecipe>> list = RECIPES.entries();
+        List<Map.Entry<ResourceLocation, CookingRecipe>> list = manager.entries();
         for (int i = 0; i < list.size(); i++) {
             CookingRecipe r = list.get(i).getValue();
             int specific = 0;
@@ -72,7 +78,12 @@ public class CookingManager<T> extends SimpleJsonResourceReloadListener {
 
     @Nullable
     public static CookingRecipe recipe(int index) {
-        var list = RECIPES.entries();
+        return get(RECIPES, index);
+    }
+
+    @Nullable
+    public static CookingRecipe get(CookingManager<CookingRecipe> manager, int index) {
+        var list = manager.entries();
         return index >= 0 && index < list.size() ? list.get(index).getValue() : null;
     }
 

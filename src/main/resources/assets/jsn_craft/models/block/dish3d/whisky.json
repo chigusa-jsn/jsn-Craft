@@ -1,0 +1,1324 @@
+{
+ "parent": "minecraft:block/block",
+ "ambientocclusion": false,
+ "textures": {
+  "bottle_brown": "jsn_craft:block/dish3d/bottle_brown",
+  "cork": "jsn_craft:block/dish3d/cork",
+  "glass": "jsn_craft:block/dish3d/glass",
+  "glass_whisky_liquid_28": "jsn_craft:block/dish3d/glass_whisky_liquid_28",
+  "ice": "jsn_craft:block/dish3d/ice",
+  "label": "jsn_craft:block/dish3d/label",
+  "whisky_liquid": "jsn_craft:block/dish3d/whisky_liquid",
+  "particle": "jsn_craft:block/dish3d/bottle_brown"
+ },
+ "elements": [
+  {
+   "from": [
+    9.6,
+    0,
+    3.0
+   ],
+   "to": [
+    13.6,
+    9.0,
+    7.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#bottle_brown"
+    },
+    "down": {
+     "texture": "#bottle_brown"
+    },
+    "north": {
+     "texture": "#bottle_brown"
+    },
+    "south": {
+     "texture": "#bottle_brown"
+    },
+    "east": {
+     "texture": "#bottle_brown"
+    },
+    "west": {
+     "texture": "#bottle_brown"
+    }
+   }
+  },
+  {
+   "from": [
+    9.5,
+    2.4,
+    2.9
+   ],
+   "to": [
+    13.7,
+    6.0,
+    7.1
+   ],
+   "faces": {
+    "up": {
+     "texture": "#bottle_brown"
+    },
+    "down": {
+     "texture": "#bottle_brown"
+    },
+    "north": {
+     "texture": "#label"
+    },
+    "south": {
+     "texture": "#label"
+    },
+    "east": {
+     "texture": "#label"
+    },
+    "west": {
+     "texture": "#label"
+    }
+   }
+  },
+  {
+   "from": [
+    10.8,
+    9.0,
+    4.2
+   ],
+   "to": [
+    12.4,
+    11.0,
+    5.8
+   ],
+   "faces": {
+    "up": {
+     "texture": "#bottle_brown"
+    },
+    "down": {
+     "texture": "#bottle_brown"
+    },
+    "north": {
+     "texture": "#bottle_brown"
+    },
+    "south": {
+     "texture": "#bottle_brown"
+    },
+    "east": {
+     "texture": "#bottle_brown"
+    },
+    "west": {
+     "texture": "#bottle_brown"
+    }
+   }
+  },
+  {
+   "from": [
+    10.6,
+    11.0,
+    4.0
+   ],
+   "to": [
+    12.6,
+    12.0,
+    6.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#cork"
+    },
+    "down": {
+     "texture": "#cork"
+    },
+    "north": {
+     "texture": "#cork"
+    },
+    "south": {
+     "texture": "#cork"
+    },
+    "east": {
+     "texture": "#cork"
+    },
+    "west": {
+     "texture": "#cork"
+    }
+   }
+  },
+  {
+   "from": [
+    4.5,
+    0.0,
+    7.0
+   ],
+   "to": [
+    7.5,
+    0.5,
+    13.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.0,
+    7.5
+   ],
+   "to": [
+    4.5,
+    0.5,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0.0,
+    7.5
+   ],
+   "to": [
+    8.5,
+    0.5,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.0,
+    8.5
+   ],
+   "to": [
+    3.5,
+    0.5,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.0,
+    8.5
+   ],
+   "to": [
+    9.0,
+    0.5,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    9.0
+   ],
+   "to": [
+    3.5,
+    4.4,
+    9.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    9.0
+   ],
+   "to": [
+    9.0,
+    4.4,
+    9.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.5,
+    11.5
+   ],
+   "to": [
+    4.0,
+    4.4,
+    12.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.0,
+    0.5,
+    11.5
+   ],
+   "to": [
+    8.5,
+    4.4,
+    12.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.5,
+    12.0
+   ],
+   "to": [
+    4.0,
+    4.4,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    4.0,
+    0.5,
+    12.0
+   ],
+   "to": [
+    4.5,
+    4.4,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0.5,
+    12.0
+   ],
+   "to": [
+    8.0,
+    4.4,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    8.0,
+    0.5,
+    12.0
+   ],
+   "to": [
+    8.5,
+    4.4,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    10.5
+   ],
+   "to": [
+    3.5,
+    4.4,
+    11.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    10.5
+   ],
+   "to": [
+    9.0,
+    4.4,
+    11.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    4.5,
+    0.5,
+    12.5
+   ],
+   "to": [
+    7.5,
+    4.4,
+    13.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    4.5,
+    0.5,
+    7.0
+   ],
+   "to": [
+    7.5,
+    4.4,
+    7.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.5,
+    7.5
+   ],
+   "to": [
+    4.0,
+    4.4,
+    8.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    4.0,
+    0.5,
+    7.5
+   ],
+   "to": [
+    4.5,
+    4.4,
+    8.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0.5,
+    7.5
+   ],
+   "to": [
+    8.0,
+    4.4,
+    8.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    8.0,
+    0.5,
+    7.5
+   ],
+   "to": [
+    8.5,
+    4.4,
+    8.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.5,
+    8.0
+   ],
+   "to": [
+    4.0,
+    4.4,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.0,
+    0.5,
+    8.0
+   ],
+   "to": [
+    8.5,
+    4.4,
+    8.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    10.0
+   ],
+   "to": [
+    3.5,
+    4.4,
+    10.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    10.0
+   ],
+   "to": [
+    9.0,
+    4.4,
+    10.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    8.5
+   ],
+   "to": [
+    3.5,
+    4.4,
+    9.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    8.5
+   ],
+   "to": [
+    9.0,
+    4.4,
+    9.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "north": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    9.5
+   ],
+   "to": [
+    3.5,
+    4.4,
+    10.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    9.5
+   ],
+   "to": [
+    9.0,
+    4.4,
+    10.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    3.0,
+    0.5,
+    11.0
+   ],
+   "to": [
+    3.5,
+    4.4,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass"
+    },
+    "west": {
+     "texture": "#glass_whisky_liquid_28"
+    }
+   }
+  },
+  {
+   "from": [
+    8.5,
+    0.5,
+    11.0
+   ],
+   "to": [
+    9.0,
+    4.4,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#glass"
+    },
+    "down": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "south": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "east": {
+     "texture": "#glass_whisky_liquid_28"
+    },
+    "west": {
+     "texture": "#glass"
+    }
+   }
+  },
+  {
+   "from": [
+    4.5,
+    0.5,
+    7.5
+   ],
+   "to": [
+    7.5,
+    2.8,
+    12.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#whisky_liquid"
+    },
+    "down": {
+     "texture": "#whisky_liquid"
+    },
+    "north": {
+     "texture": "#whisky_liquid"
+    },
+    "south": {
+     "texture": "#whisky_liquid"
+    },
+    "east": {
+     "texture": "#whisky_liquid"
+    },
+    "west": {
+     "texture": "#whisky_liquid"
+    }
+   }
+  },
+  {
+   "from": [
+    4.0,
+    0.5,
+    8.0
+   ],
+   "to": [
+    4.5,
+    2.8,
+    12.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#whisky_liquid"
+    },
+    "down": {
+     "texture": "#whisky_liquid"
+    },
+    "north": {
+     "texture": "#whisky_liquid"
+    },
+    "south": {
+     "texture": "#whisky_liquid"
+    },
+    "east": {
+     "texture": "#whisky_liquid"
+    },
+    "west": {
+     "texture": "#whisky_liquid"
+    }
+   }
+  },
+  {
+   "from": [
+    7.5,
+    0.5,
+    8.0
+   ],
+   "to": [
+    8.0,
+    2.8,
+    12.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#whisky_liquid"
+    },
+    "down": {
+     "texture": "#whisky_liquid"
+    },
+    "north": {
+     "texture": "#whisky_liquid"
+    },
+    "south": {
+     "texture": "#whisky_liquid"
+    },
+    "east": {
+     "texture": "#whisky_liquid"
+    },
+    "west": {
+     "texture": "#whisky_liquid"
+    }
+   }
+  },
+  {
+   "from": [
+    3.5,
+    0.5,
+    8.5
+   ],
+   "to": [
+    4.0,
+    2.8,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#whisky_liquid"
+    },
+    "down": {
+     "texture": "#whisky_liquid"
+    },
+    "north": {
+     "texture": "#whisky_liquid"
+    },
+    "south": {
+     "texture": "#whisky_liquid"
+    },
+    "east": {
+     "texture": "#whisky_liquid"
+    },
+    "west": {
+     "texture": "#whisky_liquid"
+    }
+   }
+  },
+  {
+   "from": [
+    8.0,
+    0.5,
+    8.5
+   ],
+   "to": [
+    8.5,
+    2.8,
+    11.5
+   ],
+   "faces": {
+    "up": {
+     "texture": "#whisky_liquid"
+    },
+    "down": {
+     "texture": "#whisky_liquid"
+    },
+    "north": {
+     "texture": "#whisky_liquid"
+    },
+    "south": {
+     "texture": "#whisky_liquid"
+    },
+    "east": {
+     "texture": "#whisky_liquid"
+    },
+    "west": {
+     "texture": "#whisky_liquid"
+    }
+   }
+  },
+  {
+   "from": [
+    5.0,
+    2.0,
+    9.0
+   ],
+   "to": [
+    7.4,
+    4.6,
+    11.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#ice"
+    },
+    "down": {
+     "texture": "#ice"
+    },
+    "north": {
+     "texture": "#ice"
+    },
+    "south": {
+     "texture": "#ice"
+    },
+    "east": {
+     "texture": "#ice"
+    },
+    "west": {
+     "texture": "#ice"
+    }
+   }
+  }
+ ],
+ "display": {
+  "gui": {
+   "rotation": [
+    30,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "ground": {
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.5,
+    0.5,
+    0.5
+   ]
+  },
+  "fixed": {
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    0,
+    -6
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "thirdperson_righthand": {
+   "rotation": [
+    75,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.4,
+    0.4,
+    0.4
+   ]
+  },
+  "firstperson_righthand": {
+   "rotation": [
+    0,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  },
+  "firstperson_lefthand": {
+   "rotation": [
+    0,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  }
+ }
+}

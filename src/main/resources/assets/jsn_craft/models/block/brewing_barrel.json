@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "top": "jsn_craft:block/brewing_barrel_top",
+    "bottom": "jsn_craft:block/brewing_barrel_top",
+    "front": "jsn_craft:block/brewing_barrel_front",
+    "side": "jsn_craft:block/brewing_barrel_side"
+  }
+}

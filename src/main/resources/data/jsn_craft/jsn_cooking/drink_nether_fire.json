@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/nether_fire",
+  "count": 1,
+  "ingredients": [
+    "jsn_craft:drink/whisky",
+    "minecraft:blaze_powder",
+    "jsn_craft:chili",
+    "minecraft:magma_cream"
+  ],
+  "level": 35,
+  "time": 160,
+  "xp": 50,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 900
+    },
+    {
+      "effect": "minecraft:strength",
+      "amplifier": 0,
+      "seconds": 300
+    }
+  ],
+  "rank": "fine",
+  "no": 64,
+  "alcohol": 5
+}

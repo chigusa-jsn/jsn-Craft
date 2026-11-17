@@ -67,8 +67,25 @@ public final class ModCooking {
 
     public static final List<DeferredItem<Item>> DISH_ITEMS = new ArrayList<>();
 
+    /** お酒・飲み物（jsn_craft:drink/<名前>） */
+    public static final String[] DRINKS = {
+            "soda_water", "beer", "mead", "wine", "sake", "shochu", "rum", "umeshu",
+            "highball", "lemon_sour", "sangria", "mojito", "whisky", "nether_fire", "ender_elixir"};
+
+    public static final List<DeferredItem<Item>> DRINK_ITEMS = new ArrayList<>();
+
+    /** 酒樽 */
+    public static final DeferredBlock<BrewingBarrelBlock> BREWING_BARREL = BLOCKS.register("brewing_barrel",
+            () -> new BrewingBarrelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
+    public static final DeferredItem<BlockItem> BREWING_BARREL_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(BREWING_BARREL);
+    public static final Supplier<BlockEntityType<BrewingBarrelBlockEntity>> BREWING_BARREL_BE = BLOCK_ENTITIES.register(
+            "brewing_barrel", () -> BlockEntityType.Builder.of(BrewingBarrelBlockEntity::new, BREWING_BARREL.get()).build(null));
+    public static final DeferredHolder<MenuType<?>, MenuType<BrewingMenu>> BREWING_MENU = MENUS.register("brewing_barrel",
+            () -> IMenuTypeExtension.create(BrewingMenu::new));
+
     static {
         for (String d : DISHES) DISH_ITEMS.add(ModEntities.ITEMS.register("dish/" + d, DishItem::new));
+        for (String d : DRINKS) DRINK_ITEMS.add(ModEntities.ITEMS.register("drink/" + d, DrinkItem::new));
     }
 
     public static void register(IEventBus bus) {
@@ -79,8 +96,14 @@ public final class ModCooking {
 
     @SubscribeEvent
     public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(COOKING_STATION_ITEM);
-        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) for (var d : DISH_ITEMS) event.accept(d);
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(COOKING_STATION_ITEM);
+            event.accept(BREWING_BARREL_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            for (var d : DISH_ITEMS) event.accept(d);
+            for (var d : DRINK_ITEMS) event.accept(d);
+        }
     }
 
     private ModCooking() {}

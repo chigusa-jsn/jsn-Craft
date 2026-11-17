@@ -1,0 +1,31 @@
+{
+  "result": "jsn_craft:drink/wine",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:grape",
+    "jsn_craft:grape",
+    "jsn_craft:grape",
+    "minecraft:sugar"
+  ],
+  "level": 15,
+  "time": 12000,
+  "xp": 20,
+  "nutrition": 2,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 30
+    }
+  ],
+  "rank": "feast",
+  "no": 54,
+  "alcohol": 3
+}

@@ -22,11 +22,12 @@ import java.util.List;
  *   "nutrition": 10, "saturation": 0.8,
  *   "buffs": [ … FoodBuff … ],
  *   "rank": "normal",     … 料理図鑑のランク：normal（ふつう）/ feast（ごちそう）/ fine（逸品）/ legend（伝説）
- *   "no": 1               … 料理図鑑の番号（書かなければ図鑑に出ない ＝ 加工食材など）
+ *   "no": 1,              … 料理図鑑の番号（書かなければ図鑑に出ない ＝ 加工食材など）
+ *   "alcohol": 3          … お酒の強さ（飲むと酔いがたまる。0 ならお酒ではない）
  * }
  */
 public record CookingRecipe(ResourceLocation result, int count, List<String> ingredients, int level, int time, int xp,
-                            int nutrition, float saturation, List<FoodBuff> buffs, String rank, int no) {
+                            int nutrition, float saturation, List<FoodBuff> buffs, String rank, int no, int alcohol) {
 
     public static final Codec<CookingRecipe> CODEC = RecordCodecBuilder.create(i -> i.group(
             ResourceLocation.CODEC.fieldOf("result").forGetter(CookingRecipe::result),
@@ -39,7 +40,8 @@ public record CookingRecipe(ResourceLocation result, int count, List<String> ing
             Codec.FLOAT.optionalFieldOf("saturation", 0.6F).forGetter(CookingRecipe::saturation),
             FoodBuff.CODEC.listOf().optionalFieldOf("buffs", List.of()).forGetter(CookingRecipe::buffs),
             Codec.STRING.optionalFieldOf("rank", "normal").forGetter(CookingRecipe::rank),
-            Codec.INT.optionalFieldOf("no", 999).forGetter(CookingRecipe::no)
+            Codec.INT.optionalFieldOf("no", 999).forGetter(CookingRecipe::no),
+            Codec.INT.optionalFieldOf("alcohol", 0).forGetter(CookingRecipe::alcohol)
     ).apply(i, CookingRecipe::new));
 
     public DishRank rankEnum() {
