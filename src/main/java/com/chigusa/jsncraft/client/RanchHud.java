@@ -63,6 +63,9 @@ public final class RanchHud {
         if (a instanceof Sheep && rank > 1) info.add("羊毛 +" + (rank - 1));
         if (a instanceof Chicken && rank > 1) info.add("卵が早い" + (rank >= 4 ? "・金の卵" : ""));
         if (a instanceof Cow && rank >= 4) info.add("搾りたてミルク ×2");
+        if (a instanceof net.minecraft.world.entity.animal.goat.Goat && rank > 1) info.add("倒すと角 " + 20 * (rank - 1) + "%");
+        if (a instanceof net.minecraft.world.entity.animal.Bee && rank > 1) info.add("ハチミツが早くたまる");
+        if (a instanceof net.minecraft.world.entity.animal.sniffer.Sniffer && rank > 1) info.add("古代の種 +1（" + 25 * (rank - 1) + "%）");
         if (a instanceof AbstractHorse && rank > 1) info.add("足 +" + 5 * (rank - 1) + "%・体力 +" + 2 * (rank - 1));
         if (rank > 1) info.add("早く育つ +" + 5 * (rank - 1) + "%");
         int ly = y + 11;

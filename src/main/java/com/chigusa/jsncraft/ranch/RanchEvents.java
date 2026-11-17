@@ -48,6 +48,10 @@ public final class RanchEvents {
 
     @SubscribeEvent
     public static void onJoin(EntityJoinLevelEvent event) {
+        if (!event.getLevel().isClientSide() && !event.loadedFromDisk() && event.getEntity() instanceof ItemEntity item) {
+            sniffedSeed(item);
+            return;
+        }
         if (event.getLevel().isClientSide() || !(event.getEntity() instanceof Animal a)) return;
         if (RanchService.rank(a) == 0) RanchService.setRank(a, RanchService.wildRank(a.getRandom()));
     }
@@ -186,6 +190,9 @@ public final class RanchEvents {
                 s.setCount(Math.min(s.getMaxStackSize(), n));
             }
         }
+        if (a instanceof net.minecraft.world.entity.animal.goat.Goat goat && rank > 1 && r.nextDouble() < 0.2 * (rank - 1)) {
+            event.getDrops().add(new ItemEntity(a.level(), a.getX(), a.getY() + 0.5, a.getZ(), goat.createHorn()));
+        }
         Item premium = a instanceof Cow ? ModRanch.PREMIUM_BEEF.get() : a instanceof Pig ? ModRanch.PREMIUM_PORK.get()
                 : a instanceof Sheep ? ModRanch.PREMIUM_MUTTON.get() : a instanceof Chicken ? ModRanch.PREMIUM_CHICKEN.get() : null;
         if (premium == null) return;
@@ -200,6 +207,44 @@ public final class RanchEvents {
     }
 
     // ================= ニワトリ：★で卵が早い・金の卵 =================
+
+    @SubscribeEvent
+    public static void onBeeTick(EntityTickEvent.Post event) {
+        if (!(event.getEntity() instanceof net.minecraft.world.entity.animal.Bee bee) || bee.level().isClientSide() || bee.tickCount % 20 != 0) return;
+        int rank = RanchService.rankOr1(bee);
+        if (rank <= 1 || !bee.hasNectar() || bee.getRandom().nextDouble() >= 0.02 * (rank - 1)) return;
+        net.minecraft.core.BlockPos hive = bee.getHivePos();
+        if (hive == null) return;
+        var state = bee.level().getBlockState(hive);
+        var prop = net.minecraft.world.level.block.BeehiveBlock.HONEY_LEVEL;
+        if (!state.hasProperty(prop) || state.getValue(prop) >= net.minecraft.world.level.block.BeehiveBlock.MAX_HONEY_LEVELS) return;
+        bee.level().setBlock(hive, state.setValue(prop, state.getValue(prop) + 1), 3);   // ★が高いハチは巣箱のハチミツを早くためる
+        if (bee.level() instanceof ServerLevel sl)
+            sl.sendParticles(ParticleTypes.FALLING_HONEY, hive.getX() + 0.5, hive.getY() + 1.0, hive.getZ() + 0.5, 4, 0.3, 0.1, 0.3, 0);
+    }
+
+    /** スニッファーが掘り出した古代の種：★が高いほど、もう1つ見つかる */
+    private static void sniffedSeed(ItemEntity item) {
+        ItemStack s = item.getItem();
+        if (!s.is(Items.TORCHFLOWER_SEEDS) && !s.is(Items.PITCHER_POD)) return;
+        for (var sn : item.level().getEntitiesOfClass(net.minecraft.world.entity.animal.sniffer.Sniffer.class, item.getBoundingBox().inflate(3))) {
+            int rank = RanchService.rankOr1(sn);
+            if (rank > 1 && sn.getRandom().nextDouble() < 0.25 * (rank - 1)) {
+                ItemStack extra = s.copyWithCount(1);
+                SkillEffectsLater.drop(item, extra);
+            }
+            return;
+        }
+    }
+
+    /** 参加イベントの中では物を増やせないので、次のtickで出す */
+    private static final class SkillEffectsLater {
+        static void drop(ItemEntity near, ItemStack stack) {
+            if (!(near.level() instanceof ServerLevel sl)) return;
+            sl.getServer().tell(new net.minecraft.server.TickTask(sl.getServer().getTickCount() + 1, () ->
+                    sl.addFreshEntity(new ItemEntity(sl, near.getX(), near.getY() + 0.3, near.getZ(), stack))));
+        }
+    }
 
     @SubscribeEvent
     public static void onTick(EntityTickEvent.Post event) {
