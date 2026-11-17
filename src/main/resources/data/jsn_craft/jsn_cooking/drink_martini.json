@@ -1,0 +1,37 @@
+{
+  "result": "jsn_craft:drink/martini",
+  "count": 1,
+  "ingredients": [
+    "jsn_craft:drink/sake",
+    "jsn_craft:drink/shochu",
+    "jsn_craft:ume"
+  ],
+  "level": 35,
+  "time": 160,
+  "xp": 50,
+  "nutrition": 1,
+  "saturation": 0.2,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:fishing_treasure",
+      "amount": 0.05,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:crit_chance",
+      "amount": 0.06,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 81,
+  "alcohol": 5
+}

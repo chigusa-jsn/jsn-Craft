@@ -1,0 +1,33 @@
+{
+  "result": "jsn_craft:drink/coffee",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:coffee",
+    "jsn_craft:coffee",
+    "minecraft:water_bucket"
+  ],
+  "level": 15,
+  "time": 100,
+  "xp": 14,
+  "nutrition": 1,
+  "saturation": 0.2,
+  "buffs": [
+    {
+      "special": "awake",
+      "seconds": 0,
+      "amount": 0
+    },
+    {
+      "effect": "minecraft:haste",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 300
+    }
+  ],
+  "rank": "feast",
+  "no": 73
+}

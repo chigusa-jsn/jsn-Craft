@@ -172,7 +172,11 @@ LIQ = {"beer_liquid": "#e8a020", "mead_liquid": "#d88a18", "wine_liquid": "#7a0e
        "shochu_liquid": "#eef4f4", "rum_liquid": "#8a4210", "umeshu_liquid": "#e0a830", "whisky_liquid": "#c06a14",
        "soda_liquid": "#cfeaff", "highball_liquid": "#f0c060", "sour_liquid": "#fff4b0", "sangria_liquid": "#a01830",
        "mojito_liquid": "#c8f0c0", "nether_liquid": "#e83a0c", "ender_liquid": "#6a1aa8", "lemonade_liquid": "#fff080",
-       "grape_jelly_m": "#7a2a9a", "void_jelly_m": "#3a1a6a"}
+       "grape_jelly_m": "#7a2a9a", "void_jelly_m": "#3a1a6a",
+       "milk_liquid": "#f8f6f0", "shake_liquid": "#fff0c8", "cocoa_liquid": "#6a3a1e", "melon_juice": "#ff5a6a",
+       "smoothie_liquid": "#c84a8a", "amazake_liquid": "#f4f0e4", "greentea_liquid": "#a8c060", "coffee_liquid": "#3a2010",
+       "matcha_liquid": "#7ab040", "hotwine_liquid": "#8a1a24", "cider_liquid": "#f0d070", "honeylemon_liquid": "#f8d878",
+       "berryorange_liquid": "#f07a3a", "blue_liquid": "#3aa8f0", "martini_liquid": "#e8f0e0"}
 
 DISHES = {}
 def dish(f): DISHES[f.__name__] = f; return f
@@ -750,6 +754,120 @@ def ender_elixir(d):
     d.glass(8, 8, 3.0, 5.0, "ender_liquid", 3.4, y0=4.0)
     for (x, z, y) in ((6.0, 7.0, 9.6), (9.6, 6.4, 10.4), (8.4, 10.0, 9.0), (5.4, 10.0, 8.6)):
         d.box([x, y, z], [x + 0.5, y + 0.5, z + 0.5], mat="glow_purple")
+
+
+@drink
+def milk(d):
+    d.glass(8, 8, 2.6, 9.0, "milk_liquid", 8.0)
+    d.disc(8, 8, 2.2, 9.0, 10.0, mat="glass"); d.disc(8, 8, 2.3, 10.0, 10.6, mat="cap_red")
+
+@drink
+def milkshake(d):
+    d.glass(8, 8, 2.8, 9.0, "shake_liquid", 8.4)
+    d.disc(8, 8, 2.4, 8.4, 9.8, mat="cream"); d.disc(8, 8, 1.4, 9.8, 10.6, mat="cream")
+    d.box([7.5, 10.6, 7.5], [8.5, 11.4, 8.5], mat="strawberry")
+    d.box([9.2, 8.6, 7.6], [9.8, 13.0, 8.2], mat="straw_red")
+
+@drink
+def hot_cocoa(d):
+    d.glass(7, 8, 3.4, 6.4, "cocoa_liquid", 5.6, mat="porcelain_side")
+    for (x, z) in ((6.0, 7.0), (7.6, 8.4)):
+        d.box([x, 5.6, z], [x + 1.2, 6.6, z + 1.2], mat="marshmallow")
+    for (y1, y2) in ((1.4, 2.0), (4.4, 5.0)):
+        d.box([10.3, y1, 7.5], [12.0, y2, 8.5], mat="porcelain_side")
+    d.box([11.4, 2.0, 7.5], [12.0, 4.4, 8.5], mat="porcelain_side")
+
+@drink
+def watermelon_juice(d):
+    d.glass(8, 8, 3.0, 8.0, "melon_juice", 7.2)
+    d.box([9.6, 6.6, 6.6], [12.4, 8.4, 7.4], mat="melon_rind")
+    d.box([9.8, 7.0, 6.4], [12.2, 8.6, 6.8], mat="melon_juice")
+    d.box([6.6, 7.2, 8.6], [7.2, 11.6, 9.2], mat="straw_red")
+
+@drink
+def berry_smoothie(d):
+    d.glass(8, 8, 3.0, 8.4, "smoothie_liquid", 7.8)
+    for (x, z, m) in ((6.6, 6.8, "blueberry"), (8.0, 7.6, "strawberry"), (7.0, 8.8, "blueberry")):
+        d.box([x, 7.8, z], [x + 1.0, 8.8, z + 1.0], mat=m)
+    d.box([9.0, 7.8, 8.4], [9.6, 12.4, 9.0], mat="straw_red")
+
+@drink
+def amazake(d):
+    d.small_bowl(8, 8, 3.6, 4.0, "amazake_liquid", "tray_wood", "tray_wood", "tray_wood")
+    d.box([8.6, 3.4, 7.0], [9.4, 3.7, 7.8], mat="potato")
+
+@drink
+def green_tea(d):
+    d.glass(6.4, 8.4, 2.6, 5.2, "greentea_liquid", 4.4, mat="yunomi")
+    for (r, y1, y2) in ((2.8, 0, 3.0), (2.0, 3.0, 4.0), (1.4, 4.0, 4.6)):
+        d.disc(11.4, 6.0, r, y1, y2, mat="chawan")
+    d.box([13.6, 1.6, 5.6], [15.4, 2.2, 6.4], mat="chawan"); d.box([10.6, 4.6, 5.4], [12.2, 5.2, 6.6], mat="yunomi")
+
+@drink
+def coffee(d):
+    d.disc(8, 8, 4.6, 0, 0.6, top="porcelain_top", side="porcelain_side")
+    d.glass(7.6, 8, 3.0, 4.4, "coffee_liquid", 3.8, mat="porcelain_side", y0=0.6)
+    d.box([10.4, 1.6, 7.5], [11.8, 2.2, 8.5], mat="porcelain_side"); d.box([11.2, 2.2, 7.5], [11.8, 3.8, 8.5], mat="porcelain_side")
+    d.box([10.4, 3.8, 7.5], [11.8, 4.4, 8.5], mat="porcelain_side")
+    d.box([6.8, 4.4, 7.2], [8.2, 4.5, 8.8], mat="cream")
+
+@drink
+def matcha(d):
+    d.small_bowl(7, 8, 4.4, 4.0, "matcha_liquid", "chawan", "chawan", "chawan")
+    d.box([11.4, 0, 9.4], [13.2, 2.4, 11.2], mat="chasen"); d.box([11.8, 2.4, 9.8], [12.8, 3.8, 10.8], mat="bamboo_leaf")
+
+@drink
+def hot_wine(d):
+    d.glass(7, 8, 3.2, 6.6, "hotwine_liquid", 5.8)
+    for (y1, y2) in ((1.4, 2.0), (4.6, 5.2)):
+        d.box([10.1, y1, 7.5], [11.8, y2, 8.5], mat="glass")
+    d.box([11.2, 2.0, 7.5], [11.8, 4.6, 8.5], mat="glass")
+    d.box([5.4, 5.8, 6.6], [7.6, 6.2, 8.6], top="lemon_slice", side="orange_slice", fit=("up",))
+    d.box([7.8, 5.4, 8.6], [8.4, 9.0, 9.2], mat="cinnamon")
+
+@drink
+def cider(d):
+    d.bottle(6.0, 6.4, 2.2, 11, "bottle_green")
+    d.glass(11.2, 9.6, 2.2, 5.0, "cider_liquid", 4.2)
+    d.box([3.4, 0, 10.6], [6.0, 2.6, 13.2], mat="apple_m"); d.box([4.6, 2.6, 11.8], [4.8, 3.4, 12.0], mat="stick")
+
+@drink
+def honey_lemon_sour(d):
+    d.glass(7, 8, 3.6, 8.0, "honeylemon_liquid", 7.2)
+    for (y1, y2) in ((2.0, 2.8), (5.6, 6.4)):
+        d.box([10.5, y1, 7.4], [12.6, y2, 8.6], mat="glass")
+    d.box([11.8, 2.8, 7.4], [12.6, 5.6, 8.6], mat="glass")
+    d.box([5.2, 6.4, 6.4], [7.4, 7.6, 6.7], top="lemon_slice", side="lemon_slice", fit=("north", "south"))
+    d.box([7.0, 6.0, 8.4], [8.2, 7.4, 9.6], mat="honey")
+
+@drink
+def berry_orange(d):
+    d.glass(8, 8, 3.0, 8.4, "berryorange_liquid", 7.6)
+    d.box([9.6, 7.0, 5.6], [11.4, 9.0, 5.9], top="lemon_slice", side="lemon_slice", fit=("north", "south"))
+    d.box([7.0, 7.6, 7.4], [8.0, 8.6, 8.4], mat="strawberry")
+
+@drink
+def tequila(d):
+    d.bottle(5.6, 6.2, 2.2, 11, "bottle_clear")
+    for x in (10.0, 12.6):
+        d.glass(x, 10.4, 1.2, 2.4, "martini_liquid", 1.8)
+        d.ring(x, 10.4, 1.25, 0.8, 2.3, 2.6, "salt_rim", "salt_rim", "salt_rim")
+    d.box([10.4, 0, 6.4], [12.4, 1.2, 8.4], top="lemon_slice", side="lemon_m", fit=("up",))
+
+@drink
+def blue_lagoon(d):
+    d.glass(8, 8, 2.8, 9.4, "blue_liquid", 8.6)
+    d.box([9.4, 8.4, 5.6], [11.2, 10.2, 5.9], mat="pineapple")
+    d.box([6.4, 9.4, 7.6], [6.8, 12.4, 8.0], mat="stick")
+    d.box([5.0, 12.4, 6.4], [8.2, 12.8, 9.2], mat="umbrella"); d.box([5.8, 12.8, 7.2], [7.4, 13.2, 8.4], mat="umbrella")
+
+@drink
+def martini(d):
+    d.disc(8, 8, 2.2, 0, 0.4, mat="glass"); d.box([7.6, 0.4, 7.6], [8.4, 5.0, 8.4], mat="glass")
+    for (r, y1, y2) in ((1.2, 5.0, 5.8), (2.2, 5.8, 6.8), (3.2, 6.8, 7.8), (4.0, 7.8, 8.6)):
+        d.ring(8, 8, r, max(0.1, r - 0.5), y1, y2, materials.tinted("martini_liquid", "#e8f0e0", 8.2), "glass", "glass")
+        d.disc(8, 8, max(0.1, r - 0.5), y1, min(y2, 8.2), top="martini_liquid", side="martini_liquid", bottom="martini_liquid")
+    d.box([7.4, 7.6, 7.4], [8.6, 8.8, 8.6], mat="ume_m"); d.box([7.9, 8.8, 7.9], [8.1, 11.0, 8.1], mat="stick")
 
 # ======================== 出力 ========================
 

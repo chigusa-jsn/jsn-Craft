@@ -1,0 +1,36 @@
+{
+  "result": "jsn_craft:drink/berry_orange",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/mead",
+    "minecraft:sweet_berries",
+    "jsn_craft:lemon",
+    "minecraft:sugar"
+  ],
+  "level": 22,
+  "time": 120,
+  "xp": 24,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 1,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 30
+    },
+    {
+      "effect": "minecraft:haste",
+      "amplifier": 0,
+      "seconds": 240
+    }
+  ],
+  "rank": "feast",
+  "no": 78,
+  "alcohol": 2
+}

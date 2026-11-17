@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:drink/green_tea",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:tea",
+    "minecraft:water_bucket"
+  ],
+  "level": 10,
+  "time": 80,
+  "xp": 10,
+  "nutrition": 1,
+  "saturation": 0.2,
+  "buffs": [
+    {
+      "special": "sober",
+      "seconds": 0,
+      "amount": 4
+    },
+    {
+      "attribute": "jsn_craft:job_xp_bonus",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "feast",
+  "no": 72
+}

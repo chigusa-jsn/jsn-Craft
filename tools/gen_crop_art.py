@@ -84,6 +84,16 @@ def crop_stage(name, s):
                 if name == "tomato": c.ellipse(x + .5, y + .5, 1.4, 1.4, fruit)
                 elif name == "chili": c.set(x, y, fruit); c.set(x, y + 1, fruit); c.set(x + 1, y + 2, dark(fruit, 0.2))
                 else: c.set(x, y, fruit); c.set(x + 1, y, fruit); c.set(x, y + 1, dark(fruit, 0.15)); c.set(x + 1, y + 1, fruit)
+    elif name in ("tea", "coffee"):  # 低い木：茶の葉／赤いコーヒーの実
+        trunk_h = [1, 2, 3, 3][s]
+        for k in range(trunk_h): c.set(7, 15 - k, BR); c.set(8, 15 - k, dark(BR, 0.2))
+        r = [2, 4, 5.5, 6.5][s]
+        c.ellipse(7.5, 15 - trunk_h - r * 0.55, r, r * 0.7, hx("#2f7a2a") if name == "tea" else G)
+        if s >= 2 and name == "tea":
+            for x, y in ((5, 8), (9, 6), (11, 9), (6, 11)): c.set(x, y, hx("#8ad870"))
+        if s == 3 and name == "coffee":
+            for x, y in ((4, 9), (6, 6), (9, 8), (11, 6), (12, 10), (7, 11)):
+                c.set(x, y, hx("#c8201a")); c.set(x + 1, y, hx("#a01010"))
     else:  # 果樹：grape lemon ume
         trunk_h = [2, 4, 6, 7][s]
         for k in range(trunk_h): c.set(7, 15 - k, BR); c.set(8, 15 - k, dark(BR, 0.2))
@@ -137,6 +147,10 @@ ITEMS = {
     "grape": lambda c: ([c.ellipse(x, y, 1.6, 1.6, hx("#6a3a8a")) for x, y in ((6, 6), (9, 6), (12, 6), (7.5, 9), (10.5, 9), (9, 12))], c.rect(9, 2, 9, 4, BR), c.ellipse(11, 3, 2, 1.2, G)),
     "lemon": lambda c: (c.ellipse(8, 9, 6, 4.5, hx("#ffe040")), c.set(2, 9, hx("#e0c020")), c.set(14, 9, hx("#e0c020")), c.set(10, 4, G)),
     "ume": lambda c: (c.ellipse(8, 9, 5, 5, hx("#c8d850")), c.ellipse(10, 11, 2, 2, hx("#e88070")), c.rect(8, 3, 8, 4, BR), c.set(9, 3, G)),
+    "tea": lambda c: ([c.ellipse(x, y, 2.6, 1.6, hx("#3a8a2a")) for x, y in ((6, 6), (10, 9), (6, 11))], [c.set(x, y, hx("#8ad870")) for x, y in ((5, 5), (9, 8), (5, 10))]),
+    "coffee": lambda c: ([c.ellipse(x, y, 2.0, 1.6, hx("#5a3018")) for x, y in ((5, 7), (10, 6), (7, 11), (11, 11))], [c.set(x, y, hx("#2a1408")) for x, y in ((5, 7), (10, 6), (7, 11), (11, 11))]),
+    "tea_sapling": sapling_of("#8ad870"), "coffee_sapling": sapling_of("#c8201a"),
+    "matcha_powder": lambda c: (c.rect(3, 9, 12, 13, hx("#c8a060")), c.ellipse(7.5, 9, 4.5, 2, hx("#6ab038")), c.ellipse(7.5, 8.4, 2.5, 1.2, hx("#8ad050"))),
     "tomato_seeds": seeds_of("#f0d8a0"), "cabbage_seeds": seeds_of("#3a2a20"), "chili_seeds": seeds_of("#f0e0a0"), "hops_seeds": seeds_of("#7a9a40"),
     "grape_sapling": sapling_of("#6a3a8a"), "lemon_sapling": sapling_of("#ffe040"), "ume_sapling": sapling_of("#ffb0c8"),
     "cooked_rice": lambda c: (c.ellipse(8, 8, 6, 3, hx("#f8f8f4")), [c.set(x, y, hx("#e8e4d8")) for x, y in ((5, 7), (9, 6), (11, 8))],
@@ -155,7 +169,7 @@ ITEMS = {
     "tomato_sauce": lambda c: (c.rect(4, 5, 11, 14, hx("#c82a1a")), c.rect(5, 3, 10, 4, hx("#e8e8e8")), c.rect(5, 8, 10, 10, hx("#f0e8d0")), c.set(7, 9, hx("#e03a2a"))),
 }
 
-CROPS = ["rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops", "grape", "lemon", "ume"]
+CROPS = ["rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops", "grape", "lemon", "ume", "tea", "coffee"]
 
 if __name__ == "__main__":
     os.makedirs(ITEM, exist_ok=True); os.makedirs(BLOCK, exist_ok=True)

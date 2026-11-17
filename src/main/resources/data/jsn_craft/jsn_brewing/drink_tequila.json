@@ -1,0 +1,35 @@
+{
+  "result": "jsn_craft:drink/tequila",
+  "count": 3,
+  "ingredients": [
+    "minecraft:cactus",
+    "minecraft:cactus",
+    "minecraft:cactus",
+    "minecraft:sugar"
+  ],
+  "level": 28,
+  "time": 18000,
+  "xp": 40,
+  "nutrition": 1,
+  "saturation": 0.2,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 2,
+      "seconds": 15
+    },
+    {
+      "effect": "minecraft:strength",
+      "amplifier": 0,
+      "seconds": 120
+    },
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 300
+    }
+  ],
+  "rank": "fine",
+  "no": 79,
+  "alcohol": 5
+}

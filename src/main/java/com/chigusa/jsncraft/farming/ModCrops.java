@@ -32,7 +32,7 @@ import java.util.Map;
  * 新しい作物と食材アイテム。
  *  作物 … 種の形で3種類：produce（取れた物がそのまま種：米・玉ねぎ・大豆・大麦）
  *                       seeds（別に種がある：トマト・キャベツ・唐辛子・ホップ）
- *                       sapling（苗を植える果樹：ブドウ・レモン・梅）
+ *                       sapling（苗を植える果樹：ブドウ・レモン・梅・茶・コーヒー）
  *  加工食材 … 調理台で作る（ごはん・小麦粉・塩・味噌・醤油など）
  */
 public final class ModCrops {
@@ -53,13 +53,15 @@ public final class ModCrops {
             new Crop("grape", "sapling", 2, 0.3F),
             new Crop("lemon", "sapling", 1, 0.2F),
             new Crop("ume", "sapling", 1, 0.2F),
+            new Crop("tea", "sapling", 0, 0),
+            new Crop("coffee", "sapling", 0, 0),
     };
 
     /** 加工食材：名前, 満腹度, 持ち（0 なら食べられない） */
     private static final Object[][] INGREDIENTS = {
             {"cooked_rice", 4, 0.6F}, {"flour", 0, 0F}, {"dough", 0, 0F}, {"salt", 0, 0F}, {"koji", 0, 0F},
             {"miso", 0, 0F}, {"soy_sauce", 0, 0F}, {"butter", 1, 0.2F}, {"cheese", 3, 0.6F}, {"dashi", 0, 0F},
-            {"malt", 0, 0F}, {"tomato_sauce", 0, 0F},
+            {"malt", 0, 0F}, {"tomato_sauce", 0, 0F}, {"matcha_powder", 0, 0F},
     };
 
     public static final Map<String, DeferredBlock<JsnCropBlock>> CROP_BLOCKS = new LinkedHashMap<>();
@@ -123,6 +125,8 @@ public final class ModCrops {
                 if (st.is(Blocks.CHERRY_LEAVES)) give = "ume";
                 else if (st.is(Blocks.JUNGLE_LEAVES)) give = "lemon";
                 else if (st.is(Blocks.OAK_LEAVES) || st.is(Blocks.DARK_OAK_LEAVES)) give = "grape";
+                else if (st.is(Blocks.BIRCH_LEAVES)) give = "tea";
+                else if (st.is(Blocks.ACACIA_LEAVES)) give = "coffee";
             }
             if (give == null) return;
             event.getDrops().add(new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,

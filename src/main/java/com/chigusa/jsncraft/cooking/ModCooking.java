@@ -70,7 +70,9 @@ public final class ModCooking {
     /** お酒・飲み物（jsn_craft:drink/<名前>） */
     public static final String[] DRINKS = {
             "soda_water", "beer", "mead", "wine", "sake", "shochu", "rum", "umeshu",
-            "highball", "lemon_sour", "sangria", "mojito", "whisky", "nether_fire", "ender_elixir"};
+            "highball", "lemon_sour", "sangria", "mojito", "whisky", "nether_fire", "ender_elixir",
+            "milk", "milkshake", "hot_cocoa", "watermelon_juice", "berry_smoothie", "amazake", "green_tea", "coffee",
+            "matcha", "hot_wine", "cider", "honey_lemon_sour", "berry_orange", "tequila", "blue_lagoon", "martini"};
 
     public static final List<DeferredItem<Item>> DRINK_ITEMS = new ArrayList<>();
 

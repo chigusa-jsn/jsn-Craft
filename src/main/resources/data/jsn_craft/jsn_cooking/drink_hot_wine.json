@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/hot_wine",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/wine",
+    "minecraft:sugar",
+    "minecraft:sweet_berries",
+    "minecraft:honey_bottle"
+  ],
+  "level": 20,
+  "time": 120,
+  "xp": 22,
+  "nutrition": 3,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "special": "warm",
+      "seconds": 900,
+      "amount": 0
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 40
+    }
+  ],
+  "rank": "feast",
+  "no": 75,
+  "alcohol": 2
+}

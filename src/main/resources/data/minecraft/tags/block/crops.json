@@ -11,6 +11,8 @@
     "jsn_craft:hops_crop",
     "jsn_craft:grape_crop",
     "jsn_craft:lemon_crop",
-    "jsn_craft:ume_crop"
+    "jsn_craft:ume_crop",
+    "jsn_craft:tea_crop",
+    "jsn_craft:coffee_crop"
   ]
 }

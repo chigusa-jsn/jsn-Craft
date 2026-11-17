@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:drink/hot_cocoa",
+  "count": 2,
+  "ingredients": [
+    "minecraft:milk_bucket",
+    "minecraft:cocoa_beans",
+    "minecraft:sugar"
+  ],
+  "level": 5,
+  "time": 80,
+  "xp": 6,
+  "nutrition": 4,
+  "saturation": 0.5,
+  "buffs": [
+    {
+      "special": "warm",
+      "seconds": 600,
+      "amount": 0
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 20
+    }
+  ],
+  "rank": "normal",
+  "no": 68
+}

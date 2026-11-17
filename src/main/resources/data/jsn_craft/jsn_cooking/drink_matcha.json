@@ -1,0 +1,33 @@
+{
+  "result": "jsn_craft:drink/matcha",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:matcha_powder",
+    "minecraft:water_bucket"
+  ],
+  "level": 20,
+  "time": 120,
+  "xp": 20,
+  "nutrition": 1,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:resistance",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:skill_damage",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "special": "sober",
+      "seconds": 0,
+      "amount": 2
+    }
+  ],
+  "rank": "feast",
+  "no": 74
+}

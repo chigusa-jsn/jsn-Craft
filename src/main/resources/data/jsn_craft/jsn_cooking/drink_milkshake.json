@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:drink/milkshake",
+  "count": 2,
+  "ingredients": [
+    "minecraft:milk_bucket",
+    "minecraft:egg",
+    "minecraft:sugar"
+  ],
+  "level": 5,
+  "time": 80,
+  "xp": 6,
+  "nutrition": 4,
+  "saturation": 0.5,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 180
+    },
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 120
+    }
+  ],
+  "rank": "normal",
+  "no": 67
+}

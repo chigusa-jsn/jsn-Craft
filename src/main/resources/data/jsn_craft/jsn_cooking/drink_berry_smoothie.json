@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:drink/berry_smoothie",
+  "count": 2,
+  "ingredients": [
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:milk_bucket"
+  ],
+  "level": 8,
+  "time": 80,
+  "xp": 8,
+  "nutrition": 4,
+  "saturation": 0.5,
+  "buffs": [
+    {
+      "effect": "minecraft:night_vision",
+      "amplifier": 0,
+      "seconds": 300
+    },
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 0.3,
+      "operation": "add_value",
+      "seconds": 300
+    }
+  ],
+  "rank": "normal",
+  "no": 70
+}

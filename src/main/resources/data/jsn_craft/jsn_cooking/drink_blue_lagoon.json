@@ -1,0 +1,36 @@
+{
+  "result": "jsn_craft:drink/blue_lagoon",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:drink/rum",
+    "jsn_craft:drink/soda_water",
+    "jsn_craft:lemon",
+    "minecraft:prismarine_crystals"
+  ],
+  "level": 30,
+  "time": 160,
+  "xp": 40,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:dolphins_grace",
+      "amplifier": 0,
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:conduit_power",
+      "amplifier": 0,
+      "seconds": 360
+    },
+    {
+      "attribute": "minecraft:generic.water_movement_efficiency",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "fine",
+  "no": 80,
+  "alcohol": 3
+}

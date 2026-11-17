@@ -1,0 +1,33 @@
+{
+  "result": "jsn_craft:drink/watermelon_juice",
+  "count": 2,
+  "ingredients": [
+    "minecraft:melon_slice",
+    "minecraft:melon_slice",
+    "minecraft:melon_slice"
+  ],
+  "level": 3,
+  "time": 60,
+  "xp": 5,
+  "nutrition": 3,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "effect": "minecraft:speed",
+      "amplifier": 0,
+      "seconds": 180
+    },
+    {
+      "effect": "minecraft:jump_boost",
+      "amplifier": 0,
+      "seconds": 180
+    },
+    {
+      "effect": "minecraft:fire_resistance",
+      "amplifier": 0,
+      "seconds": 60
+    }
+  ],
+  "rank": "normal",
+  "no": 69
+}

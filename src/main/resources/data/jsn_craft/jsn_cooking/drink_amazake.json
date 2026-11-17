@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/amazake",
+  "count": 3,
+  "ingredients": [
+    "jsn_craft:koji",
+    "jsn_craft:cooked_rice",
+    "minecraft:water_bucket"
+  ],
+  "level": 8,
+  "time": 100,
+  "xp": 8,
+  "nutrition": 3,
+  "saturation": 0.5,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:stamina_cost_reduction",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 300
+    },
+    {
+      "special": "warm",
+      "seconds": 300,
+      "amount": 0
+    }
+  ],
+  "rank": "normal",
+  "no": 71,
+  "alcohol": 1
+}

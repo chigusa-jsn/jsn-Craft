@@ -22,11 +22,12 @@ import java.util.Locale;
 import java.util.Optional;
 
 /**
- * 料理のバフ1つ。effect（ポーション効果）か attribute（能力値）のどちらか。
+ * 料理のバフ1つ。effect（ポーション効果）・attribute（能力値）・special（特別な効果）のどれか。
+ * special … cleanse（悪い効果を消す）/ sober（酔いを amount だけ覚ます）/ warm（凍えない）/ awake（眠気覚まし：ファントムが来なくなる）
  * { "effect": "minecraft:regeneration", "amplifier": 0, "seconds": 20 }
  * { "attribute": "jsn_craft:max_stamina", "amount": 20, "operation": "add_value", "seconds": 180 }
  */
-public record FoodBuff(String effect, String attribute, int amplifier, double amount, String operation, double seconds) {
+public record FoodBuff(String effect, String attribute, int amplifier, double amount, String operation, double seconds, String special) {
 
     public static final Codec<FoodBuff> CODEC = RecordCodecBuilder.create(i -> i.group(
             Codec.STRING.optionalFieldOf("effect", "").forGetter(FoodBuff::effect),
@@ -34,12 +35,17 @@ public record FoodBuff(String effect, String attribute, int amplifier, double am
             Codec.INT.optionalFieldOf("amplifier", 0).forGetter(FoodBuff::amplifier),
             Codec.DOUBLE.optionalFieldOf("amount", 0.0).forGetter(FoodBuff::amount),
             Codec.STRING.optionalFieldOf("operation", "add_value").forGetter(FoodBuff::operation),
-            Codec.DOUBLE.optionalFieldOf("seconds", 60.0).forGetter(FoodBuff::seconds)
+            Codec.DOUBLE.optionalFieldOf("seconds", 60.0).forGetter(FoodBuff::seconds),
+            Codec.STRING.optionalFieldOf("special", "").forGetter(FoodBuff::special)
     ).apply(i, FoodBuff::new));
+
+    public boolean isSpecial() {
+        return !special.isEmpty();
+    }
 
     /** 品質などで強くした版（時間 × timeMult、能力値の量 × amountMult） */
     public FoodBuff scaled(double timeMult, double amountMult) {
-        return new FoodBuff(effect, attribute, amplifier, amount * amountMult, operation, seconds * timeMult);
+        return new FoodBuff(effect, attribute, amplifier, special.equals("sober") ? amount : amount * amountMult, operation, seconds * timeMult, special);
     }
 
     public boolean isEffect() {
@@ -48,6 +54,7 @@ public record FoodBuff(String effect, String attribute, int amplifier, double am
 
     /** 同じバフかどうか（同じ物は強いほう・長いほうにまとめる） */
     public String key() {
+        if (isSpecial()) return "s:" + special;
         return isEffect() ? "e:" + effect : "a:" + attribute + ":" + operation;
     }
 
@@ -72,6 +79,10 @@ public record FoodBuff(String effect, String attribute, int amplifier, double am
     /** 食べた人にかける。timeMult で時間をのばせる */
     public void apply(ServerPlayer player, double timeMult) {
         int ticks = (int) Math.round(seconds * timeMult * 20);
+        if (isSpecial()) {
+            CookingService.special(player, special, amount, seconds * timeMult);
+            return;
+        }
         if (isEffect()) {
             effectHolder().ifPresent(h -> player.addEffect(new MobEffectInstance(h, ticks, amplifier)));
         } else {
@@ -82,7 +93,8 @@ public record FoodBuff(String effect, String attribute, int amplifier, double am
 
     public CompoundTag save() {
         CompoundTag t = new CompoundTag();
-        if (isEffect()) t.putString("effect", effect);
+        if (isSpecial()) t.putString("special", special);
+        else if (isEffect()) t.putString("effect", effect);
         else t.putString("attribute", attribute);
         t.putInt("amplifier", amplifier);
         t.putDouble("amount", amount);
@@ -93,13 +105,23 @@ public record FoodBuff(String effect, String attribute, int amplifier, double am
 
     public static FoodBuff load(CompoundTag t) {
         return new FoodBuff(t.getString("effect"), t.getString("attribute"), t.getInt("amplifier"), t.getDouble("amount"),
-                t.getString("operation").isEmpty() ? "add_value" : t.getString("operation"), t.getDouble("seconds"));
+                t.getString("operation").isEmpty() ? "add_value" : t.getString("operation"), t.getDouble("seconds"), t.getString("special"));
     }
 
     /** 説明文（例：再生 I 0:30 ／ 最大体力 +4 3:00） */
     public Component describe() {
         String time = String.format(Locale.ROOT, "%d:%02d", (int) seconds / 60, (int) seconds % 60);
         MutableComponent c;
+        if (isSpecial()) {
+            return switch (special) {
+                case "cleanse" -> Component.literal("悪い効果を消す").withStyle(ChatFormatting.AQUA);
+                case "sober" -> Component.literal("酔い覚まし").withStyle(ChatFormatting.AQUA);
+                case "warm" -> Component.literal("ぽかぽか（凍えない） ").withStyle(ChatFormatting.AQUA)
+                        .append(Component.literal(time).withStyle(ChatFormatting.GRAY));
+                case "awake" -> Component.literal("眠気覚まし（ファントムが来なくなる）").withStyle(ChatFormatting.AQUA);
+                default -> Component.literal(special).withStyle(ChatFormatting.AQUA);
+            };
+        }
         if (isEffect()) {
             c = effectHolder().map(h -> h.value().getDisplayName().copy()).orElse(Component.literal(effect));
             if (amplifier > 0) c.append(" " + roman(amplifier + 1));

@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:drink/milk",
+  "count": 3,
+  "ingredients": [
+    "minecraft:milk_bucket",
+    "minecraft:glass_bottle",
+    "minecraft:glass_bottle",
+    "minecraft:glass_bottle"
+  ],
+  "level": 1,
+  "time": 60,
+  "xp": 3,
+  "nutrition": 2,
+  "saturation": 0.3,
+  "buffs": [
+    {
+      "special": "cleanse",
+      "seconds": 0,
+      "amount": 0
+    },
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 0.2,
+      "operation": "add_value",
+      "seconds": 120
+    }
+  ],
+  "rank": "normal",
+  "no": 66
+}

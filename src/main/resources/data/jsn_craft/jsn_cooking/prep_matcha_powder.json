@@ -1,0 +1,11 @@
+{
+  "result": "jsn_craft:matcha_powder",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:tea",
+    "jsn_craft:tea"
+  ],
+  "level": 1,
+  "time": 80,
+  "xp": 2
+}

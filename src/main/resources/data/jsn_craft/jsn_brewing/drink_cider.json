@@ -1,0 +1,31 @@
+{
+  "result": "jsn_craft:drink/cider",
+  "count": 3,
+  "ingredients": [
+    "minecraft:apple",
+    "minecraft:apple",
+    "minecraft:apple",
+    "minecraft:sugar"
+  ],
+  "level": 12,
+  "time": 9000,
+  "xp": 16,
+  "nutrition": 3,
+  "saturation": 0.4,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 2,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "effect": "minecraft:absorption",
+      "amplifier": 0,
+      "seconds": 180
+    }
+  ],
+  "rank": "feast",
+  "no": 76,
+  "alcohol": 2
+}

@@ -198,7 +198,7 @@ public final class CookingService {
             return;
         }
         map.put(b.key(), new FoodBuff(b.effect(), b.attribute(), Math.max(old.amplifier(), b.amplifier()),
-                Math.max(old.amount(), b.amount()), b.operation(), Math.max(old.seconds(), b.seconds())));
+                Math.max(old.amount(), b.amount()), b.operation(), Math.max(old.seconds(), b.seconds()), b.special()));
     }
 
     /** 品質（★1〜★4）を決める */
@@ -248,6 +248,42 @@ public final class CookingService {
         if (alc > 0) drink(player, alc);
         int q = DishItem.quality(stack);
         if (q >= 3) level.sendParticles(ParticleTypes.WAX_ON, player.getX(), player.getY() + 1.2, player.getZ(), 10, 0.4, 0.4, 0.4, 0.1);
+    }
+
+    // ================= 特別な効果 =================
+
+    public static void special(ServerPlayer player, String kind, double amount, double seconds) {
+        switch (kind) {
+            case "cleanse" -> {
+                var bad = new ArrayList<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>>();
+                for (var e : player.getActiveEffects()) if (!e.getEffect().value().isBeneficial()) bad.add(e.getEffect());
+                bad.forEach(player::removeEffect);
+                DRUNK.remove(player.getUUID());
+                player.displayClientMessage(Component.literal("すっきりした！").withStyle(ChatFormatting.AQUA), true);
+            }
+            case "sober" -> {
+                DRUNK.computeIfPresent(player.getUUID(), (k, v) -> v - Math.max(1, amount) <= 0 ? null : v - Math.max(1, amount));
+                player.removeEffect(MobEffects.CONFUSION);
+            }
+            case "warm" -> {
+                TimedFlags.set(player, "warm", 1, seconds);
+                player.setTicksFrozen(0);
+            }
+            case "awake" -> {
+                player.getStats().setValue(player, net.minecraft.stats.Stats.CUSTOM.get(net.minecraft.stats.Stats.TIME_SINCE_REST), 0);
+                player.displayClientMessage(Component.literal("目がさえた！").withStyle(ChatFormatting.AQUA), true);
+            }
+            default -> { }
+        }
+    }
+
+    /** ぽかぽか：凍えない */
+    @SubscribeEvent
+    public static void onWarmTick(ServerTickEvent.Post event) {
+        if (event.getServer().getTickCount() % 10 != 0) return;
+        for (ServerPlayer p : event.getServer().getPlayerList().getPlayers()) {
+            if (p.getTicksFrozen() > 0 && TimedFlags.get(p, "warm") > 0) p.setTicksFrozen(0);
+        }
     }
 
     // ================= 酔い =================
