@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "豊かな恵み"
+  },
+  "description": {
+    "text": "毛を刈ったとき、20%の確率で羊毛がもう1つ増える。"
+  },
+  "icon": "minecraft:white_wool",
+  "type": "passive",
+  "effect": "rich_yield",
+  "chance": 0.2
+}

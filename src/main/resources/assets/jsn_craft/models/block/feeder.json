@@ -1,0 +1,505 @@
+{
+ "parent": "minecraft:block/block",
+ "ambientocclusion": true,
+ "textures": {
+  "feeder_wood": "jsn_craft:block/dish3d/feeder_wood",
+  "hay_top": "jsn_craft:block/dish3d/hay_top",
+  "particle": "jsn_craft:block/dish3d/feeder_wood"
+ },
+ "elements": [
+  {
+   "from": [
+    1,
+    0,
+    2
+   ],
+   "to": [
+    3,
+    3,
+    4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    13,
+    0,
+    2
+   ],
+   "to": [
+    15,
+    3,
+    4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    0,
+    12
+   ],
+   "to": [
+    3,
+    3,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    13,
+    0,
+    12
+   ],
+   "to": [
+    15,
+    3,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    3,
+    2
+   ],
+   "to": [
+    15,
+    4,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    4,
+    2
+   ],
+   "to": [
+    15,
+    8,
+    3
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    4,
+    13
+   ],
+   "to": [
+    15,
+    8,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    1,
+    4,
+    3
+   ],
+   "to": [
+    2,
+    8,
+    13
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    14,
+    4,
+    3
+   ],
+   "to": [
+    15,
+    8,
+    13
+   ],
+   "faces": {
+    "up": {
+     "texture": "#feeder_wood"
+    },
+    "down": {
+     "texture": "#feeder_wood"
+    },
+    "north": {
+     "texture": "#feeder_wood"
+    },
+    "south": {
+     "texture": "#feeder_wood"
+    },
+    "east": {
+     "texture": "#feeder_wood"
+    },
+    "west": {
+     "texture": "#feeder_wood"
+    }
+   }
+  },
+  {
+   "from": [
+    2,
+    4,
+    3
+   ],
+   "to": [
+    14,
+    7,
+    13
+   ],
+   "faces": {
+    "up": {
+     "texture": "#hay_top",
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ]
+    },
+    "down": {
+     "texture": "#hay_top"
+    },
+    "north": {
+     "texture": "#hay_top"
+    },
+    "south": {
+     "texture": "#hay_top"
+    },
+    "east": {
+     "texture": "#hay_top"
+    },
+    "west": {
+     "texture": "#hay_top"
+    }
+   }
+  },
+  {
+   "from": [
+    4,
+    7,
+    5
+   ],
+   "to": [
+    8,
+    7.6,
+    9
+   ],
+   "faces": {
+    "up": {
+     "texture": "#hay_top"
+    },
+    "down": {
+     "texture": "#hay_top"
+    },
+    "north": {
+     "texture": "#hay_top"
+    },
+    "south": {
+     "texture": "#hay_top"
+    },
+    "east": {
+     "texture": "#hay_top"
+    },
+    "west": {
+     "texture": "#hay_top"
+    }
+   }
+  },
+  {
+   "from": [
+    9,
+    7,
+    7
+   ],
+   "to": [
+    12,
+    7.4,
+    11
+   ],
+   "faces": {
+    "up": {
+     "texture": "#hay_top"
+    },
+    "down": {
+     "texture": "#hay_top"
+    },
+    "north": {
+     "texture": "#hay_top"
+    },
+    "south": {
+     "texture": "#hay_top"
+    },
+    "east": {
+     "texture": "#hay_top"
+    },
+    "west": {
+     "texture": "#hay_top"
+    }
+   }
+  }
+ ],
+ "display": {
+  "gui": {
+   "rotation": [
+    30,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "ground": {
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.5,
+    0.5,
+    0.5
+   ]
+  },
+  "fixed": {
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    0,
+    -6
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "thirdperson_righthand": {
+   "rotation": [
+    75,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.4,
+    0.4,
+    0.4
+   ]
+  },
+  "firstperson_righthand": {
+   "rotation": [
+    0,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  },
+  "firstperson_lefthand": {
+   "rotation": [
+    0,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  }
+ }
+}

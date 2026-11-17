@@ -94,6 +94,9 @@ public final class CookingService {
         for (int slot : use) {
             if (be.items().getItem(slot).getItem() instanceof FishItems.FishItem f) fishRank = Math.max(fishRank, f.rank().ordinal());
         }
+        // 牧場の上質な材料（高級肉・搾りたてミルク・金の卵）は品質が上がりやすい
+        double premium = 0;
+        for (int slot : use) premium += com.chigusa.jsncraft.ranch.RanchIngredients.qualityBonus(be.items().getItem(slot));
         // 材料と隠し味を使う（はちみつの瓶などの入れ物は返す）
         for (int slot : use) consume(be, slot, level, pos);
         ItemStack seasonStack = be.items().getItem(CookingStationBlockEntity.SEASONING);
@@ -101,7 +104,7 @@ public final class CookingService {
         if (season != null) consume(be, CookingStationBlockEntity.SEASONING, level, pos);
 
         boolean divine = TimedFlags.get(player, "divine_kitchen") > 0;
-        int quality = rollQuality(player, season, fishRank, divine, r);
+        int quality = rollQuality(player, season, fishRank, divine, r, premium);
 
         // バフ：料理のもの＋隠し味（同じものは強いほう）
         Map<String, FoodBuff> merged = new LinkedHashMap<>();
@@ -203,7 +206,11 @@ public final class CookingService {
 
     /** 品質（★1〜★4）を決める */
     static int rollQuality(ServerPlayer player, Seasoning season, int fishRank, boolean divine, RandomSource r) {
-        double score = 0.15 + Math.max(0, cookLevel(player)) * 0.006
+        return rollQuality(player, season, fishRank, divine, r, 0);
+    }
+
+    static int rollQuality(ServerPlayer player, Seasoning season, int fishRank, boolean divine, RandomSource r, double bonus) {
+        double score = 0.15 + bonus + Math.max(0, cookLevel(player)) * 0.006
                 + player.getAttributeValue(ModAttributes.COOKING_MASTERY);
         SkillDefinition taste = SkillService.passive(player, "cook_quality");
         if (taste != null) score += taste.power();

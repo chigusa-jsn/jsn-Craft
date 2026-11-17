@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "jsn_craft:block/feeder"
+    },
+    "facing=east": {
+      "model": "jsn_craft:block/feeder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "jsn_craft:block/feeder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "jsn_craft:block/feeder",
+      "y": 270
+    }
+  }
+}

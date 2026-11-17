@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "群れの突進"
+  },
+  "description": {
+    "text": "周り（6ブロック）の敵に12ダメージを与えて吹き飛ばす。"
+  },
+  "icon": "minecraft:leather",
+  "type": "active",
+  "effect": "stampede",
+  "power": 12,
+  "radius": 6,
+  "stamina": 40,
+  "cooldown": 20
+}

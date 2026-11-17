@@ -334,5 +334,18 @@
   "item.jsn_craft.sovereign_ring": "覇者の指輪",
   "curios.identifier.earring": "耳飾り",
   "curios.modifiers.earring": "耳飾りにつけたとき:",
-  "block.jsn_craft.jeweler_table": "細工台"
+  "block.jsn_craft.jeweler_table": "細工台",
+  "item.jsn_craft.fresh_milk": "搾りたてミルク",
+  "item.jsn_craft.premium_beef": "霜降り牛肉",
+  "item.jsn_craft.premium_pork": "上質な豚肉",
+  "item.jsn_craft.premium_mutton": "上質な羊肉",
+  "item.jsn_craft.premium_chicken": "地鶏",
+  "item.jsn_craft.golden_egg": "金の卵",
+  "block.jsn_craft.feeder": "エサ箱",
+  "item.jsn_craft.dish.marbled_steak": "霜降りステーキ",
+  "item.jsn_craft.dish.herb_roast_lamb": "香草のローストラム",
+  "item.jsn_craft.dish.jidori_karaage": "地鶏の唐揚げ",
+  "item.jsn_craft.dish.golden_omelette": "黄金のオムレツ",
+  "item.jsn_craft.dish.milk_pudding": "ミルクプリン",
+  "item.jsn_craft.dish.cheesecake": "濃厚チーズケーキ"
 }

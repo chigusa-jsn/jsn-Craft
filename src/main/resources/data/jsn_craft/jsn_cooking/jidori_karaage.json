@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/jidori_karaage",
+  "ingredients": [
+    "jsn_craft:premium_chicken",
+    "jsn_craft:flour",
+    "jsn_craft:soy_sauce"
+  ],
+  "level": 22,
+  "time": 160,
+  "xp": 20,
+  "nutrition": 12,
+  "saturation": 1.2,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:crit_chance",
+      "amount": 0.08,
+      "operation": "add_value",
+      "seconds": 420
+    },
+    {
+      "attribute": "minecraft:generic.movement_speed",
+      "amount": 0.1,
+      "operation": "add_multiplied_base",
+      "seconds": 420
+    }
+  ],
+  "rank": "feast",
+  "no": 84
+}

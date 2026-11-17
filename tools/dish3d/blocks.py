@@ -86,7 +86,21 @@ def jeweler_table(d):
     # 指輪（小さな輪）
     d.ring(10.5, 4.5, 1.6, 1.0, 10.5, 11.2, "brass", "brass", "brass")
 
-BLOCKS = {"forge": forge, "rune_altar": rune_altar, "alchemy_table": alchemy_table, "jeweler_table": jeweler_table}
+def feeder(d):
+    # 脚
+    for x, z in ((1, 2), (13, 2), (1, 12), (13, 12)):
+        d.box([x, 0, z], [x + 2, 3, z + 2], mat="feeder_wood")
+    # 箱（底と4つの壁）
+    d.box([1, 3, 2], [15, 4, 14], mat="feeder_wood")
+    d.box([1, 4, 2], [15, 8, 3], mat="feeder_wood")
+    d.box([1, 4, 13], [15, 8, 14], mat="feeder_wood")
+    d.box([1, 4, 3], [2, 8, 13], mat="feeder_wood")
+    d.box([14, 4, 3], [15, 8, 13], mat="feeder_wood")
+    # 干し草
+    d.box([2, 4, 3], [14, 7, 13], top="hay_top", side="hay_top", bottom="hay_top", fit=("up",))
+    d.box([4, 7, 5], [8, 7.6, 9], mat="hay_top"); d.box([9, 7, 7], [12, 7.4, 11], mat="hay_top")
+
+BLOCKS = {"forge": forge, "rune_altar": rune_altar, "alchemy_table": alchemy_table, "jeweler_table": jeweler_table, "feeder": feeder}
 
 if __name__ == "__main__":
     built = {}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "双子の恵み"
+  },
+  "description": {
+    "text": "繁殖させたとき、10%の確率で双子が生まれる。"
+  },
+  "icon": "minecraft:egg",
+  "type": "passive",
+  "effect": "twin_birth",
+  "chance": 0.1
+}

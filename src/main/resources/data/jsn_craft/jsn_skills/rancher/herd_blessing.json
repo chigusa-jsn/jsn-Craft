@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "群れの恵み"
+  },
+  "description": {
+    "text": "周り（8ブロック）の家畜のHPを全回復し、子どもはすぐ大人になる。"
+  },
+  "icon": "minecraft:golden_carrot",
+  "type": "active",
+  "effect": "herd_blessing",
+  "radius": 8,
+  "stamina": 40,
+  "cooldown": 300
+}

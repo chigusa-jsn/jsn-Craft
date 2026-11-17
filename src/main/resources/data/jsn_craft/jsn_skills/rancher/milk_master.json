@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "搾乳の名人"
+  },
+  "description": {
+    "text": "搾りたてミルクを次に搾れるまでの時間が半分になる。"
+  },
+  "icon": "minecraft:milk_bucket",
+  "type": "passive",
+  "effect": "milk_master",
+  "power": 0.5
+}

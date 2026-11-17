@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "呼び寄せ"
+  },
+  "description": {
+    "text": "周り（16ブロック）の家畜を自分のそばに呼び寄せる。"
+  },
+  "icon": "minecraft:goat_horn",
+  "type": "active",
+  "effect": "animal_call",
+  "radius": 16,
+  "stamina": 20,
+  "cooldown": 30
+}

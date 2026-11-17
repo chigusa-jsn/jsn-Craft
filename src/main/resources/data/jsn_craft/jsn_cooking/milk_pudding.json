@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/milk_pudding",
+  "ingredients": [
+    "jsn_craft:fresh_milk",
+    "minecraft:egg",
+    "minecraft:sugar"
+  ],
+  "level": 10,
+  "time": 120,
+  "xp": 10,
+  "nutrition": 8,
+  "saturation": 1.0,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:mana_regen",
+      "amount": 1,
+      "operation": "add_value",
+      "seconds": 360
+    },
+    {
+      "attribute": "jsn_craft:healing_power",
+      "amount": 0.1,
+      "operation": "add_value",
+      "seconds": 360
+    }
+  ],
+  "rank": "normal",
+  "no": 86
+}

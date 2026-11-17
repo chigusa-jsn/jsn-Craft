@@ -55,7 +55,10 @@ public record CookingRecipe(ResourceLocation result, int count, List<String> ing
             return tag != null && stack.is(TagKey.create(Registries.ITEM, tag));
         }
         ResourceLocation id = ResourceLocation.tryParse(spec);
-        return id != null && id.equals(BuiltInRegistries.ITEM.getKey(stack.getItem()));
+        if (id == null) return false;
+        ResourceLocation have = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        // 牧場の上質な材料は、ふつうの材料の代わりにもなる（霜降り牛肉 → 牛肉 など）
+        return id.equals(have) || id.equals(com.chigusa.jsncraft.ranch.RanchIngredients.substituteFor(have));
     }
 
     /**

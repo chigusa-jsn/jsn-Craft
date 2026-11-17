@@ -869,6 +869,59 @@ def martini(d):
         d.disc(8, 8, max(0.1, r - 0.5), y1, min(y2, 8.2), top="martini_liquid", side="martini_liquid", bottom="martini_liquid")
     d.box([7.4, 7.6, 7.4], [8.6, 8.8, 8.6], mat="ume_m"); d.box([7.9, 8.8, 7.9], [8.1, 11.0, 8.1], mat="stick")
 
+# ======================== 牧場の料理 ========================
+
+@dish
+def marbled_steak(d):
+    d.box([1.5, 0, 3.0], [14.5, 1.2, 13.0], top="tray_wood", side="board_side", bottom="board_side")
+    d.box([2.4, 1.2, 4.0], [10.6, 3.6, 11.6], top="marbled_top", side="steak_side", bottom="steak_side", fit=("up",))
+    d.box([5.2, 3.6, 6.6], [7.6, 4.2, 9.0], mat="butter")
+    d.box([11.0, 1.2, 4.4], [13.6, 2.8, 7.0], mat="potato"); d.box([11.4, 2.8, 4.8], [13.2, 3.1, 6.6], mat="butter")
+    d.box([11.2, 1.2, 8.4], [13.4, 2.2, 10.6], mat="carrot"); d.box([8.6, 3.6, 4.6], [9.6, 3.9, 5.6], mat="parsley")
+
+@dish
+def herb_roast_lamb(d):
+    d.plate()
+    d.disc(7.4, 8, 4.6, 1, 4.2, rz=3.4, top="lamb_top", side="lamb_side", bottom="lamb_side", fit=("up",))
+    for (x, z) in ((11.6, 5.0), (12.4, 7.4), (11.8, 10.2)):
+        d.box([x, 1, z], [x + 1.6, 2.2, z + 1.6], mat="potato")
+    d.box([5.0, 4.2, 7.6], [9.6, 4.6, 8.4], mat="parsley")
+    d.box([7.0, 4.6, 7.8], [7.4, 6.8, 8.2], mat="stick")
+
+@dish
+def jidori_karaage(d):
+    d.plate()
+    d.box([2.2, 1, 9.6], [6.6, 1.4, 13.4], mat="lettuce")
+    for (x, z, h) in ((4.0, 4.0, 2.4), (6.6, 3.4, 2.2), (8.8, 4.8, 2.6), (5.2, 6.6, 2.4), (7.8, 7.2, 2.8), (10.2, 7.4, 2.2), (6.4, 9.6, 2.2), (9.0, 9.8, 2.4)):
+        d.box([x, 1, z], [x + 2.4, 1 + h, z + 2.2], mat="karaage")
+    d.box([11.4, 1, 10.6], [13.2, 2.2, 12.4], mat="lemon_slice")
+
+@dish
+def golden_omelette(d):
+    d.plate()
+    for (rx, rz, y1, y2) in ((5.6, 3.3, 1, 2.6), (5.0, 2.8, 2.6, 3.6), (4.0, 2.0, 3.6, 4.3)):
+        d.disc(7.6, 8, rx, y1, y2, rz=rz, mat="gold_omelette")
+    d.box([6.4, 4.3, 7.4], [8.8, 4.6, 8.6], mat="butter")
+    d.box([1.8, 1, 10.0], [5.0, 1.4, 12.6], mat="lettuce")
+    d.box([11.6, 1, 10.6], [12.6, 1.8, 11.6], mat="parsley")
+
+@dish
+def milk_pudding(d):
+    d.plate(r=5.6)
+    for (r, y1, y2) in ((3.6, 1, 2.4), (3.2, 2.4, 3.8), (2.8, 3.8, 5.0)):
+        d.disc(8, 8, r, y1, y2, mat="pudding_side")
+    d.disc(8, 8, 2.8, 5.0, 5.6, top="pudding_top", side="pudding_top", bottom="pudding_top")
+    d.box([7.4, 1, 4.0], [8.8, 3.0, 4.6], mat="pudding_top")
+    d.disc(8, 8, 1.0, 5.6, 6.6, mat="cream"); d.box([7.6, 6.6, 7.6], [8.4, 7.4, 8.4], mat="strawberry")
+
+@dish
+def cheesecake(d):
+    d.plate()
+    d.box([3.0, 1, 4.0], [11.0, 1.8, 12.0], mat="cookie_crust")
+    d.box([3.0, 1.8, 4.0], [11.0, 5.4, 12.0], top="cheesecake_top", side="cheesecake_side", bottom="cheesecake_side", fit=("up",))
+    d.box([4.4, 5.4, 5.4], [6.4, 5.8, 7.4], mat="berry_sauce"); d.box([8.0, 5.4, 8.6], [9.6, 5.8, 10.2], mat="berry_sauce")
+    d.box([11.6, 1, 6.0], [13.0, 2.2, 7.4], mat="strawberry"); d.box([11.8, 1, 9.0], [12.8, 1.8, 10.0], mat="blueberry")
+
 # ======================== 出力 ========================
 
 def build(preview_dir=None):

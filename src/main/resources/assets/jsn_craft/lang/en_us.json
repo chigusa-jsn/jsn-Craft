@@ -334,5 +334,18 @@
   "item.jsn_craft.sovereign_ring": "Sovereign's Ring",
   "curios.identifier.earring": "Earring",
   "curios.modifiers.earring": "When on earring:",
-  "block.jsn_craft.jeweler_table": "Jeweler's Table"
+  "block.jsn_craft.jeweler_table": "Jeweler's Table",
+  "item.jsn_craft.fresh_milk": "Fresh Milk",
+  "item.jsn_craft.premium_beef": "Marbled Beef",
+  "item.jsn_craft.premium_pork": "Premium Pork",
+  "item.jsn_craft.premium_mutton": "Premium Mutton",
+  "item.jsn_craft.premium_chicken": "Free-range Chicken",
+  "item.jsn_craft.golden_egg": "Golden Egg",
+  "block.jsn_craft.feeder": "Feeder",
+  "item.jsn_craft.dish.marbled_steak": "Marbled Steak",
+  "item.jsn_craft.dish.herb_roast_lamb": "Herb Roast Lamb",
+  "item.jsn_craft.dish.jidori_karaage": "Free-range Karaage",
+  "item.jsn_craft.dish.golden_omelette": "Golden Omelette",
+  "item.jsn_craft.dish.milk_pudding": "Milk Pudding",
+  "item.jsn_craft.dish.cheesecake": "Rich Cheesecake"
 }
