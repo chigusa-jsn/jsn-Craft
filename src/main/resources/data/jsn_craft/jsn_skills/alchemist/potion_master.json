@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "薬の心得"
+  },
+  "description": {
+    "text": "自分が飲んだ（浴びた）薬の効き目が20%上がる。"
+  },
+  "icon": "minecraft:honey_bottle",
+  "type": "passive",
+  "effect": "potion_master",
+  "power": 0.2
+}

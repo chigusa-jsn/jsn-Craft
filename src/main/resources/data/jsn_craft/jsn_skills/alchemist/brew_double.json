@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "調合上手"
+  },
+  "description": {
+    "text": "薬を作ったとき、15%の確率で1本おまけができる。"
+  },
+  "icon": "minecraft:glass_bottle",
+  "type": "passive",
+  "effect": "brew_double",
+  "chance": 0.15
+}

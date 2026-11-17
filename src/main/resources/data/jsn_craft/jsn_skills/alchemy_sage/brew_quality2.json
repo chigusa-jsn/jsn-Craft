@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "賢者の調合"
+  },
+  "description": {
+    "text": "薬の品質（★）がさらに上がりやすくなる。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "passive",
+  "effect": "brew_quality2",
+  "power": 0.2
+}

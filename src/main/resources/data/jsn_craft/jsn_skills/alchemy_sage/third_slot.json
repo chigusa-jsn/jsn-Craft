@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "第三の調合枠"
+  },
+  "description": {
+    "text": "追加素材を3つまで入れられるようになる。"
+  },
+  "icon": "minecraft:cauldron",
+  "type": "passive",
+  "effect": "third_slot"
+}

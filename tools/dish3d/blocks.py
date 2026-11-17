@@ -42,7 +42,27 @@ def rune_altar(d):
         d.box([x, 3, z], [x + 1.8, 6.5, z + 1.8], mat="amethyst")
         d.box([x + 0.4, 6.5, z + 0.4], [x + 1.4, 7.6, z + 1.4], mat="amethyst")
 
-BLOCKS = {"forge": forge, "rune_altar": rune_altar}
+def alchemy_table(d):
+    # 脚と棚
+    for x, z in ((1, 1), (13, 1), (1, 13), (13, 13)):
+        d.box([x, 0, z], [x + 2, 9, z + 2], mat="alch_wood_dark")
+    d.box([1.5, 3, 1.5], [14.5, 4, 14.5], mat="alch_wood")
+    # 天板
+    d.box([0, 9, 0], [16, 11, 16], top="alch_top", side="alch_wood", bottom="alch_wood")
+    # 丸いフラスコ（赤い薬）
+    d.disc(5, 5, 2.6, 11, 14.2, mat="flask_red")
+    d.disc(5, 5, 0.8, 14.2, 16.2, mat="glass")
+    d.disc(5, 5, 1.0, 16.2, 16.8, mat="cork")
+    # 細い瓶（青い薬）
+    d.disc(3.6, 12, 1.3, 11, 14.5, mat="flask_blue")
+    d.disc(3.6, 12, 0.7, 14.5, 15.2, mat="cork")
+    # すり鉢とすりこぎ
+    d.disc(11, 10.5, 2.4, 11, 13, top="mortar_top", side="mortar_stone", bottom="mortar_stone", fit=("up",))
+    d.box([11.6, 12.5, 10.0], [12.4, 15.5, 10.8], mat="alch_wood_dark")
+    # 薬草の束
+    d.box([9, 11, 2.5], [14, 12.2, 4.5], mat="herb_bundle")
+
+BLOCKS = {"forge": forge, "rune_altar": rune_altar, "alchemy_table": alchemy_table}
 
 if __name__ == "__main__":
     built = {}

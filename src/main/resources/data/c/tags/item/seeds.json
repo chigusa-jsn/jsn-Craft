@@ -4,6 +4,11 @@
     "jsn_craft:tomato_seeds",
     "jsn_craft:cabbage_seeds",
     "jsn_craft:chili_seeds",
-    "jsn_craft:hops_seeds"
+    "jsn_craft:hops_seeds",
+    "jsn_craft:herb_seeds",
+    "jsn_craft:vigor_herb_seeds",
+    "jsn_craft:moon_herb_seeds",
+    "jsn_craft:antidote_herb_seeds",
+    "jsn_craft:fire_herb_seeds"
   ]
 }

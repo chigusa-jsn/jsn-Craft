@@ -55,6 +55,13 @@ public final class ModCrops {
             new Crop("ume", "sapling", 1, 0.2F),
             new Crop("tea", "sapling", 0, 0),
             new Crop("coffee", "sapling", 0, 0),
+            // 薬草（秘薬の調合師の素材）
+            new Crop("herb", "seeds", 0, 0),
+            new Crop("vigor_herb", "seeds", 0, 0),
+            new Crop("moon_herb", "seeds", 0, 0),
+            new Crop("antidote_herb", "seeds", 0, 0),
+            new Crop("fire_herb", "seeds", 0, 0),
+            new Crop("mandrake", "produce", 0, 0),
     };
 
     /** 加工食材：名前, 満腹度, 持ち（0 なら食べられない） */
@@ -107,7 +114,8 @@ public final class ModCrops {
 
     // ---- 種の手に入れ方：草を壊すとたまに種、葉っぱからたまに苗 ----
 
-    private static final String[] GRASS_SEEDS = {"rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops"};
+    private static final String[] GRASS_SEEDS = {"rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops",
+            "herb", "herb", "vigor_herb", "antidote_herb"};
 
     @EventBusSubscriber(modid = JsnCraft.MODID)
     public static final class Drops {
@@ -119,7 +127,13 @@ public final class ModCrops {
             BlockPos pos = event.getPos();
             ItemStack tool = event.getTool();
             String give = null;
-            if ((st.is(Blocks.SHORT_GRASS) || st.is(Blocks.TALL_GRASS) || st.is(Blocks.FERN)) && !tool.is(Items.SHEARS)) {
+            if ((st.is(Blocks.FERN) || st.is(Blocks.LARGE_FERN)) && !tool.is(Items.SHEARS) && r.nextInt(8) == 0) {
+                give = "moon_herb";                                   // 月光草はシダから
+            } else if (st.is(Blocks.DEAD_BUSH) && r.nextInt(4) == 0) {
+                give = "fire_herb";                                   // 火炎草は枯れ木から
+            } else if ((st.is(Blocks.SHORT_GRASS) || st.is(Blocks.TALL_GRASS)) && !tool.is(Items.SHEARS) && r.nextInt(150) == 0) {
+                give = "mandrake";                                    // マンドラゴラはとてもまれ
+            } else if ((st.is(Blocks.SHORT_GRASS) || st.is(Blocks.TALL_GRASS) || st.is(Blocks.FERN)) && !tool.is(Items.SHEARS)) {
                 if (r.nextInt(10) == 0) give = GRASS_SEEDS[r.nextInt(GRASS_SEEDS.length)];
             } else if (st.is(BlockTags.LEAVES) && !tool.is(Items.SHEARS) && r.nextInt(40) == 0) {
                 if (st.is(Blocks.CHERRY_LEAVES)) give = "ume";
