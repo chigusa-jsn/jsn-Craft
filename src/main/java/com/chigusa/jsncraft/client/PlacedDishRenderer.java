@@ -9,6 +9,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -28,6 +29,17 @@ public class PlacedDishRenderer implements BlockEntityRenderer<PlacedDishBlockEn
         ItemStack dish = be.dish();
         if (dish.isEmpty()) return;
         float yaw = be.getBlockState().getValue(PlacedDishBlock.FACING).toYRot();
+        var itemRenderer = Minecraft.getInstance().getItemRenderer();
+        BakedModel model = itemRenderer.getModel(dish, be.getLevel(), null, 0);
+        if (model.isGui3d()) {
+            // 立体の料理：ブロックと同じ大きさ・向きでそのまま置く
+            ps.pushPose();
+            ps.translate(0.5, 0.5, 0.5);
+            ps.mulPose(Axis.YP.rotationDegrees(-yaw));
+            itemRenderer.render(dish, ItemDisplayContext.NONE, false, ps, buffers, light, overlay, model);
+            ps.popPose();
+            return;
+        }
         ps.pushPose();
         ps.translate(0.5, 0.04, 0.5);
         ps.mulPose(Axis.YP.rotationDegrees(-yaw));
