@@ -569,3 +569,21 @@ simple("pineapple", "#ffd040", 8, 4)
 simple("apple_m", "#d8202a", 6, 3, pts=[(10, 8)], strength=0.6)
 simple("cinnamon", "#8a4a20", 6, 3)
 simple("salt_rim", "#f8f8f8", 6, 4)
+
+# ---- 鍛冶台 ----
+@mat
+def forge_stone():
+    a = fill("#6a6a70", 90, 8, 6)
+    return img(blend(a, (yy % 8 == 7) | (((xx + (yy // 8) * 8) % 16) == 15), "#3a3a40", 0.9))
+simple("anvil_iron", "#3a3a42", 6, 4, pts=[(8, 6), (20, 6)], shine_col="#8a8a96", strength=0.5)
+@mat
+def coals():
+    a = fill("#2a1a14", 91, 8, 6)
+    rng = np.random.default_rng(92)
+    for _ in range(40):
+        x, y = rng.integers(0, N, 2); a = shine(a, [(x, y)], "#ff8a20", 0.9, 1.4)
+    return img(a)
+@mat
+def forge_glow():
+    a = fill("#ff6a10", 93, 10, 5)
+    return img(shine(a, [(16, 16)], "#ffe060", 0.9, 10))

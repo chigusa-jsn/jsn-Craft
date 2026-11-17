@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "素材の節約"
+  },
+  "description": {
+    "text": "強化したとき、20%の確率で強化石がなくならない。"
+  },
+  "icon": "minecraft:flint",
+  "type": "passive",
+  "effect": "smith_save",
+  "chance": 0.2
+}

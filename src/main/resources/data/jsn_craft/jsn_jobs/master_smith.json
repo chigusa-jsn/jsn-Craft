@@ -1,0 +1,3681 @@
+{
+  "name": {
+    "text": "星鉄の名工",
+    "color": "light_purple"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:smith",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "smith",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:master_smith/star_forge",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:master_smith/soul_forge",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:master_smith/divine_forge",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "名工の心得"
+      },
+      "icon": "minecraft:netherite_ingot",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.01
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "str1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "確かな一打 I"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "str1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "魂込め修練 I"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 1,
+      "links": [
+        "str1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "eye1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "鍛え直しの目・覚醒 I"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "str1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "eye1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "名工の知恵 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "eye1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "grd1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "頑丈 I"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "eye1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "grd1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "鎧 I"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "center",
+        "str1_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "str2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "節約・覚醒 II"
+      },
+      "icon": "minecraft:flint",
+      "cost": 1,
+      "links": [
+        "str1_0",
+        "grd1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "str2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "神匠・延長 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "str2_0",
+        "str1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "str2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "確かな一打 II"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "str2_1",
+        "str1_0",
+        "str1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "str2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "確かな一打 II"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "str2_2",
+        "str1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "eye2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "str2_3",
+        "str1_1",
+        "eye1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.375
+        }
+      ]
+    },
+    {
+      "id": "eye2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "修理・覚醒 II"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "eye2_0",
+        "eye1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "eye2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "鍛え直しの目・覚醒 II"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "eye2_1",
+        "eye1_0",
+        "eye1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "eye2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "名工の知恵 II"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "eye2_2",
+        "eye1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "grd2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "eye2_3",
+        "eye1_1",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "grd2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "鍛えた腕 II"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "grd2_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "grd2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "再生 II"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "grd1_0",
+        "grd1_1",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "grd2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "頑丈 II"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "grd1_1",
+        "str2_0",
+        "grd2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "str3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "魂込め修練 III"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 1,
+      "links": [
+        "str2_1",
+        "str2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "節約・覚醒 III"
+      },
+      "icon": "minecraft:flint",
+      "cost": 1,
+      "links": [
+        "str3_0",
+        "str2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "str3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "神匠・延長 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "str3_1",
+        "str2_1",
+        "str2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "str3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "鉄の意志"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 3,
+      "links": [
+        "str3_2",
+        "str2_2",
+        "str2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:master_smith/board/iron_will"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "str3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "確かな一打 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "str3_3",
+        "str2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "確かな一打 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "str3_4",
+        "str2_3",
+        "eye2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "eye3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "鍛え直しの目・覚醒 III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "str3_5",
+        "eye2_0",
+        "eye2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "eye3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "名工の知恵 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "eye3_0",
+        "eye2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "eye3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "eye3_1",
+        "eye2_1",
+        "eye2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "eye3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "鍛え直しの極意"
+      },
+      "icon": "minecraft:echo_shard",
+      "cost": 3,
+      "links": [
+        "eye3_2",
+        "eye2_2",
+        "eye2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:master_smith/board/reforge_twice"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "eye3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "修理・覚醒 III"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "eye3_3",
+        "eye2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "eye3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "鍛え直しの目・覚醒 III"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 1,
+      "links": [
+        "eye3_4",
+        "eye2_3",
+        "grd2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "grd3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "鎧 III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "eye3_5",
+        "grd2_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "頑丈 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "grd3_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "鎧 III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "grd2_1",
+        "grd2_2",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "火床の体"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 3,
+      "links": [
+        "grd2_2",
+        "grd2_3",
+        "grd3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/forge_ward",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "grd3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "grd2_3",
+        "grd3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
+        }
+      ]
+    },
+    {
+      "id": "grd3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "鍛えた腕 III"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "str2_0",
+        "str3_0",
+        "grd3_4",
+        "grd2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "str4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "魂込め修練 IV"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 1,
+      "links": [
+        "str3_0",
+        "grd3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "節約・覚醒 IV"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str3_1",
+        "str4_0",
+        "str3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "str4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "神匠・延長 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "str4_1",
+        "str3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "str4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str4_2",
+        "str3_1",
+        "str3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "str4_3",
+        "str3_2",
+        "str3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "魂込め修練 IV"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str4_4",
+        "str3_3",
+        "str3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "str4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "節約・覚醒 IV"
+      },
+      "icon": "minecraft:flint",
+      "cost": 1,
+      "links": [
+        "str4_5",
+        "str3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "str4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "神匠・延長 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "str4_6",
+        "str3_4",
+        "str3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "eye4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "名工の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "str4_7",
+        "str3_5",
+        "eye3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "eye4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "鍛え直しの目・覚醒 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye4_0",
+        "eye3_0",
+        "eye3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "eye4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "名工の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "eye4_1",
+        "eye3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "eye4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye4_2",
+        "eye3_1",
+        "eye3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "eye4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "修理・覚醒 IV"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 1,
+      "links": [
+        "eye4_3",
+        "eye3_2",
+        "eye3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "eye4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "鍛え直しの目・覚醒 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye4_4",
+        "eye3_3",
+        "eye3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "eye4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "名工の知恵 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "eye4_5",
+        "eye3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "eye4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "鍛え直しの目・覚醒 IV"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye4_6",
+        "eye3_4",
+        "eye3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "grd4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "eye4_7",
+        "eye3_5",
+        "grd3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "頑丈 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd4_0",
+        "grd3_0",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "鎧 IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "grd4_1",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "頑丈 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd3_1",
+        "grd3_2",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "鎧 IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "grd3_2",
+        "grd3_3",
+        "grd4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd3_3",
+        "grd3_4",
+        "grd4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.026
+        }
+      ]
+    },
+    {
+      "id": "grd4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "鍛えた腕 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "grd3_4",
+        "grd4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "grd4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "再生 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd3_5",
+        "str4_0",
+        "grd4_6",
+        "grd3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "str5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "確かな一打 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str4_1",
+        "str4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str4_2",
+        "str5_0",
+        "str4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "魂込め修練 V"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str5_1",
+        "str4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "節約・覚醒 V"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str5_2",
+        "str4_2",
+        "str4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "str5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "神匠・延長 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "str5_3",
+        "str4_3",
+        "str4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "str5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★魂込め・極"
+      },
+      "icon": "minecraft:soul_campfire",
+      "cost": 6,
+      "links": [
+        "str5_4",
+        "str4_4",
+        "str4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "str5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "確かな一打 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str5_5",
+        "str4_5",
+        "str4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "確かな一打 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str5_6",
+        "str4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "魂込め修練 V"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str5_7",
+        "str4_6",
+        "str4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "節約・覚醒 V"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str5_8",
+        "str4_7",
+        "eye4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "名工の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "str5_9",
+        "eye4_0",
+        "eye4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye5_0",
+        "eye4_1",
+        "eye4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "eye5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "修理・覚醒 V"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "eye5_1",
+        "eye4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "eye5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "鍛え直しの目・覚醒 V"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye5_2",
+        "eye4_2",
+        "eye4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "名工の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye5_3",
+        "eye4_3",
+        "eye4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★素材の節約・覚醒"
+      },
+      "icon": "minecraft:emerald_block",
+      "cost": 6,
+      "links": [
+        "eye5_4",
+        "eye4_4",
+        "eye4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "eye5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "鍛え直しの目・覚醒 V"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye5_5",
+        "eye4_5",
+        "eye4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "名工の知恵 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye5_6",
+        "eye4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye5_7",
+        "eye4_6",
+        "eye4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "eye5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "修理・覚醒 V"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "eye5_8",
+        "eye4_7",
+        "grd4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "grd5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "頑丈 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "eye5_9",
+        "grd4_0",
+        "grd4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "鎧 V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd5_0",
+        "grd4_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "頑丈 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd5_1",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "鎧 V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd4_2",
+        "grd4_3",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd4_3",
+        "grd4_4",
+        "grd5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★火床の加護・覚醒"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "links": [
+        "grd4_4",
+        "grd4_5",
+        "grd5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "power",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "duration",
+          "amount": 120
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "grd5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "鍛えた腕 V"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "grd4_5",
+        "grd4_6",
+        "grd5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "再生 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd4_6",
+        "grd5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "頑丈 V"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd4_7",
+        "grd5_7",
+        "grd4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "鎧 V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "str4_0",
+        "str5_0",
+        "grd5_8",
+        "grd4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "str6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "神匠・延長 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "str5_0",
+        "grd5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "str6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str5_1",
+        "str6_0",
+        "str5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "確かな一打 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str5_2",
+        "str6_1",
+        "str5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "魂込め修練 VI"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str6_2",
+        "str5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "焼き入れ・覚醒"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 4,
+      "links": [
+        "str6_3",
+        "str5_2",
+        "str5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/quench",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "skill": "jsn_craft:smith/quench",
+          "field": "duration",
+          "amount": 60
+        }
+      ]
+    },
+    {
+      "id": "str6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "節約・覚醒 VI"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str6_4",
+        "str5_3",
+        "str5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "str6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "神匠・延長 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "str6_5",
+        "str5_4",
+        "str5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "str6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "確かな一打 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str6_6",
+        "str5_5",
+        "str5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "確かな一打 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str6_7",
+        "str5_6",
+        "str5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "魂込め修練 VI"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str6_8",
+        "str5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "str6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "節約・覚醒 VI"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str6_9",
+        "str5_7",
+        "str5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "str6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "神匠・延長 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "str6_10",
+        "str5_8",
+        "str5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "eye6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "str6_11",
+        "str5_9",
+        "eye5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "名工の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye6_0",
+        "eye5_0",
+        "eye5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye6_1",
+        "eye5_1",
+        "eye5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "名工の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye6_2",
+        "eye5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye6_3",
+        "eye5_2",
+        "eye5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "eye6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "修理・覚醒 VI"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "eye6_4",
+        "eye5_3",
+        "eye5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "eye6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "名工の勘・覚醒"
+      },
+      "icon": "minecraft:gold_block",
+      "cost": 4,
+      "links": [
+        "eye6_5",
+        "eye5_4",
+        "eye5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/master_eye",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "eye6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye6_6",
+        "eye5_5",
+        "eye5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "名工の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye6_7",
+        "eye5_6",
+        "eye5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VI"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye6_8",
+        "eye5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "eye6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "名工の知恵 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye6_9",
+        "eye5_7",
+        "eye5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "eye6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye6_10",
+        "eye5_8",
+        "eye5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "頑丈 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "eye6_11",
+        "eye5_9",
+        "grd5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "鎧 VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd6_0",
+        "grd5_0",
+        "grd5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd6_1",
+        "grd5_1",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "鍛えた腕 VI"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "grd6_2",
+        "grd5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "grd6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "再生 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd5_2",
+        "grd5_3",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "grd6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "頑丈 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd5_3",
+        "grd5_4",
+        "grd6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "鉄の意志・極"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 4,
+      "links": [
+        "grd5_4",
+        "grd5_5",
+        "grd6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/board/iron_will",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "grd6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "鎧 VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd5_5",
+        "grd5_6",
+        "grd6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "頑丈 VI"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd5_6",
+        "grd5_7",
+        "grd6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "grd6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "鎧 VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd5_7",
+        "grd6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "grd6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd5_8",
+        "grd6_9",
+        "grd5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.031
+        }
+      ]
+    },
+    {
+      "id": "grd6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "鍛えた腕 VI"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "grd5_9",
+        "str6_0",
+        "grd6_10",
+        "grd5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "str7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str6_1",
+        "str6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "str6_2",
+        "str7_0",
+        "str6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "魂込め修練 VII"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 2,
+      "links": [
+        "str6_3",
+        "str7_1",
+        "str6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "節約・覚醒 VII"
+      },
+      "icon": "minecraft:flint",
+      "cost": 3,
+      "links": [
+        "str7_2",
+        "str6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "str7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★神匠の一撃・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 7,
+      "links": [
+        "str7_3",
+        "str6_3",
+        "str6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "str7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "神匠・延長 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "str7_4",
+        "str6_4",
+        "str6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "str7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str7_5",
+        "str6_5",
+        "str6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★星鉄の鎚"
+      },
+      "icon": "minecraft:netherite_block",
+      "cost": 8,
+      "links": [
+        "str7_6",
+        "str6_6",
+        "str6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "str7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str7_7",
+        "str6_7",
+        "str6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "魂込め修練 VII"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 3,
+      "links": [
+        "str7_8",
+        "str6_8",
+        "str6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "節約・覚醒 VII"
+      },
+      "icon": "minecraft:flint",
+      "cost": 2,
+      "links": [
+        "str7_9",
+        "str6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "str7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "神匠・延長 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "str7_10",
+        "str6_9",
+        "str6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "str7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "str7_11",
+        "str6_10",
+        "str6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "str7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "確かな一打 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "str7_12",
+        "str6_11",
+        "eye6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "eye7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "修理・覚醒 VII"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 2,
+      "links": [
+        "str7_13",
+        "eye6_0",
+        "eye6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "eye7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "eye7_0",
+        "eye6_1",
+        "eye6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "eye7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "名工の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye7_1",
+        "eye6_2",
+        "eye6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "eye7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "eye7_2",
+        "eye6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "eye7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "名工の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye7_3",
+        "eye6_3",
+        "eye6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "eye7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★修理の神髄"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 7,
+      "links": [
+        "eye7_4",
+        "eye6_4",
+        "eye6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "eye7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "eye7_5",
+        "eye6_5",
+        "eye6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "eye7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "修理・覚醒 VII"
+      },
+      "icon": "minecraft:anvil",
+      "cost": 3,
+      "links": [
+        "eye7_6",
+        "eye6_6",
+        "eye6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "eye7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 2,
+      "links": [
+        "eye7_7",
+        "eye6_7",
+        "eye6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "eye7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★名工の賢者"
+      },
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "links": [
+        "eye7_8",
+        "eye6_8",
+        "eye6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "eye7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "名工の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye7_9",
+        "eye6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "eye7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "鍛え直しの目・覚醒 VII"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "eye7_10",
+        "eye6_9",
+        "eye6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "eye7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "名工の知恵 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "eye7_11",
+        "eye6_10",
+        "eye6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "eye7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "eye7_12",
+        "eye6_11",
+        "grd6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "grd7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "eye7_13",
+        "grd6_0",
+        "grd6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "頑丈 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "grd7_0",
+        "grd6_1",
+        "grd6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "鎧 VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd7_1",
+        "grd6_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "grd7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "頑丈 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 3,
+      "links": [
+        "grd7_2",
+        "grd6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "鎧 VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "grd6_3",
+        "grd6_4",
+        "grd7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "grd7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★不動の鍛冶師"
+      },
+      "icon": "minecraft:obsidian",
+      "cost": 7,
+      "links": [
+        "grd6_4",
+        "grd6_5",
+        "grd7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "grd7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "grd6_5",
+        "grd6_6",
+        "grd7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.039
+        }
+      ]
+    },
+    {
+      "id": "grd7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "鍛えた腕 VII"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 3,
+      "links": [
+        "grd6_6",
+        "grd6_7",
+        "grd7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "grd7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "再生 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "grd6_7",
+        "grd6_8",
+        "grd7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "grd7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★名工の守り"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "links": [
+        "grd6_8",
+        "grd6_9",
+        "grd7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "grd7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "頑丈 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd6_9",
+        "grd7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "鎧 VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "grd6_10",
+        "grd7_10",
+        "grd6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "grd7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "頑丈 VII"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd6_11",
+        "grd7_11",
+        "grd6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "grd7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "鎧 VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "str6_0",
+        "str7_0",
+        "grd7_12",
+        "grd6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 0.9
+        }
+      ]
+    }
+  ]
+}

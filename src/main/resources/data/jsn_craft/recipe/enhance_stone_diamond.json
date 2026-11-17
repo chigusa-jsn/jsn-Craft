@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    },
+    {
+      "item": "minecraft:lapis_lazuli"
+    }
+  ],
+  "result": {
+    "id": "jsn_craft:enhance_stone_diamond",
+    "count": 2
+  }
+}

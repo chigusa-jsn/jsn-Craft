@@ -1,0 +1,63 @@
+package com.chigusa.jsncraft.smithing;
+
+import com.chigusa.jsncraft.JsnCraft;
+import com.chigusa.jsncraft.cooking.ModCooking;
+import com.chigusa.jsncraft.npc.ModEntities;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+
+import java.util.List;
+import java.util.function.Supplier;
+
+/** 鍛冶台と強化石の登録（ブロックなどの登録先は調理台と共通）。 */
+@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
+public final class ModSmithing {
+
+    public static final DeferredBlock<ForgeBlock> FORGE = ModCooking.BLOCKS.register("forge",
+            () -> new ForgeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.5F)
+                    .sound(SoundType.ANVIL).requiresCorrectToolForDrops().lightLevel(s -> 7).noOcclusion()));
+    public static final DeferredItem<BlockItem> FORGE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(FORGE);
+    public static final Supplier<BlockEntityType<ForgeBlockEntity>> FORGE_BE = ModCooking.BLOCK_ENTITIES.register(
+            "forge", () -> BlockEntityType.Builder.of(ForgeBlockEntity::new, FORGE.get()).build(null));
+    public static final DeferredHolder<MenuType<?>, MenuType<ForgeMenu>> FORGE_MENU = ModCooking.MENUS.register("forge",
+            () -> IMenuTypeExtension.create(ForgeMenu::new));
+
+    /** 強化石：0 鉄（+1〜3）/ 1 金（+4〜6）/ 2 ダイヤ（+7〜9）/ 3 ネザライト（+10〜12）/ 4 星鉄（+13〜15） */
+    public static final List<DeferredItem<Item>> STONES = List.of(
+            ModEntities.ITEMS.registerSimpleItem("enhance_stone_iron", new Item.Properties()),
+            ModEntities.ITEMS.registerSimpleItem("enhance_stone_gold", new Item.Properties()),
+            ModEntities.ITEMS.registerSimpleItem("enhance_stone_diamond", new Item.Properties().rarity(Rarity.UNCOMMON)),
+            ModEntities.ITEMS.registerSimpleItem("enhance_stone_netherite", new Item.Properties().rarity(Rarity.RARE)),
+            ModEntities.ITEMS.registerSimpleItem("enhance_stone_star", new Item.Properties().rarity(Rarity.EPIC)));
+
+    /** 強化石の段階（強化石でなければ -1） */
+    public static int stoneTier(ItemStack stack) {
+        for (int i = 0; i < STONES.size(); i++) if (stack.is(STONES.get(i).get())) return i;
+        return -1;
+    }
+
+    public static void init() {}
+
+    @SubscribeEvent
+    public static void onCreativeTab(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) event.accept(FORGE_ITEM);
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) for (var s : STONES) event.accept(s);
+    }
+
+    private ModSmithing() {}
+}

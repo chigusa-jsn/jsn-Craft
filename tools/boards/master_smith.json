@@ -1,0 +1,478 @@
+{
+  "job": "master_smith",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "名工の心得",
+    "icon": "minecraft:netherite_ingot",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:smith/focus_strike",
+        "field": "power",
+        "amount": 0.01
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "str",
+      "pool": [
+        {
+          "name": "確かな一打",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/focus_strike",
+              "field": "power",
+              "amount": 0.0015
+            }
+          ]
+        },
+        {
+          "name": "魂込め修練",
+          "icon": "minecraft:soul_lantern",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:master_smith/soul_forge",
+              "field": "chance",
+              "amount": 0.0015
+            }
+          ]
+        },
+        {
+          "name": "節約・覚醒",
+          "icon": "minecraft:flint",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/thrift",
+              "field": "chance",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "神匠・延長",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:master_smith/divine_forge",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "eye",
+      "pool": [
+        {
+          "name": "鍛え直しの目・覚醒",
+          "icon": "minecraft:spyglass",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/keen_eye",
+              "field": "power",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "名工の知恵",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "修理・覚醒",
+          "icon": "minecraft:anvil",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/mend",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "頑丈",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "鎧",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.013
+            }
+          ]
+        },
+        {
+          "name": "鍛えた腕",
+          "icon": "minecraft:iron_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.2
+            }
+          ]
+        },
+        {
+          "name": "再生",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.05
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "鉄の意志",
+      "icon": "minecraft:iron_block",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:master_smith/board/iron_will"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★魂込め・極",
+      "icon": "minecraft:soul_campfire",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/soul_forge",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "焼き入れ・覚醒",
+      "icon": "minecraft:blue_ice",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/quench",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "skill": "jsn_craft:smith/quench",
+          "field": "duration",
+          "amount": 60
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★神匠の一撃・極",
+      "icon": "minecraft:nether_star",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:master_smith/divine_forge",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★星鉄の鎚",
+      "icon": "minecraft:netherite_block",
+      "cost": 8,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "鍛え直しの極意",
+      "icon": "minecraft:echo_shard",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:master_smith/board/reforge_twice"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★素材の節約・覚醒",
+      "icon": "minecraft:emerald_block",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "名工の勘・覚醒",
+      "icon": "minecraft:gold_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/master_eye",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★修理の神髄",
+      "icon": "minecraft:anvil",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★名工の賢者",
+      "icon": "minecraft:enchanted_book",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "火床の体",
+      "icon": "minecraft:magma_block",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/forge_ward",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★火床の加護・覚醒",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "power",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "duration",
+          "amount": 120
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "鉄の意志・極",
+      "icon": "minecraft:anvil",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:master_smith/board/iron_will",
+          "field": "power_pct",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★不動の鍛冶師",
+      "icon": "minecraft:obsidian",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★名工の守り",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 12
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

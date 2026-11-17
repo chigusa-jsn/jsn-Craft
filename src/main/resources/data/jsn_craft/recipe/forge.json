@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IAI",
+    "SFS",
+    "SSS"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "minecraft:anvil"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "S": {
+      "item": "minecraft:stone_bricks"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:forge",
+    "count": 1
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "job": "smith",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "鍛冶の心得",
+    "icon": "minecraft:anvil",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:smith/focus_strike",
+        "field": "power",
+        "amount": 0.01
+      },
+      {
+        "attribute": "minecraft:generic.armor",
+        "amount": 1
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "hmr",
+      "pool": [
+        {
+          "name": "確かな一打",
+          "icon": "minecraft:iron_ingot",
+          "weight": 3,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/focus_strike",
+              "field": "power",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "名工の勘修練",
+          "icon": "minecraft:gold_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/master_eye",
+              "field": "chance",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "節約修練",
+          "icon": "minecraft:flint",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/thrift",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "焼き入れ修練",
+          "icon": "minecraft:water_bucket",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/quench",
+              "field": "duration",
+              "amount": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "eye",
+      "pool": [
+        {
+          "name": "鍛え直しの目修練",
+          "icon": "minecraft:spyglass",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/keen_eye",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "修理修練",
+          "icon": "minecraft:anvil",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/mend",
+              "field": "power",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "鍛えた腕",
+          "icon": "minecraft:iron_axe",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "頑丈",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "火床の加護修練",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:smith/forge_blessing",
+              "field": "duration",
+              "amount": 20
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "一打入魂",
+      "icon": "minecraft:anvil",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/focus_strike",
+          "field": "power",
+          "amount": 0.03
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★名工の勘・極",
+      "icon": "minecraft:gold_block",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/master_eye",
+          "field": "chance",
+          "amount": 0.04
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "焼き入れ・極",
+      "icon": "minecraft:packed_ice",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/quench",
+          "field": "power",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "目利き",
+      "icon": "minecraft:ender_eye",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/keen_eye",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★素材の節約・極",
+      "icon": "minecraft:emerald",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/thrift",
+          "field": "chance",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "修理の達人",
+      "icon": "minecraft:smithing_table",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/mend",
+          "field": "power",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "鍛冶師の体",
+      "icon": "minecraft:iron_block",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★火床の加護・極",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "power",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:smith/forge_blessing",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "無尽の気",
+      "icon": "minecraft:golden_carrot",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    }
+  ]
+}

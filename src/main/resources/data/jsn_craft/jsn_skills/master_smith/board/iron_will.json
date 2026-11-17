@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "鉄の意志"
+  },
+  "description": {
+    "text": "地下（空が見えない高さ50より下）では、受けるダメージが15%減る。"
+  },
+  "icon": "minecraft:iron_block",
+  "type": "passive",
+  "effect": "stone_skin",
+  "power": 0.15
+}

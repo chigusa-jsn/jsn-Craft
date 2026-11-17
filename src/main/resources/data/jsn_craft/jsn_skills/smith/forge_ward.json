@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "火床の守り"
+  },
+  "description": {
+    "text": "炎や溶岩で受けるダメージが30%減る。"
+  },
+  "icon": "minecraft:magma_block",
+  "type": "passive",
+  "effect": "lava_ward",
+  "power": 0.3
+}

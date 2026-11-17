@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    }
+  ],
+  "result": {
+    "id": "jsn_craft:enhance_stone_netherite",
+    "count": 1
+  }
+}

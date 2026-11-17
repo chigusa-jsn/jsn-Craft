@@ -74,6 +74,9 @@ public final class SkillEffects {
             case "harvest_dance" -> com.chigusa.jsncraft.farming.FarmingService.harvestDance(player, s);
             case "scythe_sweep" -> com.chigusa.jsncraft.farming.FarmingService.scytheSweep(player, s);
             case "harvest_ward" -> com.chigusa.jsncraft.farming.FarmingService.harvestWard(player, s);
+            case "smith_quench" -> com.chigusa.jsncraft.smithing.SmithingService.quench(player, s);
+            case "forge_blessing" -> com.chigusa.jsncraft.smithing.SmithingService.forgeBlessing(player, s);
+            case "divine_forge" -> com.chigusa.jsncraft.smithing.SmithingService.divineForge(player, s);
             case "feed_area" -> com.chigusa.jsncraft.cooking.CookingService.feedArea(player, s);
             case "aroma" -> com.chigusa.jsncraft.cooking.CookingService.aroma(player, s);
             case "feast" -> com.chigusa.jsncraft.cooking.CookingService.feast(player, s);

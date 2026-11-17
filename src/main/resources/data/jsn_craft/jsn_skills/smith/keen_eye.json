@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "鍛え直しの目"
+  },
+  "description": {
+    "text": "鍛え直しで、強い特性が出やすくなる。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "passive",
+  "effect": "reforge_luck",
+  "power": 0.1
+}

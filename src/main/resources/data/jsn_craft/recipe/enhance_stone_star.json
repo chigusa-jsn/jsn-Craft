@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "result": {
+    "id": "jsn_craft:enhance_stone_star",
+    "count": 1
+  }
+}

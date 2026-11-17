@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "神匠の一撃"
+  },
+  "description": {
+    "text": "60秒間、強化が必ず成功する。"
+  },
+  "icon": "minecraft:netherite_ingot",
+  "type": "active",
+  "effect": "divine_forge",
+  "duration": 60,
+  "stamina": 60,
+  "cooldown": 1200
+}

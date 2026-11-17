@@ -216,5 +216,11 @@
   "item.jsn_craft.drink.berry_orange": "Berry Orange",
   "item.jsn_craft.drink.tequila": "Tequila",
   "item.jsn_craft.drink.blue_lagoon": "Blue Lagoon",
-  "item.jsn_craft.drink.martini": "Martini"
+  "item.jsn_craft.drink.martini": "Martini",
+  "item.jsn_craft.enhance_stone_iron": "Iron Enhancement Stone",
+  "item.jsn_craft.enhance_stone_gold": "Gold Enhancement Stone",
+  "item.jsn_craft.enhance_stone_diamond": "Diamond Enhancement Stone",
+  "item.jsn_craft.enhance_stone_netherite": "Netherite Enhancement Stone",
+  "item.jsn_craft.enhance_stone_star": "Star Iron Enhancement Stone",
+  "block.jsn_craft.forge": "Forge"
 }

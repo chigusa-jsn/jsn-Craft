@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "鍛え直しの極意"
+  },
+  "description": {
+    "text": "鍛え直しで、特性の強さを2回引いて良いほうを使う。"
+  },
+  "icon": "minecraft:echo_shard",
+  "type": "passive",
+  "effect": "reforge_twice"
+}

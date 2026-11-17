@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "火床の加護"
+  },
+  "description": {
+    "text": "周り（8ブロック）の仲間の防御力と防具強度を180秒間 +2 する。"
+  },
+  "icon": "minecraft:iron_chestplate",
+  "type": "active",
+  "effect": "forge_blessing",
+  "power": 2,
+  "radius": 8,
+  "duration": 180,
+  "stamina": 40,
+  "cooldown": 240
+}

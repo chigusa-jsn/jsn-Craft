@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "名工の勘"
+  },
+  "description": {
+    "text": "強化に成功したとき、一気に+2になる「大成功」が出やすくなる（+5%）。"
+  },
+  "icon": "minecraft:gold_ingot",
+  "type": "passive",
+  "effect": "smith_great",
+  "chance": 0.05
+}

@@ -216,5 +216,11 @@
   "item.jsn_craft.drink.berry_orange": "ベリーオレンジ",
   "item.jsn_craft.drink.tequila": "テキーラ",
   "item.jsn_craft.drink.blue_lagoon": "ブルーラグーン",
-  "item.jsn_craft.drink.martini": "マティーニ"
+  "item.jsn_craft.drink.martini": "マティーニ",
+  "item.jsn_craft.enhance_stone_iron": "鉄の強化石",
+  "item.jsn_craft.enhance_stone_gold": "金の強化石",
+  "item.jsn_craft.enhance_stone_diamond": "ダイヤの強化石",
+  "item.jsn_craft.enhance_stone_netherite": "ネザライトの強化石",
+  "item.jsn_craft.enhance_stone_star": "星鉄の強化石",
+  "block.jsn_craft.forge": "鍛冶台"
 }

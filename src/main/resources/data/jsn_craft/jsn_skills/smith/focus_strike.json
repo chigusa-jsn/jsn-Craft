@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "集中の一打"
+  },
+  "description": {
+    "text": "強化の成功率が5%上がる。"
+  },
+  "icon": "minecraft:iron_ingot",
+  "type": "passive",
+  "effect": "smith_success",
+  "power": 0.05
+}

@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "星鉄の鍛錬"
+  },
+  "description": {
+    "text": "+11以上の強化ができるようになり、特性を2つまでつけられるようになる。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "passive",
+  "effect": "star_forge"
+}

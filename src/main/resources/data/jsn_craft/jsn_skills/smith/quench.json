@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "焼き入れ"
+  },
+  "description": {
+    "text": "120秒間、強化の成功率が15%上がる。"
+  },
+  "icon": "minecraft:water_bucket",
+  "type": "active",
+  "effect": "smith_quench",
+  "power": 0.15,
+  "duration": 120,
+  "stamina": 30,
+  "cooldown": 300
+}

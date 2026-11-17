@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "魂込め"
+  },
+  "description": {
+    "text": "大成功がさらに出やすくなる（+10%）。"
+  },
+  "icon": "minecraft:soul_lantern",
+  "type": "passive",
+  "effect": "smith_great2",
+  "chance": 0.1
+}

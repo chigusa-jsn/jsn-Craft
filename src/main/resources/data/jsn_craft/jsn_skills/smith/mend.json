@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "打ち直し上手"
+  },
+  "description": {
+    "text": "修理で回復する耐久が25%増える（ふつうは素材1つで50%）。"
+  },
+  "icon": "minecraft:anvil",
+  "type": "passive",
+  "effect": "smith_repair",
+  "power": 0.25
+}
