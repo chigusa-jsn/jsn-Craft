@@ -90,6 +90,7 @@ public final class FarmingService {
     /** 植え直したときの状態（年齢0）。植え直せない物は null */
     private static BlockState replanted(BlockState st) {
         Block b = st.getBlock();
+        if (b instanceof JsnCropBlock j && j.perennial()) return j.getStateForAge(JsnCropBlock.REGROW_AGE); // 果樹は実だけ取る
         if (b instanceof CropBlock c) return c.getStateForAge(0);
         if (b instanceof NetherWartBlock) return st.setValue(NetherWartBlock.AGE, 0);
         if (b instanceof CocoaBlock) return st.setValue(CocoaBlock.AGE, 0);

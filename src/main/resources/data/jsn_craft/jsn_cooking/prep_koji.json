@@ -1,0 +1,11 @@
+{
+  "result": "jsn_craft:koji",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:cooked_rice",
+    "minecraft:brown_mushroom"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 2
+}

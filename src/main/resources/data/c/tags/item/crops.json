@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:rice",
+    "jsn_craft:onion",
+    "jsn_craft:soybean",
+    "jsn_craft:barley",
+    "jsn_craft:tomato",
+    "jsn_craft:cabbage",
+    "jsn_craft:chili",
+    "jsn_craft:hops",
+    "jsn_craft:grape",
+    "jsn_craft:lemon",
+    "jsn_craft:ume"
+  ]
+}

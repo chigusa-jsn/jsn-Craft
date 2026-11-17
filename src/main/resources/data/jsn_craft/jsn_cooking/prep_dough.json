@@ -1,0 +1,11 @@
+{
+  "result": "jsn_craft:dough",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:flour",
+    "minecraft:egg"
+  ],
+  "level": 1,
+  "time": 60,
+  "xp": 2
+}

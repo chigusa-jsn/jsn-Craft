@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:tomato_seeds",
+    "jsn_craft:cabbage_seeds",
+    "jsn_craft:chili_seeds",
+    "jsn_craft:hops_seeds"
+  ]
+}

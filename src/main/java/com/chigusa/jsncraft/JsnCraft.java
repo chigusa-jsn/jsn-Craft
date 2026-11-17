@@ -25,6 +25,7 @@ public class JsnCraft {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         com.chigusa.jsncraft.fishing.FishItems.init(); // 魚アイテム
         com.chigusa.jsncraft.cooking.ModCooking.register(modEventBus); // 調理台と料理
+        com.chigusa.jsncraft.farming.ModCrops.register(modEventBus); // 新しい作物と食材
         ModEntities.ITEMS.register(modEventBus);
         // スキル用の専用エフェクト
         com.chigusa.jsncraft.vfx.ModParticles.PARTICLE_TYPES.register(modEventBus);

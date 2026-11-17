@@ -1,0 +1,11 @@
+{
+  "result": "jsn_craft:dashi",
+  "count": 2,
+  "ingredients": [
+    "minecraft:dried_kelp",
+    "#c:foods/raw_fish"
+  ],
+  "level": 1,
+  "time": 80,
+  "xp": 2
+}

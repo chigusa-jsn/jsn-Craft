@@ -1,0 +1,12 @@
+{
+  "result": "jsn_craft:miso",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:soybean",
+    "jsn_craft:salt",
+    "jsn_craft:koji"
+  ],
+  "level": 1,
+  "time": 120,
+  "xp": 3
+}

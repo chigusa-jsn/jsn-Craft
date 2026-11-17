@@ -1,0 +1,13 @@
+{
+  "result": "jsn_craft:tomato_sauce",
+  "count": 2,
+  "ingredients": [
+    "jsn_craft:tomato",
+    "jsn_craft:tomato",
+    "jsn_craft:onion",
+    "jsn_craft:salt"
+  ],
+  "level": 1,
+  "time": 80,
+  "xp": 3
+}

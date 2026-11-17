@@ -1,0 +1,10 @@
+{
+  "result": "jsn_craft:cooked_rice",
+  "count": 1,
+  "ingredients": [
+    "jsn_craft:rice"
+  ],
+  "level": 1,
+  "time": 40,
+  "xp": 1
+}

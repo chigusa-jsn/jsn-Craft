@@ -1,0 +1,11 @@
+{
+  "result": "jsn_craft:cheese",
+  "count": 2,
+  "ingredients": [
+    "minecraft:milk_bucket",
+    "jsn_craft:salt"
+  ],
+  "level": 1,
+  "time": 100,
+  "xp": 2
+}
