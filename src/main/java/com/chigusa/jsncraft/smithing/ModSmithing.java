@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /** 鍛冶台と強化石の登録（ブロックなどの登録先は調理台と共通）。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModSmithing {
 
     public static final DeferredBlock<ForgeBlock> FORGE = ModCooking.BLOCKS.register("forge",

@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /** 調合台・薬・香の素・投げた薬の登録（ブロックの登録先は調理台と共通）。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModAlchemy {
 
     public static final DeferredBlock<AlchemyTableBlock> TABLE = ModCooking.BLOCKS.register("alchemy_table",

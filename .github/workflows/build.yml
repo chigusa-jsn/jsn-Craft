@@ -26,6 +26,32 @@ jobs:
           chmod +x gradlew
           ./gradlew build --no-daemon --stacktrace
 
+      # サーバーを実際に起動して、MODの読み込みでエラーが出ないか確かめる（出たらリリースしない）
+      - name: Start test (dedicated server)
+        run: |
+          mkdir -p run
+          echo "eula=true" > run/eula.txt
+          printf "online-mode=false\nlevel-type=minecraft\\:flat\nspawn-protection=0\n" > run/server.properties
+          (./gradlew runServer --no-daemon > server.log 2>&1 < /dev/null &)
+          ok=0
+          for i in $(seq 1 120); do
+            if grep -q "Done (" server.log; then ok=1; break; fi
+            if grep -qE "has failed to load correctly|ModLoadingException|Crash report|Exception in server tick loop|Failed to start the minecraft server" server.log; then break; fi
+            sleep 5
+          done
+          pkill -f "runServer" || true
+          pkill java || true
+          if [ "$ok" != "1" ]; then
+            echo "===== サーバーが起動できませんでした ====="
+            grep -nE "ERROR|Exception|Caused by|failed" server.log | head -80
+            tail -120 server.log
+            exit 1
+          fi
+          grep -m1 "Done (" server.log
+          echo "----- ログのエラーや警告（参考） -----"
+          grep -E "/(ERROR|WARN)\]" server.log | grep -viE "Realms|telemetry|narrator" | head -60 || true
+          echo "サーバーは問題なく起動しました"
+
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:

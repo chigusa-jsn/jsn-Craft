@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 /** 細工台・原石・宝石・月銀と星銀・装飾品の登録（ブロックの登録先は調理台と共通）。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModJewelry {
 
     public static final DeferredBlock<JewelTableBlock> TABLE = ModCooking.BLOCKS.register("jeweler_table",

@@ -23,7 +23,6 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.function.Supplier;
 
 /** 魔紋の祭壇と魔紋の書の登録（登録先は調理台と共通）。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModEnchanting {
 
     public static final DeferredBlock<RuneAltarBlock> ALTAR = ModCooking.BLOCKS.register("rune_altar",

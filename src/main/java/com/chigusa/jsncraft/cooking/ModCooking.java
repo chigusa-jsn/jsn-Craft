@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /** 調理台ブロック・料理アイテムの登録。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModCooking {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(JsnCraft.MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =

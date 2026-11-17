@@ -22,7 +22,6 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.function.Supplier;
 
 /** エサ箱と畜産物の登録（ブロックの登録先は調理台と共通）。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModRanch {
 
     public static final DeferredBlock<FeederBlock> FEEDER = ModCooking.BLOCKS.register("feeder",

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** jsn-Craft の魚アイテム（jsn_craft:fish/<名前>）。生で食べられる。名前の色がランクの色になる。 */
-@EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class FishItems {
 
     /** ランクごとの魚の一覧（ここに足すと登録される。絵は tools/gen_fish_art.py） */

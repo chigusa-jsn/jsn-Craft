@@ -148,8 +148,5 @@ public final class ModCrops {
         }
     }
 
-    @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
-    public static final class Tabs {    }
-
     private ModCrops() {}
 }
