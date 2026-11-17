@@ -1,0 +1,3705 @@
+{
+  "name": {
+    "text": "錬金の賢者",
+    "color": "dark_green"
+  },
+  "type": "life",
+  "tier": "advanced",
+  "max_level": 100,
+  "requires": [
+    {
+      "job": "jsn_craft:alchemist",
+      "level": 30
+    }
+  ],
+  "skill_points_per_level": 3,
+  "xp": [
+    {
+      "action": "brew",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:alchemy_sage/third_slot",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:alchemy_sage/transmute_save",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:alchemy_sage/elixir_rain",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:alchemy_sage/brew_quality2",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:alchemy_sage/philosopher_stone",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "錬金の心得"
+      },
+      "icon": "minecraft:gold_ingot",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        },
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "brw1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "調合上手修練 I"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brw1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "丁寧な調合修練 I"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 1,
+      "links": [
+        "brw1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "aid1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "癒しの霧修練 I"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 1,
+      "links": [
+        "brw1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "aid1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "回復の力 I"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "aid1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "スタミナ I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "aid1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "bdy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 I"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "brw1_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "節約修練 II"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "brw1_0",
+        "bdy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brw2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "調合上手修練 II"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw2_0",
+        "brw1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brw2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "薬の心得修練 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "brw2_1",
+        "brw1_0",
+        "brw1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "brw2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "丁寧な調合修練 II"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 1,
+      "links": [
+        "brw2_2",
+        "brw1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "aid2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "brw2_3",
+        "brw1_1",
+        "aid1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "aid2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "自然回復 II"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 1,
+      "links": [
+        "aid2_0",
+        "aid1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "aid2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "粉塵の極意修練 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "aid2_1",
+        "aid1_0",
+        "aid1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "aid2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "癒しの霧修練 II"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 1,
+      "links": [
+        "aid2_2",
+        "aid1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "幸運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "aid2_3",
+        "aid1_1",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bdy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "スタミナ回復 II"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "bdy2_0",
+        "bdy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "bdy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "薬草の目利き修練 II"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 1,
+      "links": [
+        "bdy1_0",
+        "bdy1_1",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "bdy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy1_1",
+        "brw2_0",
+        "bdy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "brw3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "調合上手修練 III"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw2_1",
+        "brw2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "調合上手修練 III"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw3_0",
+        "brw2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "丁寧な調合修練 III"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 1,
+      "links": [
+        "brw3_1",
+        "brw2_1",
+        "brw2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "賢者の手"
+      },
+      "icon": "minecraft:potion",
+      "cost": 3,
+      "links": [
+        "brw3_2",
+        "brw2_2",
+        "brw2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "brw3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "節約修練 III"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "brw3_3",
+        "brw2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "調合上手修練 III"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw3_4",
+        "brw2_3",
+        "aid2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "回復の力 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "brw3_5",
+        "aid2_0",
+        "aid2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "aid3_0",
+        "aid2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "aid3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "癒しの霧修練 III"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 1,
+      "links": [
+        "aid3_1",
+        "aid2_1",
+        "aid2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "aid3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "癒し手の心・覚醒"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "links": [
+        "aid3_2",
+        "aid2_2",
+        "aid2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "aid3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "回復の力 III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "aid3_3",
+        "aid2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "aid3_4",
+        "aid2_3",
+        "bdy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "aid3_5",
+        "bdy2_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "bdy3_0",
+        "bdy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 III"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy2_1",
+        "bdy2_2",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "健脚・覚醒"
+      },
+      "icon": "minecraft:leather_boots",
+      "cost": 3,
+      "links": [
+        "bdy2_2",
+        "bdy2_3",
+        "bdy3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "bdy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "幸運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "bdy2_3",
+        "bdy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "スタミナ回復 III"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "brw2_0",
+        "brw3_0",
+        "bdy3_4",
+        "bdy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "brw4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "薬の心得修練 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "brw3_0",
+        "bdy3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "丁寧な調合修練 IV"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw3_1",
+        "brw4_0",
+        "brw3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "調合上手修練 IV"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw4_1",
+        "brw3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "調合上手修練 IV"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw4_2",
+        "brw3_1",
+        "brw3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "丁寧な調合修練 IV"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 1,
+      "links": [
+        "brw4_3",
+        "brw3_2",
+        "brw3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "節約修練 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "brw4_4",
+        "brw3_3",
+        "brw3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "調合上手修練 IV"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 1,
+      "links": [
+        "brw4_5",
+        "brw3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "薬の心得修練 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "brw4_6",
+        "brw3_4",
+        "brw3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "自然回復 IV"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 1,
+      "links": [
+        "brw4_7",
+        "brw3_5",
+        "aid3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "aid4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "粉塵の極意修練 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "aid4_0",
+        "aid3_0",
+        "aid3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "aid4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "癒しの霧修練 IV"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 1,
+      "links": [
+        "aid4_1",
+        "aid3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "aid4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "回復の力 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid4_2",
+        "aid3_1",
+        "aid3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "aid4_3",
+        "aid3_2",
+        "aid3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "aid4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "癒しの霧修練 IV"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid4_4",
+        "aid3_3",
+        "aid3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "aid4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "回復の力 IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "aid4_5",
+        "aid3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "aid4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid4_6",
+        "aid3_4",
+        "aid3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "bdy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "薬草の目利き修練 IV"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 1,
+      "links": [
+        "aid4_7",
+        "aid3_5",
+        "bdy3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "bdy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "スタミナ IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_0",
+        "bdy3_0",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy4_1",
+        "bdy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy3_1",
+        "bdy3_2",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 IV"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 1,
+      "links": [
+        "bdy3_2",
+        "bdy3_3",
+        "bdy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "bdy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "幸運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy3_3",
+        "bdy3_4",
+        "bdy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "bdy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ回復 IV"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 1,
+      "links": [
+        "bdy3_4",
+        "bdy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bdy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "薬草の目利き修練 IV"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 2,
+      "links": [
+        "bdy3_5",
+        "brw4_0",
+        "bdy4_6",
+        "bdy3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "brw5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "丁寧な調合修練 V"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw4_1",
+        "brw4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "調合上手修練 V"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw4_2",
+        "brw5_0",
+        "brw4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "調合上手修練 V"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw5_1",
+        "brw4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "丁寧な調合修練 V"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw5_2",
+        "brw4_2",
+        "brw4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "brw5_3",
+        "brw4_3",
+        "brw4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★等価の極意・極"
+      },
+      "icon": "minecraft:gold_block",
+      "cost": 6,
+      "links": [
+        "brw5_4",
+        "brw4_4",
+        "brw4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/transmute_save",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "brw5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "調合上手修練 V"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw5_5",
+        "brw4_5",
+        "brw4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "薬の心得修練 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "brw5_6",
+        "brw4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "丁寧な調合修練 V"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw5_7",
+        "brw4_6",
+        "brw4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "調合上手修練 V"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw5_8",
+        "brw4_7",
+        "aid4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "自然回復 V"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 2,
+      "links": [
+        "brw5_9",
+        "aid4_0",
+        "aid4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "aid5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "粉塵の極意修練 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "aid5_0",
+        "aid4_1",
+        "aid4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "aid5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "癒しの霧修練 V"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid5_1",
+        "aid4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "aid5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "回復の力 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid5_2",
+        "aid4_2",
+        "aid4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid5_3",
+        "aid4_3",
+        "aid4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "aid5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★霊薬の雨・極"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 6,
+      "links": [
+        "aid5_4",
+        "aid4_4",
+        "aid4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/elixir_rain",
+          "field": "power",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:alchemy_sage/elixir_rain",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "aid5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "癒しの霧修練 V"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid5_5",
+        "aid4_5",
+        "aid4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "aid5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "回復の力 V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid5_6",
+        "aid4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid5_7",
+        "aid4_6",
+        "aid4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "aid5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "自然回復 V"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 2,
+      "links": [
+        "aid5_8",
+        "aid4_7",
+        "bdy4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "bdy5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "スタミナ V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "aid5_9",
+        "bdy4_0",
+        "bdy4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_0",
+        "bdy4_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "スタミナ V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy5_1",
+        "bdy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy4_2",
+        "bdy4_3",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "幸運 V"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy4_3",
+        "bdy4_4",
+        "bdy5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★薬草の目利き・覚醒"
+      },
+      "icon": "jsn_craft:mandrake",
+      "cost": 6,
+      "links": [
+        "bdy4_4",
+        "bdy4_5",
+        "bdy5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "bdy5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "スタミナ回復 V"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "bdy4_5",
+        "bdy4_6",
+        "bdy5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "bdy5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "薬草の目利き修練 V"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 2,
+      "links": [
+        "bdy4_6",
+        "bdy5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "bdy5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "スタミナ V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy4_7",
+        "bdy5_7",
+        "bdy4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "修練の証 V"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "brw4_0",
+        "brw5_0",
+        "bdy5_8",
+        "bdy4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "brw6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "調合上手修練 VI"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw5_0",
+        "bdy5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "丁寧な調合修練 VI"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw5_1",
+        "brw6_0",
+        "brw5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "brw5_2",
+        "brw6_1",
+        "brw5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手修練 VI"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_2",
+        "brw5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手・覚醒"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 4,
+      "links": [
+        "brw6_3",
+        "brw5_2",
+        "brw5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "brw6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "薬の心得修練 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_4",
+        "brw5_3",
+        "brw5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "丁寧な調合修練 VI"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw6_5",
+        "brw5_4",
+        "brw5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手修練 VI"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_6",
+        "brw5_5",
+        "brw5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手修練 VI"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_7",
+        "brw5_6",
+        "brw5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "丁寧な調合修練 VI"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw6_8",
+        "brw5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "節約修練 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "brw6_9",
+        "brw5_7",
+        "brw5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "brw6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "調合上手修練 VI"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_10",
+        "brw5_8",
+        "brw5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "粉塵の極意修練 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "brw6_11",
+        "brw5_9",
+        "aid5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "aid6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "癒しの霧修練 VI"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid6_0",
+        "aid5_0",
+        "aid5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "aid6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "回復の力 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid6_1",
+        "aid5_1",
+        "aid5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid6_2",
+        "aid5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "aid6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "癒しの霧修練 VI"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid6_3",
+        "aid5_2",
+        "aid5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "aid6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "回復の力 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid6_4",
+        "aid5_3",
+        "aid5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "aid6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "癒しの霧・覚醒"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 4,
+      "links": [
+        "aid6_5",
+        "aid5_4",
+        "aid5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "cooldown",
+          "amount": -15
+        }
+      ]
+    },
+    {
+      "id": "aid6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid6_6",
+        "aid5_5",
+        "aid5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "aid6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "自然回復 VI"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 2,
+      "links": [
+        "aid6_7",
+        "aid5_6",
+        "aid5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "aid6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "粉塵の極意修練 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "aid6_8",
+        "aid5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.48
+        }
+      ]
+    },
+    {
+      "id": "aid6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "癒しの霧修練 VI"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 2,
+      "links": [
+        "aid6_9",
+        "aid5_7",
+        "aid5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "aid6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "回復の力 VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid6_10",
+        "aid5_8",
+        "aid5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "bdy6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "aid6_11",
+        "aid5_9",
+        "bdy5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_0",
+        "bdy5_0",
+        "bdy5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy6_1",
+        "bdy5_1",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "スタミナ回復 VI"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "bdy6_2",
+        "bdy5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "bdy6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "薬草の目利き修練 VI"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 2,
+      "links": [
+        "bdy5_2",
+        "bdy5_3",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "bdy6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy5_3",
+        "bdy5_4",
+        "bdy6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "薬の心得・覚醒"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 4,
+      "links": [
+        "bdy5_4",
+        "bdy5_5",
+        "bdy6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "bdy6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_5",
+        "bdy5_6",
+        "bdy6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "スタミナ VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy5_6",
+        "bdy5_7",
+        "bdy6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 7.2
+        }
+      ]
+    },
+    {
+      "id": "bdy6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "修練の証 VI"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy5_7",
+        "bdy6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "bdy6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "幸運 VI"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy5_8",
+        "bdy6_9",
+        "bdy5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "bdy6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "スタミナ回復 VI"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 2,
+      "links": [
+        "bdy5_9",
+        "brw6_0",
+        "bdy6_10",
+        "bdy5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "brw7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "薬の心得修練 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_1",
+        "brw6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "丁寧な調合修練 VII"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 3,
+      "links": [
+        "brw6_2",
+        "brw7_0",
+        "brw6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手修練 VII"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw6_3",
+        "brw7_1",
+        "brw6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "調合上手修練 VII"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 3,
+      "links": [
+        "brw7_2",
+        "brw6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "★賢者の石・極"
+      },
+      "icon": "minecraft:redstone_block",
+      "cost": 7,
+      "links": [
+        "brw7_3",
+        "brw6_3",
+        "brw6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/philosopher_stone",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:alchemy_sage/philosopher_stone",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "brw7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "丁寧な調合修練 VII"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 3,
+      "links": [
+        "brw7_4",
+        "brw6_4",
+        "brw6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "節約修練 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "brw7_5",
+        "brw6_5",
+        "brw6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_save",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "★万物の理"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 8,
+      "links": [
+        "brw7_6",
+        "brw6_6",
+        "brw6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/brew_quality2",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "brw7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "調合上手修練 VII"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw7_7",
+        "brw6_7",
+        "brw6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "薬の心得修練 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 3,
+      "links": [
+        "brw7_8",
+        "brw6_8",
+        "brw6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "丁寧な調合修練 VII"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 2,
+      "links": [
+        "brw7_9",
+        "brw6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "調合上手修練 VII"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 3,
+      "links": [
+        "brw7_10",
+        "brw6_9",
+        "brw6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "調合上手修練 VII"
+      },
+      "icon": "minecraft:glass_bottle",
+      "cost": 2,
+      "links": [
+        "brw7_11",
+        "brw6_10",
+        "brw6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "brw7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "丁寧な調合修練 VII"
+      },
+      "icon": "minecraft:brewing_stand",
+      "cost": 3,
+      "links": [
+        "brw7_12",
+        "brw6_11",
+        "aid6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aid7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "brw7_13",
+        "aid6_0",
+        "aid6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "aid7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "癒しの霧修練 VII"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 3,
+      "links": [
+        "aid7_0",
+        "aid6_1",
+        "aid6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "aid7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "回復の力 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid7_1",
+        "aid6_2",
+        "aid6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aid7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "aid7_2",
+        "aid6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "aid7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "自然回復 VII"
+      },
+      "icon": "minecraft:ghast_tear",
+      "cost": 2,
+      "links": [
+        "aid7_3",
+        "aid6_3",
+        "aid6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "aid7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "★粉塵の極意・覚醒"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 7,
+      "links": [
+        "aid7_4",
+        "aid6_4",
+        "aid6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "aid7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "粉塵の極意修練 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "aid7_5",
+        "aid6_5",
+        "aid6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "aid7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "癒しの霧修練 VII"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 3,
+      "links": [
+        "aid7_6",
+        "aid6_6",
+        "aid6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "aid7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "回復の力 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid7_7",
+        "aid6_7",
+        "aid6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aid7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "★慈愛の薬師"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 8,
+      "links": [
+        "aid7_8",
+        "aid6_8",
+        "aid6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.2
+        },
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "aid7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aid7_9",
+        "aid6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "aid7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "癒しの霧修練 VII"
+      },
+      "icon": "minecraft:white_dye",
+      "cost": 3,
+      "links": [
+        "aid7_10",
+        "aid6_9",
+        "aid6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "aid7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "回復の力 VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "aid7_11",
+        "aid6_10",
+        "aid6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aid7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "aid7_12",
+        "aid6_11",
+        "bdy6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "bdy7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "薬草の目利き修練 VII"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 2,
+      "links": [
+        "aid7_13",
+        "bdy6_0",
+        "bdy6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "bdy7_0",
+        "bdy6_1",
+        "bdy6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy7_1",
+        "bdy6_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "bdy7_2",
+        "bdy6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 2,
+      "links": [
+        "bdy6_3",
+        "bdy6_4",
+        "bdy7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "★不老の体"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 7,
+      "links": [
+        "bdy6_4",
+        "bdy6_5",
+        "bdy7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 8
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "bdy7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "幸運 VII"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "bdy6_5",
+        "bdy6_6",
+        "bdy7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "スタミナ回復 VII"
+      },
+      "icon": "minecraft:golden_carrot",
+      "cost": 3,
+      "links": [
+        "bdy6_6",
+        "bdy6_7",
+        "bdy7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bdy7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "薬草の目利き修練 VII"
+      },
+      "icon": "jsn_craft:herb",
+      "cost": 2,
+      "links": [
+        "bdy6_7",
+        "bdy6_8",
+        "bdy7_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "bdy7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "★賢者の守り"
+      },
+      "icon": "minecraft:shield",
+      "cost": 8,
+      "links": [
+        "bdy6_8",
+        "bdy6_9",
+        "bdy7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.06
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "bdy7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy6_9",
+        "bdy7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "bdy6_10",
+        "bdy7_10",
+        "bdy6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "bdy7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "スタミナ VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "bdy6_11",
+        "bdy7_11",
+        "bdy6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 9
+        }
+      ]
+    },
+    {
+      "id": "bdy7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "修練の証 VII"
+      },
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "links": [
+        "brw6_0",
+        "brw7_0",
+        "bdy7_12",
+        "bdy6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    }
+  ]
+}

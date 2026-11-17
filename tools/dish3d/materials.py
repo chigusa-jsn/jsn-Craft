@@ -631,3 +631,27 @@ def amethyst():
 def lapis_inlay():
     a = fill("#2a4ac8", 126, 10, 6)
     return img(shine(a, [(8, 8), (24, 20)], "#a0c0ff", 0.6, 2))
+
+# ---- 調合台 ----
+@mat
+def alch_wood():
+    a = fill("#7a5230", 130, 8, 5, cell=8)
+    return img(blend(a, (yy % 8 == 7), "#5a3a20", 0.7))
+simple("alch_wood_dark", "#4a3018", 8, 5)
+@mat
+def alch_top():
+    a = fill("#8a6038", 131, 8, 5, cell=8)
+    a = blend(a, (yy % 8 == 7), "#6a4628", 0.6)
+    a = blend(a, (np.hypot(xx - 22, yy - 9) > 3.2) & (np.hypot(xx - 22, yy - 9) < 4.0), "#5a2a40", 0.5)   # こぼした薬のしみ
+    return img(a)
+simple("flask_red", "#e03040", 6, 3, pts=[(9, 9), (20, 12)], shine_col="#ffd0d8", strength=0.8, r=2.5)
+simple("flask_blue", "#4080f0", 6, 3, pts=[(9, 9), (20, 12)], shine_col="#d0e0ff", strength=0.8, r=2.5)
+simple("mortar_stone", "#8a8a90", 10, 6)
+@mat
+def mortar_top():
+    a = fill("#8a8a90", 132, 10, 6)
+    return img(blend(a, R < 6, "#4a8a30", 0.9))
+@mat
+def herb_bundle():
+    a = fill("#4aa040", 133, 14, 8, cell=2)
+    return img(blend(a, (yy % 6 == 2), "#c8a060", 0.6))

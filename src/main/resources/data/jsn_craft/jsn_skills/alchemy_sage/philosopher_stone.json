@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "賢者の石"
+  },
+  "description": {
+    "text": "60秒間、錬金で経験値を使わず、できる数が必ず2倍になる。"
+  },
+  "icon": "minecraft:redstone_block",
+  "type": "active",
+  "effect": "philosopher_stone",
+  "duration": 60,
+  "stamina": 60,
+  "cooldown": 1200
+}

@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "癒しの霧"
+  },
+  "description": {
+    "text": "自分と周り（6ブロック）の仲間のHPを6回復し、悪い効果を消す。"
+  },
+  "icon": "minecraft:white_dye",
+  "type": "active",
+  "effect": "healing_mist",
+  "power": 6,
+  "radius": 6,
+  "stamina": 30,
+  "cooldown": 60
+}

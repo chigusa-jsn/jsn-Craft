@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "jsn_craft:item/elixir/stamina"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "jsn_craft:form": 1
+      },
+      "model": "jsn_craft:item/elixir/stamina_throw"
+    },
+    {
+      "predicate": {
+        "jsn_craft:form": 2
+      },
+      "model": "jsn_craft:item/elixir/stamina_dust"
+    }
+  ]
+}

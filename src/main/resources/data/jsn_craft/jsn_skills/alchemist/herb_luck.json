@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "薬草の目利き"
+  },
+  "description": {
+    "text": "実った薬草を収穫すると、30%の確率で薬草が1〜2個増える。"
+  },
+  "icon": "jsn_craft:herb",
+  "type": "passive",
+  "effect": "herb_luck",
+  "chance": 0.3
+}

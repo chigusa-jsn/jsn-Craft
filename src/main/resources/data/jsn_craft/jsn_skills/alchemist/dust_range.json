@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "粉塵の極意"
+  },
+  "description": {
+    "text": "粉塵の届く広さが4ブロック広がる（ふつうは8ブロック）。"
+  },
+  "icon": "minecraft:sugar",
+  "type": "passive",
+  "effect": "dust_range",
+  "power": 4
+}

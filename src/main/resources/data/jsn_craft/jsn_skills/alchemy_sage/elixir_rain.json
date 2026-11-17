@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "霊薬の雨"
+  },
+  "description": {
+    "text": "自分と周り（8ブロック）の仲間のHPを8、スタミナとマナを24回復し、10秒間再生をつける。"
+  },
+  "icon": "minecraft:water_bucket",
+  "type": "active",
+  "effect": "elixir_rain",
+  "power": 8,
+  "radius": 8,
+  "stamina": 50,
+  "cooldown": 180
+}

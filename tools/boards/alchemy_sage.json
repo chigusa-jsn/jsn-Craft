@@ -1,0 +1,505 @@
+{
+  "job": "alchemy_sage",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "錬金の心得",
+    "icon": "minecraft:gold_ingot",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:alchemist/brew_double",
+        "field": "chance",
+        "amount": 0.03
+      },
+      {
+        "attribute": "jsn_craft:healing_power",
+        "amount": 0.02
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "brw",
+      "pool": [
+        {
+          "name": "調合上手修練",
+          "icon": "minecraft:glass_bottle",
+          "weight": 3,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/brew_double",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "丁寧な調合修練",
+          "icon": "minecraft:brewing_stand",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/brew_quality",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "節約修練",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/brew_save",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "薬の心得修練",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/potion_master",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "aid",
+      "pool": [
+        {
+          "name": "癒しの霧修練",
+          "icon": "minecraft:white_dye",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/healing_mist",
+              "field": "power",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "回復の力",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:healing_power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "自然回復",
+          "icon": "minecraft:ghast_tear",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "粉塵の極意修練",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/dust_range",
+              "field": "power",
+              "amount": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "スタミナ",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "スタミナ回復",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "薬草の目利き修練",
+          "icon": "jsn_craft:herb",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:alchemist/herb_luck",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "賢者の手",
+      "icon": "minecraft:potion",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_quality",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★等価の極意・極",
+      "icon": "minecraft:gold_block",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/transmute_save",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": -2,
+      "name": "調合上手・覚醒",
+      "icon": "minecraft:glass_bottle",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/brew_double",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": -3,
+      "name": "★賢者の石・極",
+      "icon": "minecraft:redstone_block",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/philosopher_stone",
+          "field": "duration",
+          "amount": 30
+        },
+        {
+          "skill": "jsn_craft:alchemy_sage/philosopher_stone",
+          "field": "cooldown",
+          "amount": -300
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 0,
+      "ring": 7,
+      "offset": 0,
+      "name": "★万物の理",
+      "icon": "minecraft:nether_star",
+      "cost": 8,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/brew_quality2",
+          "field": "power",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "癒し手の心・覚醒",
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★霊薬の雨・極",
+      "icon": "minecraft:water_bucket",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemy_sage/elixir_rain",
+          "field": "power",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:alchemy_sage/elixir_rain",
+          "field": "radius",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "癒しの霧・覚醒",
+      "icon": "minecraft:white_dye",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "power",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:alchemist/healing_mist",
+          "field": "cooldown",
+          "amount": -15
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": -2,
+      "name": "★粉塵の極意・覚醒",
+      "icon": "minecraft:sugar",
+      "cost": 7,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/dust_range",
+          "field": "power",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 7,
+      "offset": 2,
+      "name": "★慈愛の薬師",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.2
+        },
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "健脚・覚醒",
+      "icon": "minecraft:leather_boots",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★薬草の目利き・覚醒",
+      "icon": "jsn_craft:mandrake",
+      "cost": 6,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/herb_luck",
+          "field": "chance",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "薬の心得・覚醒",
+      "icon": "minecraft:honey_bottle",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:alchemist/potion_master",
+          "field": "power",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": -2,
+      "name": "★不老の体",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 7,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 8
+        },
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 7,
+      "offset": 2,
+      "name": "★賢者の守り",
+      "icon": "minecraft:shield",
+      "cost": 8,
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.06
+        },
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "丁寧な調合"
+  },
+  "description": {
+    "text": "薬の品質（★）が上がりやすくなる。"
+  },
+  "icon": "minecraft:brewing_stand",
+  "type": "passive",
+  "effect": "brew_quality",
+  "power": 0.1
+}
