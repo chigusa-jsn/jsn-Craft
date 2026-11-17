@@ -77,6 +77,10 @@ public final class SkillEffects {
             case "smith_quench" -> com.chigusa.jsncraft.smithing.SmithingService.quench(player, s);
             case "forge_blessing" -> com.chigusa.jsncraft.smithing.SmithingService.forgeBlessing(player, s);
             case "divine_forge" -> com.chigusa.jsncraft.smithing.SmithingService.divineForge(player, s);
+            case "dazzle" -> com.chigusa.jsncraft.jewelry.JewelryService.dazzle(player, s);
+            case "gem_guard" -> com.chigusa.jsncraft.jewelry.JewelryService.gemGuard(player, s);
+            case "prism_burst" -> com.chigusa.jsncraft.jewelry.JewelryService.prismBurst(player, s);
+            case "royal_jewel" -> com.chigusa.jsncraft.jewelry.JewelryService.royalJewel(player, s);
             case "healing_mist" -> com.chigusa.jsncraft.alchemy.AlchemyService.healingMist(player, s);
             case "elixir_rain" -> com.chigusa.jsncraft.alchemy.AlchemyService.elixirRain(player, s);
             case "philosopher_stone" -> com.chigusa.jsncraft.alchemy.AlchemyService.philosopherStone(player, s);
