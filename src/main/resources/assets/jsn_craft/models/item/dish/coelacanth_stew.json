@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/coelacanth_stew"
-  }
+  "parent": "jsn_craft:block/dish3d/coelacanth_stew"
 }

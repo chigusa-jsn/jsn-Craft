@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/ice_queen_carpaccio"
-  }
+  "parent": "jsn_craft:block/dish3d/ice_queen_carpaccio"
 }

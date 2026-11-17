@@ -4,6 +4,7 @@
 fit=True で使う素材（チャーシューの断面など）は、その面ぴったりに1枚貼られる。
 """
 import numpy as np
+import zlib
 from PIL import Image
 
 N = 32
@@ -263,3 +264,204 @@ def build_all(out_dir):
     for name, f in M.items():
         im = f(); im.save(os.path.join(out_dir, name + ".png")); tex[name] = im
     return tex
+
+# ======================== 追加の素材（45品用） ========================
+
+def simple(name, col, n=8, g=4, cell=4, pts=(), shine_col="#ffffff", strength=0.5, r=2.0, seed=None):
+    """単色＋ノイズ＋ツヤの素材をまとめて登録する"""
+    s = seed if seed is not None else zlib.crc32(name.encode()) % 10000
+    def f():
+        return img(shine(fill(col, s, n, g, cell), list(pts), shine_col, strength, r))
+    f.__name__ = name
+    M[name] = f
+
+def plate_top_of(name, base, rim, edge=None):
+    def f():
+        a = fill(base, zlib.crc32(name.encode()) % 999, 4, 2)
+        a = blend(a, (R > 12.0) & (R < 13.2), rim, 0.9)
+        a = blend(a, R >= 13.2, edge or base, 0.8)
+        return img(shine(a, [(9, 8)], strength=0.4))
+    f.__name__ = name; M[name] = f
+
+def side_of(name, base, band=None, dark_bottom="#00000000"):
+    def f():
+        a = fill(base, zlib.crc32(name.encode()) % 999, 4, 3)
+        if band: a = blend(a, (yy >= 26) & (yy <= 27), band, 1.0)
+        return img(blend(a, yy > 29, base, 0.0))
+    f.__name__ = name; M[name] = f
+
+# 器
+plate_top_of("navy_plate_top", "#24345e", "#1a2648", "#3a4a7a")
+plate_top_of("gold_plate_top", "#e8c040", "#b88a10", "#ffe080")
+plate_top_of("ice_plate_top", "#c8ecfa", "#90c8e8", "#e8f8ff")
+plate_top_of("black_plate_top", "#2a2a2e", "#18181c", "#3a3a40")
+plate_top_of("clay_plate_top", "#c8784a", "#a85a30", "#d8906a")
+side_of("navy_side", "#1e2c50"); side_of("gold_side", "#c89a20"); side_of("ice_side", "#a8d8f0")
+side_of("black_side", "#222226"); side_of("clay_side", "#a85a30")
+simple("lacquer_black", "#1c1414", 4, 2, pts=[(8, 6)], strength=0.25)
+simple("lacquer_red", "#9a1a14", 6, 3, pts=[(8, 6)], strength=0.3)
+simple("lacquer_gold", "#d8a830", 6, 3)
+simple("iron", "#3a3a40", 8, 5)
+simple("iron_handle", "#2a2a2e", 6, 4)
+simple("glass", "#d8eef6", 4, 2, pts=[(6, 6), (7, 14)], strength=0.8, r=1.5)
+simple("paper", "#f4efe0", 4, 3)
+@mat
+def newspaper():
+    a = fill("#ece6d4", 60, 4, 3)
+    return img(blend(a, (yy % 3 == 0) & (xx % 8 < 6), "#8a8478", 0.7))
+simple("bamboo_leaf", "#3a8a3a", 10, 6)
+simple("tray_wood", "#a8743a", 8, 4, cell=8)
+simple("donabe", "#5a3a2a", 8, 4)
+simple("donabe_glaze", "#7a5a3a", 8, 4, pts=[(8, 8)], strength=0.3)
+
+# ごはん・パン・麺
+@mat
+def toast_top():
+    a = fill("#e8c48a", 61, 6, 4)
+    a = blend(a, (xx < 2) | (xx > 29) | (yy < 2) | (yy > 29), "#a8642a", 1.0)
+    return img(a)
+simple("toast_side", "#b8743a", 8, 4)
+simple("bread_bun", "#d8904a", 8, 3, pts=[(10, 8), (20, 10)], shine_col="#f0c080", strength=0.5)
+@mat
+def sesame_bun():
+    a = fill("#d8904a", 62, 8, 3)
+    rng = np.random.default_rng(63)
+    for _ in range(12):
+        x, y = rng.integers(2, N - 2, 2); a[y, x] = rgb("#fff4d8")
+    return img(shine(a, [(10, 8)], "#f0c080", 0.5, 2))
+@mat
+def onigiri_rice():
+    a = np.array(np.asarray(M["rice"]())[..., :3], dtype=float)
+    return img(a)
+simple("yaki_rice", "#c88a3a", 12, 6, pts=[(10, 10)], shine_col="#e8b060", strength=0.6)
+simple("chawan_tea", "#b8b070", 8, 3, pts=[(12, 12)], strength=0.4)
+simple("yellow_rice", "#f0c838", 10, 5)
+simple("fries", "#f8d860", 8, 4, pts=[(8, 8)], shine_col="#fff4b0", strength=0.5)
+simple("batter", "#f0c860", 14, 8, pts=[(9, 9), (20, 18)], shine_col="#fff0a0", strength=0.5)
+simple("pizza_crust", "#d8964a", 8, 4)
+@mat
+def pizza_top():
+    a = fill("#f4c84a", 64, 8, 4)
+    a = blend(a, R > 12.5, "#c87a30", 1.0)                       # 耳
+    a = blend(a, (R > 11.5) & (R <= 12.5), "#d84a2a", 0.6)
+    rng = np.random.default_rng(65)
+    for _ in range(8):                                            # サラミ
+        x, y = rng.integers(8, 24, 2); a = blend(a, np.hypot(xx - x, yy - y) < 2.2, "#b8282a", 1.0)
+    for _ in range(10):
+        x, y = rng.integers(6, 26, 2); a[y, x] = rgb("#3a8a2a")
+    for _ in range(14):
+        x, y = rng.integers(6, 26, 2); a[y, x] = rgb("#fff4c0")
+    return img(a)
+@mat
+def tart_top():
+    a = fill("#f8e8b8", 66, 4, 3)
+    a = blend(a, R > 11, "#c88a40", 1.0)
+    return img(a)
+simple("tart_side", "#c88a40", 8, 4)
+simple("custard", "#f8e090", 6, 3)
+simple("cheese_melt", "#f8d850", 8, 3, pts=[(8, 8), (20, 14)], shine_col="#fff8c0", strength=0.6)
+@mat
+def gratin_top():
+    a = fill("#f0c850", 67, 10, 4, cell=6)
+    rng = np.random.default_rng(68)
+    for _ in range(12):
+        x, y = rng.integers(2, N - 2, 2); a = blend(a, np.hypot(xx - x, yy - y) < 1.8, "#b8702a", 0.9)
+    return img(a)
+simple("bread_cube", "#e0a860", 8, 4)
+
+# 汁・ソース
+simple("miso_broth", "#b8803a", 10, 4, cell=8, pts=[(9, 9), (22, 18)], shine_col="#e8b878", strength=0.4)
+simple("veg_soup", "#e0782a", 10, 4, cell=8, pts=[(10, 10)], shine_col="#f8b060", strength=0.5)
+simple("stew", "#6a3214", 10, 5, cell=6, pts=[(10, 12), (22, 18)], shine_col="#a8643a", strength=0.6)
+simple("tomato_sauce_m", "#c8301e", 10, 4, pts=[(10, 10), (20, 20)], shine_col="#ff7a60", strength=0.5)
+simple("mapo", "#b8281a", 12, 5, pts=[(8, 8), (20, 22)], shine_col="#ff6a40", strength=0.6)
+simple("crimson_sauce", "#d0180c", 12, 5, pts=[(10, 10)], shine_col="#ffb040", strength=0.7)
+simple("teriyaki", "#7a3a14", 10, 4, pts=[(10, 8), (20, 14)], shine_col="#d8904a", strength=0.7)
+simple("honey", "#f0a820", 6, 3, pts=[(9, 9), (20, 16)], shine_col="#fff0a0", strength=0.8)
+simple("lemonade_liquid", "#fff080", 6, 3, pts=[(8, 8)], strength=0.5)
+simple("grape_jelly_m", "#7a2a9a", 6, 3, pts=[(9, 8), (20, 14)], shine_col="#d8a0ff", strength=0.7)
+simple("void_jelly_m", "#3a1a6a", 6, 3, pts=[(9, 8), (16, 20)], shine_col="#e0a0ff", strength=0.8)
+simple("hotpot_broth", "#d8b878", 8, 3, cell=8, pts=[(10, 10)], strength=0.4)
+simple("soul_broth", "#1a3a4a", 8, 3, cell=8, pts=[(10, 10), (20, 20)], shine_col="#60e0ff", strength=0.7)
+simple("dipping_sauce", "#4a2a14", 6, 3, pts=[(10, 10)], strength=0.4)
+
+# 魚・肉・卵
+@mat
+def grilled_fish():
+    a = fill("#c0a080", 69, 10, 6)
+    a = blend(a, (xx % 6 == 0), "#5a3a20", 0.7)                     # 焼き目
+    return img(blend(a, yy > 24, "#f0e8d8", 0.8))
+simple("fish_skin_silver", "#a8b4c0", 8, 4, pts=[(10, 8)], strength=0.6)
+@mat
+def sashimi_red():
+    return M["tuna"]()
+@mat
+def toro():
+    a = fill("#f08a96", 70, 6, 3)
+    a = blend(a, np.sin((xx + yy) * 0.8) > 0.6, "#ffe0e4", 0.9)
+    return img(shine(a, [(10, 8)], strength=0.6, r=2))
+@mat
+def glacier_salmon_m():
+    a = fill("#ffb0a0", 71, 6, 3)
+    a = blend(a, np.sin((xx + yy) * 0.6) > 0.6, "#fff0ec", 0.9)
+    return img(shine(a, [(10, 8)], strength=0.6, r=2))
+simple("white_fish", "#f4ece4", 6, 3, pts=[(10, 10)], strength=0.5)
+@mat
+def steak_top():
+    a = fill("#7a3418", 72, 8, 4)
+    grill = (np.abs(((xx + yy) % 8) - 4) < 1)
+    return img(shine(blend(a, grill, "#2a1008", 0.9), [(10, 10)], "#c07a4a", 0.5, 3))
+simple("steak_side", "#5a2410", 8, 4)
+simple("patty", "#5a2a14", 10, 6)
+simple("chicken", "#d8a050", 10, 5, pts=[(10, 8)], shine_col="#f8d090", strength=0.6)
+simple("shrimp", "#f07a4a", 8, 4, pts=[(10, 8)], strength=0.4)
+simple("mussel", "#1a1a2a", 6, 4, pts=[(10, 8)], shine_col="#6a6a9a", strength=0.6)
+simple("eel_glaze", "#6a3010", 8, 4, pts=[(8, 8), (22, 10)], shine_col="#e0904a", strength=0.8)
+simple("golden_fish", "#e8a818", 10, 4, pts=[(10, 8)], shine_col="#fff0a0", strength=0.8)
+simple("coela_fish", "#4a5a7a", 10, 5)
+simple("soul_meat", "#3a2418", 10, 5)
+simple("dragon_fish", "#c0200c", 10, 5, pts=[(10, 8)], shine_col="#ff9a40", strength=0.7)
+simple("ender_fish", "#2a1438", 10, 5, pts=[(10, 8)], shine_col="#c060ff", strength=0.7)
+simple("storm_steak", "#3a1a10", 8, 4, pts=[(10, 10)], shine_col="#ffe040", strength=0.4)
+simple("egg_yolk", "#ffa820", 6, 3, pts=[(12, 12)], strength=0.6)
+simple("tofu", "#faf6ec", 4, 2)
+simple("bento_meat", "#8a4a24", 10, 5, pts=[(10, 8)], shine_col="#c08050", strength=0.5)
+simple("cheese_m", "#f8d040", 6, 3)
+
+# 野菜・果物・飾り
+simple("edamame_pod", "#7ab040", 10, 5, pts=[(10, 8)], strength=0.4)
+simple("mushroom", "#a8784a", 8, 4)
+simple("mushroom_stem", "#f0e4cc", 4, 3)
+simple("onion_ring", "#f4ecd8", 6, 3)
+simple("wakame", "#2a5a2a", 8, 5)
+simple("shiso", "#3a9a3a", 10, 6)
+simple("daikon", "#f8f8f4", 4, 2)
+simple("lemon_m", "#ffe23a", 6, 3, pts=[(10, 8)], strength=0.5)
+@mat
+def lemon_slice():
+    a = fill("#fff6a0", 73, 4, 2)
+    a = blend(a, R > 13, "#ffd820", 1.0)
+    ang = np.arctan2(yy - 16, xx - 16)
+    return img(blend(a, (np.abs(np.sin(ang * 4)) < 0.15) & (R < 13), "#fffce0", 1.0))
+simple("grape_m", "#6a2a8a", 8, 4, pts=[(10, 10)], shine_col="#c890e8", strength=0.7)
+simple("ume_m", "#d83a3a", 8, 4, pts=[(10, 10)], strength=0.6)
+simple("takuan", "#f8d838", 6, 3)
+simple("red_ginger", "#e83a4a", 8, 4)
+simple("coal_bit", "#2a2a2a", 8, 6)
+simple("golden_carrot_m", "#f8c020", 8, 4, pts=[(10, 8)], shine_col="#fff4a0", strength=0.8)
+simple("melon_m", "#f0d040", 8, 4, pts=[(8, 8)], strength=0.7)
+simple("golden_apple_m", "#ffd020", 6, 3, pts=[(10, 10)], strength=0.9)
+simple("ice", "#d8f4ff", 4, 3, pts=[(8, 8), (20, 20)], strength=0.8)
+simple("lightning", "#ffe838", 4, 2, pts=[(16, 16)], strength=0.6)
+simple("flame", "#ff7a18", 10, 5, pts=[(16, 10)], shine_col="#ffe060", strength=0.8, r=4)
+simple("soul_flame", "#30c8e8", 10, 5, pts=[(16, 10)], shine_col="#c0ffff", strength=0.8, r=4)
+simple("glow_cyan", "#60f0ff", 4, 2)
+simple("glow_purple", "#d070ff", 4, 2)
+simple("moon_glow", "#fff4a0", 4, 2, pts=[(16, 16)], strength=0.5, r=6)
+simple("crown_gold", "#ffd040", 6, 3, pts=[(10, 10)], strength=0.7)
+simple("straw_red", "#e83a3a", 4, 2)
+simple("chorus_m", "#9a6a9a", 8, 4)
+simple("chili_m", "#d8201a", 8, 4, pts=[(10, 8)], strength=0.6)
+simple("fork", "#c8ccd4", 4, 2)
+simple("chopsticks", "#8a5a30", 4, 2)
+simple("stick", "#a8844a", 4, 2)

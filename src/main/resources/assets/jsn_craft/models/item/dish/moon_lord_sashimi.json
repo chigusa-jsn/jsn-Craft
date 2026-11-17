@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/moon_lord_sashimi"
-  }
+  "parent": "jsn_craft:block/dish3d/moon_lord_sashimi"
 }

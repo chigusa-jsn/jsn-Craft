@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/gyudon"
-  }
+  "parent": "jsn_craft:block/dish3d/gyudon"
 }

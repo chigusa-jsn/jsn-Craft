@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/mapo_tofu"
-  }
+  "parent": "jsn_craft:block/dish3d/mapo_tofu"
 }

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/warrior_steak"
-  }
+  "parent": "jsn_craft:block/dish3d/warrior_steak"
 }

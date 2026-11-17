@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "jsn_craft:item/dish/soul_eater_skewer"
-  }
+  "parent": "jsn_craft:block/dish3d/soul_eater_skewer"
 }
