@@ -13,6 +13,12 @@
     "jsn_craft:lemon",
     "jsn_craft:ume",
     "jsn_craft:tea",
-    "jsn_craft:coffee"
+    "jsn_craft:coffee",
+    "jsn_craft:herb",
+    "jsn_craft:vigor_herb",
+    "jsn_craft:moon_herb",
+    "jsn_craft:antidote_herb",
+    "jsn_craft:fire_herb",
+    "jsn_craft:mandrake"
   ]
 }

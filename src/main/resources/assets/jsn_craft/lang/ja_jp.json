@@ -227,5 +227,22 @@
   "item.jsn_craft.rune_book": "魔紋の書",
   "attribute.name.jsn_craft.magic_power": "魔法の威力",
   "attribute.name.jsn_craft.cast_speed": "詠唱の速さ",
-  "attribute.name.jsn_craft.healing_power": "回復の力"
+  "attribute.name.jsn_craft.healing_power": "回復の力",
+  "item.jsn_craft.herb_seeds": "薬草の種",
+  "item.jsn_craft.herb": "薬草",
+  "block.jsn_craft.herb_crop": "薬草",
+  "item.jsn_craft.vigor_herb_seeds": "活力草の種",
+  "item.jsn_craft.vigor_herb": "活力草",
+  "block.jsn_craft.vigor_herb_crop": "活力草",
+  "item.jsn_craft.moon_herb_seeds": "月光草の種",
+  "item.jsn_craft.moon_herb": "月光草",
+  "block.jsn_craft.moon_herb_crop": "月光草",
+  "item.jsn_craft.antidote_herb_seeds": "解毒草の種",
+  "item.jsn_craft.antidote_herb": "解毒草",
+  "block.jsn_craft.antidote_herb_crop": "解毒草",
+  "item.jsn_craft.fire_herb_seeds": "火炎草の種",
+  "item.jsn_craft.fire_herb": "火炎草",
+  "block.jsn_craft.fire_herb_crop": "火炎草",
+  "item.jsn_craft.mandrake": "マンドラゴラ",
+  "block.jsn_craft.mandrake_crop": "マンドラゴラ"
 }

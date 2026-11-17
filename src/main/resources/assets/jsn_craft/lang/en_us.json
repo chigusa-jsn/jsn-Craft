@@ -227,5 +227,22 @@
   "item.jsn_craft.rune_book": "Book of Runes",
   "attribute.name.jsn_craft.magic_power": "Magic Power",
   "attribute.name.jsn_craft.cast_speed": "Cast Speed",
-  "attribute.name.jsn_craft.healing_power": "Healing Power"
+  "attribute.name.jsn_craft.healing_power": "Healing Power",
+  "item.jsn_craft.herb_seeds": "Herb Seeds",
+  "item.jsn_craft.herb": "Herb",
+  "block.jsn_craft.herb_crop": "Herb",
+  "item.jsn_craft.vigor_herb_seeds": "Vigor Herb Seeds",
+  "item.jsn_craft.vigor_herb": "Vigor Herb",
+  "block.jsn_craft.vigor_herb_crop": "Vigor Herb",
+  "item.jsn_craft.moon_herb_seeds": "Moonlight Herb Seeds",
+  "item.jsn_craft.moon_herb": "Moonlight Herb",
+  "block.jsn_craft.moon_herb_crop": "Moonlight Herb",
+  "item.jsn_craft.antidote_herb_seeds": "Antidote Herb Seeds",
+  "item.jsn_craft.antidote_herb": "Antidote Herb",
+  "block.jsn_craft.antidote_herb_crop": "Antidote Herb",
+  "item.jsn_craft.fire_herb_seeds": "Fire Herb Seeds",
+  "item.jsn_craft.fire_herb": "Fire Herb",
+  "block.jsn_craft.fire_herb_crop": "Fire Herb",
+  "item.jsn_craft.mandrake": "Mandrake",
+  "block.jsn_craft.mandrake_crop": "Mandrake"
 }

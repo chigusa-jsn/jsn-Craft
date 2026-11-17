@@ -84,6 +84,15 @@ def crop_stage(name, s):
                 if name == "tomato": c.ellipse(x + .5, y + .5, 1.4, 1.4, fruit)
                 elif name == "chili": c.set(x, y, fruit); c.set(x, y + 1, fruit); c.set(x + 1, y + 2, dark(fruit, 0.2))
                 else: c.set(x, y, fruit); c.set(x + 1, y, fruit); c.set(x, y + 1, dark(fruit, 0.15)); c.set(x + 1, y + 1, fruit)
+    elif name in HERBS:  # 薬草：葉の株＋実ったら花や光る葉
+        leafc, flower = HERBS[name]
+        leaves(c, h, xs=(3, 8, 12), col=hx(leafc))
+        if name == "mandrake" and s >= 2:
+            for x in (3, 12): c.ellipse(x + .5, 14.5, 1.6, 1.2, hx("#c8a070"))
+        if s == 3:
+            for x, y in ((3, 15 - h), (8, 15 - h), (12, 15 - h), (5, 8), (10, 7)):
+                if 0 <= y < 16:
+                    c.set(x, y, hx(flower)); c.set(x + 1, y, light(hx(flower), 0.3)); c.set(x, y + 1, dark(hx(flower), 0.2))
     elif name in ("tea", "coffee"):  # 低い木：茶の葉／赤いコーヒーの実
         trunk_h = [1, 2, 3, 3][s]
         for k in range(trunk_h): c.set(7, 15 - k, BR); c.set(8, 15 - k, dark(BR, 0.2))
@@ -169,7 +178,32 @@ ITEMS = {
     "tomato_sauce": lambda c: (c.rect(4, 5, 11, 14, hx("#c82a1a")), c.rect(5, 3, 10, 4, hx("#e8e8e8")), c.rect(5, 8, 10, 10, hx("#f0e8d0")), c.set(7, 9, hx("#e03a2a"))),
 }
 
-CROPS = ["rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops", "grape", "lemon", "ume", "tea", "coffee"]
+HERBS = {"herb": ("#4aa040", "#f8f8f8"), "vigor_herb": ("#6a9a20", "#ffb020"), "moon_herb": ("#3a6a8a", "#c0e8ff"),
+         "antidote_herb": ("#3a8a5a", "#c080f0"), "fire_herb": ("#7a5a20", "#ff4010"), "mandrake": ("#2a6a2a", "#e080c0")}
+
+def herb_leaf(col, vein="#f0f8e0", dot=None):
+    def f(c):
+        c.ellipse(8, 8, 3.2, 6, hx(col)); 
+        for k in range(10): c.set(8, 3 + k, light(hx(col), 0.35))
+        for k in range(3): c.set(7 - k, 6 + k * 2, light(hx(col), 0.2)); c.set(9 + k, 6 + k * 2, light(hx(col), 0.2))
+        for k in range(3): c.set(8, 13 + k, BR)
+        if dot: c.ellipse(8, 4, 1.6, 1.4, hx(dot))
+    return f
+
+ITEMS.update({
+    "herb": herb_leaf("#4aa040"),
+    "vigor_herb": herb_leaf("#7aa828", dot="#ffb020"),
+    "moon_herb": lambda c: (herb_leaf("#3a6a9a")(c), c.ellipse(8, 4, 2, 1.8, hx("#d8f0ff")), c.set(7, 3, hx("#ffffff"))),
+    "antidote_herb": herb_leaf("#3a9a6a", dot="#c080f0"),
+    "fire_herb": lambda c: (herb_leaf("#8a5a20")(c), c.ellipse(8, 4, 2.2, 2.4, hx("#ff5010")), c.set(8, 3, hx("#ffd040"))),
+    "mandrake": lambda c: (c.ellipse(8, 10, 3.5, 4.5, hx("#c8a070")), c.set(6, 9, hx("#3a2010")), c.set(9, 9, hx("#3a2010")), c.rect(7, 11, 8, 11, hx("#7a4a30")),
+                           [c.set(5 + k, 14 + (k % 2), hx("#a88050")) for k in range(6)], c.ellipse(6, 4, 2, 1.4, G), c.ellipse(10, 4, 2, 1.4, GL), c.rect(8, 3, 8, 5, GD)),
+    "herb_seeds": seeds_of("#6ab050"), "vigor_herb_seeds": seeds_of("#c89030"), "moon_herb_seeds": seeds_of("#8ab0e0"),
+    "antidote_herb_seeds": seeds_of("#9a70c0"), "fire_herb_seeds": seeds_of("#e05020"),
+})
+
+CROPS = ["rice", "onion", "soybean", "barley", "tomato", "cabbage", "chili", "hops", "grape", "lemon", "ume", "tea", "coffee",
+         "herb", "vigor_herb", "moon_herb", "antidote_herb", "fire_herb", "mandrake"]
 
 if __name__ == "__main__":
     os.makedirs(ITEM, exist_ok=True); os.makedirs(BLOCK, exist_ok=True)
