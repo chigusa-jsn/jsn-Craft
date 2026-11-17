@@ -85,7 +85,7 @@ public final class ModCooking {
 
     static {
         for (String d : DISHES) DISH_ITEMS.add(ModEntities.ITEMS.register("dish/" + d, DishItem::new));
-        for (String d : DRINKS) DRINK_ITEMS.add(ModEntities.ITEMS.register("drink/" + d, () -> new DrinkItem()));
+        for (String d : DRINKS) DRINK_ITEMS.add(ModEntities.ITEMS.register("drink/" + d, (java.util.function.Supplier<Item>) DrinkItem::new));
     }
 
     public static void register(IEventBus bus) {
