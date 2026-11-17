@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "魔紋の障壁"
+  },
+  "description": {
+    "text": "自分と周り（8ブロック）の仲間に、60秒間ダメージを吸収する障壁（ハート4つ分）を張る。"
+  },
+  "icon": "minecraft:shield",
+  "type": "active",
+  "effect": "rune_barrier",
+  "amplifier": 1,
+  "radius": 8,
+  "duration": 60,
+  "stamina": 30,
+  "cooldown": 180
+}

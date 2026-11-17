@@ -1,0 +1,371 @@
+{
+  "job": "enchanter",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "付与の心得",
+    "icon": "minecraft:enchanting_table",
+    "cost": 1,
+    "effects": [
+      {
+        "skill": "jsn_craft:enchanter/rune_save",
+        "field": "chance",
+        "amount": 0.02
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "rne",
+      "pool": [
+        {
+          "name": "節約修練",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 3,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_save",
+              "field": "chance",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "経験の知恵修練",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_xp",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "ラピス節約修練",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_lapis",
+              "field": "power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "重ね刻み修練",
+          "icon": "minecraft:enchanted_book",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_double",
+              "field": "chance",
+              "amount": 0.004
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "mag",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:prismarine_crystals",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "瞑想",
+          "icon": "minecraft:glow_berries",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "魔導",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.01
+            }
+          ]
+        },
+        {
+          "name": "魔紋の嵐修練",
+          "icon": "minecraft:blaze_powder",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_storm",
+              "field": "power",
+              "amount": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bdy",
+      "pool": [
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "修練の証",
+          "icon": "minecraft:experience_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "幸運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "障壁修練",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:enchanter/rune_barrier",
+              "field": "duration",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "刻印の集中",
+      "icon": "minecraft:lapis_block",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_lapis",
+          "field": "power",
+          "amount": 0.08
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★重ね刻み・極",
+      "icon": "minecraft:enchanted_book",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_double",
+          "field": "chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "経験の知恵・極",
+      "icon": "minecraft:experience_bottle",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_xp",
+          "field": "power",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "魔力の泉",
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 15
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.5
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★魔紋の嵐・極",
+      "icon": "minecraft:blaze_rod",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "power",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:enchanter/rune_storm",
+          "field": "radius",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "魔導の心得",
+      "icon": "minecraft:amethyst_block",
+      "cost": 4,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "守りの紋",
+      "icon": "minecraft:shield",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★魔紋の障壁・極",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "duration",
+          "amount": 60
+        },
+        {
+          "skill": "jsn_craft:enchanter/rune_barrier",
+          "field": "cooldown",
+          "amount": -60
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "ラピスの恵み・極",
+      "icon": "minecraft:lapis_ore",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:enchanter/lapis_luck",
+          "field": "chance",
+          "amount": 0.2
+        }
+      ]
+    }
+  ]
+}

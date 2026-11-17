@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "神域の突破"
+  },
+  "description": {
+    "text": "上限突破で、エンチャントの最大レベルを+5まで超えられるようになる（ふつうは+3）。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "passive",
+  "effect": "limit_master"
+}

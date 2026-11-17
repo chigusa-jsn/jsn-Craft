@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "魔紋の嵐"
+  },
+  "description": {
+    "text": "周り（5ブロック）の敵に魔法のダメージ8を与え、5秒間弱らせる。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "active",
+  "effect": "rune_storm",
+  "power": 8,
+  "radius": 5,
+  "stamina": 35,
+  "cooldown": 25
+}

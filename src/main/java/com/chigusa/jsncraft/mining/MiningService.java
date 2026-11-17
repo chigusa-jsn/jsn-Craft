@@ -92,7 +92,7 @@ public final class MiningService {
     // ================= 1ブロックを道具で壊す（まとめ掘り用） =================
 
     /** 道具の残り耐久がこれ以下なら止める（大事な道具を壊さないように） */
-    private static boolean toolAlmostBroken(ItemStack tool, int willUse) {
+    public static boolean toolAlmostBroken(ItemStack tool, int willUse) {
         return tool.isDamageableItem() && tool.getMaxDamage() - tool.getDamageValue() <= willUse + 1;
     }
 
@@ -181,7 +181,7 @@ public final class MiningService {
     }
 
     /** 掘っている面（プレイヤーから見た向き） */
-    private static Direction facing(ServerPlayer player, BlockPos origin) {
+    public static Direction facing(ServerPlayer player, BlockPos origin) {
         HitResult hr = player.pick(player.blockInteractionRange(), 0, false);
         if (hr instanceof BlockHitResult bhr && bhr.getBlockPos().equals(origin)) return bhr.getDirection();
         float pitch = player.getXRot();
@@ -191,7 +191,7 @@ public final class MiningService {
     }
 
     /** つながった同じ鉱石（斜めも含む） */
-    private static List<BlockPos> findVein(ServerLevel level, BlockPos origin, Block block, int limit) {
+    public static List<BlockPos> findVein(ServerLevel level, BlockPos origin, Block block, int limit) {
         List<BlockPos> out = new ArrayList<>();
         Set<BlockPos> seen = new HashSet<>();
         ArrayDeque<BlockPos> queue = new ArrayDeque<>();

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "魔紋の加護"
+  },
+  "description": {
+    "text": "自分と周り（10ブロック）の仲間の魔法の威力と回復の力を、120秒間 +20% する。"
+  },
+  "icon": "minecraft:beacon",
+  "type": "active",
+  "effect": "runic_aura",
+  "power": 0.2,
+  "radius": 10,
+  "duration": 120,
+  "stamina": 40,
+  "cooldown": 300
+}

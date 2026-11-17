@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "神紋の祝福"
+  },
+  "description": {
+    "text": "60秒間、刻む・上限突破・付け替えにラピスも触媒も経験値もいらなくなる。"
+  },
+  "icon": "minecraft:enchanting_table",
+  "type": "active",
+  "effect": "divine_inscription",
+  "duration": 60,
+  "stamina": 60,
+  "cooldown": 1200
+}

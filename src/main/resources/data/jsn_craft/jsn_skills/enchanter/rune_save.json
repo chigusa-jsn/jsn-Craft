@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "魔紋の節約"
+  },
+  "description": {
+    "text": "魔紋を刻んだとき、15%の確率で触媒がなくならない。"
+  },
+  "icon": "minecraft:amethyst_shard",
+  "type": "passive",
+  "effect": "rune_save",
+  "chance": 0.15
+}

@@ -1,0 +1,11 @@
+{
+  "name": {
+    "text": "神紋の器"
+  },
+  "description": {
+    "text": "1つの物に刻める魔紋の数が1つ増える（3つ→4つ）。"
+  },
+  "icon": "minecraft:amethyst_cluster",
+  "type": "passive",
+  "effect": "rune_slot"
+}

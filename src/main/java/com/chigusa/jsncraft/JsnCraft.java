@@ -25,6 +25,7 @@ public class JsnCraft {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         com.chigusa.jsncraft.fishing.FishItems.init(); // 魚アイテム
         com.chigusa.jsncraft.smithing.ModSmithing.init(); // 鍛冶台と強化石（登録先は調理台と共通なので先に読み込む）
+        com.chigusa.jsncraft.enchanting.ModEnchanting.init(); // 魔紋の祭壇と魔紋の書
         com.chigusa.jsncraft.cooking.ModCooking.register(modEventBus); // 調理台と料理
         com.chigusa.jsncraft.farming.ModCrops.register(modEventBus); // 新しい作物と食材
         ModEntities.ITEMS.register(modEventBus);

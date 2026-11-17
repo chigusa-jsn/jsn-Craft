@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "経験の知恵"
+  },
+  "description": {
+    "text": "刻む・上限突破・付け替えに必要な経験値レベルが20%減る。"
+  },
+  "icon": "minecraft:experience_bottle",
+  "type": "passive",
+  "effect": "rune_xp",
+  "power": 0.2
+}

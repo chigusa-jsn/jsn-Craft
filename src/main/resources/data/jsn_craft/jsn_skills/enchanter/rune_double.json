@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "重ね刻み"
+  },
+  "description": {
+    "text": "魔紋を刻んだとき、8%の確率でレベルが一気に2つ上がる。"
+  },
+  "icon": "minecraft:enchanted_book",
+  "type": "passive",
+  "effect": "rune_double",
+  "chance": 0.08
+}

@@ -77,6 +77,10 @@ public final class SkillEffects {
             case "smith_quench" -> com.chigusa.jsncraft.smithing.SmithingService.quench(player, s);
             case "forge_blessing" -> com.chigusa.jsncraft.smithing.SmithingService.forgeBlessing(player, s);
             case "divine_forge" -> com.chigusa.jsncraft.smithing.SmithingService.divineForge(player, s);
+            case "rune_barrier" -> com.chigusa.jsncraft.enchanting.EnchantingService.runeBarrier(player, s);
+            case "rune_storm" -> com.chigusa.jsncraft.enchanting.EnchantingService.runeStorm(player, s);
+            case "runic_aura" -> com.chigusa.jsncraft.enchanting.EnchantingService.runicAura(player, s);
+            case "divine_inscription" -> com.chigusa.jsncraft.enchanting.EnchantingService.divineInscription(player, s);
             case "feed_area" -> com.chigusa.jsncraft.cooking.CookingService.feedArea(player, s);
             case "aroma" -> com.chigusa.jsncraft.cooking.CookingService.aroma(player, s);
             case "feast" -> com.chigusa.jsncraft.cooking.CookingService.feast(player, s);
@@ -99,18 +103,19 @@ public final class SkillEffects {
     }
 
     /** 攻撃してよい相手か（自分・ほかのプレイヤー・NPC・味方のペットはだめ） */
-    static boolean isEnemy(ServerPlayer player, LivingEntity e) {
+    public static boolean isEnemy(ServerPlayer player, LivingEntity e) {
         if (e == player || e instanceof Player || e instanceof ReceptionistEntity || !e.isAlive()) return false;
         if (e instanceof net.minecraft.world.entity.TamableAnimal pet && pet.isOwnedBy(player)) return false;
         return e.isAttackable();
     }
 
     /** スキルでダメージを与える（数字が蒼く出る）。当たったら火花 */
-    static void hit(ServerPlayer player, LivingEntity e, float damage) {
+    public static void hit(ServerPlayer player, LivingEntity e, float damage) {
         HitFlags.SKILL.set(true);
         try {
             e.invulnerableTime = 0; // 連続攻撃でも毎回当たるように
-            damage *= (float) (1 + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.SKILL_DAMAGE));
+            damage *= (float) (1 + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.SKILL_DAMAGE)
+                    + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.MAGIC_POWER));
             e.hurt(player.damageSources().playerAttack(player), damage);
         } finally {
             HitFlags.SKILL.set(false);
@@ -765,7 +770,7 @@ public final class SkillEffects {
         for (ServerPlayer p : player.serverLevel().players()) {
             boolean ally = p == player || (party != null && party.members.contains(p.getUUID()));
             if (!ally || p.distanceTo(player) > s.radius()) continue;
-            p.heal((float) s.power());
+            p.heal((float) (s.power() * (1 + player.getAttributeValue(com.chigusa.jsncraft.stat.ModAttributes.HEALING_POWER))));
             Vfx.ring(player.serverLevel(), p.position(), 1.6F, 12, Vfx.GREEN);
             player.serverLevel().sendParticles(ParticleTypes.HEART, p.getX(), p.getY() + 1.8, p.getZ(), 4, 0.3, 0.2, 0.3, 0);
         }

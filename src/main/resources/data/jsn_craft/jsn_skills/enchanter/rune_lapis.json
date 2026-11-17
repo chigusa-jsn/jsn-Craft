@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "ラピスの節約"
+  },
+  "description": {
+    "text": "必要なラピスラズリが25%減る。"
+  },
+  "icon": "minecraft:lapis_lazuli",
+  "type": "passive",
+  "effect": "rune_lapis",
+  "power": 0.25
+}

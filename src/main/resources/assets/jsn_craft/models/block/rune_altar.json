@@ -1,0 +1,638 @@
+{
+ "parent": "minecraft:block/block",
+ "ambientocclusion": true,
+ "textures": {
+  "amethyst": "jsn_craft:block/dish3d/amethyst",
+  "book_cover": "jsn_craft:block/dish3d/book_cover",
+  "book_page": "jsn_craft:block/dish3d/book_page",
+  "lapis_inlay": "jsn_craft:block/dish3d/lapis_inlay",
+  "rune_glyph": "jsn_craft:block/dish3d/rune_glyph",
+  "rune_stone": "jsn_craft:block/dish3d/rune_stone",
+  "rune_top": "jsn_craft:block/dish3d/rune_top",
+  "particle": "jsn_craft:block/dish3d/amethyst"
+ },
+ "elements": [
+  {
+   "from": [
+    1,
+    0,
+    1
+   ],
+   "to": [
+    15,
+    3,
+    15
+   ],
+   "faces": {
+    "up": {
+     "texture": "#rune_stone"
+    },
+    "down": {
+     "texture": "#rune_stone"
+    },
+    "north": {
+     "texture": "#rune_stone"
+    },
+    "south": {
+     "texture": "#rune_stone"
+    },
+    "east": {
+     "texture": "#rune_stone"
+    },
+    "west": {
+     "texture": "#rune_stone"
+    }
+   }
+  },
+  {
+   "from": [
+    0.6,
+    1,
+    0.6
+   ],
+   "to": [
+    15.4,
+    1.6,
+    15.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#lapis_inlay"
+    },
+    "down": {
+     "texture": "#lapis_inlay"
+    },
+    "north": {
+     "texture": "#lapis_inlay"
+    },
+    "south": {
+     "texture": "#lapis_inlay"
+    },
+    "east": {
+     "texture": "#lapis_inlay"
+    },
+    "west": {
+     "texture": "#lapis_inlay"
+    }
+   }
+  },
+  {
+   "from": [
+    4,
+    3,
+    4
+   ],
+   "to": [
+    12,
+    10,
+    12
+   ],
+   "faces": {
+    "up": {
+     "texture": "#rune_stone"
+    },
+    "down": {
+     "texture": "#rune_stone"
+    },
+    "north": {
+     "texture": "#rune_glyph"
+    },
+    "south": {
+     "texture": "#rune_glyph"
+    },
+    "east": {
+     "texture": "#rune_glyph"
+    },
+    "west": {
+     "texture": "#rune_glyph"
+    }
+   }
+  },
+  {
+   "from": [
+    2,
+    10,
+    2
+   ],
+   "to": [
+    14,
+    12,
+    14
+   ],
+   "faces": {
+    "up": {
+     "texture": "#rune_top"
+    },
+    "down": {
+     "texture": "#rune_stone"
+    },
+    "north": {
+     "texture": "#rune_stone"
+    },
+    "south": {
+     "texture": "#rune_stone"
+    },
+    "east": {
+     "texture": "#rune_stone"
+    },
+    "west": {
+     "texture": "#rune_stone"
+    }
+   }
+  },
+  {
+   "from": [
+    4.4,
+    12,
+    5.0
+   ],
+   "to": [
+    11.6,
+    12.4,
+    11.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#book_cover"
+    },
+    "down": {
+     "texture": "#book_cover"
+    },
+    "north": {
+     "texture": "#book_cover"
+    },
+    "south": {
+     "texture": "#book_cover"
+    },
+    "east": {
+     "texture": "#book_cover"
+    },
+    "west": {
+     "texture": "#book_cover"
+    }
+   }
+  },
+  {
+   "from": [
+    4.8,
+    12.4,
+    5.4
+   ],
+   "to": [
+    7.9,
+    13.2,
+    10.6
+   ],
+   "faces": {
+    "up": {
+     "texture": "#book_page",
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ]
+    },
+    "north": {
+     "texture": "#book_page"
+    },
+    "south": {
+     "texture": "#book_page"
+    },
+    "east": {
+     "texture": "#book_page"
+    },
+    "west": {
+     "texture": "#book_page"
+    }
+   }
+  },
+  {
+   "from": [
+    8.1,
+    12.4,
+    5.4
+   ],
+   "to": [
+    11.2,
+    13.2,
+    10.6
+   ],
+   "faces": {
+    "up": {
+     "texture": "#book_page",
+     "uv": [
+      0,
+      0,
+      16,
+      16
+     ]
+    },
+    "north": {
+     "texture": "#book_page"
+    },
+    "south": {
+     "texture": "#book_page"
+    },
+    "east": {
+     "texture": "#book_page"
+    },
+    "west": {
+     "texture": "#book_page"
+    }
+   }
+  },
+  {
+   "from": [
+    7.9,
+    12.4,
+    5.2
+   ],
+   "to": [
+    8.1,
+    12.9,
+    10.8
+   ],
+   "faces": {
+    "up": {
+     "texture": "#book_cover"
+    },
+    "down": {
+     "texture": "#book_cover"
+    },
+    "north": {
+     "texture": "#book_cover"
+    },
+    "south": {
+     "texture": "#book_cover"
+    },
+    "east": {
+     "texture": "#book_cover"
+    },
+    "west": {
+     "texture": "#book_cover"
+    }
+   }
+  },
+  {
+   "from": [
+    1.6,
+    3,
+    1.6
+   ],
+   "to": [
+    3.4,
+    6.5,
+    3.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    2.0,
+    6.5,
+    2.0
+   ],
+   "to": [
+    3.0,
+    7.6,
+    3.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    12.6,
+    3,
+    1.6
+   ],
+   "to": [
+    14.4,
+    6.5,
+    3.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    13.0,
+    6.5,
+    2.0
+   ],
+   "to": [
+    14.0,
+    7.6,
+    3.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    1.6,
+    3,
+    12.6
+   ],
+   "to": [
+    3.4,
+    6.5,
+    14.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    2.0,
+    6.5,
+    13.0
+   ],
+   "to": [
+    3.0,
+    7.6,
+    14.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    12.6,
+    3,
+    12.6
+   ],
+   "to": [
+    14.4,
+    6.5,
+    14.4
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  },
+  {
+   "from": [
+    13.0,
+    6.5,
+    13.0
+   ],
+   "to": [
+    14.0,
+    7.6,
+    14.0
+   ],
+   "faces": {
+    "up": {
+     "texture": "#amethyst"
+    },
+    "down": {
+     "texture": "#amethyst"
+    },
+    "north": {
+     "texture": "#amethyst"
+    },
+    "south": {
+     "texture": "#amethyst"
+    },
+    "east": {
+     "texture": "#amethyst"
+    },
+    "west": {
+     "texture": "#amethyst"
+    }
+   }
+  }
+ ],
+ "display": {
+  "gui": {
+   "rotation": [
+    30,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "ground": {
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.5,
+    0.5,
+    0.5
+   ]
+  },
+  "fixed": {
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "translation": [
+    0,
+    0,
+    -6
+   ],
+   "scale": [
+    0.8,
+    0.8,
+    0.8
+   ]
+  },
+  "thirdperson_righthand": {
+   "rotation": [
+    75,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    2.5,
+    0
+   ],
+   "scale": [
+    0.4,
+    0.4,
+    0.4
+   ]
+  },
+  "firstperson_righthand": {
+   "rotation": [
+    0,
+    45,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  },
+  "firstperson_lefthand": {
+   "rotation": [
+    0,
+    225,
+    0
+   ],
+   "translation": [
+    0,
+    3,
+    0
+   ],
+   "scale": [
+    0.45,
+    0.45,
+    0.45
+   ]
+  }
+ }
+}
