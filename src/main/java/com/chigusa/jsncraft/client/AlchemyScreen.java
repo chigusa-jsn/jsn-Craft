@@ -262,9 +262,9 @@ public class AlchemyScreen extends AbstractContainerScreen<AlchemyMenu> {
             case AlchemyService.LEVEL_LOW -> "§c調合の腕が足りない";
             case AlchemyService.BAD_ADDITIVE -> "§cこれは追加素材にならない";
             case AlchemyService.SLOT_LOCKED -> "§c3つめの追加素材の枠はまだ使えない";
-            case AlchemyService.FORM_CONFLICT -> "§c火薬と粉塵の素は一緒に入れられない";
-            case AlchemyService.NEED_DUST_ART -> "§c粉塵はスキル「粉塵の技」が必要";
-            case AlchemyService.CANT_FORM -> "§cこの薬は投げたり粉塵にしたりできない";
+            case AlchemyService.FORM_CONFLICT -> "§c火薬と香の素は一緒に入れられない";
+            case AlchemyService.NEED_DUST_ART -> "§c香はスキル「調香の技」が必要";
+            case AlchemyService.CANT_FORM -> "§cこの薬は投げたり香にしたりできない";
             case AlchemyService.NOT_SAGE -> "§c錬金は錬金の賢者だけ";
             case AlchemyService.NO_SELECT -> "§7右の一覧からレシピを選ぼう";
             case AlchemyService.NO_MATERIAL -> "§7素材A・Bの枠に素材を置こう";
@@ -311,7 +311,7 @@ public class AlchemyScreen extends AbstractContainerScreen<AlchemyMenu> {
                     tip.add(Component.literal(t.name()).withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.BOLD));
                     tip.add(Component.literal("主素材：").withStyle(ChatFormatting.GRAY).append(t.main().get().getDescription().copy().withStyle(ChatFormatting.AQUA)));
                     for (String s : Elixirs.describe(t, 1, 1)) tip.add(Component.literal(s).withStyle(ChatFormatting.WHITE));
-                    if (!t.dustName().isEmpty()) tip.add(Component.literal("粉塵にすると「" + t.dustName() + "」").withStyle(ChatFormatting.DARK_GRAY));
+                    if (!t.dustName().isEmpty()) tip.add(Component.literal("香にすると「" + t.dustName() + "」").withStyle(ChatFormatting.DARK_GRAY));
                     tip.add(Component.literal("作れる：" + RuneText.level(t.unlock())).withStyle(ChatFormatting.GRAY));
                 } else if (i < rows.size() && rows.get(i) <= -2) {
                     Elixirs.Additive a = Elixirs.ADDITIVES.get(-2 - rows.get(i));
@@ -354,7 +354,7 @@ public class AlchemyScreen extends AbstractContainerScreen<AlchemyMenu> {
             event.registerEntityRenderer(ModAlchemy.THROWN_ELIXIR.get(), ThrownItemRenderer::new);
         }
 
-        /** 薬の形（0 飲む / 1 投げる / 2 粉塵）で絵を変える */
+        /** 薬の形（0 飲む / 1 投げる / 2 香）で絵を変える */
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {

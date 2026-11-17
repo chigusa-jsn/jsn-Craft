@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 薬の中身（アイテムのカスタムデータ jsn_elixir）。
- * quality ★1〜5 / power 効き目の倍率 / time 時間の倍率 / form 0 飲む・1 投げる・2 粉塵 / extras 追加効果
+ * quality ★1〜5 / power 効き目の倍率 / time 時間の倍率 / form 0 飲む・1 投げる・2 香 / extras 追加効果
  */
 public record ElixirData(int quality, double power, double time, int form, List<String> extras) {
     public static final int DRINK = 0, THROW = 1, DUST = 2;

@@ -20,7 +20,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-/** 調合した薬。飲む（ゆっくり）／投げる／粉塵（周りの仲間みんな）の3つの形がある。 */
+/** 調合した薬。飲む（ゆっくり）／投げる／香（周りの仲間みんな）の3つの形がある。 */
 public class ElixirItem extends Item {
     private final int type;
 

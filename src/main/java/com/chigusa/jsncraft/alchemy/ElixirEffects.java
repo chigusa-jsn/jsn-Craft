@@ -26,11 +26,11 @@ import org.joml.Vector3f;
 import java.util.HashSet;
 import java.util.List;
 
-/** 薬の効果をかける（飲む・投げる・粉塵で共通）。 */
+/** 薬の効果をかける（飲む・投げる・香で共通）。 */
 public final class ElixirEffects {
 
     /**
-     * target に薬の効果をかける。scale は形による倍率（投げる 0.8・粉塵 0.75）。
+     * target に薬の効果をかける。scale は形による倍率（投げる 0.8・香 0.75）。
      * 自分で飲んだ調合師には「薬の心得」が乗る。
      */
     public static void apply(ServerPlayer target, Elixirs.Type t, ElixirData d, double scale) {
@@ -121,7 +121,7 @@ public final class ElixirEffects {
                 p -> p.isAlive() && !p.isSpectator() && p.position().distanceTo(at) <= radius);
     }
 
-    /** 粉塵の広さ */
+    /** 香の広さ */
     public static double dustRadius(ServerPlayer user) {
         double r = 8;
         SkillDefinition s = SkillService.passive(user, "dust_range");

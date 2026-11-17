@@ -1,9 +1,9 @@
 {
   "name": {
-    "text": "粉塵の技"
+    "text": "調香の技"
   },
   "description": {
-    "text": "「粉塵の素」を入れて、周りの仲間みんなに効く粉塵が作れるようになる。"
+    "text": "「香の素」を入れて、周りの仲間みんなに効く香が作れるようになる。"
   },
   "icon": "jsn_craft:dust_base",
   "type": "passive",

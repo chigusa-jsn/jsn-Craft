@@ -1,9 +1,9 @@
 {
   "name": {
-    "text": "粉塵の極意"
+    "text": "香の極意"
   },
   "description": {
-    "text": "粉塵の届く広さが4ブロック広がる（ふつうは8ブロック）。"
+    "text": "香の届く広さが4ブロック広がる（ふつうは8ブロック）。"
   },
   "icon": "minecraft:sugar",
   "type": "passive",

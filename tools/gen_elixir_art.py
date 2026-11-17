@@ -1,5 +1,5 @@
 """
-薬のアイコン（16×16）を作る。種類ごとに 飲む・投げる・粉塵 の3枚。
+薬のアイコン（16×16）を作る。種類ごとに 飲む・投げる・香 の3枚。
     python3 tools/gen_elixir_art.py [--preview 出力.png]
 """
 import os, sys

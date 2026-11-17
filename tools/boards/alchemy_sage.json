@@ -144,7 +144,7 @@
           ]
         },
         {
-          "name": "粉塵の極意修練",
+          "name": "香の極意修練",
           "icon": "minecraft:sugar",
           "weight": 1,
           "effects": [
@@ -376,7 +376,7 @@
       "sector": 1,
       "ring": 7,
       "offset": -2,
-      "name": "★粉塵の極意・覚醒",
+      "name": "★香の極意・覚醒",
       "icon": "minecraft:sugar",
       "cost": 7,
       "effects": [

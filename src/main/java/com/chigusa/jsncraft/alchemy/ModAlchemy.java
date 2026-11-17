@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-/** 調合台・薬・粉塵の素・投げた薬の登録（ブロックの登録先は調理台と共通）。 */
+/** 調合台・薬・香の素・投げた薬の登録（ブロックの登録先は調理台と共通）。 */
 @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class ModAlchemy {
 
@@ -39,7 +39,7 @@ public final class ModAlchemy {
     public static final DeferredHolder<MenuType<?>, MenuType<AlchemyMenu>> TABLE_MENU = ModCooking.MENUS.register("alchemy_table",
             () -> IMenuTypeExtension.create(AlchemyMenu::new));
 
-    /** 粉塵の素：薬に入れると粉塵になる */
+    /** 香の素：薬に入れると香になる */
     public static final DeferredItem<Item> DUST_BASE = ModEntities.ITEMS.registerSimpleItem("dust_base", new Item.Properties());
 
     /** 薬（種類ごと。Elixirs.TYPES と同じ順番） */

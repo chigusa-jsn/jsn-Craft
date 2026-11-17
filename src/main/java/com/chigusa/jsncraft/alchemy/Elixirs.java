@@ -72,36 +72,36 @@ public final class Elixirs {
 
     static {
         // ---- 回復 ----
-        type("heal", "回復薬", "生命の粉塵", crop("herb"), 1, 0xE03040, "heal", 6, 0);
-        type("stamina", "スタミナ回復薬", "活力の粉塵", crop("vigor_herb"), 1, 0xF0B020, "stamina", 40, 0);
-        type("mana", "マナ回復薬", "魔力の粉塵", crop("moon_herb"), 5, 0x4080F0, "mana", 30, 0);
-        type("cure", "万能薬", "浄化の粉塵", crop("antidote_herb"), 10, 0xA060E0, "cure", 2, 0);
-        type("great_heal", "回復薬グレート", "大生命の粉塵", () -> Items.GLISTERING_MELON_SLICE, 20, 0xFF5070, "heal", 14, 0);
-        type("elixir", "秘薬", "秘薬の粉塵", crop("mandrake"), 35, 0xFF80C0, "elixir", 40, 20);
-        type("ancient", "いにしえの秘薬", "いにしえの粉塵", () -> Items.GOLDEN_APPLE, 65, 0xFFD040, "ancient", 8, 180);
+        type("heal", "回復薬", "回復の香", crop("herb"), 1, 0xE03040, "heal", 6, 0);
+        type("stamina", "スタミナ回復薬", "活力の香", crop("vigor_herb"), 1, 0xF0B020, "stamina", 40, 0);
+        type("mana", "マナ回復薬", "魔力の香", crop("moon_herb"), 5, 0x4080F0, "mana", 30, 0);
+        type("cure", "万能薬", "浄化の香", crop("antidote_herb"), 10, 0xA060E0, "cure", 2, 0);
+        type("great_heal", "上級回復薬", "大回復の香", () -> Items.GLISTERING_MELON_SLICE, 20, 0xFF5070, "heal", 14, 0);
+        type("elixir", "霊薬", "霊薬の香", crop("mandrake"), 35, 0xFF80C0, "elixir", 40, 20);
+        type("ancient", "古代の霊薬", "古代の香", () -> Items.GOLDEN_APPLE, 65, 0xFFD040, "ancient", 8, 180);
         // ---- 強化 ----
-        type("swift", "俊足薬", "疾風の粉塵", () -> Items.SUGAR, 5, 0x80E0F0, "buff", 0, 180,
+        type("swift", "俊足薬", "疾風の香", () -> Items.SUGAR, 5, 0x80E0F0, "buff", 0, 180,
                 mult(Attributes.MOVEMENT_SPEED, 0.15, "移動速度"));
-        type("might", "鬼人薬", "鬼人の粉塵", crop("fire_herb"), 10, 0xD03010, "buff", 0, 180,
+        type("might", "剛力の薬", "剛力の香", crop("fire_herb"), 10, 0xD03010, "buff", 0, 180,
                 add(Attributes.ATTACK_DAMAGE, 2, "攻撃力"));
-        type("armor", "硬化薬", "硬化の粉塵", () -> Items.IRON_NUGGET, 10, 0x8A8A9A, "buff", 0, 180,
+        type("armor", "鉄壁の薬", "鉄壁の香", () -> Items.IRON_NUGGET, 10, 0x8A8A9A, "buff", 0, 180,
                 add(Attributes.ARMOR, 4, "防御力"), add(Attributes.ARMOR_TOUGHNESS, 2, "防具強度"));
-        type("runner", "強走薬", "強走の粉塵", () -> Items.HONEY_BOTTLE, 15, 0xF0D040, "buff", 0, 120,
+        type("runner", "持久の薬", "持久の香", () -> Items.HONEY_BOTTLE, 15, 0xF0D040, "buff", 0, 120,
                 add(ModAttributes.STAMINA_REGEN, 4, "スタミナ回復/秒"));
-        type("crit", "会心薬", "会心の粉塵", () -> Items.FLINT, 15, 0xE8E8F0, "buff", 0, 180,
+        type("crit", "会心薬", "会心の香", () -> Items.FLINT, 15, 0xE8E8F0, "buff", 0, 180,
                 pct(ModAttributes.CRIT_CHANCE, 0.1, "会心率"));
-        type("arcane", "魔力増強薬", "魔導の粉塵", () -> Items.AMETHYST_SHARD, 20, 0xB070F0, "buff", 0, 180,
+        type("arcane", "魔力増強薬", "魔導の香", () -> Items.AMETHYST_SHARD, 20, 0xB070F0, "buff", 0, 180,
                 pct(ModAttributes.MAGIC_POWER, 0.15, "魔法の威力"), add(ModAttributes.MANA_REGEN, 1, "マナ回復/秒"));
-        type("focus", "集中薬", "集中の粉塵", crop("coffee"), 20, 0x6A4020, "buff", 0, 180,
+        type("focus", "集中薬", "集中の香", crop("coffee"), 20, 0x6A4020, "buff", 0, 180,
                 pct(ModAttributes.COOLDOWN_REDUCTION, 0.1, "待ち時間短縮"), pct(ModAttributes.CAST_SPEED, 0.1, "詠唱の速さ"));
         // ---- 生活 ----
-        type("miner", "採掘の薬", "採掘の粉塵", () -> Items.RAW_COPPER, 15, 0xC08040, "buff", 0, 300,
+        type("miner", "採掘の薬", "採掘の香", () -> Items.RAW_COPPER, 15, 0xC08040, "buff", 0, 300,
                 mult(Attributes.BLOCK_BREAK_SPEED, 0.3, "掘る速さ"), pct(ModAttributes.MINING_FORTUNE, 0.2, "採掘の幸運"));
-        type("angler", "釣りの薬", "釣りの粉塵", () -> Items.KELP, 15, 0x30A080, "buff", 0, 300,
+        type("angler", "釣りの薬", "釣りの香", () -> Items.KELP, 15, 0x30A080, "buff", 0, 300,
                 pct(ModAttributes.FISHING_BITE, 0.3, "魚のかかる速さ"), pct(ModAttributes.FISHING_TREASURE, 0.05, "お宝の確率"));
-        type("training", "修練の薬", "修練の粉塵", () -> Items.EMERALD, 25, 0x40D060, "buff", 0, 600,
+        type("training", "修練の薬", "修練の香", () -> Items.EMERALD, 25, 0x40D060, "buff", 0, 600,
                 pct(ModAttributes.JOB_XP_BONUS, 0.2, "職業経験値"));
-        type("luck", "豪運の薬", "豪運の粉塵", () -> Items.RABBIT_FOOT, 30, 0x50E050, "buff", 0, 300,
+        type("luck", "豪運の薬", "豪運の香", () -> Items.RABBIT_FOOT, 30, 0x50E050, "buff", 0, 300,
                 add(Attributes.LUCK, 3, "幸運"), pct(ModAttributes.HARVEST_FORTUNE, 0.2, "収穫の幸運"));
         type("recall", "帰還薬", "", () -> Items.ENDER_PEARL, 25, 0x20A0A0, "recall", 0, 0);
 
@@ -109,7 +109,7 @@ public final class Elixirs {
         ADDS_RW.add(new Additive("strong", () -> Items.GLOWSTONE_DUST, "strong", "効き目 ×1.5"));
         ADDS_RW.add(new Additive("long", () -> Items.REDSTONE, "long", "効く時間 ×1.5"));
         ADDS_RW.add(new Additive("throw", () -> Items.GUNPOWDER, "throw", "投げる薬になる（当たった周りの仲間に効く）"));
-        ADDS_RW.add(new Additive("dust", () -> ModAlchemy.DUST_BASE.get(), "dust", "粉塵になる（周りの仲間みんなに効く）"));
+        ADDS_RW.add(new Additive("dust", () -> ModAlchemy.DUST_BASE.get(), "dust", "香になる（周りの仲間みんなに効く）"));
         ADDS_RW.add(new Additive("heal", crop("herb"), "extra", "HPも4回復"));
         ADDS_RW.add(new Additive("stamina", crop("vigor_herb"), "extra", "スタミナも20回復"));
         ADDS_RW.add(new Additive("mana", crop("moon_herb"), "extra", "マナも15回復"));

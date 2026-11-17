@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * 調合台の画面の中身。
  * ボタン：0 作る / 1 まとめて作る / 2 錬金する / 100+n 錬金のレシピ n を選ぶ
  * data：0 選んだ錬金 / 1 調合の腕 / 2 追加素材の枠 / 3 調合の状態 / 4 まとめて作れる数 / 5 薬の種類 /
- *       6 錬金の状態 / 7 錬金の経験値 / 8 賢者か / 9 粉塵が作れるか / 10 薬の形
+ *       6 錬金の状態 / 7 錬金の経験値 / 8 賢者か / 9 香が作れるか / 10 薬の形
  */
 public class AlchemyMenu extends AbstractContainerMenu {
     public static final int BTN_BREW = 0, BTN_BREW_ALL = 1, BTN_TRANSMUTE = 2, BTN_RECIPE = 100;
