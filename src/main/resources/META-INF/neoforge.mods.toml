@@ -39,3 +39,10 @@ type = "required"
 versionRange = "[4.7,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.jsn_craft]]
+modId = "playeranimator"
+type = "required"
+versionRange = "[2.0,)"
+ordering = "NONE"
+side = "CLIENT"

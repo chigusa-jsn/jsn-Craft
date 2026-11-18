@@ -160,6 +160,8 @@ public final class SkillService {
             startCast(player, d, id, skill, now);
         } else if (!SkillEffects.activate(player, skill)) {
             return; // 使えない場面（対象がいないなど）
+        } else {
+            com.chigusa.jsncraft.anim.PlayerAnims.skill(player, skill);
         }
 
         ResourceService.tryUseStamina(player, skill.stamina());
@@ -224,6 +226,8 @@ public final class SkillService {
                 ticks, com.chigusa.jsncraft.vfx.Vfx.layers(ticks));
         player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.5F, 1.8F);
         PacketDistributor.sendToPlayer(player, new com.chigusa.jsncraft.network.CastBarPayload(skill.name(), ticks));
+        if (player.getMainHandItem().getItem() instanceof com.chigusa.jsncraft.weapon.StaffItem)
+            com.chigusa.jsncraft.anim.PlayerAnims.play(player, "cast_charge");
     }
 
     /** ため中の人を見て、時間になったら技を出す（毎tick） */
@@ -242,7 +246,7 @@ public final class SkillService {
                     SkillDefinition eff = effective(player, rid, skill);
                     com.chigusa.jsncraft.vfx.Vfx.releaseCircles(player.serverLevel(), player.position(), com.chigusa.jsncraft.vfx.Circle.forSkill(rid),
                             com.chigusa.jsncraft.vfx.Vfx.layers(Math.max(1, Math.round(eff.castTime() * 20))));
-                    SkillEffects.activate(player, eff);
+                    if (SkillEffects.activate(player, eff)) com.chigusa.jsncraft.anim.PlayerAnims.skill(player, eff);
                 }
             }
         }

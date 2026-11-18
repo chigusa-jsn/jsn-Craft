@@ -49,6 +49,12 @@ public final class ModNetwork {
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.npc.JobChangeService.resetBoard(sp, p.jobType());
                 }));
+        registrar.playToClient(AnimPayloads.Play.TYPE, AnimPayloads.Play.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.PlayerAnimClient.playOn(p.entityId(), p.anim())));
+        registrar.playToServer(AnimPayloads.Swing.TYPE, AnimPayloads.Swing.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.anim.PlayerAnims.onSwing(sp, p.anim());
+                }));
         registrar.playToClient(CastBarPayload.TYPE, CastBarPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.CastBarHud.start(p.name(), p.ticks())));
         registrar.playToClient(AnimalRankPayload.TYPE, AnimalRankPayload.STREAM_CODEC,
