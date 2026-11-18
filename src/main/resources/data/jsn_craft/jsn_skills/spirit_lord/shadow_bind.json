@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "シャドウバインド"
+  },
+  "description": {
+    "text": "0.8秒詠唱。目線の先（5ブロック）の敵を影の鎖で4秒しばる（動けない・跳べない）。魔導書の精霊弾の1.5倍。"
+  },
+  "icon": "minecraft:chain",
+  "type": "active",
+  "effect": "spirit_shadow_bind",
+  "mana": 20,
+  "cooldown": 14,
+  "power": 1.5,
+  "radius": 5,
+  "duration": 4,
+  "cast_time": 0.8
+}

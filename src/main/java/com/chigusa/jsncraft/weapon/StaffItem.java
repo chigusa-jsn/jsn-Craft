@@ -60,6 +60,19 @@ public class StaffItem extends Item {
         return tier;
     }
 
+    /** 精霊の術師の魔導書か（魔導士の杖なら false） */
+    public boolean isGrimoire() {
+        return false;
+    }
+
+    protected String kindLabel() {
+        return "魔導士の杖";
+    }
+
+    protected String boltLabel() {
+        return "マナ弾";
+    }
+
     /** 撃つ間隔（tick） */
     public int cooldown() {
         return 14 - tier.tier();
@@ -93,8 +106,8 @@ public class StaffItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> lines, TooltipFlag flag) {
-        lines.add(Component.literal("魔導士の杖（" + tier.tier() + "段目）").withStyle(ChatFormatting.DARK_PURPLE));
-        lines.add(Component.literal("右クリック：マナ弾（ダメージ " + fmt(tier.bolt()) + "・マナ " + fmt(BOLT_MANA) + "）").withStyle(ChatFormatting.AQUA));
+        lines.add(Component.literal(kindLabel() + "（" + tier.tier() + "段目）").withStyle(ChatFormatting.DARK_PURPLE));
+        lines.add(Component.literal("右クリック：" + boltLabel() + "（ダメージ " + fmt(tier.bolt()) + "・マナ " + fmt(BOLT_MANA) + "）").withStyle(ChatFormatting.AQUA));
         lines.add(Component.literal("持つと 魔法の威力 +" + Math.round(tier.magic() * 100) + "%・最大マナ +" + tier.mana()).withStyle(ChatFormatting.BLUE));
         if (tier.tier() < 6) {
             lines.add(Component.literal("鍛冶台で鍛冶型を使うと次の段へ（魔紋と強化はそのまま）").withStyle(ChatFormatting.DARK_GRAY));

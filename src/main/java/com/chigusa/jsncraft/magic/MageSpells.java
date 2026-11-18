@@ -54,9 +54,9 @@ import java.util.function.Consumer;
  */
 public final class MageSpells {
 
-    public enum Elem { FIRE, ICE, THUNDER, STAR, NONE }
+    public enum Elem { FIRE, ICE, THUNDER, STAR, WIND, EARTH, WATER, DARK, NONE }
 
-    private static final String FROZEN = "jsn_frozen", SHOCK = "jsn_shock", MARK = "jsn_star_mark";
+    private static final String FROZEN = "jsn_frozen", SHOCK = "jsn_shock", MARK = "jsn_star_mark", WET = "jsn_wet", CURSE = "jsn_curse";
 
     static final DustParticleOptions FIRE_DUST = dust(0xFF7030, 1.6F), ICE_DUST = dust(0x9AE0FF, 1.4F),
             BOLT_DUST = dust(0xFFE860, 1.2F), STAR_DUST = dust(0xC8A0FF, 1.4F), DARK_DUST = dust(0x4A2A80, 2.0F);
@@ -97,7 +97,7 @@ public final class MageSpells {
 
     // ================= 共通 =================
 
-    /** 魔法の基本の威力：手に持った杖のマナ弾 */
+    /** 魔法の基本の威力：手に持った杖（魔導書）のマナ弾 */
     public static float base(ServerPlayer p) {
         return p.getMainHandItem().getItem() instanceof StaffItem st ? st.tier().bolt() : 3.0F;
     }
@@ -118,6 +118,25 @@ public final class MageSpells {
         return e.getPersistentData().getLong(MARK) > now(e);
     }
 
+    public static boolean wet(LivingEntity e) {
+        return e.getPersistentData().getLong(WET) > now(e) || e.isInWaterRainOrBubble();
+    }
+
+    public static boolean cursed(LivingEntity e) {
+        return e.getPersistentData().getLong(CURSE) > now(e);
+    }
+
+    /** 呪う（ticks のあいだ魔法のダメージ +25%、弱体） */
+    public static void curse(LivingEntity e, int ticks) {
+        e.getPersistentData().putLong(CURSE, now(e) + ticks);
+        e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, ticks, 1));
+    }
+
+    /** 宙に浮いている（風で巻き上げられた）か */
+    public static boolean airborne(LivingEntity e) {
+        return !e.onGround() && !e.isInWater() && !(e instanceof net.minecraft.world.entity.FlyingMob);
+    }
+
     /** 凍らせる（hard なら完全に止める） */
     public static void freeze(LivingEntity e, int ticks, boolean hard) {
         e.getPersistentData().putLong(FROZEN, now(e) + ticks);
@@ -133,7 +152,28 @@ public final class MageSpells {
         if (!SkillEffects.isEnemy(p, e)) return;
         ServerLevel level = p.serverLevel();
         String combo = null;
-        if (el == Elem.THUNDER && frozen(e)) {
+        if (el == Elem.THUNDER && wet(e) && !frozen(e)) {
+            dmg *= 1.5F;
+            level.sendParticles(ParticleTypes.ELECTRIC_SPARK, e.getX(), e.getY() + 1, e.getZ(), 40, 0.5, 0.7, 0.5, 0.4);
+            level.sendParticles(ParticleTypes.SPLASH, e.getX(), e.getY() + 1, e.getZ(), 20, 0.5, 0.5, 0.5, 0.1);
+            combo = "感電！";
+        } else if (el == Elem.ICE && wet(e) && !frozen(e)) {
+            e.getPersistentData().remove(WET);
+            freeze(e, 60, false);
+            combo = "瞬間凍結！";
+        } else if (el == Elem.EARTH && wet(e)) {
+            SkillDefinition mud = SkillService.passive(p, "spirit_mud");
+            dmg *= 1.4F + (mud != null ? (float) mud.power() : 0);
+            e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, mud != null ? 100 : 60, mud != null ? 5 : 3));
+            level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.MUD.defaultBlockState()), e.getX(), e.getY() + 0.3, e.getZ(), 30, 0.5, 0.3, 0.5, 0.1);
+            combo = "泥沼！";
+        } else if (el == Elem.EARTH && airborne(e)) {
+            dmg *= 1.6F;
+            e.setDeltaMovement(e.getDeltaMovement().x * 0.3, -1.6, e.getDeltaMovement().z * 0.3);
+            e.hurtMarked = true;
+            level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.STONE.defaultBlockState()), e.getX(), e.getY() + 0.5, e.getZ(), 25, 0.4, 0.4, 0.4, 0.1);
+            combo = "叩きつけ！";
+        } else if (el == Elem.THUNDER && frozen(e)) {
             SkillDefinition sh = SkillService.passive(p, "mage_shatter");
             dmg *= 1.8F + (sh != null ? (float) sh.power() : 0);
             e.getPersistentData().remove(FROZEN);
@@ -159,6 +199,18 @@ public final class MageSpells {
             combo = "プラズマ！";
         }
         if (marked(e) && el != Elem.STAR) dmg *= 1.2F;
+        if (cursed(e)) {
+            SkillDefinition deep = SkillService.passive(p, "spirit_deep_curse");
+            dmg *= 1.25F + (deep != null ? (float) deep.power() : 0);
+        }
+        if (wet(e)) {
+            SkillDefinition tide = SkillService.passive(p, "spirit_tide");
+            if (tide != null) dmg *= 1 + (float) tide.power();
+        }
+        if (el == Elem.WIND && airborne(e)) {
+            SkillDefinition tail = SkillService.passive(p, "spirit_tailwind");
+            if (tail != null) dmg *= 1 + (float) tail.power();
+        }
         if (el == Elem.FIRE && e.isOnFire()) {
             SkillDefinition b = SkillService.passive(p, "mage_burn_boost");
             if (b != null) dmg *= 1 + (float) b.power();
@@ -184,12 +236,21 @@ public final class MageSpells {
             case ICE -> e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
             case THUNDER -> e.getPersistentData().putLong(SHOCK, now(e) + 80);
             case STAR -> e.getPersistentData().putLong(MARK, now(e) + 200);
+            case WATER -> {
+                e.getPersistentData().putLong(WET, now(e) + 160);
+                if (e.isOnFire()) e.clearFire();
+            }
+            case EARTH -> e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 0));
             default -> {}
         }
         // 魔力循環：魔法で倒すとマナが戻る
         if (!e.isAlive()) {
             SkillDefinition mf = SkillService.passive(p, "mage_mana_flow");
             if (mf != null) r.mana = Math.min(ResourceService.maxMana(p), r.mana + (float) mf.power());
+            if (el == Elem.DARK) {   // 魂食い：闇の魔法で倒すとHP回復
+                SkillDefinition soul = SkillService.passive(p, "spirit_soul_eater");
+                if (soul != null) p.heal((float) soul.power());
+            }
         }
     }
 
@@ -314,7 +375,7 @@ public final class MageSpells {
         SkillEffects.later(p, 1, () -> step(p, next, v, life - 1, pierce, homing, trail, onHit, onEnd, done));
     }
 
-    private static Vec3 hand(ServerPlayer p) {
+    static Vec3 hand(ServerPlayer p) {
         return p.getEyePosition().add(p.getLookAngle().scale(0.8)).add(0, -0.2, 0);
     }
 

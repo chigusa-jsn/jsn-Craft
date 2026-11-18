@@ -1,0 +1,3696 @@
+{
+  "name": {
+    "text": "四大精霊の契約者",
+    "color": "dark_green"
+  },
+  "type": "combat",
+  "tier": "advanced",
+  "max_level": 100,
+  "skill_points_per_level": 3,
+  "requires": [
+    {
+      "job": "jsn_craft:elementalist",
+      "level": 30
+    }
+  ],
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 24
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 32
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:spirit_lord/ground_spike",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/maelstrom",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/tornado",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/shadow_bind",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/earth_quake",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/tidal_wave",
+      "level": 60
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/tempest",
+      "level": 70
+    },
+    {
+      "skill": "jsn_craft:spirit_lord/black_hole",
+      "level": 80
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "契約者の心得"
+      },
+      "icon": "jsn_craft:star_silver_grimoire",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 40
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.8
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "win1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 I"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "win1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "竜巻強化 I"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 1,
+      "links": [
+        "win1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "ear1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 I"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "win1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "wat1_0",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 I"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "ear1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "dar1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 I"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "wat1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "影縛り強化 I"
+      },
+      "icon": "minecraft:chain",
+      "cost": 1,
+      "links": [
+        "center",
+        "win1_0",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "win2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win1_0",
+        "dar1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "win2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "大嵐強化 II"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win2_0",
+        "win1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "win2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "win2_1",
+        "win1_0",
+        "win1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "ear2_0",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "win2_2",
+        "win1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "ear2_1",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "岩槍強化 II"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 1,
+      "links": [
+        "ear2_0",
+        "win1_1",
+        "ear1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "ear2_2",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "地震強化 II"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 1,
+      "links": [
+        "ear2_1",
+        "ear1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "wat2_0",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "大渦強化 II"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 1,
+      "links": [
+        "ear2_2",
+        "ear1_0",
+        "wat1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "wat2_1",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 II"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "wat2_0",
+        "wat1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wat2_2",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "大波強化 II"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 1,
+      "links": [
+        "wat2_1",
+        "wat1_0",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "dar2_0",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "黒穴強化 II"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 1,
+      "links": [
+        "wat2_2",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "dar2_1",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "待ち時間短縮 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "dar1_0",
+        "dar1_1",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "dar2_2",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱 II"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "dar1_1",
+        "win2_0",
+        "dar2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "win3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win2_1",
+        "win2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win3_0",
+        "win2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "トルネード奥伝"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win3_1",
+        "win2_1",
+        "win2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "win3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "竜巻強化 III"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 1,
+      "links": [
+        "win3_2",
+        "win2_2",
+        "ear2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ear3_0",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "win3_3",
+        "ear2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ear3_1",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "ear3_0",
+        "ear2_0",
+        "ear2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ear3_2",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "グランドスパイク奥伝"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "ear3_1",
+        "ear2_1",
+        "ear2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "ear3_3",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ear3_2",
+        "ear2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ear3_4",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "ear3_3",
+        "ear2_2",
+        "wat2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "wat3_0",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "癒し III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "ear3_4",
+        "wat2_0",
+        "wat2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "wat3_1",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "wat3_0",
+        "wat2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wat3_2",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "魔力の奔流"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "links": [
+        "wat3_1",
+        "wat2_1",
+        "wat2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "wat3_3",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "wat3_2",
+        "wat2_2",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wat3_4",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "大渦強化 III"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 1,
+      "links": [
+        "wat3_3",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "dar3_0",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "詠唱 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "dar2_0",
+        "dar2_1",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "dar3_1",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "影縛り強化 III"
+      },
+      "icon": "minecraft:chain",
+      "cost": 1,
+      "links": [
+        "dar2_1",
+        "dar2_2",
+        "dar3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "dar3_2",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "深淵の呪い"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 3,
+      "links": [
+        "dar2_2",
+        "dar3_1"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/deep_curse"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dar3_3",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "黒穴強化 III"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 1,
+      "links": [
+        "win2_0",
+        "win3_0",
+        "dar3_2",
+        "dar2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "win4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win3_0",
+        "dar3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "大嵐強化 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win3_1",
+        "win4_0",
+        "win3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "win4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "win4_1",
+        "win3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "win4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win4_2",
+        "win3_1",
+        "win3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win4_3",
+        "win3_2",
+        "win3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "竜巻強化 IV"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win4_4",
+        "win3_3",
+        "ear3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ear4_0",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "岩槍強化 IV"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 1,
+      "links": [
+        "win4_5",
+        "ear3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ear4_1",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "地震強化 IV"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear4_0",
+        "ear3_0",
+        "ear3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ear4_2",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ear4_1",
+        "ear3_1",
+        "ear3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ear4_3",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear4_2",
+        "ear3_2",
+        "ear3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ear4_4",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ear4_3",
+        "ear3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ear4_5",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear4_4",
+        "ear3_3",
+        "ear3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "wat4_0",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "ear4_5",
+        "ear3_4",
+        "wat3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wat4_1",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "大波強化 IV"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 2,
+      "links": [
+        "wat4_0",
+        "wat3_0",
+        "wat3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "wat4_2",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "癒し IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "wat4_1",
+        "wat3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "wat4_3",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat4_2",
+        "wat3_1",
+        "wat3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wat4_4",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "wat4_3",
+        "wat3_2",
+        "wat3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wat4_5",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "大渦強化 IV"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "wat4_4",
+        "wat3_3",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "dar4_0",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "待ち時間短縮 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "wat4_5",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "dar4_1",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "wat3_4",
+        "dar3_0",
+        "dar4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "dar4_2",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "dar3_0",
+        "dar3_1",
+        "dar4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "dar4_3",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "影縛り強化 IV"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "dar3_1",
+        "dar3_2",
+        "dar4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "dar4_4",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱破棄"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "dar3_2",
+        "dar4_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dar4_5",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "黒穴強化 IV"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 2,
+      "links": [
+        "dar3_3",
+        "win4_0",
+        "dar4_4",
+        "dar3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "win5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win4_1",
+        "win4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "大嵐強化 V"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win4_2",
+        "win5_0",
+        "win4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "身軽 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "win5_1",
+        "win4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "win5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win5_2",
+        "win4_2",
+        "win4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "★テンペスト・極"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 4,
+      "links": [
+        "win5_3",
+        "win4_3",
+        "win4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "duration",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "win5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win5_4",
+        "win4_4",
+        "win4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "竜巻強化 V"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win5_5",
+        "win4_5",
+        "ear4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win5_6",
+        "ear4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "ear5_0",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "岩槍強化 V"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "win5_7",
+        "ear4_0",
+        "ear4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear5_1",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "地震強化 V"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear5_0",
+        "ear4_1",
+        "ear4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear5_2",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear5_1",
+        "ear4_2",
+        "ear4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ear5_3",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "★アースクエイク・極"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 4,
+      "links": [
+        "ear5_2",
+        "ear4_3",
+        "ear4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "ear5_4",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear5_3",
+        "ear4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ear5_5",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear5_4",
+        "ear4_4",
+        "ear4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ear5_6",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear5_5",
+        "ear4_5",
+        "wat4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "wat5_0",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "ear5_6",
+        "wat4_0",
+        "wat4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat5_1",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "大波強化 V"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 2,
+      "links": [
+        "wat5_0",
+        "wat4_1",
+        "wat4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "wat5_2",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "癒し V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "wat5_1",
+        "wat4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "wat5_3",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "★タイダルウェイブ・極"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 4,
+      "links": [
+        "wat5_2",
+        "wat4_2",
+        "wat4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "wat5_4",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat5_3",
+        "wat4_3",
+        "wat4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat5_5",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat5_4",
+        "wat4_4",
+        "wat4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat5_6",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "大渦強化 V"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "wat5_5",
+        "wat4_5",
+        "dar4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "dar5_0",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "待ち時間短縮 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "wat5_6",
+        "dar4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar5_1",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar4_0",
+        "dar4_1",
+        "dar5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "dar5_2",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar4_1",
+        "dar4_2",
+        "dar5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "dar5_3",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "影縛り強化 V"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "dar4_2",
+        "dar4_3",
+        "dar5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "dar5_4",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "★ブラックホール・極"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 4,
+      "links": [
+        "dar4_3",
+        "dar4_4",
+        "dar5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "dar5_5",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "黒穴強化 V"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 2,
+      "links": [
+        "dar4_4",
+        "dar5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "dar5_6",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "待ち時間短縮 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "dar4_5",
+        "dar5_5",
+        "dar4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar5_7",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "win4_0",
+        "win5_0",
+        "dar5_6",
+        "dar4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "win6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "大嵐強化 VI"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win5_0",
+        "dar5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "win5_1",
+        "win6_0",
+        "win5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "win6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win5_2",
+        "win6_1",
+        "win5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win6_2",
+        "win5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "★風の大精霊"
+      },
+      "icon": "minecraft:elytra",
+      "cost": 6,
+      "links": [
+        "win6_3",
+        "win5_2",
+        "win5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "win6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "竜巻強化 VI"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win6_4",
+        "win5_3",
+        "win5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win6_5",
+        "win5_4",
+        "win5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "win6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "大嵐強化 VI"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win6_6",
+        "win5_5",
+        "win5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "win6_7",
+        "win5_6",
+        "win5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "ear6_0",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "岩槍強化 VI"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "win6_8",
+        "win5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear6_1",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "地震強化 VI"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear6_0",
+        "win5_7",
+        "ear5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear6_2",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear6_1",
+        "ear5_0",
+        "ear5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ear6_3",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear6_2",
+        "ear5_1",
+        "ear5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ear6_4",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "★土の大精霊"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "links": [
+        "ear6_3",
+        "ear5_2",
+        "ear5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "ear6_5",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear6_4",
+        "ear5_3",
+        "ear5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ear6_6",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear6_5",
+        "ear5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ear6_7",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "岩槍強化 VI"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "ear6_6",
+        "ear5_4",
+        "ear5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear6_8",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "地震強化 VI"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear6_7",
+        "ear5_5",
+        "ear5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "wat6_0",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "ear6_8",
+        "ear5_6",
+        "wat5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat6_1",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "大波強化 VI"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 2,
+      "links": [
+        "wat6_0",
+        "wat5_0",
+        "wat5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "wat6_2",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "癒し VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "wat6_1",
+        "wat5_1",
+        "wat5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "wat6_3",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat6_2",
+        "wat5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat6_4",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "★水の大精霊"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "links": [
+        "wat6_3",
+        "wat5_2",
+        "wat5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 60
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 2.5
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "wat6_5",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat6_4",
+        "wat5_3",
+        "wat5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat6_6",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "大渦強化 VI"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 2,
+      "links": [
+        "wat6_5",
+        "wat5_4",
+        "wat5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "wat6_7",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat6_6",
+        "wat5_5",
+        "wat5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat6_8",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "大波強化 VI"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 2,
+      "links": [
+        "wat6_7",
+        "wat5_6",
+        "dar5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "dar6_0",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "wat6_8",
+        "dar5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "dar6_1",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "影縛り強化 VI"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "dar5_0",
+        "dar5_1",
+        "dar6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "dar6_2",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "黒穴強化 VI"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 2,
+      "links": [
+        "dar5_1",
+        "dar5_2",
+        "dar6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "dar6_3",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "待ち時間短縮 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "dar5_2",
+        "dar5_3",
+        "dar6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar6_4",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "★闇の大精霊"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 6,
+      "links": [
+        "dar5_3",
+        "dar5_4",
+        "dar6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.12
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "dar6_5",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar5_4",
+        "dar5_5",
+        "dar6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "dar6_6",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar5_5",
+        "dar6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "dar6_7",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "影縛り強化 VI"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "dar5_6",
+        "dar6_6",
+        "dar5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "dar6_8",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "黒穴強化 VI"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 2,
+      "links": [
+        "dar5_7",
+        "win6_0",
+        "dar6_7",
+        "dar5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "win7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win6_1",
+        "win6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "win7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 3,
+      "links": [
+        "win6_2",
+        "win7_0",
+        "win6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "win7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "竜巻強化 VII"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win6_3",
+        "win7_1",
+        "win6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "win7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 3,
+      "links": [
+        "win7_2",
+        "win6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "win7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "大嵐強化 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win7_3",
+        "win6_3",
+        "win6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "win7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "win7_4",
+        "win6_4",
+        "win6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "win7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win7_5",
+        "win6_5",
+        "win6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "win7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 3,
+      "links": [
+        "win7_6",
+        "win6_6",
+        "win6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "win7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "竜巻強化 VII"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win7_7",
+        "win6_7",
+        "win6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "win7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 3,
+      "links": [
+        "win7_8",
+        "win6_8",
+        "ear6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "ear7_0",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "win7_9",
+        "ear6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ear7_1",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "ear7_0",
+        "ear6_0",
+        "ear6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ear7_2",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear7_1",
+        "ear6_1",
+        "ear6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ear7_3",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "ear7_2",
+        "ear6_2",
+        "ear6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ear7_4",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "岩槍強化 VII"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "ear7_3",
+        "ear6_3",
+        "ear6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "ear7_5",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "地震強化 VII"
+      },
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 3,
+      "links": [
+        "ear7_4",
+        "ear6_4",
+        "ear6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "ear7_6",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear7_5",
+        "ear6_5",
+        "ear6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ear7_7",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "ear7_6",
+        "ear6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ear7_8",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear7_7",
+        "ear6_6",
+        "ear6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ear7_9",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "ear7_8",
+        "ear6_7",
+        "ear6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ear7_10",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "岩槍強化 VII"
+      },
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "links": [
+        "ear7_9",
+        "ear6_8",
+        "wat6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wat7_0",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "ear7_10",
+        "wat6_0",
+        "wat6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "wat7_1",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "wat7_0",
+        "wat6_1",
+        "wat6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wat7_2",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat7_1",
+        "wat6_2",
+        "wat6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wat7_3",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "大渦強化 VII"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 3,
+      "links": [
+        "wat7_2",
+        "wat6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wat7_4",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat7_3",
+        "wat6_3",
+        "wat6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wat7_5",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "大波強化 VII"
+      },
+      "icon": "minecraft:conduit",
+      "cost": 3,
+      "links": [
+        "wat7_4",
+        "wat6_4",
+        "wat6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wat7_6",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "wat7_5",
+        "wat6_5",
+        "wat6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "wat7_7",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "wat7_6",
+        "wat6_6",
+        "wat6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wat7_8",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat7_7",
+        "wat6_7",
+        "wat6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wat7_9",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "大渦強化 VII"
+      },
+      "icon": "minecraft:nautilus_shell",
+      "cost": 3,
+      "links": [
+        "wat7_8",
+        "wat6_8",
+        "dar6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/maelstrom",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wat7_10",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat7_9",
+        "dar6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "dar7_0",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "待ち時間短縮 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "dar6_0",
+        "dar6_1",
+        "wat7_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "dar7_1",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 3,
+      "links": [
+        "dar6_1",
+        "dar6_2",
+        "dar7_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar7_2",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar6_2",
+        "dar6_3",
+        "dar7_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar7_3",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "影縛り強化 VII"
+      },
+      "icon": "minecraft:chain",
+      "cost": 3,
+      "links": [
+        "dar6_3",
+        "dar6_4",
+        "dar7_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "dar7_4",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "黒穴強化 VII"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 2,
+      "links": [
+        "dar6_4",
+        "dar6_5",
+        "dar7_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "dar7_5",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "待ち時間短縮 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "dar6_5",
+        "dar6_6",
+        "dar7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "dar7_6",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar6_6",
+        "dar7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar7_7",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 3,
+      "links": [
+        "dar6_7",
+        "dar7_6",
+        "dar6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar7_8",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "影縛り強化 VII"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "dar6_8",
+        "dar7_7",
+        "dar6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/shadow_bind",
+          "field": "duration",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "dar7_9",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "黒穴強化 VII"
+      },
+      "icon": "minecraft:dragon_egg",
+      "cost": 3,
+      "links": [
+        "win6_0",
+        "win7_0",
+        "dar7_8",
+        "dar6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    }
+  ]
+}

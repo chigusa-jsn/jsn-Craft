@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "アースウォール"
+  },
+  "description": {
+    "text": "目の前に精霊の岩壁（幅5・高さ3）を10秒出す。出てきた場所の敵は魔導書の精霊弾の0.5倍で突き上げられる。"
+  },
+  "icon": "minecraft:mossy_stone_bricks",
+  "type": "active",
+  "effect": "spirit_earth_wall",
+  "mana": 12,
+  "cooldown": 14,
+  "power": 0.5,
+  "radius": 5,
+  "amplifier": 3,
+  "duration": 10
+}

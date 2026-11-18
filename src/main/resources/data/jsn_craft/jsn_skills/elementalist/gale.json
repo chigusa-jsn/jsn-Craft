@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ゲイル"
+  },
+  "description": {
+    "text": "前方（6ブロック）に突風。敵に魔導書の精霊弾の0.8倍、遠くへ吹き飛ばして浮かせる。近くの精霊の岩壁を砕いて「岩の雨」。"
+  },
+  "icon": "minecraft:wind_charge",
+  "type": "active",
+  "effect": "spirit_gale",
+  "mana": 12,
+  "cooldown": 10,
+  "power": 0.8,
+  "radius": 6
+}

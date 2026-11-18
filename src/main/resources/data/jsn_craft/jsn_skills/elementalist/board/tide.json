@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "潤い"
+  },
+  "description": {
+    "text": "濡れている敵への魔法のダメージ +15%。"
+  },
+  "icon": "minecraft:prismarine_crystals",
+  "type": "passive",
+  "effect": "spirit_tide",
+  "power": 0.15
+}

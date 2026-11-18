@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "★タイダルウェイブ"
+  },
+  "description": {
+    "text": "2.5秒詠唱。前へ大波を走らせる（16ブロック・幅9）。敵に魔導書の精霊弾の5倍、遠くへ押し流して濡らす。"
+  },
+  "icon": "minecraft:conduit",
+  "type": "active",
+  "effect": "spirit_tidal_wave",
+  "mana": 45,
+  "cooldown": 60,
+  "power": 5.0,
+  "radius": 16,
+  "cast_time": 2.5
+}

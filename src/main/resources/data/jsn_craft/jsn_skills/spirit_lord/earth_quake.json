@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★アースクエイク"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（10ブロック）の地面を6回ゆらす。地面にいる敵に1回魔導書の精霊弾の1.4倍＋浮かせて足止め。"
+  },
+  "icon": "minecraft:cracked_stone_bricks",
+  "type": "active",
+  "effect": "spirit_earthquake",
+  "mana": 45,
+  "cooldown": 60,
+  "power": 1.4,
+  "radius": 10,
+  "amplifier": 6,
+  "cast_time": 2.5
+}

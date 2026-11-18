@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ドレイン"
+  },
+  "description": {
+    "text": "ねらった敵から命を吸う。魔導書の精霊弾の1.2倍、与えたダメージの50%だけHPが回復。"
+  },
+  "icon": "minecraft:fermented_spider_eye",
+  "type": "active",
+  "effect": "spirit_drain",
+  "mana": 8,
+  "cooldown": 6,
+  "power": 1.2,
+  "chance": 0.5
+}

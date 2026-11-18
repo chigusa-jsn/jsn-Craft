@@ -33,10 +33,10 @@ public enum Circle {
             case "thunder", "lightning", "bolt", "chain", "judgment" -> THUNDER;
             case "star", "stellar", "meteor", "gravity" -> STAR;
             case "holy", "light", "heal", "sanctuary" -> HOLY;
-            case "water", "aqua", "tidal" -> WATER;
+            case "water", "aqua", "tidal", "maelstrom", "healing" -> WATER;
             case "earth", "stone", "ground" -> EARTH;
             case "wind", "aero", "gale", "tornado", "tempest" -> WIND;
-            case "dark", "shadow", "curse", "drain" -> DARK;
+            case "dark", "shadow", "curse", "drain", "black" -> DARK;
             default -> null;
         };
     }
@@ -52,6 +52,7 @@ public enum Circle {
             case "angler", "net_master" -> WATER;
             case "miner", "vein_king" -> EARTH;
             case "mage", "archmage" -> STAR;
+            case "elementalist", "spirit_lord" -> WIND;
             default -> HOLY;
         };
     }

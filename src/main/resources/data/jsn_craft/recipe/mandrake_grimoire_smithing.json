@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:old_grimoire"
+  },
+  "addition": {
+    "item": "jsn_craft:mandrake"
+  },
+  "result": {
+    "id": "jsn_craft:mandrake_grimoire",
+    "count": 1
+  }
+}

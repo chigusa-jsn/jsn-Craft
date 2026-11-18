@@ -1,0 +1,481 @@
+{
+  "job": "spirit_lord",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "契約者の心得",
+    "icon": "jsn_craft:star_silver_grimoire",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:magic_power",
+        "amount": 0.08
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 40
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.8
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "win",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:breeze_rod",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "竜巻強化",
+          "icon": "minecraft:wind_charge",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/tornado",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "大嵐強化",
+          "icon": "minecraft:breeze_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/tempest",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.003
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "ear",
+      "pool": [
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "岩槍強化",
+          "icon": "minecraft:pointed_dripstone",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/ground_spike",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "地震強化",
+          "icon": "minecraft:cracked_stone_bricks",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/earth_quake",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.004
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "wat",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:prismarine_crystals",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "大渦強化",
+          "icon": "minecraft:nautilus_shell",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/maelstrom",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "大波強化",
+          "icon": "minecraft:conduit",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/tidal_wave",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "癒し",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:healing_power",
+              "amount": 0.02
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "dar",
+      "pool": [
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.008
+            }
+          ]
+        },
+        {
+          "name": "影縛り強化",
+          "icon": "minecraft:chain",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/shadow_bind",
+              "field": "duration",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "黒穴強化",
+          "icon": "minecraft:dragon_egg",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:spirit_lord/black_hole",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "トルネード奥伝",
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tornado",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "グランドスパイク奥伝",
+      "icon": "minecraft:pointed_dripstone",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/ground_spike",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "魔力の奔流",
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "深淵の呪い",
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/deep_curse"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": 1,
+      "name": "詠唱破棄",
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:spirit_lord/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★テンペスト・極",
+      "icon": "minecraft:breeze_rod",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tempest",
+          "field": "duration",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★アースクエイク・極",
+      "icon": "minecraft:cracked_stone_bricks",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/earth_quake",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★タイダルウェイブ・極",
+      "icon": "minecraft:conduit",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "radius",
+          "amount": 8
+        },
+        {
+          "skill": "jsn_craft:spirit_lord/tidal_wave",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 3,
+      "ring": 5,
+      "offset": 0,
+      "name": "★ブラックホール・極",
+      "icon": "minecraft:dragon_egg",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:spirit_lord/black_hole",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 0,
+      "name": "★風の大精霊",
+      "icon": "minecraft:elytra",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★土の大精霊",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "★水の大精霊",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 60
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 2.5
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 3,
+      "ring": 6,
+      "offset": 0,
+      "name": "★闇の大精霊",
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.12
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    }
+  ]
+}

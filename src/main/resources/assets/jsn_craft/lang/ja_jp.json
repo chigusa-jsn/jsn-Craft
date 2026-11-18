@@ -366,5 +366,13 @@
   "item.jsn_craft.moon_silver_template": "月銀の鍛冶型",
   "item.jsn_craft.star_silver_template": "星銀の鍛冶型",
   "itemGroup.jsn_craft.weapons": "jsn-Craft：職業武器",
-  "key.jsn_craft.skill_page": "スキルのページ切り替え"
+  "key.jsn_craft.skill_page": "スキルのページ切り替え",
+  "item.jsn_craft.old_grimoire": "古びた魔導書",
+  "item.jsn_craft.mandrake_grimoire": "マンドラゴラの魔導書",
+  "item.jsn_craft.spirit_grimoire": "精霊石の魔導書",
+  "item.jsn_craft.netherite_grimoire": "ネザライトの魔導書",
+  "item.jsn_craft.moon_silver_grimoire": "月銀の魔導書",
+  "item.jsn_craft.star_silver_grimoire": "星銀の魔導書",
+  "item.jsn_craft.spirit_stone": "精霊石",
+  "block.jsn_craft.spirit_rock": "精霊の岩壁"
 }

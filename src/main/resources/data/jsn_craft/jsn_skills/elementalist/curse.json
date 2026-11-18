@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "カース"
+  },
+  "description": {
+    "text": "ねらった敵と周り（3ブロック）を12秒間 呪う。呪われた敵は魔法のダメージ +25%、攻撃が弱くなる。"
+  },
+  "icon": "minecraft:wither_rose",
+  "type": "active",
+  "effect": "spirit_curse",
+  "mana": 10,
+  "cooldown": 12,
+  "radius": 3,
+  "duration": 12
+}

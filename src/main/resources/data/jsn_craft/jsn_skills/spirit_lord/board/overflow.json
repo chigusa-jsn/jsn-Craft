@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "魔力の奔流"
+  },
+  "description": {
+    "text": "マナが80%以上のとき、魔法のダメージ +15%。"
+  },
+  "icon": "minecraft:dragon_breath",
+  "type": "passive",
+  "effect": "mage_overflow",
+  "power": 0.15
+}

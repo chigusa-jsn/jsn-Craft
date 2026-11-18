@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "メイルシュトローム"
+  },
+  "description": {
+    "text": "1.2秒詠唱。目線の先に大渦（5ブロック）を5秒。敵を真ん中へ引き込み、0.5秒ごと魔導書の精霊弾の0.7倍＋濡らす。"
+  },
+  "icon": "minecraft:nautilus_shell",
+  "type": "active",
+  "effect": "spirit_maelstrom",
+  "mana": 24,
+  "cooldown": 16,
+  "power": 0.7,
+  "radius": 5,
+  "duration": 5,
+  "cast_time": 1.2
+}

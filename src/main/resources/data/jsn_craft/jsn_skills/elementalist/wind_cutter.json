@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ウインドカッター"
+  },
+  "description": {
+    "text": "風の刃を撃つ。敵を2体まで貫き、魔導書の精霊弾の1.3倍＋押し飛ばす。"
+  },
+  "icon": "minecraft:breeze_rod",
+  "type": "active",
+  "effect": "spirit_wind_cutter",
+  "mana": 5,
+  "cooldown": 1.5,
+  "power": 1.3,
+  "amplifier": 2
+}

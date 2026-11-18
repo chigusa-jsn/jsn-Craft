@@ -366,5 +366,13 @@
   "item.jsn_craft.moon_silver_template": "Moon Silver Template",
   "item.jsn_craft.star_silver_template": "Star Silver Template",
   "itemGroup.jsn_craft.weapons": "jsn-Craft: Job Weapons",
-  "key.jsn_craft.skill_page": "Next Skill Page"
+  "key.jsn_craft.skill_page": "Next Skill Page",
+  "item.jsn_craft.old_grimoire": "Old Grimoire",
+  "item.jsn_craft.mandrake_grimoire": "Mandrake Grimoire",
+  "item.jsn_craft.spirit_grimoire": "Spirit Stone Grimoire",
+  "item.jsn_craft.netherite_grimoire": "Netherite Grimoire",
+  "item.jsn_craft.moon_silver_grimoire": "Moon Silver Grimoire",
+  "item.jsn_craft.star_silver_grimoire": "Star Silver Grimoire",
+  "item.jsn_craft.spirit_stone": "Spirit Stone",
+  "block.jsn_craft.spirit_rock": "Spirit Rock"
 }

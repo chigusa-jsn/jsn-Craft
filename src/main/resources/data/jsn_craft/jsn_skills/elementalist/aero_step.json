@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "エアロステップ"
+  },
+  "description": {
+    "text": "風に乗って目線の方向へダッシュ（空中でも使える）。3秒間ゆっくり落ちる。"
+  },
+  "icon": "minecraft:feather",
+  "type": "active",
+  "effect": "spirit_aero_step",
+  "mana": 6,
+  "cooldown": 4,
+  "power": 1.6,
+  "duration": 3
+}

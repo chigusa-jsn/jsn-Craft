@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "追い風"
+  },
+  "description": {
+    "text": "宙に浮いている敵への風の魔法のダメージ +25%。"
+  },
+  "icon": "minecraft:phantom_membrane",
+  "type": "passive",
+  "effect": "spirit_tailwind",
+  "power": 0.25
+}

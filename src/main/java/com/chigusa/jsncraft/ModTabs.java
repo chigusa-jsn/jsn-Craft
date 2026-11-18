@@ -122,6 +122,8 @@ public final class ModTabs {
             () -> new ItemStack(com.chigusa.jsncraft.weapon.ModWeapons.STAFFS.get(5).get()), out -> {
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.TEMPLATES);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.STAFFS);
+                out.accept(com.chigusa.jsncraft.weapon.ModWeapons.SPIRIT_STONE.get());
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.GRIMOIRES);
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANCH = tab("ranch", "jsn-Craft：牧場",

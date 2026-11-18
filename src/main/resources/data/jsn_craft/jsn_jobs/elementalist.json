@@ -1,0 +1,1406 @@
+{
+  "name": {
+    "text": "精霊の術師",
+    "color": "green"
+  },
+  "type": "combat",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 15
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 20
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:elementalist/wind_cutter",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:elementalist/stone_bullet",
+      "level": 3
+    },
+    {
+      "skill": "jsn_craft:elementalist/aqua_shot",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:elementalist/shadow_bolt",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:elementalist/gale",
+      "level": 12
+    },
+    {
+      "skill": "jsn_craft:elementalist/earth_wall",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:elementalist/healing_rain",
+      "level": 18
+    },
+    {
+      "skill": "jsn_craft:elementalist/curse",
+      "level": 21
+    },
+    {
+      "skill": "jsn_craft:elementalist/aero_step",
+      "level": 24
+    },
+    {
+      "skill": "jsn_craft:elementalist/stone_skin",
+      "level": 27
+    },
+    {
+      "skill": "jsn_craft:elementalist/aqua_veil",
+      "level": 30
+    },
+    {
+      "skill": "jsn_craft:elementalist/drain",
+      "level": 33
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "精霊の心得"
+      },
+      "icon": "jsn_craft:old_grimoire",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.05
+        },
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.5
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "win1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 I"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "win1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "風刃強化 I"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 1,
+      "links": [
+        "win1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/wind_cutter",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ear1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 I"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "win1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "wat1_0",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 I"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "ear1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "dar1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 I"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "wat1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "闇弾強化 I"
+      },
+      "icon": "minecraft:ink_sac",
+      "cost": 1,
+      "links": [
+        "center",
+        "win1_0",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/shadow_bolt",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "win2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 1,
+      "links": [
+        "win1_0",
+        "dar1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "win2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "突風強化 II"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "win2_0",
+        "win1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/gale",
+          "field": "radius",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "id": "win2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "win2_1",
+        "win1_0",
+        "win1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "ear2_0",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "win2_2",
+        "win1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "ear2_1",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "石弾強化 II"
+      },
+      "icon": "minecraft:cobblestone",
+      "cost": 1,
+      "links": [
+        "ear2_0",
+        "win1_1",
+        "ear1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/stone_bullet",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ear2_2",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "岩壁強化 II"
+      },
+      "icon": "minecraft:mossy_stone_bricks",
+      "cost": 1,
+      "links": [
+        "ear2_1",
+        "ear1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "duration",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "wat2_0",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "水弾強化 II"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 1,
+      "links": [
+        "ear2_2",
+        "ear1_0",
+        "wat1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/aqua_shot",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "wat2_1",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 II"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 1,
+      "links": [
+        "wat2_0",
+        "wat1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "wat2_2",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "癒し II"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "wat2_1",
+        "wat1_0",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "dar2_0",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "吸命強化 II"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 1,
+      "links": [
+        "wat2_2",
+        "dar1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/drain",
+          "field": "power_pct",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "dar2_1",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:wither_rose",
+      "cost": 1,
+      "links": [
+        "dar1_0",
+        "dar1_1",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "dar2_2",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱 II"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "dar1_1",
+        "win2_0",
+        "dar2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "win3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win2_1",
+        "win2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "win3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win3_0",
+        "win2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "win3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "追い風"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "links": [
+        "win3_1",
+        "win2_1",
+        "win2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/tailwind"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "win3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "風刃強化 III"
+      },
+      "icon": "minecraft:wind_charge",
+      "cost": 2,
+      "links": [
+        "win3_2",
+        "win2_2",
+        "ear2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/wind_cutter",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "ear3_0",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "win3_3",
+        "ear2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "ear3_1",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear3_0",
+        "ear2_0",
+        "ear2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "ear3_2",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "泥沼の極意"
+      },
+      "icon": "minecraft:mud",
+      "cost": 3,
+      "links": [
+        "ear3_1",
+        "ear2_1",
+        "ear2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/mud"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "ear3_3",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ear3_2",
+        "ear2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "ear3_4",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ear3_3",
+        "ear2_2",
+        "wat2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "wat3_0",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "待ち時間短縮 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "ear3_4",
+        "wat2_0",
+        "wat2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "wat3_1",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat3_0",
+        "wat2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "wat3_2",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "潤い"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "wat3_1",
+        "wat2_1",
+        "wat2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/tide"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "wat3_3",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat3_2",
+        "wat2_2",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "wat3_4",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "水弾強化 III"
+      },
+      "icon": "minecraft:water_bucket",
+      "cost": 2,
+      "links": [
+        "wat3_3",
+        "dar2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/aqua_shot",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "dar3_0",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "詠唱 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar2_0",
+        "dar2_1",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "dar3_1",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "闇弾強化 III"
+      },
+      "icon": "minecraft:ink_sac",
+      "cost": 2,
+      "links": [
+        "dar2_1",
+        "dar2_2",
+        "dar3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/shadow_bolt",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "dar3_2",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "魂食い"
+      },
+      "icon": "minecraft:soul_lantern",
+      "cost": 3,
+      "links": [
+        "dar2_2",
+        "dar3_1"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/soul_eater"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dar3_3",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "吸命強化 III"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 2,
+      "links": [
+        "win2_0",
+        "win3_0",
+        "dar3_2",
+        "dar2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/drain",
+          "field": "power_pct",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "win4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win3_0",
+        "dar3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "win4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "突風強化 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "win3_1",
+        "win4_0",
+        "win3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/gale",
+          "field": "radius",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "win4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "★風の加護"
+      },
+      "icon": "minecraft:elytra",
+      "cost": 5,
+      "links": [
+        "win4_1",
+        "win3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.04
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.01
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "win4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "win4_2",
+        "win3_1",
+        "win3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "win4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "エアロステップ奥伝"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "win4_3",
+        "win3_2",
+        "win3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/aero_step",
+          "field": "power",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "win4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "links": [
+        "win4_4",
+        "win3_3",
+        "ear3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "ear4_0",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "win4_5",
+        "ear3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ear4_1",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "石弾強化 IV"
+      },
+      "icon": "minecraft:cobblestone",
+      "cost": 2,
+      "links": [
+        "ear4_0",
+        "ear3_0",
+        "ear3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/stone_bullet",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ear4_2",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "★大地の加護"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "links": [
+        "ear4_1",
+        "ear3_1",
+        "ear3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "ear4_3",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "岩壁強化 IV"
+      },
+      "icon": "minecraft:mossy_stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear4_2",
+        "ear3_2",
+        "ear3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "ear4_4",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "アースウォール奥伝"
+      },
+      "icon": "minecraft:stone_bricks",
+      "cost": 2,
+      "links": [
+        "ear4_3",
+        "ear3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "ear4_5",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "ear4_4",
+        "ear3_3",
+        "ear3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "wat4_0",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "ear4_5",
+        "ear3_4",
+        "wat3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "wat4_1",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "癒し IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "wat4_0",
+        "wat3_0",
+        "wat3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "wat4_2",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "★水の加護"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 5,
+      "links": [
+        "wat4_1",
+        "wat3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "wat4_3",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "待ち時間短縮 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "wat4_2",
+        "wat3_1",
+        "wat3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "wat4_4",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "ヒーリングレイン奥伝"
+      },
+      "icon": "minecraft:light_blue_dye",
+      "cost": 2,
+      "links": [
+        "wat4_3",
+        "wat3_2",
+        "wat3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/healing_rain",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "wat4_5",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 2,
+      "links": [
+        "wat4_4",
+        "wat3_3",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "dar4_0",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:wither_rose",
+      "cost": 2,
+      "links": [
+        "wat4_5",
+        "wat3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar4_1",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "wat3_4",
+        "dar3_0",
+        "dar4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar4_2",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "★闇の加護"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 5,
+      "links": [
+        "dar3_0",
+        "dar3_1",
+        "dar4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.06
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "dar4_3",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "dar3_1",
+        "dar3_2",
+        "dar4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "dar4_4",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "カース奥伝"
+      },
+      "icon": "minecraft:wither_rose",
+      "cost": 2,
+      "links": [
+        "dar3_2",
+        "dar4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/curse",
+          "field": "duration",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:elementalist/curse",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "dar4_5",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "闇弾強化 IV"
+      },
+      "icon": "minecraft:ink_sac",
+      "cost": 2,
+      "links": [
+        "dar3_3",
+        "win4_0",
+        "dar4_4",
+        "dar3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/shadow_bolt",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "ストーンバレット"
+  },
+  "description": {
+    "text": "重い石の弾を撃つ。魔導書の精霊弾の1.6倍＋押し返す。"
+  },
+  "icon": "minecraft:cobblestone",
+  "type": "active",
+  "effect": "spirit_stone_bullet",
+  "mana": 5,
+  "cooldown": 1.8,
+  "power": 1.6
+}

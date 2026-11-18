@@ -103,10 +103,10 @@ public final class SkillService {
 
     // ---------------- 発動 ----------------
 
-    /** スキルバーのページ数：魔導士は3ページ、ほかは1ページ */
+    /** スキルバーのページ数：魔法職（魔導士・精霊の術師）は3ページ、ほかは1ページ */
     public static int pages(ServerPlayer player) {
         ResourceLocation combat = JobService.data(player).getJob(com.chigusa.jsncraft.job.JobType.COMBAT);
-        if (combat != null && (combat.getPath().equals("mage") || combat.getPath().equals("archmage"))) return 3;
+        if (combat != null && java.util.Set.of("mage", "archmage", "elementalist", "spirit_lord").contains(combat.getPath())) return 3;
         return 1;
     }
 
@@ -141,8 +141,9 @@ public final class SkillService {
                     .withStyle(ChatFormatting.GRAY), true);
             return;
         }
-        if (needsStaff(id) && !(player.getMainHandItem().getItem() instanceof com.chigusa.jsncraft.weapon.StaffItem)) {
-            fail(player, "魔法は杖を持っていないと使えません");
+        String needs = needsWeapon(id, player);
+        if (needs != null) {
+            fail(player, needs);
             return;
         }
         var res = ResourceService.get(player);
@@ -168,10 +169,15 @@ public final class SkillService {
         sync(player);
     }
 
-    /** 魔導士の魔法は杖が必要 */
-    public static boolean needsStaff(ResourceLocation id) {
+    /** 魔導士の魔法は杖、精霊の術師の魔法は魔導書が必要。足りなければその知らせ（足りていれば null） */
+    public static String needsWeapon(ResourceLocation id, ServerPlayer player) {
         String path = id == null ? "" : id.getPath();
-        return path.startsWith("mage/") || path.startsWith("archmage/");
+        var item = player.getMainHandItem().getItem();
+        boolean staff = item instanceof com.chigusa.jsncraft.weapon.StaffItem s && !s.isGrimoire();
+        boolean book = item instanceof com.chigusa.jsncraft.weapon.StaffItem s2 && s2.isGrimoire();
+        if ((path.startsWith("mage/") || path.startsWith("archmage/")) && !staff) return "魔法は杖を持っていないと使えません";
+        if ((path.startsWith("elementalist/") || path.startsWith("spirit_lord/")) && !book) return "精霊の魔法は魔導書を持っていないと使えません";
+        return null;
     }
 
     /** 詠唱破棄（ボードのパッシブ）：ためずにすぐ出る */

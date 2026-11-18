@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★テンペスト"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（9ブロック）に6秒間の大嵐。敵を巻き上げては叩きつけ、0.5秒ごと魔導書の精霊弾の1倍。岩壁は岩の雨に。"
+  },
+  "icon": "minecraft:breeze_rod",
+  "type": "active",
+  "effect": "spirit_tempest",
+  "mana": 50,
+  "cooldown": 60,
+  "power": 1.0,
+  "radius": 9,
+  "duration": 6,
+  "cast_time": 2.5
+}

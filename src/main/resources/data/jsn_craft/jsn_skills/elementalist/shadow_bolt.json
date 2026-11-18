@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "シャドウボルト"
+  },
+  "description": {
+    "text": "闇の弾を撃つ（少し敵を追いかける）。魔導書の精霊弾の1.3倍。"
+  },
+  "icon": "minecraft:ink_sac",
+  "type": "active",
+  "effect": "spirit_shadow_bolt",
+  "mana": 5,
+  "cooldown": 1.5,
+  "power": 1.3
+}

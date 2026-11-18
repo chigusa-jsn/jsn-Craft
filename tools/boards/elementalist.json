@@ -1,0 +1,455 @@
+{
+  "job": "elementalist",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "精霊の心得",
+    "icon": "jsn_craft:old_grimoire",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:magic_power",
+        "amount": 0.05
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 30
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "win",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:breeze_rod",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "風刃強化",
+          "icon": "minecraft:wind_charge",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/wind_cutter",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "突風強化",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/gale",
+              "field": "radius",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.003
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "ear",
+      "pool": [
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "石弾強化",
+          "icon": "minecraft:cobblestone",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/stone_bullet",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "岩壁強化",
+          "icon": "minecraft:mossy_stone_bricks",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/earth_wall",
+              "field": "duration",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "wat",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:prismarine_crystals",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.12
+            }
+          ]
+        },
+        {
+          "name": "水弾強化",
+          "icon": "minecraft:water_bucket",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/aqua_shot",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "癒し",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:healing_power",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "dar",
+      "pool": [
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "闇弾強化",
+          "icon": "minecraft:ink_sac",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/shadow_bolt",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "吸命強化",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:elementalist/drain",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "魔力",
+          "icon": "minecraft:wither_rose",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "追い風",
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/tailwind"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "泥沼の極意",
+      "icon": "minecraft:mud",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/mud"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "潤い",
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/tide"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "魂食い",
+      "icon": "minecraft:soul_lantern",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:elementalist/board/soul_eater"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★風の加護",
+      "icon": "minecraft:elytra",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.04
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.01
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "エアロステップ奥伝",
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/aero_step",
+          "field": "power",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★大地の加護",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "アースウォール奥伝",
+      "icon": "minecraft:stone_bricks",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:elementalist/earth_wall",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★水の加護",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "ヒーリングレイン奥伝",
+      "icon": "minecraft:light_blue_dye",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/healing_rain",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": -1,
+      "name": "★闇の加護",
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.06
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": 1,
+      "name": "カース奥伝",
+      "icon": "minecraft:wither_rose",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:elementalist/curse",
+          "field": "duration",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:elementalist/curse",
+          "field": "radius",
+          "amount": 1
+        }
+      ]
+    }
+  ]
+}

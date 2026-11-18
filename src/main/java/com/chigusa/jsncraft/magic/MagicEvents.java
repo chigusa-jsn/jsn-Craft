@@ -49,5 +49,22 @@ public final class MagicEvents {
         }
     }
 
+    /** マンドラゴラを抜くと叫ぶ：近くの人はクラクラ（耕し手・調合師は慣れているので平気） */
+    @SubscribeEvent
+    public static void onBreak(net.neoforged.neoforge.event.level.BlockEvent.BreakEvent event) {
+        var crop = com.chigusa.jsncraft.farming.ModCrops.CROP_BLOCKS.get("mandrake");
+        if (crop == null || !event.getState().is(crop.get()) || !(event.getLevel() instanceof net.minecraft.server.level.ServerLevel level)) return;
+        var pos = event.getPos();
+        level.playSound(null, pos, SoundEvents.GHAST_SCREAM, SoundSource.BLOCKS, 1.2F, 1.8F);
+        level.sendParticles(ParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 6, 0.3, 0.3, 0.3, 1.0);
+        for (ServerPlayer p : level.getEntitiesOfClass(ServerPlayer.class, new net.minecraft.world.phys.AABB(pos).inflate(8))) {
+            var life = com.chigusa.jsncraft.job.JobService.data(p).getJob(com.chigusa.jsncraft.job.JobType.LIFE);
+            String job = life == null ? "" : life.getPath();
+            if (java.util.Set.of("farmer", "harvest_keeper", "alchemist", "alchemy_sage").contains(job)) continue;
+            p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.CONFUSION, 120, 0));
+            p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
+        }
+    }
+
     private MagicEvents() {}
 }

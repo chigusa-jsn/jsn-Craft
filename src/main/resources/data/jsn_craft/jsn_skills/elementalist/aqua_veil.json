@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "アクアヴェール"
+  },
+  "description": {
+    "text": "15秒間、水の膜をまとう。受けるダメージ -15%、火に強く、水の中で息ができる。"
+  },
+  "icon": "minecraft:heart_of_the_sea",
+  "type": "active",
+  "effect": "spirit_aqua_veil",
+  "mana": 10,
+  "cooldown": 30,
+  "power": 0.15,
+  "duration": 15
+}

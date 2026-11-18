@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ヒーリングレイン"
+  },
+  "description": {
+    "text": "周り（6ブロック）に8秒間 癒しの雨。自分と仲間は毎秒HPが1回復（回復力で増える）、敵は濡れる。"
+  },
+  "icon": "minecraft:light_blue_dye",
+  "type": "active",
+  "effect": "spirit_healing_rain",
+  "mana": 14,
+  "cooldown": 25,
+  "power": 1.0,
+  "radius": 6,
+  "duration": 8
+}

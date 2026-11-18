@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "魂食い"
+  },
+  "description": {
+    "text": "闇の魔法で敵を倒すとHPが2回復する。"
+  },
+  "icon": "minecraft:soul_lantern",
+  "type": "passive",
+  "effect": "spirit_soul_eater",
+  "power": 2
+}

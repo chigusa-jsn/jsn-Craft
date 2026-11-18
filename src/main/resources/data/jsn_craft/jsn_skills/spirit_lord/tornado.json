@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "トルネード"
+  },
+  "description": {
+    "text": "1秒詠唱。前へ進む竜巻（5秒）。敵を巻き込んで浮かせ、魔導書の精霊弾の0.6倍ずつ。岩壁を巻き込むと岩の雨。"
+  },
+  "icon": "minecraft:wind_charge",
+  "type": "active",
+  "effect": "spirit_tornado",
+  "mana": 24,
+  "cooldown": 16,
+  "power": 0.6,
+  "radius": 3,
+  "duration": 5,
+  "cast_time": 1.0
+}

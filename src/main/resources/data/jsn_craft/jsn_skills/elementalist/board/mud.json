@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "泥沼の極意"
+  },
+  "description": {
+    "text": "泥沼（濡れた敵に土）のダメージ +0.4倍、より長く強く足止めする。"
+  },
+  "icon": "minecraft:mud",
+  "type": "passive",
+  "effect": "spirit_mud",
+  "power": 0.4
+}

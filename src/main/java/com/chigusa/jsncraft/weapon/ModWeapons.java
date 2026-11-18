@@ -12,6 +12,19 @@ import java.util.List;
 public final class ModWeapons {
 
     public static final List<DeferredItem<StaffItem>> STAFFS = new ArrayList<>();
+    public static final List<DeferredItem<GrimoireItem>> GRIMOIRES = new ArrayList<>();
+
+    /** 精霊石（魔導書の3段目の素材） */
+    public static final DeferredItem<Item> SPIRIT_STONE = ModEntities.ITEMS.register("spirit_stone",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
+    /** 精霊の岩壁（アースウォール。時間で消える） */
+    public static final net.neoforged.neoforge.registries.DeferredBlock<SpiritRockBlock> SPIRIT_ROCK =
+            com.chigusa.jsncraft.cooking.ModCooking.BLOCKS.register("spirit_rock", () -> new SpiritRockBlock(
+                    net.minecraft.world.level.block.state.BlockBehaviour.Properties.of()
+                            .mapColor(net.minecraft.world.level.material.MapColor.STONE).strength(1.5F, 6.0F)
+                            .lightLevel(st -> 6).noLootTable()
+                            .sound(net.minecraft.world.level.block.SoundType.STONE)));
 
     /** 2段目・3段目の鍛冶型（作業台で作れる） */
     public static final DeferredItem<TemplateItem> TEMPLATE_2 = ModEntities.ITEMS.register("job_template_2",
@@ -29,6 +42,7 @@ public final class ModWeapons {
 
     static {
         for (StaffItem.Tier t : StaffItem.TIERS) STAFFS.add(ModEntities.ITEMS.register(t.id(), () -> new StaffItem(t)));
+        for (StaffItem.Tier t : GrimoireItem.TIERS) GRIMOIRES.add(ModEntities.ITEMS.register(t.id(), () -> new GrimoireItem(t)));
     }
 
     public static void init() {}
