@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DTD",
+    "DMD",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "T": {
+      "item": "jsn_craft:star_silver_template"
+    },
+    "M": {
+      "item": "jsn_craft:star_silver_ingot"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:star_silver_template",
+    "count": 2
+  }
+}

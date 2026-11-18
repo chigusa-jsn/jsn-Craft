@@ -354,5 +354,16 @@
   "item.jsn_craft.mutant_egg_marbled_cow": "霜降り牛のスポーンエッグ",
   "item.jsn_craft.mutant_egg_truffle_pig": "トリュフ豚のスポーンエッグ",
   "item.jsn_craft.mutant_egg_pegasus": "天馬のスポーンエッグ",
-  "item.jsn_craft.mutant_egg_queen_bee": "女王バチのスポーンエッグ"
+  "item.jsn_craft.mutant_egg_queen_bee": "女王バチのスポーンエッグ",
+  "item.jsn_craft.wood_staff": "木の杖",
+  "item.jsn_craft.crystal_staff": "水晶の杖",
+  "item.jsn_craft.orb_staff": "宝玉の杖",
+  "item.jsn_craft.netherite_staff": "ネザライトの杖",
+  "item.jsn_craft.moon_silver_staff": "月銀の杖",
+  "item.jsn_craft.star_silver_staff": "星銀の杖",
+  "item.jsn_craft.job_template_2": "職業武器の鍛冶型・二段",
+  "item.jsn_craft.job_template_3": "職業武器の鍛冶型・三段",
+  "item.jsn_craft.moon_silver_template": "月銀の鍛冶型",
+  "item.jsn_craft.star_silver_template": "星銀の鍛冶型",
+  "itemGroup.jsn_craft.weapons": "jsn-Craft：職業武器"
 }

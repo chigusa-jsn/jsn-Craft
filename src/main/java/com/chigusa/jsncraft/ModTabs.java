@@ -118,6 +118,12 @@ public final class ModTabs {
                 all(out, ModJewelry.UNIQUES);
             });
 
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = tab("weapons", "jsn-Craft：職業武器",
+            () -> new ItemStack(com.chigusa.jsncraft.weapon.ModWeapons.STAFFS.get(5).get()), out -> {
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.TEMPLATES);
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.STAFFS);
+            });
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANCH = tab("ranch", "jsn-Craft：牧場",
             () -> new ItemStack(ModRanch.GOLDEN_EGG.get()), out -> {
                 out.accept(ModRanch.FEEDER_ITEM.get());

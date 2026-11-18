@@ -29,7 +29,8 @@ public final class SmithData {
         var item = stack.getItem();
         StringBuilder sb = new StringBuilder();
         if (item instanceof SwordItem || item instanceof AxeItem || item instanceof TridentItem || item instanceof MaceItem
-                || item instanceof ProjectileWeaponItem) sb.append('W');
+                || item instanceof ProjectileWeaponItem
+                || item instanceof com.chigusa.jsncraft.weapon.StaffItem) sb.append('W');
         if (item instanceof ArmorItem) sb.append('A');
         if (item instanceof DiggerItem) sb.append('T');
         return sb.toString();

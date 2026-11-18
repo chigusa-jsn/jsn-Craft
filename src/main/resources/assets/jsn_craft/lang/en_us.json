@@ -354,5 +354,16 @@
   "item.jsn_craft.mutant_egg_marbled_cow": "Marbled Cow Spawn Egg",
   "item.jsn_craft.mutant_egg_truffle_pig": "Truffle Pig Spawn Egg",
   "item.jsn_craft.mutant_egg_pegasus": "Pegasus Spawn Egg",
-  "item.jsn_craft.mutant_egg_queen_bee": "Queen Bee Spawn Egg"
+  "item.jsn_craft.mutant_egg_queen_bee": "Queen Bee Spawn Egg",
+  "item.jsn_craft.wood_staff": "Wooden Staff",
+  "item.jsn_craft.crystal_staff": "Crystal Staff",
+  "item.jsn_craft.orb_staff": "Orb Staff",
+  "item.jsn_craft.netherite_staff": "Netherite Staff",
+  "item.jsn_craft.moon_silver_staff": "Moon Silver Staff",
+  "item.jsn_craft.star_silver_staff": "Star Silver Staff",
+  "item.jsn_craft.job_template_2": "Job Weapon Template II",
+  "item.jsn_craft.job_template_3": "Job Weapon Template III",
+  "item.jsn_craft.moon_silver_template": "Moon Silver Template",
+  "item.jsn_craft.star_silver_template": "Star Silver Template",
+  "itemGroup.jsn_craft.weapons": "jsn-Craft: Job Weapons"
 }

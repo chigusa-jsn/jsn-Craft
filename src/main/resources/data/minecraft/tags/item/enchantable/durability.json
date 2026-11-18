@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:wood_staff",
+    "jsn_craft:crystal_staff",
+    "jsn_craft:orb_staff",
+    "jsn_craft:netherite_staff",
+    "jsn_craft:moon_silver_staff",
+    "jsn_craft:star_silver_staff"
+  ]
+}

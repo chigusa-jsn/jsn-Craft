@@ -116,6 +116,23 @@ def orb_staff():       # 宝玉の杖：金の柄、輪の中にサファイア�
     a.ball(12, 53, 2.4, *GOLD)
     return a.finish(glow=(47, 17, 16, hx("#a0c8ff")))
 
+NETH = (hx("#1e1a1e"), hx("#4a424a"), hx("#7a6e78"))
+
+def netherite_staff(): # ネザライトの杖：黒い柄、とげの冠に赤く光る石
+    a = Art()
+    a.shaft(8, 57, 40, 25, 3.8, *NETH)
+    for t in (0.25, 0.55):   # 金の帯
+        x, y = 8 + 32 * t, 57 - 32 * t
+        a.shaft(x - 1.5, y + 1.5, x + 1.5, y - 1.5, 5.0, hx("#8a5a10"), hx("#e0a830"), hx("#fff0a0"))
+    for ang in (-150, -100, -45, 10, 60):   # とげの冠
+        r = math.radians(ang)
+        a.poly([(47 + 6 * math.cos(r - 0.35), 17 + 6 * math.sin(r - 0.35)), (47 + 13 * math.cos(r), 17 + 13 * math.sin(r)),
+                (47 + 6 * math.cos(r + 0.35), 17 + 6 * math.sin(r + 0.35))], NETH[1])
+    a.ball(47, 17, 7.2, *NETH)
+    a.ball(47, 17, 5.2, hx("#7a1010"), hx("#e02a20"), hx("#ff9a60"), white=hx("#fff0c0"))
+    a.ball(12, 53, 2.6, *NETH)
+    return a.finish(glow=(47, 17, 15, hx("#ff6040")))
+
 def moon_staff():      # 月銀の杖：月銀の柄、三日月にムーンストーン
     a = Art()
     a.shaft(8, 57, 40, 25, 3.4, *MOON)
@@ -135,14 +152,38 @@ def star_staff():      # 星の杖：星銀の柄、光る星の宝石と輪
     a.ball(12, 53, 2.6, hx("#8a5a10"), hx("#e0a830"), hx("#fff0a0"))
     return a.finish(glow=(47, 17, 17, hx("#fff0a0")))
 
+def template(plate, mid, light, gem):
+    """鍛冶型：斜めの板に、武器の形が彫ってある"""
+    a = Art()
+    pts = [(14, 6), (52, 10), (50, 58), (12, 54)]
+    a.poly([(x + 1.5, y + 1.5) for x, y in pts], plate[0])
+    a.poly(pts, plate[1])
+    a.poly([(16, 9), (49, 12), (48, 22), (15, 19)], plate[2])   # 上の光
+    # 彫り（杖と剣が交差）
+    a.d.line([a.P(19, 49), a.P(44, 17)], fill=plate[0] + (255,), width=3 * S)
+    a.d.line([a.P(19, 17), a.P(44, 49)], fill=plate[0] + (255,), width=3 * S)
+    a.d.line([a.P(20, 48), a.P(45, 16)], fill=mid + (255,), width=2 * S)
+    a.d.line([a.P(20, 16), a.P(45, 48)], fill=mid + (255,), width=2 * S)
+    a.ball(32, 32, 5.0, *gem)
+    for x, y in ((17, 10), (47, 13), (45, 53), (16, 50)):
+        a.ball(x, y, 1.6, plate[0], light, light)
+    return a.finish()
+
+TEMPLATES = {
+    "job_template_2": lambda: template((hx("#4a4a54"), hx("#8a8a96"), hx("#b4b4c0")), hx("#d8d8e0"), hx("#ffffff"), (hx("#6a6a74"), hx("#c0c0cc"), hx("#ffffff"))),
+    "job_template_3": lambda: template((hx("#6a4a10"), hx("#c0902a"), hx("#e8c050")), hx("#fff0a0"), hx("#fff8d0"), (hx("#106a6a"), hx("#30d0d0"), hx("#c0ffff"))),
+    "moon_silver_template": lambda: template((hx("#3a4670"), hx("#7a8ab8"), hx("#a8b8e0")), hx("#eef4ff"), hx("#ffffff"), (hx("#7a88b0"), hx("#c8d8f8"), hx("#f4f8ff"))),
+    "star_silver_template": lambda: template((hx("#3a2a50"), hx("#6a5090"), hx("#8a70b0")), hx("#ffe080"), hx("#fff4c0"), (hx("#c08010"), hx("#ffe040"), hx("#fffbe0"))),
+}
+
 STAFFS = {"wood_staff": wood_staff, "crystal_staff": crystal_staff, "orb_staff": orb_staff,
-          "moon_staff": moon_staff, "star_staff": star_staff}
+          "netherite_staff": netherite_staff, "moon_silver_staff": moon_staff, "star_silver_staff": star_staff}
 
 if __name__ == "__main__":
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
     imgs = []
-    for k, f in STAFFS.items():
+    for k, f in {**STAFFS, **TEMPLATES}.items():
         im = f(); im.save(os.path.join(out, k + ".png")); imgs.append(im)
     if "--preview" in sys.argv:
         prev = sys.argv[sys.argv.index("--preview") + 1]
@@ -153,4 +194,4 @@ if __name__ == "__main__":
             small = im.resize((48, 48), Image.NEAREST); sheet.alpha_composite(small, (i * 200 + 80, 240))
             vanilla16 = im.resize((16, 16), Image.LANCZOS).resize((48, 48), Image.NEAREST); sheet.alpha_composite(vanilla16, (i * 200 + 80, 320))
         sheet.save(prev)
-    print(list(STAFFS))
+    print(list(STAFFS) + list(TEMPLATES))
