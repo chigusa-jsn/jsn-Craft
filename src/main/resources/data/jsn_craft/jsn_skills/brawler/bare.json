@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "素手の心得"
+  },
+  "description": {
+    "text": "素手のパンチが +2 強くなり、殴るたびに「気」がたまる（10で満タン、次の技が1.3倍）。"
+  },
+  "icon": "minecraft:leather",
+  "type": "passive",
+  "effect": "fist_bare",
+  "power": 2
+}

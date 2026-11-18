@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ラッシュ"
+  },
+  "description": {
+    "text": "左右の拳で前を8回殴る。1回拳の強さ（攻撃力＋籠手のパンチ）の0.45倍。"
+  },
+  "icon": "minecraft:iron_ingot",
+  "type": "active",
+  "effect": "fist_rush",
+  "stamina": 15,
+  "cooldown": 6,
+  "power": 0.45,
+  "radius": 2.0,
+  "amplifier": 8
+}

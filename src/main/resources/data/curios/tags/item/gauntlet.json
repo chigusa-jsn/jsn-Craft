@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:leather_gauntlets",
+    "jsn_craft:iron_gauntlets",
+    "jsn_craft:obsidian_gauntlets",
+    "jsn_craft:netherite_gauntlets",
+    "jsn_craft:moon_silver_gauntlets",
+    "jsn_craft:star_silver_gauntlets"
+  ]
+}

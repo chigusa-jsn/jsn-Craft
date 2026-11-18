@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "昇龍拳"
+  },
+  "description": {
+    "text": "前の敵を炎の拳で突き上げ（拳の強さ（攻撃力＋籠手のパンチ）の1.6倍）、自分も跳ぶ。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "active",
+  "effect": "fist_uppercut",
+  "stamina": 18,
+  "cooldown": 8,
+  "power": 1.6,
+  "radius": 2.0
+}

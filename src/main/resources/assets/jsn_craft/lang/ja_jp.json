@@ -422,5 +422,13 @@
   "item.jsn_craft.sea_trident": "海神の三叉槍",
   "item.jsn_craft.netherite_sea_trident": "ネザライトの三叉槍",
   "item.jsn_craft.moon_silver_sea_trident": "月銀の三叉槍",
-  "item.jsn_craft.star_silver_sea_trident": "星銀の三叉槍"
+  "item.jsn_craft.star_silver_sea_trident": "星銀の三叉槍",
+  "item.jsn_craft.leather_gauntlets": "革の籠手",
+  "item.jsn_craft.iron_gauntlets": "鉄の籠手",
+  "item.jsn_craft.obsidian_gauntlets": "黒曜石の籠手",
+  "item.jsn_craft.netherite_gauntlets": "ネザライトの籠手",
+  "item.jsn_craft.moon_silver_gauntlets": "月銀の籠手",
+  "item.jsn_craft.star_silver_gauntlets": "星銀の籠手",
+  "curios.identifier.gauntlet": "籠手",
+  "curios.modifiers.gauntlet": "籠手をつけているとき："
 }

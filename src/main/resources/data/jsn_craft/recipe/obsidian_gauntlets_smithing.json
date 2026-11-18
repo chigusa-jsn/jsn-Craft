@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:iron_gauntlets"
+  },
+  "addition": {
+    "item": "minecraft:obsidian"
+  },
+  "result": {
+    "id": "jsn_craft:obsidian_gauntlets",
+    "count": 1
+  }
+}

@@ -53,6 +53,7 @@ public final class SkillEffects {
         if (s.effect().startsWith("bow_")) return com.chigusa.jsncraft.combat.BowSkills.cast(player, s);
         if (s.effect().startsWith("guard_")) return com.chigusa.jsncraft.combat.GuardSkills.cast(player, s);
         if (s.effect().startsWith("spear_")) return com.chigusa.jsncraft.combat.SpearSkills.cast(player, s);
+        if (s.effect().startsWith("fist_")) return com.chigusa.jsncraft.combat.FistSkills.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);
             case "dash" -> dash(player, s);

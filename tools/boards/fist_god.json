@@ -1,0 +1,322 @@
+{
+  "job": "fist_god",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "武神の心得",
+    "icon": "jsn_craft:star_silver_gauntlets",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.5
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 4
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛拳",
+          "icon": "minecraft:iron_ingot",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.45
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "吸命の拳",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.007
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "百裂拳修練",
+          "icon": "minecraft:blaze_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:fist_god/hundred",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "震脚修練",
+          "icon": "minecraft:cracked_stone_bricks",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:fist_god/stomp",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "覇王拳修練",
+          "icon": "minecraft:nether_star",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:fist_god/overlord",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bod",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.003
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "背水の拳",
+      "icon": "minecraft:redstone",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:fist_god/board/last_stand"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "戦意高揚",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:fist_god/board/battle_high"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★武神の拳",
+      "icon": "minecraft:netherite_ingot",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.15,
+          "operation": "add_multiplied_total"
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★百裂拳・極",
+      "icon": "minecraft:blaze_rod",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:fist_god/hundred",
+          "field": "amplifier",
+          "amount": 15
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★覇王拳・極",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:fist_god/overlord",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★不壊の肉体",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}

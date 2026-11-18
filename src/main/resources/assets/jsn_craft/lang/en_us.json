@@ -422,5 +422,13 @@
   "item.jsn_craft.sea_trident": "Sea God's Trident",
   "item.jsn_craft.netherite_sea_trident": "Netherite Trident",
   "item.jsn_craft.moon_silver_sea_trident": "Moon Silver Trident",
-  "item.jsn_craft.star_silver_sea_trident": "Star Silver Trident"
+  "item.jsn_craft.star_silver_sea_trident": "Star Silver Trident",
+  "item.jsn_craft.leather_gauntlets": "Leather Gauntlets",
+  "item.jsn_craft.iron_gauntlets": "Iron Gauntlets",
+  "item.jsn_craft.obsidian_gauntlets": "Obsidian Gauntlets",
+  "item.jsn_craft.netherite_gauntlets": "Netherite Gauntlets",
+  "item.jsn_craft.moon_silver_gauntlets": "Moon Silver Gauntlets",
+  "item.jsn_craft.star_silver_gauntlets": "Star Silver Gauntlets",
+  "curios.identifier.gauntlet": "Gauntlets",
+  "curios.modifiers.gauntlet": "When on gauntlets:"
 }

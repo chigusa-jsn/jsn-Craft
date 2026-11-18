@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "気の極意"
+  },
+  "description": {
+    "text": "殴ったときにたまる気が2倍。満タンで使う技が1.6倍になる。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "passive",
+  "effect": "fist_ki_master",
+  "power": 0.6
+}

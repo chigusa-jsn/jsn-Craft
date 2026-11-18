@@ -191,6 +191,8 @@ public final class SkillService {
         if ((path.startsWith("lancer/") || path.startsWith("sea_lancer/"))
                 && !(item instanceof com.chigusa.jsncraft.weapon.JobSpearItem) && !(item instanceof net.minecraft.world.item.TridentItem))
             return "槍の技は槍かトライデントを持っていないと使えません";
+        if ((path.startsWith("brawler/") || path.startsWith("fist_god/")) && !player.getMainHandItem().isEmpty())
+            return "拳の技は素手のときだけ使えます";
         return null;
     }
 

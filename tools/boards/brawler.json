@@ -1,0 +1,326 @@
+{
+  "job": "brawler",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "拳闘士の心得",
+    "icon": "jsn_craft:leather_gauntlets",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.0
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛拳",
+          "icon": "minecraft:iron_ingot",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "吸命の拳",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.015
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "ラッシュ修練",
+          "icon": "minecraft:iron_ingot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:brawler/rush",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "正拳修練",
+          "icon": "minecraft:anvil",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:brawler/straight",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "bod",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "鍛えた体",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "自然回復",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "連撃",
+      "icon": "minecraft:flint",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:brawler/board/combo"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★鉄拳",
+      "icon": "minecraft:netherite_ingot",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.1,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★ラッシュ・極",
+      "icon": "minecraft:iron_ingot",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:brawler/rush",
+          "field": "amplifier",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "双拳奥伝",
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:brawler/double",
+          "field": "radius",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "見切り",
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:brawler/board/dodge"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★鋼の肉体",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "気功奥伝",
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:brawler/qigong",
+          "field": "power",
+          "amount": 0.1
+        }
+      ]
+    }
+  ]
+}
