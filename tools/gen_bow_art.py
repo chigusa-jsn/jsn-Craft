@@ -4,7 +4,7 @@
 出力：<id>.png、<id>_pulling_0〜2.png
 """
 import math, os, sys
-from PIL import Image
+from PIL import Image, ImageOps
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_staff_art import Art, hx, NETH, MOON, WOOD, GOLD, NIGHT, constellation
 
@@ -54,7 +54,9 @@ def bow(limb, grip, string, pull, tips=None, deco=None, arrow=None, bulge=19):
     if tips:
         for p in (full[0], full[-1]): a.ball(p[0], p[1], 2.4, *tips)
     if deco: deco(a, b)
-    return a.finish()
+    # バニラの弓と同じ向き（木が左上・弦が左下→右上・矢は左上向き）にする。
+    # 逆だと手に持ったとき矢が自分のほうを向いてしまう
+    return ImageOps.mirror(a.finish())
 
 BONE = (hx("#9a9080"), hx("#e8e0c8"), hx("#ffffff"))
 BLAZE = (hx("#8a4a00"), hx("#f0a020"), hx("#fff0a0"))
