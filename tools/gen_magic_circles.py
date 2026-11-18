@@ -162,6 +162,60 @@ def holy():        # 癒し手：金色の光の輪
     p.dot(0, 0, 0.08)
     return p.finish()
 
+def waves(p):      # 水：三本の波と雫
+    c, R = p.c, p.size / 2
+    for k, yy in enumerate((-0.12, 0.0, 0.12)):
+        pts = [(c + x * R, c + (yy + 0.035 * math.sin(x * 22 + k)) * R) for x in [i / 40 * 0.56 - 0.28 for i in range(41)]]
+        p.line(pts, 0.005)
+    p.dot(0, -0.24, 0.02); p.dot(0, 0.24, 0.02)
+
+def mountain(p):   # 土：山と岩の模様
+    c, R = p.c, p.size / 2
+    def q(x, y): return (c + x * R, c + y * R)
+    p.line([q(-0.28, 0.16), q(-0.10, -0.14), q(0.0, 0.02), q(0.10, -0.22), q(0.28, 0.16), q(-0.28, 0.16)], 0.006)
+    p.line([q(-0.04, 0.16), q(0.10, -0.06), q(0.18, 0.16)], 0.004)
+    for k in range(4): p.dot(0.30, math.pi / 4 + k * math.pi / 2, 0.016)
+
+def swirl(p):      # 風：うずまき三本
+    for k in range(3):
+        a0 = k * 2 * math.pi / 3
+        pts = [p.p(0.03 + 0.27 * t, a0 + t * 2.6) for t in [i / 30 for i in range(31)]]
+        p.line(pts, 0.005)
+    p.dot(0, 0, 0.025)
+
+def crescent_eye(p):  # 闇：三日月と目
+    c, R = p.c, p.size / 2
+    p.d.arc([c - 0.28 * R, c - 0.28 * R, c + 0.28 * R, c + 0.28 * R], 100, 260, fill=p.col + (255,), width=int(0.008 * p.size))
+    p.d.arc([c - 0.20 * R, c - 0.26 * R, c + 0.12 * R, c + 0.26 * R], 110, 250, fill=p.col + (255,), width=int(0.004 * p.size))
+    def q(x, y): return (c + x * R, c + y * R)
+    p.line([q(-0.02, 0), q(0.10, -0.07), q(0.24, 0), q(0.10, 0.07), q(-0.02, 0)], 0.005)
+    p.dot(0, 0, 0.0); p.d.ellipse([c + 0.07 * R, c - 0.035 * R, c + 0.14 * R, c + 0.035 * R], fill=p.col + (255,))
+
+def nature():      # 農業・木こり・牧場：緑の葉の輪
+    p = Pen("#90f070")
+    p.circle(0.96, 0.010); p.circle(0.90)
+    for k in range(16):                                      # 葉っぱ
+        a = 2 * math.pi * k / 16
+        p.line([p.p(0.66, a), p.p(0.78, a + 0.10), p.p(0.88, a), p.p(0.78, a - 0.10), p.p(0.66, a)], 0.004)
+        p.line([p.p(0.66, a), p.p(0.86, a)], 0.002, 200)
+    p.circle(0.62, 0.008)
+    for k in range(5):                                       # つる
+        a0 = k * 2 * math.pi / 5
+        p.line([p.p(0.08 + 0.48 * t, a0 + math.sin(t * 6) * 0.25) for t in [i / 24 for i in range(25)]], 0.004)
+    p.circle(0.30); p.poly(5, 0.30, -math.pi / 2, step=2, w=0.004); p.dot(0, 0, 0.05)
+    return p.finish()
+
+def gem():         # 細工師：ピンクの宝石のカット
+    p = Pen("#ff90d0")
+    p.circle(0.96, 0.010); p.ticks(0.90, 0.96, 36, 0.004); p.circle(0.90)
+    p.poly(8, 0.86, math.pi / 8); p.poly(8, 0.62, 0)
+    for k in range(8):
+        a = math.pi / 8 + k * math.pi / 4
+        p.line([p.p(0.86, a), p.p(0.62, a - math.pi / 8)], 0.004); p.line([p.p(0.86, a), p.p(0.62, a + math.pi / 8)], 0.004)
+        p.line([p.p(0.62, a - math.pi / 8), p.p(0.30, a)], 0.003, 220)
+    p.poly(8, 0.30, math.pi / 8, w=0.006); p.dot(0, 0, 0.06)
+    return p.finish()
+
 CIRCLES = {
     "sword": sword,
     "fire": lambda: element("#ff7040", 11, 6, flame),
@@ -171,6 +225,12 @@ CIRCLES = {
     "rune": rune,
     "alchemy": alchemy,
     "holy": holy,
+    "nature": nature,
+    "gem": gem,
+    "water": lambda: element("#60a8ff", 15, 6, waves),
+    "earth": lambda: element("#e0a060", 16, 6, mountain),
+    "wind": lambda: element("#a0ffd0", 17, 6, swirl),
+    "dark": lambda: element("#9a50ff", 18, 6, crescent_eye),
 }
 
 def ground_mock(circle, path):
@@ -191,7 +251,7 @@ if __name__ == "__main__":
     os.makedirs(out, exist_ok=True)
     imgs = {}
     for k, f in CIRCLES.items():
-        imgs[k] = f(); imgs[k].save(os.path.join(out, k + ".png"))
+        imgs[k] = f(); imgs[k].save(os.path.join(out, k + ".png"), optimize=True)
     if "--preview" in sys.argv:
         prev = sys.argv[sys.argv.index("--preview") + 1]
         cols = 4; rows = (len(imgs) + cols - 1) // cols

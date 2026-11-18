@@ -209,7 +209,7 @@ public final class EnchantingService {
         Vec3 top = Vec3.atBottomCenterOf(pos).add(0, 1.05, 0);
         level.sendParticles(ParticleTypes.END_ROD, top.x, top.y + 0.4, top.z, 30, 0.3, 0.5, 0.3, 0.08);
         level.sendParticles(ParticleTypes.ENCHANT, top.x, top.y + 0.5, top.z, 80, 0.5, 0.6, 0.5, 1.2);
-        Vfx.magicCircle(level, Vec3.atBottomCenterOf(pos), 2.0F, 30, Vfx.GOLD);
+        Vfx.magicCircle(level, Vec3.atBottomCenterOf(pos), 2.0F, 30, com.chigusa.jsncraft.vfx.Circle.RUNE);
         level.playSound(null, pos, SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.BLOCKS, 1.0F, 0.7F);
         level.playSound(null, pos, SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.8F, 1.4F);
         int bonus = target - h.value().getMaxLevel();
@@ -317,7 +317,7 @@ public final class EnchantingService {
             Vfx.ring(level, p.position().add(0, 0.05, 0), 1.4F, 14, Vfx.AZURE);
             level.sendParticles(ParticleTypes.ENCHANT, p.getX(), p.getY() + 1.2, p.getZ(), 25, 0.4, 0.6, 0.4, 0.6);
         }
-        Vfx.magicCircle(level, player.position(), (float) Math.max(1.5, s.radius() * 0.4), 30, Vfx.AZURE);
+        Vfx.magicCircle(level, player.position(), (float) Math.max(1.5, s.radius() * 0.4), 30, com.chigusa.jsncraft.vfx.Circle.RUNE);
         level.playSound(null, player.blockPosition(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1.0F, 1.2F);
         level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0F, 1.0F);
         return true;
@@ -334,7 +334,7 @@ public final class EnchantingService {
             level.sendParticles(ParticleTypes.WITCH, e.getX(), e.getY() + e.getBbHeight() * 0.6, e.getZ(), 10, 0.3, 0.4, 0.3, 0.05);
             hits++;
         }
-        Vfx.magicCircle(level, player.position(), (float) s.radius(), 30, Vfx.AZURE);
+        Vfx.magicCircle(level, player.position(), (float) s.radius(), 30, com.chigusa.jsncraft.vfx.Circle.RUNE);
         Vfx.ring(level, player.position().add(0, 0.1, 0), (float) s.radius(), 16, Vfx.WHITE);
         level.sendParticles(ParticleTypes.ENCHANT, player.getX(), player.getY() + 1, player.getZ(), 120, s.radius() * 0.4, 1.0, s.radius() * 0.4, 1.5);
         level.playSound(null, player.blockPosition(), SoundEvents.EVOKER_CAST_SPELL, SoundSource.PLAYERS, 1.0F, 1.2F);
@@ -350,7 +350,7 @@ public final class EnchantingService {
             SkillEffects.attributeBuff(p, ModAttributes.HEALING_POWER, "runic_aura_heal", s.power(), AttributeModifier.Operation.ADD_VALUE, s.duration());
             level.sendParticles(ParticleTypes.END_ROD, p.getX(), p.getY() + 1, p.getZ(), 12, 0.3, 0.6, 0.3, 0.02);
         }
-        Vfx.magicCircle(level, player.position(), 2.6F, 36, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 2.6F, 36, com.chigusa.jsncraft.vfx.Circle.RUNE);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.8F, 1.5F);
         player.displayClientMessage(Component.literal("魔紋の加護：魔法の威力・回復の力 +" + Math.round(s.power() * 100) + "%（" + Math.round(s.duration()) + "秒）")
                 .withStyle(ChatFormatting.LIGHT_PURPLE), true);
@@ -361,7 +361,7 @@ public final class EnchantingService {
     public static boolean divineInscription(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "divine_inscription", 1, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 3.2F, 40, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 3.2F, 40, com.chigusa.jsncraft.vfx.Circle.RUNE);
         Vfx.ring(level, player.position().add(0, 0.05, 0), 4.0F, 24, Vfx.WHITE);
         level.sendParticles(ParticleTypes.ENCHANT, player.getX(), player.getY() + 1.5, player.getZ(), 150, 1.0, 1.2, 1.0, 1.5);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 0.8F);

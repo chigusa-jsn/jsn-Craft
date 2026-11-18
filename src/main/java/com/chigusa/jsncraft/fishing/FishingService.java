@@ -242,7 +242,7 @@ public final class FishingService {
                 level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("✦ " + player.getGameProfile().getName()
                         + " がレジェンドの魚「").withStyle(ChatFormatting.GOLD).append(main.getHoverName().copy())
                         .append(Component.literal("」（" + s.size() + "cm）を釣り上げた！").withStyle(ChatFormatting.GOLD)), false);
-                Vfx.magicCircle(level, player.position(), 3.0F, 30, Vfx.GOLD);
+                Vfx.magicCircle(level, player.position(), 3.0F, 30, com.chigusa.jsncraft.vfx.Circle.WATER);
                 level.playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.2F);
             } else if (sp.rankEnum() == FishRank.EPIC) {
                 Vfx.ring(level, player.position().add(0, 0.05, 0), 2.4F, 16, Vfx.WHITE);
@@ -259,7 +259,7 @@ public final class FishingService {
             level.sendParticles(ParticleTypes.WAX_ON, p.x, p.y + 1.2, p.z, 15, 0.5, 0.5, 0.5, 0.2);
         }
         if (s.kind() == Kind.LORD) {
-            Vfx.magicCircle(level, p, 3.0F, 30, Vfx.GOLD);
+            Vfx.magicCircle(level, p, 3.0F, 30, com.chigusa.jsncraft.vfx.Circle.WATER);
             level.playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
             level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("🐋 " + player.getGameProfile().getName()
                     + " が海の主を釣り上げた！").withStyle(ChatFormatting.GOLD), false);
@@ -354,7 +354,7 @@ public final class FishingService {
         BUFFS.computeIfAbsent(player.getUUID(), k -> new HashMap<>()).put(s.target(), new Buff(s.power(), until));
         ServerLevel level = player.serverLevel();
         Vec3 p = player.position();
-        Vfx.magicCircle(level, p, 2.0F, 24, Vfx.AZURE);
+        Vfx.magicCircle(level, p, 2.0F, 24, com.chigusa.jsncraft.vfx.Circle.WATER);
         Vfx.ring(level, p.add(0, 0.05, 0), 2.8F, 16, Vfx.AZURE);
         level.sendParticles(ParticleTypes.SPLASH, p.x, p.y + 1, p.z, 40, 0.8, 0.6, 0.8, 0.2);
         level.sendParticles(ParticleTypes.BUBBLE_POP, p.x, p.y + 1, p.z, 20, 0.6, 0.6, 0.6, 0.05);
@@ -371,7 +371,7 @@ public final class FishingService {
         if (s.amplifier() >= 1) player.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, ticks, 0));
         ServerLevel level = player.serverLevel();
         Vec3 p = player.position();
-        Vfx.magicCircle(level, p, 2.2F, 30, Vfx.AZURE);
+        Vfx.magicCircle(level, p, 2.2F, 30, com.chigusa.jsncraft.vfx.Circle.WATER);
         level.sendParticles(ParticleTypes.BUBBLE_COLUMN_UP, p.x, p.y + 0.5, p.z, 60, 0.6, 0.8, 0.6, 0.3);
         level.sendParticles(ParticleTypes.NAUTILUS, p.x, p.y + 1.5, p.z, 30, 0.6, 0.6, 0.6, 0.5);
         level.playSound(null, player.blockPosition(), SoundEvents.CONDUIT_AMBIENT_SHORT, SoundSource.PLAYERS, 1.0F, 1.2F);

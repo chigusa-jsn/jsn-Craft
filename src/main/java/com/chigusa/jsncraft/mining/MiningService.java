@@ -334,7 +334,7 @@ public final class MiningService {
         if (s.bonus() > 0) SkillEffects.attributeBuff(player, ModAttributes.MINING_FORTUNE, "power_dig_fortune", s.bonus(),
                 AttributeModifier.Operation.ADD_VALUE, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 2.0F, 24, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 2.0F, 24, com.chigusa.jsncraft.vfx.Circle.EARTH);
         Vfx.ring(level, player.position().add(0, 0.05, 0), 2.6F, 14, Vfx.RED);
         level.sendParticles(ParticleTypes.LAVA, player.getX(), player.getY() + 1, player.getZ(), 12, 0.5, 0.5, 0.5, 0);
         level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_USE, SoundSource.PLAYERS, 0.8F, 0.6F);
@@ -346,7 +346,7 @@ public final class MiningService {
     public static boolean wideDig(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "wide_dig", Math.max(1, s.amplifier()), s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 2.2F, 24, Vfx.AZURE);
+        Vfx.magicCircle(level, player.position(), 2.2F, 24, com.chigusa.jsncraft.vfx.Circle.EARTH);
         level.sendParticles(ParticleTypes.CRIT, player.getX(), player.getY() + 1, player.getZ(), 30, 0.6, 0.6, 0.6, 0.3);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 0.6F, 1.2F);
         int size = Math.max(1, s.amplifier()) * 2 + 1;
@@ -376,7 +376,7 @@ public final class MiningService {
             return false;
         }
         // ため：赤い魔法陣が光ってから爆発
-        Vfx.magicCircle(level, center, (float) r, 14, Vfx.RED);
+        Vfx.magicCircle(level, center, (float) r, 14, com.chigusa.jsncraft.vfx.Circle.EARTH);
         level.sendParticles(ParticleTypes.SMOKE, center.x, center.y, center.z, 20, r * 0.3, r * 0.3, r * 0.3, 0.02);
         level.playSound(null, c, SoundEvents.TNT_PRIMED, SoundSource.PLAYERS, 1.0F, 1.4F);
         SkillEffects.later(player, 12, () -> {

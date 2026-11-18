@@ -356,7 +356,7 @@ public final class CookingService {
             double a = k * Math.PI / 6;
             level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, o.x + Math.cos(a) * 1.5, o.y + 0.5, o.z + Math.sin(a) * 1.5, 1, 0, 0.05, 0, 0.02);
         }
-        Vfx.magicCircle(level, o, (float) s.radius() * 0.5F, 24, Vfx.GOLD);
+        Vfx.magicCircle(level, o, (float) s.radius() * 0.5F, 24, com.chigusa.jsncraft.vfx.Circle.FIRE);
         level.playSound(null, player.blockPosition(), SoundEvents.CAMPFIRE_CRACKLE, SoundSource.PLAYERS, 1.0F, 1.0F);
         level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.2F);
         return true;
@@ -366,7 +366,7 @@ public final class CookingService {
     public static boolean feast(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "feast_share", s.radius(), s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.5F, 30, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.5F, 30, com.chigusa.jsncraft.vfx.Circle.FIRE);
         Vfx.ring(level, player.position().add(0, 0.05, 0), (float) s.radius(), 20, Vfx.RED);
         level.sendParticles(ParticleTypes.FLAME, player.getX(), player.getY() + 1, player.getZ(), 30, 0.6, 0.6, 0.6, 0.05);
         level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.6F, 1.5F);
@@ -378,7 +378,7 @@ public final class CookingService {
     public static boolean divineKitchen(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "divine_kitchen", 1, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 3.0F, 40, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 3.0F, 40, com.chigusa.jsncraft.vfx.Circle.FIRE);
         Vfx.ring(level, player.position().add(0, 0.05, 0), 4.0F, 24, Vfx.WHITE);
         level.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY() + 1, player.getZ(), 40, 0.6, 1.0, 0.6, 0.08);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.6F);
@@ -397,7 +397,7 @@ public final class CookingService {
         BANQUETS.removeIf(b -> b.owner().equals(player.getUUID()));
         BANQUETS.add(new Banquet(player.getUUID(), level.dimension(), player.position(), s.radius(), Math.max(0, s.amplifier()),
                 level.getGameTime() + Math.round(s.duration() * 20)));
-        Vfx.magicCircle(level, player.position(), (float) s.radius(), 40, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), (float) s.radius(), 40, com.chigusa.jsncraft.vfx.Circle.FIRE);
         level.playSound(null, player.blockPosition(), SoundEvents.NOTE_BLOCK_BELL.value(), SoundSource.PLAYERS, 1.0F, 1.2F);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.8F, 1.2F);
         player.displayClientMessage(s.name().copy().append(" " + Math.round(s.duration()) + "秒").withStyle(ChatFormatting.GOLD), true);
@@ -420,7 +420,7 @@ public final class CookingService {
                 p.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, b.amplifier()));
                 p.addEffect(new MobEffectInstance(MobEffects.SATURATION, 1, 0));
             }
-            Vfx.magicCircle(level, b.center().add(0, 0.05, 0), (float) b.radius(), 40, Vfx.GOLD);
+            Vfx.magicCircle(level, b.center().add(0, 0.05, 0), (float) b.radius(), 40, com.chigusa.jsncraft.vfx.Circle.FIRE);
             level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, b.center().x, b.center().y + 0.5, b.center().z, 4, b.radius() * 0.4, 0.1, b.radius() * 0.4, 0.01);
             level.sendParticles(ParticleTypes.NOTE, b.center().x, b.center().y + 1.5, b.center().z, 3, b.radius() * 0.4, 0.3, b.radius() * 0.4, 0.5);
         }

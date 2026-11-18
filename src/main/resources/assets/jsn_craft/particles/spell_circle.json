@@ -1,0 +1,8 @@
+{
+  "textures": [
+    "jsn_craft:circle/sword", "jsn_craft:circle/fire", "jsn_craft:circle/ice", "jsn_craft:circle/thunder",
+    "jsn_craft:circle/star", "jsn_craft:circle/rune", "jsn_craft:circle/alchemy", "jsn_craft:circle/holy",
+    "jsn_craft:circle/nature", "jsn_craft:circle/gem", "jsn_craft:circle/water", "jsn_craft:circle/earth",
+    "jsn_craft:circle/wind", "jsn_craft:circle/dark"
+  ]
+}

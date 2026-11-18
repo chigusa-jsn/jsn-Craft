@@ -19,6 +19,7 @@ public final class ParticleSetup {
         event.registerSpriteSet(ModParticles.SLASH.get(), SlashParticle.Provider::new);
         event.registerSpriteSet(ModParticles.MAGIC_CIRCLE.get(), FlatParticle.CircleProvider::new);
         event.registerSpriteSet(ModParticles.RING.get(), FlatParticle.RingProvider::new);
+        event.registerSpriteSet(ModParticles.SPELL_CIRCLE.get(), SpellCircleParticle.Provider::new);
         event.registerSpriteSet(ModParticles.SPARK.get(), SparkParticle.Provider::new);
         // 数字の絵だけ受け取っておく（数字そのものは DamageNumbers から出す）
         event.registerSpriteSet(ModParticles.DAMAGE_DIGITS.get(), sprites -> {

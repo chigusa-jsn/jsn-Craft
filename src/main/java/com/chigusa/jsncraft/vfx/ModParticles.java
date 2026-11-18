@@ -20,6 +20,8 @@ public final class ModParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SLASH = register("slash");
     /** 足元の魔法陣（地面に平ら、ゆっくり回る） */
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MAGIC_CIRCLE = register("magic_circle");
+    /** 回る魔法陣（柄・ため・空・発動の光。CircleOptions で送る） */
+    public static final DeferredHolder<ParticleType<?>, ParticleType<CircleOptions>> SPELL_CIRCLE = PARTICLE_TYPES.register("spell_circle", CircleOptions::type);
     /** 広がる光の輪（地面に平ら） */
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RING = register("ring");
     /** 当たったときの火花 */

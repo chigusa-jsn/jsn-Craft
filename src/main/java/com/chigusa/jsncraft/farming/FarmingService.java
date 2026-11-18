@@ -168,7 +168,7 @@ public final class FarmingService {
                 }
             }
             Vec3 c = Vec3.atBottomCenterOf(center);
-            Vfx.magicCircle(level, c, r, 30, Vfx.GOLD);
+            Vfx.magicCircle(level, c, r, 30, com.chigusa.jsncraft.vfx.Circle.NATURE);
             Vfx.ring(level, c.add(0, 0.1, 0), r * 1.2F, 18, Vfx.GOLD);
             level.playSound(null, center, SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.7F, 1.6F);
             player.displayClientMessage(Component.literal("豊穣神の加護！ " + n + "か所が一瞬で実った").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD), true);
@@ -348,7 +348,7 @@ public final class FarmingService {
                 if (isGrowing(st) && level.random.nextFloat() < 0.5F) grow(level, p.immutable(), st, w.steps());
             }
             Vec3 c = Vec3.atBottomCenterOf(w.center()).add(0, 0.05, 0);
-            if ((w.until() - now) / 20 % 2 == 0) Vfx.magicCircle(level, c, r, 40, Vfx.GREEN);
+            if ((w.until() - now) / 20 % 2 == 0) Vfx.magicCircle(level, c, r, 40, com.chigusa.jsncraft.vfx.Circle.NATURE);
             level.sendParticles(ParticleTypes.HAPPY_VILLAGER, c.x, c.y + 0.5, c.z, 12, r * 0.5, 0.3, r * 0.5, 0);
         }
     }
@@ -438,7 +438,7 @@ public final class FarmingService {
         int steps = Math.max(1, s.amplifier());
         BlockPos c = player.blockPosition();
         Vec3 o = player.position().add(0, 0.05, 0);
-        Vfx.magicCircle(level, o, r, 40, Vfx.GREEN);
+        Vfx.magicCircle(level, o, r, 40, com.chigusa.jsncraft.vfx.Circle.NATURE);
         level.playSound(null, c, SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.0F, 1.2F);
         // 花びらが舞いながら、輪が3回広がる
         for (int k = 0; k < 3; k++) {
@@ -507,7 +507,7 @@ public final class FarmingService {
         long until = level.getGameTime() + Math.round(s.duration() * 20);
         WARDS.add(new Ward(player.getUUID(), level.dimension(), player.blockPosition(), r, Math.max(1, s.amplifier()), until));
         Vec3 o = player.position().add(0, 0.05, 0);
-        Vfx.magicCircle(level, o, r, 40, Vfx.GOLD);
+        Vfx.magicCircle(level, o, r, 40, com.chigusa.jsncraft.vfx.Circle.NATURE);
         Vfx.ring(level, o, r * 1.2F, 20, Vfx.GREEN);
         level.sendParticles(ParticleTypes.HAPPY_VILLAGER, o.x, o.y + 1, o.z, 40, r * 0.5, 0.5, r * 0.5, 0);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.3F);

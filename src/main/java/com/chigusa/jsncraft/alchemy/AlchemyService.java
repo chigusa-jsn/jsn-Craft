@@ -239,7 +239,7 @@ public final class AlchemyService {
         }
         level.sendParticles(ParticleTypes.FALLING_WATER, player.getX(), player.getY() + 4, player.getZ(), 200, s.radius() * 0.5, 0.5, s.radius() * 0.5, 0);
         level.sendParticles(ParticleTypes.EFFECT, player.getX(), player.getY() + 3, player.getZ(), 100, s.radius() * 0.5, 0.5, s.radius() * 0.5, 0.05);
-        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.6F, 30, Vfx.GREEN);
+        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.6F, 30, com.chigusa.jsncraft.vfx.Circle.ALCHEMY);
         level.playSound(null, player.blockPosition(), SoundEvents.WEATHER_RAIN, SoundSource.PLAYERS, 1.0F, 1.2F);
         level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.0F);
         return true;
@@ -249,7 +249,7 @@ public final class AlchemyService {
     public static boolean philosopherStone(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "philosopher_stone", 1, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 3.0F, 40, Vfx.RED);
+        Vfx.magicCircle(level, player.position(), 3.0F, 40, com.chigusa.jsncraft.vfx.Circle.ALCHEMY);
         Vfx.ring(level, player.position().add(0, 0.05, 0), 3.6F, 24, Vfx.GOLD);
         level.sendParticles(ParticleTypes.WAX_ON, player.getX(), player.getY() + 1.2, player.getZ(), 60, 0.8, 1.0, 0.8, 0.2);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.2F);

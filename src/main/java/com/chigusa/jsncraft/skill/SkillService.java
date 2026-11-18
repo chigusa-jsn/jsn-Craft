@@ -165,7 +165,8 @@ public final class SkillService {
             speed.addTransientModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(CAST_SLOW, -0.6,
                     net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
-        com.chigusa.jsncraft.vfx.Vfx.magicCircle(player.serverLevel(), player.position(), 1.8F, ticks + 6, com.chigusa.jsncraft.vfx.Vfx.AZURE);
+        com.chigusa.jsncraft.vfx.Vfx.castCircles(player.serverLevel(), player.position(), com.chigusa.jsncraft.vfx.Circle.forSkill(id),
+                ticks, com.chigusa.jsncraft.vfx.Vfx.layers(ticks));
         player.level().playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.5F, 1.8F);
         PacketDistributor.sendToPlayer(player, new com.chigusa.jsncraft.network.CastBarPayload(skill.name(), ticks));
     }
@@ -181,7 +182,13 @@ public final class SkillService {
                 var speed = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
                 if (speed != null) speed.removeModifier(CAST_SLOW);
                 SkillDefinition skill = SkillManager.INSTANCE.get(ResourceLocation.tryParse(id));
-                if (skill != null && player.isAlive()) SkillEffects.activate(player, effective(player, ResourceLocation.tryParse(id), skill));
+                if (skill != null && player.isAlive()) {
+                    ResourceLocation rid = ResourceLocation.tryParse(id);
+                    SkillDefinition eff = effective(player, rid, skill);
+                    com.chigusa.jsncraft.vfx.Vfx.releaseCircles(player.serverLevel(), player.position(), com.chigusa.jsncraft.vfx.Circle.forSkill(rid),
+                            com.chigusa.jsncraft.vfx.Vfx.layers(Math.max(1, Math.round(eff.castTime() * 20))));
+                    SkillEffects.activate(player, eff);
+                }
             }
         }
     }

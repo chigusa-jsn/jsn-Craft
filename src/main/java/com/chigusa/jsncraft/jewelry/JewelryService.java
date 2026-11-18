@@ -275,7 +275,7 @@ public final class JewelryService {
             level.sendParticles(ParticleTypes.END_ROD, c.x, c.y, c.z, 8, 0.3, 0.3, 0.3, 0.08);
         }
         level.sendParticles(ParticleTypes.FLASH, player.getX(), player.getY() + 1.2, player.getZ(), 1, 0, 0, 0, 0);
-        Vfx.magicCircle(level, player.position(), (float) s.radius(), 30, Vfx.WHITE);
+        Vfx.magicCircle(level, player.position(), (float) s.radius(), 30, com.chigusa.jsncraft.vfx.Circle.GEM);
         level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.PLAYERS, 1.0F, 0.8F);
         level.playSound(null, player.blockPosition(), SoundEvents.FIREWORK_ROCKET_TWINKLE, SoundSource.PLAYERS, 1.0F, 1.0F);
         return true;
@@ -290,7 +290,7 @@ public final class JewelryService {
             SkillEffects.attributeBuff(p, ModAttributes.MAGIC_POWER, "royal_jewel_magic", s.power(), AttributeModifier.Operation.ADD_VALUE, s.duration());
             level.sendParticles(ParticleTypes.WAX_ON, p.getX(), p.getY() + 2.1, p.getZ(), 16, 0.3, 0.1, 0.3, 0.05);
         }
-        Vfx.magicCircle(level, player.position(), 3.0F, 36, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 3.0F, 36, com.chigusa.jsncraft.vfx.Circle.GEM);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.4F);
         player.displayClientMessage(Component.literal("王の宝冠：攻撃力 +" + Jewels.num(s.power() * 20) + "・防御力 +" + Jewels.num(s.power() * 30)
                 + "・魔法の威力 +" + Math.round(s.power() * 100) + "%（" + Math.round(s.duration()) + "秒）").withStyle(ChatFormatting.GOLD), true);

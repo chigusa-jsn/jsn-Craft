@@ -252,7 +252,7 @@ public final class SmithingService {
             com.chigusa.jsncraft.skill.SkillEffects.attributeBuff(p, Attributes.ARMOR_TOUGHNESS, "forge_tough", s.power(), AttributeModifier.Operation.ADD_VALUE, s.duration());
             level.sendParticles(ParticleTypes.FLAME, p.getX(), p.getY() + 1, p.getZ(), 12, 0.3, 0.5, 0.3, 0.02);
         }
-        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.5F, 30, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), (float) s.radius() * 0.5F, 30, com.chigusa.jsncraft.vfx.Circle.FIRE);
         Vfx.sparks(level, player.position().add(0, 1, 0), 30);
         level.playSound(null, player.blockPosition(), SoundEvents.ANVIL_USE, SoundSource.PLAYERS, 1.0F, 0.8F);
         level.playSound(null, player.blockPosition(), SoundEvents.SMITHING_TABLE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -263,7 +263,7 @@ public final class SmithingService {
     public static boolean divineForge(ServerPlayer player, com.chigusa.jsncraft.skill.SkillDefinition s) {
         TimedFlags.set(player, "divine_forge", 1, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 3.0F, 40, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 3.0F, 40, com.chigusa.jsncraft.vfx.Circle.FIRE);
         Vfx.ring(level, player.position().add(0, 0.05, 0), 4.0F, 24, Vfx.WHITE);
         level.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY() + 1, player.getZ(), 40, 0.6, 1.0, 0.6, 0.08);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 0.8F);

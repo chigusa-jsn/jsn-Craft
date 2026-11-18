@@ -204,7 +204,7 @@ public final class RanchService {
     public static boolean arkBlessing(ServerPlayer player, SkillDefinition s) {
         TimedFlags.set(player, "ark_blessing", 1, s.duration());
         ServerLevel level = player.serverLevel();
-        Vfx.magicCircle(level, player.position(), 3.0F, 40, Vfx.GOLD);
+        Vfx.magicCircle(level, player.position(), 3.0F, 40, com.chigusa.jsncraft.vfx.Circle.NATURE);
         level.sendParticles(ParticleTypes.HAPPY_VILLAGER, player.getX(), player.getY() + 1.2, player.getZ(), 50, 1.5, 0.8, 1.5, 0);
         level.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.4F);
         player.displayClientMessage(Component.literal("方舟の祝福：" + Math.round(s.duration()) + "秒間、生まれる子の★がひとつ上がる！")
