@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * スキルバー（5枠）にセットしたスキルと、待ち時間。
+ * スキルバー（5枠×最大3ページ）にセットしたスキルと、待ち時間。
  * slots は "jsn_craft:sword/sweep" のようなスキルID（空文字は空き枠）。
  * 待ち時間は保存しない（ログインし直すとリセット）。
  */
 public class PlayerSkillData {
-    public static final int SLOTS = 5;
+    /** 1ページの枠の数 */
+    public static final int PAGE = 5;
+    /** 保存しておく枠の数（3ページぶん。魔導士だけ2・3ページ目も使える） */
+    public static final int SLOTS = PAGE * 3;
 
     public static final Codec<PlayerSkillData> CODEC = RecordCodecBuilder.create(i -> i.group(
             Codec.STRING.listOf().optionalFieldOf("slots", List.of()).forGetter(d -> d.slots)

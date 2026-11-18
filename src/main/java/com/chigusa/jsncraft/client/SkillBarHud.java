@@ -44,11 +44,12 @@ public final class SkillBarHud {
         for (int i = 0; i < ClientSkills.SLOTS; i++) {
             int x = x0 + i * SLOT;
             g.fill(x + 1, y0, x + SLOT - 1, y0 + SLOT - 2, 0xFF22223A);
-            SkillView v = ClientSkills.find(ClientSkills.slot(i));
+            int slot = ClientSkills.onPage(i);
+            SkillView v = ClientSkills.find(ClientSkills.slot(slot));
             if (v != null) {
                 g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 3, y0 + 2);
                 boolean lacking = ResourceSyncPayload.clientStamina < v.stamina() || ResourceSyncPayload.clientMana < v.mana();
-                float left = ClientSkills.cooldownLeft(i);
+                float left = ClientSkills.cooldownLeft(slot);
                 // ここから先はアイコンより手前に描く（アイテムの絵は奥行きが手前なので、そのままだと隠れる）
                 g.pose().pushPose();
                 g.pose().translate(0, 0, 300);
@@ -69,6 +70,12 @@ public final class SkillBarHud {
             g.pose().popPose();
         }
         g.drawString(font, "R:もどる", x0 + w + 6, y0 + 7, 0xFF8899BB, true);
+        if (ClientSkills.pages() > 1) {   // ページの印（●○○）
+            StringBuilder dots = new StringBuilder();
+            for (int p = 0; p < ClientSkills.pages(); p++) dots.append(p == ClientSkills.page ? "●" : "○");
+            String label = "G:" + dots;
+            g.drawString(font, label, x0 - 6 - font.width(label), y0 + 7, 0xFFDDAAFF, true);
+        }
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

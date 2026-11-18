@@ -973,15 +973,24 @@ public class JobScreen extends Screen {
 
     private void renderSkills(GuiGraphics g, int mouseX, int mouseY) {
         int slotY = top + 44;
-        g.drawString(font, "スキルバー（Rでスキルモード → 1〜5で使う）", left + 10, top + 32, 0xFFFF55);
+        g.drawString(font, ClientSkills.pages() > 1 ? "スキルバー（Rでスキルモード → 1〜5で使う・Gでページ）" : "スキルバー（Rでスキルモード → 1〜5で使う）",
+                left + 10, top + 32, 0xFFFF55);
         List<Component> tip = null;
+        if (ClientSkills.pages() > 1) {   // ページのボタン
+            for (int p = 0; p < ClientSkills.pages(); p++) {
+                int bx = skillSlotX(ClientSkills.SLOTS) + 6 + p * 16, by = slotY + 5;
+                boolean on = p == ClientSkills.page;
+                g.fill(bx, by, bx + 14, by + 14, on ? 0xFFAA66FF : 0xFF3A3A55);
+                g.drawCenteredString(font, String.valueOf(p + 1), bx + 7, by + 3, on ? 0xFFFFFFFF : 0xFFAAAACC);
+            }
+        }
         for (int i = 0; i < ClientSkills.SLOTS; i++) {
             int x = skillSlotX(i);
             boolean hover = mouseX >= x && mouseX < x + 24 && mouseY >= slotY && mouseY < slotY + 24;
             g.fill(x - 1, slotY - 1, x + 25, slotY + 25, pickedSkill != null && hover ? 0xFF55DD77 : 0xFF5A5A78);
             g.fill(x, slotY, x + 24, slotY + 24, 0xFF1A1A2A);
             g.drawString(font, String.valueOf(i + 1), x + 2, slotY + 1, 0xFFFF55);
-            var v = ClientSkills.find(ClientSkills.slot(i));
+            var v = ClientSkills.find(ClientSkills.slot(ClientSkills.onPage(i)));
             if (v != null) {
                 g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 4, slotY + 5);
                 if (hover) tip = List.of(v.name(), Component.literal("右クリックで外す").withStyle(ChatFormatting.GRAY));
@@ -1051,13 +1060,22 @@ public class JobScreen extends Screen {
 
     private boolean clickSkills(double mouseX, double mouseY, int button) {
         int slotY = top + 44;
+        if (ClientSkills.pages() > 1) {
+            for (int p = 0; p < ClientSkills.pages(); p++) {
+                int bx = skillSlotX(ClientSkills.SLOTS) + 6 + p * 16, by = slotY + 5;
+                if (mouseX >= bx && mouseX < bx + 14 && mouseY >= by && mouseY < by + 14) {
+                    ClientSkills.page = p;
+                    return true;
+                }
+            }
+        }
         for (int i = 0; i < ClientSkills.SLOTS; i++) {
             int x = skillSlotX(i);
             if (mouseX >= x && mouseX < x + 24 && mouseY >= slotY && mouseY < slotY + 24) {
                 if (button == 1) {
-                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(i, ""));
+                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(ClientSkills.onPage(i), ""));
                 } else if (pickedSkill != null) {
-                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(i, pickedSkill));
+                    PacketDistributor.sendToServer(new com.chigusa.jsncraft.network.SkillPayloads.Assign(ClientSkills.onPage(i), pickedSkill));
                     pickedSkill = null;
                 }
                 return true;

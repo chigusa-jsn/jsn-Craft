@@ -365,5 +365,6 @@
   "item.jsn_craft.job_template_3": "職業武器の鍛冶型・三段",
   "item.jsn_craft.moon_silver_template": "月銀の鍛冶型",
   "item.jsn_craft.star_silver_template": "星銀の鍛冶型",
-  "itemGroup.jsn_craft.weapons": "jsn-Craft：職業武器"
+  "itemGroup.jsn_craft.weapons": "jsn-Craft：職業武器",
+  "key.jsn_craft.skill_page": "スキルのページ切り替え"
 }

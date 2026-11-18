@@ -103,14 +103,25 @@ public final class SkillService {
 
     // ---------------- 発動 ----------------
 
+    /** スキルバーのページ数：魔導士は3ページ、ほかは1ページ */
+    public static int pages(ServerPlayer player) {
+        ResourceLocation combat = JobService.data(player).getJob(com.chigusa.jsncraft.job.JobType.COMBAT);
+        if (combat != null && (combat.getPath().equals("mage") || combat.getPath().equals("archmage"))) return 3;
+        return 1;
+    }
+
+    public static int usableSlots(ServerPlayer player) {
+        return pages(player) * PlayerSkillData.PAGE;
+    }
+
     public static void cast(ServerPlayer player, int slot) {
         PlayerSkillData d = data(player);
-        if (slot < 0 || slot >= PlayerSkillData.SLOTS) return;
+        if (slot < 0 || slot >= usableSlots(player)) return;
         ResourceLocation id = ResourceLocation.tryParse(d.slots.get(slot));
         SkillDefinition base = SkillManager.INSTANCE.get(id);
         SkillDefinition skill = base == null ? null : effective(player, id, base);
         if (skill == null) {
-            player.displayClientMessage(Component.literal((slot + 1) + "番にはスキルがセットされていません（Kキー →「スキル」）")
+            player.displayClientMessage(Component.literal((slot % PlayerSkillData.PAGE + 1) + "番にはスキルがセットされていません（Kキー →「スキル」）")
                     .withStyle(ChatFormatting.GRAY), true);
             return;
         }
@@ -219,7 +230,7 @@ public final class SkillService {
     // ---------------- スキルバー ----------------
 
     public static void assign(ServerPlayer player, int slot, String skill) {
-        if (slot < 0 || slot >= PlayerSkillData.SLOTS) return;
+        if (slot < 0 || slot >= usableSlots(player)) return;
         PlayerSkillData d = data(player);
         if (!skill.isEmpty()) {
             ResourceLocation id = ResourceLocation.tryParse(skill);
@@ -240,7 +251,7 @@ public final class SkillService {
             SkillDefinition def = SkillManager.INSTANCE.get(id);
             if (def == null || !def.isActive() || !knows(player, id) || d.slots.contains(id.toString())) continue;
             int free = d.slots.indexOf("");
-            if (free < 0) return;
+            if (free < 0 || free >= usableSlots(player)) return;
             d.slots.set(free, id.toString());
         }
     }
@@ -286,9 +297,11 @@ public final class SkillService {
             }
         }
         long now = player.level().getGameTime();
+        // 使えるページの枠だけ送る（クライアントは枠の数からページ数を知る）
+        List<String> slots = new ArrayList<>(d.slots.subList(0, Math.min(d.slots.size(), usableSlots(player))));
         List<Float> left = new ArrayList<>();
-        for (String id : d.slots) left.add(Math.max(0, d.readyAt.getOrDefault(id, 0L) - now) / 20F);
-        PacketDistributor.sendToPlayer(player, new SkillPayloads.State(views, new ArrayList<>(d.slots), left));
+        for (String id : slots) left.add(Math.max(0, d.readyAt.getOrDefault(id, 0L) - now) / 20F);
+        PacketDistributor.sendToPlayer(player, new SkillPayloads.State(views, slots, left));
     }
 
     private SkillService() {}

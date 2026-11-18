@@ -365,5 +365,6 @@
   "item.jsn_craft.job_template_3": "Job Weapon Template III",
   "item.jsn_craft.moon_silver_template": "Moon Silver Template",
   "item.jsn_craft.star_silver_template": "Star Silver Template",
-  "itemGroup.jsn_craft.weapons": "jsn-Craft: Job Weapons"
+  "itemGroup.jsn_craft.weapons": "jsn-Craft: Job Weapons",
+  "key.jsn_craft.skill_page": "Next Skill Page"
 }
