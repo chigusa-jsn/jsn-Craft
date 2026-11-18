@@ -1,0 +1,3625 @@
+{
+  "name": {
+    "text": "天穿の弓聖",
+    "color": "dark_green"
+  },
+  "type": "combat",
+  "tier": "advanced",
+  "max_level": 100,
+  "skill_points_per_level": 3,
+  "requires": [
+    {
+      "job": "jsn_craft:archer",
+      "level": 30
+    }
+  ],
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 24
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 32
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:bow_saint/arrow_storm",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:bow_saint/meteor_arrow",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:bow_saint/sky_pierce",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "弓聖の心得"
+      },
+      "icon": "jsn_craft:star_silver_job_bow",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.08
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.008
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "aim1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "技の冴え I"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aim1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "会心 I"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 1,
+      "links": [
+        "aim1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tec1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "aim1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "tec1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸法 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "agi1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "身軽 I"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "tec1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "agi1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "center",
+        "aim1_0",
+        "agi1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.25
+        }
+      ]
+    },
+    {
+      "id": "aim2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "痛打 II"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "aim1_0",
+        "agi1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.101
+        }
+      ]
+    },
+    {
+      "id": "aim2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "技の冴え II"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "aim2_0",
+        "aim1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "aim2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "ボス殺し II"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 1,
+      "links": [
+        "aim2_1",
+        "aim1_0",
+        "aim1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "aim2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "会心 II"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 1,
+      "links": [
+        "aim2_2",
+        "aim1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "tec2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "早業 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "aim2_3",
+        "aim1_1",
+        "tec1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "tec2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "アローストーム修練 II"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 1,
+      "links": [
+        "tec2_0",
+        "tec1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "tec2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "流星の矢修練 II"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 1,
+      "links": [
+        "tec2_1",
+        "tec1_0",
+        "tec1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "tec2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "天穿修練 II"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 1,
+      "links": [
+        "tec2_2",
+        "tec1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "agi2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "tec2_3",
+        "tec1_1",
+        "agi1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "agi2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "agi2_0",
+        "agi1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "頑健 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "agi1_0",
+        "agi1_1",
+        "agi2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.25
+        }
+      ]
+    },
+    {
+      "id": "agi2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "agi1_1",
+        "aim2_0",
+        "agi2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "aim3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "痛打 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "aim2_1",
+        "aim2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
+        }
+      ]
+    },
+    {
+      "id": "aim3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "技の冴え III"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "aim3_0",
+        "aim2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "技の冴え III"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "aim3_1",
+        "aim2_1",
+        "aim2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "天眼"
+      },
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "links": [
+        "aim3_2",
+        "aim2_2",
+        "aim2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:bow_saint/board/far_shot2"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "aim3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 1,
+      "links": [
+        "aim3_3",
+        "aim2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "痛打 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "aim3_4",
+        "aim2_3",
+        "tec2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
+        }
+      ]
+    },
+    {
+      "id": "tec3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "aim3_5",
+        "tec2_0",
+        "tec2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "tec3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec3_0",
+        "tec2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "tec3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "tec3_1",
+        "tec2_1",
+        "tec2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "tec3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "千里の貫き"
+      },
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "links": [
+        "tec3_2",
+        "tec2_2",
+        "tec2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:bow_saint/board/pierce2"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "tec3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec3_3",
+        "tec2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "tec3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "tec3_4",
+        "tec2_3",
+        "agi2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "agi3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "tec3_5",
+        "agi2_0",
+        "agi2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "agi3_0",
+        "agi2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "agi3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "agi2_1",
+        "agi2_2",
+        "agi3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "agi2_2",
+        "agi2_3",
+        "agi3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "agi3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "agi2_3",
+        "agi3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "agi3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "aim2_0",
+        "aim3_0",
+        "agi3_4",
+        "agi2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "aim4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "技の冴え IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "aim3_0",
+        "agi3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "ボス殺し IV"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim3_1",
+        "aim4_0",
+        "aim3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 1,
+      "links": [
+        "aim4_1",
+        "aim3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "痛打 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim4_2",
+        "aim3_1",
+        "aim3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
+        }
+      ]
+    },
+    {
+      "id": "aim4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "技の冴え IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "aim4_3",
+        "aim3_2",
+        "aim3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "技の冴え IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim4_4",
+        "aim3_3",
+        "aim3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 1,
+      "links": [
+        "aim4_5",
+        "aim3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "aim4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "痛打 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim4_6",
+        "aim3_4",
+        "aim3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.134
+        }
+      ]
+    },
+    {
+      "id": "tec4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "アローストーム修練 IV"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 1,
+      "links": [
+        "aim4_7",
+        "aim3_5",
+        "tec3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "tec4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "流星の矢修練 IV"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "tec4_0",
+        "tec3_0",
+        "tec3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "tec4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "天穿修練 IV"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 1,
+      "links": [
+        "tec4_1",
+        "tec3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "tec4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec4_2",
+        "tec3_1",
+        "tec3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "tec4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec4_3",
+        "tec3_2",
+        "tec3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "tec4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec4_4",
+        "tec3_3",
+        "tec3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "tec4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec4_5",
+        "tec3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "tec4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "tec4_6",
+        "tec3_4",
+        "tec3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "agi4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "tec4_7",
+        "tec3_5",
+        "agi3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi4_0",
+        "agi3_0",
+        "agi3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "agi4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "agi4_1",
+        "agi3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi3_1",
+        "agi3_2",
+        "agi4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "agi4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "agi3_2",
+        "agi3_3",
+        "agi4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "agi4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi3_3",
+        "agi3_4",
+        "agi4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "agi3_4",
+        "agi4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "agi4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi3_5",
+        "aim4_0",
+        "agi4_6",
+        "agi3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "aim5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "技の冴え V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim4_1",
+        "aim4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "ボス殺し V"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim4_2",
+        "aim5_0",
+        "aim4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "aim5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "会心 V"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 2,
+      "links": [
+        "aim5_1",
+        "aim4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "痛打 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim5_2",
+        "aim4_2",
+        "aim4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "aim5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "技の冴え V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim5_3",
+        "aim4_3",
+        "aim4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★神弓"
+      },
+      "icon": "minecraft:bow",
+      "cost": 5,
+      "links": [
+        "aim5_4",
+        "aim4_4",
+        "aim4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.15
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "aim5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "技の冴え V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim5_5",
+        "aim4_5",
+        "aim4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "会心 V"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 2,
+      "links": [
+        "aim5_6",
+        "aim4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "痛打 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim5_7",
+        "aim4_6",
+        "aim4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "aim5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "技の冴え V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim5_8",
+        "aim4_7",
+        "tec4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "tec5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "アローストーム修練 V"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 2,
+      "links": [
+        "aim5_9",
+        "tec4_0",
+        "tec4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "流星の矢修練 V"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "tec5_0",
+        "tec4_1",
+        "tec4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "天穿修練 V"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "tec5_1",
+        "tec4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec5_2",
+        "tec4_2",
+        "tec4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "tec5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec5_3",
+        "tec4_3",
+        "tec4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "tec5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★アローストーム・極"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 4,
+      "links": [
+        "tec5_4",
+        "tec4_4",
+        "tec4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "duration",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "radius",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "id": "tec5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec5_5",
+        "tec4_5",
+        "tec4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "tec5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸法 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec5_6",
+        "tec4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "tec5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "早業 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "tec5_7",
+        "tec4_6",
+        "tec4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "tec5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "アローストーム修練 V"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 2,
+      "links": [
+        "tec5_8",
+        "tec4_7",
+        "agi4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "agi5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "身軽 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tec5_9",
+        "agi4_0",
+        "agi4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi5_0",
+        "agi4_1",
+        "agi4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "agi5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi5_1",
+        "agi4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "agi5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "身軽 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi4_2",
+        "agi4_3",
+        "agi5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "身軽 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi4_3",
+        "agi4_4",
+        "agi5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★風の化身"
+      },
+      "icon": "minecraft:elytra",
+      "cost": 5,
+      "links": [
+        "agi4_4",
+        "agi4_5",
+        "agi5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 8
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "agi5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi4_5",
+        "agi4_6",
+        "agi5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "agi5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "身軽 V"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi4_6",
+        "agi5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi4_7",
+        "agi5_7",
+        "agi4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "agi5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "aim4_0",
+        "aim5_0",
+        "agi5_8",
+        "agi4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "aim6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "ボス殺し VI"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim5_0",
+        "agi5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "aim6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 2,
+      "links": [
+        "aim5_1",
+        "aim6_0",
+        "aim5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "痛打 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim5_2",
+        "aim6_1",
+        "aim5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "aim6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "技の冴え VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim6_2",
+        "aim5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "技の冴え VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim6_3",
+        "aim5_2",
+        "aim5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 2,
+      "links": [
+        "aim6_4",
+        "aim5_3",
+        "aim5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "痛打 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim6_5",
+        "aim5_4",
+        "aim5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "aim6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "技の冴え VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim6_6",
+        "aim5_5",
+        "aim5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "ボス殺し VI"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim6_7",
+        "aim5_6",
+        "aim5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "aim6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 2,
+      "links": [
+        "aim6_8",
+        "aim5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "aim6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "痛打 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim6_9",
+        "aim5_7",
+        "aim5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.161
+        }
+      ]
+    },
+    {
+      "id": "aim6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "技の冴え VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim6_10",
+        "aim5_8",
+        "aim5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "tec6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "流星の矢修練 VI"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "aim6_11",
+        "aim5_9",
+        "tec5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "天穿修練 VI"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "tec6_0",
+        "tec5_0",
+        "tec5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec6_1",
+        "tec5_1",
+        "tec5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "tec6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec6_2",
+        "tec5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "tec6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec6_3",
+        "tec5_2",
+        "tec5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "tec6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec6_4",
+        "tec5_3",
+        "tec5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "tec6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "★天穿・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "links": [
+        "tec6_5",
+        "tec5_4",
+        "tec5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "tec6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "tec6_6",
+        "tec5_5",
+        "tec5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "tec6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "アローストーム修練 VI"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 2,
+      "links": [
+        "tec6_7",
+        "tec5_6",
+        "tec5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "流星の矢修練 VI"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "tec6_8",
+        "tec5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "天穿修練 VI"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "tec6_9",
+        "tec5_7",
+        "tec5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.192
+        }
+      ]
+    },
+    {
+      "id": "tec6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec6_10",
+        "tec5_8",
+        "tec5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "agi6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tec6_11",
+        "tec5_9",
+        "agi5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi6_0",
+        "agi5_0",
+        "agi5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi6_1",
+        "agi5_1",
+        "agi5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "agi6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi6_2",
+        "agi5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi5_2",
+        "agi5_3",
+        "agi6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "agi6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi5_3",
+        "agi5_4",
+        "agi6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "agi6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi5_4",
+        "agi5_5",
+        "agi6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi5_5",
+        "agi5_6",
+        "agi6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi5_6",
+        "agi5_7",
+        "agi6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "agi6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "身軽 VI"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi5_7",
+        "agi6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "agi6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi5_8",
+        "agi6_9",
+        "agi5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.014
+        }
+      ]
+    },
+    {
+      "id": "agi6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi5_9",
+        "aim6_0",
+        "agi6_10",
+        "agi5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "aim7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "技の冴え VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim6_1",
+        "aim6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 3,
+      "links": [
+        "aim6_2",
+        "aim7_0",
+        "aim6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "痛打 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim6_3",
+        "aim7_1",
+        "aim6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.201
+        }
+      ]
+    },
+    {
+      "id": "aim7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "技の冴え VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 3,
+      "links": [
+        "aim7_2",
+        "aim6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "ボス殺し VII"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim7_3",
+        "aim6_3",
+        "aim6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "aim7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 3,
+      "links": [
+        "aim7_4",
+        "aim6_4",
+        "aim6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "痛打 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim7_5",
+        "aim6_5",
+        "aim6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.201
+        }
+      ]
+    },
+    {
+      "id": "aim7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "技の冴え VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 3,
+      "links": [
+        "aim7_6",
+        "aim6_6",
+        "aim6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "技の冴え VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "aim7_7",
+        "aim6_7",
+        "aim6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 3,
+      "links": [
+        "aim7_8",
+        "aim6_8",
+        "aim6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "痛打 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "aim7_9",
+        "aim6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.201
+        }
+      ]
+    },
+    {
+      "id": "aim7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "技の冴え VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 3,
+      "links": [
+        "aim7_10",
+        "aim6_9",
+        "aim6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "aim7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "ボス殺し VII"
+      },
+      "icon": "minecraft:wither_skeleton_skull",
+      "cost": 2,
+      "links": [
+        "aim7_11",
+        "aim6_10",
+        "aim6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:boss_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "aim7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:spectral_arrow",
+      "cost": 3,
+      "links": [
+        "aim7_12",
+        "aim6_11",
+        "tec6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "tec7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "aim7_13",
+        "tec6_0",
+        "tec6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "tec7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tec7_0",
+        "tec6_1",
+        "tec6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "tec7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec7_1",
+        "tec6_2",
+        "tec6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "tec7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "tec7_2",
+        "tec6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "tec7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "アローストーム修練 VII"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 2,
+      "links": [
+        "tec7_3",
+        "tec6_3",
+        "tec6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "tec7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "流星の矢修練 VII"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 3,
+      "links": [
+        "tec7_4",
+        "tec6_4",
+        "tec6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "tec7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "天穿修練 VII"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "tec7_5",
+        "tec6_5",
+        "tec6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "tec7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tec7_6",
+        "tec6_6",
+        "tec6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "tec7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec7_7",
+        "tec6_7",
+        "tec6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "tec7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "tec7_8",
+        "tec6_8",
+        "tec6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "tec7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec7_9",
+        "tec6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "tec7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "tec7_10",
+        "tec6_9",
+        "tec6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "tec7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "アローストーム修練 VII"
+      },
+      "icon": "minecraft:dispenser",
+      "cost": 2,
+      "links": [
+        "tec7_11",
+        "tec6_10",
+        "tec6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "tec7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "流星の矢修練 VII"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 3,
+      "links": [
+        "tec7_12",
+        "tec6_11",
+        "agi6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/meteor_arrow",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "agi7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "tec7_13",
+        "agi6_0",
+        "agi6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "agi7_0",
+        "agi6_1",
+        "agi6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi7_1",
+        "agi6_2",
+        "agi6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "agi7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "agi7_2",
+        "agi6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi6_3",
+        "agi6_4",
+        "agi7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "agi7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "agi6_4",
+        "agi6_5",
+        "agi7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "agi7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi6_5",
+        "agi6_6",
+        "agi7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "agi6_6",
+        "agi6_7",
+        "agi7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "agi6_7",
+        "agi6_8",
+        "agi7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "agi7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "agi6_8",
+        "agi6_9",
+        "agi7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "agi6_9",
+        "agi7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "agi7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "agi6_10",
+        "agi7_10",
+        "agi6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "agi7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "agi6_11",
+        "agi7_11",
+        "agi6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    },
+    {
+      "id": "agi7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "身軽 VII"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 3,
+      "links": [
+        "aim6_0",
+        "aim7_0",
+        "agi7_12",
+        "agi6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.009
+        }
+      ]
+    }
+  ]
+}

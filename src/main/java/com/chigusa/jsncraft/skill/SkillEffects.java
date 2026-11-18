@@ -50,6 +50,7 @@ public final class SkillEffects {
         if (s.effect().startsWith("spirit_")) return com.chigusa.jsncraft.magic.SpiritSpells.cast(player, s);
         if (s.effect().startsWith("holy_")) return com.chigusa.jsncraft.magic.HolySpells.cast(player, s);
         if (s.effect().startsWith("axe_")) return com.chigusa.jsncraft.combat.AxeSkills.cast(player, s);
+        if (s.effect().startsWith("bow_")) return com.chigusa.jsncraft.combat.BowSkills.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);
             case "dash" -> dash(player, s);

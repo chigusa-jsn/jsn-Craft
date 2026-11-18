@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "千里の貫き"
+  },
+  "description": {
+    "text": "矢が敵を3体よけいに貫く。"
+  },
+  "icon": "minecraft:prismarine_crystals",
+  "type": "passive",
+  "effect": "archer_pierce_up",
+  "amplifier": 3
+}

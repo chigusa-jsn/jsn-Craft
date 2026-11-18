@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "パワーショット"
+  },
+  "description": {
+    "text": "0.6秒ためて重い矢を撃つ。弓の強さ（バニラの弓・木の長弓で6）の2.2倍、敵を4体まで貫いて吹き飛ばす。"
+  },
+  "icon": "minecraft:spectral_arrow",
+  "type": "active",
+  "effect": "bow_power_shot",
+  "stamina": 20,
+  "cooldown": 8,
+  "power": 2.2,
+  "amplifier": 4,
+  "cast_time": 0.6
+}

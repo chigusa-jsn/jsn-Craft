@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "風読み"
+  },
+  "description": {
+    "text": "15秒間、撃った矢がまっすぐ速く飛び（+30%）、近くの敵を少し追いかける。"
+  },
+  "icon": "minecraft:breeze_rod",
+  "type": "active",
+  "effect": "bow_wind_read",
+  "stamina": 20,
+  "cooldown": 40,
+  "power": 0.3,
+  "duration": 15
+}

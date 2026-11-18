@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:bone_job_bow"
+  },
+  "addition": {
+    "item": "minecraft:blaze_rod"
+  },
+  "result": {
+    "id": "jsn_craft:blaze_job_bow",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "流星の矢"
+  },
+  "description": {
+    "text": "1秒ためて、光の矢を放つ。一直線（60ブロック）の敵をすべて貫いて弓の強さ（バニラの弓・木の長弓で6）の4.5倍。"
+  },
+  "icon": "minecraft:end_rod",
+  "type": "active",
+  "effect": "bow_meteor_arrow",
+  "stamina": 40,
+  "cooldown": 18,
+  "power": 4.5,
+  "radius": 60,
+  "cast_time": 1.0
+}

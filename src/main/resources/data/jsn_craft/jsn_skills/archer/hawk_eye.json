@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "鷹の目"
+  },
+  "description": {
+    "text": "弓矢が15%の確率で会心になり、ダメージ +60%。"
+  },
+  "icon": "minecraft:ender_eye",
+  "type": "passive",
+  "effect": "archer_hawk_eye",
+  "chance": 0.15,
+  "power": 0.6
+}

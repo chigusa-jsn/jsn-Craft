@@ -129,6 +129,7 @@ public final class ModTabs {
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.HOLY_STAFFS);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.JOB_SWORDS);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.JOB_AXES);
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.JOB_BOWS);
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANCH = tab("ranch", "jsn-Craft：牧場",

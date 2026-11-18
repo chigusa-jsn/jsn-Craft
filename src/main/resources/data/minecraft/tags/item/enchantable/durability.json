@@ -18,6 +18,12 @@
     "jsn_craft:crystal_holy_staff",
     "jsn_craft:netherite_holy_staff",
     "jsn_craft:moon_silver_holy_staff",
-    "jsn_craft:star_silver_holy_staff"
+    "jsn_craft:star_silver_holy_staff",
+    "jsn_craft:wood_job_bow",
+    "jsn_craft:bone_job_bow",
+    "jsn_craft:blaze_job_bow",
+    "jsn_craft:netherite_job_bow",
+    "jsn_craft:moon_silver_job_bow",
+    "jsn_craft:star_silver_job_bow"
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "アローレイン"
+  },
+  "description": {
+    "text": "目線の先（3.5ブロック）に矢の雨を4回降らせる。1本弓の強さ（バニラの弓・木の長弓で6）の0.5倍。"
+  },
+  "icon": "minecraft:dispenser",
+  "type": "active",
+  "effect": "bow_arrow_rain",
+  "stamina": 25,
+  "cooldown": 14,
+  "power": 0.5,
+  "radius": 3.5,
+  "amplifier": 4
+}

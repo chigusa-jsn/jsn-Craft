@@ -1,0 +1,356 @@
+{
+  "job": "archer",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "射手の心得",
+    "icon": "jsn_craft:wood_job_bow",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.05
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      },
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "amount": 0.005
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "aim",
+      "pool": [
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:arrow",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:spectral_arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.025
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.12
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "ダブルショット修練",
+          "icon": "minecraft:arrow",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archer/double_shot",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "パワーショット修練",
+          "icon": "minecraft:spectral_arrow",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archer/power_shot",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "スナイプ修練",
+          "icon": "minecraft:crossbow",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archer/snipe",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "省力",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_cost_reduction",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "agi",
+      "pool": [
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "革の守り",
+          "icon": "minecraft:leather_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.008
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "貫通",
+      "icon": "minecraft:prismarine_shard",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archer/board/pierce"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★狙撃手",
+      "icon": "minecraft:spyglass",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.1
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "矢筒の名人",
+      "icon": "minecraft:leather",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archer/board/quiver"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★アローレイン・極",
+      "icon": "minecraft:dispenser",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:archer/arrow_rain",
+          "field": "amplifier",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:archer/arrow_rain",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "爆裂矢奥伝",
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:archer/blast_arrow",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "身軽",
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archer/board/dodge"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★疾風",
+      "icon": "minecraft:feather",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.02
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "風読み奥伝",
+      "icon": "minecraft:breeze_rod",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:archer/wind_read",
+          "field": "duration",
+          "amount": 8
+        }
+      ]
+    }
+  ]
+}

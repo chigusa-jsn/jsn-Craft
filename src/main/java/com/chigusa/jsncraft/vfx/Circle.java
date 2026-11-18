@@ -54,6 +54,7 @@ public enum Circle {
             case "mage", "archmage" -> STAR;
             case "elementalist", "spirit_lord" -> WIND;
             case "axeman", "berserker" -> FIRE;
+            case "archer", "bow_saint" -> WIND;
             default -> HOLY;
         };
     }

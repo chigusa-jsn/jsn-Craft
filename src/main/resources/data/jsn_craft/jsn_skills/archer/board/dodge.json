@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "身軽"
+  },
+  "description": {
+    "text": "攻撃を受けたとき、8%の確率でかわす。"
+  },
+  "icon": "minecraft:phantom_membrane",
+  "type": "passive",
+  "effect": "dodge",
+  "chance": 0.08
+}

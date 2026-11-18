@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "天眼"
+  },
+  "description": {
+    "text": "弓矢の遠い敵へのダメージの上限が +40% → +80%、1ブロックごと +3%。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "passive",
+  "effect": "archer_far_shot_up",
+  "power": 0.03,
+  "chance": 0.8
+}

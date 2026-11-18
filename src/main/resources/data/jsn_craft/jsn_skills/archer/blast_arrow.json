@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "爆裂矢"
+  },
+  "description": {
+    "text": "当たると爆発する矢を撃つ（弓の強さ（バニラの弓・木の長弓で6）の1.4倍、周り2.5ブロック）。地形は壊れない。"
+  },
+  "icon": "minecraft:tnt",
+  "type": "active",
+  "effect": "bow_blast_arrow",
+  "stamina": 18,
+  "cooldown": 10,
+  "power": 1.4,
+  "radius": 2.5
+}

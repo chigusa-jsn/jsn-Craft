@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "矢筒の名人"
+  },
+  "description": {
+    "text": "ふつうに撃った矢が25%の確率で減らない。"
+  },
+  "icon": "minecraft:leather",
+  "type": "passive",
+  "effect": "archer_quiver",
+  "chance": 0.25
+}

@@ -394,5 +394,11 @@
   "item.jsn_craft.diamond_job_sword": "ダイヤの剣士の剣",
   "item.jsn_craft.netherite_job_sword": "ネザライトの剣士の剣",
   "item.jsn_craft.moon_silver_job_sword": "月銀の剣",
-  "item.jsn_craft.star_silver_job_sword": "星銀の剣"
+  "item.jsn_craft.star_silver_job_sword": "星銀の剣",
+  "item.jsn_craft.wood_job_bow": "木の長弓",
+  "item.jsn_craft.bone_job_bow": "骨の長弓",
+  "item.jsn_craft.blaze_job_bow": "ブレイズの長弓",
+  "item.jsn_craft.netherite_job_bow": "ネザライトの長弓",
+  "item.jsn_craft.moon_silver_job_bow": "月銀の長弓",
+  "item.jsn_craft.star_silver_job_bow": "星銀の長弓"
 }

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "遠矢の心得"
+  },
+  "description": {
+    "text": "弓矢は、8ブロックより遠い敵ほどダメージが上がる（1ブロックごと +2%、最大 +40%）。"
+  },
+  "icon": "minecraft:spyglass",
+  "type": "passive",
+  "effect": "archer_far_shot",
+  "power": 0.02,
+  "chance": 0.4
+}

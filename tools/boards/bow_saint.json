@@ -1,0 +1,324 @@
+{
+  "job": "bow_saint",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "弓聖の心得",
+    "icon": "jsn_craft:star_silver_job_bow",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.08
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      },
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "amount": 0.008
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "aim",
+      "pool": [
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:arrow",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:spectral_arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "アローストーム修練",
+          "icon": "minecraft:dispenser",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:bow_saint/arrow_storm",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "流星の矢修練",
+          "icon": "minecraft:end_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:bow_saint/meteor_arrow",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "天穿修練",
+          "icon": "minecraft:nether_star",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:bow_saint/sky_pierce",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "agi",
+      "pool": [
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.003
+            }
+          ]
+        },
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "天眼",
+      "icon": "minecraft:spyglass",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:bow_saint/board/far_shot2"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "千里の貫き",
+      "icon": "minecraft:prismarine_crystals",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:bow_saint/board/pierce2"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★神弓",
+      "icon": "minecraft:bow",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.15
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★アローストーム・極",
+      "icon": "minecraft:dispenser",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "duration",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:bow_saint/arrow_storm",
+          "field": "radius",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★天穿・極",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:bow_saint/sky_pierce",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★風の化身",
+      "icon": "minecraft:elytra",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 8
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}

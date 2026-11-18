@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "貫通"
+  },
+  "description": {
+    "text": "矢が敵を1体よけいに貫く。"
+  },
+  "icon": "minecraft:prismarine_shard",
+  "type": "passive",
+  "effect": "archer_pierce",
+  "amplifier": 1
+}

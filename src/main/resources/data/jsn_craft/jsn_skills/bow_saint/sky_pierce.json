@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "奥義・天穿"
+  },
+  "description": {
+    "text": "1.5秒ためて空へ矢を放つ。目線の先に巨大な光の矢が落ち、周り（7ブロック）の敵に弓の強さ（バニラの弓・木の長弓で6）の6倍＋矢の雨。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "active",
+  "effect": "bow_sky_pierce",
+  "stamina": 60,
+  "cooldown": 60,
+  "power": 6.0,
+  "radius": 7,
+  "cast_time": 1.5
+}

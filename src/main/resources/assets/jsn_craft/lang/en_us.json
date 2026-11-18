@@ -394,5 +394,11 @@
   "item.jsn_craft.diamond_job_sword": "Diamond Knight Sword",
   "item.jsn_craft.netherite_job_sword": "Netherite Knight Sword",
   "item.jsn_craft.moon_silver_job_sword": "Moon Silver Sword",
-  "item.jsn_craft.star_silver_job_sword": "Star Silver Sword"
+  "item.jsn_craft.star_silver_job_sword": "Star Silver Sword",
+  "item.jsn_craft.wood_job_bow": "Wooden Longbow",
+  "item.jsn_craft.bone_job_bow": "Bone Longbow",
+  "item.jsn_craft.blaze_job_bow": "Blaze Longbow",
+  "item.jsn_craft.netherite_job_bow": "Netherite Longbow",
+  "item.jsn_craft.moon_silver_job_bow": "Moon Silver Longbow",
+  "item.jsn_craft.star_silver_job_bow": "Star Silver Longbow"
 }
