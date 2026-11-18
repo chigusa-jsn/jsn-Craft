@@ -446,5 +446,9 @@
   "entity.jsn_craft.pet_wolf": "Companion Wolf",
   "entity.jsn_craft.pet_golem": "Mini Golem",
   "entity.jsn_craft.pet_hawk": "Companion Hawk",
-  "entity.jsn_craft.pet_bee": "Companion Bee"
+  "entity.jsn_craft.pet_bee": "Companion Bee",
+  "entity.jsn_craft.pet_white_fox": "Mini White Fox",
+  "entity.jsn_craft.pet_wind_cat": "Mini Wind Cat",
+  "entity.jsn_craft.pet_thunder_lion": "Mini Thunder Lion",
+  "entity.jsn_craft.pet_blade_dragon": "Mini Blade Dragon"
 }

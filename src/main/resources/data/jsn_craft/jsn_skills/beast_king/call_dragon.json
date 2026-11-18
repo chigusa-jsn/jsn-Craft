@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "影刃竜召喚"
+  },
+  "description": {
+    "text": "空を飛ぶ小さな影刃竜を呼ぶ（もう一度使うと戻す）。右クリックで背中に乗れる。乗ったまま、ねらった敵へ影の剣を撃ち出して戦う。"
+  },
+  "icon": "minecraft:dragon_breath",
+  "type": "active",
+  "effect": "beast_call_dragon",
+  "stamina": 35,
+  "cooldown": 3,
+  "amplifier": 1,
+  "power": 1.0
+}

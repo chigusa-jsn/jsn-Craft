@@ -39,11 +39,14 @@ neoForge {
 repositories {
     // 装飾品の枠（Curios API）
     maven { url = "https://maven.theillusivec4.top/" }
+    // 動く3Dモデル（GeckoLib）：百獣の王の相棒（jsn-boss と同じ）
+    maven { url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
 }
 
 dependencies {
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {

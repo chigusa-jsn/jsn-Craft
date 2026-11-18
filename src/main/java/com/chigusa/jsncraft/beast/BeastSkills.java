@@ -47,6 +47,11 @@ public final class BeastSkills {
             case "beast_rally" -> rally(p, s);
             case "beast_roar" -> roar(p, s);
             case "beast_frenzy" -> frenzy(p, s);
+            case "beast_call_fox" -> summon(p, s, "fox");
+            case "beast_call_cat" -> summon(p, s, "cat");
+            case "beast_call_lion" -> summon(p, s, "lion");
+            case "beast_call_dragon" -> summon(p, s, "dragon");
+            case "beast_king_command" -> kingCommand(p, s);
             default -> false;
         };
     }
@@ -59,6 +64,10 @@ public final class BeastSkills {
             case "golem" -> new double[]{50, 7};
             case "hawk" -> new double[]{14, 3.5};
             case "bee" -> new double[]{10, 2};
+            case "fox" -> new double[]{40, 6};
+            case "cat" -> new double[]{40, 7};
+            case "lion" -> new double[]{70, 9};
+            case "dragon" -> new double[]{90, 8};
             default -> new double[]{22, 4};
         };
     }
@@ -68,6 +77,10 @@ public final class BeastSkills {
             case "golem" -> ModBeasts.GOLEM.get().create(level);
             case "hawk" -> ModBeasts.HAWK.get().create(level);
             case "bee" -> ModBeasts.BEE.get().create(level);
+            case "fox" -> ModBeasts.FOX.get().create(level);
+            case "cat" -> ModBeasts.CAT.get().create(level);
+            case "lion" -> ModBeasts.LION.get().create(level);
+            case "dragon" -> ModBeasts.DRAGON.get().create(level);
             default -> ModBeasts.WOLF.get().create(level);
         };
     }
@@ -87,7 +100,7 @@ public final class BeastSkills {
         }
         double[] b = base(kind);
         double mult = s.power() > 0 ? s.power() : 1.0;
-        boolean flying = kind.equals("hawk") || kind.equals("bee");
+        boolean flying = kind.equals("hawk") || kind.equals("bee") || kind.equals("dragon");
         Vec3 feet = p.position();
         Vfx.magicCircle(level, feet.add(0, 0.05, 0), 2.2F, 30, Circle.NATURE);
         for (int i = have.size(); i < n; i++) {
@@ -111,9 +124,15 @@ public final class BeastSkills {
             case "golem" -> SoundEvents.IRON_GOLEM_REPAIR;
             case "hawk" -> SoundEvents.PHANTOM_FLAP;
             case "bee" -> SoundEvents.BEEHIVE_EXIT;
+            case "fox" -> SoundEvents.FOX_AMBIENT;
+            case "cat" -> SoundEvents.CAT_AMBIENT;
+            case "lion" -> SoundEvents.LIGHTNING_BOLT_THUNDER;
+            case "dragon" -> SoundEvents.ENDER_DRAGON_GROWL;
             default -> SoundEvents.WOLF_HOWL;
         };
-        level.playSound(null, p.blockPosition(), snd, SoundSource.PLAYERS, 1.0F, kind.equals("hawk") ? 1.4F : 1.0F);
+        level.playSound(null, p.blockPosition(), snd, SoundSource.PLAYERS, kind.equals("lion") ? 0.4F : 1.0F,
+                kind.equals("hawk") || kind.equals("dragon") ? 1.4F : 1.0F);
+        if (kind.equals("dragon")) p.displayClientMessage(Component.literal("右クリックで背中に乗れる（スニークで降りる）").withStyle(ChatFormatting.LIGHT_PURPLE), false);
         return true;
     }
 
@@ -265,6 +284,41 @@ public final class BeastSkills {
         level.playSound(null, p.blockPosition(), SoundEvents.WOLF_HOWL, SoundSource.PLAYERS, 1.5F, 0.7F);
         level.playSound(null, p.blockPosition(), SoundEvents.RAVAGER_ROAR, SoundSource.PLAYERS, 1.0F, 0.8F);
         p.displayClientMessage(Component.literal("野生解放！").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD), true);
+        return true;
+    }
+
+    // ================= ★百獣の号令：すべての相棒が本気になり、いっせいに大技を放つ =================
+
+    private static boolean kingCommand(ServerPlayer p, SkillDefinition s) {
+        List<Mob> pets = PetCommon.petsOf(p, "");
+        if (pets.isEmpty()) {
+            p.displayClientMessage(Component.literal("相棒がいません").withStyle(ChatFormatting.RED), true);
+            return false;
+        }
+        ServerLevel level = p.serverLevel();
+        int ticks = (int) Math.round(s.duration() * 20);
+        long until = level.getGameTime() + ticks;
+        for (Mob m : pets) {
+            m.getPersistentData().putLong(FRENZY_UNTIL, until);
+            m.getPersistentData().putDouble(FRENZY_POW, s.power());
+            m.setHealth(m.getMaxHealth());
+            m.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, ticks, Math.max(0, s.amplifier())));
+            m.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, ticks, 1));
+            m.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, ticks, 1));
+            if (m instanceof GeoPet g) g.readySpecial();
+            level.sendParticles(AMBER, m.getX(), m.getY() + 0.8, m.getZ(), 30, 0.5, 0.6, 0.5, 0);
+            level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, m.getX(), m.getY() + 0.8, m.getZ(), 20, 0.4, 0.5, 0.4, 0.3);
+        }
+        p.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, ticks, 0));
+        p.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, ticks, 0));
+        Vec3 feet = p.position().add(0, 0.05, 0);
+        Vfx.castCircles(level, feet, Circle.NATURE, 40, 3);
+        Vfx.releaseCircles(level, feet, Circle.NATURE, 3);
+        Vfx.magicCircle(level, feet.add(0, 6, 0), 5.0F, 40, Circle.STAR);
+        level.playSound(null, p.blockPosition(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1.0F, 1.2F);
+        level.playSound(null, p.blockPosition(), SoundEvents.RAVAGER_ROAR, SoundSource.PLAYERS, 1.2F, 0.8F);
+        level.playSound(null, p.blockPosition(), SoundEvents.WOLF_HOWL, SoundSource.PLAYERS, 1.5F, 0.9F);
+        p.displayClientMessage(Component.literal("百獣の号令！").withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD), true);
         return true;
     }
 

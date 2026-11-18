@@ -1,0 +1,3642 @@
+{
+  "name": {
+    "text": "百獣の王",
+    "color": "gold"
+  },
+  "type": "combat",
+  "tier": "advanced",
+  "max_level": 100,
+  "skill_points_per_level": 3,
+  "requires": [
+    {
+      "job": "jsn_craft:beast_tamer",
+      "level": 30
+    }
+  ],
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 24
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 32
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:beast_king/call_fox",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:beast_king/call_cat",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:beast_king/call_dragon",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:beast_king/call_lion",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:beast_king/king_command",
+      "level": 70
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "王の心得"
+      },
+      "icon": "jsn_craft:star_silver_whip",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "pet1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "指揮 I"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "pet1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "白狐修練 I"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 1,
+      "links": [
+        "pet1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "whp1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "鋭鞭 I"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "pet1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "whp1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "会心 I"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "wld1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "whp1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "wld1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "pet1_0",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "pet2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "風猫修練 II"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 1,
+      "links": [
+        "pet1_0",
+        "wld1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pet2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "竜修練 II"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 1,
+      "links": [
+        "pet2_0",
+        "pet1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pet2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "指揮 II"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "pet2_1",
+        "pet1_0",
+        "pet1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "pet2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "獅子修練 II"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 1,
+      "links": [
+        "pet2_2",
+        "pet1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "whp2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "早業 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "pet2_3",
+        "pet1_1",
+        "whp1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "急所 II"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "whp2_0",
+        "whp1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.225
+        }
+      ]
+    },
+    {
+      "id": "whp2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "鋭鞭 II"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "whp2_1",
+        "whp1_0",
+        "whp1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "whp2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "会心 II"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp2_2",
+        "whp1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "wld2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "whp2_3",
+        "whp1_1",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.25
+        }
+      ]
+    },
+    {
+      "id": "wld2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "wld2_0",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "wld2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "wld1_0",
+        "wld1_1",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "wld2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "wld1_1",
+        "pet2_0",
+        "wld2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "pet3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "オオカミ修練 III"
+      },
+      "icon": "minecraft:bone",
+      "cost": 1,
+      "links": [
+        "pet2_1",
+        "pet2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "指揮 III"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "pet3_0",
+        "pet2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "指揮 III"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "pet3_1",
+        "pet2_1",
+        "pet2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "王の威厳"
+      },
+      "icon": "minecraft:golden_helmet",
+      "cost": 3,
+      "links": [
+        "pet3_2",
+        "pet2_2",
+        "pet2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:beast_king/board/king_aura"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "pet3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "白狐修練 III"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 1,
+      "links": [
+        "pet3_3",
+        "pet2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "風猫修練 III"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 1,
+      "links": [
+        "pet3_4",
+        "pet2_3",
+        "whp2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "whp3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "pet3_5",
+        "whp2_0",
+        "whp2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "鋭鞭 III"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "whp3_0",
+        "whp2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "whp3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp3_1",
+        "whp2_1",
+        "whp2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "竜騎の心得"
+      },
+      "icon": "minecraft:saddle",
+      "cost": 3,
+      "links": [
+        "whp3_2",
+        "whp2_2",
+        "whp2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.2,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "id": "whp3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "whp3_3",
+        "whp2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "急所 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "whp3_4",
+        "whp2_3",
+        "wld2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wld3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "whp3_5",
+        "wld2_0",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "wld3_0",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wld3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "wld2_1",
+        "wld2_2",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wld3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "群れの長"
+      },
+      "icon": "minecraft:wolf_spawn_egg",
+      "cost": 3,
+      "links": [
+        "wld2_2",
+        "wld2_3",
+        "wld3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "wld3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "wld2_3",
+        "wld3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "pet2_0",
+        "pet3_0",
+        "wld3_4",
+        "wld2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "pet4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "竜修練 IV"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 1,
+      "links": [
+        "pet3_0",
+        "wld3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "指揮 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet3_1",
+        "pet4_0",
+        "pet3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "獅子修練 IV"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 1,
+      "links": [
+        "pet4_1",
+        "pet3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "オオカミ修練 IV"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet4_2",
+        "pet3_1",
+        "pet3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "pet4_3",
+        "pet3_2",
+        "pet3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet4_4",
+        "pet3_3",
+        "pet3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "白狐修練 IV"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 1,
+      "links": [
+        "pet4_5",
+        "pet3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "風猫修練 IV"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 2,
+      "links": [
+        "pet4_6",
+        "pet3_4",
+        "pet3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "whp4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "鋭鞭 IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "pet4_7",
+        "pet3_5",
+        "whp3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "whp4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp4_0",
+        "whp3_0",
+        "whp3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "whp4_1",
+        "whp3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "鋭鞭 IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp4_2",
+        "whp3_1",
+        "whp3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "whp4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp4_3",
+        "whp3_2",
+        "whp3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp4_4",
+        "whp3_3",
+        "whp3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "急所 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "whp4_5",
+        "whp3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "whp4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "鋭鞭 IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp4_6",
+        "whp3_4",
+        "whp3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "wld4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "whp4_7",
+        "whp3_5",
+        "wld3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wld4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld4_0",
+        "wld3_0",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "wld4_1",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld3_1",
+        "wld3_2",
+        "wld4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wld4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "wld3_2",
+        "wld3_3",
+        "wld4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld3_3",
+        "wld3_4",
+        "wld4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "wld3_4",
+        "wld4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "wld4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld3_5",
+        "pet4_0",
+        "wld4_6",
+        "wld3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "pet5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "竜修練 V"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 2,
+      "links": [
+        "pet4_1",
+        "pet4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 V"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet4_2",
+        "pet5_0",
+        "pet4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "獅子修練 V"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "pet5_1",
+        "pet4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "オオカミ修練 V"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet5_2",
+        "pet4_2",
+        "pet4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "指揮 V"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet5_3",
+        "pet4_3",
+        "pet4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "★双狐"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 5,
+      "links": [
+        "pet5_4",
+        "pet4_4",
+        "pet4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "pet5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "指揮 V"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet5_5",
+        "pet4_5",
+        "pet4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "白狐修練 V"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "pet5_6",
+        "pet4_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet5_8",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "風猫修練 V"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 2,
+      "links": [
+        "pet5_7",
+        "pet4_6",
+        "pet4_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet5_9",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "竜修練 V"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 2,
+      "links": [
+        "pet5_8",
+        "pet4_7",
+        "whp4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "whp5_0",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "会心 V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "pet5_9",
+        "whp4_0",
+        "whp4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp5_1",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "早業 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp5_0",
+        "whp4_1",
+        "whp4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "whp5_2",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "鋭鞭 V"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp5_1",
+        "whp4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "whp5_3",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "会心 V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp5_2",
+        "whp4_2",
+        "whp4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp5_4",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "早業 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp5_3",
+        "whp4_3",
+        "whp4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "whp5_5",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "★双猫"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 5,
+      "links": [
+        "whp5_4",
+        "whp4_4",
+        "whp4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "whp5_6",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "急所 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "whp5_5",
+        "whp4_5",
+        "whp4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "whp5_7",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "鋭鞭 V"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp5_6",
+        "whp4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "whp5_8",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "会心 V"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp5_7",
+        "whp4_6",
+        "whp4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp5_9",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "早業 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp5_8",
+        "whp4_7",
+        "wld4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "wld5_0",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "呼吸法 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "whp5_9",
+        "wld4_0",
+        "wld4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld5_1",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld5_0",
+        "wld4_1",
+        "wld4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "wld5_2",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld5_1",
+        "wld4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "wld5_3",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸法 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld4_2",
+        "wld4_3",
+        "wld5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld5_4",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld4_3",
+        "wld4_4",
+        "wld5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "wld5_5",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "★王の体"
+      },
+      "icon": "minecraft:golden_chestplate",
+      "cost": 5,
+      "links": [
+        "wld4_4",
+        "wld4_5",
+        "wld5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "wld5_6",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "wld4_5",
+        "wld4_6",
+        "wld5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "wld5_7",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "気力 V"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld4_6",
+        "wld5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "wld5_8",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "呼吸法 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld4_7",
+        "wld5_7",
+        "wld4_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld5_9",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "頑健 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "pet4_0",
+        "pet5_0",
+        "wld5_8",
+        "wld4_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "pet6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "指揮 VI"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet5_0",
+        "wld5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "獅子修練 VI"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "pet5_1",
+        "pet6_0",
+        "pet5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "オオカミ修練 VI"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet5_2",
+        "pet6_1",
+        "pet5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "指揮 VI"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet6_2",
+        "pet5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "指揮 VI"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet6_3",
+        "pet5_2",
+        "pet5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "白狐修練 VI"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "pet6_4",
+        "pet5_3",
+        "pet5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "★百獣の号令・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "links": [
+        "pet6_5",
+        "pet5_4",
+        "pet5_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/king_command",
+          "field": "duration",
+          "amount": 10
+        },
+        {
+          "skill": "jsn_craft:beast_king/king_command",
+          "field": "power_pct",
+          "amount": 0.3,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "pet6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "風猫修練 VI"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 2,
+      "links": [
+        "pet6_6",
+        "pet5_5",
+        "pet5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "竜修練 VI"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 2,
+      "links": [
+        "pet6_7",
+        "pet5_6",
+        "pet5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_9",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "指揮 VI"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet6_8",
+        "pet5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "pet6_10",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "獅子修練 VI"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "pet6_9",
+        "pet5_7",
+        "pet5_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pet6_11",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "オオカミ修練 VI"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet6_10",
+        "pet5_8",
+        "pet5_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "whp6_0",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "鋭鞭 VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "pet6_11",
+        "pet5_9",
+        "whp5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "whp6_1",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp6_0",
+        "whp5_0",
+        "whp5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp6_2",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp6_1",
+        "whp5_1",
+        "whp5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "whp6_3",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "急所 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "whp6_2",
+        "whp5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "whp6_4",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "鋭鞭 VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp6_3",
+        "whp5_2",
+        "whp5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "whp6_5",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp6_4",
+        "whp5_3",
+        "whp5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp6_6",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp6_5",
+        "whp5_4",
+        "whp5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "whp6_7",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "鋭鞭 VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp6_6",
+        "whp5_5",
+        "whp5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "whp6_8",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "会心 VI"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp6_7",
+        "whp5_6",
+        "whp5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "whp6_9",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "早業 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp6_8",
+        "whp5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.096
+        }
+      ]
+    },
+    {
+      "id": "whp6_10",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "急所 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "whp6_9",
+        "whp5_7",
+        "whp5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.36
+        }
+      ]
+    },
+    {
+      "id": "whp6_11",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "鋭鞭 VI"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp6_10",
+        "whp5_8",
+        "whp5_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.96
+        }
+      ]
+    },
+    {
+      "id": "wld6_0",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "whp6_11",
+        "whp5_9",
+        "wld5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "wld6_1",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "呼吸法 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld6_0",
+        "wld5_0",
+        "wld5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld6_2",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld6_1",
+        "wld5_1",
+        "wld5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "wld6_3",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "wld6_2",
+        "wld5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "wld6_4",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld5_2",
+        "wld5_3",
+        "wld6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "wld6_5",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸法 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld5_3",
+        "wld5_4",
+        "wld6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld6_6",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld5_4",
+        "wld5_5",
+        "wld6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "wld6_7",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld5_5",
+        "wld5_6",
+        "wld6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "wld6_8",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸法 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld5_6",
+        "wld5_7",
+        "wld6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld6_9",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld5_7",
+        "wld6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.6
+        }
+      ]
+    },
+    {
+      "id": "wld6_10",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "wld5_8",
+        "wld6_9",
+        "wld5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "wld6_11",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "気力 VI"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld5_9",
+        "pet6_0",
+        "wld6_10",
+        "wld5_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 24.0
+        }
+      ]
+    },
+    {
+      "id": "pet7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet6_1",
+        "pet6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "pet7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 3,
+      "links": [
+        "pet6_2",
+        "pet7_0",
+        "pet6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "pet7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "白狐修練 VII"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "pet6_3",
+        "pet7_1",
+        "pet6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "風猫修練 VII"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "links": [
+        "pet7_2",
+        "pet6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "竜修練 VII"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 2,
+      "links": [
+        "pet7_3",
+        "pet6_3",
+        "pet6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 3,
+      "links": [
+        "pet7_4",
+        "pet6_4",
+        "pet6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "pet7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "獅子修練 VII"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "pet7_5",
+        "pet6_5",
+        "pet6_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_lion",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "オオカミ修練 VII"
+      },
+      "icon": "minecraft:bone",
+      "cost": 3,
+      "links": [
+        "pet7_6",
+        "pet6_6",
+        "pet6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet7_7",
+        "pet6_7",
+        "pet6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "pet7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 3,
+      "links": [
+        "pet7_8",
+        "pet6_8",
+        "pet6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "pet7_10",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "白狐修練 VII"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "pet7_9",
+        "pet6_9"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_11",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "風猫修練 VII"
+      },
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "links": [
+        "pet7_10",
+        "pet6_9",
+        "pet6_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_12",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "竜修練 VII"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 2,
+      "links": [
+        "pet7_11",
+        "pet6_10",
+        "pet6_11"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pet7_13",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 VII"
+      },
+      "icon": "minecraft:lead",
+      "cost": 3,
+      "links": [
+        "pet7_12",
+        "pet6_11",
+        "whp6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "whp7_0",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "pet7_13",
+        "whp6_0",
+        "whp6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "whp7_1",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "whp7_0",
+        "whp6_1",
+        "whp6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "whp7_2",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "鋭鞭 VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp7_1",
+        "whp6_2",
+        "whp6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "whp7_3",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 3,
+      "links": [
+        "whp7_2",
+        "whp6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "whp7_4",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp7_3",
+        "whp6_3",
+        "whp6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "whp7_5",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "急所 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "whp7_4",
+        "whp6_4",
+        "whp6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "whp7_6",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "鋭鞭 VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp7_5",
+        "whp6_5",
+        "whp6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "whp7_7",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 3,
+      "links": [
+        "whp7_6",
+        "whp6_6",
+        "whp6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "whp7_8",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp7_7",
+        "whp6_7",
+        "whp6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "whp7_9",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "鋭鞭 VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 3,
+      "links": [
+        "whp7_8",
+        "whp6_8",
+        "whp6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "whp7_10",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "会心 VII"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp7_9",
+        "whp6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "whp7_11",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "早業 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "whp7_10",
+        "whp6_9",
+        "whp6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "whp7_12",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "急所 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "whp7_11",
+        "whp6_10",
+        "whp6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "whp7_13",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "鋭鞭 VII"
+      },
+      "icon": "minecraft:string",
+      "cost": 3,
+      "links": [
+        "whp7_12",
+        "whp6_11",
+        "wld6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "wld7_0",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "whp7_13",
+        "wld6_0",
+        "wld6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_1",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "wld7_0",
+        "wld6_1",
+        "wld6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_2",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld7_1",
+        "wld6_2",
+        "wld6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "wld7_3",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 3,
+      "links": [
+        "wld7_2",
+        "wld6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_4",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld6_3",
+        "wld6_4",
+        "wld7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_5",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "wld6_4",
+        "wld6_5",
+        "wld7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wld7_6",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld6_5",
+        "wld6_6",
+        "wld7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "wld7_7",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 3,
+      "links": [
+        "wld6_6",
+        "wld6_7",
+        "wld7_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_8",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld6_7",
+        "wld6_8",
+        "wld7_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_9",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "wld6_8",
+        "wld6_9",
+        "wld7_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    },
+    {
+      "id": "wld7_10",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld6_9",
+        "wld7_9"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_11",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "頑健 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "wld6_10",
+        "wld7_10",
+        "wld6_9"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4.5
+        }
+      ]
+    },
+    {
+      "id": "wld7_12",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "wld6_11",
+        "wld7_11",
+        "wld6_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wld7_13",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "気力 VII"
+      },
+      "icon": "minecraft:bread",
+      "cost": 3,
+      "links": [
+        "pet6_0",
+        "pet7_0",
+        "wld7_12",
+        "wld6_11"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 30
+        }
+      ]
+    }
+  ]
+}

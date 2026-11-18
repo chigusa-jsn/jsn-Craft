@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "光の白狐召喚"
+  },
+  "description": {
+    "text": "小さな光の白狐を呼ぶ（もう一度使うと戻す）。離れたところから狐火を撃ち、3回に1回は光の柱を立てて主人を癒す。"
+  },
+  "icon": "minecraft:end_rod",
+  "type": "active",
+  "effect": "beast_call_fox",
+  "stamina": 25,
+  "cooldown": 3,
+  "amplifier": 1,
+  "power": 1.0
+}

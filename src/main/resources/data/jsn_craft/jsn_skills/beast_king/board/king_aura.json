@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "王の威厳"
+  },
+  "description": {
+    "text": "相棒の受けるダメージがさらに15%ダウン。"
+  },
+  "icon": "minecraft:golden_helmet",
+  "type": "passive",
+  "effect": "beast_king_aura",
+  "power": 0.15
+}

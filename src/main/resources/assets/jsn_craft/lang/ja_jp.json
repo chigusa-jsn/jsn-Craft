@@ -446,5 +446,9 @@
   "entity.jsn_craft.pet_wolf": "相棒のオオカミ",
   "entity.jsn_craft.pet_golem": "ミニゴーレム",
   "entity.jsn_craft.pet_hawk": "相棒の鷹",
-  "entity.jsn_craft.pet_bee": "相棒のミツバチ"
+  "entity.jsn_craft.pet_bee": "相棒のミツバチ",
+  "entity.jsn_craft.pet_white_fox": "光の白狐（ミニ）",
+  "entity.jsn_craft.pet_wind_cat": "風の猫（ミニ）",
+  "entity.jsn_craft.pet_thunder_lion": "雷の獅子（ミニ）",
+  "entity.jsn_craft.pet_blade_dragon": "影刃竜（ミニ）"
 }

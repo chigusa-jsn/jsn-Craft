@@ -43,6 +43,8 @@ public final class BeastEvents {
             if (owner != null) {
                 SkillDefinition bond = SkillService.passive(owner, "beast_bond");
                 if (bond != null) event.setAmount((float) (event.getAmount() * (1 - bond.power())));
+                SkillDefinition aura = SkillService.passive(owner, "beast_king_aura");
+                if (aura != null) event.setAmount((float) (event.getAmount() * (1 - aura.power())));
             }
             return;
         }

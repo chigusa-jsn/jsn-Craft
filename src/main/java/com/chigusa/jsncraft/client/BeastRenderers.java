@@ -43,12 +43,31 @@ public final class BeastRenderers {
         }
     }
 
+    /** 百獣の王の相棒：jsn-boss と同じモデルを小さくして描く（光る部分も光る） */
+    static final class Mini<T extends com.chigusa.jsncraft.beast.GeoPet> extends software.bernie.geckolib.renderer.GeoEntityRenderer<T> {
+        Mini(EntityRendererProvider.Context ctx, String model, float scale, float shadow) {
+            super(ctx, new software.bernie.geckolib.model.DefaultedEntityGeoModel<>(JsnCraft.id(model), false));
+            addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));
+            withScale(scale);
+            this.shadowRadius = shadow;
+        }
+
+        @Override
+        protected float getDeathMaxRotation(T entity) {
+            return 0.0F;
+        }
+    }
+
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModBeasts.WOLF.get(), WolfRenderer::new);
         event.registerEntityRenderer(ModBeasts.GOLEM.get(), MiniGolem::new);
         event.registerEntityRenderer(ModBeasts.HAWK.get(), Hawk::new);
         event.registerEntityRenderer(ModBeasts.BEE.get(), BeeRenderer::new);
+        event.registerEntityRenderer(ModBeasts.FOX.get(), c -> new Mini<com.chigusa.jsncraft.beast.PetFox>(c, "white_fox", 0.4F, 0.5F));
+        event.registerEntityRenderer(ModBeasts.CAT.get(), c -> new Mini<com.chigusa.jsncraft.beast.PetCat>(c, "wind_cat", 0.4F, 0.5F));
+        event.registerEntityRenderer(ModBeasts.LION.get(), c -> new Mini<com.chigusa.jsncraft.beast.PetLion>(c, "thunder_lion", 0.45F, 0.7F));
+        event.registerEntityRenderer(ModBeasts.DRAGON.get(), c -> new Mini<com.chigusa.jsncraft.beast.PetDragon>(c, "blade_dragon", 0.55F, 0.9F));
     }
 
     private BeastRenderers() {}

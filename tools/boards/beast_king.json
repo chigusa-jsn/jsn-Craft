@@ -1,0 +1,347 @@
+{
+  "job": "beast_king",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "王の心得",
+    "icon": "jsn_craft:star_silver_whip",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.06
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 4
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "pet",
+      "pool": [
+        {
+          "name": "白狐修練",
+          "icon": "minecraft:end_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_king/call_fox",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "風猫修練",
+          "icon": "minecraft:phantom_membrane",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_king/call_cat",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "竜修練",
+          "icon": "minecraft:dragon_breath",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_king/call_dragon",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "獅子修練",
+          "icon": "minecraft:lightning_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_king/call_lion",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "オオカミ修練",
+          "icon": "minecraft:bone",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/call_wolf",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "指揮",
+          "icon": "minecraft:lead",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "whp",
+      "pool": [
+        {
+          "name": "鋭鞭",
+          "icon": "minecraft:string",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "急所",
+          "icon": "minecraft:blaze_powder",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.15
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "wld",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "王の威厳",
+      "icon": "minecraft:golden_helmet",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:beast_king/board/king_aura"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★双狐",
+      "icon": "minecraft:end_rod",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_fox",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 0,
+      "name": "★百獣の号令・極",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/king_command",
+          "field": "duration",
+          "amount": 10
+        },
+        {
+          "skill": "jsn_craft:beast_king/king_command",
+          "field": "power_pct",
+          "amount": 0.3,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "竜騎の心得",
+      "icon": "minecraft:saddle",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_dragon",
+          "field": "power_pct",
+          "amount": 0.2,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★双猫",
+      "icon": "minecraft:phantom_membrane",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_king/call_cat",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "群れの長",
+      "icon": "minecraft:wolf_spawn_egg",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★王の体",
+      "icon": "minecraft:golden_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}
