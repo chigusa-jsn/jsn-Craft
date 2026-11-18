@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "★メテオフォール"
+  },
+  "description": {
+    "text": "3秒詠唱。目線の先（28ブロック）に隕石を落とす。7ブロックの敵に杖のマナ弾の7倍＋燃やして吹き飛ばす。星の刻印のある敵には1.5倍。"
+  },
+  "icon": "minecraft:magma_block",
+  "type": "active",
+  "effect": "mage_meteor",
+  "mana": 55,
+  "cooldown": 80,
+  "power": 7.0,
+  "radius": 7,
+  "cast_time": 3.0
+}

@@ -51,6 +51,7 @@ public enum Circle {
             case "chef", "grand_chef", "smith", "master_smith" -> FIRE;
             case "angler", "net_master" -> WATER;
             case "miner", "vein_king" -> EARTH;
+            case "mage", "archmage" -> STAR;
             default -> HOLY;
         };
     }

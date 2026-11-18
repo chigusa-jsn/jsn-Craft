@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★アブソリュートゼロ"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（8ブロック）の敵に杖のマナ弾の3倍、6秒間 完全に凍らせる（雷で砕ける）。"
+  },
+  "icon": "minecraft:blue_ice",
+  "type": "active",
+  "effect": "mage_absolute_zero",
+  "mana": 45,
+  "cooldown": 70,
+  "power": 3.0,
+  "radius": 8,
+  "duration": 6,
+  "cast_time": 2.5
+}

@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "ライトニング"
+  },
+  "description": {
+    "text": "ねらった敵に雷を落とす。杖のマナ弾の1.5倍＋帯電。"
+  },
+  "icon": "minecraft:lightning_rod",
+  "type": "active",
+  "effect": "mage_lightning",
+  "mana": 5,
+  "cooldown": 2,
+  "power": 1.5
+}

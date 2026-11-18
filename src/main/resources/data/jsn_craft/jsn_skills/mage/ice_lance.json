@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "アイスランス"
+  },
+  "description": {
+    "text": "氷の槍を撃つ。敵を3体まで貫き、杖のマナ弾の1.4倍＋鈍足。25%で凍らせる。"
+  },
+  "icon": "minecraft:prismarine_shard",
+  "type": "active",
+  "effect": "mage_ice_lance",
+  "mana": 5,
+  "cooldown": 1.5,
+  "power": 1.4,
+  "amplifier": 3,
+  "chance": 0.25
+}

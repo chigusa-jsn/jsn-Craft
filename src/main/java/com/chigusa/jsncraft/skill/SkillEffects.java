@@ -46,6 +46,7 @@ public final class SkillEffects {
 
     /** スキルを使う。使えない場面なら false（スタミナや待ち時間は減らない）。 */
     public static boolean activate(ServerPlayer player, SkillDefinition s) {
+        if (s.effect().startsWith("mage_")) return com.chigusa.jsncraft.magic.MageSpells.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);
             case "dash" -> dash(player, s);

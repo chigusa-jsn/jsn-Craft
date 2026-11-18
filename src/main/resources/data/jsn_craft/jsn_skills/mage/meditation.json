@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "メディテーション"
+  },
+  "description": {
+    "text": "1.5秒集中して、最大マナの40%を回復する。"
+  },
+  "icon": "minecraft:amethyst_shard",
+  "type": "active",
+  "effect": "mage_meditation",
+  "mana": 0,
+  "cooldown": 60,
+  "power": 0.4,
+  "cast_time": 1.5
+}

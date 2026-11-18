@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "過充電"
+  },
+  "description": {
+    "text": "帯電している敵への魔法のダメージ +15%。"
+  },
+  "icon": "minecraft:copper_ingot",
+  "type": "passive",
+  "effect": "mage_overcharge",
+  "power": 0.15
+}

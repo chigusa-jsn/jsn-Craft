@@ -1,0 +1,427 @@
+{
+  "job": "mage",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "魔導の心得",
+    "icon": "jsn_craft:wood_staff",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:magic_power",
+        "amount": 0.05
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 30
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "fir",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:blaze_powder",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "火球強化",
+          "icon": "minecraft:fire_charge",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/fire_ball",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "炎壁強化",
+          "icon": "minecraft:campfire",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/fire_wall",
+              "field": "duration",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "ice",
+      "pool": [
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "氷槍強化",
+          "icon": "minecraft:prismarine_shard",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/ice_lance",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "冷気強化",
+          "icon": "minecraft:snowball",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/frost_field",
+              "field": "radius",
+              "amount": 0.25
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "thu",
+      "pool": [
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "雷撃強化",
+          "icon": "minecraft:lightning_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/lightning",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "雷雲強化",
+          "icon": "minecraft:gray_wool",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/thunder_cloud",
+              "field": "duration",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "魔力",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "sta",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.12
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.006
+            }
+          ]
+        },
+        {
+          "name": "星屑強化",
+          "icon": "minecraft:nether_star",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/star_dust",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "重力強化",
+          "icon": "minecraft:ender_pearl",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:mage/gravity",
+              "field": "radius",
+              "amount": 0.25
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "灼熱",
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:mage/board/burn_boost"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "砕氷の極意",
+      "icon": "minecraft:packed_ice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:mage/board/shatter"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "過充電",
+      "icon": "minecraft:copper_ingot",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:mage/board/overcharge"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "魔力循環",
+      "icon": "minecraft:experience_bottle",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:mage/board/mana_flow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★大魔力",
+      "icon": "minecraft:dragon_breath",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.06
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "フレイムアーマー奥伝",
+      "icon": "minecraft:magma_cream",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:mage/fire_armor",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★魔力の泉",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 40
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "アイスバリア奥伝",
+      "icon": "minecraft:blue_ice",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:mage/ice_barrier",
+          "field": "power_pct",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★高速詠唱",
+      "icon": "minecraft:clock",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.08
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "テレポート奥伝",
+      "icon": "minecraft:ender_eye",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:mage/teleport",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": -1,
+      "name": "★星の加護",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 1.5
+        },
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": 1,
+      "name": "マナシールド奥伝",
+      "icon": "minecraft:lapis_block",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:mage/mana_shield",
+          "field": "power",
+          "amount": 0.2
+        }
+      ]
+    }
+  ]
+}

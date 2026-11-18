@@ -12,7 +12,7 @@
   "costs": [1, 1, 2, 2],            … 周ごとのコスト。[1, 2] のように書くと交互
   "scale": [1, 1, 1.5, 2],          … 周ごとの強さの倍率（amount にかける）
   "center": { パネル },              … 真ん中のパネル
-  "sectors": [                      … 区画は3つ（上・右下・左下の順）
+  "sectors": [                      … 区画は3つ（上・右下・左下の順）。4つや6つにもできる
     { "prefix": "atk", "pool": [
         { "name": "鋭刃", "icon": "minecraft:iron_sword", "weight": 3,
           "effects": [ { "attribute": "minecraft:generic.attack_damage", "amount": 0.5 } ] },
@@ -22,7 +22,7 @@
   "specials": [                     … 決まった場所に置く特別なパネル
     { "sector": 0, "ring": 3, "offset": 0, "name": "背水の陣", "icon": "...", "cost": 3,
       "effects": [ { "grant": "jsn_craft:sword/board/last_stand" } ], "hidden": true }
-      … offset は区画の真ん中からのずれ（周kの区画には 2k 枚あり、-k 〜 k-1）
+      … offset は区画の真ん中からのずれ（3区画なら周kの区画には 2k 枚あり、-k 〜 k-1。4区画なら 1.5k 枚くらい）
       … "big": true で★パネル、"min_level": 40 で鍵パネル
   ]
 }
@@ -73,7 +73,8 @@ def build(spec_path):
     costs, scale = spec["costs"], spec["scale"]
     assert len(costs) == R and len(scale) == R, "costs と scale は周の数だけ書いてね"
     sectors = spec["sectors"]
-    assert len(sectors) == 3, "区画は3つ"
+    assert len(sectors) in (3, 4, 6), "区画は3つ・4つ・6つのどれか"
+    N = len(sectors)
     specials = {(s["sector"], s["ring"], s["offset"]): s for s in spec.get("specials", [])}
     used = set()
 
@@ -85,8 +86,8 @@ def build(spec_path):
     for k in range(1, R+1):
         ring = [c for c in cells if ring_of(*c) == k]
         ring.sort(key=lambda c: (math.degrees(math.atan2(pix(*c)[1]*0.875, pix(*c)[0])) + 150) % 360)
-        for s in range(3):
-            chunk = ring[s*2*k:(s+1)*2*k]
+        for s in range(N):
+            chunk = ring[round(s*len(ring)/N):round((s+1)*len(ring)/N)]
             mid = len(chunk) // 2
             for i, c in enumerate(chunk):
                 nid = f"{sectors[s]['prefix']}{k}_{i}"

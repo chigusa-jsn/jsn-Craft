@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "氷結の心"
+  },
+  "description": {
+    "text": "凍っている敵への魔法のダメージ +20%。"
+  },
+  "icon": "minecraft:ice",
+  "type": "passive",
+  "effect": "mage_ice_heart",
+  "power": 0.2
+}

@@ -1,0 +1,483 @@
+{
+  "job": "archmage",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "大魔導の心得",
+    "icon": "jsn_craft:star_silver_staff",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:magic_power",
+        "amount": 0.08
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 40
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.8
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "fir",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:blaze_powder",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "爆裂強化",
+          "icon": "minecraft:tnt",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/explosion",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "業火強化",
+          "icon": "minecraft:fire_coral",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/inferno",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "ice",
+      "pool": [
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "吹雪強化",
+          "icon": "minecraft:snow_block",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/blizzard",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "絶対零度強化",
+          "icon": "minecraft:blue_ice",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/absolute_zero",
+              "field": "duration",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.004
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "thu",
+      "pool": [
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.008
+            }
+          ]
+        },
+        {
+          "name": "連鎖強化",
+          "icon": "minecraft:lightning_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/chain_lightning",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "裁き強化",
+          "icon": "minecraft:trident",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/judgment",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "魔力",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "sta",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.005
+            }
+          ]
+        },
+        {
+          "name": "光線強化",
+          "icon": "minecraft:end_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/stellar_ray",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "隕石強化",
+          "icon": "minecraft:magma_block",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:archmage/meteor",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "エクスプロージョン奥伝",
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "氷結の心",
+      "icon": "minecraft:ice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/ice_heart"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "詠唱破棄",
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "魔力の奔流",
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★インフェルノ・極",
+      "icon": "minecraft:fire_coral_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "duration",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★アブソリュートゼロ・極",
+      "icon": "minecraft:blue_ice",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★ジャッジメント・極",
+      "icon": "minecraft:trident",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "amplifier",
+          "amount": 6
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 3,
+      "ring": 5,
+      "offset": 0,
+      "name": "★メテオフォール・極",
+      "icon": "minecraft:magma_block",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 0,
+      "name": "★業炎の魔導",
+      "icon": "minecraft:blaze_rod",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★無尽の魔力",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 80
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "★神速詠唱",
+      "icon": "minecraft:clock",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.12
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 3,
+      "ring": 6,
+      "offset": 0,
+      "name": "★星界の理",
+      "icon": "minecraft:nether_star",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 3
+        },
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "チェインライトニング奥伝",
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": 1,
+      "name": "ステラレイ奥伝",
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "cast_time",
+          "amount": -0.4
+        }
+      ]
+    }
+  ]
+}

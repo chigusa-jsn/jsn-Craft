@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★ジャッジメント"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（10ブロック）に裁きの雷を12回落とす。1回杖のマナ弾の2.5倍。"
+  },
+  "icon": "minecraft:trident",
+  "type": "active",
+  "effect": "mage_judgment",
+  "mana": 45,
+  "cooldown": 60,
+  "power": 2.5,
+  "radius": 10,
+  "amplifier": 12,
+  "cast_time": 2.5
+}

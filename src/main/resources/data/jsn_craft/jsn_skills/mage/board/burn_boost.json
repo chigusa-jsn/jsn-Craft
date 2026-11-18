@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "灼熱"
+  },
+  "description": {
+    "text": "燃えている敵への火の魔法のダメージ +25%。"
+  },
+  "icon": "minecraft:blaze_powder",
+  "type": "passive",
+  "effect": "mage_burn_boost",
+  "power": 0.25
+}

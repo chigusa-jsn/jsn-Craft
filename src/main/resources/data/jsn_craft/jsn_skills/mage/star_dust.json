@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "スターダスト"
+  },
+  "description": {
+    "text": "5つの小さな星を撃つ。星は敵を追いかけ、1つ杖のマナ弾の0.5倍。当たった敵に星の刻印（10秒、ほかの属性のダメージ+20%）。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "active",
+  "effect": "mage_star_dust",
+  "mana": 6,
+  "cooldown": 2,
+  "power": 0.5,
+  "amplifier": 5
+}

@@ -130,6 +130,10 @@ public final class SkillService {
                     .withStyle(ChatFormatting.GRAY), true);
             return;
         }
+        if (needsStaff(id) && !(player.getMainHandItem().getItem() instanceof com.chigusa.jsncraft.weapon.StaffItem)) {
+            fail(player, "魔法は杖を持っていないと使えません");
+            return;
+        }
         var res = ResourceService.get(player);
         if (res.stamina < skill.stamina()) {
             fail(player, "スタミナが足りません");
@@ -139,7 +143,7 @@ public final class SkillService {
             fail(player, "マナが足りません");
             return;
         }
-        if (skill.castTime() > 0) {
+        if (skill.castTime() > 0 && !instantCast(player)) {
             // ため：コストと待ち時間は先に払って、時間がたったら技が出る
             startCast(player, d, id, skill, now);
         } else if (!SkillEffects.activate(player, skill)) {
@@ -151,6 +155,20 @@ public final class SkillService {
         d.readyAt.put(id.toString(), now + Math.round(skill.cooldown() * 20));
         player.displayClientMessage(Component.empty().append(skill.name().copy()).withStyle(ChatFormatting.AQUA), true);
         sync(player);
+    }
+
+    /** 魔導士の魔法は杖が必要 */
+    public static boolean needsStaff(ResourceLocation id) {
+        String path = id == null ? "" : id.getPath();
+        return path.startsWith("mage/") || path.startsWith("archmage/");
+    }
+
+    /** 詠唱破棄（ボードのパッシブ）：ためずにすぐ出る */
+    private static boolean instantCast(ServerPlayer player) {
+        SkillDefinition s = passive(player, "mage_instant_cast");
+        if (s == null || player.getRandom().nextDouble() >= s.chance()) return false;
+        player.displayClientMessage(Component.literal("詠唱破棄！").withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.BOLD), true);
+        return true;
     }
 
     private static final ResourceLocation CAST_SLOW = com.chigusa.jsncraft.JsnCraft.id("casting_slow");

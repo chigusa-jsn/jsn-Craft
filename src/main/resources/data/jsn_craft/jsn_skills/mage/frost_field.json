@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "フロストフィールド"
+  },
+  "description": {
+    "text": "目線の先に冷気の床（4ブロック）を6秒。中の敵に毎秒杖のマナ弾の0.4倍＋強い鈍足、20%で凍らせる。"
+  },
+  "icon": "minecraft:powder_snow_bucket",
+  "type": "active",
+  "effect": "mage_frost_field",
+  "mana": 12,
+  "cooldown": 14,
+  "power": 0.4,
+  "radius": 4,
+  "duration": 6,
+  "chance": 0.2
+}

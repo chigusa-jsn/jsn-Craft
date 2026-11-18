@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "グラビティ"
+  },
+  "description": {
+    "text": "目線の先に重力の渦（4ブロック）を3秒。敵を真ん中へ引き寄せ、0.5秒ごと杖のマナ弾の0.4倍。"
+  },
+  "icon": "minecraft:ender_pearl",
+  "type": "active",
+  "effect": "mage_gravity",
+  "mana": 14,
+  "cooldown": 16,
+  "power": 0.4,
+  "radius": 4,
+  "duration": 3
+}

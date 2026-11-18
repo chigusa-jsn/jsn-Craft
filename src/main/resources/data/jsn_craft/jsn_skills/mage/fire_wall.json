@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ファイアーウォール"
+  },
+  "description": {
+    "text": "目の前に炎の壁（幅7ブロック）を6秒出す。触れた敵に0.5秒ごと杖のマナ弾の0.4倍＋燃やす。"
+  },
+  "icon": "minecraft:campfire",
+  "type": "active",
+  "effect": "mage_fire_wall",
+  "mana": 12,
+  "cooldown": 12,
+  "power": 0.4,
+  "radius": 7,
+  "duration": 6
+}

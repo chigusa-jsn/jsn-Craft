@@ -1,0 +1,3683 @@
+{
+  "name": {
+    "text": "星界の大魔導",
+    "color": "dark_purple"
+  },
+  "type": "combat",
+  "tier": "advanced",
+  "max_level": 100,
+  "skill_points_per_level": 3,
+  "requires": [
+    {
+      "job": "jsn_craft:mage",
+      "level": 30
+    }
+  ],
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 24
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 32
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:archmage/explosion",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:archmage/blizzard",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:archmage/chain_lightning",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:archmage/stellar_ray",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:archmage/inferno",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:archmage/absolute_zero",
+      "level": 60
+    },
+    {
+      "skill": "jsn_craft:archmage/judgment",
+      "level": 70
+    },
+    {
+      "skill": "jsn_craft:archmage/meteor",
+      "level": 80
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "大魔導の心得"
+      },
+      "icon": "jsn_craft:star_silver_staff",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.08
+        },
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 40
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.8
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "fir1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 I"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "fir1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "爆裂強化 I"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 1,
+      "links": [
+        "fir1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "ice1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 I"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "fir1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "thu1_0",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "詠唱 I"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "ice1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "sta1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 I"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "thu1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "待ち時間短縮 I"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "center",
+        "fir1_0",
+        "sta1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "fir2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "fir1_0",
+        "sta1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "fir2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "業火強化 II"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 1,
+      "links": [
+        "fir2_0",
+        "fir1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "fir2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "fir2_1",
+        "fir1_0",
+        "fir1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "ice2_0",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "吹雪強化 II"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 1,
+      "links": [
+        "fir2_2",
+        "fir1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "ice2_1",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 II"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ice2_0",
+        "fir1_1",
+        "ice1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "ice2_2",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "絶対零度強化 II"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 1,
+      "links": [
+        "ice2_1",
+        "ice1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.45
+        }
+      ]
+    },
+    {
+      "id": "thu2_0",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "連鎖強化 II"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 1,
+      "links": [
+        "ice2_2",
+        "ice1_0",
+        "thu1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "thu2_1",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "裁き強化 II"
+      },
+      "icon": "minecraft:trident",
+      "cost": 1,
+      "links": [
+        "thu2_0",
+        "thu1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "thu2_2",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "thu2_1",
+        "thu1_0",
+        "sta1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "sta2_0",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 II"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "thu2_2",
+        "sta1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta2_1",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "光線強化 II"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 1,
+      "links": [
+        "sta1_0",
+        "sta1_1",
+        "sta2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "sta2_2",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "隕石強化 II"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 1,
+      "links": [
+        "sta1_1",
+        "fir2_0",
+        "sta2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "fir3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "fir2_1",
+        "fir2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "fir3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "fir3_0",
+        "fir2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "fir3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "エクスプロージョン奥伝"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir3_1",
+        "fir2_1",
+        "fir2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "radius",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "fir3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "爆裂強化 III"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 1,
+      "links": [
+        "fir3_2",
+        "fir2_2",
+        "ice2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ice3_0",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "fir3_3",
+        "ice2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ice3_1",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ice3_0",
+        "ice2_0",
+        "ice2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ice3_2",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "氷結の心"
+      },
+      "icon": "minecraft:ice",
+      "cost": 3,
+      "links": [
+        "ice3_1",
+        "ice2_1",
+        "ice2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/ice_heart"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "ice3_3",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ice3_2",
+        "ice2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ice3_4",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "吹雪強化 III"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 1,
+      "links": [
+        "ice3_3",
+        "ice2_2",
+        "thu2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "thu3_0",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "詠唱 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "ice3_4",
+        "thu2_0",
+        "thu2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "thu3_1",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "thu3_0",
+        "thu2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "thu3_2",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱破棄"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "thu3_1",
+        "thu2_1",
+        "thu2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "thu3_3",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "連鎖強化 III"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 1,
+      "links": [
+        "thu3_2",
+        "thu2_2",
+        "sta2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "thu3_4",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "裁き強化 III"
+      },
+      "icon": "minecraft:trident",
+      "cost": 1,
+      "links": [
+        "thu3_3",
+        "sta2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "sta3_0",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "sta2_0",
+        "sta2_1",
+        "thu3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sta3_1",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "sta2_1",
+        "sta2_2",
+        "sta3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sta3_2",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "魔力の奔流"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "links": [
+        "sta2_2",
+        "sta3_1"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:archmage/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "sta3_3",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "待ち時間短縮 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "fir2_0",
+        "fir3_0",
+        "sta3_2",
+        "sta2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "fir4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "fir3_0",
+        "sta3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "fir4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "業火強化 IV"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 2,
+      "links": [
+        "fir3_1",
+        "fir4_0",
+        "fir3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "fir4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "fir4_1",
+        "fir3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "fir4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir4_2",
+        "fir3_1",
+        "fir3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "fir4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "fir4_3",
+        "fir3_2",
+        "fir3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "fir4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "爆裂強化 IV"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir4_4",
+        "fir3_3",
+        "ice3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "ice4_0",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "fir4_5",
+        "ice3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ice4_1",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "絶対零度強化 IV"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 2,
+      "links": [
+        "ice4_0",
+        "ice3_0",
+        "ice3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "ice4_2",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "ice4_1",
+        "ice3_1",
+        "ice3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "ice4_3",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice4_2",
+        "ice3_2",
+        "ice3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ice4_4",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "ice4_3",
+        "ice3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "ice4_5",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "吹雪強化 IV"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 2,
+      "links": [
+        "ice4_4",
+        "ice3_3",
+        "ice3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "thu4_0",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "ice4_5",
+        "ice3_4",
+        "thu3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "thu4_1",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu4_0",
+        "thu3_0",
+        "thu3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "thu4_2",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "thu4_1",
+        "thu3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "thu4_3",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "連鎖強化 IV"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "thu4_2",
+        "thu3_1",
+        "thu3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "thu4_4",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "チェインライトニング奥伝"
+      },
+      "icon": "minecraft:chain",
+      "cost": 2,
+      "links": [
+        "thu4_3",
+        "thu3_2",
+        "thu3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "amplifier",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "thu4_5",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "裁き強化 IV"
+      },
+      "icon": "minecraft:trident",
+      "cost": 2,
+      "links": [
+        "thu4_4",
+        "thu3_3",
+        "thu3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "sta4_0",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "thu4_5",
+        "thu3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sta4_1",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "光線強化 IV"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "thu3_4",
+        "sta3_0",
+        "sta4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "sta4_2",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "隕石強化 IV"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 1,
+      "links": [
+        "sta3_0",
+        "sta3_1",
+        "sta4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "sta4_3",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta3_1",
+        "sta3_2",
+        "sta4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sta4_4",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "ステラレイ奥伝"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "sta3_2",
+        "sta4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "cast_time",
+          "amount": -0.4
+        }
+      ]
+    },
+    {
+      "id": "sta4_5",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta3_3",
+        "fir4_0",
+        "sta4_4",
+        "sta3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "fir5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir4_1",
+        "fir4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "業火強化 V"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 2,
+      "links": [
+        "fir4_2",
+        "fir5_0",
+        "fir4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fir5_1",
+        "fir4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "fir5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir5_2",
+        "fir4_2",
+        "fir4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "★インフェルノ・極"
+      },
+      "icon": "minecraft:fire_coral_block",
+      "cost": 4,
+      "links": [
+        "fir5_3",
+        "fir4_3",
+        "fir4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "duration",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "fir5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir5_4",
+        "fir4_4",
+        "fir4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "爆裂強化 V"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir5_5",
+        "fir4_5",
+        "ice4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir5_6",
+        "ice4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "ice5_0",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "fir5_7",
+        "ice4_0",
+        "ice4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice5_1",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "絶対零度強化 V"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 2,
+      "links": [
+        "ice5_0",
+        "ice4_1",
+        "ice4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "ice5_2",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ice5_1",
+        "ice4_2",
+        "ice4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ice5_3",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "★アブソリュートゼロ・極"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 4,
+      "links": [
+        "ice5_2",
+        "ice4_3",
+        "ice4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "ice5_4",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice5_3",
+        "ice4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice5_5",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice5_4",
+        "ice4_4",
+        "ice4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice5_6",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "吹雪強化 V"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 2,
+      "links": [
+        "ice5_5",
+        "ice4_5",
+        "thu4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "thu5_0",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "ice5_6",
+        "thu4_0",
+        "thu4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "thu5_1",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu5_0",
+        "thu4_1",
+        "thu4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu5_2",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu5_1",
+        "thu4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu5_3",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "★ジャッジメント・極"
+      },
+      "icon": "minecraft:trident",
+      "cost": 4,
+      "links": [
+        "thu5_2",
+        "thu4_2",
+        "thu4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "amplifier",
+          "amount": 6
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "thu5_4",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "連鎖強化 V"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "thu5_3",
+        "thu4_3",
+        "thu4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "thu5_5",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "裁き強化 V"
+      },
+      "icon": "minecraft:trident",
+      "cost": 2,
+      "links": [
+        "thu5_4",
+        "thu4_4",
+        "thu4_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "thu5_6",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "thu5_5",
+        "thu4_5",
+        "sta4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "sta5_0",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "待ち時間短縮 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "thu5_6",
+        "sta4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "sta5_1",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta4_0",
+        "sta4_1",
+        "sta5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta5_2",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "光線強化 V"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "sta4_1",
+        "sta4_2",
+        "sta5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "sta5_3",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "隕石強化 V"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 2,
+      "links": [
+        "sta4_2",
+        "sta4_3",
+        "sta5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "sta5_4",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "★メテオフォール・極"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 4,
+      "links": [
+        "sta4_3",
+        "sta4_4",
+        "sta5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "radius",
+          "amount": 2
+        },
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "sta5_5",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta4_4",
+        "sta5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta5_6",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta4_5",
+        "sta5_5",
+        "sta4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta5_7",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "待ち時間短縮 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "fir4_0",
+        "fir5_0",
+        "sta5_6",
+        "sta4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "fir6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "業火強化 VI"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 2,
+      "links": [
+        "fir5_0",
+        "sta5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fir5_1",
+        "fir6_0",
+        "fir5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "fir6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir5_2",
+        "fir6_1",
+        "fir5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir6_2",
+        "fir5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "★業炎の魔導"
+      },
+      "icon": "minecraft:blaze_rod",
+      "cost": 6,
+      "links": [
+        "fir6_3",
+        "fir5_2",
+        "fir5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "fir6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "爆裂強化 VI"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir6_4",
+        "fir5_3",
+        "fir5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir6_5",
+        "fir5_4",
+        "fir5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "fir6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "業火強化 VI"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 2,
+      "links": [
+        "fir6_6",
+        "fir5_5",
+        "fir5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fir6_7",
+        "fir5_6",
+        "fir5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "ice6_0",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "fir6_8",
+        "fir5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice6_1",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "絶対零度強化 VI"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 2,
+      "links": [
+        "ice6_0",
+        "fir5_7",
+        "ice5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "ice6_2",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ice6_1",
+        "ice5_0",
+        "ice5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "ice6_3",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice6_2",
+        "ice5_1",
+        "ice5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice6_4",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "★無尽の魔力"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "links": [
+        "ice6_3",
+        "ice5_2",
+        "ice5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 80
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "ice6_5",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice6_4",
+        "ice5_3",
+        "ice5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice6_6",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "吹雪強化 VI"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 2,
+      "links": [
+        "ice6_5",
+        "ice5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "ice6_7",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice6_6",
+        "ice5_4",
+        "ice5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "ice6_8",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "絶対零度強化 VI"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 2,
+      "links": [
+        "ice6_7",
+        "ice5_5",
+        "ice5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.72
+        }
+      ]
+    },
+    {
+      "id": "thu6_0",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "ice6_8",
+        "ice5_6",
+        "thu5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu6_1",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu6_0",
+        "thu5_0",
+        "thu5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu6_2",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "連鎖強化 VI"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "thu6_1",
+        "thu5_1",
+        "thu5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "thu6_3",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "裁き強化 VI"
+      },
+      "icon": "minecraft:trident",
+      "cost": 2,
+      "links": [
+        "thu6_2",
+        "thu5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "thu6_4",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "★神速詠唱"
+      },
+      "icon": "minecraft:clock",
+      "cost": 6,
+      "links": [
+        "thu6_3",
+        "thu5_2",
+        "thu5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.12
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "thu6_5",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "thu6_4",
+        "thu5_3",
+        "thu5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "thu6_6",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu6_5",
+        "thu5_4",
+        "thu5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu6_7",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu6_6",
+        "thu5_5",
+        "thu5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "thu6_8",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "連鎖強化 VI"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "thu6_7",
+        "thu5_6",
+        "sta5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "sta6_0",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "thu6_8",
+        "sta5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta6_1",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "光線強化 VI"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "sta5_0",
+        "sta5_1",
+        "sta6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "sta6_2",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "隕石強化 VI"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 2,
+      "links": [
+        "sta5_1",
+        "sta5_2",
+        "sta6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "sta6_3",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta5_2",
+        "sta5_3",
+        "sta6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta6_4",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "★星界の理"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 6,
+      "links": [
+        "sta5_3",
+        "sta5_4",
+        "sta6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 3
+        },
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "sta6_5",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta5_4",
+        "sta5_5",
+        "sta6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta6_6",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "待ち時間短縮 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "sta5_5",
+        "sta6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "sta6_7",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta5_6",
+        "sta6_6",
+        "sta5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "sta6_8",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "光線強化 VI"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 2,
+      "links": [
+        "sta5_7",
+        "fir6_0",
+        "sta6_7",
+        "sta5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "fir7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir6_1",
+        "fir6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "fir7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "fir6_2",
+        "fir7_0",
+        "fir6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "fir7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "爆裂強化 VII"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir6_3",
+        "fir7_1",
+        "fir6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "fir7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "fir7_2",
+        "fir6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "fir7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "業火強化 VII"
+      },
+      "icon": "minecraft:fire_coral",
+      "cost": 2,
+      "links": [
+        "fir7_3",
+        "fir6_3",
+        "fir6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/inferno",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "fir7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "fir7_4",
+        "fir6_4",
+        "fir6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "fir7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "fir7_5",
+        "fir6_5",
+        "fir6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "fir7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "fir7_6",
+        "fir6_6",
+        "fir6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "fir7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "爆裂強化 VII"
+      },
+      "icon": "minecraft:tnt",
+      "cost": 2,
+      "links": [
+        "fir7_7",
+        "fir6_7",
+        "fir6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/explosion",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "fir7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 3,
+      "links": [
+        "fir7_8",
+        "fir6_8",
+        "ice6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "ice7_0",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "fir7_9",
+        "ice6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ice7_1",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 3,
+      "links": [
+        "ice7_0",
+        "ice6_0",
+        "ice6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ice7_2",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice7_1",
+        "ice6_1",
+        "ice6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ice7_3",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "吹雪強化 VII"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 3,
+      "links": [
+        "ice7_2",
+        "ice6_2",
+        "ice6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "ice7_4",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice7_3",
+        "ice6_3",
+        "ice6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ice7_5",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "絶対零度強化 VII"
+      },
+      "icon": "minecraft:blue_ice",
+      "cost": 3,
+      "links": [
+        "ice7_4",
+        "ice6_4",
+        "ice6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/absolute_zero",
+          "field": "duration",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "ice7_6",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "ice7_5",
+        "ice6_5",
+        "ice6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "ice7_7",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 3,
+      "links": [
+        "ice7_6",
+        "ice6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ice7_8",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice7_7",
+        "ice6_6",
+        "ice6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "ice7_9",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "吹雪強化 VII"
+      },
+      "icon": "minecraft:snow_block",
+      "cost": 3,
+      "links": [
+        "ice7_8",
+        "ice6_7",
+        "ice6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/blizzard",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "ice7_10",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "ice7_9",
+        "ice6_8",
+        "thu6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "thu7_0",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "裁き強化 VII"
+      },
+      "icon": "minecraft:trident",
+      "cost": 2,
+      "links": [
+        "ice7_10",
+        "thu6_0",
+        "thu6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "thu7_1",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 3,
+      "links": [
+        "thu7_0",
+        "thu6_1",
+        "thu6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "thu7_2",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu7_1",
+        "thu6_2",
+        "thu6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "thu7_3",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 3,
+      "links": [
+        "thu7_2",
+        "thu6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "thu7_4",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "連鎖強化 VII"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 2,
+      "links": [
+        "thu7_3",
+        "thu6_3",
+        "thu6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "thu7_5",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "裁き強化 VII"
+      },
+      "icon": "minecraft:trident",
+      "cost": 3,
+      "links": [
+        "thu7_4",
+        "thu6_4",
+        "thu6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "thu7_6",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "thu7_5",
+        "thu6_5",
+        "thu6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "thu7_7",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 3,
+      "links": [
+        "thu7_6",
+        "thu6_6",
+        "thu6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "thu7_8",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "thu7_7",
+        "thu6_7",
+        "thu6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "thu7_9",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "連鎖強化 VII"
+      },
+      "icon": "minecraft:lightning_rod",
+      "cost": 3,
+      "links": [
+        "thu7_8",
+        "thu6_8",
+        "sta6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/chain_lightning",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "thu7_10",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "裁き強化 VII"
+      },
+      "icon": "minecraft:trident",
+      "cost": 2,
+      "links": [
+        "thu7_9",
+        "sta6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/judgment",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta7_0",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "隕石強化 VII"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 2,
+      "links": [
+        "sta6_0",
+        "sta6_1",
+        "thu7_10"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta7_1",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "sta6_1",
+        "sta6_2",
+        "sta7_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sta7_2",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta6_2",
+        "sta6_3",
+        "sta7_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sta7_3",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "待ち時間短縮 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "sta6_3",
+        "sta6_4",
+        "sta7_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "sta7_4",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta6_4",
+        "sta6_5",
+        "sta7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sta7_5",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "光線強化 VII"
+      },
+      "icon": "minecraft:end_rod",
+      "cost": 3,
+      "links": [
+        "sta6_5",
+        "sta6_6",
+        "sta7_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/stellar_ray",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta7_6",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "隕石強化 VII"
+      },
+      "icon": "minecraft:magma_block",
+      "cost": 2,
+      "links": [
+        "sta6_6",
+        "sta7_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:archmage/meteor",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "sta7_7",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "sta6_7",
+        "sta7_6",
+        "sta6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sta7_8",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "sta6_8",
+        "sta7_7",
+        "sta6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sta7_9",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "待ち時間短縮 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "fir6_0",
+        "fir7_0",
+        "sta7_8",
+        "sta6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.015
+        }
+      ]
+    }
+  ]
+}

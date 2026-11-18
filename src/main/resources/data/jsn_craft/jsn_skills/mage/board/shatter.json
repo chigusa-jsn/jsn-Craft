@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "砕氷の極意"
+  },
+  "description": {
+    "text": "砕氷（凍った敵に雷）のダメージがさらに +0.7倍。"
+  },
+  "icon": "minecraft:packed_ice",
+  "type": "passive",
+  "effect": "mage_shatter",
+  "power": 0.7
+}

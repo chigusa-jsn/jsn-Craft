@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "マナシールド"
+  },
+  "description": {
+    "text": "15秒間、受けるダメージの50%をマナで肩代わりする（マナ2で1ダメージ）。"
+  },
+  "icon": "minecraft:lapis_lazuli",
+  "type": "active",
+  "effect": "mage_mana_shield",
+  "mana": 5,
+  "cooldown": 30,
+  "power": 0.5,
+  "duration": 15
+}

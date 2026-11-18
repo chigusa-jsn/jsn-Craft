@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "エクスプロージョン"
+  },
+  "description": {
+    "text": "1.2秒詠唱。目線の先（24ブロック）で大爆発（4.5ブロック）、杖のマナ弾の4倍＋燃やして吹き飛ばす。地形は壊れない。"
+  },
+  "icon": "minecraft:tnt",
+  "type": "active",
+  "effect": "mage_explosion",
+  "mana": 22,
+  "cooldown": 14,
+  "power": 4.0,
+  "radius": 4.5,
+  "cast_time": 1.2
+}

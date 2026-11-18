@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "魔力循環"
+  },
+  "description": {
+    "text": "魔法で敵を倒すとマナが4回復する。"
+  },
+  "icon": "minecraft:experience_bottle",
+  "type": "passive",
+  "effect": "mage_mana_flow",
+  "power": 4
+}
