@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "連撃"
+  },
+  "description": {
+    "text": "近接攻撃3回ごとに、その一撃のダメージが1.5倍。"
+  },
+  "icon": "minecraft:flint",
+  "type": "passive",
+  "effect": "combo",
+  "amplifier": 3,
+  "power": 0.5
+}

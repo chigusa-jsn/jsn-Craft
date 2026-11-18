@@ -1,0 +1,18 @@
+{
+  "name": {
+    "text": "奥義・海神降臨"
+  },
+  "description": {
+    "text": "1.5秒ためて、前へ大波（14ブロック）。敵に攻撃力の3倍＋濡らす。さらに周り（10ブロック）に雷を6回（攻撃力の1.5倍、濡れた敵は感電）。"
+  },
+  "icon": "minecraft:trident",
+  "type": "active",
+  "effect": "spear_poseidon",
+  "stamina": 60,
+  "cooldown": 60,
+  "power": 3.0,
+  "radius": 10,
+  "amplifier": 6,
+  "chance": 1.5,
+  "cast_time": 1.5
+}

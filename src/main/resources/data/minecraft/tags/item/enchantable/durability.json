@@ -30,6 +30,16 @@
     "jsn_craft:diamond_tower_shield",
     "jsn_craft:netherite_tower_shield",
     "jsn_craft:moon_silver_tower_shield",
-    "jsn_craft:star_silver_tower_shield"
+    "jsn_craft:star_silver_tower_shield",
+    "jsn_craft:stone_spear",
+    "jsn_craft:iron_spear",
+    "jsn_craft:prismarine_spear",
+    "jsn_craft:netherite_spear",
+    "jsn_craft:moon_silver_spear",
+    "jsn_craft:star_silver_spear",
+    "jsn_craft:sea_trident",
+    "jsn_craft:netherite_sea_trident",
+    "jsn_craft:moon_silver_sea_trident",
+    "jsn_craft:star_silver_sea_trident"
   ]
 }

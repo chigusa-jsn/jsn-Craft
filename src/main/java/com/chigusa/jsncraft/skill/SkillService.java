@@ -188,6 +188,9 @@ public final class SkillService {
         if ((path.startsWith("shield_knight/") || path.startsWith("guardian_knight/"))
                 && !(item instanceof net.minecraft.world.item.ShieldItem) && !(player.getOffhandItem().getItem() instanceof net.minecraft.world.item.ShieldItem))
             return "盾の技は盾を持っていないと使えません";
+        if ((path.startsWith("lancer/") || path.startsWith("sea_lancer/"))
+                && !(item instanceof com.chigusa.jsncraft.weapon.JobSpearItem) && !(item instanceof net.minecraft.world.item.TridentItem))
+            return "槍の技は槍かトライデントを持っていないと使えません";
         return null;
     }
 

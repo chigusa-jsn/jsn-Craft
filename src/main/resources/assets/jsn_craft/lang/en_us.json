@@ -412,5 +412,15 @@
   "item.jsn_craft.diamond_tower_shield": "Diamond Tower Shield",
   "item.jsn_craft.netherite_tower_shield": "Netherite Tower Shield",
   "item.jsn_craft.moon_silver_tower_shield": "Moon Silver Tower Shield",
-  "item.jsn_craft.star_silver_tower_shield": "Star Silver Tower Shield"
+  "item.jsn_craft.star_silver_tower_shield": "Star Silver Tower Shield",
+  "item.jsn_craft.stone_spear": "Stone Spear",
+  "item.jsn_craft.iron_spear": "Iron Spear",
+  "item.jsn_craft.prismarine_spear": "Prismarine Spear",
+  "item.jsn_craft.netherite_spear": "Netherite Spear",
+  "item.jsn_craft.moon_silver_spear": "Moon Silver Spear",
+  "item.jsn_craft.star_silver_spear": "Star Silver Spear",
+  "item.jsn_craft.sea_trident": "Sea God's Trident",
+  "item.jsn_craft.netherite_sea_trident": "Netherite Trident",
+  "item.jsn_craft.moon_silver_sea_trident": "Moon Silver Trident",
+  "item.jsn_craft.star_silver_sea_trident": "Star Silver Trident"
 }

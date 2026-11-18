@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:sea_trident",
+    "jsn_craft:netherite_sea_trident",
+    "jsn_craft:moon_silver_sea_trident",
+    "jsn_craft:star_silver_sea_trident"
+  ]
+}

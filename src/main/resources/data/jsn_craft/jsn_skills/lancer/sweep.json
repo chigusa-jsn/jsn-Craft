@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "薙ぎ払い"
+  },
+  "description": {
+    "text": "槍を大きく振って、周り（4ブロック）の敵に攻撃力の1.0倍＋はね飛ばす。"
+  },
+  "icon": "minecraft:stick",
+  "type": "active",
+  "effect": "spear_sweep",
+  "stamina": 15,
+  "cooldown": 6,
+  "power": 1.0,
+  "radius": 4
+}

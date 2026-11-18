@@ -412,5 +412,15 @@
   "item.jsn_craft.diamond_tower_shield": "ダイヤの大盾",
   "item.jsn_craft.netherite_tower_shield": "ネザライトの大盾",
   "item.jsn_craft.moon_silver_tower_shield": "月銀の大盾",
-  "item.jsn_craft.star_silver_tower_shield": "星銀の大盾"
+  "item.jsn_craft.star_silver_tower_shield": "星銀の大盾",
+  "item.jsn_craft.stone_spear": "石の槍",
+  "item.jsn_craft.iron_spear": "鉄の槍",
+  "item.jsn_craft.prismarine_spear": "プリズマリンの槍",
+  "item.jsn_craft.netherite_spear": "ネザライトの槍",
+  "item.jsn_craft.moon_silver_spear": "月銀の槍",
+  "item.jsn_craft.star_silver_spear": "星銀の槍",
+  "item.jsn_craft.sea_trident": "海神の三叉槍",
+  "item.jsn_craft.netherite_sea_trident": "ネザライトの三叉槍",
+  "item.jsn_craft.moon_silver_sea_trident": "月銀の三叉槍",
+  "item.jsn_craft.star_silver_sea_trident": "星銀の三叉槍"
 }

@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "一閃突き"
+  },
+  "description": {
+    "text": "前へ駆け抜けながら突く（6ブロック）。通り道の敵に攻撃力の1.6倍。"
+  },
+  "icon": "minecraft:iron_sword",
+  "type": "active",
+  "effect": "spear_thrust",
+  "stamina": 15,
+  "cooldown": 5,
+  "power": 1.6,
+  "radius": 6
+}

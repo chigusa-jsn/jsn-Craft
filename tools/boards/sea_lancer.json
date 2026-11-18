@@ -1,0 +1,336 @@
+{
+  "job": "sea_lancer",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "槍騎士の心得",
+    "icon": "jsn_craft:star_silver_sea_trident",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.5
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 4
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛力",
+          "icon": "minecraft:iron_sword",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.45
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "千本槍修練",
+          "icon": "minecraft:prismarine_shard",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sea_lancer/thousand",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "大渦修練",
+          "icon": "minecraft:nautilus_shell",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sea_lancer/maelstrom",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "海神降臨修練",
+          "icon": "minecraft:trident",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:sea_lancer/poseidon",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tid",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.003
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "戦意高揚",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sea_lancer/board/battle_high"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "水鏡",
+      "icon": "minecraft:phantom_membrane",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:sea_lancer/board/dodge"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★海神の膂力",
+      "icon": "minecraft:trident",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.12,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "minecraft:player.entity_interaction_range",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★千本槍・極",
+      "icon": "minecraft:prismarine_shard",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:sea_lancer/thousand",
+          "field": "duration",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:sea_lancer/thousand",
+          "field": "radius",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★海神降臨・極",
+      "icon": "minecraft:trident",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:sea_lancer/poseidon",
+          "field": "amplifier",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:sea_lancer/poseidon",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大海の守り",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}

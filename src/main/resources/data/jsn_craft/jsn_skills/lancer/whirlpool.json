@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "渦潮突き"
+  },
+  "description": {
+    "text": "前を突いて渦を作る（4秒）。周り（3ブロック）の敵を引き込み、0.5秒ごと攻撃力の0.35倍＋濡らす。"
+  },
+  "icon": "minecraft:nautilus_shell",
+  "type": "active",
+  "effect": "spear_whirlpool",
+  "stamina": 22,
+  "cooldown": 14,
+  "power": 0.35,
+  "radius": 3,
+  "duration": 4
+}

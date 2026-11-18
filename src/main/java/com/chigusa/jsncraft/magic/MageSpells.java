@@ -126,6 +126,12 @@ public final class MageSpells {
         return e.getPersistentData().getLong(CURSE) > now(e);
     }
 
+    /** 濡らす（ticks のあいだ。火も消える） */
+    public static void wet(LivingEntity e, int ticks) {
+        e.getPersistentData().putLong(WET, now(e) + ticks);
+        if (e.isOnFire()) e.clearFire();
+    }
+
     /** 呪う（ticks のあいだ魔法のダメージ +25%、弱体） */
     public static void curse(LivingEntity e, int ticks) {
         e.getPersistentData().putLong(CURSE, now(e) + ticks);

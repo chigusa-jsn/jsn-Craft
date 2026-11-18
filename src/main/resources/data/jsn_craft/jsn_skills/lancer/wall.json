@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "槍衾"
+  },
+  "description": {
+    "text": "5秒間 槍を構える（ゆっくりしか動けない）。近づいた敵（3.5ブロック）を0.25秒ごとに自動で突く（攻撃力の0.5倍）。"
+  },
+  "icon": "minecraft:iron_bars",
+  "type": "active",
+  "effect": "spear_wall",
+  "stamina": 25,
+  "cooldown": 20,
+  "power": 0.5,
+  "radius": 3.5,
+  "duration": 5
+}
