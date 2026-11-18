@@ -6,6 +6,12 @@
     "jsn_craft:prismarine_spear",
     "jsn_craft:netherite_spear",
     "jsn_craft:moon_silver_spear",
-    "jsn_craft:star_silver_spear"
+    "jsn_craft:star_silver_spear",
+    "jsn_craft:stone_dagger",
+    "jsn_craft:iron_dagger",
+    "jsn_craft:diamond_dagger",
+    "jsn_craft:netherite_dagger",
+    "jsn_craft:moon_silver_dagger",
+    "jsn_craft:star_silver_dagger"
   ]
 }

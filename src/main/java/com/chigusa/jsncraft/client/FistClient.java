@@ -72,11 +72,13 @@ public final class FistClient {
     @EventBusSubscriber(modid = JsnCraft.MODID, value = Dist.CLIENT)
     public static final class Game {
 
-        /** 素手で殴るとき、左右の拳を交互に出す */
+        /** 素手（籠手）や短剣の二刀流で殴るとき、左右の手を交互に出す */
         @SubscribeEvent
         public static void onAttackKey(InputEvent.InteractionKeyMappingTriggered event) {
             Minecraft mc = Minecraft.getInstance();
-            if (!event.isAttack() || !barehandedWithGauntlets(mc.player)) return;
+            boolean dual = mc.player != null && mc.player.getMainHandItem().getItem() instanceof com.chigusa.jsncraft.weapon.DaggerItem
+                    && mc.player.getOffhandItem().getItem() instanceof com.chigusa.jsncraft.weapon.DaggerItem;
+            if (!event.isAttack() || !(barehandedWithGauntlets(mc.player) || dual)) return;
             event.setSwingHand(false);
             mc.player.swing(leftNext ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
             leftNext = !leftNext;

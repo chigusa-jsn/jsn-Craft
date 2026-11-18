@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "影渡り"
+  },
+  "description": {
+    "text": "ねらった敵（12ブロックまで）の背後へ一瞬で回り込む。"
+  },
+  "icon": "minecraft:ender_pearl",
+  "type": "active",
+  "effect": "dagger_shadow_step",
+  "stamina": 12,
+  "cooldown": 8,
+  "radius": 12
+}

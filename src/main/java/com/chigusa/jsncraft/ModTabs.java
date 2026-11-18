@@ -135,6 +135,7 @@ public final class ModTabs {
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.SPEARS);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.SEA_TRIDENTS);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.GAUNTLETS);
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.DAGGERS);
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANCH = tab("ranch", "jsn-Craft：牧場",

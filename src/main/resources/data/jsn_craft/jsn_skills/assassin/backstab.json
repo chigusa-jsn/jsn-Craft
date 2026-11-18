@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "背後討ち"
+  },
+  "description": {
+    "text": "敵の背中側から攻撃すると、ダメージが50%アップ。"
+  },
+  "icon": "minecraft:iron_sword",
+  "type": "passive",
+  "effect": "dagger_backstab",
+  "power": 0.5
+}

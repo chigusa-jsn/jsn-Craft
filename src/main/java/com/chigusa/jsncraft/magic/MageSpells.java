@@ -298,7 +298,7 @@ public final class MageSpells {
     }
 
     /** 目線の先の敵（なければ前方の近い敵） */
-    static LivingEntity lookTarget(ServerPlayer p, double range) {
+    public static LivingEntity lookTarget(ServerPlayer p, double range) {
         ServerLevel level = p.serverLevel();
         Vec3 eye = p.getEyePosition();
         Vec3 end = eye.add(p.getLookAngle().scale(range));
@@ -351,7 +351,7 @@ public final class MageSpells {
      * 飛ぶ魔法（エンティティなし、毎tick進む）。pierce 体まで貫く。
      * homing > 0 なら近くの敵へ曲がる。onHit は敵に当たるたび、onEnd は最後の場所。
      */
-    static void shoot(ServerPlayer p, Vec3 pos, Vec3 vel, int life, int pierce, double homing, ParticleOptions trail,
+    public static void shoot(ServerPlayer p, Vec3 pos, Vec3 vel, int life, int pierce, double homing, ParticleOptions trail,
                       Consumer<LivingEntity> onHit, Consumer<Vec3> onEnd) {
         step(p, pos, vel, life, pierce, homing, trail, onHit, onEnd, new HashSet<>());
     }

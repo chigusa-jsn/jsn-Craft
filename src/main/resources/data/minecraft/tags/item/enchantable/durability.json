@@ -46,6 +46,12 @@
     "jsn_craft:obsidian_gauntlets",
     "jsn_craft:netherite_gauntlets",
     "jsn_craft:moon_silver_gauntlets",
-    "jsn_craft:star_silver_gauntlets"
+    "jsn_craft:star_silver_gauntlets",
+    "jsn_craft:stone_dagger",
+    "jsn_craft:iron_dagger",
+    "jsn_craft:diamond_dagger",
+    "jsn_craft:netherite_dagger",
+    "jsn_craft:moon_silver_dagger",
+    "jsn_craft:star_silver_dagger"
   ]
 }

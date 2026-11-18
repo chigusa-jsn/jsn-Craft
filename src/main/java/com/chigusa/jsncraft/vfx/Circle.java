@@ -58,6 +58,7 @@ public enum Circle {
             case "shield_knight", "guardian_knight" -> HOLY;
             case "lancer", "sea_lancer" -> WATER;
             case "brawler", "fist_god" -> FIRE;
+            case "assassin", "reaper" -> DARK;
             default -> HOLY;
         };
     }

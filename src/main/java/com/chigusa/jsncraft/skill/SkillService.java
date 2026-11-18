@@ -193,6 +193,8 @@ public final class SkillService {
             return "槍の技は槍かトライデントを持っていないと使えません";
         if ((path.startsWith("brawler/") || path.startsWith("fist_god/")) && !player.getMainHandItem().isEmpty())
             return "拳の技は素手のときだけ使えます";
+        if ((path.startsWith("assassin/") || path.startsWith("reaper/")) && !(item instanceof com.chigusa.jsncraft.weapon.DaggerItem))
+            return "暗殺の技は短剣を持っていないと使えません";
         return null;
     }
 

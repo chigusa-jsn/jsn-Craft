@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "暗殺"
+  },
+  "description": {
+    "text": "0.4秒ためて、ねらった敵に渾身の一撃（攻撃力の4倍）。HP30%以下の敵には2倍、背後からなら1.5倍。"
+  },
+  "icon": "minecraft:netherite_sword",
+  "type": "active",
+  "effect": "dagger_assassinate",
+  "stamina": 30,
+  "cooldown": 16,
+  "power": 4.0,
+  "radius": 6,
+  "cast_time": 0.4
+}

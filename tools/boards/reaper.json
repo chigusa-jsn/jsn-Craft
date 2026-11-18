@@ -1,0 +1,330 @@
+{
+  "job": "reaper",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "影王の心得",
+    "icon": "jsn_craft:star_silver_dagger",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:crit_chance",
+        "amount": 0.08
+      },
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "amount": 0.008
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "鋭刃",
+          "icon": "minecraft:iron_sword",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.35
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "急所",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "千刃修練",
+          "icon": "minecraft:iron_sword",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:reaper/thousand",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "刻印修練",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:reaper/death_mark",
+              "field": "power",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "冥府送り修練",
+          "icon": "minecraft:soul_lantern",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:reaper/netherworld",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "shd",
+      "pool": [
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "速業",
+          "icon": "minecraft:feather",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_speed",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "深い傷",
+      "icon": "minecraft:redstone_block",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:reaper/board/bleed2"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "戦意高揚",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:reaper/board/battle_high"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★死神の刃",
+      "icon": "minecraft:netherite_sword",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.3
+        },
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★千刃・極",
+      "icon": "minecraft:iron_sword",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:reaper/thousand",
+          "field": "amplifier",
+          "amount": 10
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★冥府送り・極",
+      "icon": "minecraft:soul_lantern",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:reaper/netherworld",
+          "field": "amplifier",
+          "amount": 4
+        },
+        {
+          "skill": "jsn_craft:reaper/netherworld",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★影の化身",
+      "icon": "minecraft:leather_boots",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.03
+        },
+        {
+          "attribute": "minecraft:generic.attack_speed",
+          "amount": 0.25
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}

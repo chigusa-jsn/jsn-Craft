@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "二刀の極意"
+  },
+  "description": {
+    "text": "二刀流のとき、左手の短剣の力が40% → 70%乗る。"
+  },
+  "icon": "minecraft:iron_sword",
+  "type": "passive",
+  "effect": "dagger_twin_master",
+  "power": 0.7
+}

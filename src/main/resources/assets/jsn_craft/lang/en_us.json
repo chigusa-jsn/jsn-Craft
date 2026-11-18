@@ -430,5 +430,11 @@
   "item.jsn_craft.moon_silver_gauntlets": "Moon Silver Gauntlets",
   "item.jsn_craft.star_silver_gauntlets": "Star Silver Gauntlets",
   "curios.identifier.gauntlet": "Gauntlets",
-  "curios.modifiers.gauntlet": "When on gauntlets:"
+  "curios.modifiers.gauntlet": "When on gauntlets:",
+  "item.jsn_craft.stone_dagger": "Stone Dagger",
+  "item.jsn_craft.iron_dagger": "Iron Dagger",
+  "item.jsn_craft.diamond_dagger": "Diamond Dagger",
+  "item.jsn_craft.netherite_dagger": "Netherite Dagger",
+  "item.jsn_craft.moon_silver_dagger": "Moon Silver Dagger",
+  "item.jsn_craft.star_silver_dagger": "Star Silver Dagger"
 }

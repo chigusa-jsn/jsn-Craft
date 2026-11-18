@@ -31,7 +31,8 @@ public final class SmithData {
         if (item instanceof SwordItem || item instanceof AxeItem || item instanceof TridentItem || item instanceof MaceItem
                 || item instanceof ProjectileWeaponItem
                 || item instanceof com.chigusa.jsncraft.weapon.StaffItem
-                || item instanceof com.chigusa.jsncraft.weapon.JobSpearItem) sb.append('W');
+                || item instanceof com.chigusa.jsncraft.weapon.JobSpearItem
+                || item instanceof com.chigusa.jsncraft.weapon.DaggerItem) sb.append('W');
         if (item instanceof ArmorItem) sb.append('A');
         if (item instanceof DiggerItem) sb.append('T');
         return sb.toString();

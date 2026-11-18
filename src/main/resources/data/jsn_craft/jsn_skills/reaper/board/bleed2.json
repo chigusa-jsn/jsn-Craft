@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "深い傷"
+  },
+  "description": {
+    "text": "出血の確率が35%になる。"
+  },
+  "icon": "minecraft:redstone_block",
+  "type": "passive",
+  "effect": "dagger_bleed",
+  "chance": 0.35,
+  "power": 0.2
+}

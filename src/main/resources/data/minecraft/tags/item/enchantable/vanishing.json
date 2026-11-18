@@ -40,6 +40,12 @@
     "jsn_craft:sea_trident",
     "jsn_craft:netherite_sea_trident",
     "jsn_craft:moon_silver_sea_trident",
-    "jsn_craft:star_silver_sea_trident"
+    "jsn_craft:star_silver_sea_trident",
+    "jsn_craft:stone_dagger",
+    "jsn_craft:iron_dagger",
+    "jsn_craft:diamond_dagger",
+    "jsn_craft:netherite_dagger",
+    "jsn_craft:moon_silver_dagger",
+    "jsn_craft:star_silver_dagger"
   ]
 }

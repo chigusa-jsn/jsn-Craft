@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "千刃"
+  },
+  "description": {
+    "text": "左右の短剣で目の前を20回切り刻む（0.1秒ごと）。1回 攻撃力の0.35倍。"
+  },
+  "icon": "minecraft:iron_sword",
+  "type": "active",
+  "effect": "dagger_thousand",
+  "stamina": 40,
+  "cooldown": 25,
+  "power": 0.35,
+  "radius": 2.2,
+  "amplifier": 20
+}

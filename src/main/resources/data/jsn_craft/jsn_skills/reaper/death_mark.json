@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "死の刻印"
+  },
+  "description": {
+    "text": "ねらった敵に8秒間の刻印。その間に受けたダメージの50%＋攻撃力の2倍を、最後に爆ぜて返す。"
+  },
+  "icon": "minecraft:wither_skeleton_skull",
+  "type": "active",
+  "effect": "dagger_death_mark",
+  "stamina": 30,
+  "cooldown": 30,
+  "power": 0.5,
+  "duration": 8
+}

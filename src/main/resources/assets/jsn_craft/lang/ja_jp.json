@@ -430,5 +430,11 @@
   "item.jsn_craft.moon_silver_gauntlets": "月銀の籠手",
   "item.jsn_craft.star_silver_gauntlets": "星銀の籠手",
   "curios.identifier.gauntlet": "籠手",
-  "curios.modifiers.gauntlet": "籠手をつけているとき："
+  "curios.modifiers.gauntlet": "籠手をつけているとき：",
+  "item.jsn_craft.stone_dagger": "石の短剣",
+  "item.jsn_craft.iron_dagger": "鉄の短剣",
+  "item.jsn_craft.diamond_dagger": "ダイヤの短剣",
+  "item.jsn_craft.netherite_dagger": "ネザライトの短剣",
+  "item.jsn_craft.moon_silver_dagger": "月銀の短剣",
+  "item.jsn_craft.star_silver_dagger": "星銀の短剣"
 }

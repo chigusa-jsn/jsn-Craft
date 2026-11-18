@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "毒刃"
+  },
+  "description": {
+    "text": "15秒間、攻撃に毒がつく（4秒）。"
+  },
+  "icon": "minecraft:spider_eye",
+  "type": "active",
+  "effect": "dagger_poison",
+  "stamina": 12,
+  "cooldown": 30,
+  "duration": 15,
+  "amplifier": 1
+}
