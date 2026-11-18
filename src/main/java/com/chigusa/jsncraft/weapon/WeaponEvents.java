@@ -42,6 +42,11 @@ public final class WeaponEvents {
     @SubscribeEvent
     public static void onModifiers(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
+        if (stack.getItem() instanceof JobAxeItem axe) {
+            event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("job_axe/skill"), axe.spec().skill(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+            return;
+        }
         if (!(stack.getItem() instanceof StaffItem staff)) return;
         StaffItem.Tier t = staff.tier();
         int plus = SmithData.plus(stack);

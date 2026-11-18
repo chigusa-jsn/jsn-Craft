@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "雄叫び"
+  },
+  "description": {
+    "text": "15秒間 攻撃力 +20%。周り（8ブロック）の敵を弱らせて、自分に引きつける。"
+  },
+  "icon": "minecraft:goat_horn",
+  "type": "active",
+  "effect": "axe_war_cry",
+  "stamina": 20,
+  "cooldown": 30,
+  "power": 0.2,
+  "radius": 8,
+  "duration": 15
+}

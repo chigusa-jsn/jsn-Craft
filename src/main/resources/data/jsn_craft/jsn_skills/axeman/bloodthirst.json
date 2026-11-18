@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "血の渇き"
+  },
+  "description": {
+    "text": "斧で敵を倒すと、最大HPの8%回復する。"
+  },
+  "icon": "minecraft:redstone",
+  "type": "passive",
+  "effect": "axe_bloodthirst",
+  "power": 0.08
+}

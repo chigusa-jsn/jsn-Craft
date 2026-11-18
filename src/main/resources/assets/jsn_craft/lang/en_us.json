@@ -382,5 +382,11 @@
   "item.jsn_craft.moon_silver_holy_staff": "Moon Silver Holy Staff",
   "item.jsn_craft.star_silver_holy_staff": "Star Silver Holy Staff",
   "item.jsn_craft.silver_ingot": "Silver Ingot",
-  "item.jsn_craft.holy_crystal": "Holy Crystal"
+  "item.jsn_craft.holy_crystal": "Holy Crystal",
+  "item.jsn_craft.stone_job_axe": "Stone Great Axe",
+  "item.jsn_craft.iron_job_axe": "Iron Great Axe",
+  "item.jsn_craft.diamond_job_axe": "Diamond Great Axe",
+  "item.jsn_craft.netherite_job_axe": "Netherite Great Axe",
+  "item.jsn_craft.moon_silver_job_axe": "Moon Silver Great Axe",
+  "item.jsn_craft.star_silver_job_axe": "Star Silver Great Axe"
 }

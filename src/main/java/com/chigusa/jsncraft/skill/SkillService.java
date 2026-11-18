@@ -179,6 +179,8 @@ public final class SkillService {
         if ((path.startsWith("mage/") || path.startsWith("archmage/")) && !staff) return "魔法は杖を持っていないと使えません";
         if ((path.startsWith("elementalist/") || path.startsWith("spirit_lord/")) && !book) return "精霊の魔法は魔導書を持っていないと使えません";
         if ((path.startsWith("healer/") || path.startsWith("saint/")) && !holy) return "癒しの魔法は聖杖を持っていないと使えません";
+        if ((path.startsWith("axeman/") || path.startsWith("berserker/")) && !(item instanceof net.minecraft.world.item.AxeItem))
+            return "斧の技は斧を持っていないと使えません";
         return null;
     }
 

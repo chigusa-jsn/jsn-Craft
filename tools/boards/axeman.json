@@ -1,0 +1,352 @@
+{
+  "job": "axeman",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "斧使いの心得",
+    "icon": "jsn_craft:stone_job_axe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.0
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛力",
+          "icon": "minecraft:iron_axe",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.6
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.025
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.12
+            }
+          ]
+        },
+        {
+          "name": "血の刃",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.015
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "兜割り修練",
+          "icon": "minecraft:iron_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:axeman/cleave",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "回転斬り修練",
+          "icon": "minecraft:golden_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:axeman/whirl",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "断鋼撃修練",
+          "icon": "minecraft:netherite_axe",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:axeman/sunder",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "鉄の肌",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "踏ん張り",
+          "icon": "minecraft:iron_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.knockback_resistance",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.01
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "背水の斧",
+      "icon": "minecraft:redstone",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/last_stand"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★剛斧",
+      "icon": "minecraft:netherite_axe",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.1,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "薙ぎ払い",
+      "icon": "minecraft:iron_axe",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/cleave"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★回転斬り・極",
+      "icon": "minecraft:golden_axe",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/whirl",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "投げ斧奥伝",
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/throw",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "不屈",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/endure"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★鉄壁",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "激昂奥伝",
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/rage",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    }
+  ]
+}

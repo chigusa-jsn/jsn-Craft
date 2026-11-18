@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "破城槌"
+  },
+  "description": {
+    "text": "前へ突進（10ブロック）。通り道の敵をすべて攻撃力の2.5倍ではね飛ばす。"
+  },
+  "icon": "minecraft:ravager_spawn_egg",
+  "type": "active",
+  "effect": "axe_siege",
+  "stamina": 30,
+  "cooldown": 14,
+  "power": 2.5,
+  "radius": 10
+}

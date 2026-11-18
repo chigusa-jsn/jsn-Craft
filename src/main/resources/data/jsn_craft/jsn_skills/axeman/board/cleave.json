@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "薙ぎ払い"
+  },
+  "description": {
+    "text": "斧の近接攻撃が、当たった敵の周り（2.5ブロック）の敵にも30%のダメージ。"
+  },
+  "icon": "minecraft:iron_axe",
+  "type": "passive",
+  "effect": "axe_cleave_passive",
+  "power": 0.3,
+  "radius": 2.5
+}

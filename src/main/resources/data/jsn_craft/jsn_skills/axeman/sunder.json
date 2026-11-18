@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "断鋼撃"
+  },
+  "description": {
+    "text": "0.6秒ためて渾身の一撃。攻撃力の3.5倍、当たった敵は8秒間 受けるダメージ +20%（だれの攻撃でも）。"
+  },
+  "icon": "minecraft:netherite_axe",
+  "type": "active",
+  "effect": "axe_sunder",
+  "stamina": 35,
+  "cooldown": 15,
+  "power": 3.5,
+  "radius": 2.2,
+  "duration": 8,
+  "cast_time": 0.6
+}

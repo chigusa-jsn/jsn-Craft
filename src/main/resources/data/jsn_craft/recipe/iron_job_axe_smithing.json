@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:stone_job_axe"
+  },
+  "addition": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "jsn_craft:iron_job_axe",
+    "count": 1
+  }
+}

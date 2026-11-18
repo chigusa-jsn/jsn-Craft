@@ -1,0 +1,349 @@
+{
+  "job": "berserker",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "狂戦士の心得",
+    "icon": "jsn_craft:star_silver_job_axe",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "amount": 1.5
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 4
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "atk",
+      "pool": [
+        {
+          "name": "剛力",
+          "icon": "minecraft:iron_axe",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "痛打",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.067
+            }
+          ]
+        },
+        {
+          "name": "ボス殺し",
+          "icon": "minecraft:wither_skeleton_skull",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:boss_damage",
+              "amount": 0.033
+            }
+          ]
+        },
+        {
+          "name": "血の刃",
+          "icon": "minecraft:fermented_spider_eye",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:lifesteal",
+              "amount": 0.007
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "tec",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "技の冴え",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "破城槌修練",
+          "icon": "minecraft:ravager_spawn_egg",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:berserker/siege",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "大旋風修練",
+          "icon": "minecraft:breeze_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:berserker/frenzy",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "天崩し修練",
+          "icon": "minecraft:mace",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:berserker/sky_breaker",
+              "field": "power_pct",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "grd",
+      "pool": [
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "鉄の肌",
+          "icon": "minecraft:iron_ingot",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.armor",
+              "amount": 0.7
+            }
+          ]
+        },
+        {
+          "name": "踏ん張り",
+          "icon": "minecraft:iron_boots",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.knockback_resistance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "守り",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "血に飢えた刃",
+      "icon": "minecraft:netherite_axe",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:berserker/board/bloodlust"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "戦意高揚",
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:berserker/board/battle_high"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★狂戦士の膂力",
+      "icon": "minecraft:netherite_axe",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.15,
+          "operation": "add_multiplied_total"
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大旋風・極",
+      "icon": "minecraft:breeze_rod",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:berserker/frenzy",
+          "field": "duration",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 50
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★天崩し・極",
+      "icon": "minecraft:mace",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:berserker/sky_breaker",
+          "field": "radius",
+          "amount": 3
+        },
+        {
+          "skill": "jsn_craft:berserker/sky_breaker",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★不死身",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    }
+  ]
+}

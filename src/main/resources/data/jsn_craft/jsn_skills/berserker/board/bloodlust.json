@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "血に飢えた刃"
+  },
+  "description": {
+    "text": "斧の近接攻撃が、当たった敵の周り（3ブロック）の敵にも50%のダメージ。"
+  },
+  "icon": "minecraft:netherite_axe",
+  "type": "passive",
+  "effect": "axe_cleave_passive",
+  "power": 0.5,
+  "radius": 3
+}

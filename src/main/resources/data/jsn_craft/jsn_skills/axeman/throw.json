@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "投げ斧"
+  },
+  "description": {
+    "text": "斧を投げる（12ブロック）。行きと帰りで通り道の敵に攻撃力の1.3倍ずつ。"
+  },
+  "icon": "minecraft:stone_axe",
+  "type": "active",
+  "effect": "axe_throw",
+  "stamina": 15,
+  "cooldown": 6,
+  "power": 1.3,
+  "radius": 12
+}

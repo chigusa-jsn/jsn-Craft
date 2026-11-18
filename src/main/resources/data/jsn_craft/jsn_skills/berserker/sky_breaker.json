@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "奥義・天崩し"
+  },
+  "description": {
+    "text": "1秒ためて高く跳び、叩き落とす。周り（7ブロック）の敵に攻撃力の5倍＋打ち上げて足止め。"
+  },
+  "icon": "minecraft:mace",
+  "type": "active",
+  "effect": "axe_sky_breaker",
+  "stamina": 60,
+  "cooldown": 60,
+  "power": 5.0,
+  "radius": 7,
+  "cast_time": 1.0
+}

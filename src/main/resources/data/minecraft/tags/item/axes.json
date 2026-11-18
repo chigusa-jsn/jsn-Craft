@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:stone_job_axe",
+    "jsn_craft:iron_job_axe",
+    "jsn_craft:diamond_job_axe",
+    "jsn_craft:netherite_job_axe",
+    "jsn_craft:moon_silver_job_axe",
+    "jsn_craft:star_silver_job_axe"
+  ]
+}

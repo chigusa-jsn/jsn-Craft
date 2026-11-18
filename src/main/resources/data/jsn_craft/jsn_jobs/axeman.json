@@ -1,0 +1,1365 @@
+{
+  "name": {
+    "text": "断鋼の斧使い",
+    "color": "red"
+  },
+  "type": "combat",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 15
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 20
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:axeman/cleave",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:axeman/whirl",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:axeman/throw",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:axeman/war_cry",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:axeman/fissure",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:axeman/bloodthirst",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:axeman/sunder",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:axeman/rage",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "斧使いの心得"
+      },
+      "icon": "jsn_craft:stone_job_axe",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.0
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "atk1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "剛力 I"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "atk1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "会心 I"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "atk1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.025
+        }
+      ]
+    },
+    {
+      "id": "tec1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "atk1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "tec1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸法 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "tec1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "grd1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "頑健 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "tec1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "grd1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "鉄の肌 I"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "center",
+        "atk1_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "atk2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "痛打 II"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 1,
+      "links": [
+        "atk1_0",
+        "grd1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "atk2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "剛力 II"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "atk2_0",
+        "atk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "atk2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "血の刃 II"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 1,
+      "links": [
+        "atk2_1",
+        "atk1_0",
+        "atk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "atk2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "会心 II"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "atk2_2",
+        "atk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.025
+        }
+      ]
+    },
+    {
+      "id": "tec2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "技の冴え II"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "atk2_3",
+        "atk1_1",
+        "tec1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "tec2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "兜割り修練 II"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 1,
+      "links": [
+        "tec2_0",
+        "tec1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/cleave",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "tec2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "回転斬り修練 II"
+      },
+      "icon": "minecraft:golden_axe",
+      "cost": 1,
+      "links": [
+        "tec2_1",
+        "tec1_0",
+        "tec1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/whirl",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "tec2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "断鋼撃修練 II"
+      },
+      "icon": "minecraft:netherite_axe",
+      "cost": 1,
+      "links": [
+        "tec2_2",
+        "tec1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/sunder",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "grd2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "踏ん張り II"
+      },
+      "icon": "minecraft:iron_boots",
+      "cost": 1,
+      "links": [
+        "tec2_3",
+        "tec1_1",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "grd2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "grd2_0",
+        "grd1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "grd2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:shield",
+      "cost": 1,
+      "links": [
+        "grd1_0",
+        "grd1_1",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "grd2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "鉄の肌 II"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 1,
+      "links": [
+        "grd1_1",
+        "atk2_0",
+        "grd2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "atk3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "痛打 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "atk2_1",
+        "atk2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "atk3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "剛力 III"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "atk3_0",
+        "atk2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "atk3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "剛力 III"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "atk3_1",
+        "atk2_1",
+        "atk2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.9
+        }
+      ]
+    },
+    {
+      "id": "atk3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "背水の斧"
+      },
+      "icon": "minecraft:redstone",
+      "cost": 3,
+      "links": [
+        "atk3_2",
+        "atk2_2",
+        "atk2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/last_stand"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "atk3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "atk3_3",
+        "atk2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.038
+        }
+      ]
+    },
+    {
+      "id": "atk3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "痛打 III"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "atk3_4",
+        "atk2_3",
+        "tec2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "tec3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "atk3_5",
+        "tec2_0",
+        "tec2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "tec3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec3_0",
+        "tec2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "tec3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec3_1",
+        "tec2_1",
+        "tec2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "tec3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "薙ぎ払い"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 3,
+      "links": [
+        "tec3_2",
+        "tec2_2",
+        "tec2_3"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/cleave"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "tec3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec3_3",
+        "tec2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "tec3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "tec3_4",
+        "tec2_3",
+        "grd2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "grd3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "tec3_5",
+        "grd2_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "grd3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd3_0",
+        "grd2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "grd3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "鉄の肌 III"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd2_1",
+        "grd2_2",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "grd3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "不屈"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 3,
+      "links": [
+        "grd2_2",
+        "grd2_3",
+        "grd3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:axeman/board/endure"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "grd3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "踏ん張り III"
+      },
+      "icon": "minecraft:iron_boots",
+      "cost": 2,
+      "links": [
+        "grd2_3",
+        "grd3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "grd3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "atk2_0",
+        "atk3_0",
+        "grd3_4",
+        "grd2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "atk4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "剛力 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "atk3_0",
+        "grd3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "atk4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "血の刃 IV"
+      },
+      "icon": "minecraft:fermented_spider_eye",
+      "cost": 2,
+      "links": [
+        "atk3_1",
+        "atk4_0",
+        "atk3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:lifesteal",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "atk4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "atk4_1",
+        "atk3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "atk4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★剛斧"
+      },
+      "icon": "minecraft:netherite_axe",
+      "cost": 5,
+      "links": [
+        "atk4_2",
+        "atk3_1",
+        "atk3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.1,
+          "operation": "add_multiplied_total"
+        },
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "atk4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "痛打 IV"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "atk4_3",
+        "atk3_2",
+        "atk3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_damage",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "atk4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "剛力 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "atk4_4",
+        "atk3_3",
+        "atk3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "atk4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "剛力 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "atk4_5",
+        "atk3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 1.2
+        }
+      ]
+    },
+    {
+      "id": "atk4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "atk4_6",
+        "atk3_4",
+        "atk3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "id": "tec4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "技の冴え IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "atk4_7",
+        "atk3_5",
+        "tec3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tec4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "兜割り修練 IV"
+      },
+      "icon": "minecraft:iron_axe",
+      "cost": 2,
+      "links": [
+        "tec4_0",
+        "tec3_0",
+        "tec3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/cleave",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tec4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "回転斬り修練 IV"
+      },
+      "icon": "minecraft:golden_axe",
+      "cost": 2,
+      "links": [
+        "tec4_1",
+        "tec3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/whirl",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tec4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★回転斬り・極"
+      },
+      "icon": "minecraft:golden_axe",
+      "cost": 4,
+      "links": [
+        "tec4_2",
+        "tec3_1",
+        "tec3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/whirl",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "id": "tec4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "断鋼撃修練 IV"
+      },
+      "icon": "minecraft:netherite_axe",
+      "cost": 2,
+      "links": [
+        "tec4_3",
+        "tec3_2",
+        "tec3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/sunder",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tec4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "投げ斧奥伝"
+      },
+      "icon": "minecraft:stone_axe",
+      "cost": 2,
+      "links": [
+        "tec4_4",
+        "tec3_3",
+        "tec3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/throw",
+          "field": "radius",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "tec4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "tec4_5",
+        "tec3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "tec4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "tec4_6",
+        "tec3_4",
+        "tec3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "grd4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:shield",
+      "cost": 2,
+      "links": [
+        "tec4_7",
+        "tec3_5",
+        "grd3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.02
+        }
+      ]
+    },
+    {
+      "id": "grd4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "鉄の肌 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd4_0",
+        "grd3_0",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "grd4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd4_1",
+        "grd3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★鉄壁"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "links": [
+        "grd3_1",
+        "grd3_2",
+        "grd4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "grd4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "grd3_2",
+        "grd3_3",
+        "grd4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "激昂奥伝"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 2,
+      "links": [
+        "grd3_3",
+        "grd3_4",
+        "grd4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:axeman/rage",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "grd4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "鉄の肌 IV"
+      },
+      "icon": "minecraft:iron_ingot",
+      "cost": 2,
+      "links": [
+        "grd3_4",
+        "grd4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.armor",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "grd4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "踏ん張り IV"
+      },
+      "icon": "minecraft:iron_boots",
+      "cost": 2,
+      "links": [
+        "grd3_5",
+        "atk4_0",
+        "grd4_6",
+        "grd3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "amount": 0.1
+        }
+      ]
+    }
+  ]
+}

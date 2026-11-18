@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "狂乱の大旋風"
+  },
+  "description": {
+    "text": "4秒間 回り続ける（動ける）。0.2秒ごとに周り（3.5ブロック）の敵へ攻撃力の0.5倍。"
+  },
+  "icon": "minecraft:breeze_rod",
+  "type": "active",
+  "effect": "axe_frenzy",
+  "stamina": 45,
+  "cooldown": 30,
+  "power": 0.5,
+  "radius": 3.5,
+  "duration": 4
+}

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "不屈"
+  },
+  "description": {
+    "text": "HPが0になる攻撃を受けても1回だけHP1で耐える（2分に1回）。"
+  },
+  "icon": "minecraft:totem_of_undying",
+  "type": "passive",
+  "effect": "endure",
+  "cooldown": 120
+}

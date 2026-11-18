@@ -382,5 +382,11 @@
   "item.jsn_craft.moon_silver_holy_staff": "月銀の聖杖",
   "item.jsn_craft.star_silver_holy_staff": "星銀の聖杖",
   "item.jsn_craft.silver_ingot": "銀インゴット",
-  "item.jsn_craft.holy_crystal": "聖水晶"
+  "item.jsn_craft.holy_crystal": "聖水晶",
+  "item.jsn_craft.stone_job_axe": "石の大斧",
+  "item.jsn_craft.iron_job_axe": "鉄の大斧",
+  "item.jsn_craft.diamond_job_axe": "ダイヤの大斧",
+  "item.jsn_craft.netherite_job_axe": "ネザライトの大斧",
+  "item.jsn_craft.moon_silver_job_axe": "月銀の大斧",
+  "item.jsn_craft.star_silver_job_axe": "星銀の大斧"
 }

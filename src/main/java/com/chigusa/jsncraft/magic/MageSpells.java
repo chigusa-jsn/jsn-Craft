@@ -312,7 +312,7 @@ public final class MageSpells {
     }
 
     /** interval tick ごとに times 回くり返す（i は 0 から） */
-    static void repeat(ServerPlayer p, int interval, int times, java.util.function.IntConsumer run) {
+    public static void repeat(ServerPlayer p, int interval, int times, java.util.function.IntConsumer run) {
         for (int i = 0; i < times; i++) {
             int k = i;
             SkillEffects.later(p, i * interval, () -> {
