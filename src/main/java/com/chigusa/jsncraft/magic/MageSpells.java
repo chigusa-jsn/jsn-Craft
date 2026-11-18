@@ -54,7 +54,7 @@ import java.util.function.Consumer;
  */
 public final class MageSpells {
 
-    public enum Elem { FIRE, ICE, THUNDER, STAR, WIND, EARTH, WATER, DARK, NONE }
+    public enum Elem { FIRE, ICE, THUNDER, STAR, WIND, EARTH, WATER, DARK, LIGHT, NONE }
 
     private static final String FROZEN = "jsn_frozen", SHOCK = "jsn_shock", MARK = "jsn_star_mark", WET = "jsn_wet", CURSE = "jsn_curse";
 
@@ -173,6 +173,15 @@ public final class MageSpells {
             e.hurtMarked = true;
             level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.STONE.defaultBlockState()), e.getX(), e.getY() + 0.5, e.getZ(), 25, 0.4, 0.4, 0.4, 0.1);
             combo = "叩きつけ！";
+        } else if (el == Elem.LIGHT && cursed(e)) {
+            SkillDefinition purge = SkillService.passive(p, "holy_purge");
+            dmg *= 1.8F + (purge != null ? (float) purge.power() : 0);
+            e.getPersistentData().remove(CURSE);
+            e.removeEffect(MobEffects.WEAKNESS);
+            level.sendParticles(ParticleTypes.END_ROD, e.getX(), e.getY() + 1, e.getZ(), 30, 0.4, 0.7, 0.4, 0.15);
+            level.sendParticles(ParticleTypes.FLASH, e.getX(), e.getY() + 1, e.getZ(), 1, 0, 0, 0, 0);
+            level.playSound(null, e.blockPosition(), SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 1.0F, 1.6F);
+            combo = "浄化！";
         } else if (el == Elem.THUNDER && frozen(e)) {
             SkillDefinition sh = SkillService.passive(p, "mage_shatter");
             dmg *= 1.8F + (sh != null ? (float) sh.power() : 0);
@@ -199,6 +208,10 @@ public final class MageSpells {
             combo = "プラズマ！";
         }
         if (marked(e) && el != Elem.STAR) dmg *= 1.2F;
+        if (el == Elem.LIGHT && e.getType().is(net.minecraft.tags.EntityTypeTags.UNDEAD)) {   // 光はアンデッドに2倍
+            SkillDefinition bane = SkillService.passive(p, "holy_undead_bane");
+            dmg *= 2.0F + (bane != null ? (float) bane.power() : 0);
+        }
         if (cursed(e)) {
             SkillDefinition deep = SkillService.passive(p, "spirit_deep_curse");
             dmg *= 1.25F + (deep != null ? (float) deep.power() : 0);

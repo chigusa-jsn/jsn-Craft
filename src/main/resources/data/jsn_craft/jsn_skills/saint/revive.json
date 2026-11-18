@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★リバイブ"
+  },
+  "description": {
+    "text": "3秒詠唱。周り（10ブロック）の仲間に60秒の祈り。倒れても一度だけ、その場でHP50%で復活する。"
+  },
+  "icon": "minecraft:totem_of_undying",
+  "type": "active",
+  "effect": "holy_revive",
+  "mana": 60,
+  "cooldown": 120,
+  "power": 0.5,
+  "radius": 10,
+  "duration": 60,
+  "cast_time": 3.0
+}

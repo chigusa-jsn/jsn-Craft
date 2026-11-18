@@ -13,6 +13,12 @@ public final class ModWeapons {
 
     public static final List<DeferredItem<StaffItem>> STAFFS = new ArrayList<>();
     public static final List<DeferredItem<GrimoireItem>> GRIMOIRES = new ArrayList<>();
+    public static final List<DeferredItem<HolyStaffItem>> HOLY_STAFFS = new ArrayList<>();
+
+    /** 銀インゴット・聖水晶（聖杖の2・3段目の素材） */
+    public static final DeferredItem<Item> SILVER_INGOT = ModEntities.ITEMS.register("silver_ingot", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> HOLY_CRYSTAL = ModEntities.ITEMS.register("holy_crystal",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
     /** 精霊石（魔導書の3段目の素材） */
     public static final DeferredItem<Item> SPIRIT_STONE = ModEntities.ITEMS.register("spirit_stone",
@@ -43,6 +49,7 @@ public final class ModWeapons {
     static {
         for (StaffItem.Tier t : StaffItem.TIERS) STAFFS.add(ModEntities.ITEMS.register(t.id(), () -> new StaffItem(t)));
         for (StaffItem.Tier t : GrimoireItem.TIERS) GRIMOIRES.add(ModEntities.ITEMS.register(t.id(), () -> new GrimoireItem(t)));
+        for (StaffItem.Tier t : HolyStaffItem.TIERS) HOLY_STAFFS.add(ModEntities.ITEMS.register(t.id(), () -> new HolyStaffItem(t)));
     }
 
     public static void init() {}

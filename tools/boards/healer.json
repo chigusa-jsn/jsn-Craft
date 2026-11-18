@@ -1,0 +1,429 @@
+{
+  "job": "healer",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "慈光の心得",
+    "icon": "jsn_craft:wood_holy_staff",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:healing_power",
+        "amount": 0.1
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 30
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.5
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "hea",
+      "pool": [
+        {
+          "name": "癒し",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:healing_power",
+              "amount": 0.025
+            }
+          ]
+        },
+        {
+          "name": "ヒール強化",
+          "icon": "minecraft:golden_carrot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/heal",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "癒しの円強化",
+          "icon": "minecraft:sunflower",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/heal_circle",
+              "field": "duration",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "lig",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "光の矢強化",
+          "icon": "minecraft:spectral_arrow",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/holy_arrow",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "光の柱強化",
+          "icon": "minecraft:end_rod",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/light_pillar",
+              "field": "duration",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.012
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "gua",
+      "pool": [
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.005
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "結界強化",
+          "icon": "minecraft:shield",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/holy_barrier",
+              "field": "duration",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "自然回復",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "pur",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.12
+            }
+          ]
+        },
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "祓い強化",
+          "icon": "minecraft:totem_of_undying",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:healer/turn_undead",
+              "field": "power_pct",
+              "amount": 0.06
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.006
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "あふれる光",
+      "icon": "minecraft:honey_bottle",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:healer/board/overflow_light"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "不死祓い",
+      "icon": "minecraft:bone",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:healer/board/undead_bane"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "祈りの返し",
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:healer/board/prayer_return"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "浄化の極意",
+      "icon": "minecraft:beacon",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:healer/board/purge"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★慈愛",
+      "icon": "minecraft:golden_apple",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.15
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": 1,
+      "name": "リジェネ奥伝",
+      "icon": "minecraft:golden_apple",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:healer/regen",
+          "field": "amplifier",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★聖光",
+      "icon": "minecraft:beacon",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.06
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": 1,
+      "name": "フラッシュ奥伝",
+      "icon": "minecraft:glowstone",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:healer/flash",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★不動の守り",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": 1,
+      "name": "ブレッシング奥伝",
+      "icon": "minecraft:bell",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:healer/blessing",
+          "field": "power",
+          "amount": 0.05
+        }
+      ]
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": -1,
+      "name": "★清らかな泉",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 30
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 1.0
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 3,
+      "ring": 4,
+      "offset": 1,
+      "name": "マナギフト奥伝",
+      "icon": "minecraft:lapis_block",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:healer/mana_gift",
+          "field": "amplifier",
+          "amount": 10
+        }
+      ]
+    }
+  ]
+}

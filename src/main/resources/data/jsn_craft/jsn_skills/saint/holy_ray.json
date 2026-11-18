@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ホーリーレイ"
+  },
+  "description": {
+    "text": "1秒詠唱。聖なる光線（30ブロック）で通り道の敵すべてに聖杖の聖光弾の3.5倍（アンデッドに2倍）。"
+  },
+  "icon": "minecraft:beacon",
+  "type": "active",
+  "effect": "holy_ray",
+  "mana": 22,
+  "cooldown": 12,
+  "power": 3.5,
+  "radius": 30,
+  "cast_time": 1.0
+}

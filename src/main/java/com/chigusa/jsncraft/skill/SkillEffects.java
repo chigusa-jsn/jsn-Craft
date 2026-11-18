@@ -48,6 +48,7 @@ public final class SkillEffects {
     public static boolean activate(ServerPlayer player, SkillDefinition s) {
         if (s.effect().startsWith("mage_")) return com.chigusa.jsncraft.magic.MageSpells.cast(player, s);
         if (s.effect().startsWith("spirit_")) return com.chigusa.jsncraft.magic.SpiritSpells.cast(player, s);
+        if (s.effect().startsWith("holy_")) return com.chigusa.jsncraft.magic.HolySpells.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);
             case "dash" -> dash(player, s);

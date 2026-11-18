@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "エクソシズム"
+  },
+  "description": {
+    "text": "1秒詠唱。ねらった敵に聖杖の聖光弾の4倍（アンデッド・呪われた敵には1.5倍、光でさらに2倍）。敵についている良い効果もはがす。"
+  },
+  "icon": "minecraft:bell",
+  "type": "active",
+  "effect": "holy_exorcism",
+  "mana": 24,
+  "cooldown": 14,
+  "power": 4.0,
+  "cast_time": 1.0
+}

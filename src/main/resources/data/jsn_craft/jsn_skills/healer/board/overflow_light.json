@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "あふれる光"
+  },
+  "description": {
+    "text": "回復した仲間に4秒間の再生がつく。"
+  },
+  "icon": "minecraft:honey_bottle",
+  "type": "passive",
+  "effect": "holy_overflow_light",
+  "duration": 4
+}

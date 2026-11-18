@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "ホーリーアロー"
+  },
+  "description": {
+    "text": "光の矢を撃つ（少し敵を追う）。聖杖の聖光弾の1.4倍、アンデッドには2倍。"
+  },
+  "icon": "minecraft:spectral_arrow",
+  "type": "active",
+  "effect": "holy_arrow",
+  "mana": 5,
+  "cooldown": 1.5,
+  "power": 1.4
+}

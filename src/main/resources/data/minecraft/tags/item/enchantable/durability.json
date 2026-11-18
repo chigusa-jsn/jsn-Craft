@@ -12,6 +12,12 @@
     "jsn_craft:spirit_grimoire",
     "jsn_craft:netherite_grimoire",
     "jsn_craft:moon_silver_grimoire",
-    "jsn_craft:star_silver_grimoire"
+    "jsn_craft:star_silver_grimoire",
+    "jsn_craft:wood_holy_staff",
+    "jsn_craft:silver_holy_staff",
+    "jsn_craft:crystal_holy_staff",
+    "jsn_craft:netherite_holy_staff",
+    "jsn_craft:moon_silver_holy_staff",
+    "jsn_craft:star_silver_holy_staff"
   ]
 }

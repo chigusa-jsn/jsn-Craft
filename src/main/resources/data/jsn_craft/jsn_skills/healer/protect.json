@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "プロテクト"
+  },
+  "description": {
+    "text": "目線の先の仲間（いなければ自分）の受けるダメージを20秒間 -20%。"
+  },
+  "icon": "minecraft:iron_chestplate",
+  "type": "active",
+  "effect": "holy_protect",
+  "mana": 8,
+  "cooldown": 15,
+  "power": 0.2,
+  "radius": 20,
+  "duration": 20
+}

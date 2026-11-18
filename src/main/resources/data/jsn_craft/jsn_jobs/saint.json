@@ -1,0 +1,3669 @@
+{
+  "name": {
+    "text": "聖光の祈り手",
+    "color": "gold"
+  },
+  "type": "combat",
+  "tier": "advanced",
+  "max_level": 100,
+  "skill_points_per_level": 3,
+  "requires": [
+    {
+      "job": "jsn_craft:healer",
+      "level": 30
+    }
+  ],
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 24
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 32
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 16
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 3
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:saint/high_heal",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:saint/holy_ray",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:saint/guardian",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:saint/exorcism",
+      "level": 35
+    },
+    {
+      "skill": "jsn_craft:saint/sanctuary",
+      "level": 50
+    },
+    {
+      "skill": "jsn_craft:saint/sacred_nova",
+      "level": 60
+    },
+    {
+      "skill": "jsn_craft:saint/holy_aegis",
+      "level": 70
+    },
+    {
+      "skill": "jsn_craft:saint/revive",
+      "level": 80
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "祈り手の心得"
+      },
+      "icon": "jsn_craft:star_silver_holy_staff",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.15
+        },
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 40
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.8
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "hea1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "癒し I"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "hea1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "ハイヒール強化 I"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 1,
+      "links": [
+        "hea1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "lig1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 I"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "hea1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "gua1_0",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "守り I"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "lig1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "pur1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 I"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "gua1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pur1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 I"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "center",
+        "hea1_0",
+        "pur1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 9.0
+        }
+      ]
+    },
+    {
+      "id": "hea2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "癒し II"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hea1_0",
+        "pur1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "hea2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "聖域強化 II"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 1,
+      "links": [
+        "hea2_0",
+        "hea1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "hea2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "hea2_1",
+        "hea1_0",
+        "hea1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "lig2_0",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "光線強化 II"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 1,
+      "links": [
+        "hea2_2",
+        "hea1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "lig2_1",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 II"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "lig2_0",
+        "hea1_1",
+        "lig1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.018
+        }
+      ]
+    },
+    {
+      "id": "lig2_2",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "ノヴァ強化 II"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 1,
+      "links": [
+        "lig2_1",
+        "lig1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "gua2_0",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "体力 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "lig2_2",
+        "lig1_0",
+        "gua1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "gua2_1",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "守護強化 II"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 1,
+      "links": [
+        "gua2_0",
+        "gua1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "gua2_2",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "守り II"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "gua2_1",
+        "gua1_0",
+        "pur1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "pur2_0",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "祓魔強化 II"
+      },
+      "icon": "minecraft:bell",
+      "cost": 1,
+      "links": [
+        "gua2_2",
+        "pur1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.075
+        }
+      ]
+    },
+    {
+      "id": "pur2_1",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 II"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "pur1_0",
+        "pur1_1",
+        "pur2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pur2_2",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "待ち時間短縮 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "pur1_1",
+        "hea2_0",
+        "pur2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "hea3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "癒し III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hea2_1",
+        "hea2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hea3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "癒し III"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hea3_0",
+        "hea2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hea3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "恩寵"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "links": [
+        "hea3_1",
+        "hea2_1",
+        "hea2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/grace"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hea3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "ハイヒール強化 III"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 1,
+      "links": [
+        "hea3_2",
+        "hea2_2",
+        "lig2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "lig3_0",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "詠唱 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "hea3_3",
+        "lig2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "lig3_1",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "lig3_0",
+        "lig2_0",
+        "lig2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig3_2",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "魔力の奔流"
+      },
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "links": [
+        "lig3_1",
+        "lig2_1",
+        "lig2_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "lig3_3",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 III"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "lig3_2",
+        "lig2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig3_4",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "光線強化 III"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 1,
+      "links": [
+        "lig3_3",
+        "lig2_2",
+        "gua2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "gua3_0",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "自然回復 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "lig3_4",
+        "gua2_0",
+        "gua2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gua3_1",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "体力 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "gua3_0",
+        "gua2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gua3_2",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "ガーディアン奥伝"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "links": [
+        "gua3_1",
+        "gua2_1",
+        "gua2_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "power",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "gua3_3",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "gua3_2",
+        "gua2_2",
+        "pur2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "gua3_4",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "守り III"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "gua3_3",
+        "pur2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "pur3_0",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "魔力容量 III"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "pur2_0",
+        "pur2_1",
+        "gua3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "pur3_1",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "pur2_1",
+        "pur2_2",
+        "pur3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pur3_2",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "詠唱破棄"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "pur2_2",
+        "pur3_1"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "pur3_3",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 III"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "hea2_0",
+        "hea3_0",
+        "pur3_2",
+        "pur2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hea4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "癒し IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hea3_0",
+        "pur3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hea4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "聖域強化 IV"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "hea3_1",
+        "hea4_0",
+        "hea3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "hea4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "hea4_1",
+        "hea3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "hea4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "癒し IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea4_2",
+        "hea3_1",
+        "hea3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hea4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "癒し IV"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 1,
+      "links": [
+        "hea4_3",
+        "hea3_2",
+        "hea3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "hea4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "ハイヒール強化 IV"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "hea4_4",
+        "hea3_3",
+        "lig3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "lig4_0",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "hea4_5",
+        "lig3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig4_1",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "ノヴァ強化 IV"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "lig4_0",
+        "lig3_0",
+        "lig3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "lig4_2",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "詠唱 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "lig4_1",
+        "lig3_1",
+        "lig3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.016
+        }
+      ]
+    },
+    {
+      "id": "lig4_3",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig4_2",
+        "lig3_2",
+        "lig3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig4_4",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 IV"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 1,
+      "links": [
+        "lig4_3",
+        "lig3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig4_5",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "光線強化 IV"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "lig4_4",
+        "lig3_3",
+        "lig3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "gua4_0",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "lig4_5",
+        "lig3_4",
+        "gua3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gua4_1",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "守護強化 IV"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "links": [
+        "gua4_0",
+        "gua3_0",
+        "gua3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "gua4_2",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 1,
+      "links": [
+        "gua4_1",
+        "gua3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "gua4_3",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "自然回復 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "gua4_2",
+        "gua3_1",
+        "gua3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "gua4_4",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "体力 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "gua4_3",
+        "gua3_2",
+        "gua3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "gua4_5",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "守り IV"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua4_4",
+        "gua3_3",
+        "gua3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "pur4_0",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "gua4_5",
+        "gua3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "pur4_1",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "祓魔強化 IV"
+      },
+      "icon": "minecraft:bell",
+      "cost": 2,
+      "links": [
+        "gua3_4",
+        "pur3_0",
+        "pur4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pur4_2",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 1,
+      "links": [
+        "pur3_0",
+        "pur3_1",
+        "pur4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pur4_3",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "待ち時間短縮 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "pur3_1",
+        "pur3_2",
+        "pur4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "pur4_4",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 IV"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 1,
+      "links": [
+        "pur3_2",
+        "pur4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 12
+        }
+      ]
+    },
+    {
+      "id": "pur4_5",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 IV"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur3_3",
+        "hea4_0",
+        "pur4_4",
+        "pur3_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hea5_0",
+      "x": -3.5,
+      "y": -3,
+      "name": {
+        "text": "癒し V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea4_1",
+        "hea4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea5_1",
+      "x": -3.0,
+      "y": -4,
+      "name": {
+        "text": "聖域強化 V"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "hea4_2",
+        "hea5_0",
+        "hea4_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "hea5_2",
+      "x": -2.5,
+      "y": -5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "hea5_1",
+        "hea4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "hea5_3",
+      "x": -1.5,
+      "y": -5,
+      "name": {
+        "text": "癒し V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea5_2",
+        "hea4_2",
+        "hea4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea5_4",
+      "x": -0.5,
+      "y": -5,
+      "name": {
+        "text": "★サンクチュアリ・極"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 4,
+      "links": [
+        "hea5_3",
+        "hea4_3",
+        "hea4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "duration",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "hea5_5",
+      "x": 0.5,
+      "y": -5,
+      "name": {
+        "text": "癒し V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea5_4",
+        "hea4_4",
+        "hea4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea5_6",
+      "x": 1.5,
+      "y": -5,
+      "name": {
+        "text": "ハイヒール強化 V"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "hea5_5",
+        "hea4_5",
+        "lig4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "hea5_7",
+      "x": 2.5,
+      "y": -5,
+      "name": {
+        "text": "癒し V"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea5_6",
+        "lig4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "lig5_0",
+      "x": 3.0,
+      "y": -4,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "hea5_7",
+        "lig4_0",
+        "lig4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig5_1",
+      "x": 3.5,
+      "y": -3,
+      "name": {
+        "text": "ノヴァ強化 V"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "lig5_0",
+        "lig4_1",
+        "lig4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "lig5_2",
+      "x": 4.0,
+      "y": -2,
+      "name": {
+        "text": "詠唱 V"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "lig5_1",
+        "lig4_2",
+        "lig4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "lig5_3",
+      "x": 4.5,
+      "y": -1,
+      "name": {
+        "text": "★セイクリッドノヴァ・極"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 4,
+      "links": [
+        "lig5_2",
+        "lig4_3",
+        "lig4_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "id": "lig5_4",
+      "x": 5.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig5_3",
+        "lig4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig5_5",
+      "x": 4.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 V"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig5_4",
+        "lig4_4",
+        "lig4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig5_6",
+      "x": 4.0,
+      "y": 2,
+      "name": {
+        "text": "光線強化 V"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "lig5_5",
+        "lig4_5",
+        "gua4_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "gua5_0",
+      "x": 3.5,
+      "y": 3,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "lig5_6",
+        "gua4_0",
+        "gua4_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gua5_1",
+      "x": 3.0,
+      "y": 4,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gua5_0",
+        "gua4_1",
+        "gua4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "gua5_2",
+      "x": 2.5,
+      "y": 5,
+      "name": {
+        "text": "守護強化 V"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "links": [
+        "gua5_1",
+        "gua4_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "gua5_3",
+      "x": 1.5,
+      "y": 5,
+      "name": {
+        "text": "★ホーリーアイギス・極"
+      },
+      "icon": "minecraft:shield",
+      "cost": 4,
+      "links": [
+        "gua5_2",
+        "gua4_2",
+        "gua4_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_aegis",
+          "field": "duration",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "id": "gua5_4",
+      "x": 0.5,
+      "y": 5,
+      "name": {
+        "text": "守り V"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua5_3",
+        "gua4_3",
+        "gua4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gua5_5",
+      "x": -0.5,
+      "y": 5,
+      "name": {
+        "text": "自然回復 V"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "gua5_4",
+        "gua4_4",
+        "gua4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "gua5_6",
+      "x": -1.5,
+      "y": 5,
+      "name": {
+        "text": "体力 V"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gua5_5",
+        "gua4_5",
+        "pur4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "pur5_0",
+      "x": -2.5,
+      "y": 5,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "gua5_6",
+        "pur4_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pur5_1",
+      "x": -3.0,
+      "y": 4,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur4_0",
+        "pur4_1",
+        "pur5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "pur5_2",
+      "x": -3.5,
+      "y": 3,
+      "name": {
+        "text": "祓魔強化 V"
+      },
+      "icon": "minecraft:bell",
+      "cost": 2,
+      "links": [
+        "pur4_1",
+        "pur4_2",
+        "pur5_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "pur5_3",
+      "x": -4.0,
+      "y": 2,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur4_2",
+        "pur4_3",
+        "pur5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pur5_4",
+      "x": -4.5,
+      "y": 1,
+      "name": {
+        "text": "★リバイブ・極"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 4,
+      "links": [
+        "pur4_3",
+        "pur4_4",
+        "pur5_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/revive",
+          "field": "power",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "id": "pur5_5",
+      "x": -5.0,
+      "y": 0,
+      "name": {
+        "text": "待ち時間短縮 V"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "pur4_4",
+        "pur5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "pur5_6",
+      "x": -4.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 V"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur4_5",
+        "pur5_5",
+        "pur4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "pur5_7",
+      "x": -4.0,
+      "y": -2,
+      "name": {
+        "text": "魔力回復 V"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "hea4_0",
+        "hea5_0",
+        "pur5_6",
+        "pur4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "hea6_0",
+      "x": -4.5,
+      "y": -3,
+      "name": {
+        "text": "聖域強化 VI"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "hea5_0",
+        "pur5_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "hea6_1",
+      "x": -4.0,
+      "y": -4,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "hea5_1",
+        "hea6_0",
+        "hea5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "hea6_2",
+      "x": -3.5,
+      "y": -5,
+      "name": {
+        "text": "癒し VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea5_2",
+        "hea6_1",
+        "hea5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea6_3",
+      "x": -3.0,
+      "y": -6,
+      "name": {
+        "text": "癒し VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea6_2",
+        "hea5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea6_4",
+      "x": -2.0,
+      "y": -6,
+      "name": {
+        "text": "★大いなる慈愛"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 6,
+      "links": [
+        "hea6_3",
+        "hea5_2",
+        "hea5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "hea6_5",
+      "x": -1.0,
+      "y": -6,
+      "name": {
+        "text": "ハイヒール強化 VI"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "hea6_4",
+        "hea5_3",
+        "hea5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "hea6_6",
+      "x": 0.0,
+      "y": -6,
+      "name": {
+        "text": "癒し VI"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea6_5",
+        "hea5_4",
+        "hea5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.048
+        }
+      ]
+    },
+    {
+      "id": "hea6_7",
+      "x": 1.0,
+      "y": -6,
+      "name": {
+        "text": "聖域強化 VI"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "hea6_6",
+        "hea5_5",
+        "hea5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "hea6_8",
+      "x": 2.0,
+      "y": -6,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "hea6_7",
+        "hea5_6",
+        "hea5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "lig6_0",
+      "x": 3.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "hea6_8",
+        "hea5_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig6_1",
+      "x": 3.5,
+      "y": -5,
+      "name": {
+        "text": "ノヴァ強化 VI"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "lig6_0",
+        "hea5_7",
+        "lig5_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "lig6_2",
+      "x": 4.0,
+      "y": -4,
+      "name": {
+        "text": "詠唱 VI"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "lig6_1",
+        "lig5_0",
+        "lig5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.019
+        }
+      ]
+    },
+    {
+      "id": "lig6_3",
+      "x": 4.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig6_2",
+        "lig5_1",
+        "lig5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig6_4",
+      "x": 5.0,
+      "y": -2,
+      "name": {
+        "text": "★天の光"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 6,
+      "links": [
+        "lig6_3",
+        "lig5_2",
+        "lig5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "lig6_5",
+      "x": 5.5,
+      "y": -1,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig6_4",
+        "lig5_3",
+        "lig5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig6_6",
+      "x": 6.0,
+      "y": 0,
+      "name": {
+        "text": "光線強化 VI"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "lig6_5",
+        "lig5_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "lig6_7",
+      "x": 5.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 VI"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig6_6",
+        "lig5_4",
+        "lig5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.029
+        }
+      ]
+    },
+    {
+      "id": "lig6_8",
+      "x": 5.0,
+      "y": 2,
+      "name": {
+        "text": "ノヴァ強化 VI"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 2,
+      "links": [
+        "lig6_7",
+        "lig5_5",
+        "lig5_6"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "gua6_0",
+      "x": 4.5,
+      "y": 3,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "lig6_8",
+        "lig5_6",
+        "gua5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gua6_1",
+      "x": 4.0,
+      "y": 4,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua6_0",
+        "gua5_0",
+        "gua5_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gua6_2",
+      "x": 3.5,
+      "y": 5,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gua6_1",
+        "gua5_1",
+        "gua5_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "gua6_3",
+      "x": 3.0,
+      "y": 6,
+      "name": {
+        "text": "守護強化 VI"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "links": [
+        "gua6_2",
+        "gua5_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 4.8
+        }
+      ]
+    },
+    {
+      "id": "gua6_4",
+      "x": 2.0,
+      "y": 6,
+      "name": {
+        "text": "★聖騎士の守り"
+      },
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "links": [
+        "gua6_3",
+        "gua5_2",
+        "gua5_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "gua6_5",
+      "x": 1.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua6_4",
+        "gua5_3",
+        "gua5_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "gua6_6",
+      "x": 0.0,
+      "y": 6,
+      "name": {
+        "text": "自然回復 VI"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "gua6_5",
+        "gua5_4",
+        "gua5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.072
+        }
+      ]
+    },
+    {
+      "id": "gua6_7",
+      "x": -1.0,
+      "y": 6,
+      "name": {
+        "text": "体力 VI"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gua6_6",
+        "gua5_5",
+        "gua5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.4
+        }
+      ]
+    },
+    {
+      "id": "gua6_8",
+      "x": -2.0,
+      "y": 6,
+      "name": {
+        "text": "守り VI"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua6_7",
+        "gua5_6",
+        "pur5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "pur6_0",
+      "x": -3.0,
+      "y": 6,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "gua6_8",
+        "pur5_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pur6_1",
+      "x": -3.5,
+      "y": 5,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur5_0",
+        "pur5_1",
+        "pur6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "pur6_2",
+      "x": -4.0,
+      "y": 4,
+      "name": {
+        "text": "祓魔強化 VI"
+      },
+      "icon": "minecraft:bell",
+      "cost": 2,
+      "links": [
+        "pur5_1",
+        "pur5_2",
+        "pur6_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "pur6_3",
+      "x": -4.5,
+      "y": 3,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur5_2",
+        "pur5_3",
+        "pur6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pur6_4",
+      "x": -5.0,
+      "y": 2,
+      "name": {
+        "text": "★聖なる泉"
+      },
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "links": [
+        "pur5_3",
+        "pur5_4",
+        "pur6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 60
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 2.5
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "id": "pur6_5",
+      "x": -5.5,
+      "y": 1,
+      "name": {
+        "text": "待ち時間短縮 VI"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "pur5_4",
+        "pur5_5",
+        "pur6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "pur6_6",
+      "x": -6.0,
+      "y": 0,
+      "name": {
+        "text": "魔力容量 VI"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur5_5",
+        "pur6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 14.4
+        }
+      ]
+    },
+    {
+      "id": "pur6_7",
+      "x": -5.5,
+      "y": -1,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur5_6",
+        "pur6_6",
+        "pur5_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "pur6_8",
+      "x": -5.0,
+      "y": -2,
+      "name": {
+        "text": "魔力回復 VI"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur5_7",
+        "hea6_0",
+        "pur6_7",
+        "pur5_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.24
+        }
+      ]
+    },
+    {
+      "id": "hea7_0",
+      "x": -5.0,
+      "y": -4,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea6_1",
+        "hea6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hea7_1",
+      "x": -4.5,
+      "y": -5,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "hea6_2",
+        "hea7_0",
+        "hea6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hea7_2",
+      "x": -4.0,
+      "y": -6,
+      "name": {
+        "text": "ハイヒール強化 VII"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "hea6_3",
+        "hea7_1",
+        "hea6_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "hea7_3",
+      "x": -3.5,
+      "y": -7,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "hea7_2",
+        "hea6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hea7_4",
+      "x": -2.5,
+      "y": -7,
+      "name": {
+        "text": "聖域強化 VII"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 2,
+      "links": [
+        "hea7_3",
+        "hea6_3",
+        "hea6_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "hea7_5",
+      "x": -1.5,
+      "y": -7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "hea7_4",
+        "hea6_4",
+        "hea6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "hea7_6",
+      "x": -0.5,
+      "y": -7,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 2,
+      "links": [
+        "hea7_5",
+        "hea6_5",
+        "hea6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hea7_7",
+      "x": 0.5,
+      "y": -7,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "hea7_6",
+        "hea6_6",
+        "hea6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "hea7_8",
+      "x": 1.5,
+      "y": -7,
+      "name": {
+        "text": "ハイヒール強化 VII"
+      },
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 2,
+      "links": [
+        "hea7_7",
+        "hea6_7",
+        "hea6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/high_heal",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "hea7_9",
+      "x": 2.5,
+      "y": -7,
+      "name": {
+        "text": "癒し VII"
+      },
+      "icon": "minecraft:glistering_melon_slice",
+      "cost": 3,
+      "links": [
+        "hea7_8",
+        "hea6_8",
+        "lig6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "lig7_0",
+      "x": 3.5,
+      "y": -7,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "hea7_9",
+        "lig6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig7_1",
+      "x": 4.0,
+      "y": -6,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 3,
+      "links": [
+        "lig7_0",
+        "lig6_0",
+        "lig6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "lig7_2",
+      "x": 4.5,
+      "y": -5,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig7_1",
+        "lig6_1",
+        "lig6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "lig7_3",
+      "x": 5.0,
+      "y": -4,
+      "name": {
+        "text": "光線強化 VII"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 3,
+      "links": [
+        "lig7_2",
+        "lig6_2",
+        "lig6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "lig7_4",
+      "x": 5.5,
+      "y": -3,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig7_3",
+        "lig6_3",
+        "lig6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "lig7_5",
+      "x": 6.0,
+      "y": -2,
+      "name": {
+        "text": "ノヴァ強化 VII"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 3,
+      "links": [
+        "lig7_4",
+        "lig6_4",
+        "lig6_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "lig7_6",
+      "x": 6.5,
+      "y": -1,
+      "name": {
+        "text": "詠唱 VII"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "lig7_5",
+        "lig6_5",
+        "lig6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cast_speed",
+          "amount": 0.024
+        }
+      ]
+    },
+    {
+      "id": "lig7_7",
+      "x": 7.0,
+      "y": 0,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 3,
+      "links": [
+        "lig7_6",
+        "lig6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "lig7_8",
+      "x": 6.5,
+      "y": 1,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig7_7",
+        "lig6_6",
+        "lig6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "lig7_9",
+      "x": 6.0,
+      "y": 2,
+      "name": {
+        "text": "光線強化 VII"
+      },
+      "icon": "minecraft:beacon",
+      "cost": 3,
+      "links": [
+        "lig7_8",
+        "lig6_7",
+        "lig6_8"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_ray",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "lig7_10",
+      "x": 5.5,
+      "y": 3,
+      "name": {
+        "text": "魔力 VII"
+      },
+      "icon": "minecraft:glowstone_dust",
+      "cost": 2,
+      "links": [
+        "lig7_9",
+        "lig6_8",
+        "gua6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.036
+        }
+      ]
+    },
+    {
+      "id": "gua7_0",
+      "x": 5.0,
+      "y": 4,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "lig7_10",
+        "gua6_0",
+        "gua6_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "gua7_1",
+      "x": 4.5,
+      "y": 5,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "gua7_0",
+        "gua6_1",
+        "gua6_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "gua7_2",
+      "x": 4.0,
+      "y": 6,
+      "name": {
+        "text": "守護強化 VII"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "links": [
+        "gua7_1",
+        "gua6_2",
+        "gua6_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "gua7_3",
+      "x": 3.5,
+      "y": 7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "gua7_2",
+        "gua6_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "gua7_4",
+      "x": 2.5,
+      "y": 7,
+      "name": {
+        "text": "自然回復 VII"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "gua7_3",
+        "gua6_3",
+        "gua6_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:hp_regen",
+          "amount": 0.09
+        }
+      ]
+    },
+    {
+      "id": "gua7_5",
+      "x": 1.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 3,
+      "links": [
+        "gua7_4",
+        "gua6_4",
+        "gua6_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "gua7_6",
+      "x": 0.5,
+      "y": 7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua7_5",
+        "gua6_5",
+        "gua6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "gua7_7",
+      "x": -0.5,
+      "y": 7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 3,
+      "links": [
+        "gua7_6",
+        "gua6_6",
+        "gua6_7"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "gua7_8",
+      "x": -1.5,
+      "y": 7,
+      "name": {
+        "text": "体力 VII"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "gua7_7",
+        "gua6_7",
+        "gua6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "gua7_9",
+      "x": -2.5,
+      "y": 7,
+      "name": {
+        "text": "守護強化 VII"
+      },
+      "icon": "minecraft:totem_of_undying",
+      "cost": 3,
+      "links": [
+        "gua7_8",
+        "gua6_8",
+        "pur6_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "duration",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "gua7_10",
+      "x": -3.5,
+      "y": 7,
+      "name": {
+        "text": "守り VII"
+      },
+      "icon": "minecraft:iron_chestplate",
+      "cost": 2,
+      "links": [
+        "gua7_9",
+        "pur6_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.012
+        }
+      ]
+    },
+    {
+      "id": "pur7_0",
+      "x": -4.0,
+      "y": 6,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur6_0",
+        "pur6_1",
+        "gua7_10"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "pur7_1",
+      "x": -4.5,
+      "y": 5,
+      "name": {
+        "text": "祓魔強化 VII"
+      },
+      "icon": "minecraft:bell",
+      "cost": 3,
+      "links": [
+        "pur6_1",
+        "pur6_2",
+        "pur7_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pur7_2",
+      "x": -5.0,
+      "y": 4,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur6_2",
+        "pur6_3",
+        "pur7_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pur7_3",
+      "x": -5.5,
+      "y": 3,
+      "name": {
+        "text": "待ち時間短縮 VII"
+      },
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "links": [
+        "pur6_3",
+        "pur6_4",
+        "pur7_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.015
+        }
+      ]
+    },
+    {
+      "id": "pur7_4",
+      "x": -6.0,
+      "y": 2,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 2,
+      "links": [
+        "pur6_4",
+        "pur6_5",
+        "pur7_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "pur7_5",
+      "x": -6.5,
+      "y": 1,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "pur6_5",
+        "pur6_6",
+        "pur7_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pur7_6",
+      "x": -7.0,
+      "y": 0,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 2,
+      "links": [
+        "pur6_6",
+        "pur7_5"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "pur7_7",
+      "x": -6.5,
+      "y": -1,
+      "name": {
+        "text": "魔力容量 VII"
+      },
+      "icon": "minecraft:lapis_lazuli",
+      "cost": 3,
+      "links": [
+        "pur6_7",
+        "pur7_6",
+        "pur6_6"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 18
+        }
+      ]
+    },
+    {
+      "id": "pur7_8",
+      "x": -6.0,
+      "y": -2,
+      "name": {
+        "text": "祓魔強化 VII"
+      },
+      "icon": "minecraft:bell",
+      "cost": 2,
+      "links": [
+        "pur6_8",
+        "pur7_7",
+        "pur6_7"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/exorcism",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pur7_9",
+      "x": -5.5,
+      "y": -3,
+      "name": {
+        "text": "魔力回復 VII"
+      },
+      "icon": "minecraft:amethyst_shard",
+      "cost": 3,
+      "links": [
+        "hea6_0",
+        "hea7_0",
+        "pur7_8",
+        "pur6_8"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 0.3
+        }
+      ]
+    }
+  ]
+}

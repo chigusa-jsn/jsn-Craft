@@ -1,0 +1,455 @@
+{
+  "job": "saint",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "祈り手の心得",
+    "icon": "jsn_craft:star_silver_holy_staff",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:healing_power",
+        "amount": 0.15
+      },
+      {
+        "attribute": "jsn_craft:max_mana",
+        "amount": 40
+      },
+      {
+        "attribute": "jsn_craft:mana_regen",
+        "amount": 0.8
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "hea",
+      "pool": [
+        {
+          "name": "癒し",
+          "icon": "minecraft:glistering_melon_slice",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:healing_power",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "ハイヒール強化",
+          "icon": "minecraft:enchanted_golden_apple",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/high_heal",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "聖域強化",
+          "icon": "minecraft:beacon",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/sanctuary",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "lig",
+      "pool": [
+        {
+          "name": "魔力",
+          "icon": "minecraft:glowstone_dust",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:magic_power",
+              "amount": 0.012
+            }
+          ]
+        },
+        {
+          "name": "光線強化",
+          "icon": "minecraft:beacon",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/holy_ray",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "ノヴァ強化",
+          "icon": "minecraft:nether_star",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/sacred_nova",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "詠唱",
+          "icon": "minecraft:book",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cast_speed",
+              "amount": 0.008
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "gua",
+      "pool": [
+        {
+          "name": "守り",
+          "icon": "minecraft:iron_chestplate",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:damage_reduction",
+              "amount": 0.004
+            }
+          ]
+        },
+        {
+          "name": "体力",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "守護強化",
+          "icon": "minecraft:totem_of_undying",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/guardian",
+              "field": "duration",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "自然回復",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:hp_regen",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "pur",
+      "pool": [
+        {
+          "name": "魔力回復",
+          "icon": "minecraft:amethyst_shard",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "jsn_craft:mana_regen",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "魔力容量",
+          "icon": "minecraft:lapis_lazuli",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_mana",
+              "amount": 6
+            }
+          ]
+        },
+        {
+          "name": "祓魔強化",
+          "icon": "minecraft:bell",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:saint/exorcism",
+              "field": "power_pct",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "待ち時間短縮",
+          "icon": "minecraft:clock",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "恩寵",
+      "icon": "minecraft:golden_apple",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/grace"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "魔力の奔流",
+      "icon": "minecraft:dragon_breath",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/overflow"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "ガーディアン奥伝",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 2,
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/guardian",
+          "field": "power",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "sector": 3,
+      "ring": 3,
+      "offset": 0,
+      "name": "詠唱破棄",
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:saint/board/instant_cast"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★サンクチュアリ・極",
+      "icon": "minecraft:beacon",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "duration",
+          "amount": 6
+        },
+        {
+          "skill": "jsn_craft:saint/sanctuary",
+          "field": "radius",
+          "amount": 3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★セイクリッドノヴァ・極",
+      "icon": "minecraft:nether_star",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/sacred_nova",
+          "field": "power_pct",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 60
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★ホーリーアイギス・極",
+      "icon": "minecraft:shield",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/holy_aegis",
+          "field": "duration",
+          "amount": 2
+        }
+      ],
+      "big": true,
+      "min_level": 80
+    },
+    {
+      "sector": 3,
+      "ring": 5,
+      "offset": 0,
+      "name": "★リバイブ・極",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:saint/revive",
+          "field": "power",
+          "amount": 0.5
+        }
+      ],
+      "big": true,
+      "min_level": 90
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 0,
+      "name": "★大いなる慈愛",
+      "icon": "minecraft:enchanted_golden_apple",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:healing_power",
+          "amount": 0.3
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 1,
+      "ring": 6,
+      "offset": 0,
+      "name": "★天の光",
+      "icon": "minecraft:beacon",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:magic_power",
+          "amount": 0.1
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 2,
+      "ring": 6,
+      "offset": 0,
+      "name": "★聖騎士の守り",
+      "icon": "minecraft:netherite_chestplate",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 10
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.05
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    },
+    {
+      "sector": 3,
+      "ring": 6,
+      "offset": 0,
+      "name": "★聖なる泉",
+      "icon": "minecraft:heart_of_the_sea",
+      "cost": 6,
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_mana",
+          "amount": 60
+        },
+        {
+          "attribute": "jsn_craft:mana_regen",
+          "amount": 2.5
+        }
+      ],
+      "big": true,
+      "min_level": 70
+    }
+  ]
+}

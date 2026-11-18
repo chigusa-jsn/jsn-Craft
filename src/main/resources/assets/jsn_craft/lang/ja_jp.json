@@ -374,5 +374,13 @@
   "item.jsn_craft.moon_silver_grimoire": "月銀の魔導書",
   "item.jsn_craft.star_silver_grimoire": "星銀の魔導書",
   "item.jsn_craft.spirit_stone": "精霊石",
-  "block.jsn_craft.spirit_rock": "精霊の岩壁"
+  "block.jsn_craft.spirit_rock": "精霊の岩壁",
+  "item.jsn_craft.wood_holy_staff": "木の聖杖",
+  "item.jsn_craft.silver_holy_staff": "銀の聖杖",
+  "item.jsn_craft.crystal_holy_staff": "聖水晶の聖杖",
+  "item.jsn_craft.netherite_holy_staff": "ネザライトの聖杖",
+  "item.jsn_craft.moon_silver_holy_staff": "月銀の聖杖",
+  "item.jsn_craft.star_silver_holy_staff": "星銀の聖杖",
+  "item.jsn_craft.silver_ingot": "銀インゴット",
+  "item.jsn_craft.holy_crystal": "聖水晶"
 }

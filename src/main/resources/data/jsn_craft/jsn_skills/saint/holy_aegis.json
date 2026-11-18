@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "★ホーリーアイギス"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（10ブロック）の仲間を4秒間 無敵の盾で包む。"
+  },
+  "icon": "minecraft:shield",
+  "type": "active",
+  "effect": "holy_aegis",
+  "mana": 55,
+  "cooldown": 90,
+  "radius": 10,
+  "duration": 4,
+  "cast_time": 2.5
+}

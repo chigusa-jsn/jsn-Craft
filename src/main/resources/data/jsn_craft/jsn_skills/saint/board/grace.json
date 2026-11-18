@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "恩寵"
+  },
+  "description": {
+    "text": "回復の魔法が10%の確率で2倍になる。"
+  },
+  "icon": "minecraft:golden_apple",
+  "type": "passive",
+  "effect": "holy_grace",
+  "chance": 0.1
+}

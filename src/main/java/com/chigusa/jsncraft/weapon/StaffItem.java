@@ -65,6 +65,16 @@ public class StaffItem extends Item {
         return false;
     }
 
+    /** 癒し手の聖杖か */
+    public boolean isHolyStaff() {
+        return false;
+    }
+
+    /** 魔導士のふつうの杖か */
+    public boolean isPlainStaff() {
+        return !isGrimoire() && !isHolyStaff();
+    }
+
     protected String kindLabel() {
         return "魔導士の杖";
     }

@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ターンアンデッド"
+  },
+  "description": {
+    "text": "周り（6ブロック）のアンデッドと呪われた敵を祓う。聖杖の聖光弾の1.5倍（アンデッドには2倍）＋燃やす。"
+  },
+  "icon": "minecraft:totem_of_undying",
+  "type": "active",
+  "effect": "holy_turn_undead",
+  "mana": 14,
+  "cooldown": 14,
+  "power": 1.5,
+  "radius": 6
+}

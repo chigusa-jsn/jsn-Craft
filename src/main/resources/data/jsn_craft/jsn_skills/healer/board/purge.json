@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "浄化の極意"
+  },
+  "description": {
+    "text": "浄化（呪われた敵に光）のダメージがさらに +0.6倍。"
+  },
+  "icon": "minecraft:beacon",
+  "type": "passive",
+  "effect": "holy_purge",
+  "power": 0.6
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ブレッシング"
+  },
+  "description": {
+    "text": "自分と近くの仲間（8ブロック）を30秒間 祝福。攻撃 +15%、速さ +10%、魔法の威力 +15%。"
+  },
+  "icon": "minecraft:bell",
+  "type": "active",
+  "effect": "holy_blessing",
+  "mana": 14,
+  "cooldown": 45,
+  "power": 0.15,
+  "radius": 8,
+  "duration": 30
+}

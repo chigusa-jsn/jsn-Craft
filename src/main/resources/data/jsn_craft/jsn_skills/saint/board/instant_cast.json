@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "詠唱破棄"
+  },
+  "description": {
+    "text": "15%の確率で、詠唱なしで魔法がすぐ出る。"
+  },
+  "icon": "minecraft:clock",
+  "type": "passive",
+  "effect": "mage_instant_cast",
+  "chance": 0.15
+}

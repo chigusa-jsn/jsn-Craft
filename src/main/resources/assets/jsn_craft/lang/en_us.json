@@ -374,5 +374,13 @@
   "item.jsn_craft.moon_silver_grimoire": "Moon Silver Grimoire",
   "item.jsn_craft.star_silver_grimoire": "Star Silver Grimoire",
   "item.jsn_craft.spirit_stone": "Spirit Stone",
-  "block.jsn_craft.spirit_rock": "Spirit Rock"
+  "block.jsn_craft.spirit_rock": "Spirit Rock",
+  "item.jsn_craft.wood_holy_staff": "Wooden Holy Staff",
+  "item.jsn_craft.silver_holy_staff": "Silver Holy Staff",
+  "item.jsn_craft.crystal_holy_staff": "Holy Crystal Staff",
+  "item.jsn_craft.netherite_holy_staff": "Netherite Holy Staff",
+  "item.jsn_craft.moon_silver_holy_staff": "Moon Silver Holy Staff",
+  "item.jsn_craft.star_silver_holy_staff": "Star Silver Holy Staff",
+  "item.jsn_craft.silver_ingot": "Silver Ingot",
+  "item.jsn_craft.holy_crystal": "Holy Crystal"
 }

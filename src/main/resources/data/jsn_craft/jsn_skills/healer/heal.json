@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ヒール"
+  },
+  "description": {
+    "text": "目線の先の仲間（いなければ自分）のHPを回復（聖杖の聖光弾の1.5倍）。回復量は聖杖の強さと回復力で増える。"
+  },
+  "icon": "minecraft:glistering_melon_slice",
+  "type": "active",
+  "effect": "holy_heal",
+  "mana": 6,
+  "cooldown": 3,
+  "power": 1.5,
+  "radius": 20
+}

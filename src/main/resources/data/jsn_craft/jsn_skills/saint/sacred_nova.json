@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "★セイクリッドノヴァ"
+  },
+  "description": {
+    "text": "2.5秒詠唱。周り（10ブロック）に聖なる光の爆発。敵に聖杖の聖光弾の5倍（アンデッドに2倍）、仲間は回復。"
+  },
+  "icon": "minecraft:nether_star",
+  "type": "active",
+  "effect": "holy_sacred_nova",
+  "mana": 50,
+  "cooldown": 60,
+  "power": 5.0,
+  "radius": 10,
+  "chance": 1.5,
+  "cast_time": 2.5
+}

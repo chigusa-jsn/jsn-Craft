@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "祈りの返し"
+  },
+  "description": {
+    "text": "仲間を回復するたびにマナが2回復する。"
+  },
+  "icon": "minecraft:amethyst_shard",
+  "type": "passive",
+  "effect": "holy_prayer_return",
+  "power": 2
+}

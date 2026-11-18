@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ライトピラー"
+  },
+  "description": {
+    "text": "目線の先に光の柱（2.5ブロック）を5秒立てる。0.5秒ごと聖杖の聖光弾の0.5倍（アンデッドに2倍）。"
+  },
+  "icon": "minecraft:end_rod",
+  "type": "active",
+  "effect": "holy_light_pillar",
+  "mana": 14,
+  "cooldown": 16,
+  "power": 0.5,
+  "radius": 2.5,
+  "duration": 5
+}

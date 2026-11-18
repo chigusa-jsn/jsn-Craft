@@ -22,6 +22,13 @@ public final class MagicEvents {
     public static void onIncoming(LivingIncomingDamageEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer p)) return;
 
+        // ホーリーアイギス：無敵
+        if (TimedFlags.get(p, "holy_aegis") > 0 && !event.getSource().is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            event.setCanceled(true);
+            p.serverLevel().sendParticles(ParticleTypes.ENCHANTED_HIT, p.getX(), p.getY() + 1, p.getZ(), 6, 0.4, 0.6, 0.4, 0.1);
+            return;
+        }
+
         // フレイムアーマー：火のダメージは受けない、殴ってきた相手を燃やす
         double armor = TimedFlags.get(p, "mage_fire_armor");
         if (armor > 0) {
@@ -47,6 +54,33 @@ public final class MagicEvents {
                 p.level().playSound(null, p.blockPosition(), SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.PLAYERS, 1.0F, 1.4F);
             }
         }
+    }
+
+    /** ガーディアン・リバイブ：倒れそうになったら一度だけ持ちこたえる／その場で復活 */
+    @SubscribeEvent
+    public static void onDeath(net.neoforged.neoforge.event.entity.living.LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer p)) return;
+        if (event.getSource().is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
+        double guard = TimedFlags.get(p, "holy_guardian");
+        double revive = TimedFlags.get(p, "holy_revive");
+        String msg;
+        float hp;
+        if (guard > 0) {
+            TimedFlags.set(p, "holy_guardian", 0, 0);
+            hp = Math.max(1, p.getMaxHealth() * (float) guard);
+            msg = "ガーディアンが守ってくれた！";
+        } else if (revive > 0) {
+            TimedFlags.set(p, "holy_revive", 0, 0);
+            hp = Math.max(1, p.getMaxHealth() * (float) revive);
+            msg = "リバイブ：光の中からよみがえった！";
+        } else return;
+        event.setCanceled(true);
+        p.setHealth(hp);
+        HolySpells.cleanse(p);
+        p.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 60, 4));
+        p.serverLevel().sendParticles(ParticleTypes.TOTEM_OF_UNDYING, p.getX(), p.getY() + 1, p.getZ(), 80, 0.5, 1.0, 0.5, 0.4);
+        p.level().playSound(null, p.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.0F, 1.2F);
+        p.displayClientMessage(net.minecraft.network.chat.Component.literal(msg).withStyle(net.minecraft.ChatFormatting.GOLD, net.minecraft.ChatFormatting.BOLD), true);
     }
 
     /** マンドラゴラを抜くと叫ぶ：近くの人はクラクラ（耕し手・調合師は慣れているので平気） */

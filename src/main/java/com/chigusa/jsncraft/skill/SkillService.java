@@ -106,7 +106,7 @@ public final class SkillService {
     /** スキルバーのページ数：魔法職（魔導士・精霊の術師）は3ページ、ほかは1ページ */
     public static int pages(ServerPlayer player) {
         ResourceLocation combat = JobService.data(player).getJob(com.chigusa.jsncraft.job.JobType.COMBAT);
-        if (combat != null && java.util.Set.of("mage", "archmage", "elementalist", "spirit_lord").contains(combat.getPath())) return 3;
+        if (combat != null && java.util.Set.of("mage", "archmage", "elementalist", "spirit_lord", "healer", "saint").contains(combat.getPath())) return 3;
         return 1;
     }
 
@@ -169,14 +169,16 @@ public final class SkillService {
         sync(player);
     }
 
-    /** 魔導士の魔法は杖、精霊の術師の魔法は魔導書が必要。足りなければその知らせ（足りていれば null） */
+    /** 魔導士の魔法は杖、精霊の術師の魔法は魔導書、癒し手の魔法は聖杖が必要。足りなければその知らせ（足りていれば null） */
     public static String needsWeapon(ResourceLocation id, ServerPlayer player) {
         String path = id == null ? "" : id.getPath();
         var item = player.getMainHandItem().getItem();
-        boolean staff = item instanceof com.chigusa.jsncraft.weapon.StaffItem s && !s.isGrimoire();
+        boolean staff = item instanceof com.chigusa.jsncraft.weapon.StaffItem s && s.isPlainStaff();
         boolean book = item instanceof com.chigusa.jsncraft.weapon.StaffItem s2 && s2.isGrimoire();
+        boolean holy = item instanceof com.chigusa.jsncraft.weapon.StaffItem s3 && s3.isHolyStaff();
         if ((path.startsWith("mage/") || path.startsWith("archmage/")) && !staff) return "魔法は杖を持っていないと使えません";
         if ((path.startsWith("elementalist/") || path.startsWith("spirit_lord/")) && !book) return "精霊の魔法は魔導書を持っていないと使えません";
+        if ((path.startsWith("healer/") || path.startsWith("saint/")) && !holy) return "癒しの魔法は聖杖を持っていないと使えません";
         return null;
     }
 

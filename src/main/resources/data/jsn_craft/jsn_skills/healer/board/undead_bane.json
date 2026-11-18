@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "不死祓い"
+  },
+  "description": {
+    "text": "光の魔法のアンデッドへのダメージが2倍 → 2.5倍。"
+  },
+  "icon": "minecraft:bone",
+  "type": "passive",
+  "effect": "holy_undead_bane",
+  "power": 0.5
+}
