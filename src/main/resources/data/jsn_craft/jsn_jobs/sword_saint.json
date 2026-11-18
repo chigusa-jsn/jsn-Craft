@@ -54,7 +54,7 @@
       "name": {
         "text": "剣聖の心得"
       },
-      "icon": "minecraft:diamond_sword",
+      "icon": "jsn_craft:star_silver_katana",
       "cost": 1,
       "links": [],
       "effects": [

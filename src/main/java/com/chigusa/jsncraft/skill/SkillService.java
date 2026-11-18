@@ -182,7 +182,7 @@ public final class SkillService {
         if ((path.startsWith("axeman/") || path.startsWith("berserker/")) && !(item instanceof net.minecraft.world.item.AxeItem))
             return "斧の技は斧を持っていないと使えません";
         if ((path.startsWith("sword/") || path.startsWith("sword_saint/")) && !(item instanceof net.minecraft.world.item.SwordItem))
-            return "剣の技は剣を持っていないと使えません";
+            return "剣の技は刀か剣を持っていないと使えません";
         if ((path.startsWith("archer/") || path.startsWith("bow_saint/")) && !(item instanceof net.minecraft.world.item.ProjectileWeaponItem))
             return "弓の技は弓かクロスボウを持っていないと使えません";
         return null;

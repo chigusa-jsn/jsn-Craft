@@ -393,12 +393,18 @@
   "item.jsn_craft.iron_job_sword": "Iron Knight Sword",
   "item.jsn_craft.diamond_job_sword": "Diamond Knight Sword",
   "item.jsn_craft.netherite_job_sword": "Netherite Knight Sword",
-  "item.jsn_craft.moon_silver_job_sword": "Moon Silver Sword",
-  "item.jsn_craft.star_silver_job_sword": "Star Silver Sword",
+  "item.jsn_craft.moon_silver_job_sword": "Moon Silver Knight Sword",
+  "item.jsn_craft.star_silver_job_sword": "Star Silver Knight Sword",
   "item.jsn_craft.wood_job_bow": "Wooden Longbow",
   "item.jsn_craft.bone_job_bow": "Bone Longbow",
   "item.jsn_craft.blaze_job_bow": "Blaze Longbow",
   "item.jsn_craft.netherite_job_bow": "Netherite Longbow",
   "item.jsn_craft.moon_silver_job_bow": "Moon Silver Longbow",
-  "item.jsn_craft.star_silver_job_bow": "Star Silver Longbow"
+  "item.jsn_craft.star_silver_job_bow": "Star Silver Longbow",
+  "item.jsn_craft.stone_katana": "Stone Katana",
+  "item.jsn_craft.iron_katana": "Iron Katana",
+  "item.jsn_craft.diamond_katana": "Diamond Katana",
+  "item.jsn_craft.netherite_katana": "Netherite Katana",
+  "item.jsn_craft.moon_silver_katana": "Moon Silver Katana",
+  "item.jsn_craft.star_silver_katana": "Star Silver Katana"
 }

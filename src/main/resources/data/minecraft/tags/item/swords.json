@@ -6,6 +6,12 @@
     "jsn_craft:diamond_job_sword",
     "jsn_craft:netherite_job_sword",
     "jsn_craft:moon_silver_job_sword",
-    "jsn_craft:star_silver_job_sword"
+    "jsn_craft:star_silver_job_sword",
+    "jsn_craft:stone_katana",
+    "jsn_craft:iron_katana",
+    "jsn_craft:diamond_katana",
+    "jsn_craft:netherite_katana",
+    "jsn_craft:moon_silver_katana",
+    "jsn_craft:star_silver_katana"
   ]
 }

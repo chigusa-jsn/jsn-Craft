@@ -47,7 +47,7 @@
       "name": {
         "text": "剣の心得"
       },
-      "icon": "minecraft:wooden_sword",
+      "icon": "jsn_craft:stone_katana",
       "cost": 1,
       "links": [],
       "effects": [
