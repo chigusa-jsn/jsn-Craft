@@ -5,9 +5,9 @@
 import math, os, sys, random
 from PIL import Image
 sys.path.insert(0, os.path.dirname(__file__))
-from gen_staff_art import Art, hx, N
+from gen_staff_art import Art, hx, N, NIGHT, GOLD, constellation
 
-def book(cover, edge, trim, gem, gem2=None, deco=None):
+def book(cover, edge, trim, gem, gem2=None, deco=None, star=False):
     """少し斜めから見た、閉じた厚い本。表紙の真ん中に宝石、角に金具"""
     a = Art()
     # 本の形（左下→右上へ少し傾く平行四辺形）
@@ -31,7 +31,10 @@ def book(cover, edge, trim, gem, gem2=None, deco=None):
     if deco: deco(a)
     cx, cy = 34, 32
     a.poly([(cx, cy - 10), (cx + 9, cy), (cx, cy + 10), (cx - 9, cy)], trim[0])   # 宝石の台
-    if gem2:   # 4色の精霊石
+    if star:   # 星銀：大きな金の星
+        a.star(cx, cy, 9.0, 3.6, 5, hx("#8a5a10")); a.star(cx, cy, 7.6, 3.0, 5, hx("#ffe040")); a.star(cx - 0.5, cy - 0.5, 3.0, 1.2, 5, hx("#fffbe0"))
+        for (x, y, r) in ((60, 6, 2.2), (8, 10, 1.8), (60, 52, 1.6)): a.star(x, y, r, r * 0.35, 4, hx("#fff4c0"), rot=0)
+    elif gem2:   # 4色の精霊石
         cols = gem2
         for i, ang in enumerate((-90, 0, 90, 180)):
             r = math.radians(ang)
@@ -40,7 +43,7 @@ def book(cover, edge, trim, gem, gem2=None, deco=None):
         a.ball(cx, cy, 6.0, *gem)
     # 留め具（右側）
     a.poly([(50, 26), (56, 25), (56, 33), (50, 34)], trim[1]); a.poly([(54, 27), (56, 27), (56, 31), (54, 31)], trim[2])
-    return a.finish(glow=(cx, cy, 13, gem[2] if gem else hx("#ffffff")))
+    return a.finish(glow=(cx, cy, 14 if star else 13, hx("#fff0a0") if star else (gem[2] if gem else hx("#ffffff"))))
 
 BROWN = (hx("#3a2214"), hx("#6a4022"), hx("#8a5a32"))
 PAGE = (hx("#b8a888"), hx("#e8dcc0"))
@@ -70,13 +73,23 @@ SPIRIT4 = [(hx("#2a7a4a"), hx("#7ae0a0"), hx("#d0ffe0")),   # 風
            (hx("#1a4a9a"), hx("#4a90f0"), hx("#c0e0ff")),   # 水
            (hx("#3a1a6a"), hx("#8a50e0"), hx("#e0c0ff"))]   # 闇
 
+def star_grimoire():
+    """星銀の魔導書：夜空色の表紙、金の縁と角、青い星座の彫り、真ん中に大きな星、星の留め具"""
+    def deco(a):
+        constellation(a, [(23, 22), (27, 19), (31, 22), (29, 26)])
+        constellation(a, [(38, 44), (42, 41), (45, 44), (43, 47)])
+        a.ring(34, 32, 11, 1.0, hx("#c0d8ff"))
+        for (x, y) in ((24, 46), (45, 20)): a.star(x, y, 1.6, 0.6, 4, hx("#ffffff"), rot=0)
+    img = book(NIGHT, (hx("#c8b070"), hx("#fff0c0")), (hx("#8a5a10"), hx("#e0a830"), hx("#fff0a0")), None, deco=deco, star=True)
+    return img
+
 GRIMOIRES = {
     "old_grimoire": lambda: book(BROWN, PAGE, IRONT, (hx("#5a4a3a"), hx("#a09080"), hx("#e0d8c8"))),
     "mandrake_grimoire": lambda: book((hx("#1e3a1a"), hx("#3a6a2e"), hx("#5a8a40")), PAGE, IRONT, (hx("#2a5a1a"), hx("#6ac050"), hx("#d0ffb0")), deco=mandrake_deco),
     "spirit_grimoire": lambda: book((hx("#1a2a3a"), hx("#2e4a5e"), hx("#4a6a80")), PAGE, GOLDT, (hx("#2a7a4a"), hx("#7ae0a0"), hx("#ffffff")), gem2=SPIRIT4),
     "netherite_grimoire": lambda: book((hx("#18141a"), hx("#3a3238"), hx("#5a5058")), PAGE, GOLDT, (hx("#7a1010"), hx("#e02a20"), hx("#ff9a60")), deco=neth_deco),
     "moon_silver_grimoire": lambda: book((hx("#2a3458"), hx("#4a5a8a"), hx("#7a8ab8")), PAGE, (hx("#7a88b0"), hx("#c8d8f8"), hx("#ffffff")), (hx("#7a88b0"), hx("#c8d8f8"), hx("#f4f8ff")), deco=moon_deco),
-    "star_silver_grimoire": lambda: book((hx("#2a1a40"), hx("#4a3070"), hx("#6a50a0")), (hx("#c8b070"), hx("#fff0c0")), GOLDT, (hx("#c08010"), hx("#ffe040"), hx("#fffbe0")), deco=star_deco),
+    "star_silver_grimoire": star_grimoire,
 }
 
 def spirit_stone():

@@ -142,15 +142,35 @@ def moon_staff():      # 月銀の杖：月銀の柄、三日月にムーンス�
     a.ball(12, 53, 2.2, *MOON)
     return a.finish(glow=(47, 17, 15, hx("#e0e8ff")))
 
-def star_staff():      # 星の杖：星銀の柄、光る星の宝石と輪
+NIGHT = (hx("#141030"), hx("#2a2460"), hx("#4a44a0"))
+
+def night_shaft(a, x1, y1, x2, y2, bands=(0.1, 0.22, 0.34)):
+    """星銀シリーズの柄：夜空色に金の帯"""
+    a.shaft(x1, y1, x2, y2, 3.8, *NIGHT)
+    for t in bands:
+        x, y = x1 + (x2 - x1) * t, y1 + (y2 - y1) * t
+        a.shaft(x - 1.4, y + 1.4, x + 1.4, y - 1.4, 5.2, *GOLD)
+
+def constellation(a, pts, col=None):
+    col = col or hx("#8aa8ff")
+    for i in range(len(pts) - 1):
+        a.d.line([a.P(*pts[i]), a.P(*pts[i + 1])], fill=col + (255,), width=int(0.8 * 8))
+    for q in pts: a.ball(q[0], q[1], 0.9, hx("#6a88ff"), hx("#c0d8ff"), hx("#ffffff"))
+
+def star_staff():      # 星銀の杖：夜空色の柄、金の三日月と星の輪、真ん中に大きな星、輪に星座
     a = Art()
-    a.shaft(8, 57, 39, 26, 3.6, *STAR)
-    a.ring(47, 17, 12, 1.6, hx("#ffe080")); a.ring(47, 17, 9, 1.0, hx("#fff4c0"))
-    a.star(47, 17, 9.5, 4.0, 5, hx("#d0a020")); a.star(46.5, 16.5, 7.5, 3.2, 5, hx("#ffe040")); a.star(46, 16, 3.5, 1.5, 5, hx("#fffbe0"))
-    for (x, y, r) in ((60, 5, 2.4), (33, 10, 1.8), (61, 30, 1.8), (36, 31, 1.4)): a.star(x, y, r, r * 0.35, 4, hx("#fff4c0"), rot=0)
-    a.poly([(36, 30), (41, 25), (43, 27), (38, 32)], STAR[0])
-    a.ball(12, 53, 2.6, hx("#8a5a10"), hx("#e0a830"), hx("#fff0a0"))
-    return a.finish(glow=(47, 17, 17, hx("#fff0a0")))
+    night_shaft(a, 8, 57, 40, 25)
+    cx, cy = 46, 18
+    a.ring(cx, cy, 13, 2.2, GOLD[1]); a.ring(cx, cy, 13, 0.8, GOLD[2])
+    a.ring(cx, cy, 10, 1.0, hx("#c0d8ff"))
+    constellation(a, [(cx - 9, cy - 3), (cx - 5, cy - 9), (cx + 2, cy - 10), (cx + 8, cy - 6)])
+    # 下の金の三日月（輪を支える）
+    a.arc(cx, cy, 15, 100, 200, 3.0, GOLD[1]); a.arc(cx, cy, 15, 110, 190, 1.0, GOLD[2])
+    a.star(cx, cy, 9.0, 3.6, 5, GOLD[0]); a.star(cx, cy, 7.6, 3.0, 5, hx("#ffe040")); a.star(cx - 0.5, cy - 0.5, 3.2, 1.3, 5, hx("#fffbe0"))
+    a.poly([(37, 28), (42, 23), (44, 25), (39, 30)], GOLD[1])
+    a.star(9.5, 55.5, 3.6, 1.5, 5, GOLD[0]); a.star(9.5, 55.5, 2.8, 1.1, 5, hx("#ffe040"))
+    for (x, y, r) in ((61, 4, 2.4), (30, 8, 1.8), (62, 32, 1.8), (32, 36, 1.4)): a.star(x, y, r, r * 0.35, 4, hx("#fff4c0"), rot=0)
+    return a.finish(glow=(cx, cy, 19, hx("#fff0a0")))
 
 def template(plate, mid, light, gem):
     """鍛冶型：斜めの板に、武器の形が彫ってある"""
