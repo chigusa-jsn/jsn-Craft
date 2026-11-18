@@ -202,7 +202,10 @@ public final class SmithingService {
                         AttributeModifier.Operation.ADD_VALUE), group);
             }
             if (kinds.contains("T")) {
-                event.addModifier(Attributes.BLOCK_BREAK_SPEED, new AttributeModifier(JsnCraft.id("smith/plus_mining"), 0.04 * plus,
+                // 掘る速さ：効率強化と同じ「採掘効率」（その道具で掘れるブロックだけ）＋全体の倍率
+                event.addModifier(Attributes.MINING_EFFICIENCY, new AttributeModifier(JsnCraft.id("smith/plus_efficiency"), 1.5 * plus,
+                        AttributeModifier.Operation.ADD_VALUE), group);
+                event.addModifier(Attributes.BLOCK_BREAK_SPEED, new AttributeModifier(JsnCraft.id("smith/plus_mining"), 0.06 * plus,
                         AttributeModifier.Operation.ADD_MULTIPLIED_BASE), group);
             }
         }
