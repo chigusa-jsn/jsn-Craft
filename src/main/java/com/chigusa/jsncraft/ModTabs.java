@@ -127,6 +127,7 @@ public final class ModTabs {
                 out.accept(com.chigusa.jsncraft.weapon.ModWeapons.SILVER_INGOT.get());
                 out.accept(com.chigusa.jsncraft.weapon.ModWeapons.HOLY_CRYSTAL.get());
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.HOLY_STAFFS);
+                all(out, com.chigusa.jsncraft.weapon.ModWeapons.JOB_SWORDS);
                 all(out, com.chigusa.jsncraft.weapon.ModWeapons.JOB_AXES);
             });
 

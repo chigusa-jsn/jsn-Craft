@@ -47,6 +47,11 @@ public final class WeaponEvents {
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
             return;
         }
+        if (stack.getItem() instanceof JobSwordItem sword) {
+            event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("job_sword/skill"), sword.spec().skill(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+            return;
+        }
         if (!(stack.getItem() instanceof StaffItem staff)) return;
         StaffItem.Tier t = staff.tier();
         int plus = SmithData.plus(stack);

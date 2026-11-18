@@ -388,5 +388,11 @@
   "item.jsn_craft.diamond_job_axe": "Diamond Great Axe",
   "item.jsn_craft.netherite_job_axe": "Netherite Great Axe",
   "item.jsn_craft.moon_silver_job_axe": "Moon Silver Great Axe",
-  "item.jsn_craft.star_silver_job_axe": "Star Silver Great Axe"
+  "item.jsn_craft.star_silver_job_axe": "Star Silver Great Axe",
+  "item.jsn_craft.stone_job_sword": "Stone Knight Sword",
+  "item.jsn_craft.iron_job_sword": "Iron Knight Sword",
+  "item.jsn_craft.diamond_job_sword": "Diamond Knight Sword",
+  "item.jsn_craft.netherite_job_sword": "Netherite Knight Sword",
+  "item.jsn_craft.moon_silver_job_sword": "Moon Silver Sword",
+  "item.jsn_craft.star_silver_job_sword": "Star Silver Sword"
 }

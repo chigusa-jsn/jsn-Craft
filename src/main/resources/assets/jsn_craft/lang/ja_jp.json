@@ -388,5 +388,11 @@
   "item.jsn_craft.diamond_job_axe": "ダイヤの大斧",
   "item.jsn_craft.netherite_job_axe": "ネザライトの大斧",
   "item.jsn_craft.moon_silver_job_axe": "月銀の大斧",
-  "item.jsn_craft.star_silver_job_axe": "星銀の大斧"
+  "item.jsn_craft.star_silver_job_axe": "星銀の大斧",
+  "item.jsn_craft.stone_job_sword": "石の剣士の剣",
+  "item.jsn_craft.iron_job_sword": "鉄の剣士の剣",
+  "item.jsn_craft.diamond_job_sword": "ダイヤの剣士の剣",
+  "item.jsn_craft.netherite_job_sword": "ネザライトの剣士の剣",
+  "item.jsn_craft.moon_silver_job_sword": "月銀の剣",
+  "item.jsn_craft.star_silver_job_sword": "星銀の剣"
 }

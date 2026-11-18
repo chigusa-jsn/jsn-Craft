@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:stone_job_sword",
+    "jsn_craft:iron_job_sword",
+    "jsn_craft:diamond_job_sword",
+    "jsn_craft:netherite_job_sword",
+    "jsn_craft:moon_silver_job_sword",
+    "jsn_craft:star_silver_job_sword"
+  ]
+}

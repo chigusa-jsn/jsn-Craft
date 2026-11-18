@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:stone_job_sword"
+  },
+  "addition": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "jsn_craft:iron_job_sword",
+    "count": 1
+  }
+}
