@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "奥義・金剛不壊"
+  },
+  "description": {
+    "text": "1秒ためて、10秒間 自分と近くの仲間（10ブロック）の受けるダメージを半分にし、周りの敵をすべて引きつける。"
+  },
+  "icon": "minecraft:netherite_block",
+  "type": "active",
+  "effect": "guard_adamant",
+  "stamina": 50,
+  "cooldown": 90,
+  "power": 0.5,
+  "radius": 10,
+  "duration": 10,
+  "cast_time": 1.0
+}

@@ -406,5 +406,11 @@
   "item.jsn_craft.diamond_katana": "ダイヤの刀",
   "item.jsn_craft.netherite_katana": "ネザライトの刀",
   "item.jsn_craft.moon_silver_katana": "月銀の刀",
-  "item.jsn_craft.star_silver_katana": "星銀の刀"
+  "item.jsn_craft.star_silver_katana": "星銀の刀",
+  "item.jsn_craft.wood_tower_shield": "木の大盾",
+  "item.jsn_craft.iron_tower_shield": "鉄の大盾",
+  "item.jsn_craft.diamond_tower_shield": "ダイヤの大盾",
+  "item.jsn_craft.netherite_tower_shield": "ネザライトの大盾",
+  "item.jsn_craft.moon_silver_tower_shield": "月銀の大盾",
+  "item.jsn_craft.star_silver_tower_shield": "星銀の大盾"
 }

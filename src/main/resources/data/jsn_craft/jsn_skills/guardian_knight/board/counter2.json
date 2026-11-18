@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "聖なる反撃"
+  },
+  "description": {
+    "text": "盾で攻撃を防ぐと、防いだダメージの100%＋攻撃力の半分を相手に返す。"
+  },
+  "icon": "minecraft:golden_apple",
+  "type": "passive",
+  "effect": "guard_counter",
+  "power": 1.0
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "かばう"
+  },
+  "description": {
+    "text": "15秒間、近く（8ブロック）の仲間が受けるダメージの50%を代わりに受ける。"
+  },
+  "icon": "minecraft:totem_of_undying",
+  "type": "active",
+  "effect": "guard_cover",
+  "stamina": 15,
+  "cooldown": 30,
+  "power": 0.5,
+  "radius": 8,
+  "duration": 15
+}

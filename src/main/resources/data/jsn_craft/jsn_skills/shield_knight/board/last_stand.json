@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "背水の盾"
+  },
+  "description": {
+    "text": "HPが30%以下のとき、近接攻撃のダメージが30%アップ。"
+  },
+  "icon": "minecraft:redstone",
+  "type": "passive",
+  "effect": "last_stand",
+  "chance": 0.3,
+  "power": 0.3
+}

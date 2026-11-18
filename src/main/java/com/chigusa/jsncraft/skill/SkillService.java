@@ -185,6 +185,9 @@ public final class SkillService {
             return "剣の技は刀か剣を持っていないと使えません";
         if ((path.startsWith("archer/") || path.startsWith("bow_saint/")) && !(item instanceof net.minecraft.world.item.ProjectileWeaponItem))
             return "弓の技は弓かクロスボウを持っていないと使えません";
+        if ((path.startsWith("shield_knight/") || path.startsWith("guardian_knight/"))
+                && !(item instanceof net.minecraft.world.item.ShieldItem) && !(player.getOffhandItem().getItem() instanceof net.minecraft.world.item.ShieldItem))
+            return "盾の技は盾を持っていないと使えません";
         return null;
     }
 

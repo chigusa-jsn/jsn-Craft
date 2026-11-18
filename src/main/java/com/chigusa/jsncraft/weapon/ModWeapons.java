@@ -18,6 +18,7 @@ public final class ModWeapons {
     public static final List<DeferredItem<JobSwordItem>> JOB_SWORDS = new ArrayList<>();
     public static final List<DeferredItem<JobBowItem>> JOB_BOWS = new ArrayList<>();
     public static final List<DeferredItem<KatanaItem>> KATANAS = new ArrayList<>();
+    public static final List<DeferredItem<TowerShieldItem>> TOWER_SHIELDS = new ArrayList<>();
 
     /** 銀インゴット・聖水晶（聖杖の2・3段目の素材） */
     public static final DeferredItem<Item> SILVER_INGOT = ModEntities.ITEMS.register("silver_ingot", () -> new Item(new Item.Properties()));
@@ -58,6 +59,7 @@ public final class ModWeapons {
         for (JobSwordItem.Spec s : JobSwordItem.SPECS) JOB_SWORDS.add(ModEntities.ITEMS.register(s.id(), () -> new JobSwordItem(s)));
         for (JobBowItem.Spec s : JobBowItem.SPECS) JOB_BOWS.add(ModEntities.ITEMS.register(s.id(), () -> new JobBowItem(s)));
         for (KatanaItem.Spec s : KatanaItem.SPECS) KATANAS.add(ModEntities.ITEMS.register(s.id(), () -> new KatanaItem(s)));
+        for (TowerShieldItem.Spec s : TowerShieldItem.SPECS) TOWER_SHIELDS.add(ModEntities.ITEMS.register(s.id(), () -> new TowerShieldItem(s)));
     }
 
     public static void init() {}

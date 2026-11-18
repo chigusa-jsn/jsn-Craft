@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "シールドバッシュ"
+  },
+  "description": {
+    "text": "盾で殴る。前の敵に攻撃力の1.2倍、1.5秒間 動けなくして弱らせる。"
+  },
+  "icon": "minecraft:shield",
+  "type": "active",
+  "effect": "guard_bash",
+  "stamina": 12,
+  "cooldown": 6,
+  "power": 1.2,
+  "radius": 2.0,
+  "duration": 1.5
+}

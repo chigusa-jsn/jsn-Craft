@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "鉄壁の構え"
+  },
+  "description": {
+    "text": "4秒間、受けるダメージ -80%。ただしその間は動けない。"
+  },
+  "icon": "minecraft:anvil",
+  "type": "active",
+  "effect": "guard_iron_wall",
+  "stamina": 20,
+  "cooldown": 25,
+  "power": 0.8,
+  "duration": 4
+}

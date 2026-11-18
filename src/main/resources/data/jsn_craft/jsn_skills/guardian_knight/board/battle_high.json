@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "戦意高揚"
+  },
+  "description": {
+    "text": "敵を倒すとスタミナが15回復する。"
+  },
+  "icon": "minecraft:glistering_melon_slice",
+  "type": "passive",
+  "effect": "battle_high",
+  "power": 15
+}

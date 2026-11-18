@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "守護の陣"
+  },
+  "description": {
+    "text": "自分と近くの仲間（8ブロック）の受けるダメージを20秒間 -15%、防御力 +4。"
+  },
+  "icon": "minecraft:bell",
+  "type": "active",
+  "effect": "guard_formation",
+  "stamina": 20,
+  "cooldown": 40,
+  "power": 0.15,
+  "radius": 8,
+  "duration": 20,
+  "amplifier": 4
+}

@@ -52,6 +52,16 @@ public final class WeaponEvents {
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
             return;
         }
+        if (stack.getItem() instanceof TowerShieldItem shield) {
+            var sp = shield.spec();
+            event.addModifier(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR, new AttributeModifier(JsnCraft.id("tower_shield/armor"), sp.armor(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND);
+            event.addModifier(net.minecraft.world.entity.ai.attributes.Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(JsnCraft.id("tower_shield/kb"), sp.kb(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND);
+            event.addModifier(ModAttributes.DAMAGE_REDUCTION, new AttributeModifier(JsnCraft.id("tower_shield/dr"), sp.dr(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND);
+            return;
+        }
         if (stack.getItem() instanceof KatanaItem katana) {
             event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("katana/skill"), katana.spec().skill(),
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);

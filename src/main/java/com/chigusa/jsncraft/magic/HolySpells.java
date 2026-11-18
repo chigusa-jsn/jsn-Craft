@@ -77,14 +77,14 @@ public final class HolySpells {
 
     // ================= 共通 =================
 
-    static boolean ally(ServerPlayer p, ServerPlayer o) {
+    public static boolean ally(ServerPlayer p, ServerPlayer o) {
         if (o == p) return true;
         PartyManager.Party party = PartyManager.partyOf(p);
         return party != null && party.members.contains(o.getUUID());
     }
 
     /** 自分と、近くのパーティーの仲間 */
-    static List<ServerPlayer> allies(ServerPlayer p, Vec3 c, double r) {
+    public static List<ServerPlayer> allies(ServerPlayer p, Vec3 c, double r) {
         List<ServerPlayer> out = new ArrayList<>();
         for (ServerPlayer o : p.serverLevel().players()) {
             if (ally(p, o) && o.isAlive() && o.position().distanceTo(c) <= r) out.add(o);

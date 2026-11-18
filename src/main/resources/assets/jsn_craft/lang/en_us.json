@@ -406,5 +406,11 @@
   "item.jsn_craft.diamond_katana": "Diamond Katana",
   "item.jsn_craft.netherite_katana": "Netherite Katana",
   "item.jsn_craft.moon_silver_katana": "Moon Silver Katana",
-  "item.jsn_craft.star_silver_katana": "Star Silver Katana"
+  "item.jsn_craft.star_silver_katana": "Star Silver Katana",
+  "item.jsn_craft.wood_tower_shield": "Wooden Tower Shield",
+  "item.jsn_craft.iron_tower_shield": "Iron Tower Shield",
+  "item.jsn_craft.diamond_tower_shield": "Diamond Tower Shield",
+  "item.jsn_craft.netherite_tower_shield": "Netherite Tower Shield",
+  "item.jsn_craft.moon_silver_tower_shield": "Moon Silver Tower Shield",
+  "item.jsn_craft.star_silver_tower_shield": "Star Silver Tower Shield"
 }

@@ -24,6 +24,12 @@
     "jsn_craft:blaze_job_bow",
     "jsn_craft:netherite_job_bow",
     "jsn_craft:moon_silver_job_bow",
-    "jsn_craft:star_silver_job_bow"
+    "jsn_craft:star_silver_job_bow",
+    "jsn_craft:wood_tower_shield",
+    "jsn_craft:iron_tower_shield",
+    "jsn_craft:diamond_tower_shield",
+    "jsn_craft:netherite_tower_shield",
+    "jsn_craft:moon_silver_tower_shield",
+    "jsn_craft:star_silver_tower_shield"
   ]
 }

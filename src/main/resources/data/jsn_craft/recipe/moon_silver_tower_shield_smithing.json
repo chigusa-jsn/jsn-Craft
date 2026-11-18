@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:moon_silver_template"
+  },
+  "base": {
+    "item": "jsn_craft:netherite_tower_shield"
+  },
+  "addition": {
+    "item": "jsn_craft:moon_silver_ingot"
+  },
+  "result": {
+    "id": "jsn_craft:moon_silver_tower_shield",
+    "count": 1
+  }
+}
