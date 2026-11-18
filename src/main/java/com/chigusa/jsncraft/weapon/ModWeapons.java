@@ -23,6 +23,7 @@ public final class ModWeapons {
     public static final List<DeferredItem<SeaTridentItem>> SEA_TRIDENTS = new ArrayList<>();
     public static final List<DeferredItem<GauntletItem>> GAUNTLETS = new ArrayList<>();
     public static final List<DeferredItem<DaggerItem>> DAGGERS = new ArrayList<>();
+    public static final List<DeferredItem<WhipItem>> WHIPS = new ArrayList<>();
 
     /** 銀インゴット・聖水晶（聖杖の2・3段目の素材） */
     public static final DeferredItem<Item> SILVER_INGOT = ModEntities.ITEMS.register("silver_ingot", () -> new Item(new Item.Properties()));
@@ -68,6 +69,7 @@ public final class ModWeapons {
         for (SeaTridentItem.Spec s : SeaTridentItem.SPECS) SEA_TRIDENTS.add(ModEntities.ITEMS.register(s.id(), () -> new SeaTridentItem(s)));
         for (GauntletItem.Spec s : GauntletItem.SPECS) GAUNTLETS.add(ModEntities.ITEMS.register(s.id(), () -> new GauntletItem(s)));
         for (DaggerItem.Spec s : DaggerItem.SPECS) DAGGERS.add(ModEntities.ITEMS.register(s.id(), () -> new DaggerItem(s)));
+        for (WhipItem.Spec s : WhipItem.SPECS) WHIPS.add(ModEntities.ITEMS.register(s.id(), () -> new WhipItem(s)));
     }
 
     public static void init() {}

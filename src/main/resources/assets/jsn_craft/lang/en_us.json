@@ -436,5 +436,15 @@
   "item.jsn_craft.diamond_dagger": "Diamond Dagger",
   "item.jsn_craft.netherite_dagger": "Netherite Dagger",
   "item.jsn_craft.moon_silver_dagger": "Moon Silver Dagger",
-  "item.jsn_craft.star_silver_dagger": "Star Silver Dagger"
+  "item.jsn_craft.star_silver_dagger": "Star Silver Dagger",
+  "item.jsn_craft.leather_whip": "Leather Whip",
+  "item.jsn_craft.iron_whip": "Iron Whip",
+  "item.jsn_craft.bone_whip": "Beast Bone Whip",
+  "item.jsn_craft.netherite_whip": "Netherite Whip",
+  "item.jsn_craft.moon_silver_whip": "Moon Silver Whip",
+  "item.jsn_craft.star_silver_whip": "Star Silver Whip",
+  "entity.jsn_craft.pet_wolf": "Companion Wolf",
+  "entity.jsn_craft.pet_golem": "Mini Golem",
+  "entity.jsn_craft.pet_hawk": "Companion Hawk",
+  "entity.jsn_craft.pet_bee": "Companion Bee"
 }

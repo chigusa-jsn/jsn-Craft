@@ -46,6 +46,12 @@
     "jsn_craft:diamond_dagger",
     "jsn_craft:netherite_dagger",
     "jsn_craft:moon_silver_dagger",
-    "jsn_craft:star_silver_dagger"
+    "jsn_craft:star_silver_dagger",
+    "jsn_craft:leather_whip",
+    "jsn_craft:iron_whip",
+    "jsn_craft:bone_whip",
+    "jsn_craft:netherite_whip",
+    "jsn_craft:moon_silver_whip",
+    "jsn_craft:star_silver_whip"
   ]
 }

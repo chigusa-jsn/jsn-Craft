@@ -195,6 +195,8 @@ public final class SkillService {
             return "拳の技は素手のときだけ使えます";
         if ((path.startsWith("assassin/") || path.startsWith("reaper/")) && !(item instanceof com.chigusa.jsncraft.weapon.DaggerItem))
             return "暗殺の技は短剣を持っていないと使えません";
+        if ((path.startsWith("beast_tamer/") || path.startsWith("beast_king/")) && !(item instanceof com.chigusa.jsncraft.weapon.WhipItem))
+            return "獣使いの技は鞭を持っていないと使えません";
         return null;
     }
 

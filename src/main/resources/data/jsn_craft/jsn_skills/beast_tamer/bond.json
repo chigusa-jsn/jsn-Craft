@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "絆"
+  },
+  "description": {
+    "text": "相棒の受けるダメージが25%ダウン。"
+  },
+  "icon": "minecraft:golden_apple",
+  "type": "passive",
+  "effect": "beast_bond",
+  "power": 0.25
+}

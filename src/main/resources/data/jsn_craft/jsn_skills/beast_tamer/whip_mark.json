@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "鞭の印"
+  },
+  "description": {
+    "text": "鞭で叩いた敵を相棒みんなでいっせいに狙う。その敵への相棒のダメージが25%アップ（10秒）。"
+  },
+  "icon": "minecraft:lead",
+  "type": "passive",
+  "effect": "beast_whip_mark",
+  "power": 0.25
+}

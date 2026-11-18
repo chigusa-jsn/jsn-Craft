@@ -55,6 +55,7 @@ public final class SkillEffects {
         if (s.effect().startsWith("spear_")) return com.chigusa.jsncraft.combat.SpearSkills.cast(player, s);
         if (s.effect().startsWith("fist_")) return com.chigusa.jsncraft.combat.FistSkills.cast(player, s);
         if (s.effect().startsWith("dagger_")) return com.chigusa.jsncraft.combat.DaggerSkills.cast(player, s);
+        if (s.effect().startsWith("beast_")) return com.chigusa.jsncraft.beast.BeastSkills.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);
             case "dash" -> dash(player, s);
@@ -126,6 +127,7 @@ public final class SkillEffects {
     public static boolean isEnemy(ServerPlayer player, LivingEntity e) {
         if (e == player || e instanceof Player || e instanceof ReceptionistEntity || !e.isAlive()) return false;
         if (e instanceof net.minecraft.world.entity.TamableAnimal pet && pet.isOwnedBy(player)) return false;
+        if (com.chigusa.jsncraft.beast.PetCommon.isPet(e)) return false; // 獣使いの相棒
         return e.isAttackable();
     }
 

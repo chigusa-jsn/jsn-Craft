@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "集まれ"
+  },
+  "description": {
+    "text": "相棒を全員そばへ呼び寄せ、体力を40%回復。6秒間、守りが固くなり（耐性II）少しずつ回復する。"
+  },
+  "icon": "minecraft:bell",
+  "type": "active",
+  "effect": "beast_rally",
+  "stamina": 15,
+  "cooldown": 20,
+  "power": 0.4,
+  "duration": 6,
+  "amplifier": 1
+}

@@ -1,0 +1,1393 @@
+{
+  "name": {
+    "text": "群狼の獣使い",
+    "color": "green"
+  },
+  "type": "combat",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "kill_entity",
+      "target": "minecraft:creeper",
+      "xp": 15
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:enderman",
+      "xp": 20
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:zombie",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:skeleton",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "minecraft:spider",
+      "xp": 10
+    },
+    {
+      "action": "kill_entity",
+      "target": "*",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:beast_tamer/call_wolf",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/whip_mark",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/lash",
+      "level": 3
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/call_golem",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/charge",
+      "level": 8
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/call_hawk",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/rally",
+      "level": 12
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/call_bees",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/bond",
+      "level": 18
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/roar",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/pack",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:beast_tamer/frenzy",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "獣使いの心得"
+      },
+      "icon": "jsn_craft:leather_whip",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.03
+        },
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "pet1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "オオカミ修練 I"
+      },
+      "icon": "minecraft:bone",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pet1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "指揮 I"
+      },
+      "icon": "minecraft:lead",
+      "cost": 1,
+      "links": [
+        "pet1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "whp1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "鋭鞭 I"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "pet1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "whp1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "会心 I"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wld1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "気力 I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "whp1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "wld1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 I"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "center",
+        "pet1_0",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "pet2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "ゴーレム修練 II"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 1,
+      "links": [
+        "pet1_0",
+        "wld1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_golem",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pet2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "鷹修練 II"
+      },
+      "icon": "minecraft:feather",
+      "cost": 1,
+      "links": [
+        "pet2_0",
+        "pet1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_hawk",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pet2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "蜂修練 II"
+      },
+      "icon": "minecraft:honeycomb",
+      "cost": 1,
+      "links": [
+        "pet2_1",
+        "pet1_0",
+        "pet1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_bees",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "pet2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "オオカミ修練 II"
+      },
+      "icon": "minecraft:bone",
+      "cost": 1,
+      "links": [
+        "pet2_2",
+        "pet1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "whp2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "早業 II"
+      },
+      "icon": "minecraft:clock",
+      "cost": 1,
+      "links": [
+        "pet2_3",
+        "pet1_1",
+        "whp1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.04
+        }
+      ]
+    },
+    {
+      "id": "whp2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "鞭打ち修練 II"
+      },
+      "icon": "minecraft:leather",
+      "cost": 1,
+      "links": [
+        "whp2_0",
+        "whp1_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/lash",
+          "field": "power_pct",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "whp2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "鋭鞭 II"
+      },
+      "icon": "minecraft:string",
+      "cost": 1,
+      "links": [
+        "whp2_1",
+        "whp1_0",
+        "whp1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "whp2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "会心 II"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 1,
+      "links": [
+        "whp2_2",
+        "whp1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "wld2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "頑健 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "whp2_3",
+        "whp1_1",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "wld2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "wld2_0",
+        "wld1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "wld2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "気力 II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "wld1_0",
+        "wld1_1",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "id": "wld2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "呼吸法 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "wld1_1",
+        "pet2_0",
+        "wld2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "pet3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "指揮 III"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet2_1",
+        "pet2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "pet3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "オオカミ修練 III"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet3_0",
+        "pet2_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pet3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "指揮 III"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet3_1",
+        "pet2_1",
+        "pet2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "pet3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "働き蜂"
+      },
+      "icon": "minecraft:beehive",
+      "cost": 3,
+      "links": [
+        "pet3_2",
+        "pet2_2",
+        "pet2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_bees",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "pet3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "ゴーレム修練 III"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 2,
+      "links": [
+        "pet3_3",
+        "pet2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_golem",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pet3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "鷹修練 III"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "pet3_4",
+        "pet2_3",
+        "whp2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_hawk",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "whp3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "pet3_5",
+        "whp2_0",
+        "whp2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "鋭鞭 III"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp3_0",
+        "whp2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "whp3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "会心 III"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp3_1",
+        "whp2_1",
+        "whp2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "whp3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "長い鞭"
+      },
+      "icon": "minecraft:fishing_rod",
+      "cost": 3,
+      "links": [
+        "whp3_2",
+        "whp2_2",
+        "whp2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/lash",
+          "field": "radius",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "id": "whp3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "早業 III"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp3_3",
+        "whp2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "鞭打ち修練 III"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "whp3_4",
+        "whp2_3",
+        "wld2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/lash",
+          "field": "power_pct",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wld3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "whp3_5",
+        "wld2_0",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.25
+        }
+      ]
+    },
+    {
+      "id": "wld3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "気力 III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld3_0",
+        "wld2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 15.0
+        }
+      ]
+    },
+    {
+      "id": "wld3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "呼吸法 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld2_1",
+        "wld2_2",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "wld3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "野生の勘"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "links": [
+        "wld2_2",
+        "wld2_3",
+        "wld3_2"
+      ],
+      "effects": [
+        {
+          "grant": "jsn_craft:beast_tamer/board/wild_sense"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "wld3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld2_3",
+        "wld3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2.25
+        }
+      ]
+    },
+    {
+      "id": "wld3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "pet2_0",
+        "pet3_0",
+        "wld3_4",
+        "wld2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "pet4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "蜂修練 IV"
+      },
+      "icon": "minecraft:honeycomb",
+      "cost": 2,
+      "links": [
+        "pet3_0",
+        "wld3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_bees",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "オオカミ修練 IV"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet3_1",
+        "pet4_0",
+        "pet3_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet4_1",
+        "pet3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★群れの長"
+      },
+      "icon": "minecraft:wolf_spawn_egg",
+      "cost": 5,
+      "links": [
+        "pet4_2",
+        "pet3_1",
+        "pet3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "pet4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "オオカミ修練 IV"
+      },
+      "icon": "minecraft:bone",
+      "cost": 2,
+      "links": [
+        "pet4_3",
+        "pet3_2",
+        "pet3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "指揮 IV"
+      },
+      "icon": "minecraft:lead",
+      "cost": 2,
+      "links": [
+        "pet4_4",
+        "pet3_3",
+        "pet3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:skill_damage",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "pet4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "ゴーレム修練 IV"
+      },
+      "icon": "minecraft:iron_block",
+      "cost": 2,
+      "links": [
+        "pet4_5",
+        "pet3_4"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_golem",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pet4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "鷹修練 IV"
+      },
+      "icon": "minecraft:feather",
+      "cost": 2,
+      "links": [
+        "pet4_6",
+        "pet3_4",
+        "pet3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_hawk",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "whp4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "鋭鞭 IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "pet4_7",
+        "pet3_5",
+        "whp3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "whp4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp4_0",
+        "whp3_0",
+        "whp3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp4_1",
+        "whp3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★野生解放・極"
+      },
+      "icon": "minecraft:blaze_powder",
+      "cost": 4,
+      "links": [
+        "whp4_2",
+        "whp3_1",
+        "whp3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/frenzy",
+          "field": "duration",
+          "amount": 5
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "id": "whp4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "鋭鞭 IV"
+      },
+      "icon": "minecraft:string",
+      "cost": 2,
+      "links": [
+        "whp4_3",
+        "whp3_2",
+        "whp3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "whp4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "会心 IV"
+      },
+      "icon": "minecraft:arrow",
+      "cost": 2,
+      "links": [
+        "whp4_4",
+        "whp3_3",
+        "whp3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:crit_chance",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "whp4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "早業 IV"
+      },
+      "icon": "minecraft:clock",
+      "cost": 2,
+      "links": [
+        "whp4_5",
+        "whp3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:cooldown_reduction",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "whp4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "鞭打ち修練 IV"
+      },
+      "icon": "minecraft:leather",
+      "cost": 2,
+      "links": [
+        "whp4_6",
+        "whp3_4",
+        "whp3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/lash",
+          "field": "power_pct",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wld4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "whp4_7",
+        "whp3_5",
+        "wld3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wld4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld4_0",
+        "wld3_0",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld4_1",
+        "wld3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★獣の体"
+      },
+      "icon": "minecraft:leather_chestplate",
+      "cost": 5,
+      "links": [
+        "wld3_1",
+        "wld3_2",
+        "wld4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.01
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "wld4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "気力 IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "wld3_2",
+        "wld3_3",
+        "wld4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    },
+    {
+      "id": "wld4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "呼吸法 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "wld3_3",
+        "wld3_4",
+        "wld4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "頑健 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "wld3_4",
+        "wld4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 3.0
+        }
+      ]
+    },
+    {
+      "id": "wld4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "wld3_5",
+        "pet4_0",
+        "wld4_6",
+        "wld3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.01
+        }
+      ]
+    }
+  ]
+}

@@ -436,5 +436,15 @@
   "item.jsn_craft.diamond_dagger": "ダイヤの短剣",
   "item.jsn_craft.netherite_dagger": "ネザライトの短剣",
   "item.jsn_craft.moon_silver_dagger": "月銀の短剣",
-  "item.jsn_craft.star_silver_dagger": "星銀の短剣"
+  "item.jsn_craft.star_silver_dagger": "星銀の短剣",
+  "item.jsn_craft.leather_whip": "革の鞭",
+  "item.jsn_craft.iron_whip": "鉄の鞭",
+  "item.jsn_craft.bone_whip": "獣骨の鞭",
+  "item.jsn_craft.netherite_whip": "ネザライトの鞭",
+  "item.jsn_craft.moon_silver_whip": "月銀の鞭",
+  "item.jsn_craft.star_silver_whip": "星銀の鞭",
+  "entity.jsn_craft.pet_wolf": "相棒のオオカミ",
+  "entity.jsn_craft.pet_golem": "ミニゴーレム",
+  "entity.jsn_craft.pet_hawk": "相棒の鷹",
+  "entity.jsn_craft.pet_bee": "相棒のミツバチ"
 }

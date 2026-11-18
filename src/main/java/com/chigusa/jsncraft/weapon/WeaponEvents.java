@@ -67,6 +67,11 @@ public final class WeaponEvents {
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
             return;
         }
+        if (stack.getItem() instanceof WhipItem whip) {
+            event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("whip/skill"), whip.spec().skill(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+            return;
+        }
         if (stack.getItem() instanceof JobSpearItem spear) {
             event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("spear/skill"), spear.spec().skill(),
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);

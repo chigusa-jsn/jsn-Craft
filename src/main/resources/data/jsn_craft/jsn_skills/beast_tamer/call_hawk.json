@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "鷹召喚"
+  },
+  "description": {
+    "text": "空から戦う鷹を呼ぶ（もう一度使うと戻す）。空を飛んでついてきて、敵に急降下する。"
+  },
+  "icon": "minecraft:feather",
+  "type": "active",
+  "effect": "beast_call_hawk",
+  "stamina": 15,
+  "cooldown": 3,
+  "amplifier": 1,
+  "power": 1.0
+}

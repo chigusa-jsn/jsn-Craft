@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "群れの狩り"
+  },
+  "description": {
+    "text": "同じ敵のそばにいる仲間1体ごとに、相棒のダメージ+8%（6体まで）。"
+  },
+  "icon": "minecraft:bone_block",
+  "type": "passive",
+  "effect": "beast_pack",
+  "power": 0.08
+}

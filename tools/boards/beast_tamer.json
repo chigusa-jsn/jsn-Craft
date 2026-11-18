@@ -1,0 +1,306 @@
+{
+  "job": "beast_tamer",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "獣使いの心得",
+    "icon": "jsn_craft:leather_whip",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.03
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 2
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "pet",
+      "pool": [
+        {
+          "name": "オオカミ修練",
+          "icon": "minecraft:bone",
+          "weight": 2,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/call_wolf",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "ゴーレム修練",
+          "icon": "minecraft:iron_block",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/call_golem",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "鷹修練",
+          "icon": "minecraft:feather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/call_hawk",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "蜂修練",
+          "icon": "minecraft:honeycomb",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/call_bees",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "指揮",
+          "icon": "minecraft:lead",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "whp",
+      "pool": [
+        {
+          "name": "鋭鞭",
+          "icon": "minecraft:string",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "鞭打ち修練",
+          "icon": "minecraft:leather",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:beast_tamer/lash",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "wld",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "頑健",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "働き蜂",
+      "icon": "minecraft:beehive",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_bees",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★群れの長",
+      "icon": "minecraft:wolf_spawn_egg",
+      "cost": 5,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "amplifier",
+          "amount": 1
+        },
+        {
+          "skill": "jsn_craft:beast_tamer/call_wolf",
+          "field": "power_pct",
+          "amount": 0.2,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "長い鞭",
+      "icon": "minecraft:fishing_rod",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/lash",
+          "field": "radius",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★野生解放・極",
+      "icon": "minecraft:blaze_powder",
+      "cost": 4,
+      "effects": [
+        {
+          "skill": "jsn_craft:beast_tamer/frenzy",
+          "field": "duration",
+          "amount": 5
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "野生の勘",
+      "icon": "minecraft:rabbit_foot",
+      "cost": 3,
+      "effects": [
+        {
+          "grant": "jsn_craft:beast_tamer/board/wild_sense"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★獣の体",
+      "icon": "minecraft:leather_chestplate",
+      "cost": 5,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.01
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    }
+  ]
+}

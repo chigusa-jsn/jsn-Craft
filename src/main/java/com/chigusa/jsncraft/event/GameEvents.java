@@ -102,7 +102,10 @@ public final class GameEvents {
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         // 矢などで倒した場合も getEntity() は撃ったプレイヤーになる
-        if (event.getSource().getEntity() instanceof ServerPlayer player && !(event.getEntity() instanceof Player)) {
+        // 獣使いの相棒が倒したときは、主人の手柄
+        ServerPlayer player = event.getSource().getEntity() instanceof ServerPlayer sp ? sp
+                : event.getSource().getEntity() != null ? com.chigusa.jsncraft.beast.PetCommon.owner(event.getSource().getEntity()) : null;
+        if (player != null && !(event.getEntity() instanceof Player) && !com.chigusa.jsncraft.beast.PetCommon.isPet(event.getEntity())) {
             var victim = event.getEntity();
             JobService.onAction(player, rule -> rule.action().equals("kill_entity") && rule.matchesEntity(victim));
             QuestService.onKill(player, victim);

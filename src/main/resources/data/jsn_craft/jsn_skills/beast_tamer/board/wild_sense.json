@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "野生の勘"
+  },
+  "description": {
+    "text": "攻撃を受けたとき、10%の確率でかわす。"
+  },
+  "icon": "minecraft:rabbit_foot",
+  "type": "passive",
+  "effect": "dodge",
+  "chance": 0.1
+}

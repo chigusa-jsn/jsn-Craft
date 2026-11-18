@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "突撃"
+  },
+  "description": {
+    "text": "ねらった敵（24ブロックまで）へ相棒みんなを飛びかからせる。6秒間、相棒の足が速く力が強くなり、最初の一撃は80%アップ。"
+  },
+  "icon": "minecraft:iron_horse_armor",
+  "type": "active",
+  "effect": "beast_charge",
+  "stamina": 20,
+  "cooldown": 12,
+  "radius": 24,
+  "duration": 6,
+  "power": 0.8,
+  "amplifier": 1
+}
