@@ -57,13 +57,40 @@ def star_deco(a):
     a.star(42, 23, 4.5, 1.8, 5, hx("#ffe040"))
     for (x, y, r) in ((58, 6, 2.2), (60, 30, 1.6), (28, 10, 1.6)): a.star(x, y, r, r * 0.35, 4, hx("#fff4c0"), rot=0)
 
+def star_silver_axe():
+    """星銀の大斧：夜空色の柄に金の帯、白金の大きな両刃、真ん中に光る星、刃に星座の彫り"""
+    a = Art()
+    NIGHT = (hx("#141030"), hx("#2a2460"), hx("#4a44a0"))
+    WHITE = (hx("#7a7aa0"), hx("#e8ecff"), hx("#ffffff"))
+    a.shaft(8, 57, 52, 13, 3.8, *NIGHT)
+    for t in (0.08, 0.2, 0.32):   # 金の帯
+        x, y = 8 + 44 * t, 57 - 44 * t
+        a.shaft(x - 1.4, y + 1.4, x + 1.4, y - 1.4, 5.2, *GOLD)
+    # 金のふち（少し大きい刃を先に描く）
+    blade(a, 41, 24, 19.5, GOLD, hx("#ffe880"), double=True)
+    blade(a, 41, 24, 17.5, WHITE, hx("#d8f0ff"), double=True)
+    # 刃の星座の彫り
+    for pts in (((33, 13), (30, 17), (26, 16), (24, 20)), ((49, 35), (52, 31), (56, 32), (58, 28))):
+        for i in range(len(pts) - 1):
+            a.d.line([a.P(*pts[i]), a.P(*pts[i + 1])], fill=hx("#8aa8ff") + (255,), width=int(0.8 * 8))
+        for q in pts: a.ball(q[0], q[1], 0.9, hx("#6a88ff"), hx("#c0d8ff"), hx("#ffffff"))
+    # 上の槍先
+    a.poly([(49, 16), (57, 4), (60, 7), (52, 18)], GOLD[1]); a.poly([(51, 15), (57, 6), (58, 7), (52, 16)], GOLD[2])
+    # 真ん中の大きな星
+    a.star(41, 24, 7.5, 3.0, 5, GOLD[0])
+    a.star(41, 24, 6.2, 2.5, 5, hx("#ffe040"))
+    a.star(40.5, 23.5, 2.8, 1.2, 5, hx("#fffbe0"))
+    a.ball(10, 55, 3.0, *GOLD)
+    for (x, y, r) in ((60, 20, 2.4), (24, 6, 2.0), (62, 44, 1.6), (18, 30, 1.4)): a.star(x, y, r, r * 0.35, 4, hx("#fff4c0"), rot=0)
+    return a.finish(glow=(41, 24, 24, hx("#fff0a0")))
+
 AXES = {
     "stone_job_axe": lambda: axe(WOOD, STONE, hx("#d0d0d0"), size=12),
     "iron_job_axe": lambda: axe(WOOD, IRON, hx("#ffffff"), size=13, wrap=LEATHER),
     "diamond_job_axe": lambda: axe(WOOD, DIA, hx("#e8fffc"), size=14, wrap=LEATHER),
     "netherite_job_axe": lambda: axe(NETH, NETH, hx("#c8b8c0"), double=True, size=13, deco=neth_deco, wrap=(hx("#8a5a10"), hx("#e0a830"), hx("#fff0a0"))),
     "moon_silver_job_axe": lambda: axe(MOON, MOON, hx("#ffffff"), double=True, size=14, deco=moon_deco),
-    "star_silver_job_axe": lambda: axe(STAR, GOLD, hx("#fffbe0"), double=True, size=15, deco=star_deco),
+    "star_silver_job_axe": star_silver_axe,
 }
 
 if __name__ == "__main__":
