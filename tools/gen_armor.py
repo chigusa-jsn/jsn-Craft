@@ -71,7 +71,7 @@ def paint_face(img, c, f, pal, tier, style):
     u, v, fw, fh = c.uv[f]
     x0, y0, W, H = int(u * PX), int(v * PX), max(1, int(round(fw * PX))), max(1, int(round(fh * PX)))
     part = c.part
-    base = pal[part]
+    base = pal.get(part, pal["trim"])   # 色が決まっていない部品は飾りの色
     shade = {"up": 1.12, "down": 0.72, "north": 1.0, "south": 0.88, "east": 0.94, "west": 0.94}[f]
     col = tuple(min(255, int(ch * shade)) for ch in base)
     d = ImageDraw.Draw(img)
@@ -259,6 +259,32 @@ def mage():
     boot = [Cube("armorRightBoot", [-3.9, 0, -2], [4, 2.4, 4], "boot", 0.45),
             Cube("armorRightBoot", [-3.9, 0, -3.6], [4, 1.1, 1.8], "boot", 0.35)]
     C += boot + [mirror_x(c, "armorLeftBoot") for c in boot]
+    # ---- 4段目：立ちえり・肩の飾り板・ブーツの金具
+    C.append(Cube("armorBody", [-4.8, 22.6, 1.6], [9.6, 5.4, 0.6], "mantle", 0.05, rot=[-18, 0, 0], pivot=[0, 23, 2], tags=("top_trim", "border"), tier_from=4))
+    sc = [Cube("armorBody", [-5.4, 22.6, -2.6], [0.6, 4.2, 4.4], "mantle", 0.05, rot=[0, 0, 10], pivot=[-5, 23, 0], tags=("top_trim",), tier_from=4)]
+    C += sc + [mirror_x(c, "armorBody") for c in sc]
+    sh = [Cube("armorRightArm", [-9.4, 21.6, -3.2], [5.6, 1.0, 6.4], "plate", 0.1, rot=[0, 0, 14], pivot=[-6, 22, 0], tags=("border",), tier_from=4),
+          Cube("armorRightBoot", [-4.0, 1.6, -3.8], [4.2, 0.8, 4.8], "plate", 0.4, tier_from=4)]
+    C += sh + [mirror_x(c, "armorLeftArm" if c.bone == "armorRightArm" else "armorLeftBoot") for c in sh]
+    # ---- 5段目：帽子の三日月・前垂れ・袖の輪・肩の宝玉
+    C.append(Cube("armorHead", [-2.6, 33.4, -4.6], [1.0, 3.2, 0.5], "plate", rot=[0, 0, 25], pivot=[-2, 35, -4.4], tier_from=5))
+    C.append(Cube("armorHead", [-1.8, 32.6, -4.6], [3.0, 0.9, 0.5], "plate", tier_from=5))
+    C.append(Cube("armorHead", [0.9, 33.4, -4.6], [1.0, 3.2, 0.5], "plate", rot=[0, 0, -25], pivot=[1.4, 35, -4.4], tier_from=5))
+    C.append(Cube("armorBody", [-1.9, 2.5, -3.0], [3.8, 9.5, 0.4], "mantle", 0, rot=[-4, 0, 0], pivot=[0, 12, -2.9], tags=("hem", "border"), tier_from=5))
+    s5 = [Cube("armorRightArm", [-8.7, 13.8, -2.7], [5.4, 1.0, 5.4], "plate", 0.15, tier_from=5),
+          Cube("armorRightArm", [-8.2, 22.8, -1.0], [2.0, 2.0, 2.0], "gem", 0, rot=[45, 0, 45], pivot=[-7.2, 23.8, 0], tier_from=5)]
+    C += s5 + [mirror_x(c, "armorLeftArm") for c in s5]
+    # ---- 6段目：頭のうしろの星の輪・つばさのようなマント・肩の星
+    for i in range(12):
+        a = math.radians(i * 30)
+        x, y = 6.6 * math.cos(a), 28.5 + 6.6 * math.sin(a)
+        C.append(Cube("armorHead", [x - 0.75, y - 0.75, 4.9], [1.5, 1.5, 0.4], "gem", rot=[0, 0, 45], pivot=[x, y, 5.1], tier_from=6))
+    C.append(Cube("armorHead", [-0.9, 40.0, 3.0], [1.8, 1.8, 0.4], "gem", rot=[-40, 0, 45], pivot=[0, 41, 3], tier_from=6))
+    wg = [Cube("armorBody", [-6.6, 0.0, 2.8], [3.0, 21.0, 0.4], "cape", 0, rot=[8, 18, 10], pivot=[-4.2, 21, 2.8], tags=("hem",), tier_from=6)]
+    C += wg + [mirror_x(c, "armorBody") for c in wg]
+    st = [Cube("armorRightArm", [-9.2, 23.4, -0.8], [1.6, 1.6, 1.6], "gem", 0, rot=[0, 45, 45], pivot=[-8.4, 24.2, 0], tier_from=6),
+          Cube("armorRightLeg", [-4.4, 8.6, -3.4], [1.6, 1.6, 0.4], "gem", 0, rot=[0, 0, 45], pivot=[-3.6, 9.4, -3.2], tier_from=6)]
+    C += st + [mirror_x(c, "armorLeftArm" if c.bone == "armorRightArm" else "armorLeftLeg") for c in st]
     P = {
         1: dict(hat="#5e5040", band="#3a2c20", robe="#6c5c48", mantle="#5a4c3c", cape="#4a3e30", belt="#3a2c20", boot="#3a2c20", trim="#b09a78", gem="#c8b090", star="#ffe060", gem_from=9),
         2: dict(hat="#3e4ea0", band="#2a2a44", robe="#4858aa", mantle="#3a4894", cape="#2e3a7a", belt="#2a2a40", boot="#2a2a40", trim="#dfe6f6", gem="#b8ecff", star="#ffe060", gem_from=2),
@@ -294,6 +320,29 @@ def warrior():
     boot = [Cube("armorRightBoot", [-3.9, 0, -2], [4, 3, 4], "boot", 0.5),
             Cube("armorRightBoot", [-3.9, 0.4, -2.95], [4, 4.6, 1.0], "metal", 0.15, tags=("border",), tier_from=3)]
     C += boot + [mirror_x(c, "armorLeftBoot") for c in boot]
+    # ---- 4段目：はかまの横の草ずり
+    kz = [Cube("armorRightLeg", [-4.7, 6.4, -2.8], [0.8, 5.4, 5.6], "plate", 0.1, rot=[0, 0, -6], pivot=[-4.3, 12, 0], tags=("border",), tier_from=4)]
+    C += kz + [mirror_x(c, "armorLeftLeg") for c in kz]
+    # ---- 5段目：かぶとのしころ（首まわり）・前立ての玉・二重の大袖・肩当て
+    C.append(Cube("armorHead", [-4.6, 25.6, 3.6], [9.2, 3.8, 0.6], "plate", 0.1, rot=[22, 0, 0], pivot=[0, 29.4, 3.9], tags=("border",), tier_from=5))
+    sk = [Cube("armorHead", [-5.1, 25.8, -2.6], [0.6, 3.6, 6.6], "plate", 0.1, rot=[0, 0, -16], pivot=[-4.8, 29.4, 0], tags=("border",), tier_from=5)]
+    C += sk + [mirror_x(c, "armorHead") for c in sk]
+    C.append(Cube("armorHead", [-0.9, 30.4, -5.3], [1.8, 1.8, 0.4], "gem", rot=[0, 0, 45], pivot=[0, 31.3, -5.1], tier_from=5))
+    s5 = [Cube("armorRightArm", [-10.8, 14.4, -3.1], [1.2, 5.6, 6.2], "plate", 0, rot=[0, 0, 20], pivot=[-9.6, 20, 0], tags=("rivets", "border"), tier_from=5),
+          Cube("armorRightArm", [-8.6, 22.8, -2.6], [5.2, 1.0, 5.2], "metal", 0.1, tags=("border",), tier_from=5)]
+    C += s5 + [mirror_x(c, "armorLeftArm") for c in s5]
+    C.append(Cube("armorBody", [-4.4, 20.4, -3.1], [8.8, 2.0, 0.6], "plate", 0.1, tags=("border",), tier_from=5))
+    # ---- 6段目：大きな三日月の前立て・なびくえりまき・二枚目のマント・すねの金の飾り
+    hn = [Cube("armorHead", [-4.0, 31.0, -5.25], [1.2, 5.5, 0.3], "gem", rot=[0, 0, -30], pivot=[-3.4, 31, -5.1], tier_from=6),
+          Cube("armorHead", [-6.7, 35.4, -5.25], [1.1, 2.6, 0.3], "gem", rot=[0, 0, -6], pivot=[-6.1, 35.6, -5.1], tier_from=6)]
+    C += hn + [mirror_x(c, "armorHead") for c in hn]
+    C.append(Cube("armorBody", [-4.6, 22.6, -2.8], [9.2, 2.2, 5.6], "band", 0.35, tier_from=6))
+    sf = [Cube("armorBody", [-3.4, 9.0, 3.0], [1.6, 14.0, 0.4], "band", 0, rot=[18, 12, 0], pivot=[-2.6, 23, 3], tags=("hem",), tier_from=6)]
+    C += sf + [mirror_x(c, "armorBody") for c in sf]
+    wg = [Cube("armorBody", [-7.0, 1.0, 3.0], [3.4, 20.5, 0.4], "cape", 0, rot=[8, 20, 12], pivot=[-4.4, 22, 3], tags=("hem",), tier_from=6)]
+    C += wg + [mirror_x(c, "armorBody") for c in wg]
+    sn = [Cube("armorRightBoot", [-3.0, 2.0, -3.6], [2.2, 2.2, 0.4], "gem", 0, rot=[0, 0, 45], pivot=[-1.9, 3.1, -3.4], tier_from=6)]
+    C += sn + [mirror_x(c, "armorLeftBoot") for c in sn]
     P = {
         1: dict(band="#2a3a6a", plate="#7a7a80", metal="#8a8a90", cloth="#4c5a6c", cape="#3a5a8a", sash="#2a2a3a", hakama="#3a3e48", boot="#2a2420", lapel="#d8d8d0", trim="#b0b0b0", gem="#9a9aa0", star="#ffe060", gem_from=9),
         2: dict(band="#2a4aa0", plate="#b8bcc8", metal="#c8ccd6", cloth="#34446a", cape="#2a4aa0", sash="#1e2236", hakama="#2a2e3e", boot="#22201e", lapel="#e8ecf4", trim="#e0e4ee", gem="#c8ccd8", star="#ffe060", gem_from=9),
