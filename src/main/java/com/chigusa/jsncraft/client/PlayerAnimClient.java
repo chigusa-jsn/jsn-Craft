@@ -103,10 +103,7 @@ public final class PlayerAnimClient {
             LocalPlayer p = mc.player;
             if (p == null || p.isSpectator() || (mc.hitResult != null && mc.hitResult.getType() == HitResult.Type.BLOCK)) return;
             String anim = attackAnim(p);
-            if (anim == null) {
-            JsnCraft.LOGGER.warn("[jsn-craft] 体の動き {} が見つかりません（player_animations/weapons.json）", name);
-            return;
-        }
+            if (anim == null) return;
             play(p, anim);
             PacketDistributor.sendToServer(new AnimPayloads.Swing(anim));
         }
