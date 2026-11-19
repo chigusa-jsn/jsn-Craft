@@ -35,6 +35,8 @@ BASE = [
             "gamble_poker_hand", stamina=20, cooldown=14, power=1.0, radius=4)),
     (20, sk("gambler", "all_in", "オールイン", "いまの体力の35%を賭けて、8秒間 ダメージ +100%。", "active", "gamble_all_in",
             stamina=10, cooldown=40, chance=0.35, power=1.0, duration=8)),
+    (22, sk("gambler", "lucky_punch", "ラッキーパンチ", "目の前の敵をなぐる（攻撃力の1倍）。1%で一撃必殺！ 運（幸運）1につき +0.2%（最大5%）。ボスには効きにくい。", "active",
+            "gamble_lucky_punch", stamina=8, cooldown=5, power=1.0, chance=0.01, radius=4)),
     (25, sk("gambler", "high_roll", "大勝負", "体力が減っているほど強くなる（体力ゼロに近いと ダメージ +60%）。", "passive", "gamble_high_roll", power=0.6)),
     (30, sk("gambler", "slot_burst", "スロットバースト", "3つの絵柄を回して爆発。そろえば4倍、7がそろえば7倍、2つで2倍（攻撃力の1.2倍が基本）。", "active",
             "gamble_slot_burst", stamina=25, cooldown=18, power=1.2, radius=4)),

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ラッキーパンチ"
+  },
+  "description": {
+    "text": "目の前の敵をなぐる（攻撃力の1倍）。1%で一撃必殺！ 運（幸運）1につき +0.2%（最大5%）。ボスには効きにくい。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/lucky_punch",
+  "type": "active",
+  "effect": "gamble_lucky_punch",
+  "stamina": 8,
+  "cooldown": 5,
+  "power": 1.0,
+  "chance": 0.01,
+  "radius": 4
+}

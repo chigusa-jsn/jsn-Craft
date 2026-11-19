@@ -54,6 +54,7 @@ public final class GamblerSkills {
             case "gamble_house_rules" -> houseRules(p, s);
             case "gamble_royal_flush" -> pokerHand(p, s, true);
             case "gamble_seven_heaven" -> sevenHeaven(p, s);
+            case "gamble_lucky_punch" -> luckyPunch(p, s);
             default -> false;
         };
     }
@@ -394,6 +395,42 @@ public final class GamblerSkills {
                 level.sendParticles(ParticleTypes.FIREWORK, c.x, c.y + 2, c.z, 120, s.radius() * 0.4, 1.5, s.radius() * 0.4, 0.15);
             }
         });
+        return true;
+    }
+
+    // ================= ラッキーパンチ：1%で一撃必殺 =================
+    private static boolean luckyPunch(ServerPlayer p, SkillDefinition s) {
+        LivingEntity t = MageSpells.lookTarget(p, s.radius());
+        if (t == null) return false;
+        ServerLevel level = p.serverLevel();
+        // 運（幸運）1 につき +0.2%、最大 5%
+        double chance = Math.min(0.05, s.chance() + p.getAttributeValue(Attributes.LUCK) * 0.002);
+        Vec3 c = t.getBoundingBox().getCenter();
+        if (p.getRandom().nextDouble() < chance) {
+            boolean boss = t.getType().is(net.neoforged.neoforge.common.Tags.EntityTypes.BOSSES) || t.getMaxHealth() > 200;
+            level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, c.x, c.y, c.z, 80, 0.5, 0.8, 0.5, 0.5);
+            level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, c.x, c.y, c.z, 1, 0, 0, 0, 0);
+            burst(level, c, GOLD, 60, 0.8);
+            level.playSound(null, t.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            level.playSound(null, t.blockPosition(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS, 1.0F, 0.8F);
+            String name = t.getName().getString();
+            if (boss) {
+                // ボスは即死しない：のこり体力の4分の1をけずる
+                SkillEffects.hit(p, t, Math.max(atk(p) * 5, t.getHealth() * 0.25F));
+                say(p, "§6§lラッキーパンチ！ §fボスには効きにくい…でも大ダメージ！");
+            } else {
+                t.invulnerableTime = 0;
+                t.hurt(p.damageSources().playerAttack(p), Float.MAX_VALUE);
+                if (t.isAlive()) t.kill();
+                say(p, "§c§l★ ラッキーパンチ！！ 一撃必殺！ ★");
+                p.server.getPlayerList().broadcastSystemMessage(Component.literal("§6" + p.getName().getString() + " のラッキーパンチ！ " + name + " を一撃でたおした！"), false);
+            }
+        } else {
+            SkillEffects.hit(p, t, atk(p) * (float) s.power());
+            level.sendParticles(ParticleTypes.CRIT, c.x, c.y, c.z, 10, 0.3, 0.3, 0.3, 0.2);
+            level.playSound(null, t.blockPosition(), SoundEvents.PLAYER_ATTACK_STRONG, SoundSource.PLAYERS, 1.0F, 1.2F);
+            say(p, "§7ラッキーパンチ… §8（一撃必殺 " + String.format("%.1f", chance * 100) + "%）");
+        }
         return true;
     }
 

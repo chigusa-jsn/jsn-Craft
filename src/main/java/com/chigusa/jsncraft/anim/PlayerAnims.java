@@ -57,6 +57,7 @@ public final class PlayerAnims {
             Map.entry("gamble_poker_hand", "dagger_cross"), Map.entry("gamble_all_in", "dagger_crouch"), Map.entry("gamble_slot_burst", "dagger_twin"),
             Map.entry("gamble_jackpot_rain", "dagger_point"), Map.entry("gamble_fate_dice", "dagger_throw"), Map.entry("gamble_house_rules", "dagger_coat"),
             Map.entry("gamble_royal_flush", "dagger_flurry"), Map.entry("gamble_seven_heaven", "dagger_spin"),
+            Map.entry("gamble_lucky_punch", "fist_straight"),
             Map.entry("beast_lash", "whip_lash"), Map.entry("beast_charge", "whip_point"), Map.entry("beast_rally", "whip_call"),
             Map.entry("beast_roar", "whip_roar"), Map.entry("beast_frenzy", "whip_roar"), Map.entry("beast_king_command", "whip_roar"),
             // 弓

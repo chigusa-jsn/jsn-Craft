@@ -15,6 +15,7 @@ SPECS = {
     "gambler/poker_hand": "cards c=black",
     "gambler/all_in": "chip c=red s=.55 x=-6 y=4 + chip c=blue s=.55 x=6 y=4 + chip c=black s=.55 y=-5",
     "gambler/high_roll": "heart c=red s=.8 + up s=.45 x=8 y=-8 c=gold",
+    "gambler/lucky_punch": "fist c=gold + sparkle s=.45 x=8 y=-8 + skull s=.35 x=-8 y=8",
     "gambler/slot_burst": "slot3 + explosion s=.4 x=9 y=-9",
     # ---- 天運の大勝負師
     "high_roller/jackpot_rain": "rain c=gold + coin s=.5 y=4",
