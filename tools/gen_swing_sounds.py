@@ -40,6 +40,28 @@ def ring(dur, freq, decay, seed):
     s = sum(np.sin(2 * np.pi * freq * k * (1 + rng.uniform(-0.003, 0.003)) * t) / k for k in (1, 2.76, 5.4))
     return s * np.exp(-t / decay)
 
+def metal(dur, base, seed, decay=0.12):
+    """金属の「キン」：倍音がずれた（金属らしい）響き。はじめが強く、すっと消える"""
+    n = int(SR * dur); t = np.arange(n) / SR
+    rng = np.random.default_rng(seed)
+    out = np.zeros(n)
+    for ratio, amp, dk in ((1.0, 1.0, 1.0), (1.59, 0.8, 0.8), (2.43, 0.6, 0.6), (3.17, 0.45, 0.5), (4.62, 0.3, 0.35)):
+        f = base * ratio * (1 + rng.uniform(-0.01, 0.01))
+        out += amp * np.sin(2 * np.pi * f * t + rng.uniform(0, 6.28)) * np.exp(-t / (decay * dk))
+    out *= 1 + 0.15 * np.sin(2 * np.pi * 7 * t)   # 少しゆれる
+    return out
+
+def scrape(dur, seed):
+    """刃がこすれる「ジャッ」：高いノイズを短く"""
+    n = int(SR * dur); rng = np.random.default_rng(seed)
+    x = sosfilt(butter(4, [2500, 9000], btype="band", fs=SR, output="sos"), rng.standard_normal(n))
+    t = np.arange(n) / SR
+    return x * np.exp(-t / 0.018) * np.clip(t / 0.002, 0, 1)
+
+def place(n, sig, at):
+    out = np.zeros(n); a = int(SR * at); m = min(len(sig), n - a)
+    out[a:a + m] = sig[:m]; return out
+
 def norm(x, peak=0.85):
     return x / (np.max(np.abs(x)) + 1e-9) * peak
 
@@ -53,14 +75,18 @@ def save(name, x):
 def make(kind, v):
     s = v * 17 + 3
     j = 1 + (v - 1) * 0.06   # 3種類で少しずつ高さを変える
-    if kind == "light":      # 短剣・拳：短く高い「ヒュッ」
-        d = 0.17; x = sweep_noise(d, 3200 * j, 1400 * j, 2.2, s) * env(int(SR * d), 0.35)
-    elif kind == "sword":    # 剣：「ヒュン」＋少しだけ刃の響き
-        d = 0.30; x = sweep_noise(d, 2400 * j, 800 * j, 1.8, s) * env(int(SR * d), 0.42)
-        x = norm(x) + 0.10 * norm(ring(d, 3100 * j, 0.06, s)) * env(int(SR * d), 0.3, 1.0)
-    elif kind == "katana":   # 刀：鋭く速い「ヒュッ」、細い響き
-        d = 0.24; x = sweep_noise(d, 3000 * j, 1100 * j, 3.0, s) * env(int(SR * d), 0.38, 2.6)
-        x = norm(x) + 0.12 * norm(ring(d, 4200 * j, 0.05, s)) * env(int(SR * d), 0.35, 1.0)
+    if kind == "light":      # 短剣・拳：短く高い「ヒュッ」＋小さな「チャキ」
+        d = 0.22; n = int(SR * d)
+        w = norm(sweep_noise(0.15, 3200 * j, 1400 * j, 2.2, s) * env(int(SR * 0.15), 0.35)) * 0.7
+        x = place(n, w, 0) + place(n, norm(scrape(0.04, s)) * 0.5, 0.05) + place(n, norm(metal(0.15, 3800 * j, s, 0.04)) * 0.35, 0.055)
+    elif kind == "sword":    # 剣：「ジャキン」…風を切る音＋こすれる「ジャッ」＋金属の「キン」
+        d = 0.42; n = int(SR * d)
+        w = norm(sweep_noise(0.22, 2600 * j, 900 * j, 1.8, s) * env(int(SR * 0.22), 0.5)) * 0.55
+        x = place(n, w, 0) + place(n, norm(scrape(0.08, s)) * 0.9, 0.09) + place(n, norm(metal(0.33, 2300 * j, s, 0.10)) * 0.75, 0.10)
+    elif kind == "katana":   # 刀：鋭い「シャキン」…細く高い金属音が長めに残る
+        d = 0.45; n = int(SR * d)
+        w = norm(sweep_noise(0.18, 3200 * j, 1200 * j, 3.0, s) * env(int(SR * 0.18), 0.5, 2.6)) * 0.5
+        x = place(n, w, 0) + place(n, norm(scrape(0.06, s)) * 0.7, 0.07) + place(n, norm(metal(0.38, 3300 * j, s, 0.14)) * 0.8, 0.075)
     elif kind == "heavy":    # 斧・大技：低く重い「ブォン」
         d = 0.45; x = sweep_noise(d, 1100 * j, 260 * j, 1.2, s) * env(int(SR * d), 0.5, 1.6)
     elif kind == "thrust":   # 槍：短く空気を裂く「シュッ」
