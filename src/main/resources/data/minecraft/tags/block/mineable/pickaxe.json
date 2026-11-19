@@ -5,6 +5,8 @@
     "jsn_craft:forge",
     "jsn_craft:rune_altar",
     "jsn_craft:slot_machine",
-    "jsn_craft:chip_exchanger"
+    "jsn_craft:chip_exchanger",
+    "jsn_craft:pachislot_crown",
+    "jsn_craft:pachislot_tropical"
   ]
 }

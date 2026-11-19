@@ -144,6 +144,8 @@ public final class ModTabs {
             () -> new ItemStack(com.chigusa.jsncraft.casino.ModCasino.SLOT_MACHINE_ITEM.get()), out -> {
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.EXCHANGER_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.SLOT_MACHINE_ITEM.get());
+                out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_CROWN_ITEM.get());
+                out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_TROPICAL_ITEM.get());
                 all(out, com.chigusa.jsncraft.casino.ModCasino.CHIPS);
             });
 

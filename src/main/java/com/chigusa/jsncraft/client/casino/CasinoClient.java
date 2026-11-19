@@ -17,6 +17,8 @@ public final class CasinoClient {
         Minecraft.getInstance().setScreen(switch (g) {
             case EXCHANGE -> new ExchangeScreen(p.pos());
             case SLOT -> new SlotScreen(p.pos());
+            case PACHI_CROWN -> new PachiScreen(p.pos(), com.chigusa.jsncraft.casino.pachi.Machine.CROWN);
+            case PACHI_TROPICAL -> new PachiScreen(p.pos(), com.chigusa.jsncraft.casino.pachi.Machine.TROPICAL);
         });
     }
 
@@ -28,6 +30,11 @@ public final class CasinoClient {
     public static void spinResult(CasinoPayloads.SpinResult p) {
         if (Minecraft.getInstance().screen instanceof SlotScreen s) s.onResult(p);
         else chips = p.chips();
+    }
+
+    public static void pachiState(com.chigusa.jsncraft.casino.pachi.PachiPayloads.State s) {
+        chips = s.chips();
+        if (Minecraft.getInstance().screen instanceof PachiScreen ps) ps.onState(s);
     }
 
     private CasinoClient() {}

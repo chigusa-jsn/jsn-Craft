@@ -142,3 +142,78 @@ for b in ("jsn_craft:slot_machine", "jsn_craft:chip_exchanger"):
     if b not in d["values"]: d["values"].append(b)
 wj(p, d)
 print("ok")
+
+# ================= パチスロ（縦2マス） =================
+def pachi(name, body, body_d, trim, accent, sign_draw):
+    def side2(d, im):
+        d.rectangle([0, 0, 31, 31], fill=hx(body))
+        for y in range(0, 32, 4): d.line([0, y, 31, y], fill=hx(body_d))
+        d.rectangle([0, 0, 31, 31], outline=hx(trim), width=2)
+    tex(f"{name}_side", side2)
+    def topt(d, im):
+        d.rectangle([0, 0, 31, 31], fill=hx(body_d)); d.rectangle([0, 0, 31, 31], outline=hx(trim), width=2)
+    tex(f"{name}_top", topt)
+    def lower(d, im):
+        side2(d, im)
+        d.rectangle([3, 2, 28, 15], fill=hx("#101010"))                       # リールの窓
+        syms = [("#d82020", "#2a6ae0", "#d82020"), ("#8a40c0", "#d82020", "#e0c040"), ("#2a6ae0", "#d82020", "#8a40c0")]
+        for i in range(3):
+            x = 5 + i * 8
+            d.rectangle([x, 3, x + 5, 14], fill=CREAM)
+            for j, c in enumerate(syms[i]): d.rectangle([x + 1, 4 + j * 4, x + 4, 5 + j * 4], fill=hx(c))
+        d.line([3, 8, 28, 8], fill=hx("#ff3030"))
+        d.rectangle([2, 17, 29, 21], fill=hx(body_d)); d.rectangle([2, 17, 29, 17], fill=hx(trim))   # ボタンの台
+        for i in range(3): d.rectangle([9 + i * 6, 19, 12 + i * 6, 20], fill=hx("#40a0ff"))
+        d.rectangle([3, 18, 6, 20], fill=hx("#c8c8c8"))                         # レバー
+        d.rectangle([9, 25, 22, 29], fill=hx("#1a1018")); d.rectangle([10, 26, 21, 28], fill=hx("#4a4050"))   # 受け皿
+        d.rectangle([24, 23, 28, 26], fill=hx(accent))                          # ランプ
+    tex(f"{name}_lower", lower)
+    def upper(d, im):
+        side2(d, im)
+        d.rectangle([3, 3, 28, 28], fill=hx("#101018")); d.rectangle([3, 3, 28, 28], outline=hx(trim))
+        sign_draw(d)
+    tex(f"{name}_upper", upper)
+    T2 = {"side": f"jsn_craft:block/casino/{name}_side", "top": f"jsn_craft:block/casino/{name}_top", "particle": f"jsn_craft:block/casino/{name}_side"}
+    lo = {"parent": "minecraft:block/block", "textures": dict(T2, front=f"jsn_craft:block/casino/{name}_lower"),
+          "elements": [box([1, 0, 2], [15, 16, 15], n="front"), box([1, 5, 0.5], [15, 7, 2])]}
+    up = {"parent": "minecraft:block/block", "textures": dict(T2, front=f"jsn_craft:block/casino/{name}_upper"),
+          "elements": [box([1, 0, 3], [15, 13, 15], n="front"), box([3, 13, 5], [13, 16, 13], n="front", s="front")]}
+    b = f"pachislot_{name}"
+    wj(f"{A}/models/block/{b}_lower.json", lo)
+    wj(f"{A}/models/block/{b}_upper.json", up)
+    wj(f"{A}/blockstates/{b}.json", {"variants": {f"facing={f},half={h}": ({"model": f"jsn_craft:block/{b}_{h}"} | ({"y": y} if y else {}))
+                                                  for f, y in (("north", 0), ("east", 90), ("south", 180), ("west", 270)) for h in ("lower", "upper")}})
+    wj(f"{A}/models/item/{b}.json", {"parent": f"jsn_craft:block/{b}_lower"})
+    wj(f"{D}/loot_table/blocks/{b}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"jsn_craft:{b}",
+        "conditions": [{"condition": "minecraft:block_state_property", "block": f"jsn_craft:{b}", "properties": {"half": "lower"}}]}],
+        "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+    p = f"{R}/data/minecraft/tags/block/mineable/pickaxe.json"; dd = json.load(open(p, encoding="utf-8"))
+    if f"jsn_craft:{b}" not in dd["values"]: dd["values"].append(f"jsn_craft:{b}")
+    wj(p, dd)
+
+def crown_sign(d):
+    g = hx("#f0c040")
+    d.polygon([(8, 20), (8, 10), (12, 15), (16, 7), (20, 15), (24, 10), (24, 20)], fill=g)
+    d.rectangle([8, 20, 24, 23], fill=hx("#b08020"))
+    for x in (11, 16, 21): d.point((x, 21), fill=hx("#ff3050"))
+    for x, y in ((5, 5), (26, 6), (6, 25), (25, 25)): d.point((x, y), fill=hx("#ffffa0"))
+
+def tropical_sign(d):
+    d.ellipse([18, 5, 27, 14], fill=hx("#ffb020"))                         # 太陽
+    d.line([10, 26, 12, 12], fill=hx("#8a5a2a"), width=2)                  # ヤシの木
+    for dx, dy in ((-6, -2), (6, -2), (-4, 3), (5, 3)): d.line([12, 12, 12 + dx, 12 + dy], fill=hx("#30c050"), width=2)
+    for i, c in enumerate(("#ff3050", "#ff9030", "#ffe040", "#40e070", "#40a0ff")): d.rectangle([5 + i * 5, 27, 8 + i * 5, 28], fill=hx(c))
+
+pachi("crown", "#22348a", "#1a2a6a", "#f0c040", "#ffe040", crown_sign)
+pachi("tropical", "#0e7a62", "#0a5a4a", "#ff80b0", "#ff3050", tropical_sign)
+
+wj(f"{D}/recipe/pachislot_crown.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GCG", "RDR", "III"],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "C": {"item": "minecraft:gold_block"}, "R": {"item": "minecraft:redstone"},
+            "D": {"item": "minecraft:diamond"}, "I": {"item": "minecraft:iron_ingot"}}, "result": {"id": "jsn_craft:pachislot_crown", "count": 1}})
+wj(f"{D}/recipe/pachislot_tropical.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GCG", "RDR", "III"],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "C": {"item": "minecraft:jungle_sapling"}, "R": {"item": "minecraft:redstone"},
+            "D": {"item": "minecraft:diamond"}, "I": {"item": "minecraft:iron_ingot"}}, "result": {"id": "jsn_craft:pachislot_tropical", "count": 1}})
+for lang, add in {"ja_jp": {"block.jsn_craft.pachislot_crown": "パチスロ「ピカッとクラウン」", "block.jsn_craft.pachislot_tropical": "パチスロ「トロピカル・ドキドキ」"},
+                  "en_us": {"block.jsn_craft.pachislot_crown": "Pachislot: Pika Crown", "block.jsn_craft.pachislot_tropical": "Pachislot: Tropical Doki-Doki"}}.items():
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
+print("pachi ok")

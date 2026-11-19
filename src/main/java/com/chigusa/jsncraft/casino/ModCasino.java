@@ -25,12 +25,21 @@ public final class ModCasino {
 
     public static final DeferredBlock<CasinoBlock> EXCHANGER = block("chip_exchanger", CasinoGame.EXCHANGE);
     public static final DeferredBlock<CasinoBlock> SLOT_MACHINE = block("slot_machine", CasinoGame.SLOT);
+    public static final DeferredBlock<TallCasinoBlock> PACHI_CROWN = tall("pachislot_crown", CasinoGame.PACHI_CROWN);
+    public static final DeferredBlock<TallCasinoBlock> PACHI_TROPICAL = tall("pachislot_tropical", CasinoGame.PACHI_TROPICAL);
+    public static final DeferredItem<BlockItem> PACHI_CROWN_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(PACHI_CROWN);
+    public static final DeferredItem<BlockItem> PACHI_TROPICAL_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(PACHI_TROPICAL);
     public static final DeferredItem<BlockItem> EXCHANGER_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(EXCHANGER);
     public static final DeferredItem<BlockItem> SLOT_MACHINE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(SLOT_MACHINE);
 
     private static DeferredBlock<CasinoBlock> block(String id, CasinoGame game) {
         return ModCooking.BLOCKS.register(id, () -> new CasinoBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED)
                 .strength(2.5F).sound(SoundType.METAL).lightLevel(s -> 6).noOcclusion(), game));
+    }
+
+    private static DeferredBlock<TallCasinoBlock> tall(String id, CasinoGame game) {
+        return ModCooking.BLOCKS.register(id, () -> new TallCasinoBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED)
+                .strength(2.5F).sound(SoundType.METAL).lightLevel(s -> 8).noOcclusion(), game));
     }
 
     public static void init() {}

@@ -47,9 +47,14 @@ public class CasinoBlock extends HorizontalDirectionalBlock {
         return Block.box(1, 0, 1, 15, 16, 15);
     }
 
+    /** 台の下のブロックの位置（2マスの台は上を押しても下の位置） */
+    protected BlockPos basePos(BlockState state, BlockPos pos) {
+        return pos;
+    }
+
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (player instanceof ServerPlayer sp) CasinoService.open(sp, game, pos);
+        if (player instanceof ServerPlayer sp) CasinoService.open(sp, game, basePos(state, pos));
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 }

@@ -16,6 +16,16 @@ public final class CasinoNetwork {
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) CasinoService.exchange(sp, p);
                 }));
+        r.playToClient(com.chigusa.jsncraft.casino.pachi.PachiPayloads.State.TYPE, com.chigusa.jsncraft.casino.pachi.PachiPayloads.State.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.casino.CasinoClient.pachiState(p)));
+        r.playToServer(com.chigusa.jsncraft.casino.pachi.PachiPayloads.Lever.TYPE, com.chigusa.jsncraft.casino.pachi.PachiPayloads.Lever.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.casino.pachi.PachiService.lever(sp, p);
+                }));
+        r.playToServer(com.chigusa.jsncraft.casino.pachi.PachiPayloads.Stop.TYPE, com.chigusa.jsncraft.casino.pachi.PachiPayloads.Stop.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.casino.pachi.PachiService.stop(sp, p);
+                }));
         r.playToServer(CasinoPayloads.Spin.TYPE, CasinoPayloads.Spin.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) CasinoService.spin(sp, p);
