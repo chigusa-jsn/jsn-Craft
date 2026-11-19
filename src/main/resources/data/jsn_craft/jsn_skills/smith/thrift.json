@@ -5,8 +5,9 @@
   "description": {
     "text": "強化したとき、20%の確率で強化石がなくならない。"
   },
-  "icon": "minecraft:flint",
+  "icon": "jsn_craft:skill_icon/smith/thrift",
   "type": "passive",
   "effect": "smith_save",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "minecraft:flint"
 }

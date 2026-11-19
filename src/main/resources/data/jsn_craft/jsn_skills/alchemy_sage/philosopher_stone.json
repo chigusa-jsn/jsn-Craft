@@ -5,10 +5,11 @@
   "description": {
     "text": "60秒間、錬金で経験値を使わず、できる数が必ず2倍になる。"
   },
-  "icon": "minecraft:redstone_block",
+  "icon": "jsn_craft:skill_icon/alchemy_sage/philosopher_stone",
   "type": "active",
   "effect": "philosopher_stone",
   "duration": 60,
   "stamina": 60,
-  "cooldown": 1200
+  "cooldown": 1200,
+  "item_icon": "minecraft:redstone_block"
 }

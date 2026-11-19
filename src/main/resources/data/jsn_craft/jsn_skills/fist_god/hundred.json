@@ -5,12 +5,13 @@
   "description": {
     "text": "左右の拳で前を30回殴る（0.1秒ごと）。1回拳の強さ（攻撃力＋籠手のパンチ）の0.3倍。"
   },
-  "icon": "minecraft:blaze_rod",
+  "icon": "jsn_craft:skill_icon/fist_god/hundred",
   "type": "active",
   "effect": "fist_hundred",
   "stamina": 40,
   "cooldown": 25,
   "power": 0.3,
   "radius": 2.2,
-  "amplifier": 30
+  "amplifier": 30,
+  "item_icon": "minecraft:blaze_rod"
 }

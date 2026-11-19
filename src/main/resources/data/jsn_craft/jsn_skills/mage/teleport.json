@@ -5,10 +5,11 @@
   "description": {
     "text": "目線の先へ瞬間移動する（最大12ブロック、壁の手前まで）。"
   },
-  "icon": "minecraft:ender_eye",
+  "icon": "jsn_craft:skill_icon/mage/teleport",
   "type": "active",
   "effect": "mage_teleport",
   "mana": 10,
   "cooldown": 8,
-  "radius": 12
+  "radius": 12,
+  "item_icon": "minecraft:ender_eye"
 }

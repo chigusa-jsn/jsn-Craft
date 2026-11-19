@@ -5,11 +5,12 @@
   "description": {
     "text": "小さな風の猫を呼ぶ（もう一度使うと戻す）。すばやく飛びかかり、かまいたちの風の刃とつむじ風で戦う。"
   },
-  "icon": "minecraft:phantom_membrane",
+  "icon": "jsn_craft:skill_icon/beast_king/call_cat",
   "type": "active",
   "effect": "beast_call_cat",
   "stamina": 25,
   "cooldown": 3,
   "amplifier": 1,
-  "power": 1.0
+  "power": 1.0,
+  "item_icon": "minecraft:phantom_membrane"
 }

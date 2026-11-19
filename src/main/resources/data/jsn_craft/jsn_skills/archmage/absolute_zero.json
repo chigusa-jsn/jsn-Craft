@@ -5,7 +5,7 @@
   "description": {
     "text": "2.5秒詠唱。周り（8ブロック）の敵に杖のマナ弾の3倍、6秒間 完全に凍らせる（雷で砕ける）。"
   },
-  "icon": "minecraft:blue_ice",
+  "icon": "jsn_craft:skill_icon/archmage/absolute_zero",
   "type": "active",
   "effect": "mage_absolute_zero",
   "mana": 45,
@@ -13,5 +13,6 @@
   "power": 3.0,
   "radius": 8,
   "duration": 6,
-  "cast_time": 2.5
+  "cast_time": 2.5,
+  "item_icon": "minecraft:blue_ice"
 }

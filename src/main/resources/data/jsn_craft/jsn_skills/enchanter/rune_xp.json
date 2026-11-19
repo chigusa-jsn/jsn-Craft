@@ -5,8 +5,9 @@
   "description": {
     "text": "刻む・上限突破・付け替えに必要な経験値レベルが20%減る。"
   },
-  "icon": "minecraft:experience_bottle",
+  "icon": "jsn_craft:skill_icon/enchanter/rune_xp",
   "type": "passive",
   "effect": "rune_xp",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:experience_bottle"
 }

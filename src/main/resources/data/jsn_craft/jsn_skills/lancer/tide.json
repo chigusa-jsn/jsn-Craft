@@ -5,8 +5,9 @@
   "description": {
     "text": "水の中・雨の中では、攻撃 +20%・移動 +15%（水の中も速く泳げる）。"
   },
-  "icon": "minecraft:heart_of_the_sea",
+  "icon": "jsn_craft:skill_icon/lancer/tide",
   "type": "passive",
   "effect": "spear_tide",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:heart_of_the_sea"
 }

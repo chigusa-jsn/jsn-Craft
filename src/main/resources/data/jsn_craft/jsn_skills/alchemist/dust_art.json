@@ -5,7 +5,8 @@
   "description": {
     "text": "「香の素」を入れて、周りの仲間みんなに効く香が作れるようになる。"
   },
-  "icon": "jsn_craft:dust_base",
+  "icon": "jsn_craft:skill_icon/alchemist/dust_art",
   "type": "passive",
-  "effect": "dust_art"
+  "effect": "dust_art",
+  "item_icon": "jsn_craft:dust_base"
 }

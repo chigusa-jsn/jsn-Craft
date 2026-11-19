@@ -5,12 +5,13 @@
   "description": {
     "text": "5秒間 槍を構える（ゆっくりしか動けない）。近づいた敵（3.5ブロック）を0.25秒ごとに自動で突く（攻撃力の0.5倍）。"
   },
-  "icon": "minecraft:iron_bars",
+  "icon": "jsn_craft:skill_icon/lancer/wall",
   "type": "active",
   "effect": "spear_wall",
   "stamina": 25,
   "cooldown": 20,
   "power": 0.5,
   "radius": 3.5,
-  "duration": 5
+  "duration": 5,
+  "item_icon": "minecraft:iron_bars"
 }

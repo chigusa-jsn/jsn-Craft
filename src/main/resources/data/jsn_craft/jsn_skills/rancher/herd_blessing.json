@@ -5,10 +5,11 @@
   "description": {
     "text": "周り（8ブロック）の家畜のHPを全回復し、子どもはすぐ大人になる。"
   },
-  "icon": "minecraft:golden_carrot",
+  "icon": "jsn_craft:skill_icon/rancher/herd_blessing",
   "type": "active",
   "effect": "herd_blessing",
   "radius": 8,
   "stamina": 40,
-  "cooldown": 300
+  "cooldown": 300,
+  "item_icon": "minecraft:golden_carrot"
 }

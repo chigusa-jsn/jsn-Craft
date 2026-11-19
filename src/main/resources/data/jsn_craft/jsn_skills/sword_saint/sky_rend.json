@@ -5,12 +5,13 @@
   "description": {
     "text": "高く跳び上がり、着地の衝撃で周り（5ブロック）の敵を斬って打ち上げる。攻撃力の1.6倍。落下ダメージなし。"
   },
-  "icon": "minecraft:mace",
+  "icon": "jsn_craft:skill_icon/sword_saint/sky_rend",
   "type": "active",
   "effect": "leap_slam",
   "stamina": 30,
   "cooldown": 12,
   "power": 1.6,
   "radius": 5,
-  "bonus": 1.15
+  "bonus": 1.15,
+  "item_icon": "minecraft:mace"
 }

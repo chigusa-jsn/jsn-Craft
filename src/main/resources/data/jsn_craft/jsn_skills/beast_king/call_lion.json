@@ -5,11 +5,12 @@
   "description": {
     "text": "小さな雷の獅子を呼ぶ（もう一度使うと戻す）。力強く殴り、敵に雷を落とす。咆哮で仲間を奮い立たせる。"
   },
-  "icon": "minecraft:lightning_rod",
+  "icon": "jsn_craft:skill_icon/beast_king/call_lion",
   "type": "active",
   "effect": "beast_call_lion",
   "stamina": 35,
   "cooldown": 3,
   "amplifier": 1,
-  "power": 1.0
+  "power": 1.0,
+  "item_icon": "minecraft:lightning_rod"
 }

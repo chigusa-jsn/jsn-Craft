@@ -5,7 +5,7 @@
   "description": {
     "text": "3秒詠唱。周り（10ブロック）の仲間に60秒の祈り。倒れても一度だけ、その場でHP50%で復活する。"
   },
-  "icon": "minecraft:totem_of_undying",
+  "icon": "jsn_craft:skill_icon/saint/revive",
   "type": "active",
   "effect": "holy_revive",
   "mana": 60,
@@ -13,5 +13,6 @@
   "power": 0.5,
   "radius": 10,
   "duration": 60,
-  "cast_time": 3.0
+  "cast_time": 3.0,
+  "item_icon": "minecraft:totem_of_undying"
 }

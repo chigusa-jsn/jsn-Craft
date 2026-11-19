@@ -5,12 +5,13 @@
   "description": {
     "text": "盾で殴る。前の敵に攻撃力の1.2倍、1.5秒間 動けなくして弱らせる。"
   },
-  "icon": "minecraft:shield",
+  "icon": "jsn_craft:skill_icon/shield_knight/bash",
   "type": "active",
   "effect": "guard_bash",
   "stamina": 12,
   "cooldown": 6,
   "power": 1.2,
   "radius": 2.0,
-  "duration": 1.5
+  "duration": 1.5,
+  "item_icon": "minecraft:shield"
 }

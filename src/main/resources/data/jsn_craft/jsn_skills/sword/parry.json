@@ -5,11 +5,12 @@
   "description": {
     "text": "1秒間かまえる。その間に近接攻撃を受けると無効にして、攻撃力の2倍で反撃する。"
   },
-  "icon": "minecraft:shield",
+  "icon": "jsn_craft:skill_icon/sword/parry",
   "type": "active",
   "effect": "parry",
   "stamina": 15,
   "cooldown": 8,
   "duration": 1.0,
-  "power": 2.0
+  "power": 2.0,
+  "item_icon": "minecraft:shield"
 }

@@ -5,12 +5,13 @@
   "description": {
     "text": "30秒間、釣りゲージが50%速く溜まり、魚とゴミの釣果が2倍になる。"
   },
-  "icon": "minecraft:blue_banner",
+  "icon": "jsn_craft:skill_icon/angler/big_catch",
   "type": "active",
   "effect": "fish_buff",
   "target": "bounty",
   "power": 1,
   "duration": 30,
   "stamina": 40,
-  "cooldown": 180
+  "cooldown": 180,
+  "item_icon": "minecraft:blue_banner"
 }

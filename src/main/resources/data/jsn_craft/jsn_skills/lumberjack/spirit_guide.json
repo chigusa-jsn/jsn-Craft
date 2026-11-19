@@ -5,11 +5,12 @@
   "description": {
     "text": "周り（32ブロック）の木の根元を、10秒間 光の柱で教えてくれる（自分にだけ見える）。"
   },
-  "icon": "minecraft:spyglass",
+  "icon": "jsn_craft:skill_icon/lumberjack/spirit_guide",
   "type": "active",
   "effect": "reveal_logs",
   "stamina": 10,
   "cooldown": 20,
   "radius": 32,
-  "duration": 10
+  "duration": 10,
+  "item_icon": "minecraft:spyglass"
 }

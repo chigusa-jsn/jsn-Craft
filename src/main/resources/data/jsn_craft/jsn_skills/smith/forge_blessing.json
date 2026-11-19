@@ -5,12 +5,13 @@
   "description": {
     "text": "周り（8ブロック）の仲間の防御力と防具強度を180秒間 +2 する。"
   },
-  "icon": "minecraft:iron_chestplate",
+  "icon": "jsn_craft:skill_icon/smith/forge_blessing",
   "type": "active",
   "effect": "forge_blessing",
   "power": 2,
   "radius": 8,
   "duration": 180,
   "stamina": 40,
-  "cooldown": 240
+  "cooldown": 240,
+  "item_icon": "minecraft:iron_chestplate"
 }

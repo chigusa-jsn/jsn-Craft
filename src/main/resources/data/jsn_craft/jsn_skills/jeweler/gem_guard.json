@@ -5,12 +5,13 @@
   "description": {
     "text": "自分と周り（8ブロック）の仲間に、30秒間の耐性をつける。"
   },
-  "icon": "minecraft:amethyst_cluster",
+  "icon": "jsn_craft:skill_icon/jeweler/gem_guard",
   "type": "active",
   "effect": "gem_guard",
   "amplifier": 0,
   "duration": 30,
   "radius": 8,
   "stamina": 35,
-  "cooldown": 120
+  "cooldown": 120,
+  "item_icon": "minecraft:amethyst_cluster"
 }

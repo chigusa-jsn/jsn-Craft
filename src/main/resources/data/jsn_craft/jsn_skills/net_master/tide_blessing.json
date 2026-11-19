@@ -5,12 +5,13 @@
   "description": {
     "text": "60秒間、釣るたびに釣果がもう1回分増える（大漁旗と重なる）。"
   },
-  "icon": "minecraft:prismarine_crystals",
+  "icon": "jsn_craft:skill_icon/net_master/tide_blessing",
   "type": "active",
   "effect": "fish_buff",
   "target": "tide",
   "power": 1,
   "duration": 60,
   "stamina": 40,
-  "cooldown": 240
+  "cooldown": 240,
+  "item_icon": "minecraft:prismarine_crystals"
 }

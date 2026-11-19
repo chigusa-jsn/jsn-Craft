@@ -5,11 +5,12 @@
   "description": {
     "text": "目線の先の仲間とその周り（3ブロック）の毒・呪いなどの悪い効果を消して、少し回復（聖杖の聖光弾の0.5倍）。"
   },
-  "icon": "minecraft:milk_bucket",
+  "icon": "jsn_craft:skill_icon/healer/purify",
   "type": "active",
   "effect": "holy_purify",
   "mana": 8,
   "cooldown": 8,
   "power": 0.5,
-  "radius": 3
+  "radius": 3,
+  "item_icon": "minecraft:milk_bucket"
 }

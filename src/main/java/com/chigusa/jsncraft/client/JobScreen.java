@@ -378,11 +378,13 @@ public class JobScreen extends Screen {
                 g.fill(cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1, inner);
             }
 
-            Item item = n.icon().map(BuiltInRegistries.ITEM::get).orElse(Items.AIR);
+            boolean custom = n.icon().map(SkillIcons::isCustom).orElse(false);
+            Item item = custom ? Items.AIR : n.icon().map(BuiltInRegistries.ITEM::get).orElse(Items.AIR);
             if (n.masked()) {
                 g.drawCenteredString(font, "？", cx, cy - 4, 0xD0A0FF);
-            } else if (item != Items.AIR) {
-                g.renderItem(new ItemStack(item), cx - 8, cy - 8);
+            } else if (custom || item != Items.AIR) {
+                if (custom) SkillIcons.draw(g, n.icon().get(), cx - 8, cy - 8);
+                else g.renderItem(new ItemStack(item), cx - 8, cy - 8);
                 if (!unlocked) {
                     g.pose().pushPose();
                     g.pose().translate(0, 0, 200);
@@ -992,7 +994,7 @@ public class JobScreen extends Screen {
             g.drawString(font, String.valueOf(i + 1), x + 2, slotY + 1, 0xFFFF55);
             var v = ClientSkills.find(ClientSkills.slot(ClientSkills.onPage(i)));
             if (v != null) {
-                g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 4, slotY + 5);
+                SkillIcons.draw(g, v.icon(), x + 4, slotY + 5);
                 if (hover) tip = List.of(v.name(), Component.literal("右クリックで外す").withStyle(ChatFormatting.GRAY));
             }
         }
@@ -1010,7 +1012,7 @@ public class JobScreen extends Screen {
             boolean picked = v.id().equals(pickedSkill);
             int bg = picked ? 0xFF3A5A3A : hover ? 0xFF2A2A40 : 0xFF181826;
             g.fill(left + 6, y, left + panelW - 6, y + SKILL_ROW - 2, bg);
-            g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), left + 9, y + 2);
+            SkillIcons.draw(g, v.icon(), left + 9, y + 2);
             if (!v.learned()) g.fill(left + 9, y + 2, left + 25, y + 18, 0xA0000000);
             int nameColor = !v.learned() ? 0x777777 : v.active() ? 0xFFFFFF : 0xAADDFF;
             g.drawString(font, v.name(), left + 30, y + 2, nameColor);

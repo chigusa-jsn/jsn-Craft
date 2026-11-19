@@ -5,12 +5,13 @@
   "description": {
     "text": "目線の先に癒しの円（4ブロック）を6秒。中の仲間は毎秒回復（聖杖の聖光弾の0.4倍）、魔法の威力も少し上がる。"
   },
-  "icon": "minecraft:sunflower",
+  "icon": "jsn_craft:skill_icon/healer/heal_circle",
   "type": "active",
   "effect": "holy_heal_circle",
   "mana": 14,
   "cooldown": 18,
   "power": 0.4,
   "radius": 4,
-  "duration": 6
+  "duration": 6,
+  "item_icon": "minecraft:sunflower"
 }

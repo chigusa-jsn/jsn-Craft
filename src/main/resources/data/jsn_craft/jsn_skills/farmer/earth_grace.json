@@ -5,9 +5,10 @@
   "description": {
     "text": "近く（6ブロック）にいるだけで、作物が育つのが速くなる。"
   },
-  "icon": "minecraft:moss_block",
+  "icon": "jsn_craft:skill_icon/farmer/earth_grace",
   "type": "passive",
   "effect": "growth_aura",
   "radius": 6,
-  "amplifier": 4
+  "amplifier": 4,
+  "item_icon": "minecraft:moss_block"
 }

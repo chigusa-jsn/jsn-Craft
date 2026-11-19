@@ -5,7 +5,7 @@
   "description": {
     "text": "0.8秒詠唱。目線の先の仲間（いなければ自分）に30秒の守り。倒れそうになったら一度だけHP30%で持ちこたえる。"
   },
-  "icon": "minecraft:totem_of_undying",
+  "icon": "jsn_craft:skill_icon/saint/guardian",
   "type": "active",
   "effect": "holy_guardian",
   "mana": 20,
@@ -13,5 +13,6 @@
   "power": 0.3,
   "radius": 24,
   "duration": 30,
-  "cast_time": 0.8
+  "cast_time": 0.8,
+  "item_icon": "minecraft:totem_of_undying"
 }

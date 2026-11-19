@@ -5,8 +5,9 @@
   "description": {
     "text": "生まれる子どもの★が上がりやすくなる。"
   },
-  "icon": "minecraft:name_tag",
+  "icon": "jsn_craft:skill_icon/rancher/good_breed",
   "type": "passive",
   "effect": "good_breed",
-  "power": 0.3
+  "power": 0.3,
+  "item_icon": "minecraft:name_tag"
 }

@@ -5,12 +5,13 @@
   "description": {
     "text": "その場に120秒間、宴会の場（半径8）を作る。中にいる仲間は、2秒ごとに回復して、おなかも満たされる。"
   },
-  "icon": "minecraft:oak_trapdoor",
+  "icon": "jsn_craft:skill_icon/grand_chef/banquet",
   "type": "active",
   "effect": "banquet",
   "radius": 8,
   "duration": 120,
   "amplifier": 0,
   "stamina": 40,
-  "cooldown": 240
+  "cooldown": 240,
+  "item_icon": "minecraft:oak_trapdoor"
 }

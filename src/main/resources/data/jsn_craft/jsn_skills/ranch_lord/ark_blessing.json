@@ -5,10 +5,11 @@
   "description": {
     "text": "120秒間、生まれる子どもの★がひとつ上がる。"
   },
-  "icon": "minecraft:oak_boat",
+  "icon": "jsn_craft:skill_icon/ranch_lord/ark_blessing",
   "type": "active",
   "effect": "ark_blessing",
   "duration": 120,
   "stamina": 60,
-  "cooldown": 1200
+  "cooldown": 1200,
+  "item_icon": "minecraft:oak_boat"
 }

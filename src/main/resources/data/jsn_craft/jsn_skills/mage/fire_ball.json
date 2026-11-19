@@ -5,11 +5,12 @@
   "description": {
     "text": "火の玉を撃つ。当たると小さく爆発（2ブロック）して、杖のマナ弾の1.6倍のダメージ＋燃やす。"
   },
-  "icon": "minecraft:fire_charge",
+  "icon": "jsn_craft:skill_icon/mage/fire_ball",
   "type": "active",
   "effect": "mage_fire_ball",
   "mana": 5,
   "cooldown": 1.5,
   "power": 1.6,
-  "radius": 2
+  "radius": 2,
+  "item_icon": "minecraft:fire_charge"
 }

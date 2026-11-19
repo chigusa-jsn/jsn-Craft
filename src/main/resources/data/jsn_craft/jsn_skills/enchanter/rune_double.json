@@ -5,8 +5,9 @@
   "description": {
     "text": "魔紋を刻んだとき、8%の確率でレベルが一気に2つ上がる。"
   },
-  "icon": "minecraft:enchanted_book",
+  "icon": "jsn_craft:skill_icon/enchanter/rune_double",
   "type": "passive",
   "effect": "rune_double",
-  "chance": 0.08
+  "chance": 0.08,
+  "item_icon": "minecraft:enchanted_book"
 }

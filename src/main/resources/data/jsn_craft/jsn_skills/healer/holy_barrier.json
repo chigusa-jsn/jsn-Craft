@@ -5,12 +5,13 @@
   "description": {
     "text": "周り（5ブロック）に8秒間の光の結界。入ってきた敵の矢や火の玉を消し、中の仲間の受けるダメージ -10%。"
   },
-  "icon": "minecraft:shield",
+  "icon": "jsn_craft:skill_icon/healer/holy_barrier",
   "type": "active",
   "effect": "holy_barrier",
   "mana": 16,
   "cooldown": 30,
   "power": 0.1,
   "radius": 5,
-  "duration": 8
+  "duration": 8,
+  "item_icon": "minecraft:shield"
 }

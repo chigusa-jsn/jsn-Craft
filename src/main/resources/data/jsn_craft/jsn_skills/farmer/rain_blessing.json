@@ -5,11 +5,12 @@
   "description": {
     "text": "周り（5ブロック）に雨を降らせて、畑を湿らせ、作物を1段階育てる。"
   },
-  "icon": "minecraft:water_bucket",
+  "icon": "jsn_craft:skill_icon/farmer/rain_blessing",
   "type": "active",
   "effect": "rain_blessing",
   "radius": 5,
   "amplifier": 1,
   "stamina": 15,
-  "cooldown": 30
+  "cooldown": 30,
+  "item_icon": "minecraft:water_bucket"
 }

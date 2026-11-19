@@ -5,11 +5,12 @@
   "description": {
     "text": "10秒間 姿を消し、周りの敵に見失わせる。隠れたまま殴った最初の一撃は2倍。"
   },
-  "icon": "minecraft:glass_pane",
+  "icon": "jsn_craft:skill_icon/assassin/stealth",
   "type": "active",
   "effect": "dagger_stealth",
   "stamina": 20,
   "cooldown": 35,
   "power": 2.0,
-  "duration": 10
+  "duration": 10,
+  "item_icon": "minecraft:glass_pane"
 }

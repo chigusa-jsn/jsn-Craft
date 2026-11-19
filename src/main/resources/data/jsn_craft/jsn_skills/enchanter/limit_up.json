@@ -5,7 +5,8 @@
   "description": {
     "text": "上限突破で、エンチャントの最大レベルを+2まで超えられるようになる（ふつうは+1）。"
   },
-  "icon": "minecraft:diamond",
+  "icon": "jsn_craft:skill_icon/enchanter/limit_up",
   "type": "passive",
-  "effect": "limit_up"
+  "effect": "limit_up",
+  "item_icon": "minecraft:diamond"
 }

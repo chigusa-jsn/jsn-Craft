@@ -5,7 +5,8 @@
   "description": {
     "text": "作る装飾品の品質が、必ず★3以上になる。"
   },
-  "icon": "minecraft:diamond",
+  "icon": "jsn_craft:skill_icon/jeweler/fine_setting",
   "type": "passive",
-  "effect": "fine_setting"
+  "effect": "fine_setting",
+  "item_icon": "minecraft:diamond"
 }

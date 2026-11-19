@@ -5,8 +5,9 @@
   "description": {
     "text": "必要なラピスラズリが25%減る。"
   },
-  "icon": "minecraft:lapis_lazuli",
+  "icon": "jsn_craft:skill_icon/enchanter/rune_lapis",
   "type": "passive",
   "effect": "rune_lapis",
-  "power": 0.25
+  "power": 0.25,
+  "item_icon": "minecraft:lapis_lazuli"
 }

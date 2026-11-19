@@ -5,8 +5,9 @@
   "description": {
     "text": "近接攻撃を10%の確率でかわす。"
   },
-  "icon": "minecraft:phantom_membrane",
+  "icon": "jsn_craft:skill_icon/sword/foresight",
   "type": "passive",
   "effect": "dodge",
-  "chance": 0.1
+  "chance": 0.1,
+  "item_icon": "minecraft:phantom_membrane"
 }

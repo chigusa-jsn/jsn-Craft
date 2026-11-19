@@ -5,8 +5,9 @@
   "description": {
     "text": "実った作物を収穫したとき、15%の確率でドロップが2倍になる。"
   },
-  "icon": "minecraft:hay_block",
+  "icon": "jsn_craft:skill_icon/farmer/bountiful",
   "type": "passive",
   "effect": "bountiful_harvest",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:hay_block"
 }

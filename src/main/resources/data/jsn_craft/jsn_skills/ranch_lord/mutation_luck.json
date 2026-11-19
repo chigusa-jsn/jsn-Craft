@@ -5,8 +5,9 @@
   "description": {
     "text": "繁殖させたとき、突然変異の子が生まれやすくなる（+2%）。"
   },
-  "icon": "minecraft:fermented_spider_eye",
+  "icon": "jsn_craft:skill_icon/ranch_lord/mutation_luck",
   "type": "passive",
   "effect": "mutation_luck",
-  "power": 0.02
+  "power": 0.02,
+  "item_icon": "minecraft:fermented_spider_eye"
 }

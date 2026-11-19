@@ -5,12 +5,13 @@
   "description": {
     "text": "目線の先（5ブロック）に4秒間 光の槍の雨。0.25秒ごとに3本、1本 攻撃力の0.5倍。"
   },
-  "icon": "minecraft:prismarine_shard",
+  "icon": "jsn_craft:skill_icon/sea_lancer/thousand",
   "type": "active",
   "effect": "spear_thousand",
   "stamina": 40,
   "cooldown": 30,
   "power": 0.5,
   "radius": 5,
-  "duration": 4
+  "duration": 4,
+  "item_icon": "minecraft:prismarine_shard"
 }

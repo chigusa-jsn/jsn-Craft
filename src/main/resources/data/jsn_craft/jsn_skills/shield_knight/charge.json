@@ -5,11 +5,12 @@
   "description": {
     "text": "盾を構えて前へ突進（7ブロック）。ぶつかった敵に攻撃力の1.0倍、はね飛ばす。"
   },
-  "icon": "minecraft:iron_chestplate",
+  "icon": "jsn_craft:skill_icon/shield_knight/charge",
   "type": "active",
   "effect": "guard_charge",
   "stamina": 18,
   "cooldown": 10,
   "power": 1.0,
-  "radius": 7
+  "radius": 7,
+  "item_icon": "minecraft:iron_chestplate"
 }

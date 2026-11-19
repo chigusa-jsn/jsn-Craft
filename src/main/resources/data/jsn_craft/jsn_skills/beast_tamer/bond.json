@@ -5,8 +5,9 @@
   "description": {
     "text": "相棒の受けるダメージが25%ダウン。"
   },
-  "icon": "minecraft:golden_apple",
+  "icon": "jsn_craft:skill_icon/beast_tamer/bond",
   "type": "passive",
   "effect": "beast_bond",
-  "power": 0.25
+  "power": 0.25,
+  "item_icon": "minecraft:golden_apple"
 }

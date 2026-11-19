@@ -5,8 +5,9 @@
   "description": {
     "text": "釣りミニゲームのキャッチ枠が15%大きくなる。"
   },
-  "icon": "minecraft:fishing_rod",
+  "icon": "jsn_craft:skill_icon/angler/anglers_sense",
   "type": "passive",
   "effect": "fish_zone",
-  "power": 0.15
+  "power": 0.15,
+  "item_icon": "minecraft:fishing_rod"
 }

@@ -5,12 +5,13 @@
   "description": {
     "text": "その場に20秒間、森の結界（6ブロック）を張る。中のパーティーの仲間は毎秒HPが1回復し、敵は遅くなる。"
   },
-  "icon": "minecraft:flowering_azalea",
+  "icon": "jsn_craft:skill_icon/forest_master/guardian_grove",
   "type": "active",
   "effect": "grove",
   "stamina": 35,
   "cooldown": 45,
   "radius": 6,
   "duration": 20,
-  "power": 1
+  "power": 1,
+  "item_icon": "minecraft:flowering_azalea"
 }

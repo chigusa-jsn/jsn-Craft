@@ -5,7 +5,7 @@
   "description": {
     "text": "星の光で自分と近くの仲間（8ブロック）の魔法の威力を15秒間 +15%、マナを10回復。"
   },
-  "icon": "minecraft:glowstone_dust",
+  "icon": "jsn_craft:skill_icon/mage/star_light",
   "type": "active",
   "effect": "mage_star_light",
   "mana": 0,
@@ -13,5 +13,6 @@
   "power": 0.15,
   "radius": 8,
   "duration": 15,
-  "amplifier": 10
+  "amplifier": 10,
+  "item_icon": "minecraft:glowstone_dust"
 }

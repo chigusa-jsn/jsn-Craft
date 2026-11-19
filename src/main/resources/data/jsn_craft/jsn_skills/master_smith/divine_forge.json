@@ -5,10 +5,11 @@
   "description": {
     "text": "60秒間、強化が必ず成功する。"
   },
-  "icon": "minecraft:netherite_ingot",
+  "icon": "jsn_craft:skill_icon/master_smith/divine_forge",
   "type": "active",
   "effect": "divine_forge",
   "duration": 60,
   "stamina": 60,
-  "cooldown": 1200
+  "cooldown": 1200,
+  "item_icon": "minecraft:netherite_ingot"
 }

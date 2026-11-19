@@ -5,12 +5,13 @@
   "description": {
     "text": "自分と周り（10ブロック）の仲間の攻撃力+4・防御力+6・魔法の威力+20%を90秒間。"
   },
-  "icon": "minecraft:golden_helmet",
+  "icon": "jsn_craft:skill_icon/gem_master/royal_jewel",
   "type": "active",
   "effect": "royal_jewel",
   "power": 0.2,
   "radius": 10,
   "duration": 90,
   "stamina": 60,
-  "cooldown": 600
+  "cooldown": 600,
+  "item_icon": "minecraft:golden_helmet"
 }

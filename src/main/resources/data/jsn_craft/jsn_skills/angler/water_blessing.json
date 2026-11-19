@@ -5,11 +5,12 @@
   "description": {
     "text": "60秒間、水中呼吸とイルカの好意（泳ぎが速くなる）がつく。"
   },
-  "icon": "minecraft:heart_of_the_sea",
+  "icon": "jsn_craft:skill_icon/angler/water_blessing",
   "type": "active",
   "effect": "water_blessing",
   "duration": 60,
   "amplifier": 0,
   "stamina": 20,
-  "cooldown": 120
+  "cooldown": 120,
+  "item_icon": "minecraft:heart_of_the_sea"
 }

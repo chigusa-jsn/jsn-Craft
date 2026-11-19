@@ -5,8 +5,9 @@
   "description": {
     "text": "原石を磨いたとき、10%の確率で宝石が3個になる。"
   },
-  "icon": "jsn_craft:moonstone",
+  "icon": "jsn_craft:skill_icon/gem_master/triple_polish",
   "type": "passive",
   "effect": "triple_polish",
-  "chance": 0.1
+  "chance": 0.1,
+  "item_icon": "jsn_craft:moonstone"
 }

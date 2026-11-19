@@ -5,7 +5,8 @@
   "description": {
     "text": "+11以上の強化ができるようになり、特性を2つまでつけられるようになる。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/master_smith/star_forge",
   "type": "passive",
-  "effect": "star_forge"
+  "effect": "star_forge",
+  "item_icon": "minecraft:nether_star"
 }

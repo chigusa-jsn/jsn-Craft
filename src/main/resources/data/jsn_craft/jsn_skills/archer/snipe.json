@@ -5,11 +5,12 @@
   "description": {
     "text": "1.2秒ためて、まっすぐ速く飛ぶ矢を撃つ。弓の強さ（バニラの弓・木の長弓で6）の4倍（遠矢の心得も効く）。"
   },
-  "icon": "minecraft:crossbow",
+  "icon": "jsn_craft:skill_icon/archer/snipe",
   "type": "active",
   "effect": "bow_snipe",
   "stamina": 30,
   "cooldown": 15,
   "power": 4.0,
-  "cast_time": 1.2
+  "cast_time": 1.2,
+  "item_icon": "minecraft:crossbow"
 }

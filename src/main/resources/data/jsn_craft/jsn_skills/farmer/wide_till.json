@@ -5,8 +5,9 @@
   "description": {
     "text": "鍬で耕すと、周りの3×3もまとめて耕す（しゃがむと1マスだけ）。"
   },
-  "icon": "minecraft:iron_hoe",
+  "icon": "jsn_craft:skill_icon/farmer/wide_till",
   "type": "passive",
   "effect": "wide_till",
-  "radius": 1
+  "radius": 1,
+  "item_icon": "minecraft:iron_hoe"
 }

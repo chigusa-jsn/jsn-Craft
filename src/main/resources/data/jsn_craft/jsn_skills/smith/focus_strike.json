@@ -5,8 +5,9 @@
   "description": {
     "text": "強化の成功率が5%上がる。"
   },
-  "icon": "minecraft:iron_ingot",
+  "icon": "jsn_craft:skill_icon/smith/focus_strike",
   "type": "passive",
   "effect": "smith_success",
-  "power": 0.05
+  "power": 0.05,
+  "item_icon": "minecraft:iron_ingot"
 }

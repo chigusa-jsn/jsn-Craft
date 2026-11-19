@@ -5,7 +5,7 @@
   "description": {
     "text": "1.2秒詠唱。目線の先に大渦（5ブロック）を5秒。敵を真ん中へ引き込み、0.5秒ごと魔導書の精霊弾の0.7倍＋濡らす。"
   },
-  "icon": "minecraft:nautilus_shell",
+  "icon": "jsn_craft:skill_icon/spirit_lord/maelstrom",
   "type": "active",
   "effect": "spirit_maelstrom",
   "mana": 24,
@@ -13,5 +13,6 @@
   "power": 0.7,
   "radius": 5,
   "duration": 5,
-  "cast_time": 1.2
+  "cast_time": 1.2,
+  "item_icon": "minecraft:nautilus_shell"
 }

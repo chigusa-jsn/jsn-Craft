@@ -5,8 +5,9 @@
   "description": {
     "text": "香の届く広さが4ブロック広がる（ふつうは8ブロック）。"
   },
-  "icon": "minecraft:sugar",
+  "icon": "jsn_craft:skill_icon/alchemist/dust_range",
   "type": "passive",
   "effect": "dust_range",
-  "power": 4
+  "power": 4,
+  "item_icon": "minecraft:sugar"
 }

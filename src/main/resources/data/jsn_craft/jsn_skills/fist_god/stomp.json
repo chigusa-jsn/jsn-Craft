@@ -5,11 +5,12 @@
   "description": {
     "text": "地面を踏み鳴らす。周り（6ブロック）の地面の敵に拳の強さ（攻撃力＋籠手のパンチ）の2.5倍＋打ち上げて足止め。"
   },
-  "icon": "minecraft:cracked_stone_bricks",
+  "icon": "jsn_craft:skill_icon/fist_god/stomp",
   "type": "active",
   "effect": "fist_stomp",
   "stamina": 35,
   "cooldown": 18,
   "power": 2.5,
-  "radius": 6
+  "radius": 6,
+  "item_icon": "minecraft:cracked_stone_bricks"
 }

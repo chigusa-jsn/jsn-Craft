@@ -5,8 +5,9 @@
   "description": {
     "text": "薬を作ったとき、20%の確率で追加素材がなくならない。"
   },
-  "icon": "minecraft:glowstone_dust",
+  "icon": "jsn_craft:skill_icon/alchemist/brew_save",
   "type": "passive",
   "effect": "brew_save",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "minecraft:glowstone_dust"
 }

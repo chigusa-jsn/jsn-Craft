@@ -5,12 +5,13 @@
   "description": {
     "text": "12秒間 攻撃力 +40%・攻撃の速さ +20%・移動 +15%、与えたダメージの8%を吸う。ただし受けるダメージも +15%。"
   },
-  "icon": "minecraft:blaze_powder",
+  "icon": "jsn_craft:skill_icon/axeman/rage",
   "type": "active",
   "effect": "axe_rage",
   "stamina": 30,
   "cooldown": 45,
   "power": 0.4,
   "duration": 12,
-  "chance": 0.08
+  "chance": 0.08,
+  "item_icon": "minecraft:blaze_powder"
 }

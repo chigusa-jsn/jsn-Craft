@@ -5,11 +5,12 @@
   "description": {
     "text": "空から戦う鷹を呼ぶ（もう一度使うと戻す）。空を飛んでついてきて、敵に急降下する。"
   },
-  "icon": "minecraft:feather",
+  "icon": "jsn_craft:skill_icon/beast_tamer/call_hawk",
   "type": "active",
   "effect": "beast_call_hawk",
   "stamina": 15,
   "cooldown": 3,
   "amplifier": 1,
-  "power": 1.0
+  "power": 1.0,
+  "item_icon": "minecraft:feather"
 }

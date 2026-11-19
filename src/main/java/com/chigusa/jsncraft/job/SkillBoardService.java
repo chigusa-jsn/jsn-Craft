@@ -275,7 +275,7 @@ public final class SkillBoardService {
                 if (!masked) for (BoardNode.Effect e : n.effects()) effects.add(describe(e));
                 nodes.add(new NodeView(n.id(), n.x(), n.y(),
                         masked ? Component.literal("？？？") : n.name(),
-                        masked ? Optional.empty() : n.icon(),
+                        masked ? Optional.empty() : nodeIcon(n),
                         n.start(), n.cost(), n.links(), effects, n.minLevel(), n.big(), masked));
             }
             out.add(new BoardView(jobId.toString(), def.name(), prog.level, pointsAvailable(def, prog),
@@ -283,6 +283,27 @@ public final class SkillBoardService {
             first = false;
         }
         return out;
+    }
+
+    /**
+     * マスの絵：技やパッシブにかかわるマスはそのスキルの絵、能力のマスは能力の絵（赤いハート＝HP など）。
+     * どちらでもなければ、ボードに書いてあるアイテムの絵。
+     */
+    private static Optional<ResourceLocation> nodeIcon(BoardNode n) {
+        for (BoardNode.Effect e : n.effects()) {
+            Optional<ResourceLocation> sk = e.grant().isPresent() ? e.grant() : e.skill();
+            if (sk.isPresent()) {
+                var s = com.chigusa.jsncraft.skill.SkillManager.INSTANCE.get(sk.get());
+                if (s != null) return Optional.of(s.icon());
+            }
+        }
+        for (BoardNode.Effect e : n.effects()) {
+            if (e.attribute().isPresent()) {
+                String path = e.attribute().get().getPath().replace('.', '_');
+                return Optional.of(com.chigusa.jsncraft.JsnCraft.id("skill_icon/stat/" + path));
+            }
+        }
+        return n.icon();
     }
 
     private static Component describe(BoardNode.Effect e) {

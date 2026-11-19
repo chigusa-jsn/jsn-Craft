@@ -5,11 +5,12 @@
   "description": {
     "text": "4秒間、受けるダメージ -80%。ただしその間は動けない。"
   },
-  "icon": "minecraft:anvil",
+  "icon": "jsn_craft:skill_icon/shield_knight/iron_wall",
   "type": "active",
   "effect": "guard_iron_wall",
   "stamina": 20,
   "cooldown": 25,
   "power": 0.8,
-  "duration": 4
+  "duration": 4,
+  "item_icon": "minecraft:anvil"
 }

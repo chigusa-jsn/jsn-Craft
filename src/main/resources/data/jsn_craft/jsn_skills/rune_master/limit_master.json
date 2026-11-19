@@ -5,7 +5,8 @@
   "description": {
     "text": "上限突破で、エンチャントの最大レベルを+5まで超えられるようになる（ふつうは+3）。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/rune_master/limit_master",
   "type": "passive",
-  "effect": "limit_master"
+  "effect": "limit_master",
+  "item_icon": "minecraft:nether_star"
 }

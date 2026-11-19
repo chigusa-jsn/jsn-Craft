@@ -5,7 +5,8 @@
   "description": {
     "text": "特別な装飾品（固有品）が作れるようになる。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/gem_master/unique_craft",
   "type": "passive",
-  "effect": "unique_craft"
+  "effect": "unique_craft",
+  "item_icon": "minecraft:nether_star"
 }

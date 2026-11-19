@@ -5,8 +5,9 @@
   "description": {
     "text": "斧で敵を倒すと、最大HPの8%回復する。"
   },
-  "icon": "minecraft:redstone",
+  "icon": "jsn_craft:skill_icon/axeman/bloodthirst",
   "type": "passive",
   "effect": "axe_bloodthirst",
-  "power": 0.08
+  "power": 0.08,
+  "item_icon": "minecraft:redstone"
 }

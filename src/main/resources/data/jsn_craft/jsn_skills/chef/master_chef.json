@@ -5,8 +5,9 @@
   "description": {
     "text": "料理が★3になりやすくなる（+10%）。"
   },
-  "icon": "minecraft:golden_carrot",
+  "icon": "jsn_craft:skill_icon/chef/master_chef",
   "type": "passive",
   "effect": "cook_star",
-  "power": 0.1
+  "power": 0.1,
+  "item_icon": "minecraft:golden_carrot"
 }

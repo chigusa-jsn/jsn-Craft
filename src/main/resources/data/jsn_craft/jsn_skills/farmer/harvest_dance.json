@@ -5,11 +5,12 @@
   "description": {
     "text": "広い範囲（8ブロック）の作物を、花びらと光の輪とともに一気に3段階育てる。"
   },
-  "icon": "minecraft:sunflower",
+  "icon": "jsn_craft:skill_icon/farmer/harvest_dance",
   "type": "active",
   "effect": "harvest_dance",
   "radius": 8,
   "amplifier": 3,
   "stamina": 40,
-  "cooldown": 120
+  "cooldown": 120,
+  "item_icon": "minecraft:sunflower"
 }

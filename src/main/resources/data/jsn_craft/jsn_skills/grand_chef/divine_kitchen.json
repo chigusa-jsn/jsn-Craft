@@ -5,10 +5,11 @@
   "description": {
     "text": "60秒間、調理が一瞬で終わり、品質が必ず★3以上になる。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/grand_chef/divine_kitchen",
   "type": "active",
   "effect": "divine_kitchen",
   "duration": 60,
   "stamina": 60,
-  "cooldown": 600
+  "cooldown": 600,
+  "item_icon": "minecraft:nether_star"
 }

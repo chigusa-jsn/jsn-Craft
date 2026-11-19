@@ -5,11 +5,12 @@
   "description": {
     "text": "回し蹴りで周り（3.5ブロック）の敵に拳の強さ（攻撃力＋籠手のパンチ）の1.2倍、蹴り飛ばす。"
   },
-  "icon": "minecraft:leather_boots",
+  "icon": "jsn_craft:skill_icon/brawler/whirl_kick",
   "type": "active",
   "effect": "fist_whirl_kick",
   "stamina": 20,
   "cooldown": 9,
   "power": 1.2,
-  "radius": 3.5
+  "radius": 3.5,
+  "item_icon": "minecraft:leather_boots"
 }

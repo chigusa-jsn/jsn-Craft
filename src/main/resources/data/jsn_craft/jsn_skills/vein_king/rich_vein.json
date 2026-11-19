@@ -5,9 +5,10 @@
   "description": {
     "text": "鉱石を掘ったとき、2%の確率で周りの石が4つまで同じ鉱石に変わる。"
   },
-  "icon": "minecraft:deepslate_diamond_ore",
+  "icon": "jsn_craft:skill_icon/vein_king/rich_vein",
   "type": "passive",
   "effect": "rich_vein",
   "chance": 0.02,
-  "amplifier": 4
+  "amplifier": 4,
+  "item_icon": "minecraft:deepslate_diamond_ore"
 }

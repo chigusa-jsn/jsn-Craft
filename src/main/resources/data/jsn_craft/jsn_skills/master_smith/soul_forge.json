@@ -5,8 +5,9 @@
   "description": {
     "text": "大成功がさらに出やすくなる（+10%）。"
   },
-  "icon": "minecraft:soul_lantern",
+  "icon": "jsn_craft:skill_icon/master_smith/soul_forge",
   "type": "passive",
   "effect": "smith_great2",
-  "chance": 0.1
+  "chance": 0.1,
+  "item_icon": "minecraft:soul_lantern"
 }

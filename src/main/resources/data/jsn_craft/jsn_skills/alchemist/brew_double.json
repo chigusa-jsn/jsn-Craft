@@ -5,8 +5,9 @@
   "description": {
     "text": "薬を作ったとき、15%の確率で1本おまけができる。"
   },
-  "icon": "minecraft:glass_bottle",
+  "icon": "jsn_craft:skill_icon/alchemist/brew_double",
   "type": "passive",
   "effect": "brew_double",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:glass_bottle"
 }

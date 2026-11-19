@@ -5,7 +5,8 @@
   "description": {
     "text": "1つの物に刻める魔紋の数が1つ増える（3つ→4つ）。"
   },
-  "icon": "minecraft:amethyst_cluster",
+  "icon": "jsn_craft:skill_icon/rune_master/rune_slot",
   "type": "passive",
-  "effect": "rune_slot"
+  "effect": "rune_slot",
+  "item_icon": "minecraft:amethyst_cluster"
 }

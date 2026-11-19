@@ -5,11 +5,12 @@
   "description": {
     "text": "15秒間、攻撃に毒がつく（4秒）。"
   },
-  "icon": "minecraft:spider_eye",
+  "icon": "jsn_craft:skill_icon/assassin/poison",
   "type": "active",
   "effect": "dagger_poison",
   "stamina": 12,
   "cooldown": 30,
   "duration": 15,
-  "amplifier": 1
+  "amplifier": 1,
+  "item_icon": "minecraft:spider_eye"
 }

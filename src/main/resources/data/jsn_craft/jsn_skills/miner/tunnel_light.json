@@ -5,11 +5,12 @@
   "description": {
     "text": "120秒間、暗視がつく。"
   },
-  "icon": "minecraft:lantern",
+  "icon": "jsn_craft:skill_icon/miner/tunnel_light",
   "type": "active",
   "effect": "potion",
   "target": "minecraft:night_vision",
   "duration": 120,
   "stamina": 10,
-  "cooldown": 60
+  "cooldown": 60,
+  "item_icon": "minecraft:lantern"
 }

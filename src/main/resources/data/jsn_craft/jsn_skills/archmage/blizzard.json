@@ -5,7 +5,7 @@
   "description": {
     "text": "1.5秒詠唱。周り（6ブロック）に5秒間 吹雪。0.5秒ごと杖のマナ弾の0.8倍、25%で凍らせる。"
   },
-  "icon": "minecraft:snow_block",
+  "icon": "jsn_craft:skill_icon/archmage/blizzard",
   "type": "active",
   "effect": "mage_blizzard",
   "mana": 24,
@@ -14,5 +14,6 @@
   "radius": 6,
   "duration": 5,
   "chance": 0.25,
-  "cast_time": 1.5
+  "cast_time": 1.5,
+  "item_icon": "minecraft:snow_block"
 }

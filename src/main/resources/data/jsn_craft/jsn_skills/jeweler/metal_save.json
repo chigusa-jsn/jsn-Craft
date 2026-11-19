@@ -5,8 +5,9 @@
   "description": {
     "text": "装飾品を作ったとき、20%の確率で台座の金属がなくならない。"
   },
-  "icon": "minecraft:gold_ingot",
+  "icon": "jsn_craft:skill_icon/jeweler/metal_save",
   "type": "passive",
   "effect": "metal_save",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "minecraft:gold_ingot"
 }

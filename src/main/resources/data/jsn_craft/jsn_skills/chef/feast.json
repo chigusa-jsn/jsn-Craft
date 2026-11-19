@@ -5,11 +5,12 @@
   "description": {
     "text": "60秒間、自分が料理を食べると、周り（10ブロック）の仲間にも同じバフがかかる。"
   },
-  "icon": "minecraft:cake",
+  "icon": "jsn_craft:skill_icon/chef/feast",
   "type": "active",
   "effect": "feast",
   "radius": 10,
   "duration": 60,
   "stamina": 40,
-  "cooldown": 180
+  "cooldown": 180,
+  "item_icon": "minecraft:cake"
 }

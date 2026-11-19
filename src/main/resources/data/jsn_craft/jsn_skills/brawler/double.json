@@ -5,12 +5,13 @@
   "description": {
     "text": "0.5秒ためて両拳を打ち込む。前へ衝撃波（5ブロック）、敵に拳の強さ（攻撃力＋籠手のパンチ）の3倍。"
   },
-  "icon": "minecraft:tnt",
+  "icon": "jsn_craft:skill_icon/brawler/double",
   "type": "active",
   "effect": "fist_double",
   "stamina": 28,
   "cooldown": 14,
   "power": 3.0,
   "radius": 5,
-  "cast_time": 0.5
+  "cast_time": 0.5,
+  "item_icon": "minecraft:tnt"
 }

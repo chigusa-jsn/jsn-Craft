@@ -5,7 +5,8 @@
   "description": {
     "text": "掘って見つかる原石が、めずらしい宝石になりやすい。"
   },
-  "icon": "jsn_craft:raw_opal",
+  "icon": "jsn_craft:skill_icon/gem_master/rare_find",
   "type": "passive",
-  "effect": "rare_find"
+  "effect": "rare_find",
+  "item_icon": "jsn_craft:raw_opal"
 }

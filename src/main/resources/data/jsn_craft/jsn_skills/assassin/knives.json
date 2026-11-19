@@ -5,11 +5,12 @@
   "description": {
     "text": "5本のナイフを扇の形に投げる。1本 攻撃力の0.7倍。"
   },
-  "icon": "minecraft:iron_nugget",
+  "icon": "jsn_craft:skill_icon/assassin/knives",
   "type": "active",
   "effect": "dagger_knives",
   "stamina": 15,
   "cooldown": 6,
   "power": 0.7,
-  "amplifier": 5
+  "amplifier": 5,
+  "item_icon": "minecraft:iron_nugget"
 }

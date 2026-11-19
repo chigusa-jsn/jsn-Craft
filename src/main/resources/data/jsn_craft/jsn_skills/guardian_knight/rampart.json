@@ -5,11 +5,12 @@
   "description": {
     "text": "目の前に光の壁（幅7）を8秒出す。敵は通れず、敵の矢や火の玉は消える。"
   },
-  "icon": "minecraft:stone_bricks",
+  "icon": "jsn_craft:skill_icon/guardian_knight/rampart",
   "type": "active",
   "effect": "guard_rampart",
   "stamina": 30,
   "cooldown": 30,
   "radius": 7,
-  "duration": 8
+  "duration": 8,
+  "item_icon": "minecraft:stone_bricks"
 }

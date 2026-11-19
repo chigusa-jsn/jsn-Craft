@@ -5,11 +5,12 @@
   "description": {
     "text": "宝石の光で、周り（6ブロック）の敵の目を4秒間くらませて、鈍くする。"
   },
-  "icon": "minecraft:glowstone_dust",
+  "icon": "jsn_craft:skill_icon/jeweler/dazzle",
   "type": "active",
   "effect": "dazzle",
   "radius": 6,
   "duration": 4,
   "stamina": 25,
-  "cooldown": 30
+  "cooldown": 30,
+  "item_icon": "minecraft:glowstone_dust"
 }

@@ -5,11 +5,12 @@
   "description": {
     "text": "15秒間、受けるダメージ -20%、ノックバックしにくくなる。"
   },
-  "icon": "minecraft:stone",
+  "icon": "jsn_craft:skill_icon/elementalist/stone_skin",
   "type": "active",
   "effect": "spirit_stone_skin",
   "mana": 10,
   "cooldown": 30,
   "power": 0.2,
-  "duration": 15
+  "duration": 15,
+  "item_icon": "minecraft:stone"
 }

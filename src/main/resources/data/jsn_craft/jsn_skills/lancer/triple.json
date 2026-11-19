@@ -5,12 +5,13 @@
   "description": {
     "text": "すばやく3回突く（5ブロック）。1回 攻撃力の0.8倍、3回目は1.5倍。"
   },
-  "icon": "minecraft:arrow",
+  "icon": "jsn_craft:skill_icon/lancer/triple",
   "type": "active",
   "effect": "spear_triple",
   "stamina": 18,
   "cooldown": 7,
   "power": 0.8,
   "radius": 5,
-  "amplifier": 3
+  "amplifier": 3,
+  "item_icon": "minecraft:arrow"
 }

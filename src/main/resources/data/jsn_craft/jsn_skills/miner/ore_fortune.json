@@ -5,8 +5,9 @@
   "description": {
     "text": "鉱石を掘ったとき、15%の確率でドロップが2倍になる。"
   },
-  "icon": "minecraft:raw_gold",
+  "icon": "jsn_craft:skill_icon/miner/ore_fortune",
   "type": "passive",
   "effect": "ore_fortune",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:raw_gold"
 }

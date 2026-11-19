@@ -5,7 +5,7 @@
   "description": {
     "text": "2.5秒詠唱。目線の先（7ブロック）を5秒間 業火で包む。0.5秒ごと杖のマナ弾の1.2倍＋燃やす。"
   },
-  "icon": "minecraft:fire_coral",
+  "icon": "jsn_craft:skill_icon/archmage/inferno",
   "type": "active",
   "effect": "mage_inferno",
   "mana": 45,
@@ -13,5 +13,6 @@
   "power": 1.2,
   "radius": 7,
   "duration": 5,
-  "cast_time": 2.5
+  "cast_time": 2.5,
+  "item_icon": "minecraft:fire_coral"
 }

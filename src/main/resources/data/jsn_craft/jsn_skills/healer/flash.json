@@ -5,11 +5,12 @@
   "description": {
     "text": "まぶしい光で周り（6ブロック）の敵の目をくらませ、3秒間 動きを止める。"
   },
-  "icon": "minecraft:glowstone",
+  "icon": "jsn_craft:skill_icon/healer/flash",
   "type": "active",
   "effect": "holy_flash",
   "mana": 10,
   "cooldown": 20,
   "radius": 6,
-  "duration": 3
+  "duration": 3,
+  "item_icon": "minecraft:glowstone"
 }

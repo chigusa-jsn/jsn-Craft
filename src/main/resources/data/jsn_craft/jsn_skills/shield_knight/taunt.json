@@ -5,12 +5,13 @@
   "description": {
     "text": "周り（10ブロック）の敵を6秒間 自分に引きつける。その間、受けるダメージ -15%。"
   },
-  "icon": "minecraft:goat_horn",
+  "icon": "jsn_craft:skill_icon/shield_knight/taunt",
   "type": "active",
   "effect": "guard_taunt",
   "stamina": 15,
   "cooldown": 18,
   "power": 0.15,
   "radius": 10,
-  "duration": 6
+  "duration": 6,
+  "item_icon": "minecraft:goat_horn"
 }

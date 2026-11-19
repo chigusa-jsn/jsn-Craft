@@ -5,8 +5,9 @@
   "description": {
     "text": "隠し味でつくバフの時間と強さが30%上がる。"
   },
-  "icon": "minecraft:sugar",
+  "icon": "jsn_craft:skill_icon/chef/seasoning_master",
   "type": "passive",
   "effect": "seasoning_master",
-  "power": 0.3
+  "power": 0.3,
+  "item_icon": "minecraft:sugar"
 }

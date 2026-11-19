@@ -5,8 +5,9 @@
   "description": {
     "text": "盾で攻撃を防ぐと、防いだダメージの50%＋攻撃力の半分を相手に返す。"
   },
-  "icon": "minecraft:cactus",
+  "icon": "jsn_craft:skill_icon/shield_knight/counter",
   "type": "passive",
   "effect": "guard_counter",
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "minecraft:cactus"
 }

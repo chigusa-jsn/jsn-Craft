@@ -5,11 +5,12 @@
   "description": {
     "text": "ミツバチを3匹呼ぶ（もう一度使うと戻す）。毒針で刺しても死なず、10秒ごとに近くの主人をハチミツで回復する。"
   },
-  "icon": "minecraft:honeycomb",
+  "icon": "jsn_craft:skill_icon/beast_tamer/call_bees",
   "type": "active",
   "effect": "beast_call_bees",
   "stamina": 20,
   "cooldown": 3,
   "amplifier": 3,
-  "power": 1.0
+  "power": 1.0,
+  "item_icon": "minecraft:honeycomb"
 }

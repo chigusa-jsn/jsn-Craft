@@ -5,7 +5,7 @@
   "description": {
     "text": "1秒ためて姿を消し、周り（10ブロック）の敵8体を次々と背後から切り捨てる（攻撃力の3倍）。"
   },
-  "icon": "minecraft:soul_lantern",
+  "icon": "jsn_craft:skill_icon/reaper/netherworld",
   "type": "active",
   "effect": "dagger_netherworld",
   "stamina": 60,
@@ -13,5 +13,6 @@
   "power": 3.0,
   "radius": 10,
   "amplifier": 8,
-  "cast_time": 1.0
+  "cast_time": 1.0,
+  "item_icon": "minecraft:soul_lantern"
 }

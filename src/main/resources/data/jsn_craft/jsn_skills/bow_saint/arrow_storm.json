@@ -5,12 +5,13 @@
   "description": {
     "text": "目線の先（6ブロック）に5秒間 矢の嵐。0.25秒ごとに3本、1本弓の強さ（バニラの弓・木の長弓で6）の0.45倍。"
   },
-  "icon": "minecraft:dispenser",
+  "icon": "jsn_craft:skill_icon/bow_saint/arrow_storm",
   "type": "active",
   "effect": "bow_arrow_storm",
   "stamina": 40,
   "cooldown": 30,
   "power": 0.45,
   "radius": 6,
-  "duration": 5
+  "duration": 5,
+  "item_icon": "minecraft:dispenser"
 }

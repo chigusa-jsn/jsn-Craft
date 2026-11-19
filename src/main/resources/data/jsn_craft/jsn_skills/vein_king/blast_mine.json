@@ -5,10 +5,11 @@
   "description": {
     "text": "前に向かって爆発を起こし、石と鉱石だけをまとめて砕く（半径2.5ブロック）。土や木、チェストなどは壊さない。"
   },
-  "icon": "minecraft:tnt",
+  "icon": "jsn_craft:skill_icon/vein_king/blast_mine",
   "type": "active",
   "effect": "blast_mine",
   "radius": 2.5,
   "stamina": 35,
-  "cooldown": 20
+  "cooldown": 20,
+  "item_icon": "minecraft:tnt"
 }

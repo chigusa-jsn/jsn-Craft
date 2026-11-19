@@ -5,7 +5,8 @@
   "description": {
     "text": "追加素材を3つまで入れられるようになる。"
   },
-  "icon": "minecraft:cauldron",
+  "icon": "jsn_craft:skill_icon/alchemy_sage/third_slot",
   "type": "passive",
-  "effect": "third_slot"
+  "effect": "third_slot",
+  "item_icon": "minecraft:cauldron"
 }

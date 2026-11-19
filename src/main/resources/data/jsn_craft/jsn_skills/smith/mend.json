@@ -5,8 +5,9 @@
   "description": {
     "text": "修理で回復する耐久が25%増える（ふつうは素材1つで50%）。"
   },
-  "icon": "minecraft:anvil",
+  "icon": "jsn_craft:skill_icon/smith/mend",
   "type": "passive",
   "effect": "smith_repair",
-  "power": 0.25
+  "power": 0.25,
+  "item_icon": "minecraft:anvil"
 }

@@ -5,12 +5,13 @@
   "description": {
     "text": "20秒間、すべての相棒が本気になる。体力が全回復し、ダメージ+80%、攻撃がまわりにも当たり、大技をすぐに・2倍の速さで放つ。自分も力と守りが上がる。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/beast_king/king_command",
   "type": "active",
   "effect": "beast_king_command",
   "stamina": 50,
   "cooldown": 90,
   "duration": 20,
   "power": 0.8,
-  "amplifier": 1
+  "amplifier": 1,
+  "item_icon": "minecraft:nether_star"
 }

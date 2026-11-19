@@ -5,10 +5,11 @@
   "description": {
     "text": "60秒間、刻む・上限突破・付け替えにラピスも触媒も経験値もいらなくなる。"
   },
-  "icon": "minecraft:enchanting_table",
+  "icon": "jsn_craft:skill_icon/rune_master/divine_inscription",
   "type": "active",
   "effect": "divine_inscription",
   "duration": 60,
   "stamina": 60,
-  "cooldown": 1200
+  "cooldown": 1200,
+  "item_icon": "minecraft:enchanting_table"
 }

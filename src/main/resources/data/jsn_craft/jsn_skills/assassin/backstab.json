@@ -5,8 +5,9 @@
   "description": {
     "text": "敵の背中側から攻撃すると、ダメージが50%アップ。"
   },
-  "icon": "minecraft:iron_sword",
+  "icon": "jsn_craft:skill_icon/assassin/backstab",
   "type": "passive",
   "effect": "dagger_backstab",
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "minecraft:iron_sword"
 }

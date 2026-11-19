@@ -5,10 +5,11 @@
   "description": {
     "text": "重い石の弾を撃つ。魔導書の精霊弾の1.6倍＋押し返す。"
   },
-  "icon": "minecraft:cobblestone",
+  "icon": "jsn_craft:skill_icon/elementalist/stone_bullet",
   "type": "active",
   "effect": "spirit_stone_bullet",
   "mana": 5,
   "cooldown": 1.8,
-  "power": 1.6
+  "power": 1.6,
+  "item_icon": "minecraft:cobblestone"
 }

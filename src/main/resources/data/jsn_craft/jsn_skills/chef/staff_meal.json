@@ -5,11 +5,12 @@
   "description": {
     "text": "自分と周り（6ブロック）の仲間のおなかを、満腹度6だけ満たす。"
   },
-  "icon": "minecraft:bread",
+  "icon": "jsn_craft:skill_icon/chef/staff_meal",
   "type": "active",
   "effect": "feed_area",
   "power": 6,
   "radius": 6,
   "stamina": 20,
-  "cooldown": 60
+  "cooldown": 60,
+  "item_icon": "minecraft:bread"
 }

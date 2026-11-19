@@ -5,7 +5,7 @@
   "description": {
     "text": "2.5秒詠唱。周り（10ブロック）の仲間を大きく回復（聖杖の聖光弾の5倍）して悪い効果を消し、10秒間の聖域を作る。"
   },
-  "icon": "minecraft:beacon",
+  "icon": "jsn_craft:skill_icon/saint/sanctuary",
   "type": "active",
   "effect": "holy_sanctuary",
   "mana": 50,
@@ -13,5 +13,6 @@
   "power": 5.0,
   "radius": 10,
   "duration": 10,
-  "cast_time": 2.5
+  "cast_time": 2.5,
+  "item_icon": "minecraft:beacon"
 }

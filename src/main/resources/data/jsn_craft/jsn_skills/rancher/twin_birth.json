@@ -5,8 +5,9 @@
   "description": {
     "text": "繁殖させたとき、10%の確率で双子が生まれる。"
   },
-  "icon": "minecraft:egg",
+  "icon": "jsn_craft:skill_icon/rancher/twin_birth",
   "type": "passive",
   "effect": "twin_birth",
-  "chance": 0.1
+  "chance": 0.1,
+  "item_icon": "minecraft:egg"
 }

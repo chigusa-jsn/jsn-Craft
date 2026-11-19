@@ -5,8 +5,9 @@
   "description": {
     "text": "魚がかかったとき、3%の確率で「海の主」がかかる。とても難しいけれど、勝てば海洋の心やエンチャント本などの大当たり。"
   },
-  "icon": "minecraft:nautilus_shell",
+  "icon": "jsn_craft:skill_icon/net_master/sea_lord",
   "type": "passive",
   "effect": "sea_lord",
-  "chance": 0.03
+  "chance": 0.03,
+  "item_icon": "minecraft:nautilus_shell"
 }

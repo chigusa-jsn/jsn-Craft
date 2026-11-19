@@ -5,12 +5,13 @@
   "description": {
     "text": "目の前の敵に8連撃（1回 攻撃力の0.5倍）。最後の一撃は3倍の大斬撃で吹き飛ばす。"
   },
-  "icon": "minecraft:golden_sword",
+  "icon": "jsn_craft:skill_icon/sword_saint/thousand_blades",
   "type": "active",
   "effect": "flurry",
   "stamina": 40,
   "cooldown": 18,
   "power": 0.5,
   "radius": 3.5,
-  "amplifier": 8
+  "amplifier": 8,
+  "item_icon": "minecraft:golden_sword"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "石を掘ると、2%の確率で石炭・原石・ラピスなどのかけらが出る（まれにダイヤやエメラルド）。"
   },
-  "icon": "minecraft:emerald",
+  "icon": "jsn_craft:skill_icon/miner/gem_eye",
   "type": "passive",
   "effect": "gem_eye",
-  "chance": 0.02
+  "chance": 0.02,
+  "item_icon": "minecraft:emerald"
 }

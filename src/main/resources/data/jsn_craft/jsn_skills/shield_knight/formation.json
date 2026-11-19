@@ -5,7 +5,7 @@
   "description": {
     "text": "自分と近くの仲間（8ブロック）の受けるダメージを20秒間 -15%、防御力 +4。"
   },
-  "icon": "minecraft:bell",
+  "icon": "jsn_craft:skill_icon/shield_knight/formation",
   "type": "active",
   "effect": "guard_formation",
   "stamina": 20,
@@ -13,5 +13,6 @@
   "power": 0.15,
   "radius": 8,
   "duration": 20,
-  "amplifier": 4
+  "amplifier": 4,
+  "item_icon": "minecraft:bell"
 }

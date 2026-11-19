@@ -5,7 +5,7 @@
   "description": {
     "text": "0.8秒詠唱。ねらった敵に雷、そこから5体まで飛び移る（杖のマナ弾の2倍、1回ごとに15%ずつ弱まる）。"
   },
-  "icon": "minecraft:lightning_rod",
+  "icon": "jsn_craft:skill_icon/archmage/chain_lightning",
   "type": "active",
   "effect": "mage_chain_lightning",
   "mana": 20,
@@ -13,5 +13,6 @@
   "power": 2.0,
   "radius": 6,
   "amplifier": 5,
-  "cast_time": 0.8
+  "cast_time": 0.8,
+  "item_icon": "minecraft:lightning_rod"
 }

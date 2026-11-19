@@ -5,8 +5,9 @@
   "description": {
     "text": "原石を磨いたとき、20%の確率で宝石が2個になる。"
   },
-  "icon": "jsn_craft:ruby",
+  "icon": "jsn_craft:skill_icon/jeweler/polish_bonus",
   "type": "passive",
   "effect": "polish_bonus",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "jsn_craft:ruby"
 }

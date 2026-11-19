@@ -5,8 +5,9 @@
   "description": {
     "text": "石や鉱石を掘ったとき、原石が見つかりやすくなる（+50%）。"
   },
-  "icon": "jsn_craft:raw_ruby",
+  "icon": "jsn_craft:skill_icon/jeweler/gem_eye",
   "type": "passive",
   "effect": "gem_eye",
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "jsn_craft:raw_ruby"
 }

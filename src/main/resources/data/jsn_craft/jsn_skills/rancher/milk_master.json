@@ -5,8 +5,9 @@
   "description": {
     "text": "搾りたてミルクを次に搾れるまでの時間が半分になる。"
   },
-  "icon": "minecraft:milk_bucket",
+  "icon": "jsn_craft:skill_icon/rancher/milk_master",
   "type": "passive",
   "effect": "milk_master",
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "minecraft:milk_bucket"
 }

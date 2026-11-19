@@ -5,12 +5,13 @@
   "description": {
     "text": "60秒間、魚がかかるまでの時間が短くなる（約1.5倍の速さ）。"
   },
-  "icon": "minecraft:wheat_seeds",
+  "icon": "jsn_craft:skill_icon/angler/chum",
   "type": "active",
   "effect": "fish_buff",
   "target": "bait",
   "power": 0.5,
   "duration": 60,
   "stamina": 20,
-  "cooldown": 90
+  "cooldown": 90,
+  "item_icon": "minecraft:wheat_seeds"
 }

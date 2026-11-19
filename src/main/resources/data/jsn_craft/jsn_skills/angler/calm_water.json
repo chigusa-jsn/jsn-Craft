@@ -5,8 +5,9 @@
   "description": {
     "text": "釣りミニゲームの魚の動きが15%ゆっくりになる。"
   },
-  "icon": "minecraft:lily_pad",
+  "icon": "jsn_craft:skill_icon/angler/calm_water",
   "type": "passive",
   "effect": "fish_calm",
-  "power": 0.15
+  "power": 0.15,
+  "item_icon": "minecraft:lily_pad"
 }

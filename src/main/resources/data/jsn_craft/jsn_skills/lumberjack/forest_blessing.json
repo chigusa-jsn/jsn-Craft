@@ -5,9 +5,10 @@
   "description": {
     "text": "原木を切ったとき、15%の確率でドロップが2倍になる。"
   },
-  "icon": "minecraft:apple",
+  "icon": "jsn_craft:skill_icon/lumberjack/forest_blessing",
   "type": "passive",
   "effect": "extra_drop",
   "target": "#minecraft:logs",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:apple"
 }

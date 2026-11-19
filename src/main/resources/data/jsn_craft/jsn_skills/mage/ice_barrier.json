@@ -5,11 +5,12 @@
   "description": {
     "text": "15秒間、氷の盾をまとう（杖のマナ弾の2倍ぶんのダメージを防ぐ・ノックバックしにくい）。"
   },
-  "icon": "minecraft:blue_ice",
+  "icon": "jsn_craft:skill_icon/mage/ice_barrier",
   "type": "active",
   "effect": "mage_ice_barrier",
   "mana": 10,
   "cooldown": 25,
   "power": 2.0,
-  "duration": 15
+  "duration": 15,
+  "item_icon": "minecraft:blue_ice"
 }

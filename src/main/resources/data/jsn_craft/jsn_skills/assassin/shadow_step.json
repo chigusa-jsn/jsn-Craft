@@ -5,10 +5,11 @@
   "description": {
     "text": "ねらった敵（12ブロックまで）の背後へ一瞬で回り込む。"
   },
-  "icon": "minecraft:ender_pearl",
+  "icon": "jsn_craft:skill_icon/assassin/shadow_step",
   "type": "active",
   "effect": "dagger_shadow_step",
   "stamina": 12,
   "cooldown": 8,
-  "radius": 12
+  "radius": 12,
+  "item_icon": "minecraft:ender_pearl"
 }

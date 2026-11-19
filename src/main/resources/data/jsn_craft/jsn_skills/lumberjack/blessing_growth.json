@@ -5,11 +5,12 @@
   "description": {
     "text": "周り（5ブロック）の苗木や作物に、骨粉を2回分ふりかけて一気に育てる。"
   },
-  "icon": "minecraft:bone_meal",
+  "icon": "jsn_craft:skill_icon/lumberjack/blessing_growth",
   "type": "active",
   "effect": "grow_area",
   "stamina": 25,
   "cooldown": 30,
   "radius": 5,
-  "amplifier": 2
+  "amplifier": 2,
+  "item_icon": "minecraft:bone_meal"
 }

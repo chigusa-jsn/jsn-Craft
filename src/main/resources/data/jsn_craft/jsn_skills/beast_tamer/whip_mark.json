@@ -5,8 +5,9 @@
   "description": {
     "text": "鞭で叩いた敵を相棒みんなでいっせいに狙う。その敵への相棒のダメージが25%アップ（10秒）。"
   },
-  "icon": "minecraft:lead",
+  "icon": "jsn_craft:skill_icon/beast_tamer/whip_mark",
   "type": "passive",
   "effect": "beast_whip_mark",
-  "power": 0.25
+  "power": 0.25,
+  "item_icon": "minecraft:lead"
 }

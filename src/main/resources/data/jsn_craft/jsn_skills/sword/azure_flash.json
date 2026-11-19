@@ -5,12 +5,13 @@
   "description": {
     "text": "0.4秒ためてから、青い三日月の斬撃を飛ばす。通り道（10ブロック）の敵をすべて斬る。攻撃力の2.5倍。壁に当たると消える。"
   },
-  "icon": "minecraft:diamond_sword",
+  "icon": "jsn_craft:skill_icon/sword/azure_flash",
   "type": "active",
   "effect": "slash_line",
   "stamina": 40,
   "cooldown": 30,
   "power": 2.5,
   "radius": 10,
-  "cast_time": 0.4
+  "cast_time": 0.4,
+  "item_icon": "minecraft:diamond_sword"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "装飾品を作ったとき、15%の確率で宝石の穴がひとつ多くなる。"
   },
-  "icon": "minecraft:iron_nugget",
+  "icon": "jsn_craft:skill_icon/jeweler/socket_master",
   "type": "passive",
   "effect": "socket_master",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:iron_nugget"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "錬金したとき、15%の確率でできる数が2倍になる。"
   },
-  "icon": "minecraft:gold_ingot",
+  "icon": "jsn_craft:skill_icon/alchemy_sage/transmute_save",
   "type": "passive",
   "effect": "transmute_save",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:gold_ingot"
 }

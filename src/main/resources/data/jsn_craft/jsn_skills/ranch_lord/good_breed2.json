@@ -5,8 +5,9 @@
   "description": {
     "text": "生まれる子どもの★がさらに上がりやすくなる。"
   },
-  "icon": "minecraft:saddle",
+  "icon": "jsn_craft:skill_icon/ranch_lord/good_breed2",
   "type": "passive",
   "effect": "good_breed2",
-  "power": 0.4
+  "power": 0.4,
+  "item_icon": "minecraft:saddle"
 }

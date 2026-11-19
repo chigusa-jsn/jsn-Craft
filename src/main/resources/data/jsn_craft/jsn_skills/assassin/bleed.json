@@ -5,9 +5,10 @@
   "description": {
     "text": "攻撃の20%で出血させ、3秒間 毎秒 攻撃力の15%ずつダメージ。"
   },
-  "icon": "minecraft:redstone",
+  "icon": "jsn_craft:skill_icon/assassin/bleed",
   "type": "passive",
   "effect": "dagger_bleed",
   "chance": 0.2,
-  "power": 0.15
+  "power": 0.15,
+  "item_icon": "minecraft:redstone"
 }

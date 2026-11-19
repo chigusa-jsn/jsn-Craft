@@ -5,12 +5,13 @@
   "description": {
     "text": "目線の先に巨大な渦（6ブロック）を6秒。敵を引き込み、0.5秒ごと攻撃力の0.5倍＋濡らす。"
   },
-  "icon": "minecraft:nautilus_shell",
+  "icon": "jsn_craft:skill_icon/sea_lancer/maelstrom",
   "type": "active",
   "effect": "spear_maelstrom",
   "stamina": 40,
   "cooldown": 30,
   "power": 0.5,
   "radius": 6,
-  "duration": 6
+  "duration": 6,
+  "item_icon": "minecraft:nautilus_shell"
 }

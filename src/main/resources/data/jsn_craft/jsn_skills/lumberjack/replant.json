@@ -5,7 +5,8 @@
   "description": {
     "text": "木の根元を切ると、苗木を自動で植え直す。"
   },
-  "icon": "minecraft:oak_sapling",
+  "icon": "jsn_craft:skill_icon/lumberjack/replant",
   "type": "passive",
-  "effect": "replant"
+  "effect": "replant",
+  "item_icon": "minecraft:oak_sapling"
 }

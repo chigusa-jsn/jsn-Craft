@@ -47,7 +47,7 @@ public final class SkillBarHud {
             int slot = ClientSkills.onPage(i);
             SkillView v = ClientSkills.find(ClientSkills.slot(slot));
             if (v != null) {
-                g.renderItem(new ItemStack(BuiltInRegistries.ITEM.get(v.icon())), x + 3, y0 + 2);
+                SkillIcons.draw(g, v.icon(), x + 3, y0 + 2);
                 boolean lacking = ResourceSyncPayload.clientStamina < v.stamina() || ResourceSyncPayload.clientMana < v.mana();
                 float left = ClientSkills.cooldownLeft(slot);
                 // ここから先はアイコンより手前に描く（アイテムの絵は奥行きが手前なので、そのままだと隠れる）

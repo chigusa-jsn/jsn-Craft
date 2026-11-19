@@ -5,10 +5,11 @@
   "description": {
     "text": "闇の弾を撃つ（少し敵を追いかける）。魔導書の精霊弾の1.3倍。"
   },
-  "icon": "minecraft:ink_sac",
+  "icon": "jsn_craft:skill_icon/elementalist/shadow_bolt",
   "type": "active",
   "effect": "spirit_shadow_bolt",
   "mana": 5,
   "cooldown": 1.5,
-  "power": 1.3
+  "power": 1.3,
+  "item_icon": "minecraft:ink_sac"
 }

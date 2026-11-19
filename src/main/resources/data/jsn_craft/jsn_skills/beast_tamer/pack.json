@@ -5,8 +5,9 @@
   "description": {
     "text": "同じ敵のそばにいる仲間1体ごとに、相棒のダメージ+8%（6体まで）。"
   },
-  "icon": "minecraft:bone_block",
+  "icon": "jsn_craft:skill_icon/beast_tamer/pack",
   "type": "passive",
   "effect": "beast_pack",
-  "power": 0.08
+  "power": 0.08,
+  "item_icon": "minecraft:bone_block"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "素手のパンチが +2 強くなり、殴るたびに「気」がたまる（10で満タン、次の技が1.3倍）。"
   },
-  "icon": "minecraft:leather",
+  "icon": "jsn_craft:skill_icon/brawler/bare",
   "type": "passive",
   "effect": "fist_bare",
-  "power": 2
+  "power": 2,
+  "item_icon": "minecraft:leather"
 }

@@ -5,7 +5,7 @@
   "description": {
     "text": "3秒詠唱。目線の先に黒い穴を6秒。周りの敵を吸い込み0.5秒ごと魔導書の精霊弾の1.2倍、最後に崩れて4倍。"
   },
-  "icon": "minecraft:dragon_egg",
+  "icon": "jsn_craft:skill_icon/spirit_lord/black_hole",
   "type": "active",
   "effect": "spirit_black_hole",
   "mana": 55,
@@ -13,5 +13,6 @@
   "power": 1.2,
   "radius": 6,
   "duration": 6,
-  "cast_time": 3.0
+  "cast_time": 3.0,
+  "item_icon": "minecraft:dragon_egg"
 }

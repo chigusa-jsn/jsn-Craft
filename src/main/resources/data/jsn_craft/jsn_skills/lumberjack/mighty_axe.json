@@ -5,12 +5,13 @@
   "description": {
     "text": "30秒間、ブロックを壊す速さが2倍になる。"
   },
-  "icon": "minecraft:golden_axe",
+  "icon": "jsn_craft:skill_icon/lumberjack/mighty_axe",
   "type": "active",
   "effect": "buff",
   "target": "minecraft:player.block_break_speed",
   "power": 1.0,
   "duration": 30,
   "stamina": 30,
-  "cooldown": 90
+  "cooldown": 90,
+  "item_icon": "minecraft:golden_axe"
 }

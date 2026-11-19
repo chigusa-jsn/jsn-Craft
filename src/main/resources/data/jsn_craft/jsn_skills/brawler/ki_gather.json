@@ -5,12 +5,13 @@
   "description": {
     "text": "気を5ためて、10秒間 攻撃の速さ +25%・移動 +10%。"
   },
-  "icon": "minecraft:glowstone_dust",
+  "icon": "jsn_craft:skill_icon/brawler/ki_gather",
   "type": "active",
   "effect": "fist_ki_gather",
   "stamina": 10,
   "cooldown": 20,
   "power": 0.25,
   "duration": 10,
-  "amplifier": 5
+  "amplifier": 5,
+  "item_icon": "minecraft:glowstone_dust"
 }

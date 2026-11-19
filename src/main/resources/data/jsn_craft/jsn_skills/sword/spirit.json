@@ -5,8 +5,9 @@
   "description": {
     "text": "HPが満タンのとき、近接攻撃のダメージが20%アップ。"
   },
-  "icon": "minecraft:blaze_powder",
+  "icon": "jsn_craft:skill_icon/sword/spirit",
   "type": "passive",
   "effect": "full_hp_bonus",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:blaze_powder"
 }

@@ -5,7 +5,8 @@
   "description": {
     "text": "実った作物を右クリックすると、収穫して自動で植え直す（しゃがむと普通の右クリック）。"
   },
-  "icon": "minecraft:wheat",
+  "icon": "jsn_craft:skill_icon/farmer/right_harvest",
   "type": "passive",
-  "effect": "right_harvest"
+  "effect": "right_harvest",
+  "item_icon": "minecraft:wheat"
 }

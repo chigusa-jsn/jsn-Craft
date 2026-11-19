@@ -5,12 +5,13 @@
   "description": {
     "text": "1秒ためて、気の大きな拳を撃つ（20ブロック）。通り道の敵に拳の強さ（攻撃力＋籠手のパンチ）の6倍、最後に爆ぜて周りにも。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/fist_god/overlord",
   "type": "active",
   "effect": "fist_overlord",
   "stamina": 60,
   "cooldown": 60,
   "power": 6.0,
   "radius": 20,
-  "cast_time": 1.0
+  "cast_time": 1.0,
+  "item_icon": "minecraft:nether_star"
 }

@@ -5,7 +5,7 @@
   "description": {
     "text": "0.6秒ためて渾身の一撃。攻撃力の3.5倍、当たった敵は8秒間 受けるダメージ +20%（だれの攻撃でも）。"
   },
-  "icon": "minecraft:netherite_axe",
+  "icon": "jsn_craft:skill_icon/axeman/sunder",
   "type": "active",
   "effect": "axe_sunder",
   "stamina": 35,
@@ -13,5 +13,6 @@
   "power": 3.5,
   "radius": 2.2,
   "duration": 8,
-  "cast_time": 0.6
+  "cast_time": 0.6,
+  "item_icon": "minecraft:netherite_axe"
 }

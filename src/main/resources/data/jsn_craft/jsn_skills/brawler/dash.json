@@ -5,11 +5,12 @@
   "description": {
     "text": "前へ飛び込んで殴る（6ブロック）。通り道の敵に拳の強さ（攻撃力＋籠手のパンチ）の1.4倍。"
   },
-  "icon": "minecraft:feather",
+  "icon": "jsn_craft:skill_icon/brawler/dash",
   "type": "active",
   "effect": "fist_dash",
   "stamina": 15,
   "cooldown": 6,
   "power": 1.4,
-  "radius": 6
+  "radius": 6,
+  "item_icon": "minecraft:feather"
 }

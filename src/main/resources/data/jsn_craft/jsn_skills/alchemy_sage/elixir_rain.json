@@ -5,11 +5,12 @@
   "description": {
     "text": "自分と周り（8ブロック）の仲間のHPを8、スタミナとマナを24回復し、10秒間再生をつける。"
   },
-  "icon": "minecraft:water_bucket",
+  "icon": "jsn_craft:skill_icon/alchemy_sage/elixir_rain",
   "type": "active",
   "effect": "elixir_rain",
   "power": 8,
   "radius": 8,
   "stamina": 50,
-  "cooldown": 180
+  "cooldown": 180,
+  "item_icon": "minecraft:water_bucket"
 }

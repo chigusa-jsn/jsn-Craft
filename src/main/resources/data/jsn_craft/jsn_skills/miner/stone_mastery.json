@@ -5,8 +5,9 @@
   "description": {
     "text": "石・深層岩・ネザーラックなどを掘る速さが30%上がる。"
   },
-  "icon": "minecraft:stone",
+  "icon": "jsn_craft:skill_icon/miner/stone_mastery",
   "type": "passive",
   "effect": "stone_mastery",
-  "power": 0.3
+  "power": 0.3,
+  "item_icon": "minecraft:stone"
 }

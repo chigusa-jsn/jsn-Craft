@@ -5,8 +5,9 @@
   "description": {
     "text": "炎や溶岩で受けるダメージが30%減る。"
   },
-  "icon": "minecraft:magma_block",
+  "icon": "jsn_craft:skill_icon/smith/forge_ward",
   "type": "passive",
   "effect": "lava_ward",
-  "power": 0.3
+  "power": 0.3,
+  "item_icon": "minecraft:magma_block"
 }

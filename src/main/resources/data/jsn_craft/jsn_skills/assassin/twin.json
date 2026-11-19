@@ -5,12 +5,13 @@
   "description": {
     "text": "左右の短剣ですばやく2回切る。1回 攻撃力の1倍。"
   },
-  "icon": "minecraft:shears",
+  "icon": "jsn_craft:skill_icon/assassin/twin",
   "type": "active",
   "effect": "dagger_twin",
   "stamina": 10,
   "cooldown": 4,
   "power": 1.0,
   "radius": 2.0,
-  "amplifier": 2
+  "amplifier": 2,
+  "item_icon": "minecraft:shears"
 }

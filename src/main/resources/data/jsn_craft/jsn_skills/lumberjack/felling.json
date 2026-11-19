@@ -5,9 +5,10 @@
   "description": {
     "text": "しゃがみながら原木を切ると、つながった原木を丸ごと倒す（最大48本）。1本ごとにスタミナを2使う。"
   },
-  "icon": "minecraft:iron_axe",
+  "icon": "jsn_craft:skill_icon/lumberjack/felling",
   "type": "passive",
   "effect": "tree_feller",
   "stamina": 2,
-  "amplifier": 48
+  "amplifier": 48,
+  "item_icon": "minecraft:iron_axe"
 }

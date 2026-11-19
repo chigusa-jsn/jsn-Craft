@@ -5,12 +5,13 @@
   "description": {
     "text": "8ブロック先の敵まで鞭をしならせて叩き（攻撃力の1.4倍）、少し引き寄せる。相棒たちがその敵を狙う。"
   },
-  "icon": "minecraft:string",
+  "icon": "jsn_craft:skill_icon/beast_tamer/lash",
   "type": "active",
   "effect": "beast_lash",
   "stamina": 10,
   "cooldown": 4,
   "power": 1.4,
   "radius": 8,
-  "amplifier": 2
+  "amplifier": 2,
+  "item_icon": "minecraft:string"
 }

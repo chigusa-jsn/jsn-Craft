@@ -5,12 +5,13 @@
   "description": {
     "text": "自分と近くの仲間（8ブロック）に20秒間の再生をかける。"
   },
-  "icon": "minecraft:golden_apple",
+  "icon": "jsn_craft:skill_icon/healer/regen",
   "type": "active",
   "effect": "holy_regen",
   "mana": 12,
   "cooldown": 30,
   "radius": 8,
   "duration": 20,
-  "amplifier": 0
+  "amplifier": 0,
+  "item_icon": "minecraft:golden_apple"
 }

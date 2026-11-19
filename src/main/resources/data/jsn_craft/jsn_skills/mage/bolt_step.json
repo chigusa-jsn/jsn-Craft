@@ -5,11 +5,12 @@
   "description": {
     "text": "雷になって前へ瞬間移動（10ブロック）。通り道の敵に杖のマナ弾の0.8倍＋帯電。"
   },
-  "icon": "minecraft:feather",
+  "icon": "jsn_craft:skill_icon/mage/bolt_step",
   "type": "active",
   "effect": "mage_bolt_step",
   "mana": 8,
   "cooldown": 6,
   "power": 0.8,
-  "radius": 10
+  "radius": 10,
+  "item_icon": "minecraft:feather"
 }

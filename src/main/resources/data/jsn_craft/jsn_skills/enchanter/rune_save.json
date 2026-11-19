@@ -5,8 +5,9 @@
   "description": {
     "text": "魔紋を刻んだとき、15%の確率で触媒がなくならない。"
   },
-  "icon": "minecraft:amethyst_shard",
+  "icon": "jsn_craft:skill_icon/enchanter/rune_save",
   "type": "passive",
   "effect": "rune_save",
-  "chance": 0.15
+  "chance": 0.15,
+  "item_icon": "minecraft:amethyst_shard"
 }

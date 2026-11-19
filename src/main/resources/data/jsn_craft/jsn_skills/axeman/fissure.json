@@ -5,11 +5,12 @@
   "description": {
     "text": "斧を叩きつけ、前へ地割れを走らせる（8ブロック）。敵に攻撃力の1.5倍＋打ち上げる。"
   },
-  "icon": "minecraft:cracked_stone_bricks",
+  "icon": "jsn_craft:skill_icon/axeman/fissure",
   "type": "active",
   "effect": "axe_fissure",
   "stamina": 25,
   "cooldown": 12,
   "power": 1.5,
-  "radius": 8
+  "radius": 8,
+  "item_icon": "minecraft:cracked_stone_bricks"
 }

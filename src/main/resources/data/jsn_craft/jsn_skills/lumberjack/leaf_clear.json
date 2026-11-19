@@ -5,10 +5,11 @@
   "description": {
     "text": "周り（6ブロック）の葉っぱを一気に払う。苗木やリンゴもまとめて落ちる。"
   },
-  "icon": "minecraft:oak_leaves",
+  "icon": "jsn_craft:skill_icon/lumberjack/leaf_clear",
   "type": "active",
   "effect": "leaf_clear",
   "stamina": 20,
   "cooldown": 15,
-  "radius": 6
+  "radius": 6,
+  "item_icon": "minecraft:oak_leaves"
 }

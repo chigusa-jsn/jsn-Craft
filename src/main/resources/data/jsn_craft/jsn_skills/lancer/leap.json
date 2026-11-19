@@ -5,11 +5,12 @@
   "description": {
     "text": "高く跳んで、着地点に突き刺す。周り（2.5ブロック）の敵に攻撃力の2.2倍＋打ち上げる。"
   },
-  "icon": "minecraft:feather",
+  "icon": "jsn_craft:skill_icon/lancer/leap",
   "type": "active",
   "effect": "spear_leap",
   "stamina": 20,
   "cooldown": 10,
   "power": 2.2,
-  "radius": 2.5
+  "radius": 2.5,
+  "item_icon": "minecraft:feather"
 }

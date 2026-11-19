@@ -5,11 +5,12 @@
   "description": {
     "text": "12秒間、炎をまとう。火のダメージを受けず、殴ってきた敵に杖のマナ弾の0.8倍を返して燃やす。"
   },
-  "icon": "minecraft:magma_cream",
+  "icon": "jsn_craft:skill_icon/mage/fire_armor",
   "type": "active",
   "effect": "mage_fire_armor",
   "mana": 10,
   "cooldown": 25,
   "power": 0.8,
-  "duration": 12
+  "duration": 12,
+  "item_icon": "minecraft:magma_cream"
 }

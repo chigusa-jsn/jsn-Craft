@@ -5,9 +5,10 @@
   "description": {
     "text": "弓矢が15%の確率で会心になり、ダメージ +60%。"
   },
-  "icon": "minecraft:ender_eye",
+  "icon": "jsn_craft:skill_icon/archer/hawk_eye",
   "type": "passive",
   "effect": "archer_hawk_eye",
   "chance": 0.15,
-  "power": 0.6
+  "power": 0.6,
+  "item_icon": "minecraft:ender_eye"
 }

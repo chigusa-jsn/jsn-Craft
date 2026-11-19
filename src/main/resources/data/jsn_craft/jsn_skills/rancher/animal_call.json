@@ -5,10 +5,11 @@
   "description": {
     "text": "周り（16ブロック）の家畜を自分のそばに呼び寄せる。"
   },
-  "icon": "minecraft:goat_horn",
+  "icon": "jsn_craft:skill_icon/rancher/animal_call",
   "type": "active",
   "effect": "animal_call",
   "radius": 16,
   "stamina": 20,
-  "cooldown": 30
+  "cooldown": 30,
+  "item_icon": "minecraft:goat_horn"
 }

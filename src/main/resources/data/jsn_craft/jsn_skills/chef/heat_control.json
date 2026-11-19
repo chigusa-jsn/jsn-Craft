@@ -5,8 +5,9 @@
   "description": {
     "text": "調理にかかる時間が25%短くなる。"
   },
-  "icon": "minecraft:campfire",
+  "icon": "jsn_craft:skill_icon/chef/heat_control",
   "type": "passive",
   "effect": "cook_speed",
-  "power": 0.25
+  "power": 0.25,
+  "item_icon": "minecraft:campfire"
 }

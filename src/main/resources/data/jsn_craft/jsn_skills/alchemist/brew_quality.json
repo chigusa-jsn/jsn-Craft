@@ -5,8 +5,9 @@
   "description": {
     "text": "薬の品質（★）が上がりやすくなる。"
   },
-  "icon": "minecraft:brewing_stand",
+  "icon": "jsn_craft:skill_icon/alchemist/brew_quality",
   "type": "passive",
   "effect": "brew_quality",
-  "power": 0.1
+  "power": 0.1,
+  "item_icon": "minecraft:brewing_stand"
 }

@@ -5,12 +5,13 @@
   "description": {
     "text": "1秒ためて、大きな樹の精霊を30秒呼び出す。精霊は近くのモンスターと戦ってくれる。"
   },
-  "icon": "minecraft:carved_pumpkin",
+  "icon": "jsn_craft:skill_icon/forest_master/tree_spirit",
   "type": "active",
   "effect": "summon_guardian",
   "stamina": 60,
   "cooldown": 120,
   "duration": 30,
   "power": 1.0,
-  "cast_time": 1.0
+  "cast_time": 1.0,
+  "item_icon": "minecraft:carved_pumpkin"
 }

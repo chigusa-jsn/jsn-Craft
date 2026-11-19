@@ -5,12 +5,13 @@
   "description": {
     "text": "10秒間、相棒たちの力が強くなり（攻撃力アップII）、守りの体力がつく。周り（8ブロック）の敵は弱って足が遅くなる。"
   },
-  "icon": "minecraft:goat_horn",
+  "icon": "jsn_craft:skill_icon/beast_tamer/roar",
   "type": "active",
   "effect": "beast_roar",
   "stamina": 25,
   "cooldown": 25,
   "radius": 8,
   "duration": 10,
-  "amplifier": 1
+  "amplifier": 1,
+  "item_icon": "minecraft:goat_horn"
 }

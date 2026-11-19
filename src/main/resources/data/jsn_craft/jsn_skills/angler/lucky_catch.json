@@ -5,8 +5,9 @@
   "description": {
     "text": "パーフェクトで釣ると、30%の確率でもう1匹釣れる。"
   },
-  "icon": "minecraft:salmon",
+  "icon": "jsn_craft:skill_icon/angler/lucky_catch",
   "type": "passive",
   "effect": "fish_double",
-  "chance": 0.3
+  "chance": 0.3,
+  "item_icon": "minecraft:salmon"
 }

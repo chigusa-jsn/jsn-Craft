@@ -5,8 +5,9 @@
   "description": {
     "text": "繁殖させたとき、5%の確率で三つ子が生まれる。"
   },
-  "icon": "minecraft:turtle_egg",
+  "icon": "jsn_craft:skill_icon/ranch_lord/triplets",
   "type": "passive",
   "effect": "triplets",
-  "chance": 0.05
+  "chance": 0.05,
+  "item_icon": "minecraft:turtle_egg"
 }

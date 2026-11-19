@@ -5,12 +5,13 @@
   "description": {
     "text": "大斧を振り回して3回転。周り（3.5ブロック）の敵に1回 攻撃力の0.8倍。"
   },
-  "icon": "minecraft:golden_axe",
+  "icon": "jsn_craft:skill_icon/axeman/whirl",
   "type": "active",
   "effect": "axe_whirl",
   "stamina": 25,
   "cooldown": 10,
   "power": 0.8,
   "radius": 3.5,
-  "amplifier": 3
+  "amplifier": 3,
+  "item_icon": "minecraft:golden_axe"
 }

@@ -5,11 +5,12 @@
   "description": {
     "text": "自分と周り（6ブロック）の仲間のHPを6回復し、悪い効果を消す。"
   },
-  "icon": "minecraft:white_dye",
+  "icon": "jsn_craft:skill_icon/alchemist/healing_mist",
   "type": "active",
   "effect": "healing_mist",
   "power": 6,
   "radius": 6,
   "stamina": 30,
-  "cooldown": 60
+  "cooldown": 60,
+  "item_icon": "minecraft:white_dye"
 }

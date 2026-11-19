@@ -5,12 +5,13 @@
   "description": {
     "text": "周り（8ブロック）の敵5体の背後へ次々と飛んで、切りつける（攻撃力の1.2倍×背後1.5倍）。"
   },
-  "icon": "minecraft:phantom_membrane",
+  "icon": "jsn_craft:skill_icon/assassin/dance",
   "type": "active",
   "effect": "dagger_dance",
   "stamina": 35,
   "cooldown": 25,
   "power": 1.2,
   "radius": 8,
-  "amplifier": 5
+  "amplifier": 5,
+  "item_icon": "minecraft:phantom_membrane"
 }

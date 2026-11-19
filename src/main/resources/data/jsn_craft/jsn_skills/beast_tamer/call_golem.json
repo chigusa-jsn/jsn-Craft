@@ -5,11 +5,12 @@
   "description": {
     "text": "守り役のミニゴーレムを呼ぶ（もう一度使うと戻す）。体力が多く、主人を狙う敵を自分に引きつけて殴り飛ばす。"
   },
-  "icon": "minecraft:iron_block",
+  "icon": "jsn_craft:skill_icon/beast_tamer/call_golem",
   "type": "active",
   "effect": "beast_call_golem",
   "stamina": 25,
   "cooldown": 3,
   "amplifier": 1,
-  "power": 1.0
+  "power": 1.0,
+  "item_icon": "minecraft:iron_block"
 }

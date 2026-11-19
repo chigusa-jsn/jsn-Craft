@@ -5,8 +5,9 @@
   "description": {
     "text": "料理の品質（★）が上がりやすくなる（+10%）。"
   },
-  "icon": "minecraft:wooden_shovel",
+  "icon": "jsn_craft:skill_icon/chef/taste",
   "type": "passive",
   "effect": "cook_quality",
-  "power": 0.1
+  "power": 0.1,
+  "item_icon": "minecraft:wooden_shovel"
 }

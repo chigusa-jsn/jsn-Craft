@@ -5,11 +5,12 @@
   "description": {
     "text": "15秒間、相棒みんなが本気になる。体力が全回復し、足が速くなり、ダメージ+50%。攻撃がまわりの敵にも半分当たる。"
   },
-  "icon": "minecraft:blaze_powder",
+  "icon": "jsn_craft:skill_icon/beast_tamer/frenzy",
   "type": "active",
   "effect": "beast_frenzy",
   "stamina": 40,
   "cooldown": 60,
   "duration": 15,
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "minecraft:blaze_powder"
 }

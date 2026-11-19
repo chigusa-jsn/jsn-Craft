@@ -5,8 +5,9 @@
   "description": {
     "text": "家畜から高級肉が出やすくなる（+50%）。"
   },
-  "icon": "jsn_craft:premium_beef",
+  "icon": "jsn_craft:skill_icon/ranch_lord/golden_touch",
   "type": "passive",
   "effect": "golden_touch",
-  "power": 0.5
+  "power": 0.5,
+  "item_icon": "jsn_craft:premium_beef"
 }

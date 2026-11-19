@@ -5,8 +5,9 @@
   "description": {
     "text": "装飾品の品質（★）がさらに上がりやすくなる。"
   },
-  "icon": "minecraft:diamond_block",
+  "icon": "jsn_craft:skill_icon/gem_master/jewel_quality2",
   "type": "passive",
   "effect": "jewel_quality2",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:diamond_block"
 }

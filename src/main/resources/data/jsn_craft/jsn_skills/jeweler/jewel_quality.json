@@ -5,8 +5,9 @@
   "description": {
     "text": "装飾品の品質（★）が上がりやすくなる。"
   },
-  "icon": "minecraft:spyglass",
+  "icon": "jsn_craft:skill_icon/jeweler/jewel_quality",
   "type": "passive",
   "effect": "jewel_quality",
-  "power": 0.1
+  "power": 0.1,
+  "item_icon": "minecraft:spyglass"
 }

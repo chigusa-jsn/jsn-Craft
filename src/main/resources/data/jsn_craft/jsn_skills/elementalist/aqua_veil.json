@@ -5,11 +5,12 @@
   "description": {
     "text": "15秒間、水の膜をまとう。受けるダメージ -15%、火に強く、水の中で息ができる。"
   },
-  "icon": "minecraft:heart_of_the_sea",
+  "icon": "jsn_craft:skill_icon/elementalist/aqua_veil",
   "type": "active",
   "effect": "spirit_aqua_veil",
   "mana": 10,
   "cooldown": 30,
   "power": 0.15,
-  "duration": 15
+  "duration": 15,
+  "item_icon": "minecraft:heart_of_the_sea"
 }

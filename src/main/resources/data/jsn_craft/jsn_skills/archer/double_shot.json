@@ -5,11 +5,12 @@
   "description": {
     "text": "矢をすばやく2本続けて撃つ。1本弓の強さ（バニラの弓・木の長弓で6）の0.8倍。"
   },
-  "icon": "minecraft:arrow",
+  "icon": "jsn_craft:skill_icon/archer/double_shot",
   "type": "active",
   "effect": "bow_double_shot",
   "stamina": 10,
   "cooldown": 3,
   "power": 0.8,
-  "amplifier": 2
+  "amplifier": 2,
+  "item_icon": "minecraft:arrow"
 }

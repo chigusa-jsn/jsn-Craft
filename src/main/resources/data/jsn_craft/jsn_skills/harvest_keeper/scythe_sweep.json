@@ -5,10 +5,11 @@
   "description": {
     "text": "周り（5ブロック）の実った作物を一振りで刈り取って、植え直す。"
   },
-  "icon": "minecraft:golden_hoe",
+  "icon": "jsn_craft:skill_icon/harvest_keeper/scythe_sweep",
   "type": "active",
   "effect": "scythe_sweep",
   "radius": 5,
   "stamina": 20,
-  "cooldown": 15
+  "cooldown": 15,
+  "item_icon": "minecraft:golden_hoe"
 }

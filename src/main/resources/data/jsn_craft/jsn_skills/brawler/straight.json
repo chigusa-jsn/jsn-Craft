@@ -5,11 +5,12 @@
   "description": {
     "text": "重い一撃。前の敵に拳の強さ（攻撃力＋籠手のパンチ）の2倍、遠くへ吹き飛ばす。"
   },
-  "icon": "minecraft:anvil",
+  "icon": "jsn_craft:skill_icon/brawler/straight",
   "type": "active",
   "effect": "fist_straight",
   "stamina": 15,
   "cooldown": 6,
   "power": 2.0,
-  "radius": 1.8
+  "radius": 1.8,
+  "item_icon": "minecraft:anvil"
 }

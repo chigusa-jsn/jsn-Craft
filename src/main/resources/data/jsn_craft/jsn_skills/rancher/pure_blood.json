@@ -5,8 +5,9 @@
   "description": {
     "text": "★4の子どもが生まれるとき、30%の確率で★5になる。"
   },
-  "icon": "minecraft:golden_apple",
+  "icon": "jsn_craft:skill_icon/rancher/pure_blood",
   "type": "passive",
   "effect": "pure_blood",
-  "power": 0.3
+  "power": 0.3,
+  "item_icon": "minecraft:golden_apple"
 }

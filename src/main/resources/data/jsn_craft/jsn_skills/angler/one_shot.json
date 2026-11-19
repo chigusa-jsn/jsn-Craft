@@ -5,8 +5,9 @@
   "description": {
     "text": "魚がかかったとき、10%の確率でミニゲームなしで釣れる。"
   },
-  "icon": "minecraft:cod",
+  "icon": "jsn_craft:skill_icon/angler/one_shot",
   "type": "passive",
   "effect": "fish_instant",
-  "chance": 0.1
+  "chance": 0.1,
+  "item_icon": "minecraft:cod"
 }

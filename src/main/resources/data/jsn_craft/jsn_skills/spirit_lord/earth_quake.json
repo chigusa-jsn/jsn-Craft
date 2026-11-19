@@ -5,7 +5,7 @@
   "description": {
     "text": "2.5秒詠唱。周り（10ブロック）の地面を6回ゆらす。地面にいる敵に1回魔導書の精霊弾の1.4倍＋浮かせて足止め。"
   },
-  "icon": "minecraft:cracked_stone_bricks",
+  "icon": "jsn_craft:skill_icon/spirit_lord/earth_quake",
   "type": "active",
   "effect": "spirit_earthquake",
   "mana": 45,
@@ -13,5 +13,6 @@
   "power": 1.4,
   "radius": 10,
   "amplifier": 6,
-  "cast_time": 2.5
+  "cast_time": 2.5,
+  "item_icon": "minecraft:cracked_stone_bricks"
 }

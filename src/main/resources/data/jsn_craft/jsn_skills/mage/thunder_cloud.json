@@ -5,12 +5,13 @@
   "description": {
     "text": "目線の先に雷雲（5ブロック）を6秒。0.75秒ごとに中の敵へ雷（杖のマナ弾の0.9倍）。"
   },
-  "icon": "minecraft:gray_wool",
+  "icon": "jsn_craft:skill_icon/mage/thunder_cloud",
   "type": "active",
   "effect": "mage_thunder_cloud",
   "mana": 14,
   "cooldown": 16,
   "power": 0.9,
   "radius": 5,
-  "duration": 6
+  "duration": 6,
+  "item_icon": "minecraft:gray_wool"
 }

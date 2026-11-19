@@ -5,8 +5,9 @@
   "description": {
     "text": "鍛え直しで、強い特性が出やすくなる。"
   },
-  "icon": "minecraft:spyglass",
+  "icon": "jsn_craft:skill_icon/smith/keen_eye",
   "type": "passive",
   "effect": "reforge_luck",
-  "power": 0.1
+  "power": 0.1,
+  "item_icon": "minecraft:spyglass"
 }

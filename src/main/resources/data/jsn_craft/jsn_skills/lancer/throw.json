@@ -5,11 +5,12 @@
   "description": {
     "text": "槍を投げる（16ブロック）。行きと帰りで通り道の敵に攻撃力の1.4倍ずつ。"
   },
-  "icon": "minecraft:trident",
+  "icon": "jsn_craft:skill_icon/lancer/throw",
   "type": "active",
   "effect": "spear_throw",
   "stamina": 15,
   "cooldown": 7,
   "power": 1.4,
-  "radius": 16
+  "radius": 16,
+  "item_icon": "minecraft:trident"
 }

@@ -5,11 +5,12 @@
   "description": {
     "text": "周り（6ブロック）の敵に12ダメージを与えて吹き飛ばす。"
   },
-  "icon": "minecraft:leather",
+  "icon": "jsn_craft:skill_icon/ranch_lord/stampede",
   "type": "active",
   "effect": "stampede",
   "power": 12,
   "radius": 6,
   "stamina": 40,
-  "cooldown": 20
+  "cooldown": 20,
+  "item_icon": "minecraft:leather"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "毛を刈ったとき、20%の確率で羊毛がもう1つ増える。"
   },
-  "icon": "minecraft:white_wool",
+  "icon": "jsn_craft:skill_icon/rancher/rich_yield",
   "type": "passive",
   "effect": "rich_yield",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "minecraft:white_wool"
 }

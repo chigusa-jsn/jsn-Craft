@@ -5,7 +5,7 @@
   "description": {
     "text": "2.5秒詠唱。周り（10ブロック）に聖なる光の爆発。敵に聖杖の聖光弾の5倍（アンデッドに2倍）、仲間は回復。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/saint/sacred_nova",
   "type": "active",
   "effect": "holy_sacred_nova",
   "mana": 50,
@@ -13,5 +13,6 @@
   "power": 5.0,
   "radius": 10,
   "chance": 1.5,
-  "cast_time": 2.5
+  "cast_time": 2.5,
+  "item_icon": "minecraft:nether_star"
 }

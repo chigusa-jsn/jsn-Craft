@@ -5,11 +5,12 @@
   "description": {
     "text": "周り（4ブロック）の敵の目をくらませて見失わせ、自分は3秒間 姿を消す。"
   },
-  "icon": "minecraft:gunpowder",
+  "icon": "jsn_craft:skill_icon/assassin/smoke",
   "type": "active",
   "effect": "dagger_smoke",
   "stamina": 15,
   "cooldown": 20,
   "radius": 4,
-  "duration": 4
+  "duration": 4,
+  "item_icon": "minecraft:gunpowder"
 }

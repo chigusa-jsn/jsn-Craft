@@ -5,12 +5,13 @@
   "description": {
     "text": "周り（6ブロック）の木を、まとめて全部倒す。原木1本ごとにスタミナを1使う。"
   },
-  "icon": "minecraft:diamond_axe",
+  "icon": "jsn_craft:skill_icon/forest_master/millennium_fell",
   "type": "active",
   "effect": "mass_fell",
   "stamina": 20,
   "cooldown": 30,
   "radius": 6,
   "bonus": 1,
-  "amplifier": 300
+  "amplifier": 300,
+  "item_icon": "minecraft:diamond_axe"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "調理したとき、20%の確率で料理が2倍できる。"
   },
-  "icon": "minecraft:cauldron",
+  "icon": "jsn_craft:skill_icon/chef/mass_cooking",
   "type": "passive",
   "effect": "cook_double",
-  "chance": 0.2
+  "chance": 0.2,
+  "item_icon": "minecraft:cauldron"
 }

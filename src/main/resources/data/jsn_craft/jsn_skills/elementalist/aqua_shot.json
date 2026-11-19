@@ -5,10 +5,11 @@
   "description": {
     "text": "水の弾を撃つ。魔導書の精霊弾の1.2倍＋濡らす（8秒）。燃えている敵は火が消える。"
   },
-  "icon": "minecraft:water_bucket",
+  "icon": "jsn_craft:skill_icon/elementalist/aqua_shot",
   "type": "active",
   "effect": "spirit_aqua_shot",
   "mana": 4,
   "cooldown": 1.2,
-  "power": 1.2
+  "power": 1.2,
+  "item_icon": "minecraft:water_bucket"
 }

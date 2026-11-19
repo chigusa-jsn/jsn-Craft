@@ -5,12 +5,13 @@
   "description": {
     "text": "前の敵に重い振り下ろし。攻撃力の1.8倍、2秒間 鈍くする。"
   },
-  "icon": "minecraft:iron_axe",
+  "icon": "jsn_craft:skill_icon/axeman/cleave",
   "type": "active",
   "effect": "axe_cleave",
   "stamina": 15,
   "cooldown": 5,
   "power": 1.8,
   "radius": 1.8,
-  "duration": 2
+  "duration": 2,
+  "item_icon": "minecraft:iron_axe"
 }

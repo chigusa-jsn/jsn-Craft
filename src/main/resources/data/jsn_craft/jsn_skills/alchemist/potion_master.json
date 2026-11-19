@@ -5,8 +5,9 @@
   "description": {
     "text": "自分が飲んだ（浴びた）薬の効き目が20%上がる。"
   },
-  "icon": "minecraft:honey_bottle",
+  "icon": "jsn_craft:skill_icon/alchemist/potion_master",
   "type": "passive",
   "effect": "potion_master",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:honey_bottle"
 }

@@ -5,8 +5,9 @@
   "description": {
     "text": "釣ったとき、8%の確率でお宝に化ける。"
   },
-  "icon": "minecraft:name_tag",
+  "icon": "jsn_craft:skill_icon/angler/treasure_scent",
   "type": "passive",
   "effect": "fish_treasure",
-  "chance": 0.08
+  "chance": 0.08,
+  "item_icon": "minecraft:name_tag"
 }

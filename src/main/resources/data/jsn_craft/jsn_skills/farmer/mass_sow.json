@@ -5,10 +5,11 @@
   "description": {
     "text": "周り（5ブロック）の空いた畑に、持っている種をまとめて植える（手に持っている種が優先）。"
   },
-  "icon": "minecraft:wheat_seeds",
+  "icon": "jsn_craft:skill_icon/farmer/mass_sow",
   "type": "active",
   "effect": "mass_sow",
   "radius": 5,
   "stamina": 15,
-  "cooldown": 20
+  "cooldown": 20,
+  "item_icon": "minecraft:wheat_seeds"
 }

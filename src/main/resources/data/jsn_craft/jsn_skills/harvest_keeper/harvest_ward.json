@@ -5,12 +5,13 @@
   "description": {
     "text": "60秒間、足元に結界（半径6）を張る。結界の中の作物は毎秒育つ。"
   },
-  "icon": "minecraft:beacon",
+  "icon": "jsn_craft:skill_icon/harvest_keeper/harvest_ward",
   "type": "active",
   "effect": "harvest_ward",
   "radius": 6,
   "duration": 60,
   "amplifier": 1,
   "stamina": 40,
-  "cooldown": 180
+  "cooldown": 180,
+  "item_icon": "minecraft:beacon"
 }

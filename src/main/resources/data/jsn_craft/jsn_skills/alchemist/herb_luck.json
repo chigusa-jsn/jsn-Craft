@@ -5,8 +5,9 @@
   "description": {
     "text": "実った薬草を収穫すると、30%の確率で薬草が1〜2個増える。"
   },
-  "icon": "jsn_craft:herb",
+  "icon": "jsn_craft:skill_icon/alchemist/herb_luck",
   "type": "passive",
   "effect": "herb_luck",
-  "chance": 0.3
+  "chance": 0.3,
+  "item_icon": "jsn_craft:herb"
 }

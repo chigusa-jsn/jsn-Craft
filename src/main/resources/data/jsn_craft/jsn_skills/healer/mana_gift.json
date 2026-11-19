@@ -5,11 +5,12 @@
   "description": {
     "text": "近くの仲間（8ブロック）にマナを15ずつ分ける。"
   },
-  "icon": "minecraft:lapis_lazuli",
+  "icon": "jsn_craft:skill_icon/healer/mana_gift",
   "type": "active",
   "effect": "holy_mana_gift",
   "mana": 20,
   "cooldown": 20,
   "radius": 8,
-  "amplifier": 15
+  "amplifier": 15,
+  "item_icon": "minecraft:lapis_lazuli"
 }

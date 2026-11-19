@@ -5,11 +5,12 @@
   "description": {
     "text": "風に乗って目線の方向へダッシュ（空中でも使える）。3秒間ゆっくり落ちる。"
   },
-  "icon": "minecraft:feather",
+  "icon": "jsn_craft:skill_icon/elementalist/aero_step",
   "type": "active",
   "effect": "spirit_aero_step",
   "mana": 6,
   "cooldown": 4,
   "power": 1.6,
-  "duration": 3
+  "duration": 3,
+  "item_icon": "minecraft:feather"
 }

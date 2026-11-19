@@ -5,8 +5,9 @@
   "description": {
     "text": "薬の品質（★）がさらに上がりやすくなる。"
   },
-  "icon": "minecraft:nether_star",
+  "icon": "jsn_craft:skill_icon/alchemy_sage/brew_quality2",
   "type": "passive",
   "effect": "brew_quality2",
-  "power": 0.2
+  "power": 0.2,
+  "item_icon": "minecraft:nether_star"
 }

@@ -5,11 +5,12 @@
   "description": {
     "text": "30秒間、ツルハシで掘ると周りもまとめて3×3で掘れる（固いブロックは巻き込まない）。"
   },
-  "icon": "minecraft:diamond_pickaxe",
+  "icon": "jsn_craft:skill_icon/miner/wide_dig",
   "type": "active",
   "effect": "wide_dig",
   "amplifier": 1,
   "duration": 30,
   "stamina": 30,
-  "cooldown": 90
+  "cooldown": 90,
+  "item_icon": "minecraft:diamond_pickaxe"
 }

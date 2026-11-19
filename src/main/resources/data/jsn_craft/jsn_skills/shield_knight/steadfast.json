@@ -5,7 +5,8 @@
   "description": {
     "text": "ノックバックしなくなる。"
   },
-  "icon": "minecraft:obsidian",
+  "icon": "jsn_craft:skill_icon/shield_knight/steadfast",
   "type": "passive",
-  "effect": "guard_steadfast"
+  "effect": "guard_steadfast",
+  "item_icon": "minecraft:obsidian"
 }

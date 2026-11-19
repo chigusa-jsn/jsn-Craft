@@ -5,12 +5,13 @@
   "description": {
     "text": "6秒間、受けたダメージをためる。最後に光の爆発で、周り（6ブロック）の敵に「攻撃力＋ためたダメージの2倍」を返す。"
   },
-  "icon": "minecraft:golden_chestplate",
+  "icon": "jsn_craft:skill_icon/guardian_knight/judgment",
   "type": "active",
   "effect": "guard_judgment",
   "stamina": 30,
   "cooldown": 35,
   "power": 2.0,
   "radius": 6,
-  "duration": 6
+  "duration": 6,
+  "item_icon": "minecraft:golden_chestplate"
 }
