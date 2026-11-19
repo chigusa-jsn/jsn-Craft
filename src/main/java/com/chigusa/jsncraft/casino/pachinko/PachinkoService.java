@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * パチンコの中身（サーバー）。
  *  ・玉はチップ25枚で100玉。戻すときは4玉でチップ1枚。
- *  ・ヘソ（真ん中）に入ると図柄が回る（保留は4つまで）。通常 1/159、確変 1/16。
+ *  ・ヘソ（真ん中）に入ると図柄が回る（保留は4つまで）。通常 1/189、確変 1/16。
  *  ・大当たりは8ラウンド。右打ちでアタッカーに9個入れると1ラウンド（1個12玉）。
  *  ・大当たりの半分は確変（次の大当たりまで）、残りは時短50回。確変・時短のあいだは右の電チューが開く。
  *  ・ボーナスなしで、玉の数と確変・時短の状態はプレイヤーに保存する。
@@ -33,7 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @EventBusSubscriber(modid = JsnCraft.MODID)
 public final class PachinkoService {
     public static final int BALLS_PER_BUY = 100, CHIPS_PER_BUY = 25, BALLS_PER_CHIP = 4;
-    static final int P_NORMAL = 412, P_KAKUHEN = 4096;   // 65536 分の（1/159、1/16）
+    static final int P_NORMAL = 347, P_KAKUHEN = 4096;   // 65536 分の（1/189、1/16）。出玉率 約96%
     static final int ROUNDS = 8, ROUND_COUNT = 9, ATTACKER_PAY = 12, ROUND_TICKS = 600, JITAN = 50;
     static final int[] PRIZE = {0, 3, 5, 2, ATTACKER_PAY, 1};
     private static final String KEY = "jsn_pachinko";

@@ -102,7 +102,7 @@ public class PachinkoScreen extends Screen {
         }
         for (Iterator<Ball> it = balls.iterator(); it.hasNext(); ) {
             Ball b = it.next();
-            b.t += 2;
+            b.t += 6;
             if (b.t >= b.path.size() - 1) {
                 float[] last = b.path.isEmpty() ? new float[]{100, 220} : b.path.get(b.path.size() - 1);
                 if (b.result != Board.OUT) {
@@ -194,7 +194,7 @@ public class PachinkoScreen extends Screen {
         // 玉
         for (Ball b : balls) {
             if (b.path.isEmpty()) continue;
-            float t = Math.min(b.path.size() - 1, b.t + pt * 2);
+            float t = Math.min(b.path.size() - 1, b.t + pt * 6);
             int i = (int) t;
             float f = t - i;
             float[] a = b.path.get(i), c = b.path.get(Math.min(b.path.size() - 1, i + 1));
