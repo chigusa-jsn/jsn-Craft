@@ -176,8 +176,9 @@ public class PachinkoScreen extends Screen {
         g.fill(bx + 6, by + (int) Board.CY, bx + Board.W - 6, by + Board.H - 4, 0xFF2A6AA0);
         // 右の道の壁
         g.fill(bx + (int) Board.WALL_X - 1, by + (int) Board.WALL_Y0, bx + (int) Board.WALL_X + 1, by + (int) Board.WALL_Y1, 0xFFE0E0E0);
-        // 液晶
+        // 液晶とステージ（液晶の上の玉がときどきワープして、真ん中からヘソへ落ちる）
         drawLcd(g, bx + 64, by + 50, 72, 64, pt);
+        g.fill(bx + 90, by + 115, bx + 110, by + 117, 0xFFE6B836);
         // 釘
         for (double[] p : Board.PEGS) g.fill(bx + (int) p[0] - 1, by + (int) p[1] - 1, bx + (int) p[0] + 1, by + (int) p[1] + 1, 0xFFE8E8F0);
         // ポケット
@@ -198,6 +199,8 @@ public class PachinkoScreen extends Screen {
             int i = (int) t;
             float f = t - i;
             float[] a = b.path.get(i), c = b.path.get(Math.min(b.path.size() - 1, i + 1));
+            // ワープ（液晶の上からステージへ）は飛びこえる
+            if (Math.abs(c[0] - a[0]) + Math.abs(c[1] - a[1]) > 8) f = 0;
             float x = a[0] + (c[0] - a[0]) * f, y = a[1] + (c[1] - a[1]) * f;
             g.fill(bx + (int) x - 2, by + (int) y - 2, bx + (int) x + 2, by + (int) y + 2, 0xFFD8D8E0);
             g.fill(bx + (int) x - 1, by + (int) y - 2, bx + (int) x, by + (int) y - 1, 0xFFFFFFFF);

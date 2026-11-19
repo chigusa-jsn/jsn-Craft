@@ -18,6 +18,11 @@ public final class Board {
     /** ポケット：x0, x1, y */
     public static final double[][] POCKET = {{0, 0, 0}, {97.5, 102.5, 150}, {30, 40, 175}, {178, 186, 175}, {156, 186, 195}, {170, 176, 150}};
 
+    /** 真ん中の液晶（玉ははね返る） */
+    /** 液晶の上に乗った玉が、ステージから真ん中に落ちる確率 */
+    public static final double STAGE = 0.4;
+    public static final double LCD_X0 = 64, LCD_Y0 = 50, LCD_X1 = 136, LCD_Y1 = 114;
+
     public static final List<double[]> PEGS = makePegs();
 
     private static List<double[]> makePegs() {
@@ -42,7 +47,6 @@ public final class Board {
         }
         p.add(new double[]{95.5, 143});   // 命釘
         p.add(new double[]{104.5, 143});
-        p.add(new double[]{100, 137});
         for (double[] c : new double[][]{{40, 125}, {160, 125}}) {   // 風車
             for (int a = 0; a < 360; a += 90) p.add(new double[]{c[0] + 4 * StrictMath.cos(StrictMath.toRadians(a)), c[1] + 4 * StrictMath.sin(StrictMath.toRadians(a))});
         }
@@ -67,6 +71,7 @@ public final class Board {
         double th = StrictMath.toRadians(205 + strength * 130 + (rnd.next() - 0.5) * 6);
         double r = R - BR - 1;
         double x = CX + r * StrictMath.cos(th), y = CY + r * StrictMath.sin(th);
+        boolean onStage = false;
         double sp = 1.6, vx = -StrictMath.sin(th) * sp, vy = StrictMath.cos(th) * sp;
         for (int step = 0; step < 4000; step++) {
             vy += G;
@@ -83,6 +88,30 @@ public final class Board {
             if (y > WALL_Y0 && y < WALL_Y1 && Math.abs(x - WALL_X) < BR + 1) {
                 if (vx > 0 && x < WALL_X) { x = WALL_X - BR - 1; vx = -Math.abs(vx) * 0.4; }
                 else if (vx < 0 && x > WALL_X) { x = WALL_X + BR + 1; vx = Math.abs(vx) * 0.4; }
+            }
+            // 液晶
+            if (x > LCD_X0 - BR && x < LCD_X1 + BR && y > LCD_Y0 - BR && y < LCD_Y1 + BR) {
+                double dl = x - (LCD_X0 - BR), dr = (LCD_X1 + BR) - x, dt = y - (LCD_Y0 - BR), db = (LCD_Y1 + BR) - y;
+                double m = Math.min(Math.min(dl, dr), Math.min(dt, db));
+                if (m == dt) {
+                    // ステージ：液晶の上に乗った玉は、ときどき真ん中から落ちてヘソへ向かう
+                    boolean first = !onStage;
+                    onStage = true;
+                    if (vy > 0 && first && rnd.next() < STAGE) {
+                        x = 100 + (rnd.next() - 0.5) * 4;
+                        y = LCD_Y1 + BR + 1;
+                        vx = (rnd.next() - 0.5) * 1.6;
+                        vy = 0.4;
+                        if (path != null) path.add(new float[]{(float) x, (float) y});
+                    } else {
+                        y = LCD_Y0 - BR;
+                        if (vy > 0) vy = -vy * REST;
+                        vx += x < 100 ? -0.15 : 0.15;   // 液晶の上からは左右に転がり落ちる
+                    }
+                }
+                else if (m == db) { y = LCD_Y1 + BR; if (vy < 0) vy = -vy * REST; }
+                else if (m == dl) { x = LCD_X0 - BR; if (vx > 0) vx = -vx * REST; }
+                else { x = LCD_X1 + BR; if (vx < 0) vx = -vx * REST; }
             }
             if (x < 6) { x = 6; vx = Math.abs(vx) * 0.5; }
             if (x > 194) { x = 194; vx = -Math.abs(vx) * 0.5; }
