@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:star_silver_template"
+  },
+  "base": {
+    "item": "jsn_craft:warrior_5_chest"
+  },
+  "addition": {
+    "item": "jsn_craft:star_silver_ingot"
+  },
+  "result": {
+    "id": "jsn_craft:warrior_6_chest",
+    "count": 1
+  }
+}

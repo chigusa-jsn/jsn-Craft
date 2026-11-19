@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:mage_1_legs"
+  },
+  "addition": {
+    "item": "jsn_craft:crystal"
+  },
+  "result": {
+    "id": "jsn_craft:mage_2_legs",
+    "count": 1
+  }
+}

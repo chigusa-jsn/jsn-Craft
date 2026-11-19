@@ -31,6 +31,8 @@ public class JsnCraft {
         com.chigusa.jsncraft.ranch.ModRanch.init(); // エサ箱と畜産物
         com.chigusa.jsncraft.weapon.ModWeapons.init(); // 職業武器と鍛冶型
         com.chigusa.jsncraft.beast.ModBeasts.init(); // 獣使いの相棒
+        com.chigusa.jsncraft.armor.ModArmor.init(); // 戦闘職の服
+        com.chigusa.jsncraft.armor.ModArmor.MATERIALS.register(modEventBus);
         com.chigusa.jsncraft.cooking.ModCooking.register(modEventBus); // 調理台と料理
         com.chigusa.jsncraft.farming.ModCrops.register(modEventBus); // 新しい作物と食材
         ModTabs.init(); // クリエイティブのタブ（突然変異のスポーンエッグもここ）
