@@ -31,10 +31,6 @@
   ],
   "skills": [
     {
-      "skill": "jsn_craft:farmer/right_harvest",
-      "level": 1
-    },
-    {
       "skill": "jsn_craft:farmer/wide_till",
       "level": 5
     },
@@ -60,6 +56,10 @@
     },
     {
       "skill": "jsn_craft:farmer/harvest_dance",
+      "level": 30
+    },
+    {
+      "skill": "jsn_craft:farmer/right_harvest",
       "level": 30
     }
   ],
