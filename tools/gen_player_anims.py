@@ -373,3 +373,62 @@ if __name__ == "__main__":
     with open(out, "w") as f:
         json.dump({"format_version": "1.8.0", "animations": ANIMS}, f, indent=1)
     print(len(ANIMS), "animations:", ", ".join(ANIMS))
+
+
+# ================= 振る音のタイミング（anim/AnimSounds.java を作る） =================
+STRIKE = {"easeOutQuart", "easeInQuart", "easeOutExpo"}
+NO_SOUND = ("_ready", "_hold", "cast", "_parry", "_lunge", "dagger_skill")
+
+def sound_kind(n):
+    if any(k in n for k in ("_flash", "_leap", "_moon")) or n.startswith(("axe_", "shield_")): return "heavy"
+    if n.startswith("katana_"): return "katana"
+    if n.startswith(("sword_", "staff_")): return "sword"
+    if n.startswith(("dagger_", "fist_")): return "light"
+    if n.startswith("spear_"): return "thrust"
+    if n.startswith("whip_"): return "whip"
+    return None
+
+def strike_ticks(n, a):
+    if n.endswith("_whirl"): return [3, 8, 13]
+    bone = "left_arm" if n.endswith("_left") else "right_arm"
+    rot = a["bones"].get(bone, {}).get("rotation")
+    if not rot: return []
+    keys = sorted(rot, key=float)
+    out = []
+    for i in range(1, len(keys)):
+        if rot[keys[i]]["easing"] in STRIKE:
+            out.append(max(0, int(round(float(keys[i - 1]) * 20))))
+    return out
+
+def write_sounds_java():
+    rows = []
+    for n, a in ANIMS.items():
+        if any(x in n for x in NO_SOUND): continue
+        k = sound_kind(n)
+        t = strike_ticks(n, a)
+        if k and t: rows.append((n, k, t))
+    body = ",\n".join(f'            Map.entry("{n}", new Entry("{k}", new int[]{{{", ".join(map(str, t))}}}))' for n, k, t in rows)
+    java = f'''package com.chigusa.jsncraft.anim;
+
+import java.util.Map;
+
+/**
+ * 体の動きごとの「振る音」：何tick目に、どの音を鳴らすか。
+ * tools/gen_player_anims.py が作るファイル（手で直さない）。
+ */
+public final class AnimSounds {{
+
+    public record Entry(String kind, int[] ticks) {{}}
+
+    public static final Map<String, Entry> SOUNDS = Map.ofEntries(
+{body});
+
+    private AnimSounds() {{}}
+}}
+'''
+    out = os.path.join(os.path.dirname(__file__), "..", "src/main/java/com/chigusa/jsncraft/anim/AnimSounds.java")
+    open(out, "w").write(java)
+    return len(rows)
+
+if __name__ == "__main__":
+    print("sounds:", write_sounds_java())

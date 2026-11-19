@@ -450,5 +450,11 @@
   "entity.jsn_craft.pet_white_fox": "Mini White Fox",
   "entity.jsn_craft.pet_wind_cat": "Mini Wind Cat",
   "entity.jsn_craft.pet_thunder_lion": "Mini Thunder Lion",
-  "entity.jsn_craft.pet_blade_dragon": "Mini Blade Dragon"
+  "entity.jsn_craft.pet_blade_dragon": "Mini Blade Dragon",
+  "subtitles.jsn_craft.swing.light": "Quick swing",
+  "subtitles.jsn_craft.swing.sword": "Sword swing",
+  "subtitles.jsn_craft.swing.katana": "Katana swing",
+  "subtitles.jsn_craft.swing.heavy": "Heavy swing",
+  "subtitles.jsn_craft.swing.thrust": "Thrust",
+  "subtitles.jsn_craft.swing.whip": "Whip crack"
 }

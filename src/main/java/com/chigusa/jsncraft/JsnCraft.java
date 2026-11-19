@@ -38,6 +38,7 @@ public class JsnCraft {
         ModTabs.TABS.register(modEventBus);
         // スキル用の専用エフェクト
         com.chigusa.jsncraft.vfx.ModParticles.PARTICLE_TYPES.register(modEventBus);
+        com.chigusa.jsncraft.sound.ModSounds.SOUNDS.register(modEventBus);
         // サーバー→クライアントへ職業情報を送る通信を登録
         modEventBus.addListener(ModNetwork::register);
     }

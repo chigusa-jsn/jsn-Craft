@@ -68,6 +68,38 @@ public final class PlayerAnimClient {
         play.setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL);
         play.setFirstPersonConfiguration(new FirstPersonConfiguration(true, true, true, true));
         layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(2, Ease.OUTQUAD), play, true);
+        scheduleSounds(p, name);
+    }
+
+    /** 振る音：動きの「振り抜く」瞬間に鳴らす（AnimSounds の表） */
+    private record PendingSound(java.lang.ref.WeakReference<AbstractClientPlayer> player, long at, net.minecraft.sounds.SoundEvent sound, float pitch) {}
+    private static final java.util.List<PendingSound> PENDING = new java.util.ArrayList<>();
+
+    static void scheduleSounds(AbstractClientPlayer p, String name) {
+        var e = com.chigusa.jsncraft.anim.AnimSounds.SOUNDS.get(name);
+        if (e == null && name.startsWith("katana_")) e = com.chigusa.jsncraft.anim.AnimSounds.SOUNDS.get("sword_" + name.substring(7));
+        if (e == null) return;
+        var holder = com.chigusa.jsncraft.sound.ModSounds.SWING.get(e.kind());
+        if (holder == null) return;
+        long now = p.level().getGameTime();
+        PENDING.removeIf(s -> s.player().get() == p); // 振り直したら前の音はやめる
+        for (int t : e.ticks()) PENDING.add(new PendingSound(new java.lang.ref.WeakReference<>(p), now + t, holder.get(), 0.92F + p.getRandom().nextFloat() * 0.16F));
+    }
+
+    static void tickSounds() {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level == null) {
+            PENDING.clear();
+            return;
+        }
+        long now = mc.level.getGameTime();
+        PENDING.removeIf(s -> {
+            AbstractClientPlayer p = s.player().get();
+            if (p == null || p.isRemoved()) return true;
+            if (s.at() > now) return false;
+            mc.level.playLocalSound(p.getX(), p.getY() + 1.2, p.getZ(), s.sound(), net.minecraft.sounds.SoundSource.PLAYERS, 0.9F, s.pitch(), false);
+            return true;
+        });
     }
 
     /** サーバーから：entityId の人に動きをさせる */
@@ -120,6 +152,7 @@ public final class PlayerAnimClient {
             Minecraft mc = Minecraft.getInstance();
             if (mc.level == null) return;
             for (AbstractClientPlayer p : mc.level.players()) tickHold(p);
+            tickSounds();
         }
 
         /** 攻撃ボタン（ブロックを掘るときは動かさない）。籠手・二刀流の左右は FistClient が先に決める */

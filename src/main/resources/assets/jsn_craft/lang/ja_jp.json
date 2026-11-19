@@ -450,5 +450,11 @@
   "entity.jsn_craft.pet_white_fox": "光の白狐（ミニ）",
   "entity.jsn_craft.pet_wind_cat": "風の猫（ミニ）",
   "entity.jsn_craft.pet_thunder_lion": "雷の獅子（ミニ）",
-  "entity.jsn_craft.pet_blade_dragon": "影刃竜（ミニ）"
+  "entity.jsn_craft.pet_blade_dragon": "影刃竜（ミニ）",
+  "subtitles.jsn_craft.swing.light": "短剣を振る音",
+  "subtitles.jsn_craft.swing.sword": "剣を振る音",
+  "subtitles.jsn_craft.swing.katana": "刀を振る音",
+  "subtitles.jsn_craft.swing.heavy": "重い武器を振る音",
+  "subtitles.jsn_craft.swing.thrust": "槍で突く音",
+  "subtitles.jsn_craft.swing.whip": "鞭の音"
 }

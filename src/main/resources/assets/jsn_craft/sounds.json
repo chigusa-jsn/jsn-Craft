@@ -1,0 +1,86 @@
+{
+  "swing.light": {
+    "subtitle": "subtitles.jsn_craft.swing.light",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/light_1"
+      },
+      {
+        "name": "jsn_craft:swing/light_2"
+      },
+      {
+        "name": "jsn_craft:swing/light_3"
+      }
+    ]
+  },
+  "swing.sword": {
+    "subtitle": "subtitles.jsn_craft.swing.sword",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/sword_1"
+      },
+      {
+        "name": "jsn_craft:swing/sword_2"
+      },
+      {
+        "name": "jsn_craft:swing/sword_3"
+      }
+    ]
+  },
+  "swing.katana": {
+    "subtitle": "subtitles.jsn_craft.swing.katana",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/katana_1"
+      },
+      {
+        "name": "jsn_craft:swing/katana_2"
+      },
+      {
+        "name": "jsn_craft:swing/katana_3"
+      }
+    ]
+  },
+  "swing.heavy": {
+    "subtitle": "subtitles.jsn_craft.swing.heavy",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/heavy_1"
+      },
+      {
+        "name": "jsn_craft:swing/heavy_2"
+      },
+      {
+        "name": "jsn_craft:swing/heavy_3"
+      }
+    ]
+  },
+  "swing.thrust": {
+    "subtitle": "subtitles.jsn_craft.swing.thrust",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/thrust_1"
+      },
+      {
+        "name": "jsn_craft:swing/thrust_2"
+      },
+      {
+        "name": "jsn_craft:swing/thrust_3"
+      }
+    ]
+  },
+  "swing.whip": {
+    "subtitle": "subtitles.jsn_craft.swing.whip",
+    "sounds": [
+      {
+        "name": "jsn_craft:swing/whip_1"
+      },
+      {
+        "name": "jsn_craft:swing/whip_2"
+      },
+      {
+        "name": "jsn_craft:swing/whip_3"
+      }
+    ]
+  }
+}
