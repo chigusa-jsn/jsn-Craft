@@ -87,9 +87,45 @@ public final class WhipLash {
         pose.popPose();
     }
 
-    /** 手の位置（一人称は画面の右下、まわりから見るときは右手のあたり） */
+    /** 体の動きのとおりに描いた右手の位置（HandLayer が毎フレーム書く） */
+    private record HandPos(Vec3 pos, long nanos) {}
+    private static final java.util.Map<java.util.UUID, HandPos> HANDS = new java.util.HashMap<>();
+
+    static boolean wants(AbstractClientPlayer p) {
+        for (Lash l : LASHES) if (l.player().get() == p) return true;
+        return false;
+    }
+
+    /**
+     * プレイヤーの絵にのせる「層」：右腕の向き（振りの動きをふくむ）から、手の位置を求めて覚えておく。
+     * 何も描かない。
+     */
+    public static final class HandLayer extends net.minecraft.client.renderer.entity.layers.RenderLayer<AbstractClientPlayer, net.minecraft.client.model.PlayerModel<AbstractClientPlayer>> {
+        public HandLayer(net.minecraft.client.renderer.entity.RenderLayerParent<AbstractClientPlayer, net.minecraft.client.model.PlayerModel<AbstractClientPlayer>> parent) {
+            super(parent);
+        }
+
+        @Override
+        public void render(PoseStack pose, MultiBufferSource buffers, int light, AbstractClientPlayer p, float limbSwing, float limbAmount,
+                           float pt, float age, float headYaw, float headPitch) {
+            if (!wants(p)) return;
+            pose.pushPose();
+            boolean rightHanded = p.getMainArm() == net.minecraft.world.entity.HumanoidArm.RIGHT;
+            (rightHanded ? getParentModel().rightArm : getParentModel().leftArm).translateAndRotate(pose);
+            // 腕の先（手に持った物の位置）。ItemInHandLayer と同じ場所
+            org.joml.Vector3f v = pose.last().pose().transformPosition(rightHanded ? 0.0625F : -0.0625F, 0.625F, -0.125F, new org.joml.Vector3f());
+            pose.popPose();
+            Vec3 cam = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+            HANDS.put(p.getUUID(), new HandPos(cam.add(v.x, v.y, v.z), System.nanoTime()));
+        }
+    }
+
+    /** 手の位置（まわりから見るときは、体の動きのとおりの右手。一人称は画面の右下） */
     private static Vec3 hand(AbstractClientPlayer p, float pt) {
         Minecraft mc = Minecraft.getInstance();
+        HandPos h = HANDS.get(p.getUUID());
+        boolean firstPerson = p == mc.player && mc.options.getCameraType().isFirstPerson();
+        if (!firstPerson && h != null && System.nanoTime() - h.nanos() < 100_000_000L) return h.pos();
         Vec3 look = p.getViewVector(pt);
         if (p == mc.player && mc.options.getCameraType().isFirstPerson()) {
             Vec3 side = look.cross(new Vec3(0, 1, 0)).normalize();
@@ -128,7 +164,7 @@ public final class WhipLash {
             Vec3 toCam = cam.subtract(pts[i]);
             Vec3 n = seg.cross(toCam);
             if (n.lengthSqr() < 1e-6) n = up;
-            n = n.normalize().scale(0.045 * (1 - 0.7 * s) + 0.008);
+            n = n.normalize().scale(0.028 * (1 - 0.75 * s) + 0.006);
             int c = (i / 2) % 2 == 0 ? l.colors()[0] : l.colors()[1];
             if (i == SEGMENTS) c = l.colors()[1];
             float r = (c >> 16 & 255) / 255F, g = (c >> 8 & 255) / 255F, bl = (c & 255) / 255F;
@@ -142,6 +178,16 @@ public final class WhipLash {
             Vec3 tip = pts[SEGMENTS];
             p.level().addParticle(ParticleTypes.CRIT, tip.x, tip.y, tip.z, 0, 0.05, 0);
             p.level().addParticle(ParticleTypes.SWEEP_ATTACK, tip.x, tip.y, tip.z, 0, 0, 0);
+        }
+    }
+
+    @EventBusSubscriber(modid = JsnCraft.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+    public static final class Setup {
+        @SubscribeEvent
+        public static void onAddLayers(net.neoforged.neoforge.client.event.EntityRenderersEvent.AddLayers event) {
+            for (net.minecraft.client.resources.PlayerSkin.Model skin : event.getSkins()) {
+                if (event.getSkin(skin) instanceof net.minecraft.client.renderer.entity.player.PlayerRenderer r) r.addLayer(new HandLayer(r));
+            }
         }
     }
 
