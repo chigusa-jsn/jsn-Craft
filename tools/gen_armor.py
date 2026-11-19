@@ -66,7 +66,7 @@ def rng(seed):
         return s[0] / 0x7fffffff
     return r
 
-CLOTH = ("robe", "hood", "cloth", "cape", "mantle", "hat", "hakama", "sash", "band", "tabard", "scarf", "pants")
+CLOTH = ("robe", "hood", "cloth", "cape", "mantle", "hat", "hakama", "sash", "band", "tabard", "scarf", "pants", "coat", "vest")
 def paint_face(img, c, f, pal, tier, style):
     u, v, fw, fh = c.uv[f]
     x0, y0, W, H = int(u * PX), int(v * PX), max(1, int(round(fw * PX))), max(1, int(round(fh * PX)))
@@ -719,8 +719,45 @@ def assassin():
               dict(hood="#12122e", mask="#0c0c22", cloth="#141432", scarf="#c01830", belt="#0a0a1e", wrap="#1c1c40", blade="#f0c840", metal="#26265a", cape="#0e0e26", shadow="#4a0a20", horn="#e6b836", trim="#e6b836", gem="#ff3050"))
     return C, P
 
+def gambler():
+    """賽振りの博徒（軽い）：シルクハットと燕尾服。帽子のカード → 肩章・金の鎖 → 肩に浮かぶさいころ → カードの輪とマント"""
+    C = []
+    C += [K("armorHead", [-3.5, 31.8, -3.5], [7, 7.5, 7], "hat", 0.3, tags=("open_bottom",)),
+          K("armorHead", [-5.6, 31.5, -5.6], [11.2, 0.8, 11.2], "hat", 0),
+          K("armorHead", [-3.6, 32.3, -3.6], [7.2, 1.3, 7.2], "band", 0.32, tags=("open_top", "open_bottom")),
+          K("armorHead", [1.8, 32.8, -4.25], [1.8, 2.8, 0.3], "card", rot=[0, 0, 18], piv=[2.7, 32.8, -4.1], t=2),
+          K("armorHead", [-3.4, 33.0, -4.25], [1.6, 2.4, 0.3], "card", rot=[0, 0, -20], piv=[-2.6, 33.0, -4.1], t=4)]
+    for i in range(8):
+        a = math.radians(-90 + (i - 3.5) * 24)
+        x, y = 6.8 * math.cos(a), 31 + 6.8 * math.sin(a) + 3
+        C.append(K("armorHead", [x - 0.9, y - 1.3, 4.6], [1.8, 2.6, 0.3], "card", rot=[0, 0, (i - 3.5) * -24], piv=[x, y, 4.75], t=6))
+    C += [K("armorBody", [-4, 12, -2], [8, 12, 4], "vest", 0.4, tags=("front",)),
+          K("armorBody", [-4, 11.5, -2], [8, 12.5, 4], "coat", 0.55, tags=("lapel",)),
+          K("armorBody", [-1.6, 22.0, -2.75], [3.2, 1.4, 0.5], "tie", 0),
+          K("armorBody", [-4.0, 4.0, 2.2], [8, 8.5, 0.5], "coat", 0, rot=[8, 0, 0], piv=[0, 12.5, 2.2], tags=("hem",)),
+          K("armorBody", [-3.4, 16.2, -2.85], [4.4, 0.45, 0.3], "metal", 0, rot=[0, 0, -14], piv=[-1.2, 16.4, -2.8], t=4),
+          K("armorBody", [0.6, 14.6, -2.95], [1.4, 1.4, 0.3], "metal", 0, t=4),
+          K("armorBody", [-4.8, 0.5, 2.9], [9.6, 21.5, 0.5], "cape", 0, rot=[6, 0, 0], piv=[0, 22, 2.9], tags=("hem",), t=6)]
+    C += both(K("armorBody", [-4.2, 0.0, 2.6], [3.6, 9.0, 0.4], "coat", 0, rot=[12, 0, 6], piv=[-2.4, 9, 2.6], tags=("hem",), t=4))
+    C += both(K("armorRightArm", [-8, 12, -2], [4, 12, 4], "coat", 0.4),
+              K("armorRightArm", [-8, 12, -2], [4, 1.6, 4], "card", 0.55),
+              K("armorRightArm", [-8.7, 23.0, -2.7], [5.4, 1.0, 5.4], "metal", 0.1, tags=("border",), t=3),
+              K("armorRightArm", [-8.9, 21.0, -2.7], [0.4, 2.0, 5.4], "metal", 0, t=3),
+              K("armorRightArm", [-9.8, 25.4, -1.0], [2.0, 2.0, 2.0], "dice", 0, rot=[25, 30, 0], piv=[-8.8, 26.4, 0], t=5))
+    C += both(K("armorRightLeg", [-3.9, 1, -2], [4, 11, 4], "pants", 0.5),
+              K("armorRightLeg", [-4.45, 1, -0.4], [0.3, 11, 0.8], "metal", 0, t=5))
+    C += both(K("armorRightBoot", [-3.9, 0, -2.4], [4, 2.5, 4.4], "shoe", 0.4),
+              K("armorRightBoot", [-4.1, 1.8, -2.2], [4.2, 1.6, 4.4], "card", 0.3, t=3))
+    P = tiers(dict(hat="#5a4a3a", band="#8a3a2a", coat="#6a5440", vest="#c8b898", tie="#8a3a2a", pants="#4a3e32", shoe="#3a2a20", card="#ece4d0", metal="#a89070", cape="#5a4030", dice="#f0f0f0", trim="#a89070", gem="#c0a070", gem_from=9),
+              dict(hat="#1a1a1e", band="#c02030", coat="#1e1e24", vest="#e8e8ec", tie="#c02030", pants="#22222a", shoe="#101014", card="#f8f8f8", metal="#c8ccd6", cape="#1e1e24", dice="#f8f8f8", trim="#c8ccd6", gem="#e04040", gem_from=9),
+              dict(hat="#3a0e16", band="#e6b836", coat="#5a1420", vest="#f0e0c0", tie="#e6b836", pants="#2a0a10", shoe="#1a0808", card="#fff8e8", metal="#f0c040", cape="#5a1420", dice="#fff8e8", trim="#f0c040", gem="#ff3050"),
+              dict(hat="#221c20", band="#e05a2a", coat="#2e2428", vest="#4a3a3e", tie="#e05a2a", pants="#1a1418", shoe="#120e10", card="#f0e0d0", metal="#e07030", cape="#3a1414", dice="#f0e0d0", trim="#e06030", gem="#ff6a30"),
+              dict(hat="#e8eefc", band="#5a6aa0", coat="#dce4f8", vest="#ffffff", tie="#5a6aa0", pants="#a8b8e0", shoe="#5a6aa0", card="#ffffff", metal="#a8c0f0", cape="#8aa0d8", dice="#ffffff", trim="#7d94d0", gem="#cfe0ff"),
+              dict(hat="#14143a", band="#e6b836", coat="#1a1a4a", vest="#fff4d0", tie="#e6b836", pants="#101030", shoe="#0a0a20", card="#fff8e0", metal="#f0c840", cape="#14143a", dice="#fff8e0", trim="#e6b836", gem="#ffe060"))
+    return C, P
+
 STYLES = {"mage": mage, "warrior": warrior, "axeman": axeman, "archer": archer, "lancer": lancer, "shield_knight": shield_knight,
-          "beast": beast, "brawler": brawler, "elementalist": elementalist, "healer": healer, "assassin": assassin}
+          "beast": beast, "brawler": brawler, "elementalist": elementalist, "healer": healer, "assassin": assassin, "gambler": gambler}
 
 if __name__ == "__main__":
     names = sys.argv[1:] or list(STYLES)

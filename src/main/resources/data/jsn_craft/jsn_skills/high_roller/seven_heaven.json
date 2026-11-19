@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "奥義 セブンス・ヘヴン"
+  },
+  "description": {
+    "text": "まわりに7本の光の柱を立て（1本 攻撃力の2.5倍）、最後に全体へ5倍。"
+  },
+  "icon": "jsn_craft:skill_icon/high_roller/seven_heaven",
+  "type": "active",
+  "effect": "gamble_seven_heaven",
+  "stamina": 60,
+  "cooldown": 90,
+  "power": 2.5,
+  "radius": 9
+}

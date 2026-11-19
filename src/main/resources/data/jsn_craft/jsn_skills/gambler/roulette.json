@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ルーレット"
+  },
+  "description": {
+    "text": "まわりで盤を回す。赤なら燃やし、黒なら弱らせる（攻撃力の1.2倍）。0なら大当たりで3倍！"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/roulette",
+  "type": "active",
+  "effect": "gamble_roulette",
+  "stamina": 18,
+  "cooldown": 12,
+  "power": 1.2,
+  "radius": 5
+}

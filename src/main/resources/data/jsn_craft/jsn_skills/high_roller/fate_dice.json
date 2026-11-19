@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "運命の賽"
+  },
+  "description": {
+    "text": "さいころを2つ振り、合計 ×（攻撃力の0.6倍）を3回に分けて当てる。ゾロ目ならもう一度振れる。"
+  },
+  "icon": "jsn_craft:skill_icon/high_roller/fate_dice",
+  "type": "active",
+  "effect": "gamble_fate_dice",
+  "stamina": 25,
+  "cooldown": 16,
+  "power": 0.6,
+  "radius": 16
+}

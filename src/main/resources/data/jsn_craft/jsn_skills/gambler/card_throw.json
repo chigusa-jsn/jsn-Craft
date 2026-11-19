@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "カード投げ"
+  },
+  "description": {
+    "text": "刃のふちのカードを扇形に3枚投げる（1枚 攻撃力の0.8倍）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/card_throw",
+  "type": "active",
+  "effect": "gamble_card_throw",
+  "stamina": 10,
+  "cooldown": 3,
+  "power": 0.8,
+  "radius": 16
+}

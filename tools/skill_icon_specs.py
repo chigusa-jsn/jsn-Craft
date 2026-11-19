@@ -3,6 +3,25 @@
 """
 
 SPECS = {
+    # ---- 賽振りの博徒（ギャンブラー）
+    "gambler/card_throw": "cards s=.75 x=3 + lines x=-7",
+    "gambler/coin_toss": "coin s=.85 + swirl_up s=.4 x=-8 y=-6 c=gold",
+    "gambler/dice_shot": "dice s=.85 + lines x=-7",
+    "gambler/lucky": "clover c=emerald + sparkle s=.4 x=8 y=-8",
+    "gambler/chip_guard": "chip + barrier c=gold",
+    "gambler/roulette": "chip c=black s=.7 + spin c=red",
+    "gambler/lucky_seven": "seven + sparkle s=.4 x=8 y=-8",
+    "gambler/double_up": "coin s=.6 x=-5 y=-3 + coin s=.6 x=5 y=3",
+    "gambler/poker_hand": "cards c=black",
+    "gambler/all_in": "chip c=red s=.55 x=-6 y=4 + chip c=blue s=.55 x=6 y=4 + chip c=black s=.55 y=-5",
+    "gambler/high_roll": "heart c=red s=.8 + up s=.45 x=8 y=-8 c=gold",
+    "gambler/slot_burst": "slot3 + explosion s=.4 x=9 y=-9",
+    # ---- 天運の大勝負師
+    "high_roller/jackpot_rain": "rain c=gold + coin s=.5 y=4",
+    "high_roller/fate_dice": "dice s=.6 x=-5 y=-3 + dice s=.6 x=5 y=4 c=gold",
+    "high_roller/house_rules": "crown s=.7 y=-4 + barrier c=gold",
+    "high_roller/royal_flush": "cards c=gold s=1.05 + sparkle s=.4 x=9 y=-9",
+    "high_roller/seven_heaven": "pillar c=gold s=.9 + seven s=.5",
     # ---- 錬金術師
     "alchemist/brew_double": "potion c=pink s=.8 x=-4 + potion c=pink s=.8 x=4",
     "alchemist/brew_quality": "potion c=amethyst + star s=.4 x=8 y=-8",

@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "大勝負"
+  },
+  "description": {
+    "text": "体力が減っているほど強くなる（体力ゼロに近いと ダメージ +60%）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/high_roll",
+  "type": "passive",
+  "effect": "gamble_high_roll",
+  "power": 0.6
+}

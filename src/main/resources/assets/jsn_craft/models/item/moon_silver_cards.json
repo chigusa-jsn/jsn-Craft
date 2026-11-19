@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "jsn_craft:item/moon_silver_cards"
+  }
+}

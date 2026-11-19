@@ -779,6 +779,63 @@ def _(p, c=None):
     for dx in (-5, 0, 5):
         p.line([(10 + dx, 27), (20 + dx, 6)], "wood", 1.1); p.poly([(20 + dx, 4), (22.5 + dx, 9), (17.5 + dx, 8)], c or "steel")
 
+@motif("card")
+def _(p, c=None):
+    p.poly([(9, 5), (23, 5), (23, 27), (9, 27)], "white")
+    p.rect(10, 6, 22, 26, "#f8f4ea")
+    b = c or "red"
+    p.circ(14, 14, 2.6, b); p.circ(18, 14, 2.6, b); p.poly([(11.5, 15), (20.5, 15), (16, 21)], b)
+    p.rect(11, 7, 13, 10, b)
+
+@motif("cards")
+def _(p, c=None):
+    p.poly([(4, 10), (13, 6), (17, 24), (8, 28)], "#3a4a8a")
+    p.poly([(5.2, 10.6), (12.4, 7.4), (15.8, 23.4), (8.6, 26.6)], "#5a6ab0")
+    p.poly([(19, 6), (28, 10), (24, 28), (15, 24)], "#3a4a8a")
+    p.poly([(19.6, 7.4), (26.8, 10.6), (23.4, 26.6), (16.2, 23.4)], "#5a6ab0")
+    p.rect(10, 4, 22, 26, "white"); p.rect(11, 5, 21, 25, "#f8f4ea")
+    b = c or "red"
+    p.circ(14, 13, 2.4, b); p.circ(18, 13, 2.4, b); p.poly([(11.8, 14), (20.2, 14), (16, 20)], b)
+
+@motif("dice")
+def _(p, c=None):
+    b = c or "white"
+    p.poly([(6, 10), (16, 5), (26, 10), (16, 15)], shade(b, 0.0))
+    p.poly([(6, 10), (16, 15), (16, 27), (6, 22)], shade(b, -0.2))
+    p.poly([(26, 10), (16, 15), (16, 27), (26, 22)], shade(b, -0.35))
+    p.circ(16, 10, 1.6, "red")
+    for x, y in ((9, 15), (13, 21)): p.circ(x, y, 1.2, "black")
+    for x, y in ((19, 15), (21, 18), (23, 21)): p.circ(x, y, 1.2, "black")
+
+@motif("coin")
+def _(p, c=None):
+    b = c or "gold"
+    p.circ(16, 16, 11, shade(b, -0.3)); p.circ(16, 15, 10, b); p.ring(9, 8, 23, 22, shade(b, -0.25), 1.0)
+    p.rect(14.5, 10, 17.5, 20, shade(b, -0.35)); p.rect(12, 11, 20, 13, shade(b, -0.35)); p.rect(12, 17, 20, 19, shade(b, -0.35))
+    p.circ(12, 11, 1.6, "white")
+
+@motif("chip")
+def _(p, c=None):
+    b = c or "red"
+    p.circ(16, 17, 11, shade(b, -0.4)); p.circ(16, 15.5, 11, b)
+    for a in range(0, 360, 60):
+        r = math.radians(a); p.circ(16 + 9 * math.cos(r), 15.5 + 9 * math.sin(r), 1.8, "white")
+    p.circ(16, 15.5, 5.5, "white"); p.circ(16, 15.5, 4.2, b)
+
+@motif("seven")
+def _(p, c=None):
+    b = c or "red"
+    p.poly([(7, 5), (25, 5), (25, 9), (16, 27), (11, 27), (19.5, 10), (7, 10)], b)
+    p.line([(8, 6.5), (23, 6.5)], shade(b, 0.5), 0.8)
+
+@motif("slot3")
+def _(p, c=None):
+    p.rect(3, 7, 29, 25, "gold"); p.rect(4.5, 8.5, 27.5, 23.5, "black")
+    for i, col in enumerate(("red", "red", "red")):
+        x = 6 + i * 7.3
+        p.rect(x, 10, x + 6, 22, "#f8f4ea")
+        p.poly([(x + 1, 12), (x + 5, 12), (x + 5, 13.5), (x + 3, 20), (x + 1.8, 20), (x + 3.6, 13.5), (x + 1, 13.5)], c or col)
+
 # ---------------- 組み立て ----------------
 JOB_COL = {"green": "#3fae3a", "dark_green": "#2a7a3a", "aqua": "#2ab8c8", "dark_aqua": "#1a7a8a", "red": "#d03a30",
            "dark_red": "#8a1a1a", "gold": "#e0a020", "yellow": "#d8c030", "light_purple": "#c060e0", "dark_purple": "#7a30b0",

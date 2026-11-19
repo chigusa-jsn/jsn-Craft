@@ -1,0 +1,322 @@
+{
+  "job": "high_roller",
+  "radius": 7,
+  "costs": [
+    1,
+    1,
+    1,
+    [
+      1,
+      2
+    ],
+    2,
+    2,
+    [
+      2,
+      3
+    ]
+  ],
+  "scale": [
+    1.5,
+    1.5,
+    2,
+    2,
+    2.4,
+    2.4,
+    3
+  ],
+  "center": {
+    "name": "勝負師の心得",
+    "icon": "jsn_craft:star_silver_cards",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.06
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "amount": 1
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "amount": 4
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 20
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "luk",
+      "pool": [
+        {
+          "name": "強運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "金貨修練",
+          "icon": "minecraft:gold_ingot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:high_roller/jackpot_rain",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "crd",
+      "pool": [
+        {
+          "name": "鋭い札",
+          "icon": "minecraft:paper",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "賽修練",
+          "icon": "minecraft:bone_meal",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:high_roller/fate_dice",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "大技",
+          "icon": "minecraft:blaze_powder",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.04
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "nrv",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 12
+            }
+          ]
+        },
+        {
+          "name": "度胸",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "会心の一撃",
+          "icon": "minecraft:redstone",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.08
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "胴元の器",
+      "icon": "minecraft:gold_block",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:high_roller/house_rules",
+          "field": "radius",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 5,
+      "offset": 0,
+      "name": "★大当たり体質",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "big": true,
+      "min_level": 60,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 6,
+      "offset": 0,
+      "name": "★セブンス・ヘヴン・極",
+      "icon": "minecraft:beacon",
+      "cost": 5,
+      "big": true,
+      "min_level": 80,
+      "effects": [
+        {
+          "skill": "jsn_craft:high_roller/seven_heaven",
+          "field": "power_pct",
+          "amount": 0.3,
+          "scale": false
+        },
+        {
+          "skill": "jsn_craft:high_roller/seven_heaven",
+          "field": "radius",
+          "amount": 2,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "長い雨",
+      "icon": "minecraft:gold_nugget",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:high_roller/jackpot_rain",
+          "field": "duration",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 5,
+      "offset": 0,
+      "name": "★ロイヤル・極",
+      "icon": "minecraft:diamond",
+      "cost": 5,
+      "big": true,
+      "min_level": 60,
+      "effects": [
+        {
+          "skill": "jsn_craft:high_roller/royal_flush",
+          "field": "power_pct",
+          "amount": 0.3,
+          "scale": false
+        },
+        {
+          "skill": "jsn_craft:high_roller/royal_flush",
+          "field": "cooldown",
+          "amount": -15,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "ラッキーセブン上手",
+      "icon": "minecraft:clock",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:gambler/lucky_seven",
+          "field": "power",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 5,
+      "offset": 0,
+      "name": "★不死身の勝負師",
+      "icon": "minecraft:totem_of_undying",
+      "cost": 5,
+      "big": true,
+      "min_level": 60,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 6
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.04
+        }
+      ]
+    }
+  ]
+}

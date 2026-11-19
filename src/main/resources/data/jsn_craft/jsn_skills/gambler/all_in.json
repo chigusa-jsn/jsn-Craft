@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "オールイン"
+  },
+  "description": {
+    "text": "いまの体力の35%を賭けて、8秒間 ダメージ +100%。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/all_in",
+  "type": "active",
+  "effect": "gamble_all_in",
+  "stamina": 10,
+  "cooldown": 40,
+  "chance": 0.35,
+  "power": 1.0,
+  "duration": 8
+}

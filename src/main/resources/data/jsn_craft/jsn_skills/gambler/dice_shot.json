@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ダイス撃ち"
+  },
+  "description": {
+    "text": "さいころを投げつける。出た目 ×（攻撃力の0.35倍）のダメージ。6の目なら敵が動けなくなる。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/dice_shot",
+  "type": "active",
+  "effect": "gamble_dice_shot",
+  "stamina": 12,
+  "cooldown": 6,
+  "power": 0.35,
+  "radius": 12
+}

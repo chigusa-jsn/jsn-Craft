@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ポーカーハンド"
+  },
+  "description": {
+    "text": "5枚引いて、役が強いほどねらった場所のまわりに大ダメージ（ワンペアで攻撃力の1倍、ロイヤルで10倍）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/poker_hand",
+  "type": "active",
+  "effect": "gamble_poker_hand",
+  "stamina": 20,
+  "cooldown": 14,
+  "power": 1.0,
+  "radius": 4
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "胴元の掟"
+  },
+  "description": {
+    "text": "15秒間、まわり8ブロックの敵は与えるダメージ -12%、受けるダメージ +25%。"
+  },
+  "icon": "jsn_craft:skill_icon/high_roller/house_rules",
+  "type": "active",
+  "effect": "gamble_house_rules",
+  "stamina": 30,
+  "cooldown": 45,
+  "power": 0.25,
+  "radius": 8,
+  "duration": 15
+}

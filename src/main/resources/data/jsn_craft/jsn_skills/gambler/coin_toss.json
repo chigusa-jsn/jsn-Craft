@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "コイントス"
+  },
+  "description": {
+    "text": "コインを投げる。表なら8秒間 攻撃 +40%、裏なら体力 +4 と足が速くなる。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/coin_toss",
+  "type": "active",
+  "effect": "gamble_coin_toss",
+  "stamina": 6,
+  "cooldown": 10,
+  "power": 0.4,
+  "bonus": 4,
+  "duration": 8
+}

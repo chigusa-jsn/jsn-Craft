@@ -51,6 +51,12 @@ public final class PlayerAnims {
             Map.entry("fist_double", "fist_double"), Map.entry("fist_qigong", "fist_ki"), Map.entry("fist_hundred", "fist_hundred"),
             Map.entry("fist_stomp", "fist_stomp"), Map.entry("fist_overlord", "fist_overlord"),
             // 鞭（獣使い）
+            // 勝負札（ギャンブラー）
+            Map.entry("gamble_card_throw", "dagger_throw"), Map.entry("gamble_coin_toss", "dagger_point"), Map.entry("gamble_dice_shot", "dagger_throw"),
+            Map.entry("gamble_chip_guard", "dagger_coat"), Map.entry("gamble_roulette", "dagger_spin"), Map.entry("gamble_double_up", "dagger_point"),
+            Map.entry("gamble_poker_hand", "dagger_cross"), Map.entry("gamble_all_in", "dagger_crouch"), Map.entry("gamble_slot_burst", "dagger_twin"),
+            Map.entry("gamble_jackpot_rain", "dagger_point"), Map.entry("gamble_fate_dice", "dagger_throw"), Map.entry("gamble_house_rules", "dagger_coat"),
+            Map.entry("gamble_royal_flush", "dagger_flurry"), Map.entry("gamble_seven_heaven", "dagger_spin"),
             Map.entry("beast_lash", "whip_lash"), Map.entry("beast_charge", "whip_point"), Map.entry("beast_rally", "whip_call"),
             Map.entry("beast_roar", "whip_roar"), Map.entry("beast_frenzy", "whip_roar"), Map.entry("beast_king_command", "whip_roar"),
             // 弓
@@ -116,6 +122,7 @@ public final class PlayerAnims {
         if (i instanceof StaffItem) return "cast";
         if (i instanceof DaggerItem) return "dagger_cross";
         if (i instanceof WhipItem) return "whip_lash";
+        if (i instanceof com.chigusa.jsncraft.weapon.CardDeckItem) return "dagger_throw";
         if (i instanceof SwordItem) return i instanceof KatanaItem ? "katana_whirl" : "sword_whirl";
         if (i instanceof AxeItem) return "axe_chop_1";
         if (i instanceof JobSpearItem || i instanceof TridentItem) return "spear_lunge";

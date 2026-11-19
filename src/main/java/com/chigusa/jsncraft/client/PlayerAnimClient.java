@@ -125,6 +125,7 @@ public final class PlayerAnimClient {
         if (i instanceof DaggerItem) return left ? "dagger_left" : "dagger_right";
         if (main.isEmpty()) return GauntletItem.equipped(p).isEmpty() ? null : left ? "fist_left" : "fist_right";
         if (i instanceof WhipItem) return c % 2 == 0 ? "whip_crack" : "whip_side";
+        if (i instanceof com.chigusa.jsncraft.weapon.CardDeckItem) return c % 2 == 0 ? "dagger_right" : "dagger_left";
         if (i instanceof StaffItem) return "staff_strike";
         if (i instanceof KatanaItem) return new String[]{"katana_slash_1", "katana_slash_2", "katana_slash_3"}[c % 3];
         if (i instanceof SwordItem) return new String[]{"sword_slash_1", "sword_slash_2", "sword_slash_3"}[c % 3];

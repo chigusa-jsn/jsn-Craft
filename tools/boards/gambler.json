@@ -1,0 +1,313 @@
+{
+  "job": "gambler",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "博徒の心得",
+    "icon": "jsn_craft:paper_cards",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "jsn_craft:skill_damage",
+        "amount": 0.03
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "amount": 0.5
+      },
+      {
+        "attribute": "jsn_craft:max_stamina",
+        "amount": 10
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "luk",
+      "pool": [
+        {
+          "name": "強運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.3
+            }
+          ]
+        },
+        {
+          "name": "ツキ修練",
+          "icon": "minecraft:gold_nugget",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gambler/lucky",
+              "field": "chance",
+              "amount": 0.02
+            }
+          ]
+        },
+        {
+          "name": "コイン修練",
+          "icon": "minecraft:gold_ingot",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gambler/coin_toss",
+              "field": "power",
+              "amount": 0.05
+            }
+          ]
+        },
+        {
+          "name": "会心",
+          "icon": "minecraft:arrow",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_chance",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "crd",
+      "pool": [
+        {
+          "name": "鋭い札",
+          "icon": "minecraft:paper",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.attack_damage",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "カード投げ修練",
+          "icon": "minecraft:paper",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gambler/card_throw",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "ポーカー修練",
+          "icon": "minecraft:map",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gambler/poker_hand",
+              "field": "power_pct",
+              "amount": 0.1
+            }
+          ]
+        },
+        {
+          "name": "早業",
+          "icon": "minecraft:clock",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:cooldown_reduction",
+              "amount": 0.04
+            }
+          ]
+        },
+        {
+          "name": "大技",
+          "icon": "minecraft:blaze_powder",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:skill_damage",
+              "amount": 0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "nrv",
+      "pool": [
+        {
+          "name": "気力",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "name": "度胸",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1.5
+            }
+          ]
+        },
+        {
+          "name": "呼吸法",
+          "icon": "minecraft:honey_bottle",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.5
+            }
+          ]
+        },
+        {
+          "name": "会心の一撃",
+          "icon": "minecraft:redstone",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:crit_damage",
+              "amount": 0.08
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "イカサマ賽",
+      "icon": "minecraft:bone_meal",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★天性の強運",
+      "icon": "minecraft:rabbit_foot",
+      "cost": 5,
+      "big": true,
+      "min_level": 40,
+      "effects": [
+        {
+          "skill": "jsn_craft:gambler/lucky",
+          "field": "power",
+          "amount": 0.25,
+          "scale": false
+        },
+        {
+          "skill": "jsn_craft:gambler/lucky",
+          "field": "chance",
+          "amount": 0.05,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "5枚投げ",
+      "icon": "minecraft:paper",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:gambler/card_throw",
+          "field": "amplifier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★賭場荒らし",
+      "icon": "minecraft:gold_block",
+      "cost": 5,
+      "big": true,
+      "min_level": 30,
+      "effects": [
+        {
+          "skill": "jsn_craft:gambler/slot_burst",
+          "field": "power_pct",
+          "amount": 0.3,
+          "scale": false
+        },
+        {
+          "skill": "jsn_craft:gambler/slot_burst",
+          "field": "radius",
+          "amount": 1,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "ダブルアップ上手",
+      "icon": "minecraft:emerald",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:gambler/double_up",
+          "field": "chance",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★勝負師の体",
+      "icon": "minecraft:golden_chestplate",
+      "cost": 5,
+      "big": true,
+      "min_level": 40,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:damage_reduction",
+          "amount": 0.03
+        }
+      ]
+    }
+  ]
+}

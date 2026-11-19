@@ -67,6 +67,13 @@ public final class WeaponEvents {
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
             return;
         }
+        if (stack.getItem() instanceof CardDeckItem cards) {
+            event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("cards/skill"), cards.spec().skill(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+            event.addModifier(net.minecraft.world.entity.ai.attributes.Attributes.LUCK, new AttributeModifier(JsnCraft.id("cards/luck"), cards.spec().luck(),
+                    AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
+            return;
+        }
         if (stack.getItem() instanceof WhipItem whip) {
             event.addModifier(ModAttributes.SKILL_DAMAGE, new AttributeModifier(JsnCraft.id("whip/skill"), whip.spec().skill(),
                     AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);

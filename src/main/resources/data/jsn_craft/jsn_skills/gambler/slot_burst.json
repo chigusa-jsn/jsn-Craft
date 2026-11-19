@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "スロットバースト"
+  },
+  "description": {
+    "text": "3つの絵柄を回して爆発。そろえば4倍、7がそろえば7倍、2つで2倍（攻撃力の1.2倍が基本）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/slot_burst",
+  "type": "active",
+  "effect": "gamble_slot_burst",
+  "stamina": 25,
+  "cooldown": 18,
+  "power": 1.2,
+  "radius": 4
+}

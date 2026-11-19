@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "ジャックポット"
+  },
+  "description": {
+    "text": "ねらった場所に金貨の雨を3秒降らせる（0.25秒ごとに攻撃力の0.5倍）。"
+  },
+  "icon": "jsn_craft:skill_icon/high_roller/jackpot_rain",
+  "type": "active",
+  "effect": "gamble_jackpot_rain",
+  "stamina": 30,
+  "cooldown": 25,
+  "power": 0.5,
+  "radius": 6,
+  "duration": 3
+}

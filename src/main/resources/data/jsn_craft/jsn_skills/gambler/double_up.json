@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "ダブルアップ"
+  },
+  "description": {
+    "text": "次の一撃が 55% で2倍、外れると半分になる（10秒以内）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/double_up",
+  "type": "active",
+  "effect": "gamble_double_up",
+  "stamina": 8,
+  "cooldown": 15,
+  "duration": 10,
+  "chance": 0.55
+}

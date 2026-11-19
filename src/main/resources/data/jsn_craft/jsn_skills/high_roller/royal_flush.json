@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "★ロイヤルフラッシュ"
+  },
+  "description": {
+    "text": "必ずロイヤルストレートフラッシュ。ねらった場所のまわりに攻撃力の10倍。"
+  },
+  "icon": "jsn_craft:skill_icon/high_roller/royal_flush",
+  "type": "active",
+  "effect": "gamble_royal_flush",
+  "stamina": 40,
+  "cooldown": 60,
+  "power": 1.0,
+  "radius": 5
+}

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "ツキ"
+  },
+  "description": {
+    "text": "攻撃のたび 12% で「ラッキー！」、ダメージ +50%。運（幸運）が高いほど起こりやすい。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/lucky",
+  "type": "passive",
+  "effect": "gamble_lucky",
+  "chance": 0.12,
+  "power": 0.5
+}

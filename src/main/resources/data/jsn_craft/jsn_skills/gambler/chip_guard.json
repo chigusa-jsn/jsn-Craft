@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "チップの盾"
+  },
+  "description": {
+    "text": "さいころ2つの合計に合わせて、守りのハート（衝撃吸収）を得る（12秒）。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/chip_guard",
+  "type": "active",
+  "effect": "gamble_chip_guard",
+  "stamina": 12,
+  "cooldown": 20,
+  "duration": 12
+}

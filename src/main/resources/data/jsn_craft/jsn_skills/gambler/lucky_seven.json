@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "ラッキーセブン"
+  },
+  "description": {
+    "text": "ふつうの攻撃7回ごとに、ダメージ +200%。"
+  },
+  "icon": "jsn_craft:skill_icon/gambler/lucky_seven",
+  "type": "passive",
+  "effect": "gamble_lucky_seven",
+  "power": 2.0
+}

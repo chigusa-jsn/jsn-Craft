@@ -123,7 +123,17 @@ public enum ArmorStyle {
                     ArmorItem.Type.CHESTPLATE, new Bonus(ModAttributes.CRIT_DAMAGE, 0.05, "会心のダメージ", true),
                     ArmorItem.Type.LEGGINGS, new Bonus(ModAttributes.STAMINA_COST_REDUCTION, 0.01, "スタミナの節約", true),
                     ArmorItem.Type.BOOTS, new Bonus(ModAttributes.SKILL_DAMAGE, 0.015, "技のダメージ", true)),
-            List.of(new Bonus(ModAttributes.CRIT_CHANCE, 0.02, "会心の確率", true), new Bonus(ModAttributes.LIFESTEAL, 0.01, "吸血", true)));
+            List.of(new Bonus(ModAttributes.CRIT_CHANCE, 0.02, "会心の確率", true), new Bonus(ModAttributes.LIFESTEAL, 0.01, "吸血", true))),
+    GAMBLER("gambler", "賽振りの博徒", Set.of("gambler", "high_roller"), Weight.LIGHT,
+            new String[]{"見習い", "鉄", "金", "ネザライト", "月銀", "星銀"},
+            Map.of(ArmorItem.Type.HELMET, "博徒のシルクハット", ArmorItem.Type.CHESTPLATE, "博徒の燕尾服", ArmorItem.Type.LEGGINGS, "博徒のスラックス", ArmorItem.Type.BOOTS, "博徒の革靴"),
+            "minecraft:purple_wool",
+            new String[]{"minecraft:iron_ingot", "minecraft:gold_ingot"},
+            Map.of(ArmorItem.Type.HELMET, new Bonus(ModAttributes.CRIT_CHANCE, 0.01, "会心の確率", true),
+                    ArmorItem.Type.CHESTPLATE, new Bonus(ModAttributes.SKILL_DAMAGE, 0.015, "技のダメージ", true),
+                    ArmorItem.Type.LEGGINGS, new Bonus(net.minecraft.world.entity.ai.attributes.Attributes.LUCK, 0.5, "運（幸運）", false),
+                    ArmorItem.Type.BOOTS, new Bonus(ModAttributes.COOLDOWN_REDUCTION, 0.008, "待ち時間の短さ", true)),
+            List.of(new Bonus(net.minecraft.world.entity.ai.attributes.Attributes.LUCK, 1, "運（幸運）", false), new Bonus(ModAttributes.CRIT_DAMAGE, 0.05, "会心のダメージ", true)));
 
     /** 能力：amount × 段階 だけ上がる */
     public record Bonus(Holder<Attribute> attribute, double perTier, String name, boolean percent) {

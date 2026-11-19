@@ -60,6 +60,7 @@ public enum Circle {
             case "brawler", "fist_god" -> FIRE;
             case "assassin", "reaper" -> DARK;
             case "beast_tamer", "beast_king" -> NATURE;
+            case "gambler", "high_roller" -> STAR;
             default -> HOLY;
         };
     }
