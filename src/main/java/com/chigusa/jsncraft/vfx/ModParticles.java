@@ -26,6 +26,8 @@ public final class ModParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RING = register("ring");
     /** 当たったときの火花 */
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPARK = register("spark");
+    /** 星銀のきらめき（持っている人のまわりに光る星） */
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TWINKLE = register("twinkle");
     /** ダメージの数字（絵の置き場所として登録するだけ。出すのはクライアント側） */
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DAMAGE_DIGITS = register("damage_digits");
 

@@ -81,7 +81,9 @@ class Art:
                 for (px2, py2) in pts:
                     if 0 <= px2 < N and 0 <= py2 < N and gp[px2, py2][3] == 0:
                         gp[px2, py2] = (gc if (px2, py2) != (x, y) else (255, 255, 255)) + (255,)
-        return out
+        # 本体から離れた点（きらめき・星座）は、手に持つと四角いブロックが浮いて見えるので消す
+        from clean_floating import drop_floating
+        return drop_floating(out)
 
 WOOD = (hx("#4a2c16"), hx("#7a4a26"), hx("#a8723e"))
 IRON = (hx("#5a5a68"), hx("#9a9aaa"), hx("#e0e0ea"))
