@@ -43,7 +43,7 @@ public final class ModArmor {
     static {
         for (ArmorStyle.Weight w : ArmorStyle.Weight.values()) {
             for (int t = 1; t <= 6; t++) {
-                int wi = w.ordinal(), ti = t - 1;
+                final int wi = w.ordinal(), ti = t - 1, tt = t;
                 String name = "job_" + w.name().toLowerCase() + "_" + t;
                 MAT[wi][ti] = MATERIALS.register(name, () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), m -> {
                     m.put(ArmorItem.Type.HELMET, DEF[wi][ti][0]);
@@ -53,7 +53,7 @@ public final class ModArmor {
                     m.put(ArmorItem.Type.BODY, DEF[wi][ti][1]);
                 }), 10 + ti * 3, wi == 2 ? SoundEvents.ARMOR_EQUIP_IRON : wi == 1 ? SoundEvents.ARMOR_EQUIP_CHAIN : SoundEvents.ARMOR_EQUIP_LEATHER,
                         () -> Ingredient.of(ti >= 3 ? Items.NETHERITE_SCRAP : Items.LEATHER),
-                        List.of(new ArmorMaterial.Layer(JsnCraft.id(name))), TOUGH[wi][ti], wi == 2 && t >= 4 ? 0.05F * (t - 3) : 0));
+                        List.of(new ArmorMaterial.Layer(JsnCraft.id(name))), TOUGH[wi][ti], wi == 2 && tt >= 4 ? 0.05F * (tt - 3) : 0));
             }
         }
     }
