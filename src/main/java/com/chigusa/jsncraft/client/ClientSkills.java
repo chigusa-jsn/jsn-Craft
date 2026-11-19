@@ -35,7 +35,7 @@ public final class ClientSkills {
     /** 今のページ（0から） */
     public static int page = 0;
 
-    private static SkillPayloads.State state = new SkillPayloads.State(List.of(), List.of("", "", "", "", ""), List.of(0F, 0F, 0F, 0F, 0F));
+    private static SkillPayloads.State state = new SkillPayloads.State(List.of(), List.of("", "", "", "", ""), List.of(0F, 0F, 0F, 0F, 0F), "");
     private static final long[] readyAt = new long[MAX];
     public static boolean skillMode = false;
 

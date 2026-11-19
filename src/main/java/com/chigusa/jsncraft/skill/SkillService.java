@@ -310,6 +310,11 @@ public final class SkillService {
 
     // ---------------- 画面に送る ----------------
 
+    private static String combatJobPath(ServerPlayer player) {
+        var job = com.chigusa.jsncraft.job.JobService.data(player).getJob(com.chigusa.jsncraft.job.JobType.COMBAT);
+        return job == null ? "" : job.getPath();
+    }
+
     public static void sync(ServerPlayer player) {
         PlayerSkillData d = data(player);
         PlayerJobData jobs = JobService.data(player);
@@ -330,7 +335,7 @@ public final class SkillService {
         List<String> slots = new ArrayList<>(d.slots.subList(0, Math.min(d.slots.size(), usableSlots(player))));
         List<Float> left = new ArrayList<>();
         for (String id : slots) left.add(Math.max(0, d.readyAt.getOrDefault(id, 0L) - now) / 20F);
-        PacketDistributor.sendToPlayer(player, new SkillPayloads.State(views, slots, left));
+        PacketDistributor.sendToPlayer(player, new SkillPayloads.State(views, slots, left, combatJobPath(player)));
     }
 
     private SkillService() {}

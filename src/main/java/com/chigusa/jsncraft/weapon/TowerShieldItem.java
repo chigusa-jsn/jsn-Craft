@@ -45,6 +45,7 @@ public class TowerShieldItem extends ShieldItem {
         lines.add(Component.literal("盾騎士の大盾（" + spec.tier() + "段目）").withStyle(ChatFormatting.GOLD));
         lines.add(Component.literal("持っているだけで 防御力 +" + (int) spec.armor() + "・ノックバック耐性 +" + Math.round(spec.kb() * 100)
                 + "%・受けるダメージ -" + Math.round(spec.dr() * 100) + "%").withStyle(ChatFormatting.BLUE));
+        lines.add(Component.literal("盾騎士のパッシブ「見通しの大盾」：自分の目からは盾が半透明に見える").withStyle(ChatFormatting.AQUA));
         if (spec.tier() < 6) lines.add(Component.literal("鍛冶台で鍛冶型を使うと次の段へ（魔紋と強化はそのまま）").withStyle(ChatFormatting.DARK_GRAY));
     }
 }

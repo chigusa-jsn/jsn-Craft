@@ -38,12 +38,14 @@ public final class SkillPayloads {
      * サーバー → 本人：スキルの一覧、スキルバーの5枠、各枠の残り待ち時間（秒）。
      * slots の空文字は空き枠。
      */
-    public record State(List<SkillView> skills, List<String> slots, List<Float> cooldownLeft) implements CustomPacketPayload {
+    /** combatJob：本人の戦闘職（"shield_knight" など。見た目の切り替えに使う） */
+    public record State(List<SkillView> skills, List<String> slots, List<Float> cooldownLeft, String combatJob) implements CustomPacketPayload {
         public static final Type<State> TYPE = new Type<>(JsnCraft.id("skill_state"));
         public static final Codec<State> CODEC = RecordCodecBuilder.create(i -> i.group(
                 SkillView.CODEC.listOf().fieldOf("skills").forGetter(State::skills),
                 Codec.STRING.listOf().fieldOf("slots").forGetter(State::slots),
-                Codec.FLOAT.listOf().fieldOf("cooldown_left").forGetter(State::cooldownLeft)
+                Codec.FLOAT.listOf().fieldOf("cooldown_left").forGetter(State::cooldownLeft),
+                Codec.STRING.optionalFieldOf("combat_job", "").forGetter(State::combatJob)
         ).apply(i, State::new));
         public static final StreamCodec<RegistryFriendlyByteBuf, State> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC);
 
