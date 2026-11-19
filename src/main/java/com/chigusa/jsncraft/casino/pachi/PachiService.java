@@ -65,6 +65,7 @@ public final class PachiService {
             return;
         }
         d.putInt("bet", bet);
+        d.putBoolean("auto", req.auto());
         RandomSource r = p.getRandom();
         // 小役
         Reels.Role flag = Reels.Role.NONE;
@@ -124,7 +125,9 @@ public final class PachiService {
         int held = d.getInt("held");
         Reels.Role bonusHeld = held == 1 ? Reels.Role.BIG : held == 2 ? Reels.Role.REG : Reels.Role.NONE;
         int bet = d.getInt("bet");
-        stops[reel] = Reels.control(reel, pressed, stops, bet, flag, bonusHeld);
+        // オートのときは、どこで押してもそろう（目押しいらず）
+        int slip = d.getBoolean("auto") ? Reels.SIZE - 1 : Reels.SLIP;
+        stops[reel] = Reels.control(reel, pressed, stops, bet, flag, bonusHeld, slip);
         d.putIntArray("stops", stops);
         if (stops[0] < 0 || stops[1] < 0 || stops[2] < 0) {
             send(p, m, d, 2, 0, 0);

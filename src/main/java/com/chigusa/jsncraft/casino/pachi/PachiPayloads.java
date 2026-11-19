@@ -11,10 +11,10 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 public final class PachiPayloads {
 
     /** 本人 → サーバー：レバーを叩く（bet 枚） */
-    public record Lever(BlockPos pos, int bet) implements CustomPacketPayload {
+    public record Lever(BlockPos pos, int bet, boolean auto) implements CustomPacketPayload {
         public static final Type<Lever> TYPE = new Type<>(JsnCraft.id("pachi_lever"));
         public static final StreamCodec<ByteBuf, Lever> STREAM_CODEC = StreamCodec.composite(
-                BlockPos.STREAM_CODEC, Lever::pos, ByteBufCodecs.VAR_INT, Lever::bet, Lever::new);
+                BlockPos.STREAM_CODEC, Lever::pos, ByteBufCodecs.VAR_INT, Lever::bet, ByteBufCodecs.BOOL, Lever::auto, Lever::new);
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 

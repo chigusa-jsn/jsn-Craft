@@ -39,7 +39,10 @@ public class PachiScreen extends Screen {
     private int lampOnTick = -1, flashTicks, winLines;
     private String message = "";
     private Button[] stopButtons = new Button[3];
-    private Button leverButton;
+    private Button leverButton, autoButton;
+    /** オート：リールを自動で止める（7もそろう）。連続：レバーも自動 */
+    private static boolean auto = false, autoRepeat = false;
+    private int autoStopAt = -1, autoLeverAt = -1;
 
     public PachiScreen(BlockPos pos, Machine machine) {
         super(Component.literal("パチスロ"));
@@ -66,6 +69,25 @@ public class PachiScreen extends Screen {
         addRenderableWidget(Button.builder(Component.literal("MAX"), b -> bet = 3).bounds(left + 54, top + H - 28, 34, 16).build());
         leverButton = addRenderableWidget(Button.builder(Component.literal("§lレバー（Space）"), b -> lever())
                 .bounds(left + 92, top + H - 28, 92, 16).build());
+        autoButton = addRenderableWidget(Button.builder(autoLabel(), b -> {
+            // オフ → オート → オート連続 → オフ
+            if (!auto) auto = true;
+            else if (!autoRepeat) autoRepeat = true;
+            else { auto = false; autoRepeat = false; }
+            b.setMessage(autoLabel());
+            if (autoRepeat && state != null && !state.inGame() && !anySpinning()) autoLeverAt = ticks + 10;
+        }).bounds(left + 188, top + H - 28, 96, 16).build());
+    }
+
+    /** このゲームをオートで回したか（すべれるコマ数が変わる） */
+    private boolean gameAuto;
+
+    private int slipMax() {
+        return gameAuto ? Reels.SIZE - 1 : Reels.SLIP;
+    }
+
+    private Component autoLabel() {
+        return Component.literal(!auto ? "オート：§7切" : autoRepeat ? "オート：§a連続" : "オート：§e止めるだけ");
     }
 
     void onState(PachiPayloads.State s) {
@@ -81,8 +103,13 @@ public class PachiScreen extends Screen {
                 winLines = 0;
                 message = "";
                 CasinoUi.sound(SoundEvents.NOTE_BLOCK_HAT.value(), 1.6F);
+                if (auto) autoStopAt = ticks + 14;
             }
-            case 3 -> message = "§cチップが足りないよ";
+            case 3 -> {
+                message = "§cチップが足りないよ";
+                autoRepeat = false;
+                if (autoButton != null) autoButton.setMessage(autoLabel());
+            }
             default -> {}
         }
         // 止まったリールの位置
@@ -90,7 +117,7 @@ public class PachiScreen extends Screen {
             int st = s.stop(i);
             if (st >= 0 && spinning[i] && waiting[i]) {
                 // 押した位置から何コマすべったか（0〜4）
-                int k = Math.min(Reels.SLIP, Math.floorMod(pressedIndex[i] - st, Reels.SIZE));
+                int k = Math.min(slipMax(), Math.floorMod(pressedIndex[i] - st, Reels.SIZE));
                 target[i] = pressBase[i] + k;
                 if (target[i] < reelPos[i]) reelPos[i] = target[i];
             } else if (st >= 0 && !spinning[i] && s.event() == 0) {
@@ -142,7 +169,8 @@ public class PachiScreen extends Screen {
             return;
         }
         CasinoUi.sound(SoundEvents.LEVER_CLICK, 0.8F);
-        PacketDistributor.sendToServer(new PachiPayloads.Lever(pos, bet));
+        gameAuto = auto;
+        PacketDistributor.sendToServer(new PachiPayloads.Lever(pos, bet, auto));
     }
 
     private void stop(int reel) {
@@ -161,6 +189,7 @@ public class PachiScreen extends Screen {
             case GLFW.GLFW_KEY_Z -> { stop(0); return true; }
             case GLFW.GLFW_KEY_X -> { stop(1); return true; }
             case GLFW.GLFW_KEY_C -> { stop(2); return true; }
+            case GLFW.GLFW_KEY_A -> { autoButton.onPress(); return true; }
             case GLFW.GLFW_KEY_1 -> { bet = 1; return true; }
             case GLFW.GLFW_KEY_2 -> { bet = 2; return true; }
             case GLFW.GLFW_KEY_3 -> { bet = 3; return true; }
@@ -184,7 +213,7 @@ public class PachiScreen extends Screen {
                 }
             } else if (waiting[i]) {
                 // 返事を待つあいだは、すべれる所（4コマ）までゆっくり進む
-                reelPos[i] = Math.min(pressBase[i] + Reels.SLIP, reelPos[i] + SPEED * 0.5F);
+                reelPos[i] = Math.min(pressBase[i] + slipMax(), reelPos[i] + SPEED * (gameAuto ? 1F : 0.5F));
             } else {
                 reelPos[i] += SPEED;
             }
@@ -192,6 +221,23 @@ public class PachiScreen extends Screen {
         if (pendingResult != null && !anySpinning()) {
             showResult(pendingResult);
             pendingResult = null;
+            // 連続：ボーナスがそろったときは少し長く待つ
+            if (auto && autoRepeat) autoLeverAt = ticks + (winLines != 0 && state != null && state.bonus() > 0 && state.bonusOut() == 0 ? 60 : 16);
+        }
+        // オート：左・中・右の順に止める
+        if (auto && autoStopAt >= 0 && ticks >= autoStopAt) {
+            int next = -1;
+            for (int i = 0; i < 3; i++) if (spinning[i] && !waiting[i]) { next = i; break; }
+            if (next >= 0) {
+                stop(next);
+                autoStopAt = ticks + 7;
+            } else {
+                autoStopAt = -1;
+            }
+        }
+        if (autoLeverAt >= 0 && ticks >= autoLeverAt) {
+            autoLeverAt = -1;
+            if (auto && autoRepeat) lever();
         }
         if (flashTicks > 0) flashTicks--;
     }
@@ -241,7 +287,7 @@ public class PachiScreen extends Screen {
             float p = reelPos[i];
             if (spinning[i]) {
                 if (target[i] >= 0) p += Math.min(SPEED * pt, Math.max(0, target[i] - reelPos[i]));
-                else if (waiting[i]) p = Math.min(pressBase[i] + Reels.SLIP, p + SPEED * 0.5F * pt);
+                else if (waiting[i]) p = Math.min(pressBase[i] + slipMax(), p + SPEED * (gameAuto ? 1F : 0.5F) * pt);
                 else p += SPEED * pt;
             }
             int base = Mth.floor(p);
@@ -287,7 +333,7 @@ public class PachiScreen extends Screen {
             }
         }
         g.drawString(font, message, ix, iy + 88, 0xFFFFFF);
-        g.drawString(font, "§8Space：レバー  Z/X/C：ストップ  1〜3：かけ枚数", left + 16, top + H - 44, 0xFFFFFF);
+        g.drawString(font, "§8Space：レバー  Z/X/C：ストップ  1〜3：かけ枚数  A：オート", left + 16, top + H - 44, 0xFFFFFF);
 
         boolean canLever = state != null && !state.inGame() && !anySpinning();
         leverButton.active = canLever;

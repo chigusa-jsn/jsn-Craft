@@ -79,10 +79,15 @@ public final class Reels {
      * allowed はそろってよい役。
      */
     public static int control(int reel, int pressed, int[] stops, int bet, Role target, Role bonusHeld) {
+        return control(reel, pressed, stops, bet, target, bonusHeld, SLIP);
+    }
+
+    /** slip を大きくすると、どこで押してもそろう（オート用） */
+    public static int control(int reel, int pressed, int[] stops, int bet, Role target, Role bonusHeld, int slip) {
         int best = pressed, bestScore = Integer.MIN_VALUE;
         boolean last = true;
         for (int r = 0; r < 3; r++) if (r != reel && stops[r] < 0) last = false;
-        for (int k = 0; k <= SLIP; k++) {
+        for (int k = 0; k <= slip; k++) {
             int cand = Math.floorMod(pressed - k, SIZE);
             int[] s = stops.clone();
             s[reel] = cand;
