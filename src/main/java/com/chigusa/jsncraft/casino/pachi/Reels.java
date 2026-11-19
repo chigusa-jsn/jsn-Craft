@@ -32,12 +32,12 @@ public final class Reels {
         /** この役の絵柄（左・中・右）。チェリーは左だけ */
         int[] symbols() {
             return switch (this) {
-                case REPLAY -> new int[]{REPLAY, REPLAY, REPLAY};
-                case GRAPE -> new int[]{GRAPE, GRAPE, GRAPE};
-                case BELL -> new int[]{BELL, BELL, BELL};
-                case MELON -> new int[]{MELON, MELON, MELON};
-                case BIG -> new int[]{SEVEN, SEVEN, SEVEN};
-                case REG -> new int[]{SEVEN, SEVEN, BAR};
+                case REPLAY -> new int[]{Reels.REPLAY, Reels.REPLAY, Reels.REPLAY};
+                case GRAPE -> new int[]{Reels.GRAPE, Reels.GRAPE, Reels.GRAPE};
+                case BELL -> new int[]{Reels.BELL, Reels.BELL, Reels.BELL};
+                case MELON -> new int[]{Reels.MELON, Reels.MELON, Reels.MELON};
+                case BIG -> new int[]{Reels.SEVEN, Reels.SEVEN, Reels.SEVEN};
+                case REG -> new int[]{Reels.SEVEN, Reels.SEVEN, Reels.BAR};
                 default -> null;
             };
         }
@@ -65,7 +65,7 @@ public final class Reels {
                 int[] s = r.symbols();
                 if (s != null && s[0] == a && s[1] == b && s[2] == c) out.add(new Win(r, l));
             }
-            if (a == CHERRY && !cherry) {
+            if (a == Reels.CHERRY && !cherry) {
                 cherry = true;
                 out.add(new Win(Role.CHERRY, l));
             }
