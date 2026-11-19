@@ -72,7 +72,7 @@ public final class PlayerAnimClient {
     }
 
     /** 振る音：動きの「振り抜く」瞬間に鳴らす（AnimSounds の表） */
-    private record PendingSound(java.lang.ref.WeakReference<AbstractClientPlayer> player, long at, net.minecraft.sounds.SoundEvent sound, float pitch) {}
+    private record PendingSound(java.lang.ref.WeakReference<AbstractClientPlayer> player, long at, net.minecraft.sounds.SoundEvent sound, float pitch, float lash) {}
     private static final java.util.List<PendingSound> PENDING = new java.util.ArrayList<>();
 
     static void scheduleSounds(AbstractClientPlayer p, String name) {
@@ -83,7 +83,9 @@ public final class PlayerAnimClient {
         if (holder == null) return;
         long now = p.level().getGameTime();
         PENDING.removeIf(s -> s.player().get() == p); // 振り直したら前の音はやめる
-        for (int t : e.ticks()) PENDING.add(new PendingSound(new java.lang.ref.WeakReference<>(p), now + t, holder.get(), 0.92F + p.getRandom().nextFloat() * 0.16F));
+        // 鞭は、音といっしょに本物の鞭を伸ばす（技の鞭打ちは8ブロック、ふつうは届く距離まで）
+        float lash = e.kind().equals("whip") ? (name.equals("whip_lash") ? 8.0F : (float) p.entityInteractionRange()) : 0;
+        for (int t : e.ticks()) PENDING.add(new PendingSound(new java.lang.ref.WeakReference<>(p), now + t, holder.get(), 0.92F + p.getRandom().nextFloat() * 0.16F, lash));
     }
 
     static void tickSounds() {
@@ -98,6 +100,7 @@ public final class PlayerAnimClient {
             if (p == null || p.isRemoved()) return true;
             if (s.at() > now) return false;
             mc.level.playLocalSound(p.getX(), p.getY() + 1.2, p.getZ(), s.sound(), net.minecraft.sounds.SoundSource.PLAYERS, 0.9F, s.pitch(), false);
+            if (s.lash() > 0) WhipLash.start(p, s.lash());
             return true;
         });
     }
@@ -121,27 +124,37 @@ public final class PlayerAnimClient {
         int c = combo++;
         if (i instanceof DaggerItem) return left ? "dagger_left" : "dagger_right";
         if (main.isEmpty()) return GauntletItem.equipped(p).isEmpty() ? null : left ? "fist_left" : "fist_right";
-        if (i instanceof WhipItem) return "whip_crack";
+        if (i instanceof WhipItem) return c % 2 == 0 ? "whip_crack" : "whip_side";
         if (i instanceof StaffItem) return "staff_strike";
         if (i instanceof KatanaItem) return new String[]{"katana_slash_1", "katana_slash_2", "katana_slash_3"}[c % 3];
         if (i instanceof SwordItem) return new String[]{"sword_slash_1", "sword_slash_2", "sword_slash_3"}[c % 3];
-        if (i instanceof AxeItem) return new String[]{"axe_chop_1", "axe_chop_2"}[c % 2];
-        if (i instanceof JobSpearItem || i instanceof TridentItem) return new String[]{"spear_thrust", "spear_sweep", "spear_thrust"}[c % 3];
+        if (i instanceof AxeItem) return new String[]{"axe_chop_1", "axe_chop_2", "axe_chop_3"}[c % 3];
+        if (i instanceof JobSpearItem || i instanceof TridentItem) return new String[]{"spear_thrust", "spear_sweep", "spear_thrust_2"}[c % 3];
         return null;
     }
+
+    private static final java.util.Map<java.util.UUID, String> HOLDING = new java.util.HashMap<>();
 
     /** 持っている武器のかまえ（刀は両手持ち）。刀を持ったら始めて、持ちかえたらやめる */
     static void tickHold(AbstractClientPlayer p) {
         if (!(PlayerAnimationAccess.getPlayerAssociatedData(p).get(HOLD) instanceof ModifierLayer<?> raw)) return;
         @SuppressWarnings("unchecked") ModifierLayer<IAnimation> layer = (ModifierLayer<IAnimation>) raw;
-        boolean katana = p.getMainHandItem().getItem() instanceof KatanaItem && p.getOffhandItem().isEmpty()
-                && !p.isSleeping() && !p.isPassenger() && !p.isSwimming() && !p.isFallFlying();
+        Item held = p.getMainHandItem().getItem();
+        boolean free = p.getOffhandItem().isEmpty() && !p.isSleeping() && !p.isPassenger() && !p.isSwimming() && !p.isFallFlying()
+                && !p.isUsingItem();
+        String want = !free ? null
+                : held instanceof KatanaItem ? "katana_hold"
+                : held instanceof com.chigusa.jsncraft.weapon.JobAxeItem ? "axe_hold"
+                : held instanceof JobSpearItem || held instanceof com.chigusa.jsncraft.weapon.SeaTridentItem ? "spear_hold" : null;
         boolean on = layer.getAnimation() != null && layer.getAnimation().isActive();
-        if (katana && !on) {
-            IPlayable anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id("katana_hold"));
+        String now = HOLDING.get(p.getUUID());
+        if (want != null && (!on || !want.equals(now))) {
+            IPlayable anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id(want));
             if (anim != null) layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(4, Ease.INOUTSINE), anim.playAnimation(), true);
-        } else if (!katana && on) {
+            HOLDING.put(p.getUUID(), want);
+        } else if (want == null && on) {
             layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(4, Ease.INOUTSINE), null);
+            HOLDING.remove(p.getUUID());
         }
     }
 

@@ -257,91 +257,494 @@ for n in ("sword_sweep", "sword_lunge", "sword_whirl", "sword_parry", "sword_fla
 for n in ("sword_iai_ready", "sword_iai"):   # 居合は左手でさやを持つので、左手はそのまま
     two_handed(n, "katana" + n[5:], keep_left=True)   # 居合は左手でさやを持つので、片手のまま
 
-# ================= 斧 =================
-anim("axe_chop_1", 12, {     # 両手で振りかぶって叩きつける
-    "right_arm": rot((0, R0), (4, [-178, 5, 8], "easeOutQuad"), (7, [-35, 0, 0], "easeInQuart"), (12, R0)),
-    "left_arm": rot((0, L0), (4, [-172, -15, -8], "easeOutQuad"), (7, [-40, -25, 0], "easeInQuart"), (12, L0)),
-    "torso": rot((0, Z), (4, [-10, 0, 0]), (7, [22, 0, 0], "easeInQuart"), (12, Z)),
-    "right_item": rot((0, Z), (4, [75, 0, 0], "easeOutQuad"), (7, [-35, 0, 0], "easeInQuart"), (12, Z)),
-})
-anim("axe_chop_2", 12, {     # 横に大きくなぎ払う
-    "right_arm": rot((0, R0), (4, [-85, 70, 25], "easeOutQuad"), (7, [-88, -75, -10], "easeInQuart"), (12, R0)),
-    "left_arm": rot((0, L0), (4, [-80, 45, -5], "easeOutQuad"), (7, [-85, -85, -20], "easeInQuart"), (12, L0)),
-    "torso": rot((0, Z), (4, [0, 22, 0]), (7, [6, -28, 0], "easeInQuart"), (12, Z)),
-    "right_item": rot((0, Z), (4, [30, 0, 0], "easeOutQuad"), (7, [-25, 0, 0], "easeInQuart"), (12, Z)),
-})
-anim("axe_skill", 17, {      # 跳び上がって叩きつける
-    "body": {"position": [(0, Z), (6, [0, 7, 0], "easeOutQuad"), (10, Z, "easeInQuad"), (17, Z)]},
-    "right_arm": rot((0, R0), (6, [-185, 5, 8], "easeOutQuad"), (10, [-30, 0, 0], "easeInQuart"), (17, R0)),
-    "left_arm": rot((0, L0), (6, [-180, -10, -8], "easeOutQuad"), (10, [-35, -20, 0], "easeInQuart"), (17, L0)),
-    "torso": rot((0, Z), (6, [-12, 0, 0]), (10, [28, 0, 0], "easeInQuart"), (17, Z)),
-    "right_leg": rot((0, Z), (6, [-30, 0, 0]), (10, [0, 0, 0]), (17, Z)),
-    "left_leg": rot((0, Z), (6, [-10, 0, 0]), (10, [0, 0, 0]), (17, Z)),
-    "right_item": rot((0, Z), (6, [80, 0, 0], "easeOutQuad"), (10, [-40, 0, 0], "easeInQuart"), (17, Z)),
-})
+# ================= 共通の道具 =================
+def spin(t0, t1, start, turns, ease="linear"):
+    """body の y を start から turns 回まわす（右回り＝マイナス）"""
+    return [(t0, [0, start, 0]), (t1, [0, start - 360 * turns, 0], ease)]
 
-# ================= 槍 =================
-anim("spear_thrust", 10, {   # 引いて突く
-    "right_arm": rot((0, R0), (3, [-70, 20, 8], "easeOutQuad"), (5, [-95, -5, 0], "easeOutExpo"), (10, R0)),
-    "left_arm": rot((0, L0), (3, [-65, -30, -5]), (5, [-88, -40, 0], "easeOutExpo"), (10, L0)),
-    "torso": rot((0, Z), (3, [0, 22, 0]), (5, [8, -18, 0], "easeOutExpo"), (10, Z)),
+def with_left(src, dst, hold_r, hold_l, hold_i, dx=10, dy=60, keep_left=False):
+    """右手の動きから、両手持ちの動きを作る（左手を右手に寄せる）。始まりと終わりは持っているときのかまえ"""
+    import copy
+    a = copy.deepcopy(ANIMS[src]); b = a["bones"]
+    ra = b["right_arm"]["rotation"]; keys = sorted(ra, key=float)
+    for k in (keys[0], keys[-1]):
+        if ra[k]["vector"] == R0: ra[k]["vector"] = hold_r
+    if not keep_left:
+        b["left_arm"] = {"rotation": {k: {"vector": hold_l if ra[k]["vector"] == hold_r else [ra[k]["vector"][0] + dx, ra[k]["vector"][1] + dy, ra[k]["vector"][2]],
+                                          "easing": ra[k]["easing"]} for k in keys}}
+    it = b.setdefault("right_item", {"rotation": {"0.0": {"vector": Z, "easing": "easeInOutSine"}}})["rotation"]
+    ik = sorted(it, key=float)
+    for k in (ik[0], ik[-1]):
+        if it[k]["vector"] == Z: it[k]["vector"] = hold_i
+    ANIMS[dst] = a
+    if dst != src: pass
+
+def drop(name):
+    ANIMS.pop(name, None)
+
+# ================= 斧（両手で振る大きな武器） =================
+AR, AL, AI = [-40, -28, 0], [-30, 32, 0], [-10, 0, 0]   # 大斧のかまえ（両手で低く持つ）
+anim("_axe_chop_1", 16, {   # 振りかぶって、真上から叩きつける
+    "body": {"rotation": [(0, Z), (5, [-10, 10, 0], "easeOutQuad"), (9, [25, -5, 0], "easeInQuart"), (12, [25, -5, 0]), (16, Z)],
+             "position": [(0, Z), (5, [0, 1, 1]), (9, [0, -4, -3], "easeInQuart"), (12, [0, -4, -3]), (16, Z)]},
+    "right_arm": rot((0, R0), (5, [-185, 5, 5], "easeOutQuad"), (9, [-35, -20, 0], "easeInQuart"), (12, [-33, -20, 0]), (16, R0)),
+    "right_item": rot((0, Z), (5, [40, 0, 0], "easeOutQuad"), (9, [-40, 0, 0], "easeInQuart"), (12, [-40, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (9, [-35, 0, 0], "easeInQuart"), (12, [-35, 0, 0]), (16, Z)),
+    "left_leg": rot((0, Z), (9, [25, 0, 0], "easeInQuart"), (12, [25, 0, 0]), (16, Z)),
 })
-anim("spear_sweep", 12, {    # 柄で横になぎ払う
-    "right_arm": rot((0, R0), (4, [-60, 65, 25], "easeOutQuad"), (7, [-70, -70, -10], "easeInQuart"), (12, R0)),
-    "left_arm": rot((0, L0), (4, [-55, 40, -5]), (7, [-65, -80, -15], "easeInQuart"), (12, L0)),
-    "torso": rot((0, Z), (4, [0, 22, 0]), (7, [5, -25, 0], "easeInQuart"), (12, Z)),
+anim("_axe_chop_2", 16, {   # 体ごと横になぎ払う
+    "body": {"rotation": [(0, Z), (5, [0, 55, 0], "easeOutQuad"), (9, [5, -65, 0], "easeInQuart"), (12, [5, -68, 0]), (16, Z)],
+             "position": [(0, Z), (5, [0, -1, 1]), (9, [0, -2, -3], "easeInQuart"), (12, [0, -2, -3]), (16, Z)]},
+    "right_arm": rot((0, R0), (5, [-80, 60, 10], "easeOutQuad"), (9, [-80, -60, 0], "easeInQuart"), (12, [-78, -62, 0]), (16, R0)),
+    "right_item": rot((0, Z), (5, [20, 0, 90], "easeOutQuad"), (9, [-20, 0, 90], "easeInQuart"), (12, [-20, 0, 90]), (16, Z)),
+    "left_leg": rot((0, Z), (9, [-30, 0, 0], "easeInQuart"), (12, [-30, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (9, [22, 0, 0], "easeInQuart"), (12, [22, 0, 0]), (16, Z)),
 })
-anim("spear_skill", 18, {    # くるっと回して突き出す
-    "body": rot((0, Z), (9, [0, 360, 0], "easeInOutQuad"), (18, [0, 360, 0])),
-    "right_arm": rot((0, R0), (3, [-100, 50, 30]), (9, [-100, 50, 30]), (11, [-70, 20, 8]), (13, [-98, -5, 0], "easeOutExpo"), (18, R0)),
-    "left_arm": rot((0, L0), (3, [-40, 0, -40]), (9, [-40, 0, -40]), (11, [-65, -30, -5]), (13, [-90, -40, 0], "easeOutExpo"), (18, L0)),
-    "torso": rot((0, Z), (11, [0, 22, 0]), (13, [10, -18, 0], "easeOutExpo"), (18, Z)),
+anim("_axe_chop_3", 20, {   # しめ：低く引いて、下から上へかち上げる
+    "body": {"rotation": [(0, Z), (6, [15, -40, 0], "easeOutQuad"), (11, [-12, 45, 0], "easeOutQuart"), (15, [-12, 47, 0]), (20, Z)],
+             "position": [(0, Z), (6, [0, -4, 0], "easeOutQuad"), (11, [0, 3, -3], "easeOutQuart"), (15, [0, 2, -3]), (20, Z)]},
+    "right_arm": rot((0, R0), (6, [-10, -50, 0], "easeOutQuad"), (11, [-170, 30, 10], "easeOutQuart"), (15, [-172, 30, 10]), (20, R0)),
+    "right_item": rot((0, Z), (6, [-40, 0, 0], "easeOutQuad"), (11, [35, 0, 0], "easeOutQuart"), (15, [35, 0, 0]), (20, Z)),
+    "right_leg": rot((0, Z), (6, [-30, 0, 0]), (11, [10, 0, 0], "easeOutQuart"), (15, [10, 0, 0]), (20, Z)),
+    "left_leg": rot((0, Z), (6, [-30, 0, 0]), (11, [-25, 0, 0], "easeOutQuart"), (15, [-25, 0, 0]), (20, Z)),
 })
+anim("_axe_whirl", 26, {    # 回転斬り：斧を横に構えて3回転
+    "body": {"rotation": [(0, Z), (3, [0, 40, 0], "easeOutQuad")] + spin(3, 22, 40, 3)[1:] + [(26, [0, -1080, 0], "easeOutQuad")],
+             "position": [(0, Z), (3, [0, -2, 0]), (22, [0, -2, 0]), (26, Z)]},
+    "right_arm": rot((0, R0), (3, [-85, 70, 0], "easeOutQuad"), (22, [-85, 70, 0]), (26, R0)),
+    "right_item": rot((0, Z), (3, [0, 0, 90]), (22, [0, 0, 90]), (26, Z)),
+    "right_leg": rot((0, Z), (3, [-20, 0, 15]), (22, [-20, 0, 15]), (26, Z)),
+    "left_leg": rot((0, Z), (3, [15, 0, -15]), (22, [15, 0, -15]), (26, Z)),
+})
+anim("axe_frenzy", 80, {    # 狂乱の大旋風：4秒間まわり続ける（左手は外へ）
+    "body": {"rotation": [(0, Z)] + spin(4, 76, 0, 9)[1:] + [(80, [0, -3240, 0], "easeOutQuad")]},
+    "right_arm": rot((0, R0), (4, [-85, 70, 0], "easeOutQuad"), (76, [-85, 70, 0]), (80, R0)),
+    "left_arm": rot((0, L0), (4, [-40, 0, -70]), (76, [-40, 0, -70]), (80, L0)),
+    "right_item": rot((0, Z), (4, [0, 0, 90]), (76, [0, 0, 90]), (80, Z)),
+}, loop=False)
+anim("axe_throw", 14, {     # 投げ斧：片手で振りかぶって、前へ投げる
+    "body": {"rotation": [(0, Z), (5, [-8, 30, 0], "easeOutQuad"), (8, [15, -25, 0], "easeOutExpo"), (11, [15, -25, 0]), (14, Z)]},
+    "right_arm": rot((0, R0), (5, [-190, 30, 20], "easeOutQuad"), (8, [-70, -20, 0], "easeOutExpo"), (11, [-70, -20, 0]), (14, R0)),
+    "left_arm": rot((0, L0), (5, [-80, 10, -10]), (8, [-20, 0, -40], "easeOutExpo"), (11, [-20, 0, -40]), (14, L0)),
+    "right_item": rot((0, Z), (5, [40, 0, 0]), (8, [-30, 0, 0], "easeOutExpo"), (14, Z)),
+    "left_leg": rot((0, Z), (5, [-25, 0, 0]), (8, [-30, 0, 0]), (11, [-30, 0, 0]), (14, Z)),
+    "right_leg": rot((0, Z), (8, [25, 0, 0]), (11, [25, 0, 0]), (14, Z)),
+})
+anim("_axe_cry", 24, {      # 雄叫び・激昂：斧を高く掲げて、胸を張って吠える
+    "body": {"rotation": [(0, Z), (5, [-12, 0, 0], "easeOutQuad"), (19, [-12, 0, 0]), (24, Z)]},
+    "head": rot((0, Z), (5, [-35, 0, 0], "easeOutQuad"), (19, [-35, 0, 0]), (24, Z)),
+    "right_arm": rot((0, R0), (5, [-165, 0, 25], "easeOutQuad"), (19, [-168, 0, 25]), (24, R0)),
+    "left_arm": rot((0, L0), (5, [-20, 0, -55], "easeOutQuad"), (19, [-22, 0, -58]), (24, L0)),
+    "right_item": rot((0, Z), (5, [-30, 0, 0]), (19, [-30, 0, 0]), (24, Z)),
+    "right_leg": rot((0, Z), (5, [8, 0, 10]), (19, [8, 0, 10]), (24, Z)),
+    "left_leg": rot((0, Z), (5, [-8, 0, -10]), (19, [-8, 0, -10]), (24, Z)),
+})
+anim("_axe_slam", 18, {     # 大地割り：振りかぶって、地面に深く叩きつける
+    "body": {"rotation": [(0, Z), (6, [-12, 0, 0], "easeOutQuad"), (10, [35, 0, 0], "easeInQuart"), (14, [35, 0, 0]), (18, Z)],
+             "position": [(0, Z), (6, [0, 1, 1]), (10, [0, -6, -3], "easeInQuart"), (14, [0, -6, -3]), (18, Z)]},
+    "right_arm": rot((0, R0), (6, [-190, 0, 5], "easeOutQuad"), (10, [-15, 0, 0], "easeInQuart"), (14, [-15, 0, 0]), (18, R0)),
+    "right_item": rot((0, Z), (6, [40, 0, 0]), (10, [-45, 0, 0], "easeInQuart"), (14, [-45, 0, 0]), (18, Z)),
+    "right_leg": rot((0, Z), (10, [-40, 0, 0], "easeInQuart"), (14, [-40, 0, 0]), (18, Z)),
+    "left_leg": rot((0, Z), (10, [30, 0, 0], "easeInQuart"), (14, [30, 0, 0]), (18, Z)),
+})
+anim("_axe_sunder_ready", 14, {  # 断鋼撃のため：体を大きくひねって、斧を後ろへ
+    "body": {"rotation": [(0, Z), (8, [-10, 45, 0], "easeOutQuad"), (14, [-10, 48, 0])],
+             "position": [(0, Z), (8, [0, -2, 2]), (14, [0, -2, 2])]},
+    "right_arm": rot((0, R0), (8, [-195, 40, 20], "easeOutQuad"), (14, [-198, 42, 20])),
+    "right_item": rot((0, Z), (8, [45, 0, 0]), (14, [45, 0, 0])),
+    "left_leg": rot((0, Z), (8, [-25, 0, 0]), (14, [-25, 0, 0])),
+    "right_leg": rot((0, Z), (8, [20, 0, 0]), (14, [20, 0, 0])),
+})
+anim("_axe_sunder", 18, {   # 断鋼撃：渾身の振り下ろし
+    "body": {"rotation": [(0, [-10, 48, 0]), (4, [30, -20, 0], "easeInQuart"), (12, [30, -22, 0]), (18, Z)],
+             "position": [(0, [0, -2, 2]), (4, [0, -6, -4], "easeInQuart"), (12, [0, -6, -4]), (18, Z)]},
+    "right_arm": rot((0, [-198, 42, 20]), (4, [-20, -15, 0], "easeInQuart"), (12, [-20, -15, 0]), (18, R0)),
+    "right_item": rot((0, [45, 0, 0]), (4, [-45, 0, 0], "easeInQuart"), (12, [-45, 0, 0]), (18, Z)),
+    "right_leg": rot((0, [20, 0, 0]), (4, [-40, 0, 0], "easeInQuart"), (12, [-40, 0, 0]), (18, Z)),
+    "left_leg": rot((0, [-25, 0, 0]), (4, [30, 0, 0], "easeInQuart"), (12, [30, 0, 0]), (18, Z)),
+})
+anim("_axe_charge", 16, {   # 破城槌：斧を低く横に構えて、前のめりで突っ込む
+    "body": {"rotation": [(0, Z), (3, [22, -15, 0], "easeOutQuad"), (12, [22, -15, 0]), (16, Z)],
+             "position": [(0, Z), (3, [0, -3, -3]), (12, [0, -3, -3]), (16, Z)]},
+    "right_arm": rot((0, R0), (3, [-60, -40, 0], "easeOutQuad"), (12, [-60, -40, 0]), (16, R0)),
+    "right_item": rot((0, Z), (3, [0, 0, 90]), (12, [0, 0, 90]), (16, Z)),
+    "left_leg": rot((0, Z), (3, [-45, 0, 0]), (7, [30, 0, 0]), (12, [-40, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (3, [35, 0, 0]), (7, [-40, 0, 0]), (12, [35, 0, 0]), (16, Z)),
+})
+anim("_axe_sky_ready", 22, {  # 天崩しのため：深くしゃがんで、斧を後ろへ
+    "body": {"rotation": [(0, Z), (8, [20, 0, 0], "easeOutQuad"), (22, [20, 0, 0])],
+             "position": [(0, Z), (8, [0, -6, 0], "easeOutQuad"), (22, [0, -6, 0])]},
+    "right_arm": rot((0, R0), (8, [30, 0, 10], "easeOutQuad"), (22, [32, 0, 10])),
+    "right_item": rot((0, Z), (8, [30, 0, 0]), (22, [30, 0, 0])),
+    "right_leg": rot((0, Z), (8, [-50, 0, 5]), (22, [-50, 0, 5])),
+    "left_leg": rot((0, Z), (8, [-50, 0, -5]), (22, [-50, 0, -5])),
+})
+anim("_axe_sky", 30, {      # 奥義・天崩し：跳び上がって斧を振りかぶり、落ちながら叩き落とす
+    "body": {"rotation": [(0, [20, 0, 0]), (6, [-15, 0, 0], "easeOutQuad"), (16, [-18, 0, 0]), (20, [40, 0, 0], "easeInQuart"), (25, [38, 0, 0]), (30, Z)],
+             "position": [(0, [0, -6, 0]), (6, Z, "easeOutQuad"), (20, [0, -6, -3], "easeInQuart"), (25, [0, -6, -3]), (30, Z)]},
+    "right_arm": rot((0, [32, 0, 10]), (6, [-190, 0, 10], "easeOutQuad"), (16, [-195, 0, 10]), (20, [-15, 0, 0], "easeInQuart"), (25, [-15, 0, 0]), (30, R0)),
+    "right_item": rot((0, [30, 0, 0]), (6, [40, 0, 0]), (16, [45, 0, 0]), (20, [-45, 0, 0], "easeInQuart"), (25, [-45, 0, 0]), (30, Z)),
+    "right_leg": rot((0, [-50, 0, 5]), (6, [-45, 0, 0]), (16, [-45, 0, 0]), (20, [-45, 0, 0]), (25, [-45, 0, 0]), (30, Z)),
+    "left_leg": rot((0, [-50, 0, -5]), (6, [15, 0, 0]), (16, [15, 0, 0]), (20, [35, 0, 0]), (25, [35, 0, 0]), (30, Z)),
+})
+anim("_axe_leap", 24, {}) if False else None
+for n in ("_axe_chop_1", "_axe_chop_2", "_axe_chop_3", "_axe_whirl", "_axe_cry", "_axe_slam", "_axe_sunder_ready", "_axe_sunder", "_axe_charge", "_axe_sky_ready", "_axe_sky"):
+    with_left(n, n[1:], AR, AL, AI)
+    drop(n)
+anim("axe_hold", 40, {      # 大斧を持っているあいだのかまえ（両手で低く持つ）
+    "right_arm": rot((0, AR), (20, [-42, -28, 0]), (40, AR)),
+    "left_arm": rot((0, AL), (20, [-32, 32, 0]), (40, AL)),
+    "right_item": rot((0, AI), (40, AI)),
+}, loop=True)
+
+# ================= 槍（両手でかまえる） =================
+SR_, SL_, SI_ = [-30, 10, 10], [-65, 30, 0], [-40, 0, 0]   # 槍のかまえ：右手は腰、左手は前で柄を持つ
+def spear_left(src, dst):
+    with_left(src, dst, SR_, SL_, SI_, dx=-30, dy=25)
+anim("_spear_thrust", 12, {   # 引いて、まっすぐ突く
+    "body": {"rotation": [(0, Z), (4, [0, 25, 0], "easeOutQuad"), (6, [8, -15, 0], "easeOutExpo"), (9, [8, -15, 0]), (12, Z)],
+             "position": [(0, Z), (4, [0, 0, 2]), (6, [0, -2, -4], "easeOutExpo"), (9, [0, -2, -4]), (12, Z)]},
+    "right_arm": rot((0, R0), (4, [-25, 25, 15], "easeOutQuad"), (6, [-88, -5, 0], "easeOutExpo"), (9, [-88, -5, 0]), (12, R0)),
+    "right_item": rot((0, Z), (4, [-35, 0, 0]), (6, [-78, 0, 0], "easeOutExpo"), (9, [-78, 0, 0]), (12, Z)),
+    "left_leg": rot((0, Z), (6, [-35, 0, 0], "easeOutExpo"), (9, [-35, 0, 0]), (12, Z)),
+    "right_leg": rot((0, Z), (6, [25, 0, 0], "easeOutExpo"), (9, [25, 0, 0]), (12, Z)),
+})
+anim("_spear_sweep", 15, {    # 柄で横になぎ払う
+    "body": {"rotation": [(0, Z), (5, [0, 55, 0], "easeOutQuad"), (9, [5, -60, 0], "easeInQuart"), (12, [5, -62, 0]), (15, Z)],
+             "position": [(0, Z), (9, [0, -2, -2], "easeInQuart"), (12, [0, -2, -2]), (15, Z)]},
+    "right_arm": rot((0, R0), (5, [-70, 65, 15], "easeOutQuad"), (9, [-75, -65, -5], "easeInQuart"), (12, [-75, -67, -5]), (15, R0)),
+    "right_item": rot((0, Z), (5, [10, 0, 90]), (9, [-10, 0, 90], "easeInQuart"), (12, [-10, 0, 90]), (15, Z)),
+    "left_leg": rot((0, Z), (9, [-30, 0, 0], "easeInQuart"), (12, [-30, 0, 0]), (15, Z)),
+    "right_leg": rot((0, Z), (9, [22, 0, 0], "easeInQuart"), (12, [22, 0, 0]), (15, Z)),
+})
+anim("_spear_thrust_2", 16, {  # しめ：深く踏み込んで、体ごと突き出す
+    "body": {"rotation": [(0, Z), (5, [-5, 30, 0], "easeOutQuad"), (8, [15, -20, 0], "easeOutExpo"), (12, [15, -20, 0]), (16, Z)],
+             "position": [(0, Z), (5, [0, -1, 3]), (8, [0, -4, -6], "easeOutExpo"), (12, [0, -4, -6]), (16, Z)]},
+    "right_arm": rot((0, R0), (5, [-20, 30, 15], "easeOutQuad"), (8, [-92, -8, 0], "easeOutExpo"), (12, [-92, -8, 0]), (16, R0)),
+    "right_item": rot((0, Z), (5, [-40, 0, 0]), (8, [-82, 0, 0], "easeOutExpo"), (12, [-82, 0, 0]), (16, Z)),
+    "left_leg": rot((0, Z), (8, [-82, 0, 0], "easeOutExpo"), (12, [-82, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (8, [35, 0, 0], "easeOutExpo"), (12, [35, 0, 0]), (16, Z)),
+})
+anim("_spear_lunge", 14, {    # 一閃突き：低く構えて、駆け抜けながら突く
+    "body": {"rotation": [(0, Z), (3, [20, 0, 0], "easeOutQuad"), (10, [20, 0, 0]), (14, Z)],
+             "position": [(0, Z), (3, [0, -3, -3]), (10, [0, -3, -3]), (14, Z)]},
+    "right_arm": rot((0, R0), (3, [-85, -5, 0], "easeOutExpo"), (10, [-85, -5, 0]), (14, R0)),
+    "right_item": rot((0, Z), (3, [-75, 0, 0], "easeOutExpo"), (10, [-75, 0, 0]), (14, Z)),
+    "left_leg": rot((0, Z), (3, [-45, 0, 0]), (10, [-45, 0, 0]), (14, Z)),
+    "right_leg": rot((0, Z), (3, [40, 0, 0]), (10, [40, 0, 0]), (14, Z)),
+})
+anim("_spear_wide", 22, {     # 薙ぎ払い：槍を大きくまわして、周りをなぎ払う
+    "body": {"rotation": [(0, Z), (4, [0, 50, 0], "easeOutQuad"), (14, [0, -310, 0], "easeOutQuart"), (18, [0, -320, 0]), (22, [0, -360, 0])],
+             "position": [(0, Z), (4, [0, -2, 0]), (18, [0, -2, 0]), (22, Z)]},
+    "right_arm": rot((0, R0), (4, [-80, 70, 10], "easeOutQuad"), (14, [-80, 70, 10]), (18, [-80, 70, 10]), (22, R0)),
+    "right_item": rot((0, Z), (4, [0, 0, 90]), (18, [0, 0, 90]), (22, Z)),
+    "right_leg": rot((0, Z), (4, [-20, 0, 15]), (18, [-20, 0, 15]), (22, Z)),
+    "left_leg": rot((0, Z), (4, [15, 0, -15]), (18, [15, 0, -15]), (22, Z)),
+})
+anim("spear_throw", 16, {     # 投げ槍：肩の上に構えて、遠くへ投げる（片手）
+    "body": {"rotation": [(0, Z), (6, [-8, 35, 0], "easeOutQuad"), (9, [15, -25, 0], "easeOutExpo"), (12, [15, -25, 0]), (16, Z)],
+             "position": [(0, Z), (6, [0, 0, 2]), (9, [0, -2, -3], "easeOutExpo"), (12, [0, -2, -3]), (16, Z)]},
+    "right_arm": rot((0, R0), (6, [-170, 20, 15], "easeOutQuad"), (9, [-80, -15, 0], "easeOutExpo"), (12, [-80, -15, 0]), (16, R0)),
+    "left_arm": rot((0, L0), (6, [-90, 20, -5]), (9, [-20, 0, -40], "easeOutExpo"), (12, [-20, 0, -40]), (16, L0)),
+    "right_item": rot((0, Z), (6, [-80, 0, 0]), (9, [-40, 0, 0], "easeOutExpo"), (16, Z)),
+    "left_leg": rot((0, Z), (6, [-25, 0, 0]), (9, [-30, 0, 0]), (12, [-30, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (9, [25, 0, 0]), (12, [25, 0, 0]), (16, Z)),
+})
+anim("_spear_leap", 26, {     # 跳び突き：跳び上がり、真下へ突き刺す
+    "body": {"rotation": [(0, Z), (3, [15, 0, 0]), (8, [-10, 0, 0], "easeOutQuad"), (15, [-10, 0, 0]), (18, [30, 0, 0], "easeInQuart"), (22, [30, 0, 0]), (26, Z)],
+             "position": [(0, Z), (3, [0, -3, 0]), (8, Z), (18, [0, -4, -2], "easeInQuart"), (22, [0, -4, -2]), (26, Z)]},
+    "right_arm": rot((0, R0), (3, [-20, 0, 15]), (8, [-170, 0, 10], "easeOutQuad"), (15, [-175, 0, 10]), (18, [-40, 0, 0], "easeInQuart"), (22, [-40, 0, 0]), (26, R0)),
+    "right_item": rot((0, Z), (8, [-90, 0, 0]), (15, [-90, 0, 0]), (18, [-80, 0, 0], "easeInQuart"), (22, [-80, 0, 0]), (26, Z)),
+    "right_leg": rot((0, Z), (3, [-30, 0, 0]), (8, [-50, 0, 0]), (15, [-50, 0, 0]), (18, [-40, 0, 0]), (22, [-40, 0, 0]), (26, Z)),
+    "left_leg": rot((0, Z), (3, [-30, 0, 0]), (8, [20, 0, 0]), (15, [20, 0, 0]), (18, [10, 0, 0]), (22, [10, 0, 0]), (26, Z)),
+})
+_tr = [(0, R0)]; _tb = [(0, Z)]; _ti = [(0, Z)]
+for i, t in enumerate((0, 4, 8)):   # 三段突き：4tickごとに突く（3回目は深く）
+    deep = i == 2
+    _tr += [(t + 2, [-30, 25, 15], "easeOutQuad"), (t + 4, [-90 - (4 if deep else 0), -5, 0], "easeOutExpo")]
+    _tb += [(t + 2, [0, 20, 0], "easeOutQuad"), (t + 4, [10 if deep else 5, -15, 0], "easeOutExpo")]
+    _ti += [(t + 2, [-40, 0, 0], "easeOutQuad"), (t + 4, [-80, 0, 0], "easeOutExpo")]
+_tr += [(16, [-92, -5, 0]), (20, R0)]; _tb += [(16, [10, -15, 0]), (20, Z)]; _ti += [(16, [-82, 0, 0]), (20, Z)]
+anim("_spear_triple", 20, {
+    "body": {"rotation": _tb, "position": [(0, Z), (12, [0, -3, -5], "easeOutExpo"), (16, [0, -3, -5]), (20, Z)]},
+    "right_arm": {"rotation": _tr},
+    "right_item": {"rotation": _ti},
+    "left_leg": rot((0, Z), (4, [-25, 0, 0]), (12, [-40, 0, 0]), (16, [-40, 0, 0]), (20, Z)),
+    "right_leg": rot((0, Z), (4, [20, 0, 0]), (12, [30, 0, 0]), (16, [30, 0, 0]), (20, Z)),
+})
+anim("_spear_twirl", 24, {    # 渦潮突き・大渦：槍を頭の上でまわしてから、前へ突き出す
+    "body": {"rotation": [(0, Z), (14, [0, 0, 0]), (17, [12, -15, 0], "easeOutExpo"), (20, [12, -15, 0]), (24, Z)],
+             "position": [(0, Z), (17, [0, -3, -4], "easeOutExpo"), (20, [0, -3, -4]), (24, Z)]},
+    "right_arm": rot((0, R0), (3, [-165, 30, 10]), (6, [-165, -30, -10]), (9, [-165, 30, 10]), (12, [-165, -30, -10]), (14, [-30, 25, 15]),
+                     (17, [-90, -5, 0], "easeOutExpo"), (20, [-90, -5, 0]), (24, R0)),
+    "right_item": rot((0, Z), (3, [-60, 0, 90]), (6, [-60, 0, -90]), (9, [-60, 0, 90]), (12, [-60, 0, -90]), (14, [-40, 0, 0]),
+                      (17, [-80, 0, 0], "easeOutExpo"), (20, [-80, 0, 0]), (24, Z)),
+    "left_leg": rot((0, Z), (17, [-40, 0, 0], "easeOutExpo"), (20, [-40, 0, 0]), (24, Z)),
+    "right_leg": rot((0, Z), (17, [30, 0, 0], "easeOutExpo"), (20, [30, 0, 0]), (24, Z)),
+})
+anim("_spear_brace", 100, {   # 槍衾：低く腰を落とし、槍を前に向けて構え続ける（5秒）
+    "body": {"rotation": [(0, Z), (5, [12, 0, 0]), (95, [12, 0, 0]), (100, Z)], "position": [(0, Z), (5, [0, -4, 0]), (95, [0, -4, 0]), (100, Z)]},
+    "right_arm": rot((0, R0), (5, [-60, 10, 10]), (95, [-60, 10, 10]), (100, R0)),
+    "right_item": rot((0, Z), (5, [-60, 0, 0]), (95, [-60, 0, 0]), (100, Z)),
+    "left_leg": rot((0, Z), (5, [-40, 0, -10]), (95, [-40, 0, -10]), (100, Z)),
+    "right_leg": rot((0, Z), (5, [35, 0, 10]), (95, [35, 0, 10]), (100, Z)),
+})
+anim("_spear_raise_ready", 30, {  # 千本槍・海神降臨のため：槍を天へ掲げる
+    "body": {"rotation": [(0, Z), (6, [-10, 0, 0], "easeOutQuad"), (30, [-10, 0, 0])]},
+    "head": rot((0, Z), (6, [-30, 0, 0], "easeOutQuad"), (30, [-30, 0, 0])),
+    "right_arm": rot((0, R0), (6, [-170, 0, 10], "easeOutQuad"), (30, [-172, 0, 10])),
+    "right_item": rot((0, Z), (6, [-90, 0, 0], "easeOutQuad"), (30, [-90, 0, 0])),
+    "right_leg": rot((0, Z), (6, [10, 0, 8]), (30, [10, 0, 8])),
+    "left_leg": rot((0, Z), (6, [-10, 0, -8]), (30, [-10, 0, -8])),
+})
+anim("_spear_raise", 16, {    # 掲げた槍を、前へ振り下ろして指し示す
+    "body": {"rotation": [(0, [-10, 0, 0]), (4, [15, 0, 0], "easeInQuart"), (11, [15, 0, 0]), (16, Z)],
+             "position": [(0, Z), (4, [0, -3, -3], "easeInQuart"), (11, [0, -3, -3]), (16, Z)]},
+    "head": rot((0, [-30, 0, 0]), (4, Z), (16, Z)),
+    "right_arm": rot((0, [-172, 0, 10]), (4, [-88, -5, 0], "easeInQuart"), (11, [-88, -5, 0]), (16, R0)),
+    "right_item": rot((0, [-90, 0, 0]), (4, [-78, 0, 0], "easeInQuart"), (11, [-78, 0, 0]), (16, Z)),
+    "right_leg": rot((0, [10, 0, 8]), (4, [-35, 0, 0], "easeInQuart"), (11, [-35, 0, 0]), (16, Z)),
+    "left_leg": rot((0, [-10, 0, -8]), (4, [25, 0, 0], "easeInQuart"), (11, [25, 0, 0]), (16, Z)),
+})
+for n in ("_spear_thrust", "_spear_sweep", "_spear_thrust_2", "_spear_lunge", "_spear_wide", "_spear_leap", "_spear_triple", "_spear_twirl", "_spear_brace", "_spear_raise_ready", "_spear_raise"):
+    spear_left(n, n[1:]); drop(n)
+anim("spear_hold", 40, {    # 槍を持っているあいだのかまえ（両手で、穂先を前へ）
+    "right_arm": rot((0, SR_), (20, [-32, 10, 10]), (40, SR_)),
+    "left_arm": rot((0, SL_), (20, [-67, 30, 0]), (40, SL_)),
+    "right_item": rot((0, SI_), (40, SI_)),
+}, loop=True)
 
 # ================= 短剣（逆手の二刀流） =================
-anim("dagger_right", 7, {
-    "right_arm": rot((0, R0), (2, [-105, 45, 35], "easeOutQuad"), (4, [-60, -55, -10], "easeOutExpo"), (7, R0)),
-    "torso": rot((0, Z), (2, [0, 12, 0]), (4, [5, -15, 0], "easeOutExpo"), (7, Z)),
-    "right_item": rot((0, Z), (2, [40, 0, 0], "easeOutQuad"), (4, [-30, 0, 0], "easeOutExpo"), (7, Z)),
+anim("dagger_right", 9, {     # 右の逆手で、外から内へ斬る
+    "body": {"rotation": [(0, Z), (3, [0, 20, 0], "easeOutQuad"), (5, [5, -20, 0], "easeOutExpo"), (7, [5, -20, 0]), (9, Z)],
+             "position": [(0, Z), (5, [0, -1, -2], "easeOutExpo"), (7, [0, -1, -2]), (9, Z)]},
+    "right_arm": rot((0, R0), (3, [-110, 50, 40], "easeOutQuad"), (5, [-55, -60, -10], "easeOutExpo"), (7, [-55, -60, -10]), (9, R0)),
+    "right_item": rot((0, Z), (3, [35, 0, 0]), (5, [-25, 0, 0], "easeOutExpo"), (9, Z)),
+    "left_arm": rot((0, L0), (3, [-60, -10, -10]), (7, [-40, 0, -20]), (9, L0)),
 })
-anim("dagger_left", 7, {
-    "left_arm": rot((0, L0), (2, [-105, -45, -35], "easeOutQuad"), (4, [-60, 55, 10], "easeOutExpo"), (7, L0)),
-    "torso": rot((0, Z), (2, [0, -12, 0]), (4, [5, 15, 0], "easeOutExpo"), (7, Z)),
-    "left_item": rot((0, Z), (2, [40, 0, 0], "easeOutQuad"), (4, [-30, 0, 0], "easeOutExpo"), (7, Z)),
+anim("dagger_left", 9, {      # 左の逆手で、外から内へ斬る
+    "body": {"rotation": [(0, Z), (3, [0, -20, 0], "easeOutQuad"), (5, [5, 20, 0], "easeOutExpo"), (7, [5, 20, 0]), (9, Z)],
+             "position": [(0, Z), (5, [0, -1, -2], "easeOutExpo"), (7, [0, -1, -2]), (9, Z)]},
+    "left_arm": rot((0, L0), (3, [-110, -50, -40], "easeOutQuad"), (5, [-55, 60, 10], "easeOutExpo"), (7, [-55, 60, 10]), (9, L0)),
+    "left_item": rot((0, Z), (3, [35, 0, 0]), (5, [-25, 0, 0], "easeOutExpo"), (9, Z)),
+    "right_arm": rot((0, R0), (3, [-60, 10, 10]), (7, [-40, 0, 20]), (9, R0)),
 })
-anim("dagger_skill", 12, {   # 両手を交差させて、×の字に斬る
-    "right_arm": rot((0, R0), (3, [-155, -30, -20], "easeOutQuad"), (6, [-45, 50, 35], "easeOutExpo"), (12, R0)),
-    "left_arm": rot((0, L0), (3, [-155, 30, 20], "easeOutQuad"), (6, [-45, -50, -35], "easeOutExpo"), (12, L0)),
-    "torso": rot((0, Z), (3, [-8, 0, 0]), (6, [15, 0, 0], "easeOutExpo"), (12, Z)),
+anim("dagger_twin", 12, {     # 双牙：左右で続けて×の字に斬る
+    "body": {"rotation": [(0, Z), (2, [0, 20, 0]), (4, [5, -20, 0], "easeOutExpo"), (6, [0, -20, 0]), (8, [5, 20, 0], "easeOutExpo"), (10, [5, 20, 0]), (12, Z)],
+             "position": [(0, Z), (4, [0, -2, -2], "easeOutExpo"), (10, [0, -2, -2]), (12, Z)]},
+    "right_arm": rot((0, R0), (2, [-120, 45, 35]), (4, [-50, -55, -10], "easeOutExpo"), (12, R0)),
+    "left_arm": rot((0, L0), (2, [-40, 0, -20]), (6, [-120, -45, -35]), (8, [-50, 55, 10], "easeOutExpo"), (12, L0)),
+    "right_item": rot((0, Z), (2, [35, 0, 0]), (4, [-25, 0, 0], "easeOutExpo"), (12, Z)),
+    "left_item": rot((0, Z), (6, [35, 0, 0]), (8, [-25, 0, 0], "easeOutExpo"), (12, Z)),
+})
+anim("dagger_cross", 14, {    # ×の字斬り（暗殺など、両手で同時に）
+    "body": {"rotation": [(0, Z), (4, [-10, 0, 0], "easeOutQuad"), (7, [20, 0, 0], "easeOutExpo"), (10, [20, 0, 0]), (14, Z)],
+             "position": [(0, Z), (4, [0, 1, 1]), (7, [0, -3, -3], "easeOutExpo"), (10, [0, -3, -3]), (14, Z)]},
+    "right_arm": rot((0, R0), (4, [-160, -30, -20], "easeOutQuad"), (7, [-40, 50, 35], "easeOutExpo"), (10, [-40, 50, 35]), (14, R0)),
+    "left_arm": rot((0, L0), (4, [-160, 30, 20], "easeOutQuad"), (7, [-40, -50, -35], "easeOutExpo"), (10, [-40, -50, -35]), (14, L0)),
+    "right_item": rot((0, Z), (4, [30, 0, 0]), (7, [-30, 0, 0], "easeOutExpo"), (14, Z)),
+    "left_item": rot((0, Z), (4, [30, 0, 0]), (7, [-30, 0, 0], "easeOutExpo"), (14, Z)),
+    "right_leg": rot((0, Z), (7, [-30, 0, 0], "easeOutExpo"), (10, [-30, 0, 0]), (14, Z)),
+    "left_leg": rot((0, Z), (7, [20, 0, 0], "easeOutExpo"), (10, [20, 0, 0]), (14, Z)),
+})
+anim("dagger_crouch", 20, {   # 影渡り・隠密・煙玉・ため：低くしゃがみ、短剣を後ろへ
+    "body": {"rotation": [(0, Z), (4, [25, 0, 0], "easeOutQuad"), (16, [25, 0, 0]), (20, Z)],
+             "position": [(0, Z), (4, [0, -5, 0], "easeOutQuad"), (16, [0, -5, 0]), (20, Z)]},
+    "right_arm": rot((0, R0), (4, [20, 20, 25], "easeOutQuad"), (16, [20, 20, 25]), (20, R0)),
+    "left_arm": rot((0, L0), (4, [20, -20, -25], "easeOutQuad"), (16, [20, -20, -25]), (20, L0)),
+    "right_leg": rot((0, Z), (4, [-45, 0, 8]), (16, [-45, 0, 8]), (20, Z)),
+    "left_leg": rot((0, Z), (4, [-20, 0, -8]), (16, [-20, 0, -8]), (20, Z)),
+})
+anim("dagger_throw", 12, {    # 投げナイフ：腕を横に振って、扇の形に投げる
+    "body": {"rotation": [(0, Z), (4, [0, -35, 0], "easeOutQuad"), (7, [0, 30, 0], "easeOutExpo"), (9, [0, 32, 0]), (12, Z)]},
+    "right_arm": rot((0, R0), (4, [-80, -60, -10], "easeOutQuad"), (7, [-90, 75, 20], "easeOutExpo"), (9, [-90, 77, 20]), (12, R0)),
+    "right_item": rot((0, Z), (4, [0, 0, 90]), (7, [0, 0, 90], "easeOutExpo"), (12, Z)),
+    "left_arm": rot((0, L0), (4, [-40, 0, -30]), (9, [-30, 0, -40]), (12, L0)),
+})
+anim("dagger_coat", 18, {     # 毒刃：短剣を胸の前で交差させて、刃に毒をぬる
+    "right_arm": rot((0, R0), (4, [-85, -35, 0], "easeOutQuad"), (14, [-85, -35, 0]), (18, R0)),
+    "left_arm": rot((0, L0), (4, [-85, 35, 0], "easeOutQuad"), (9, [-80, 25, 0]), (14, [-85, 35, 0]), (18, L0)),
+    "head": rot((0, Z), (4, [15, 0, 0]), (14, [15, 0, 0]), (18, Z)),
+})
+_tf_r = [(0, R0)]; _tf_l = [(0, L0)]; _tf_b = [(0, Z)]
+for i in range(20):   # 千刃：2tickごとに左右交互に切り刻む（2秒）
+    t = 1 + i * 2
+    if i % 2 == 0:
+        _tf_r.append((t, [-70 - (i % 4) * 5, -45 if i % 4 == 0 else 45, 0], "easeOutExpo")); _tf_b.append((t, [5, -10, 0], "easeOutExpo"))
+    else:
+        _tf_l.append((t, [-70 - (i % 4) * 5, 45 if i % 4 == 1 else -45, 0], "easeOutExpo")); _tf_b.append((t, [5, 10, 0], "easeOutExpo"))
+_tf_r.append((44, R0)); _tf_l.append((44, L0)); _tf_b.append((44, Z))
+anim("dagger_flurry", 44, {
+    "body": {"rotation": _tf_b, "position": [(0, Z), (2, [0, -2, -2]), (40, [0, -2, -2]), (44, Z)]},
+    "right_arm": {"rotation": _tf_r}, "left_arm": {"rotation": _tf_l},
+    "left_leg": rot((0, Z), (2, [-25, 0, 0]), (40, [-25, 0, 0]), (44, Z)),
+    "right_leg": rot((0, Z), (2, [20, 0, 0]), (40, [20, 0, 0]), (44, Z)),
+})
+anim("dagger_point", 18, {    # 死の刻印：短剣で敵を指す
+    "right_arm": rot((0, R0), (4, [-95, 10, 0], "easeOutExpo"), (14, [-95, 10, 0]), (18, R0)),
+    "right_item": rot((0, Z), (4, [-90, 0, 0], "easeOutExpo"), (14, [-90, 0, 0]), (18, Z)),
+    "body": {"rotation": [(0, Z), (4, [0, -20, 0]), (14, [0, -20, 0]), (18, Z)]},
+})
+anim("dagger_spin", 16, {     # 影舞・冥府送り：くるっとまわりながら両手で斬る
+    "body": {"rotation": [(0, Z), (2, [0, 30, 0]), (10, [0, -330, 0], "easeOutQuart"), (13, [0, -350, 0]), (16, [0, -360, 0])],
+             "position": [(0, Z), (2, [0, -2, 0]), (13, [0, -2, 0]), (16, Z)]},
+    "right_arm": rot((0, R0), (2, [-80, 60, 30]), (13, [-80, 60, 30]), (16, R0)),
+    "left_arm": rot((0, L0), (2, [-80, -60, -30]), (13, [-80, -60, -30]), (16, L0)),
 })
 
 # ================= 拳 =================
-anim("fist_right", 6, {
-    "right_arm": rot((0, R0), (1, [-55, 20, 5], "easeOutQuad"), (3, [-95, -12, 0], "easeOutExpo"), (6, R0)),
-    "torso": rot((0, Z), (1, [0, 8, 0]), (3, [4, -18, 0], "easeOutExpo"), (6, Z)),
+anim("fist_right", 8, {       # 右ストレート（体ごと）
+    "body": {"rotation": [(0, Z), (2, [0, 15, 0], "easeOutQuad"), (4, [5, -20, 0], "easeOutExpo"), (6, [5, -20, 0]), (8, Z)],
+             "position": [(0, Z), (4, [0, -1, -2], "easeOutExpo"), (6, [0, -1, -2]), (8, Z)]},
+    "right_arm": rot((0, R0), (2, [-50, 25, 10], "easeOutQuad"), (4, [-95, -15, 0], "easeOutExpo"), (6, [-95, -15, 0]), (8, R0)),
+    "left_arm": rot((0, L0), (2, [-70, -20, -5]), (4, [-50, 15, 0]), (8, L0)),
+    "left_leg": rot((0, Z), (4, [-20, 0, 0], "easeOutExpo"), (6, [-20, 0, 0]), (8, Z)),
 })
-anim("fist_left", 6, {
-    "left_arm": rot((0, L0), (1, [-55, -20, -5], "easeOutQuad"), (3, [-95, 12, 0], "easeOutExpo"), (6, L0)),
-    "torso": rot((0, Z), (1, [0, -8, 0]), (3, [4, 18, 0], "easeOutExpo"), (6, Z)),
+anim("fist_left", 8, {        # 左ストレート
+    "body": {"rotation": [(0, Z), (2, [0, -15, 0], "easeOutQuad"), (4, [5, 20, 0], "easeOutExpo"), (6, [5, 20, 0]), (8, Z)],
+             "position": [(0, Z), (4, [0, -1, -2], "easeOutExpo"), (6, [0, -1, -2]), (8, Z)]},
+    "left_arm": rot((0, L0), (2, [-50, -25, -10], "easeOutQuad"), (4, [-95, 15, 0], "easeOutExpo"), (6, [-95, 15, 0]), (8, L0)),
+    "right_arm": rot((0, R0), (2, [-70, 20, 5]), (4, [-50, -15, 0]), (8, R0)),
+    "right_leg": rot((0, Z), (4, [-20, 0, 0], "easeOutExpo"), (6, [-20, 0, 0]), (8, Z)),
 })
-anim("fist_skill", 12, {     # しゃがんでアッパー
-    "body": {"position": [(0, Z), (3, [0, -2, 0]), (6, [0, 5, 0], "easeOutExpo"), (12, Z)]},
-    "right_arm": rot((0, R0), (3, [-15, 0, 20], "easeOutQuad"), (6, [-178, -10, 0], "easeOutExpo"), (12, R0)),
-    "left_arm": rot((0, L0), (3, [-70, 20, -10]), (6, [-30, 0, -20]), (12, L0)),
-    "torso": rot((0, Z), (3, [18, 12, 0]), (6, [-12, -12, 0], "easeOutExpo"), (12, Z)),
+def fist_rapid(name, count, step, length):
+    r = [(0, R0)]; l = [(0, L0)]; bd = [(0, Z)]
+    for i in range(count):
+        t = 1 + i * step
+        if i % 2 == 0:
+            r += [(t, [-95, -10 + (i % 3) * 8, 0], "easeOutExpo"), (t + step, [-55, 20, 5])]; bd.append((t, [5, -12, 0], "easeOutExpo"))
+        else:
+            l += [(t, [-95, 10 - (i % 3) * 8, 0], "easeOutExpo"), (t + step, [-55, -20, -5])]; bd.append((t, [5, 12, 0], "easeOutExpo"))
+    r.append((length, R0)); l.append((length, L0)); bd.append((length, Z))
+    anim(name, length, {"body": {"rotation": bd, "position": [(0, Z), (2, [0, -2, -2]), (length - 4, [0, -2, -2]), (length, Z)]},
+                        "right_arm": {"rotation": r}, "left_arm": {"rotation": l},
+                        "left_leg": rot((0, Z), (2, [-25, 0, 0]), (length - 4, [-25, 0, 0]), (length, Z)),
+                        "right_leg": rot((0, Z), (2, [20, 0, 0]), (length - 4, [20, 0, 0]), (length, Z))})
+fist_rapid("fist_rush", 8, 3, 30)       # ラッシュ：8回
+fist_rapid("fist_hundred", 30, 2, 66)   # 百裂拳：30回（0.1秒ごと）
+anim("fist_straight", 14, {   # 正拳突き：腰を落として、重い一撃
+    "body": {"rotation": [(0, Z), (5, [5, 30, 0], "easeOutQuad"), (7, [10, -25, 0], "easeOutExpo"), (11, [10, -25, 0]), (14, Z)],
+             "position": [(0, Z), (5, [0, -3, 1]), (7, [0, -4, -4], "easeOutExpo"), (11, [0, -4, -4]), (14, Z)]},
+    "right_arm": rot((0, R0), (5, [-30, 30, 15], "easeOutQuad"), (7, [-92, -12, 0], "easeOutExpo"), (11, [-92, -12, 0]), (14, R0)),
+    "left_arm": rot((0, L0), (5, [-85, -20, -5]), (7, [-30, 20, -10], "easeOutExpo"), (11, [-30, 20, -10]), (14, L0)),
+    "left_leg": rot((0, Z), (7, [-40, 0, 0], "easeOutExpo"), (11, [-40, 0, 0]), (14, Z)),
+    "right_leg": rot((0, Z), (7, [30, 0, 0], "easeOutExpo"), (11, [30, 0, 0]), (14, Z)),
+})
+anim("fist_dash", 14, {       # 踏み込み拳：前へ飛び込みながら殴る
+    "body": {"rotation": [(0, Z), (3, [25, -15, 0], "easeOutQuad"), (10, [25, -15, 0]), (14, Z)],
+             "position": [(0, Z), (3, [0, -3, -4]), (10, [0, -3, -4]), (14, Z)]},
+    "right_arm": rot((0, R0), (3, [-100, -10, 0], "easeOutExpo"), (10, [-100, -10, 0]), (14, R0)),
+    "left_arm": rot((0, L0), (3, [30, 0, -20]), (10, [30, 0, -20]), (14, L0)),
+    "left_leg": rot((0, Z), (3, [-45, 0, 0]), (10, [-45, 0, 0]), (14, Z)),
+    "right_leg": rot((0, Z), (3, [40, 0, 0]), (10, [40, 0, 0]), (14, Z)),
+})
+anim("fist_uppercut", 16, {   # 昇龍拳：しゃがんで、跳び上がりながら突き上げる
+    "body": {"rotation": [(0, Z), (4, [20, 15, 0], "easeOutQuad"), (7, [-15, -20, 0], "easeOutExpo"), (12, [-15, -20, 0]), (16, Z)],
+             "position": [(0, Z), (4, [0, -4, 0]), (7, [0, 6, -2], "easeOutExpo"), (12, [0, 5, -2]), (16, Z)]},
+    "right_arm": rot((0, R0), (4, [-10, 10, 25], "easeOutQuad"), (7, [-178, -10, 0], "easeOutExpo"), (12, [-178, -10, 0]), (16, R0)),
+    "left_arm": rot((0, L0), (4, [-70, 20, -10]), (7, [-20, 0, -30], "easeOutExpo"), (12, [-20, 0, -30]), (16, L0)),
+    "right_leg": rot((0, Z), (4, [-40, 0, 0]), (7, [10, 0, 0], "easeOutExpo"), (12, [10, 0, 0]), (16, Z)),
+    "left_leg": rot((0, Z), (4, [-30, 0, 0]), (7, [-50, 0, 0], "easeOutExpo"), (12, [-50, 0, 0]), (16, Z)),
+})
+anim("fist_ki", 24, {         # 気合い・気功：腰を落とし、両拳を腰に引いて気をためる
+    "body": {"position": [(0, Z), (5, [0, -4, 0], "easeOutQuad"), (19, [0, -4, 0]), (24, Z)]},
+    "head": rot((0, Z), (5, [-15, 0, 0]), (19, [-15, 0, 0]), (24, Z)),
+    "right_arm": rot((0, R0), (5, [20, 0, 25], "easeOutQuad"), (19, [20, 0, 25]), (24, R0)),
+    "left_arm": rot((0, L0), (5, [20, 0, -25], "easeOutQuad"), (19, [20, 0, -25]), (24, L0)),
+    "right_leg": rot((0, Z), (5, [-20, 0, 18]), (19, [-20, 0, 18]), (24, Z)),
+    "left_leg": rot((0, Z), (5, [-20, 0, -18]), (19, [-20, 0, -18]), (24, Z)),
+})
+anim("fist_kick", 16, {       # 旋風脚：片足を上げて、くるっと回し蹴り
+    "body": {"rotation": [(0, Z), (3, [0, 30, 0]), (11, [0, -330, 0], "easeOutQuart"), (13, [0, -350, 0]), (16, [0, -360, 0])],
+             "position": [(0, Z), (3, [0, 2, 0]), (11, [0, 2, 0]), (16, Z)]},
+    "right_leg": rot((0, Z), (3, [-30, 0, 70], "easeOutQuad"), (11, [-20, 0, 85]), (13, [-20, 0, 80]), (16, Z)),
+    "left_leg": rot((0, Z), (3, [5, 0, -10]), (13, [5, 0, -10]), (16, Z)),
+    "right_arm": rot((0, R0), (3, [-40, 0, 60]), (13, [-40, 0, 60]), (16, R0)),
+    "left_arm": rot((0, L0), (3, [-40, 0, -60]), (13, [-40, 0, -60]), (16, L0)),
+})
+anim("fist_double_ready", 12, {  # 双拳打ちのため：両拳を後ろへ引く
+    "body": {"rotation": [(0, Z), (6, [10, 0, 0], "easeOutQuad"), (12, [10, 0, 0])], "position": [(0, Z), (6, [0, -3, 1]), (12, [0, -3, 1])]},
+    "right_arm": rot((0, R0), (6, [25, 0, 20], "easeOutQuad"), (12, [25, 0, 20])),
+    "left_arm": rot((0, L0), (6, [25, 0, -20], "easeOutQuad"), (12, [25, 0, -20])),
+    "right_leg": rot((0, Z), (6, [25, 0, 0]), (12, [25, 0, 0])),
+    "left_leg": rot((0, Z), (6, [-30, 0, 0]), (12, [-30, 0, 0])),
+})
+anim("fist_double", 14, {     # 双拳打ち：両拳を同時に打ち込む
+    "body": {"rotation": [(0, [10, 0, 0]), (3, [12, 0, 0], "easeOutExpo"), (10, [12, 0, 0]), (14, Z)],
+             "position": [(0, [0, -3, 1]), (3, [0, -3, -4], "easeOutExpo"), (10, [0, -3, -4]), (14, Z)]},
+    "right_arm": rot((0, [25, 0, 20]), (3, [-92, -12, 0], "easeOutExpo"), (10, [-92, -12, 0]), (14, R0)),
+    "left_arm": rot((0, [25, 0, -20]), (3, [-92, 12, 0], "easeOutExpo"), (10, [-92, 12, 0]), (14, L0)),
+    "right_leg": rot((0, [25, 0, 0]), (3, [30, 0, 0]), (10, [30, 0, 0]), (14, Z)),
+    "left_leg": rot((0, [-30, 0, 0]), (3, [-40, 0, 0]), (10, [-40, 0, 0]), (14, Z)),
+})
+anim("fist_stomp", 18, {      # 震脚：片ひざを高く上げて、地面を踏み鳴らす
+    "body": {"rotation": [(0, Z), (6, [-5, 0, 0], "easeOutQuad"), (9, [15, 0, 0], "easeInQuart"), (14, [15, 0, 0]), (18, Z)],
+             "position": [(0, Z), (6, [0, 1, 0]), (9, [0, -4, 0], "easeInQuart"), (14, [0, -4, 0]), (18, Z)]},
+    "right_leg": rot((0, Z), (6, [-95, 0, 5], "easeOutQuad"), (9, [-20, 0, 12], "easeInQuart"), (14, [-20, 0, 12]), (18, Z)),
+    "left_leg": rot((0, Z), (9, [-15, 0, -12], "easeInQuart"), (14, [-15, 0, -12]), (18, Z)),
+    "right_arm": rot((0, R0), (6, [-60, 0, 40]), (9, [10, 0, 35], "easeInQuart"), (14, [10, 0, 35]), (18, R0)),
+    "left_arm": rot((0, L0), (6, [-60, 0, -40]), (9, [10, 0, -35], "easeInQuart"), (14, [10, 0, -35]), (18, L0)),
+})
+anim("fist_overlord_ready", 22, {  # 覇王拳のため：深く腰を落とし、右の拳を大きく引く
+    "body": {"rotation": [(0, Z), (8, [10, 40, 0], "easeOutQuad"), (22, [10, 42, 0])], "position": [(0, Z), (8, [0, -5, 1]), (22, [0, -5, 1])]},
+    "right_arm": rot((0, R0), (8, [30, 20, 25], "easeOutQuad"), (22, [32, 20, 25])),
+    "left_arm": rot((0, L0), (8, [-90, -10, -5], "easeOutQuad"), (22, [-90, -10, -5])),
+    "right_leg": rot((0, Z), (8, [30, 0, 10]), (22, [30, 0, 10])),
+    "left_leg": rot((0, Z), (8, [-40, 0, -10]), (22, [-40, 0, -10])),
+})
+anim("fist_overlord", 20, {   # 奥義・覇王拳：体ごと、渾身の拳を打ち出す
+    "body": {"rotation": [(0, [10, 42, 0]), (3, [15, -35, 0], "easeOutExpo"), (14, [15, -35, 0]), (20, Z)],
+             "position": [(0, [0, -5, 1]), (3, [0, -5, -6], "easeOutExpo"), (14, [0, -5, -6]), (20, Z)]},
+    "right_arm": rot((0, [32, 20, 25]), (3, [-92, -15, 0], "easeOutExpo"), (14, [-92, -15, 0]), (20, R0)),
+    "left_arm": rot((0, [-90, -10, -5]), (3, [20, 20, -20], "easeOutExpo"), (14, [20, 20, -20]), (20, L0)),
+    "right_leg": rot((0, [30, 0, 10]), (3, [35, 0, 0]), (14, [35, 0, 0]), (20, Z)),
+    "left_leg": rot((0, [-40, 0, -10]), (3, [-50, 0, 0]), (14, [-50, 0, 0]), (20, Z)),
 })
 
 # ================= 鞭 =================
-anim("whip_crack", 10, {     # 振りかぶって前へ打ちつける
-    "right_arm": rot((0, R0), (3, [-195, 25, 15], "easeOutQuad"), (5, [-70, -10, 0], "easeOutExpo"), (10, R0)),
-    "torso": rot((0, Z), (3, [-8, 12, 0]), (5, [10, -12, 0], "easeOutExpo"), (10, Z)),
-    "right_item": rot((0, Z), (3, [85, 0, 0], "easeOutQuad"), (5, [-45, 0, 0], "easeOutExpo"), (10, Z)),
+anim("whip_crack", 12, {      # 振りかぶって、前へ打ちつける（伸びる鞭は別に描く）
+    "body": {"rotation": [(0, Z), (4, [-8, 20, 0], "easeOutQuad"), (6, [10, -15, 0], "easeOutExpo"), (9, [10, -15, 0]), (12, Z)],
+             "position": [(0, Z), (6, [0, -1, -2], "easeOutExpo"), (9, [0, -1, -2]), (12, Z)]},
+    "right_arm": rot((0, R0), (4, [-185, 25, 15], "easeOutQuad"), (6, [-75, -10, 0], "easeOutExpo"), (9, [-75, -10, 0]), (12, R0)),
+    "right_item": rot((0, Z), (4, [40, 0, 0], "easeOutQuad"), (6, [-30, 0, 0], "easeOutExpo"), (12, Z)),
+    "left_leg": rot((0, Z), (6, [-25, 0, 0], "easeOutExpo"), (9, [-25, 0, 0]), (12, Z)),
 })
-anim("whip_skill", 16, {     # 頭の上で回してから打つ
-    "right_arm": rot((0, R0), (2, [-170, 30, 10]), (4, [-170, -30, -5]), (6, [-170, 30, 10]), (8, [-170, -30, -5]),
-                     (11, [-65, -10, 0], "easeOutExpo"), (16, R0)),
-    "torso": rot((0, Z), (8, [-6, 0, 0]), (11, [12, -10, 0], "easeOutExpo"), (16, Z)),
-    "right_item": rot((0, Z), (8, [60, 0, 0]), (11, [-45, 0, 0], "easeOutExpo"), (16, Z)),
+anim("whip_side", 12, {       # 横から打つ
+    "body": {"rotation": [(0, Z), (4, [0, 40, 0], "easeOutQuad"), (6, [5, -30, 0], "easeOutExpo"), (9, [5, -30, 0]), (12, Z)]},
+    "right_arm": rot((0, R0), (4, [-80, 75, 30], "easeOutQuad"), (6, [-85, -30, 0], "easeOutExpo"), (9, [-85, -30, 0]), (12, R0)),
+    "right_item": rot((0, Z), (4, [20, 0, 90]), (6, [-20, 0, 90], "easeOutExpo"), (12, Z)),
+    "left_leg": rot((0, Z), (6, [-20, 0, 0], "easeOutExpo"), (9, [-20, 0, 0]), (12, Z)),
+})
+anim("whip_lash", 16, {       # 鞭打ち（技）：大きく振りかぶって、遠くまで打つ
+    "body": {"rotation": [(0, Z), (5, [-12, 25, 0], "easeOutQuad"), (8, [15, -20, 0], "easeOutExpo"), (12, [15, -20, 0]), (16, Z)],
+             "position": [(0, Z), (5, [0, 1, 2]), (8, [0, -2, -4], "easeOutExpo"), (12, [0, -2, -4]), (16, Z)]},
+    "right_arm": rot((0, R0), (5, [-200, 25, 15], "easeOutQuad"), (8, [-80, -10, 0], "easeOutExpo"), (12, [-80, -10, 0]), (16, R0)),
+    "right_item": rot((0, Z), (5, [45, 0, 0], "easeOutQuad"), (8, [-35, 0, 0], "easeOutExpo"), (16, Z)),
+    "left_arm": rot((0, L0), (5, [-60, -10, -20]), (8, [-15, 0, -40]), (12, [-15, 0, -40]), (16, L0)),
+    "left_leg": rot((0, Z), (8, [-35, 0, 0], "easeOutExpo"), (12, [-35, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (8, [25, 0, 0], "easeOutExpo"), (12, [25, 0, 0]), (16, Z)),
+})
+anim("whip_call", 20, {       # 相棒を呼ぶ：鞭を高く掲げて、頭の上でくるりと回す
+    "right_arm": rot((0, R0), (4, [-170, 25, 10]), (7, [-170, -25, -5]), (10, [-170, 25, 10]), (13, [-170, -25, -5]), (16, [-165, 0, 5]), (20, R0)),
+    "left_arm": rot((0, L0), (4, [-20, 0, -40]), (16, [-20, 0, -40]), (20, L0)),
+    "head": rot((0, Z), (4, [-20, 0, 0]), (16, [-20, 0, 0]), (20, Z)),
+})
+anim("whip_point", 16, {      # 突撃：鞭で敵を指して「行けっ！」
+    "body": {"rotation": [(0, Z), (4, [-5, 20, 0], "easeOutQuad"), (6, [12, -10, 0], "easeOutExpo"), (12, [12, -10, 0]), (16, Z)],
+             "position": [(0, Z), (6, [0, -2, -3], "easeOutExpo"), (12, [0, -2, -3]), (16, Z)]},
+    "right_arm": rot((0, R0), (4, [-170, 20, 10], "easeOutQuad"), (6, [-95, 0, 0], "easeOutExpo"), (12, [-95, 0, 0]), (16, R0)),
+    "right_item": rot((0, Z), (4, [40, 0, 0]), (6, [-40, 0, 0], "easeOutExpo"), (16, Z)),
+    "left_leg": rot((0, Z), (6, [-35, 0, 0], "easeOutExpo"), (12, [-35, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (6, [25, 0, 0], "easeOutExpo"), (12, [25, 0, 0]), (16, Z)),
+})
+anim("whip_roar", 26, {       # 咆哮・野生解放・百獣の号令：両腕を広げて、天へ吠える
+    "body": {"rotation": [(0, Z), (6, [-15, 0, 0], "easeOutQuad"), (20, [-15, 0, 0]), (26, Z)],
+             "position": [(0, Z), (3, [0, -3, 0]), (6, [0, 1, 0], "easeOutQuad"), (20, [0, 1, 0]), (26, Z)]},
+    "head": rot((0, Z), (6, [-40, 0, 0], "easeOutQuad"), (20, [-40, 0, 0]), (26, Z)),
+    "right_arm": rot((0, R0), (3, [10, 0, 20]), (6, [-130, 0, 45], "easeOutQuad"), (20, [-132, 0, 48]), (26, R0)),
+    "left_arm": rot((0, L0), (3, [10, 0, -20]), (6, [-130, 0, -45], "easeOutQuad"), (20, [-132, 0, -48]), (26, L0)),
+    "right_leg": rot((0, Z), (6, [5, 0, 12]), (20, [5, 0, 12]), (26, Z)),
+    "left_leg": rot((0, Z), (6, [-5, 0, -12]), (20, [-5, 0, -12]), (26, Z)),
 })
 
 # ================= 杖・魔法 =================
@@ -361,11 +764,50 @@ anim("cast_charge", 60, {    # 詠唱中：杖を掲げ、左手をかざす
     "torso": rot((0, Z), (5, [-4, 0, 0]), (60, [-4, 0, 0])),
 })
 
-# ================= 盾 =================
-anim("shield_bash", 10, {    # 両腕で前へ押し出す
-    "right_arm": rot((0, R0), (3, [-60, 10, 10], "easeOutQuad"), (5, [-95, -10, 0], "easeOutExpo"), (10, R0)),
-    "left_arm": rot((0, L0), (3, [-60, -10, -10], "easeOutQuad"), (5, [-95, 15, 0], "easeOutExpo"), (10, L0)),
-    "torso": rot((0, Z), (3, [-6, 0, 0]), (5, [15, 0, 0], "easeOutExpo"), (10, Z)),
+# ================= 盾騎士（左手に盾、右手に剣） =================
+anim("shield_bash", 12, {     # シールドバッシュ：盾を前へ叩きつける
+    "body": {"rotation": [(0, Z), (4, [-5, -25, 0], "easeOutQuad"), (6, [12, 20, 0], "easeOutExpo"), (9, [12, 20, 0]), (12, Z)],
+             "position": [(0, Z), (4, [0, 0, 2]), (6, [0, -2, -4], "easeOutExpo"), (9, [0, -2, -4]), (12, Z)]},
+    "left_arm": rot((0, L0), (4, [-50, -30, -10], "easeOutQuad"), (6, [-95, 20, 0], "easeOutExpo"), (9, [-95, 20, 0]), (12, L0)),
+    "right_arm": rot((0, R0), (4, [-30, 20, 15]), (9, [-30, 20, 15]), (12, R0)),
+    "left_leg": rot((0, Z), (6, [-35, 0, 0], "easeOutExpo"), (9, [-35, 0, 0]), (12, Z)),
+    "right_leg": rot((0, Z), (6, [25, 0, 0], "easeOutExpo"), (9, [25, 0, 0]), (12, Z)),
+})
+anim("shield_taunt", 24, {    # 挑発：剣で盾をたたいて、敵を呼ぶ
+    "left_arm": rot((0, L0), (4, [-75, 25, 0], "easeOutQuad"), (20, [-75, 25, 0]), (24, L0)),
+    "right_arm": rot((0, R0), (4, [-120, -20, 0]), (6, [-75, -35, 0], "easeOutExpo"), (9, [-120, -20, 0]), (11, [-75, -35, 0], "easeOutExpo"),
+                     (14, [-120, -20, 0]), (16, [-75, -35, 0], "easeOutExpo"), (20, [-70, -30, 0]), (24, R0)),
+    "head": rot((0, Z), (4, [-10, 0, 0]), (20, [-10, 0, 0]), (24, Z)),
+})
+anim("shield_charge", 16, {   # シールドチャージ：盾を前に構えて突進
+    "body": {"rotation": [(0, Z), (3, [20, 15, 0], "easeOutQuad"), (12, [20, 15, 0]), (16, Z)],
+             "position": [(0, Z), (3, [0, -3, -3]), (12, [0, -3, -3]), (16, Z)]},
+    "left_arm": rot((0, L0), (3, [-90, 25, 0], "easeOutQuad"), (12, [-90, 25, 0]), (16, L0)),
+    "right_arm": rot((0, R0), (3, [-20, 20, 20]), (12, [-20, 20, 20]), (16, R0)),
+    "left_leg": rot((0, Z), (3, [-45, 0, 0]), (7, [30, 0, 0]), (12, [-40, 0, 0]), (16, Z)),
+    "right_leg": rot((0, Z), (3, [35, 0, 0]), (7, [-40, 0, 0]), (12, [35, 0, 0]), (16, Z)),
+})
+anim("shield_wall", 80, {     # 鉄壁の構え・聖盾の裁き：腰を落として、盾の後ろに身を隠す
+    "body": {"rotation": [(0, Z), (4, [15, 0, 0]), (76, [15, 0, 0]), (80, Z)], "position": [(0, Z), (4, [0, -5, 0]), (76, [0, -5, 0]), (80, Z)]},
+    "left_arm": rot((0, L0), (4, [-85, 30, 0], "easeOutQuad"), (76, [-85, 30, 0]), (80, L0)),
+    "right_arm": rot((0, R0), (4, [-40, -20, 0]), (76, [-40, -20, 0]), (80, R0)),
+    "left_leg": rot((0, Z), (4, [-40, 0, -10]), (76, [-40, 0, -10]), (80, Z)),
+    "right_leg": rot((0, Z), (4, [30, 0, 10]), (76, [30, 0, 10]), (80, Z)),
+})
+anim("shield_raise", 24, {    # かばう・守護の陣・金剛不壊：剣と盾を高く掲げる
+    "body": {"rotation": [(0, Z), (5, [-8, 0, 0], "easeOutQuad"), (19, [-8, 0, 0]), (24, Z)]},
+    "head": rot((0, Z), (5, [-20, 0, 0]), (19, [-20, 0, 0]), (24, Z)),
+    "right_arm": rot((0, R0), (5, [-165, 0, 15], "easeOutQuad"), (19, [-167, 0, 15]), (24, R0)),
+    "right_item": rot((0, Z), (5, [-40, 0, 0]), (19, [-40, 0, 0]), (24, Z)),
+    "left_arm": rot((0, L0), (5, [-120, 10, -25], "easeOutQuad"), (19, [-120, 10, -25]), (24, L0)),
+})
+anim("shield_plant", 20, {    # 城壁：盾を地面に突き立てる
+    "body": {"rotation": [(0, Z), (5, [-5, 0, 0]), (8, [20, 0, 0], "easeInQuart"), (16, [20, 0, 0]), (20, Z)],
+             "position": [(0, Z), (5, [0, 1, 0]), (8, [0, -4, -2], "easeInQuart"), (16, [0, -4, -2]), (20, Z)]},
+    "left_arm": rot((0, L0), (5, [-140, 20, -10], "easeOutQuad"), (8, [-60, 20, 0], "easeInQuart"), (16, [-60, 20, 0]), (20, L0)),
+    "right_arm": rot((0, R0), (5, [-30, 20, 20]), (16, [-30, 20, 20]), (20, R0)),
+    "left_leg": rot((0, Z), (8, [-35, 0, 0], "easeInQuart"), (16, [-35, 0, 0]), (20, Z)),
+    "right_leg": rot((0, Z), (8, [25, 0, 0], "easeInQuart"), (16, [25, 0, 0]), (20, Z)),
 })
 
 if __name__ == "__main__":
@@ -389,7 +831,8 @@ def sound_kind(n):
     return None
 
 def strike_ticks(n, a):
-    if n.endswith("_whirl"): return [3, 8, 13]
+    if n.endswith("_whirl"): return [3, 8, 13] if n.startswith(("sword", "katana")) else [3, 9, 15]
+    if n == "axe_frenzy": return list(range(4, 76, 8))
     bone = "left_arm" if n.endswith("_left") else "right_arm"
     rot = a["bones"].get(bone, {}).get("rotation")
     if not rot: return []
