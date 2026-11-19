@@ -40,6 +40,9 @@ public enum Machine {
         };
     }
 
+    /** 天井：ボーナスなしでこのゲーム数に来たら、必ずボーナスが当たる */
+    public static final int CEILING = 350;
+
     /** 連チャン系のモード：0=通常 1=天国 2=ドキドキ（どちらも32ゲームまで） */
     public static final int MODE_NORMAL = 0, MODE_HEAVEN = 1, MODE_DOKI = 2, MODE_GAMES = 32;
 

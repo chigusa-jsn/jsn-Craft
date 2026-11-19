@@ -90,6 +90,11 @@ public final class PachiService {
                     int mode = d.getInt("mode");
                     if (y < Machine.tropicalBonus(mode)) newHeld = r.nextDouble() < m.bigShare ? 1 : 2;
                 }
+                // 天井：ボーナスなしで 350 ゲームに来たら必ず当たる（クラウンはBIG、トロピカルはそのあと天国）
+                if (newHeld == 0 && d.getInt("games") + 1 >= Machine.CEILING) {
+                    newHeld = m == Machine.CROWN ? 1 : (r.nextDouble() < m.bigShare ? 1 : 2);
+                    d.putBoolean("ceiling", true);
+                }
                 if (newHeld > 0) {
                     d.putInt("held", newHeld);
                     // ランプ：レバーで光る（先ペカ）か、3つ目を止めたら光る（後ペカ）
@@ -171,9 +176,12 @@ public final class PachiService {
                 event = 5;
                 if (m == Machine.TROPICAL) {
                     double x = p.getRandom().nextDouble();
-                    d.putInt("mode", x < 0.06 ? Machine.MODE_DOKI : x < 0.5 ? Machine.MODE_HEAVEN : Machine.MODE_NORMAL);
+                    int mode = x < 0.06 ? Machine.MODE_DOKI : x < 0.5 ? Machine.MODE_HEAVEN : Machine.MODE_NORMAL;
+                    if (d.getBoolean("ceiling") && mode == Machine.MODE_NORMAL) mode = Machine.MODE_HEAVEN;   // 天井のあとは天国
+                    d.putInt("mode", mode);
                     d.putInt("modeGames", 0);
                 }
+                d.putBoolean("ceiling", false);
             }
         }
         if (pay > 0) Chips.give(p, pay);

@@ -324,7 +324,7 @@ public class PachiScreen extends Screen {
         g.drawString(font, state != null && state.replay() ? "§bリプレイ" : "§f" + (state != null && state.bonus() > 0 ? 3 : bet) + "枚（" + lines + "ライン）", ix + 50, iy + 12, 0xFFFFFF);
         if (state != null) {
             g.drawString(font, "§7ゲーム数", ix, iy + 28, 0xFFFFFF);
-            g.drawString(font, "§f" + state.games(), ix + 50, iy + 28, 0xFFFFFF);
+            g.drawString(font, "§f" + state.games() + " §8/ 天井" + Machine.CEILING, ix + 50, iy + 28, 0xFFFFFF);
             g.drawString(font, "§6BIG §f" + state.big() + "  §bREG §f" + state.reg(), ix, iy + 40, 0xFFFFFF);
             if (state.bonus() > 0) {
                 boolean blink = (ticks / 6) % 2 == 0;
