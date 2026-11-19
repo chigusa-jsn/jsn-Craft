@@ -747,6 +747,111 @@ anim("whip_roar", 26, {       # 咆哮・野生解放・百獣の号令：両腕
     "left_leg": rot((0, Z), (6, [-5, 0, -12]), (20, [-5, 0, -12]), (26, Z)),
 })
 
+# ================= 弓の技（右手で弓を前へ、左手で弦を引く） =================
+# バニラの弓を引く腕：右 x -90 y -6、左 x -90 y +29。pitch で上へ向ける（x をさらにマイナス）
+def bow_arms(pitch=0, pull=0.0, yaw=0):
+    """pull 0 = 弦に手をかけただけ、1 = いっぱいに引いた。yaw は体のひねり（そのぶん腕を戻して、狙いはまっすぐ前のまま）"""
+    return [-90 - pitch, -6 - yaw, 0], [-90 - pitch, 29 + 26 * pull - yaw, -8 * pull]
+
+def bow_shots(times, pitch=0, end=None, draw=3, step_back=False):
+    """times の tick に矢を放つ：放つ draw tick 前から引いて、放つと左手が後ろへはじける"""
+    r, l, bd = [(0, R0)], [(0, L0)], [(0, Z)]
+    for t in times:
+        t0 = max(1, t - draw)
+        ra, la = bow_arms(pitch, 0.1, 10); r.append((t0, ra, "easeOutQuad")); l.append((t0, la, "easeOutQuad")); bd.append((t0, [0, 10, 0]))
+        ra, la = bow_arms(pitch, 1.0, 18); r.append((t, ra)); l.append((t, la)); bd.append((t, [0, 18, 0]))
+        l.append((t + 1, [-80 - pitch, 75 - 14, -25], "easeOutExpo")); r.append((t + 1, [-92 - pitch, -8 - 14, 0], "easeOutExpo")); bd.append((t + 1, [-3, 14, 0], "easeOutExpo"))
+    end = end or times[-1] + 8
+    r.append((end, R0)); l.append((end, L0)); bd.append((end, Z))
+    # 同じ tick が重なったら後のほうを使う
+    def uniq(fr):
+        d = {}
+        for f in fr: d[f[0]] = f
+        return [d[k] for k in sorted(d)]
+    return {"right_arm": {"rotation": uniq(r)}, "left_arm": {"rotation": uniq(l)}, "body": {"rotation": uniq(bd)}}
+
+def bow_anim(name, length, times, pitch=0, extra=None, draw=3):
+    b = bow_shots(times, pitch, length, draw)
+    for k, v in (extra or {}).items():
+        if k == "body" and "body" in b:
+            b["body"].update(v)
+        else:
+            b[k] = v
+    anim(name, length, b)
+
+bow_anim("bow_double", 14, [3, 7])                         # ダブルショット：すばやく2本
+bow_anim("bow_shot", 12, [4], extra={                      # 爆裂矢など：しっかり引いて1本
+    "left_leg": rot((0, Z), (4, [-15, 0, 0]), (8, [-15, 0, 0]), (12, Z))})
+anim("bow_power_ready", 14, {                              # パワーショットのため：腰を落として、いっぱいに引きしぼる
+    "body": {"rotation": [(0, Z), (8, [-5, 25, 0], "easeOutQuad"), (14, [-5, 26, 0])], "position": [(0, Z), (8, [0, -3, 1]), (14, [0, -3, 1])]},
+    "right_arm": rot((0, R0), (8, bow_arms(0, 0, 26)[0], "easeOutQuad"), (14, bow_arms(0, 0, 26)[0])),
+    "left_arm": rot((0, L0), (8, bow_arms(0, 1.3, 26)[1], "easeOutQuad"), (14, bow_arms(0, 1.35, 26)[1])),
+    "left_leg": rot((0, Z), (8, [-25, 0, -8]), (14, [-25, 0, -8])),
+    "right_leg": rot((0, Z), (8, [20, 0, 8]), (14, [20, 0, 8])),
+})
+anim("bow_release", 14, {                                  # 渾身の一射：はなすと、反動で少しのけぞる
+    "body": {"rotation": [(0, [-5, 26, 0]), (1, [-12, 20, 0], "easeOutExpo"), (8, [-8, 18, 0]), (14, Z)],
+             "position": [(0, [0, -3, 1]), (1, [0, -3, 3], "easeOutExpo"), (8, [0, -3, 2]), (14, Z)]},
+    "right_arm": rot((0, bow_arms(0, 0, 26)[0]), (1, [-98, -28, 0], "easeOutExpo"), (8, [-95, -26, 0]), (14, R0)),
+    "left_arm": rot((0, bow_arms(0, 1.35, 26)[1]), (1, [-75, 65, -30], "easeOutExpo"), (8, [-70, 65, -30]), (14, L0)),
+    "left_leg": rot((0, [-25, 0, -8]), (8, [-25, 0, -8]), (14, Z)),
+    "right_leg": rot((0, [20, 0, 8]), (8, [20, 0, 8]), (14, Z)),
+})
+bow_anim("bow_back_step", 14, [3], extra={                 # バックステップ：後ろへ跳びながら撃つ
+    "body": {"position": [(0, Z), (3, [0, 3, 4], "easeOutQuad"), (8, [0, 0, 3]), (14, Z)]},
+    "left_leg": rot((0, Z), (3, [-35, 0, 0]), (8, [-20, 0, 0]), (14, Z)),
+    "right_leg": rot((0, Z), (3, [-10, 0, 0]), (8, [10, 0, 0]), (14, Z))}, draw=2)
+bow_anim("bow_rain", 16, [5], pitch=50, extra={            # アローレイン：空へ向けて放つ
+    "body": {"position": [(0, Z), (5, [0, -1, 0]), (16, Z)]},
+    "head": rot((0, Z), (5, [-35, 0, 0]), (10, [-35, 0, 0]), (16, Z))}, draw=4)
+anim("bow_snipe_ready", 26, {                              # スナイプのため：片ひざをついて、じっと狙う
+    "body": {"rotation": [(0, Z), (8, [0, 22, 0], "easeOutQuad"), (26, [0, 22, 0])], "position": [(0, Z), (8, [0, -6, 0], "easeOutQuad"), (26, [0, -6, 0])]},
+    "right_arm": rot((0, R0), (8, bow_arms(0, 0, 22)[0], "easeOutQuad"), (26, bow_arms(0, 0, 22)[0])),
+    "left_arm": rot((0, L0), (8, bow_arms(0, 1.2, 22)[1], "easeOutQuad"), (26, bow_arms(0, 1.25, 22)[1])),
+    "left_leg": rot((0, Z), (8, [-70, 0, -5], "easeOutQuad"), (26, [-70, 0, -5])),
+    "right_leg": rot((0, Z), (8, [30, 0, 5], "easeOutQuad"), (26, [30, 0, 5])),
+})
+anim("bow_snipe", 16, {                                    # スナイプ：ひざをついたまま、鋭く放つ
+    "body": {"rotation": [(0, [0, 22, 0]), (1, [-5, 18, 0], "easeOutExpo"), (10, [-3, 20, 0]), (16, Z)],
+             "position": [(0, [0, -6, 0]), (10, [0, -6, 0]), (16, Z)]},
+    "right_arm": rot((0, bow_arms(0, 0, 22)[0]), (1, [-95, -26, 0], "easeOutExpo"), (10, [-93, -26, 0]), (16, R0)),
+    "left_arm": rot((0, bow_arms(0, 1.25, 22)[1]), (1, [-75, 60, -25], "easeOutExpo"), (10, [-75, 60, -25]), (16, L0)),
+    "left_leg": rot((0, [-70, 0, -5]), (10, [-70, 0, -5]), (16, Z)),
+    "right_leg": rot((0, [30, 0, 5]), (10, [30, 0, 5]), (16, Z)),
+})
+anim("bow_wind", 24, {                                     # 風読み：左手を空へかざして、風を感じる
+    "left_arm": rot((0, L0), (6, [-150, 0, -30], "easeOutQuad"), (18, [-152, 0, -32]), (24, L0)),
+    "right_arm": rot((0, R0), (6, [-20, 0, 15]), (18, [-20, 0, 15]), (24, R0)),
+    "head": rot((0, Z), (6, [-25, 15, 0]), (18, [-25, -15, 0]), (24, Z)),
+})
+bow_anim("bow_storm", 104, list(range(4, 100, 5)), pitch=50, extra={  # アローストーム：空へ向けて、休まず撃ち続ける（5秒）
+    "head": rot((0, Z), (4, [-35, 0, 0]), (100, [-35, 0, 0]), (104, Z)),
+    "left_leg": rot((0, Z), (4, [-20, 0, -8]), (100, [-20, 0, -8]), (104, Z)),
+    "right_leg": rot((0, Z), (4, [15, 0, 8]), (100, [15, 0, 8]), (104, Z))}, draw=2)
+anim("bow_meteor_ready", 22, {                             # 流星の矢のため：大きく引きしぼって、光をためる
+    "body": {"rotation": [(0, Z), (8, [-8, 28, 0], "easeOutQuad"), (22, [-8, 30, 0])], "position": [(0, Z), (8, [0, -3, 1]), (22, [0, -3, 1])]},
+    "right_arm": rot((0, R0), (8, bow_arms(0, 0, 30)[0], "easeOutQuad"), (22, bow_arms(0, 0, 30)[0])),
+    "left_arm": rot((0, L0), (8, bow_arms(0, 1.35, 30)[1], "easeOutQuad"), (22, bow_arms(0, 1.4, 30)[1])),
+    "left_leg": rot((0, Z), (8, [-25, 0, -8]), (22, [-25, 0, -8])),
+    "right_leg": rot((0, Z), (8, [20, 0, 8]), (22, [20, 0, 8])),
+})
+anim("bow_sky_ready", 32, {                                # 天穿のため：真上の空へ弓を向けて、引きしぼる
+    "body": {"rotation": [(0, Z), (8, [-15, 0, 0], "easeOutQuad"), (32, [-15, 0, 0])], "position": [(0, Z), (8, [0, -2, 0]), (32, [0, -2, 0])]},
+    "head": rot((0, Z), (8, [-55, 0, 0], "easeOutQuad"), (32, [-55, 0, 0])),
+    "right_arm": rot((0, R0), (8, bow_arms(80, 0)[0], "easeOutQuad"), (32, bow_arms(80, 0)[0])),
+    "left_arm": rot((0, L0), (8, bow_arms(70, 1.2)[1], "easeOutQuad"), (32, bow_arms(70, 1.25)[1])),
+    "left_leg": rot((0, Z), (8, [-15, 0, -10]), (32, [-15, 0, -10])),
+    "right_leg": rot((0, Z), (8, [15, 0, 10]), (32, [15, 0, 10])),
+})
+anim("bow_sky", 20, {                                      # 奥義・天穿：天へ放つ
+    "body": {"rotation": [(0, [-15, 0, 0]), (1, [-20, 0, 0], "easeOutExpo"), (12, [-18, 0, 0]), (20, Z)], "position": [(0, [0, -2, 0]), (12, [0, -2, 0]), (20, Z)]},
+    "head": rot((0, [-55, 0, 0]), (12, [-55, 0, 0]), (20, Z)),
+    "right_arm": rot((0, bow_arms(80, 0)[0]), (1, [-175, -8, 0], "easeOutExpo"), (12, [-172, -8, 0]), (20, R0)),
+    "left_arm": rot((0, bow_arms(70, 1.25)[1]), (1, [-120, 80, -30], "easeOutExpo"), (12, [-120, 80, -30]), (20, L0)),
+    "left_leg": rot((0, [-15, 0, -10]), (12, [-15, 0, -10]), (20, Z)),
+    "right_leg": rot((0, [15, 0, 10]), (12, [15, 0, 10]), (20, Z)),
+})
+
 # ================= 杖・魔法 =================
 anim("staff_strike", 10, {
     "right_arm": rot((0, R0), (3, [-160, 15, 10], "easeOutQuad"), (6, [-50, -20, 0], "easeInQuad"), (10, R0)),
@@ -827,7 +932,7 @@ if __name__ == "__main__":
 
 # ================= 振る音のタイミング（anim/AnimSounds.java を作る） =================
 STRIKE = {"easeOutQuart", "easeInQuart", "easeOutExpo"}
-NO_SOUND = ("_ready", "_hold", "cast", "_parry", "_lunge", "dagger_skill")
+NO_SOUND = ("_ready", "_hold", "cast", "_parry", "_lunge", "dagger_skill", "bow_")
 
 def sound_kind(n):
     if any(k in n for k in ("_flash", "_leap", "_moon")) or n.startswith(("axe_", "shield_")): return "heavy"

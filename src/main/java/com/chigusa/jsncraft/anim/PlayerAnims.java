@@ -53,14 +53,19 @@ public final class PlayerAnims {
             // 鞭（獣使い）
             Map.entry("beast_lash", "whip_lash"), Map.entry("beast_charge", "whip_point"), Map.entry("beast_rally", "whip_call"),
             Map.entry("beast_roar", "whip_roar"), Map.entry("beast_frenzy", "whip_roar"), Map.entry("beast_king_command", "whip_roar"),
+            // 弓
+            Map.entry("bow_double_shot", "bow_double"), Map.entry("bow_power_shot", "bow_release"), Map.entry("bow_back_step", "bow_back_step"),
+            Map.entry("bow_arrow_rain", "bow_rain"), Map.entry("bow_blast_arrow", "bow_shot"), Map.entry("bow_snipe", "bow_snipe"),
+            Map.entry("bow_wind_read", "bow_wind"), Map.entry("bow_arrow_storm", "bow_storm"), Map.entry("bow_meteor_arrow", "bow_release"),
+            Map.entry("bow_sky_pierce", "bow_sky"),
             // 盾騎士
             Map.entry("guard_bash", "shield_bash"), Map.entry("guard_taunt", "shield_taunt"), Map.entry("guard_charge", "shield_charge"),
             Map.entry("guard_iron_wall", "shield_wall"), Map.entry("guard_cover", "shield_raise"), Map.entry("guard_formation", "shield_raise"),
             Map.entry("guard_rampart", "shield_plant"), Map.entry("guard_judgment", "shield_wall"), Map.entry("guard_adamant", "shield_raise"));
     /** ため（詠唱）のある技の、ため中の動き */
-    static final Map<String, String> READY_ANIMS = Map.of("axe_sunder", "axe_sunder_ready", "axe_sky_breaker", "axe_sky_ready",
-            "spear_poseidon", "spear_raise_ready", "dagger_assassinate", "dagger_crouch", "dagger_netherworld", "dagger_crouch",
-            "fist_double", "fist_double_ready", "fist_overlord", "fist_overlord_ready", "guard_adamant", "shield_raise");
+    static final Map<String, String> READY_ANIMS = Map.ofEntries(Map.entry("bow_power_shot", "bow_power_ready"), Map.entry("bow_snipe", "bow_snipe_ready"),
+            Map.entry("bow_meteor_arrow", "bow_meteor_ready"), Map.entry("bow_sky_pierce", "bow_sky_ready"),
+            Map.entry("axe_sunder", "axe_sunder_ready"), Map.entry("axe_sky_breaker", "axe_sky_ready"), Map.entry("spear_poseidon", "spear_raise_ready"), Map.entry("dagger_assassinate", "dagger_crouch"), Map.entry("dagger_netherworld", "dagger_crouch"), Map.entry("fist_double", "fist_double_ready"), Map.entry("fist_overlord", "fist_overlord_ready"), Map.entry("guard_adamant", "shield_raise"));
 
     /** 動きの名前として受け付けるか（まわりへ送る前に確かめる） */
     static boolean validName(String n) {
@@ -82,7 +87,6 @@ public final class PlayerAnims {
     /** 技を出したときの動き（技ごとに決まっている。決まっていなければ持っている武器で） */
     public static void skill(ServerPlayer p, SkillDefinition s) {
         String e = s.effect();
-        if (e.startsWith("bow_")) return; // 弓はバニラの引く動きのまま
         Item item = p.getMainHandItem().getItem();
         if (item instanceof SwordItem && SWORD_SKILLS.containsKey(e)) {
             play(p, (item instanceof KatanaItem ? "katana_" : "sword_") + SWORD_SKILLS.get(e));
