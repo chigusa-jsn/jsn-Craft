@@ -730,5 +730,7 @@
   "block.jsn_craft.pachislot_crown": "パチスロ「ピカッとクラウン」",
   "block.jsn_craft.pachislot_tropical": "パチスロ「トロピカル・ドキドキ」",
   "block.jsn_craft.roulette_table": "ルーレット台",
-  "block.jsn_craft.blackjack_table": "ブラックジャック台"
+  "block.jsn_craft.blackjack_table": "ブラックジャック台",
+  "block.jsn_craft.video_poker": "ビデオポーカー",
+  "block.jsn_craft.chinchiro_table": "チンチロリン台"
 }

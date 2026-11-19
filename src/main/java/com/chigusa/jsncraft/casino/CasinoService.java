@@ -20,6 +20,8 @@ public final class CasinoService {
     public static void open(ServerPlayer p, CasinoGame game, BlockPos pos) {
         PacketDistributor.sendToPlayer(p, new CasinoPayloads.Open(game.ordinal(), pos, Chips.count(p), Money.walletInChips(p), Money.hasLightman()));
         if (game == CasinoGame.BLACKJACK) Blackjack.open(p);
+        if (game == CasinoGame.POKER) VideoPoker.open(p);
+        if (game == CasinoGame.CHINCHIRO) Chinchiro.open(p);
         if (game == CasinoGame.PACHI_CROWN || game == CasinoGame.PACHI_TROPICAL) com.chigusa.jsncraft.casino.pachi.PachiService.open(p, game);
     }
 

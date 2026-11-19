@@ -21,6 +21,8 @@ public final class CasinoClient {
             case PACHI_TROPICAL -> new PachiScreen(p.pos(), com.chigusa.jsncraft.casino.pachi.Machine.TROPICAL);
             case ROULETTE -> new RouletteScreen(p.pos());
             case BLACKJACK -> new BlackjackScreen(p.pos());
+            case POKER -> new PokerScreen(p.pos());
+            case CHINCHIRO -> new ChinchiroScreen(p.pos());
         });
     }
 
@@ -48,6 +50,16 @@ public final class CasinoClient {
         chips = b.chips();
         if (Minecraft.getInstance().screen instanceof BlackjackScreen s) s.onState(b);
         else lastBj = b;
+    }
+
+    public static void poker(CasinoPayloads.PokerState s) {
+        chips = s.chips();
+        if (Minecraft.getInstance().screen instanceof PokerScreen ps) ps.onState(s);
+    }
+
+    public static void chinchiro(CasinoPayloads.ChinchiroState s) {
+        if (Minecraft.getInstance().screen instanceof ChinchiroScreen cs) cs.onState(s);
+        else chips = s.chips();
     }
 
     /** 画面が開く前に届いた卓の様子 */

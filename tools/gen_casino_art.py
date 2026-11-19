@@ -277,3 +277,56 @@ for lang, add in {"ja_jp": {"block.jsn_craft.roulette_table": "ルーレット�
                   "en_us": {"block.jsn_craft.roulette_table": "Roulette Table", "block.jsn_craft.blackjack_table": "Blackjack Table"}}.items():
     p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
 print("tables ok")
+
+# ================= ビデオポーカー台・チンチロ台 =================
+def poker_front(d, im):
+    side(d, im)
+    d.rectangle([3, 3, 28, 17], fill=hx("#0a1a3a"))
+    for i in range(5):
+        x = 4 + i * 5
+        d.rectangle([x, 7, x + 3, 13], fill=CREAM); d.point((x + 1, 9), fill=hx("#c01818" if i % 2 else "#101010"))
+    d.rectangle([5, 20, 26, 22], fill=GOLD_D)
+    for i in range(5): d.rectangle([6 + i * 4, 20, 8 + i * 4, 21], fill=hx("#f0f0f0"))
+    d.rectangle([9, 26, 22, 29], fill=hx("#1a1018"))
+tex("poker_front", poker_front)
+def poker_sign(d, im):
+    d.rectangle([0, 0, 31, 31], fill=hx("#1a1018")); d.rectangle([0, 0, 31, 31], outline=GOLD, width=2)
+    for i, (c, x) in enumerate((("#101010", 5), ("#c01818", 12), ("#c01818", 19))):
+        d.polygon([(x + 3, 9), (x + 6, 14), (x + 3, 20), (x, 14)], fill=hx(c) if i else hx("#e8e8e8"))
+    d.rectangle([4, 24, 27, 26], fill=GOLD)
+tex("poker_sign", poker_sign)
+pk = {"parent": "minecraft:block/block", "textures": dict(T, front="jsn_craft:block/casino/poker_front", sign="jsn_craft:block/casino/poker_sign"),
+      "elements": [box([1, 0, 2], [15, 13, 15], n="front"), box([2, 13, 4], [14, 16, 13], n="sign", s="sign")]}
+wj(f"{A}/models/block/video_poker.json", pk)
+
+def chin_top(d, im):
+    felt_base(d)
+    d.ellipse([6, 6, 25, 25], fill=hx("#f0e8dc")); d.ellipse([8, 8, 23, 23], fill=hx("#d8ccb8"))
+    for x, y, c in ((11, 12, "#c01818"), (17, 14, "#101010"), (13, 18, "#101010")):
+        d.rectangle([x, y, x + 3, y + 3], fill=hx("#ffffff")); d.point((x + 1, y + 1), fill=hx(c))
+tex("chinchiro_top", chin_top)
+ch = {"parent": "minecraft:block/block", "textures": {"felt": "jsn_craft:block/casino/chinchiro_top", "wood": "jsn_craft:block/casino/table_side",
+                                                      "particle": "jsn_craft:block/casino/table_side"},
+      "elements": [box([0, 11, 0], [16, 14, 16], n="wood", s="wood", e="wood", w="wood", u="felt", dn="wood"),
+                   box([6, 0, 6], [10, 11, 10], n="wood", s="wood", e="wood", w="wood", u="wood", dn="wood"),
+                   box([3, 0, 3], [13, 1, 13], n="wood", s="wood", e="wood", w="wood", u="wood", dn="wood")]}
+wj(f"{A}/models/block/chinchiro_table.json", ch)
+for b, tool in (("video_poker", "pickaxe"), ("chinchiro_table", "axe")):
+    wj(f"{A}/blockstates/{b}.json", {"variants": {f"facing={f}": ({"model": f"jsn_craft:block/{b}"} | ({"y": y} if y else {}))
+                                                  for f, y in (("north", 0), ("east", 90), ("south", 180), ("west", 270))}})
+    wj(f"{A}/models/item/{b}.json", {"parent": f"jsn_craft:block/{b}"})
+    wj(f"{D}/loot_table/blocks/{b}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"jsn_craft:{b}"}],
+                                                                                  "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+    p = f"{R}/data/minecraft/tags/block/mineable/{tool}.json"; dd = json.load(open(p, encoding="utf-8"))
+    if f"jsn_craft:{b}" not in dd["values"]: dd["values"].append(f"jsn_craft:{b}")
+    wj(p, dd)
+wj(f"{D}/recipe/video_poker.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GPG", "RDR", "III"],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "P": {"item": "minecraft:paper"}, "R": {"item": "minecraft:redstone"},
+            "D": {"item": "minecraft:diamond"}, "I": {"item": "minecraft:iron_ingot"}}, "result": {"id": "jsn_craft:video_poker", "count": 1}})
+wj(f"{D}/recipe/chinchiro_table.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["BBB", "WFW", " W "],
+    "key": {"B": {"item": "minecraft:bone"}, "F": {"item": "minecraft:flower_pot"}, "W": {"tag": "minecraft:planks"}},
+    "result": {"id": "jsn_craft:chinchiro_table", "count": 1}})
+for lang, add in {"ja_jp": {"block.jsn_craft.video_poker": "ビデオポーカー", "block.jsn_craft.chinchiro_table": "チンチロリン台"},
+                  "en_us": {"block.jsn_craft.video_poker": "Video Poker", "block.jsn_craft.chinchiro_table": "Chinchirorin Table"}}.items():
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
+print("poker/chinchiro ok")

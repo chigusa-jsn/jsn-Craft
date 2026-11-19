@@ -125,5 +125,63 @@ public final class CasinoPayloads {
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
+    /** 本人 → サーバー：ポーカー（draw=false で配る、true で引き直し。hold は残すカードのビット） */
+    public record PokerAction(BlockPos pos, boolean draw, int bet, int hold) implements CustomPacketPayload {
+        public static final Type<PokerAction> TYPE = new Type<>(JsnCraft.id("poker_action"));
+        public static final StreamCodec<ByteBuf, PokerAction> STREAM_CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, PokerAction::pos, ByteBufCodecs.BOOL, PokerAction::draw, ByteBufCodecs.VAR_INT, PokerAction::bet,
+                ByteBufCodecs.VAR_INT, PokerAction::hold, PokerAction::new);
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    /** サーバー → 本人：ポーカーの手（dealt=true は引き直し待ち。rank=-1 はチップ不足） */
+    public record PokerState(boolean dealt, int[] cards, int rank, long payout, long chips) implements CustomPacketPayload {
+        public static final Type<PokerState> TYPE = new Type<>(JsnCraft.id("poker_state"));
+        public static final StreamCodec<ByteBuf, PokerState> STREAM_CODEC = StreamCodec.of((buf, s) -> {
+            buf.writeBoolean(s.dealt);
+            for (int i = 0; i < 5; i++) ByteBufCodecs.VAR_INT.encode(buf, s.cards[i] + 1);
+            ByteBufCodecs.VAR_INT.encode(buf, s.rank + 1);
+            ByteBufCodecs.VAR_LONG.encode(buf, s.payout);
+            ByteBufCodecs.VAR_LONG.encode(buf, s.chips);
+        }, buf -> {
+            boolean d = buf.readBoolean();
+            int[] c = new int[5];
+            for (int i = 0; i < 5; i++) c[i] = ByteBufCodecs.VAR_INT.decode(buf) - 1;
+            return new PokerState(d, c, ByteBufCodecs.VAR_INT.decode(buf) - 1, ByteBufCodecs.VAR_LONG.decode(buf), ByteBufCodecs.VAR_LONG.decode(buf));
+        });
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    /** 本人 → サーバー：チンチロ（roll=false で勝負開始、true で振る） */
+    public record ChinchiroAction(BlockPos pos, boolean roll, int bet) implements CustomPacketPayload {
+        public static final Type<ChinchiroAction> TYPE = new Type<>(JsnCraft.id("chinchiro_action"));
+        public static final StreamCodec<ByteBuf, ChinchiroAction> STREAM_CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, ChinchiroAction::pos, ByteBufCodecs.BOOL, ChinchiroAction::roll, ByteBufCodecs.VAR_INT, ChinchiroAction::bet,
+                ChinchiroAction::new);
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
+    /** サーバー → 本人：チンチロの様子（さいころは3つずつ並ぶ） */
+    public record ChinchiroState(boolean playerTurn, List<Integer> dealer, List<Integer> player, int dealerHand, int playerHand,
+                                 int result, long back, boolean done, boolean noChips, int bet, long chips) implements CustomPacketPayload {
+        public static final Type<ChinchiroState> TYPE = new Type<>(JsnCraft.id("chinchiro_state"));
+        public static final StreamCodec<ByteBuf, ChinchiroState> STREAM_CODEC = StreamCodec.of((buf, s) -> {
+            buf.writeBoolean(s.playerTurn);
+            INTS.encode(buf, s.dealer);
+            INTS.encode(buf, s.player);
+            ByteBufCodecs.VAR_INT.encode(buf, s.dealerHand + 1);
+            ByteBufCodecs.VAR_INT.encode(buf, s.playerHand + 1);
+            ByteBufCodecs.VAR_INT.encode(buf, s.result + 10);
+            ByteBufCodecs.VAR_LONG.encode(buf, s.back);
+            buf.writeBoolean(s.done);
+            buf.writeBoolean(s.noChips);
+            ByteBufCodecs.VAR_INT.encode(buf, s.bet);
+            ByteBufCodecs.VAR_LONG.encode(buf, s.chips);
+        }, buf -> new ChinchiroState(buf.readBoolean(), INTS.decode(buf), INTS.decode(buf), ByteBufCodecs.VAR_INT.decode(buf) - 1,
+                ByteBufCodecs.VAR_INT.decode(buf) - 1, ByteBufCodecs.VAR_INT.decode(buf) - 10, ByteBufCodecs.VAR_LONG.decode(buf),
+                buf.readBoolean(), buf.readBoolean(), ByteBufCodecs.VAR_INT.decode(buf), ByteBufCodecs.VAR_LONG.decode(buf)));
+        @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+
     private CasinoPayloads() {}
 }
