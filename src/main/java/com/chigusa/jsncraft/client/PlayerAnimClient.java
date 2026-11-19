@@ -5,6 +5,7 @@ import com.chigusa.jsncraft.network.AnimPayloads;
 import com.chigusa.jsncraft.weapon.DaggerItem;
 import com.chigusa.jsncraft.weapon.GauntletItem;
 import com.chigusa.jsncraft.weapon.JobSpearItem;
+import com.chigusa.jsncraft.weapon.KatanaItem;
 import com.chigusa.jsncraft.weapon.StaffItem;
 import com.chigusa.jsncraft.weapon.WhipItem;
 import dev.kosmx.playerAnim.api.IPlayable;
@@ -43,6 +44,8 @@ import net.neoforged.neoforge.network.PacketDistributor;
 public final class PlayerAnimClient {
 
     static final ResourceLocation LAYER = JsnCraft.id("weapon");
+    /** 持っているあいだのかまえ（刀の両手持ちなど）。振りの動きより下の層 */
+    static final ResourceLocation HOLD = JsnCraft.id("hold");
     private static int combo;
     private static long lastSwing;
 
@@ -55,6 +58,7 @@ public final class PlayerAnimClient {
         }
         @SuppressWarnings("unchecked") ModifierLayer<IAnimation> layer = (ModifierLayer<IAnimation>) raw;
         IPlayable anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id(name));
+        if (anim == null && name.startsWith("katana_")) anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id("sword_" + name.substring(7)));
         if (anim == null) {
             JsnCraft.LOGGER.warn("[jsn-craft] 体の動き {} が見つかりません（player_animations/weapons.json）", name);
             return;
@@ -87,14 +91,37 @@ public final class PlayerAnimClient {
         if (main.isEmpty()) return GauntletItem.equipped(p).isEmpty() ? null : left ? "fist_left" : "fist_right";
         if (i instanceof WhipItem) return "whip_crack";
         if (i instanceof StaffItem) return "staff_strike";
+        if (i instanceof KatanaItem) return new String[]{"katana_slash_1", "katana_slash_2", "katana_slash_3"}[c % 3];
         if (i instanceof SwordItem) return new String[]{"sword_slash_1", "sword_slash_2", "sword_slash_3"}[c % 3];
         if (i instanceof AxeItem) return new String[]{"axe_chop_1", "axe_chop_2"}[c % 2];
         if (i instanceof JobSpearItem || i instanceof TridentItem) return new String[]{"spear_thrust", "spear_sweep", "spear_thrust"}[c % 3];
         return null;
     }
 
+    /** 持っている武器のかまえ（刀は両手持ち）。刀を持ったら始めて、持ちかえたらやめる */
+    static void tickHold(AbstractClientPlayer p) {
+        if (!(PlayerAnimationAccess.getPlayerAssociatedData(p).get(HOLD) instanceof ModifierLayer<?> raw)) return;
+        @SuppressWarnings("unchecked") ModifierLayer<IAnimation> layer = (ModifierLayer<IAnimation>) raw;
+        boolean katana = p.getMainHandItem().getItem() instanceof KatanaItem && p.getOffhandItem().isEmpty()
+                && !p.isSleeping() && !p.isPassenger() && !p.isSwimming() && !p.isFallFlying();
+        boolean on = layer.getAnimation() != null && layer.getAnimation().isActive();
+        if (katana && !on) {
+            IPlayable anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id("katana_hold"));
+            if (anim != null) layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(4, Ease.INOUTSINE), anim.playAnimation(), true);
+        } else if (!katana && on) {
+            layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(4, Ease.INOUTSINE), null);
+        }
+    }
+
     @EventBusSubscriber(modid = JsnCraft.MODID, value = Dist.CLIENT)
     public static final class Game {
+        @SubscribeEvent
+        public static void onTick(net.neoforged.neoforge.client.event.ClientTickEvent.Post event) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.level == null) return;
+            for (AbstractClientPlayer p : mc.level.players()) tickHold(p);
+        }
+
         /** 攻撃ボタン（ブロックを掘るときは動かさない）。籠手・二刀流の左右は FistClient が先に決める */
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public static void onAttackKey(InputEvent.InteractionKeyMappingTriggered event) {
@@ -114,6 +141,7 @@ public final class PlayerAnimClient {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             PlayerAnimationFactory.ANIMATION_DATA_FACTORY.registerFactory(LAYER, 42, player -> new ModifierLayer<>());
+            PlayerAnimationFactory.ANIMATION_DATA_FACTORY.registerFactory(HOLD, 41, player -> new ModifierLayer<>());
         }
     }
 
