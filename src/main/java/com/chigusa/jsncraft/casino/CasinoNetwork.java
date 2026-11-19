@@ -50,6 +50,18 @@ public final class CasinoNetwork {
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) Chinchiro.action(sp, p.pos(), p.roll(), p.bet());
                 }));
+        r.playToClient(com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.State.TYPE, com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.State.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.casino.CasinoClient.pachinkoState(p)));
+        r.playToClient(com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Shot.TYPE, com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Shot.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.casino.CasinoClient.pachinkoShot(p)));
+        r.playToServer(com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Shoot.TYPE, com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Shoot.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.casino.pachinko.PachinkoService.shoot(sp, p);
+                }));
+        r.playToServer(com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Balls.TYPE, com.chigusa.jsncraft.casino.pachinko.PachinkoPayloads.Balls.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.casino.pachinko.PachinkoService.balls(sp, p);
+                }));
         r.playToServer(CasinoPayloads.Spin.TYPE, CasinoPayloads.Spin.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) CasinoService.spin(sp, p);

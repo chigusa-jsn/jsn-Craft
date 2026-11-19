@@ -330,3 +330,51 @@ for lang, add in {"ja_jp": {"block.jsn_craft.video_poker": "ビデオポーカ�
                   "en_us": {"block.jsn_craft.video_poker": "Video Poker", "block.jsn_craft.chinchiro_table": "Chinchirorin Table"}}.items():
     p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
 print("poker/chinchiro ok")
+
+# ================= パチンコ台（縦2マス） =================
+def pk_side(d, im):
+    d.rectangle([0, 0, 31, 31], fill=hx("#3a1a4a"))
+    for y in range(0, 32, 4): d.line([0, y, 31, y], fill=hx("#2e1440"))
+    d.rectangle([0, 0, 31, 31], outline=GOLD, width=2)
+tex("pachinko_side", pk_side)
+def pk_upper(d, im):
+    pk_side(d, im)
+    d.ellipse([2, 4, 29, 40], fill=hx("#b0a090")); d.ellipse([4, 6, 27, 38], fill=hx("#2a6aa0"))
+    d.rectangle([11, 10, 20, 18], fill=hx("#0a0a20")); d.rectangle([11, 10, 20, 18], outline=GOLD)
+    for i, c in enumerate(("#ff4040", "#ff4040", "#ff4040")): d.rectangle([12 + i * 3, 13, 13 + i * 3, 15], fill=hx(c))
+    for y in range(8, 31, 4):
+        for x in range(6 + (y // 4) % 2 * 2, 27, 4):
+            if not (10 <= x <= 21 and 9 <= y <= 19): d.point((x, y), fill=hx("#e8e8f0"))
+tex("pachinko_upper", pk_upper)
+def pk_lower(d, im):
+    pk_side(d, im)
+    d.rectangle([4, 0, 27, 12], fill=hx("#2a6aa0"))
+    for y in range(1, 11, 4):
+        for x in range(6 + (y // 4) % 2 * 2, 27, 4): d.point((x, y), fill=hx("#e8e8f0"))
+    d.rectangle([14, 6, 17, 8], fill=hx("#f0c040"))                     # ヘソ
+    d.rectangle([4, 15, 27, 21], fill=hx("#c8c8d0")); d.rectangle([5, 16, 26, 20], fill=hx("#a0a0b0"))   # 上皿
+    for x in range(7, 25, 3): d.ellipse([x, 16, x + 2, 18], fill=hx("#f0f0f8"))
+    d.ellipse([22, 23, 29, 30], fill=hx("#c8c8d0")); d.ellipse([24, 25, 27, 28], fill=hx("#e04040"))   # ハンドル
+    d.rectangle([4, 24, 18, 28], fill=hx("#1a1018"))
+tex("pachinko_lower", pk_lower)
+T3 = {"side": "jsn_craft:block/casino/pachinko_side", "top": "jsn_craft:block/casino/pachinko_side", "particle": "jsn_craft:block/casino/pachinko_side"}
+wj(f"{A}/models/block/pachinko_lower.json", {"parent": "minecraft:block/block", "textures": dict(T3, front="jsn_craft:block/casino/pachinko_lower"),
+    "elements": [box([1, 0, 2], [15, 16, 15], n="front"), box([2, 5, 0.5], [14, 7, 2])]})
+wj(f"{A}/models/block/pachinko_upper.json", {"parent": "minecraft:block/block", "textures": dict(T3, front="jsn_craft:block/casino/pachinko_upper"),
+    "elements": [box([1, 0, 2], [15, 15, 15], n="front")]})
+b = "pachinko"
+wj(f"{A}/blockstates/{b}.json", {"variants": {f"facing={f},half={h}": ({"model": f"jsn_craft:block/{b}_{h}"} | ({"y": y} if y else {}))
+                                              for f, y in (("north", 0), ("east", 90), ("south", 180), ("west", 270)) for h in ("lower", "upper")}})
+wj(f"{A}/models/item/{b}.json", {"parent": f"jsn_craft:block/{b}_lower"})
+wj(f"{D}/loot_table/blocks/{b}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"jsn_craft:{b}",
+    "conditions": [{"condition": "minecraft:block_state_property", "block": f"jsn_craft:{b}", "properties": {"half": "lower"}}]}],
+    "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+p = f"{R}/data/minecraft/tags/block/mineable/pickaxe.json"; dd = json.load(open(p, encoding="utf-8"))
+if f"jsn_craft:{b}" not in dd["values"]: dd["values"].append(f"jsn_craft:{b}")
+wj(p, dd)
+wj(f"{D}/recipe/pachinko.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GNG", "RDR", "III"],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "N": {"item": "minecraft:iron_nugget"}, "R": {"item": "minecraft:redstone"},
+            "D": {"item": "minecraft:diamond"}, "I": {"item": "minecraft:iron_ingot"}}, "result": {"id": "jsn_craft:pachinko", "count": 1}})
+for lang, add in {"ja_jp": {"block.jsn_craft.pachinko": "パチンコ台"}, "en_us": {"block.jsn_craft.pachinko": "Pachinko Machine"}}.items():
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
+print("pachinko ok")

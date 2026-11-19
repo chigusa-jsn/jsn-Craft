@@ -146,6 +146,7 @@ public final class ModTabs {
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.SLOT_MACHINE_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_CROWN_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_TROPICAL_ITEM.get());
+                out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHINKO_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.ROULETTE_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.BLACKJACK_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.POKER_ITEM.get());
