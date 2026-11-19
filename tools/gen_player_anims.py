@@ -811,6 +811,13 @@ anim("shield_plant", 20, {    # 城壁：盾を地面に突き立てる
     "right_leg": rot((0, Z), (8, [25, 0, 0], "easeInQuart"), (16, [25, 0, 0]), (20, Z)),
 })
 
+# 盾を体の正面へ寄せる：ガードの腕（y +30）のときは、盾を体の中心へ 5 ピクセルずらす
+SHIELD_CENTER = 5
+for _n in ("shield_bash", "shield_taunt", "shield_charge", "shield_wall", "shield_plant"):
+    _la = ANIMS[_n]["bones"]["left_arm"]["rotation"]
+    ANIMS[_n]["bones"]["left_item"] = {"position": {k: {"vector": [SHIELD_CENTER, 0, 0] if v["vector"][1] == 30 else [0, 0, 0], "easing": v["easing"]}
+                                                    for k, v in _la.items()}}
+
 if __name__ == "__main__":
     out = os.path.join(os.path.dirname(__file__), "..", "src/main/resources/assets/jsn_craft/player_animations/weapons.json")
     with open(out, "w") as f:

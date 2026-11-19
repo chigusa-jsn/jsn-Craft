@@ -24174,6 +24174,50 @@
        "easing": "easeInOutSine"
       }
      }
+    },
+    "left_item": {
+     "position": {
+      "0.0": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.2": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeOutQuad"
+      },
+      "0.3": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeOutExpo"
+      },
+      "0.45": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.6": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      }
+     }
     }
    }
   },
@@ -24314,6 +24358,42 @@
       "1": {
        "vector": [
         -10,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "1.2": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      }
+     }
+    },
+    "left_item": {
+     "position": {
+      "0.0": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.2": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeOutQuad"
+      },
+      "1": {
+       "vector": [
+        5,
         0,
         0
        ],
@@ -24564,6 +24644,42 @@
        "easing": "easeInOutSine"
       }
      }
+    },
+    "left_item": {
+     "position": {
+      "0.0": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.15": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeOutQuad"
+      },
+      "0.6": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.8": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      }
+     }
     }
    }
   },
@@ -24772,6 +24888,42 @@
         30,
         0,
         10
+       ],
+       "easing": "easeInOutSine"
+      },
+      "4": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      }
+     }
+    },
+    "left_item": {
+     "position": {
+      "0.0": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.2": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeOutQuad"
+      },
+      "3.8": {
+       "vector": [
+        5,
+        0,
+        0
        ],
        "easing": "easeInOutSine"
       },
@@ -25200,6 +25352,50 @@
       "0.8": {
        "vector": [
         25,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "1": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      }
+     }
+    },
+    "left_item": {
+     "position": {
+      "0.0": {
+       "vector": [
+        0,
+        0,
+        0
+       ],
+       "easing": "easeInOutSine"
+      },
+      "0.25": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeOutQuad"
+      },
+      "0.4": {
+       "vector": [
+        5,
+        0,
+        0
+       ],
+       "easing": "easeInQuart"
+      },
+      "0.8": {
+       "vector": [
+        5,
         0,
         0
        ],
