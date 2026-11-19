@@ -140,6 +140,13 @@ public final class ModTabs {
                 all(out, com.chigusa.jsncraft.armor.ModArmor.ITEMS);
             });
 
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CASINO = tab("casino", "jsn-Craft：カジノ",
+            () -> new ItemStack(com.chigusa.jsncraft.casino.ModCasino.SLOT_MACHINE_ITEM.get()), out -> {
+                out.accept(com.chigusa.jsncraft.casino.ModCasino.EXCHANGER_ITEM.get());
+                out.accept(com.chigusa.jsncraft.casino.ModCasino.SLOT_MACHINE_ITEM.get());
+                all(out, com.chigusa.jsncraft.casino.ModCasino.CHIPS);
+            });
+
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANCH = tab("ranch", "jsn-Craft：牧場",
             () -> new ItemStack(ModRanch.GOLDEN_EGG.get()), out -> {
                 out.accept(ModRanch.FEEDER_ITEM.get());

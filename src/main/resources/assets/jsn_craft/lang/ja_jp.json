@@ -720,5 +720,11 @@
   "item.jsn_craft.assassin_6_head": "星銀の暗殺者のずきん",
   "item.jsn_craft.assassin_6_chest": "星銀の暗殺者の上着",
   "item.jsn_craft.assassin_6_legs": "星銀の暗殺者のズボン",
-  "item.jsn_craft.assassin_6_feet": "星銀の暗殺者の足布"
+  "item.jsn_craft.assassin_6_feet": "星銀の暗殺者の足布",
+  "block.jsn_craft.slot_machine": "スロットマシン",
+  "block.jsn_craft.chip_exchanger": "両替機",
+  "item.jsn_craft.casino_chip_1": "カジノチップ（1）",
+  "item.jsn_craft.casino_chip_10": "カジノチップ（10）",
+  "item.jsn_craft.casino_chip_100": "カジノチップ（100）",
+  "item.jsn_craft.casino_chip_1000": "カジノチップ（1000）"
 }

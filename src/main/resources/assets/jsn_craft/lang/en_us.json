@@ -720,5 +720,11 @@
   "item.jsn_craft.assassin_6_head": "Star Silver Assassin Hood",
   "item.jsn_craft.assassin_6_chest": "Star Silver Assassin Jacket",
   "item.jsn_craft.assassin_6_legs": "Star Silver Assassin Pants",
-  "item.jsn_craft.assassin_6_feet": "Star Silver Assassin Foot Wraps"
+  "item.jsn_craft.assassin_6_feet": "Star Silver Assassin Foot Wraps",
+  "block.jsn_craft.slot_machine": "Slot Machine",
+  "block.jsn_craft.chip_exchanger": "Chip Exchanger",
+  "item.jsn_craft.casino_chip_1": "Casino Chip (1)",
+  "item.jsn_craft.casino_chip_10": "Casino Chip (10)",
+  "item.jsn_craft.casino_chip_100": "Casino Chip (100)",
+  "item.jsn_craft.casino_chip_1000": "Casino Chip (1000)"
 }
