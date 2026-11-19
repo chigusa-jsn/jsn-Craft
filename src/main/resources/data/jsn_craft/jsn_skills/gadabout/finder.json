@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "拾い物上手"
+  },
+  "description": {
+    "text": "ブロックを壊すと、1%で金塊・エメラルド・ダイヤを拾う。運が高いほど拾いやすい。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/finder",
+  "type": "passive",
+  "effect": "gad_finder",
+  "chance": 0.01
+}

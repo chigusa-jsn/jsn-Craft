@@ -1,0 +1,1342 @@
+{
+  "name": {
+    "text": "気ままな遊び人",
+    "color": "aqua"
+  },
+  "type": "life",
+  "tier": "basic",
+  "max_level": 50,
+  "skill_points_per_level": 2,
+  "xp": [
+    {
+      "action": "casino_jackpot",
+      "target": "*",
+      "xp": 40
+    },
+    {
+      "action": "casino_play",
+      "target": "*",
+      "xp": 2
+    }
+  ],
+  "skills": [
+    {
+      "skill": "jsn_craft:gadabout/playful",
+      "level": 1
+    },
+    {
+      "skill": "jsn_craft:gadabout/casino_sense",
+      "level": 5
+    },
+    {
+      "skill": "jsn_craft:gadabout/finder",
+      "level": 10
+    },
+    {
+      "skill": "jsn_craft:gadabout/whistle",
+      "level": 12
+    },
+    {
+      "skill": "jsn_craft:gadabout/lucky_cat",
+      "level": 15
+    },
+    {
+      "skill": "jsn_craft:gadabout/gambler_sense",
+      "level": 20
+    },
+    {
+      "skill": "jsn_craft:gadabout/lottery",
+      "level": 25
+    },
+    {
+      "skill": "jsn_craft:gadabout/lucky_body",
+      "level": 30
+    }
+  ],
+  "board_style": "hex",
+  "board": [
+    {
+      "id": "center",
+      "x": 0.0,
+      "y": 0,
+      "name": {
+        "text": "遊び人の心得"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 1
+        },
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ],
+      "start": true
+    },
+    {
+      "id": "luk1_0",
+      "x": -0.5,
+      "y": -1,
+      "name": {
+        "text": "強運 I"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "luk1_1",
+      "x": 0.5,
+      "y": -1,
+      "name": {
+        "text": "強運 I"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "luk1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "fun1_0",
+      "x": 1.0,
+      "y": 0,
+      "name": {
+        "text": "遊びの達人 I"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "luk1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "fun1_1",
+      "x": 0.5,
+      "y": 1,
+      "name": {
+        "text": "拾い物 I"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 1,
+      "links": [
+        "fun1_0",
+        "center"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "lzy1_0",
+      "x": -0.5,
+      "y": 1,
+      "name": {
+        "text": "のんき I"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "fun1_1",
+        "center"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "lzy1_1",
+      "x": -1.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 I"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "center",
+        "luk1_0",
+        "lzy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "luk2_0",
+      "x": -1.5,
+      "y": -1,
+      "name": {
+        "text": "ツイてる II"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 1,
+      "links": [
+        "luk1_0",
+        "lzy1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.005
+        }
+      ]
+    },
+    {
+      "id": "luk2_1",
+      "x": -1.0,
+      "y": -2,
+      "name": {
+        "text": "強運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "luk2_0",
+        "luk1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "luk2_2",
+      "x": 0.0,
+      "y": -2,
+      "name": {
+        "text": "強運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "luk2_1",
+        "luk1_0",
+        "luk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "luk2_3",
+      "x": 1.0,
+      "y": -2,
+      "name": {
+        "text": "強運 II"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 1,
+      "links": [
+        "luk2_2",
+        "luk1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "fun2_0",
+      "x": 1.5,
+      "y": -1,
+      "name": {
+        "text": "身軽 II"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 1,
+      "links": [
+        "luk2_3",
+        "luk1_1",
+        "fun1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "fun2_1",
+      "x": 2.0,
+      "y": 0,
+      "name": {
+        "text": "遊びの達人 II"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "fun2_0",
+        "fun1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "fun2_2",
+      "x": 1.5,
+      "y": 1,
+      "name": {
+        "text": "遊びの達人 II"
+      },
+      "icon": "minecraft:book",
+      "cost": 1,
+      "links": [
+        "fun2_1",
+        "fun1_0",
+        "fun1_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.03
+        }
+      ]
+    },
+    {
+      "id": "fun2_3",
+      "x": 1.0,
+      "y": 2,
+      "name": {
+        "text": "拾い物 II"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 1,
+      "links": [
+        "fun2_2",
+        "fun1_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.002
+        }
+      ]
+    },
+    {
+      "id": "lzy2_0",
+      "x": 0.0,
+      "y": 2,
+      "name": {
+        "text": "昼寝 II"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 1,
+      "links": [
+        "fun2_3",
+        "fun1_1",
+        "lzy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "lzy2_1",
+      "x": -1.0,
+      "y": 2,
+      "name": {
+        "text": "のんき II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "lzy2_0",
+        "lzy1_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "lzy2_2",
+      "x": -1.5,
+      "y": 1,
+      "name": {
+        "text": "丈夫 II"
+      },
+      "icon": "minecraft:apple",
+      "cost": 1,
+      "links": [
+        "lzy1_0",
+        "lzy1_1",
+        "lzy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "lzy2_3",
+      "x": -2.0,
+      "y": 0,
+      "name": {
+        "text": "のんき II"
+      },
+      "icon": "minecraft:bread",
+      "cost": 1,
+      "links": [
+        "lzy1_1",
+        "luk2_0",
+        "lzy2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "luk3_0",
+      "x": -2.0,
+      "y": -2,
+      "name": {
+        "text": "ツイてる III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "luk2_1",
+        "luk2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "luk3_1",
+      "x": -1.5,
+      "y": -3,
+      "name": {
+        "text": "強運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk3_0",
+        "luk2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "luk3_2",
+      "x": -0.5,
+      "y": -3,
+      "name": {
+        "text": "強運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk3_1",
+        "luk2_1",
+        "luk2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "luk3_3",
+      "x": 0.5,
+      "y": -3,
+      "name": {
+        "text": "四つ葉"
+      },
+      "icon": "minecraft:lily_of_the_valley",
+      "cost": 3,
+      "links": [
+        "luk3_2",
+        "luk2_2",
+        "luk2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "luk3_4",
+      "x": 1.5,
+      "y": -3,
+      "name": {
+        "text": "強運 III"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk3_3",
+        "luk2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "luk3_5",
+      "x": 2.0,
+      "y": -2,
+      "name": {
+        "text": "ツイてる III"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "luk3_4",
+        "luk2_3",
+        "fun2_0"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.007
+        }
+      ]
+    },
+    {
+      "id": "fun3_0",
+      "x": 2.5,
+      "y": -1,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "luk3_5",
+        "fun2_0",
+        "fun2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "fun3_1",
+      "x": 3.0,
+      "y": 0,
+      "name": {
+        "text": "遊びの達人 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "fun3_0",
+        "fun2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "fun3_2",
+      "x": 2.5,
+      "y": 1,
+      "name": {
+        "text": "遊びの達人 III"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "fun3_1",
+        "fun2_1",
+        "fun2_2"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.045
+        }
+      ]
+    },
+    {
+      "id": "fun3_3",
+      "x": 2.0,
+      "y": 2,
+      "name": {
+        "text": "大きな口笛"
+      },
+      "icon": "minecraft:goat_horn",
+      "cost": 3,
+      "links": [
+        "fun3_2",
+        "fun2_2",
+        "fun2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/whistle",
+          "field": "power",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "fun3_4",
+      "x": 1.5,
+      "y": 3,
+      "name": {
+        "text": "拾い物 III"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 2,
+      "links": [
+        "fun3_3",
+        "fun2_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.003
+        }
+      ]
+    },
+    {
+      "id": "fun3_5",
+      "x": 0.5,
+      "y": 3,
+      "name": {
+        "text": "身軽 III"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "fun3_4",
+        "fun2_3",
+        "lzy2_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.006
+        }
+      ]
+    },
+    {
+      "id": "lzy3_0",
+      "x": -0.5,
+      "y": 3,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fun3_5",
+        "lzy2_0",
+        "lzy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "lzy3_1",
+      "x": -1.5,
+      "y": 3,
+      "name": {
+        "text": "昼寝 III"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "lzy3_0",
+        "lzy2_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "lzy3_2",
+      "x": -2.0,
+      "y": 2,
+      "name": {
+        "text": "のんき III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "lzy2_1",
+        "lzy2_2",
+        "lzy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 12.0
+        }
+      ]
+    },
+    {
+      "id": "lzy3_3",
+      "x": -2.5,
+      "y": 1,
+      "name": {
+        "text": "毎日宝くじ"
+      },
+      "icon": "minecraft:paper",
+      "cost": 3,
+      "links": [
+        "lzy2_2",
+        "lzy2_3",
+        "lzy3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/lottery",
+          "field": "cooldown",
+          "amount": -120
+        }
+      ]
+    },
+    {
+      "id": "lzy3_4",
+      "x": -3.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 III"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "lzy2_3",
+        "lzy3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 1.5
+        }
+      ]
+    },
+    {
+      "id": "lzy3_5",
+      "x": -2.5,
+      "y": -1,
+      "name": {
+        "text": "のんき III"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "luk2_0",
+        "luk3_0",
+        "lzy3_4",
+        "lzy2_3"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 12.0
+        }
+      ]
+    },
+    {
+      "id": "luk4_0",
+      "x": -3.0,
+      "y": -2,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk3_0",
+        "lzy3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "luk4_1",
+      "x": -2.5,
+      "y": -3,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk3_1",
+        "luk4_0",
+        "luk3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "luk4_2",
+      "x": -2.0,
+      "y": -4,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk4_1",
+        "luk3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "luk4_3",
+      "x": -1.0,
+      "y": -4,
+      "name": {
+        "text": "★天性の遊び人"
+      },
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "links": [
+        "luk4_2",
+        "luk3_1",
+        "luk3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.02,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "luk4_4",
+      "x": 0.0,
+      "y": -4,
+      "name": {
+        "text": "ツイてる IV"
+      },
+      "icon": "minecraft:gold_nugget",
+      "cost": 2,
+      "links": [
+        "luk4_3",
+        "luk3_2",
+        "luk3_3"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.01
+        }
+      ]
+    },
+    {
+      "id": "luk4_5",
+      "x": 1.0,
+      "y": -4,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk4_4",
+        "luk3_3",
+        "luk3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "luk4_6",
+      "x": 2.0,
+      "y": -4,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk4_5",
+        "luk3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "luk4_7",
+      "x": 2.5,
+      "y": -3,
+      "name": {
+        "text": "強運 IV"
+      },
+      "icon": "minecraft:rabbit_foot",
+      "cost": 2,
+      "links": [
+        "luk4_6",
+        "luk3_4",
+        "luk3_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "fun4_0",
+      "x": 3.0,
+      "y": -2,
+      "name": {
+        "text": "遊びの達人 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "luk4_7",
+        "luk3_5",
+        "fun3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "fun4_1",
+      "x": 3.5,
+      "y": -1,
+      "name": {
+        "text": "遊びの達人 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "fun4_0",
+        "fun3_0",
+        "fun3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "fun4_2",
+      "x": 4.0,
+      "y": 0,
+      "name": {
+        "text": "拾い物 IV"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 2,
+      "links": [
+        "fun4_1",
+        "fun3_1"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "fun4_3",
+      "x": 3.5,
+      "y": 1,
+      "name": {
+        "text": "★宝の目"
+      },
+      "icon": "minecraft:diamond",
+      "cost": 5,
+      "links": [
+        "fun4_2",
+        "fun3_1",
+        "fun3_2"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.01,
+          "scale": false
+        }
+      ],
+      "big": true,
+      "min_level": 30
+    },
+    {
+      "id": "fun4_4",
+      "x": 3.0,
+      "y": 2,
+      "name": {
+        "text": "身軽 IV"
+      },
+      "icon": "minecraft:sugar",
+      "cost": 2,
+      "links": [
+        "fun4_3",
+        "fun3_2",
+        "fun3_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.movement_speed",
+          "amount": 0.008
+        }
+      ]
+    },
+    {
+      "id": "fun4_5",
+      "x": 2.5,
+      "y": 3,
+      "name": {
+        "text": "遊びの達人 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "fun4_4",
+        "fun3_3",
+        "fun3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "fun4_6",
+      "x": 2.0,
+      "y": 4,
+      "name": {
+        "text": "遊びの達人 IV"
+      },
+      "icon": "minecraft:book",
+      "cost": 2,
+      "links": [
+        "fun4_5",
+        "fun3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:job_xp_bonus",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "fun4_7",
+      "x": 1.0,
+      "y": 4,
+      "name": {
+        "text": "拾い物 IV"
+      },
+      "icon": "minecraft:emerald",
+      "cost": 2,
+      "links": [
+        "fun4_6",
+        "fun3_4",
+        "fun3_5"
+      ],
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.004
+        }
+      ]
+    },
+    {
+      "id": "lzy4_0",
+      "x": 0.0,
+      "y": 4,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "fun4_7",
+        "fun3_5",
+        "lzy3_0"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "lzy4_1",
+      "x": -1.0,
+      "y": 4,
+      "name": {
+        "text": "昼寝 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "lzy4_0",
+        "lzy3_0",
+        "lzy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    },
+    {
+      "id": "lzy4_2",
+      "x": -2.0,
+      "y": 4,
+      "name": {
+        "text": "のんき IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "lzy4_1",
+        "lzy3_1"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16
+        }
+      ]
+    },
+    {
+      "id": "lzy4_3",
+      "x": -2.5,
+      "y": 3,
+      "name": {
+        "text": "★お気楽な体"
+      },
+      "icon": "minecraft:golden_apple",
+      "cost": 5,
+      "links": [
+        "lzy3_1",
+        "lzy3_2",
+        "lzy4_2"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ],
+      "big": true,
+      "min_level": 40
+    },
+    {
+      "id": "lzy4_4",
+      "x": -3.0,
+      "y": 2,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "lzy3_2",
+        "lzy3_3",
+        "lzy4_3"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "lzy4_5",
+      "x": -3.5,
+      "y": 1,
+      "name": {
+        "text": "のんき IV"
+      },
+      "icon": "minecraft:bread",
+      "cost": 2,
+      "links": [
+        "lzy3_3",
+        "lzy3_4",
+        "lzy4_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 16
+        }
+      ]
+    },
+    {
+      "id": "lzy4_6",
+      "x": -4.0,
+      "y": 0,
+      "name": {
+        "text": "丈夫 IV"
+      },
+      "icon": "minecraft:apple",
+      "cost": 2,
+      "links": [
+        "lzy3_4",
+        "lzy4_5"
+      ],
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "lzy4_7",
+      "x": -3.5,
+      "y": -1,
+      "name": {
+        "text": "昼寝 IV"
+      },
+      "icon": "minecraft:honey_bottle",
+      "cost": 2,
+      "links": [
+        "lzy3_5",
+        "luk4_0",
+        "lzy4_6",
+        "lzy3_4"
+      ],
+      "effects": [
+        {
+          "attribute": "jsn_craft:stamina_regen",
+          "amount": 0.8
+        }
+      ]
+    }
+  ]
+}

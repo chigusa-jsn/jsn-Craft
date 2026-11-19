@@ -23,6 +23,20 @@ SPECS = {
     "high_roller/house_rules": "crown s=.7 y=-4 + barrier c=gold",
     "high_roller/royal_flush": "cards c=gold s=1.05 + sparkle s=.4 x=9 y=-9",
     "high_roller/seven_heaven": "pillar c=gold s=.9 + seven s=.5",
+    # ---- 気ままな遊び人（生活）
+    "gadabout/playful": "clover + up s=.4 x=8 y=-8 c=gold",
+    "gadabout/casino_sense": "chip c=blue s=.85 + sparkle s=.4 x=8 y=-8",
+    "gadabout/finder": "gem c=emerald s=.85 + eye s=.4 x=-8 y=8",
+    "gadabout/whistle": "note + wind s=.5 x=6 y=6",
+    "gadabout/lucky_cat": "cat c=white + coin s=.4 x=8 y=8",
+    "gadabout/gambler_sense": "chip c=gold s=.85 + up s=.4 x=8 y=-8",
+    "gadabout/lottery": "card c=gold s=.9 + star s=.4 x=8 y=-8",
+    "gadabout/lucky_body": "clover c=gold + heart s=.4 x=8 y=8",
+    # ---- 天下の大遊び人
+    "grand_gadabout/lucky_star": "star c=gold + clover s=.4 x=8 y=8",
+    "grand_gadabout/house_favorite": "crown s=.7 y=3 + chip s=.45 y=-7",
+    "grand_gadabout/big_lottery": "coin s=.6 x=-5 y=3 + coin s=.6 x=5 y=3 + coin s=.6 y=-5",
+    "grand_gadabout/heaven_luck": "sun c=gold + clover s=.45",
     # ---- 錬金術師
     "alchemist/brew_double": "potion c=pink s=.8 x=-4 + potion c=pink s=.8 x=4",
     "alchemist/brew_quality": "potion c=amethyst + star s=.4 x=8 y=-8",

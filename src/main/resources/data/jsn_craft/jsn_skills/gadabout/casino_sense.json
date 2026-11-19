@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "勝負勘"
+  },
+  "description": {
+    "text": "カジノで少しツイてる：スロット・パチスロ・パチンコが3%当たりやすく、テーブルで負けたチップの3%がもどる。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/casino_sense",
+  "type": "passive",
+  "effect": "gad_casino_1",
+  "power": 0.03
+}

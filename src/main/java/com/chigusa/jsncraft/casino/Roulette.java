@@ -74,6 +74,13 @@ public final class Roulette {
         long payout = 0;
         for (CasinoPayloads.Bet b : bets) payout += (long) b.amount() * multiplier(b.type(), b.value(), n);
         if (payout > 0) Chips.give(p, payout);
+        CasinoLuck.played(p, total, payout);
+        // 結果を見せてから（盤が止まってから）もどす
+        long lost = total - payout;
+        if (lost > 0) com.chigusa.jsncraft.skill.SkillEffects.later(p, 100, () -> {
+            CasinoLuck.refund(p, lost);
+            p.containerMenu.broadcastChanges();
+        });
         p.containerMenu.broadcastChanges();
         PacketDistributor.sendToPlayer(p, new CasinoPayloads.RouletteResult(true, n, payout, Chips.count(p)));
         if (payout >= 1000) p.server.getPlayerList().broadcastSystemMessage(

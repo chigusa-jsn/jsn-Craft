@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "遊び心"
+  },
+  "description": {
+    "text": "いつも運（幸運）+1。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/playful",
+  "type": "passive",
+  "effect": "gad_luck_1",
+  "power": 1
+}

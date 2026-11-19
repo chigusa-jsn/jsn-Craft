@@ -118,6 +118,8 @@ public final class Chinchiro {
         long deposit = (long) g.bet * DEPOSIT;
         long back = deposit + (long) g.bet * result;   // 預かり分から増減
         if (back > 0) Chips.give(p, back);
+        CasinoLuck.played(p, g.bet, Math.max(0, (long) g.bet * (result + 1)));
+        if (result < 0) CasinoLuck.refund(p, (long) g.bet * -result);
         p.containerMenu.broadcastChanges();
         send(p, g, result, back, 1, false);
     }

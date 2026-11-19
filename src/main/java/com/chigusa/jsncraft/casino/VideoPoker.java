@@ -105,6 +105,8 @@ public final class VideoPoker {
         int k = rank(g.hand);
         long pay = (long) g.bet * PAY[k];
         if (pay > 0) Chips.give(p, pay);
+        CasinoLuck.played(p, g.bet, pay);
+        CasinoLuck.refund(p, g.bet - pay);
         p.containerMenu.broadcastChanges();
         PacketDistributor.sendToPlayer(p, new CasinoPayloads.PokerState(false, g.hand.clone(), k, pay, Chips.count(p)));
         if (k >= 8) p.server.getPlayerList().broadcastSystemMessage(

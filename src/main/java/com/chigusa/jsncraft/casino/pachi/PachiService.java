@@ -83,12 +83,13 @@ public final class PachiService {
             if (held == 0) {
                 int y = r.nextInt(65536);
                 int newHeld = 0;
+                double luck = 1 + com.chigusa.jsncraft.casino.CasinoLuck.edge(p);   // 遊び人の勝負勘
                 if (m == Machine.CROWN) {
-                    if (y < m.big) newHeld = 1;
-                    else if (y < m.big + m.reg) newHeld = 2;
+                    if (y < m.big * luck) newHeld = 1;
+                    else if (y < (m.big + m.reg) * luck) newHeld = 2;
                 } else {
                     int mode = d.getInt("mode");
-                    if (y < Machine.tropicalBonus(mode)) newHeld = r.nextDouble() < m.bigShare ? 1 : 2;
+                    if (y < Machine.tropicalBonus(mode) * luck) newHeld = r.nextDouble() < m.bigShare ? 1 : 2;
                 }
                 // 天井：ボーナスなしで 350 ゲームに来たら必ず当たる（クラウンはBIG、トロピカルはそのあと天国）
                 if (newHeld == 0 && d.getInt("games") + 1 >= Machine.CEILING) {
@@ -185,6 +186,7 @@ public final class PachiService {
             }
         }
         if (pay > 0) Chips.give(p, pay);
+        com.chigusa.jsncraft.casino.CasinoLuck.played(p, bet, pay);
         p.containerMenu.broadcastChanges();
         if (event == 4 && wins.stream().anyMatch(w -> w.role() == Reels.Role.BIG)) {
             p.level().playSound(null, p.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 1.0F, 1.0F);

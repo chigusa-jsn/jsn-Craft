@@ -1,0 +1,240 @@
+{
+  "job": "gadabout",
+  "radius": 4,
+  "costs": [
+    1,
+    1,
+    2,
+    2
+  ],
+  "scale": [
+    1,
+    1,
+    1.5,
+    2
+  ],
+  "center": {
+    "name": "遊び人の心得",
+    "icon": "minecraft:rabbit_foot",
+    "cost": 1,
+    "effects": [
+      {
+        "attribute": "minecraft:generic.luck",
+        "amount": 1
+      },
+      {
+        "attribute": "jsn_craft:job_xp_bonus",
+        "amount": 0.03
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "prefix": "luk",
+      "pool": [
+        {
+          "name": "強運",
+          "icon": "minecraft:rabbit_foot",
+          "weight": 3,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.luck",
+              "amount": 0.4
+            }
+          ]
+        },
+        {
+          "name": "ツイてる",
+          "icon": "minecraft:gold_nugget",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gadabout/casino_sense",
+              "field": "power",
+              "amount": 0.005
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "fun",
+      "pool": [
+        {
+          "name": "遊びの達人",
+          "icon": "minecraft:book",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:job_xp_bonus",
+              "amount": 0.03
+            }
+          ]
+        },
+        {
+          "name": "拾い物",
+          "icon": "minecraft:emerald",
+          "weight": 1,
+          "effects": [
+            {
+              "skill": "jsn_craft:gadabout/finder",
+              "field": "chance",
+              "amount": 0.002
+            }
+          ]
+        },
+        {
+          "name": "身軽",
+          "icon": "minecraft:sugar",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.movement_speed",
+              "amount": 0.004
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prefix": "lzy",
+      "pool": [
+        {
+          "name": "のんき",
+          "icon": "minecraft:bread",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "jsn_craft:max_stamina",
+              "amount": 8
+            }
+          ]
+        },
+        {
+          "name": "丈夫",
+          "icon": "minecraft:apple",
+          "weight": 2,
+          "effects": [
+            {
+              "attribute": "minecraft:generic.max_health",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "昼寝",
+          "icon": "minecraft:honey_bottle",
+          "weight": 1,
+          "effects": [
+            {
+              "attribute": "jsn_craft:stamina_regen",
+              "amount": 0.4
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specials": [
+    {
+      "sector": 0,
+      "ring": 3,
+      "offset": 0,
+      "name": "四つ葉",
+      "icon": "minecraft:lily_of_the_valley",
+      "cost": 3,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.luck",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "sector": 0,
+      "ring": 4,
+      "offset": -1,
+      "name": "★天性の遊び人",
+      "icon": "minecraft:nether_star",
+      "cost": 5,
+      "big": true,
+      "min_level": 40,
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/casino_sense",
+          "field": "power",
+          "amount": 0.02,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 3,
+      "offset": 0,
+      "name": "大きな口笛",
+      "icon": "minecraft:goat_horn",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/whistle",
+          "field": "power",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "sector": 1,
+      "ring": 4,
+      "offset": -1,
+      "name": "★宝の目",
+      "icon": "minecraft:diamond",
+      "cost": 5,
+      "big": true,
+      "min_level": 30,
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/finder",
+          "field": "chance",
+          "amount": 0.01,
+          "scale": false
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 3,
+      "offset": 0,
+      "name": "毎日宝くじ",
+      "icon": "minecraft:paper",
+      "cost": 3,
+      "effects": [
+        {
+          "skill": "jsn_craft:gadabout/lottery",
+          "field": "cooldown",
+          "amount": -120
+        }
+      ]
+    },
+    {
+      "sector": 2,
+      "ring": 4,
+      "offset": -1,
+      "name": "★お気楽な体",
+      "icon": "minecraft:golden_apple",
+      "cost": 5,
+      "big": true,
+      "min_level": 40,
+      "effects": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "amount": 4
+        },
+        {
+          "attribute": "jsn_craft:max_stamina",
+          "amount": 20
+        }
+      ]
+    }
+  ]
+}

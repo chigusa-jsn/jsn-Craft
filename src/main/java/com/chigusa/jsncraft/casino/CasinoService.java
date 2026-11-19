@@ -74,7 +74,12 @@ public final class CasinoService {
         NEXT_SPIN.put(p.getUUID(), now + 30);   // 1.5秒に1回まで（リールが止まるまで）
         var r = p.getRandom();
         int a = Slots.roll(r), b = Slots.roll(r), c = Slots.roll(r);
+        // 遊び人の勝負勘：はずれたら、たまにもう一回
+        if (Slots.multiplier(a, b, c) == 0 && r.nextDouble() < CasinoLuck.edge(p)) {
+            a = Slots.roll(r); b = Slots.roll(r); c = Slots.roll(r);
+        }
         long payout = (long) bet * Slots.multiplier(a, b, c);
+        CasinoLuck.played(p, bet, payout);
         if (payout > 0) Chips.give(p, payout);
         p.containerMenu.broadcastChanges();
         PacketDistributor.sendToPlayer(p, new CasinoPayloads.SpinResult(true, a, b, c, payout, Chips.count(p)));

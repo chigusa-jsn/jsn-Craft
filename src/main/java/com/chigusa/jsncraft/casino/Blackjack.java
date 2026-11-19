@@ -196,6 +196,10 @@ public final class Blackjack {
             else h.result = R_LOSE;
         }
         if (pay > 0) Chips.give(p, pay);
+        long bet = 0;
+        for (Hand h : t.hands) bet += h.bet;
+        CasinoLuck.played(p, bet, pay);
+        CasinoLuck.refund(p, bet - pay);
         t.playing = false;
         p.containerMenu.broadcastChanges();
         send(p, t, pay);

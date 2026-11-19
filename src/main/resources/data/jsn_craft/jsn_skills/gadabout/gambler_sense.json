@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "大勝負の勘"
+  },
+  "description": {
+    "text": "カジノの勝負勘がさらに +3%。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/gambler_sense",
+  "type": "passive",
+  "effect": "gad_casino_2",
+  "power": 0.03
+}

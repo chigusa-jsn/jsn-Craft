@@ -56,6 +56,7 @@ public final class SkillEffects {
         if (s.effect().startsWith("fist_")) return com.chigusa.jsncraft.combat.FistSkills.cast(player, s);
         if (s.effect().startsWith("dagger_")) return com.chigusa.jsncraft.combat.DaggerSkills.cast(player, s);
         if (s.effect().startsWith("beast_")) return com.chigusa.jsncraft.beast.BeastSkills.cast(player, s);
+        if (s.effect().startsWith("gad_")) return com.chigusa.jsncraft.gadabout.GadaboutSkills.cast(player, s);
         if (s.effect().startsWith("gamble_")) return com.chigusa.jsncraft.gambler.GamblerSkills.cast(player, s);
         return switch (s.effect()) {
             case "sweep" -> sweep(player, s);

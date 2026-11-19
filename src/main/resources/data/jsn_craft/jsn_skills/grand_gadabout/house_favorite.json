@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "カジノの常連"
+  },
+  "description": {
+    "text": "カジノの勝負勘がさらに +4%。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/house_favorite",
+  "type": "passive",
+  "effect": "gad_casino_3",
+  "power": 0.04
+}

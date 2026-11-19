@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "天運"
+  },
+  "description": {
+    "text": "5分間、運（幸運）+10。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/heaven_luck",
+  "type": "active",
+  "effect": "gad_heaven",
+  "cooldown": 3600,
+  "power": 10,
+  "duration": 300
+}

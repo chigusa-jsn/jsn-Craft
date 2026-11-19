@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "一攫千金"
+  },
+  "description": {
+    "text": "チップ100枚で特別な宝くじ。1等10万枚(1/1000)・2等2000枚(1/50)・3等200枚(1/5)・4等60枚(1/2)。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/big_lottery",
+  "type": "active",
+  "effect": "gad_big_lottery",
+  "cooldown": 1800,
+  "bonus": 100
+}

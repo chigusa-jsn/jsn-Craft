@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "幸運の星"
+  },
+  "description": {
+    "text": "いつも運（幸運）+2。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/lucky_star",
+  "type": "passive",
+  "effect": "gad_luck_4",
+  "power": 2
+}

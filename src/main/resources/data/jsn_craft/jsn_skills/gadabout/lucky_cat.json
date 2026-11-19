@@ -1,0 +1,12 @@
+{
+  "name": {
+    "text": "招き猫"
+  },
+  "description": {
+    "text": "いつも運（幸運）+1。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/lucky_cat",
+  "type": "passive",
+  "effect": "gad_luck_2",
+  "power": 1
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "口笛"
+  },
+  "description": {
+    "text": "まわり16ブロックの仲間と自分の運を +2（60秒）。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/whistle",
+  "type": "active",
+  "effect": "gad_whistle",
+  "stamina": 10,
+  "cooldown": 120,
+  "power": 2,
+  "radius": 16,
+  "duration": 60
+}

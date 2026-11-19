@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "宝くじ"
+  },
+  "description": {
+    "text": "チップ10枚で宝くじを1枚。1等3000枚(1/1000)・2等300枚(1/100)・3等30枚(1/10)・4等10枚(1/3)。運が高いと2回引ける。"
+  },
+  "icon": "jsn_craft:skill_icon/gadabout/lottery",
+  "type": "active",
+  "effect": "gad_lottery",
+  "cooldown": 600,
+  "bonus": 10
+}

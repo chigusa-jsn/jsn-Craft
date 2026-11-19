@@ -108,10 +108,17 @@ public final class PachinkoService {
         boolean denchu = electric(d) && s.round == 0;
         int res = Board.shoot(seed, strength, attacker, denchu, null);
         balls += PRIZE[res];
+        // 40玉打つごとに、遊び人の経験値（チップ10枚ぶん）
+        int shot = d.getInt("shot") + 1;
+        if (shot >= 40) {
+            shot = 0;
+            com.chigusa.jsncraft.casino.CasinoLuck.played(p, 10, 0);
+        }
+        d.putInt("shot", shot);
         d.putInt("balls", balls);
         if ((res == Board.HESO || res == Board.DENCHU) && s.holds.size() < 4) {
             // 保留：入った時点で当たりかどうかを決めておく
-            int prob = d.getInt("mode") == 1 ? P_KAKUHEN : P_NORMAL;
+            int prob = d.getInt("mode") == 1 ? P_KAKUHEN : (int) (P_NORMAL * (1 + com.chigusa.jsncraft.casino.CasinoLuck.edge(p)));
             s.holds.add(p.getRandom().nextInt(65536) < prob);
         }
         if (res == Board.ATTACKER && s.round > 0) s.roundCount++;
