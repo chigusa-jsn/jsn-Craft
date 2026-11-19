@@ -8,6 +8,8 @@ import com.chigusa.jsncraft.weapon.JobSpearItem;
 import com.chigusa.jsncraft.weapon.StaffItem;
 import com.chigusa.jsncraft.weapon.WhipItem;
 import dev.kosmx.playerAnim.api.IPlayable;
+import dev.kosmx.playerAnim.api.firstPerson.FirstPersonConfiguration;
+import dev.kosmx.playerAnim.api.firstPerson.FirstPersonMode;
 import dev.kosmx.playerAnim.api.layered.IAnimation;
 import dev.kosmx.playerAnim.api.layered.ModifierLayer;
 import dev.kosmx.playerAnim.api.layered.modifier.AbstractFadeModifier;
@@ -35,7 +37,7 @@ import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 /**
- * 武器の振り・技のときの体の動きを見せる（Player Animator）。三人称（F5）やまわりの人から見える。
+ * 武器の振り・技のときの体の動きを見せる（Player Animator）。三人称・まわりの人・一人称（腕と武器）で見える。
  * 剣・斧・槍は振るたびに型が変わる（連撃）。短剣の二刀流・籠手は左右の手で動きが変わる。
  */
 public final class PlayerAnimClient {
@@ -47,11 +49,21 @@ public final class PlayerAnimClient {
     /** この人に動きをさせる */
     public static void play(AbstractClientPlayer p, String name) {
         if (p == null || name == null) return;
-        if (!(PlayerAnimationAccess.getPlayerAssociatedData(p).get(LAYER) instanceof ModifierLayer<?> raw)) return;
+        if (!(PlayerAnimationAccess.getPlayerAssociatedData(p).get(LAYER) instanceof ModifierLayer<?> raw)) {
+            JsnCraft.LOGGER.warn("[jsn-craft] 体の動きの層がありません");
+            return;
+        }
         @SuppressWarnings("unchecked") ModifierLayer<IAnimation> layer = (ModifierLayer<IAnimation>) raw;
         IPlayable anim = PlayerAnimationRegistry.getAnimation(JsnCraft.id(name));
-        if (anim == null) return;
-        layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(2, Ease.OUTQUAD), anim.playAnimation(), true);
+        if (anim == null) {
+            JsnCraft.LOGGER.warn("[jsn-craft] 体の動き {} が見つかりません（player_animations/weapons.json）", name);
+            return;
+        }
+        // 一人称でも、三人称と同じ腕と武器の動きを見せる（バニラの手の代わりに）
+        var play = anim.playAnimation();
+        play.setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL);
+        play.setFirstPersonConfiguration(new FirstPersonConfiguration(true, true, true, true));
+        layer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(2, Ease.OUTQUAD), play, true);
     }
 
     /** サーバーから：entityId の人に動きをさせる */
@@ -91,7 +103,10 @@ public final class PlayerAnimClient {
             LocalPlayer p = mc.player;
             if (p == null || p.isSpectator() || (mc.hitResult != null && mc.hitResult.getType() == HitResult.Type.BLOCK)) return;
             String anim = attackAnim(p);
-            if (anim == null) return;
+            if (anim == null) {
+            JsnCraft.LOGGER.warn("[jsn-craft] 体の動き {} が見つかりません（player_animations/weapons.json）", name);
+            return;
+        }
             play(p, anim);
             PacketDistributor.sendToServer(new AnimPayloads.Swing(anim));
         }

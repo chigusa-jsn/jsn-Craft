@@ -3,6 +3,7 @@
     python3 tools/gen_player_anims.py
 角度は度。腕：x=-90 で前へまっすぐ、-180 で真上。y＋で右へ、z＋で右腕が外へ（左腕は z－が外）。
 胴（torso）：x＋で前かがみ、y でひねり。body は体ぜんぶ（position の y＋で上へ、1=1/16ブロック）。
+手に持った武器（right_item / left_item）：x＋で刃が後ろへ倒れる（振りかぶり）、x−で前へ（打ち込み）。手首のスナップ。
 時間は tick（1/20秒）で書く。
 """
 import json, os
@@ -33,19 +34,23 @@ def rot(*frames):
 anim("sword_slash_1", 9, {   # 右から左へ横なぎ
     "right_arm": rot((0, R0), (2, [-80, 55, 35], "easeOutQuad"), (5, [-88, -65, -10], "easeOutQuart"), (9, R0)),
     "torso": rot((0, Z), (2, [0, 15, 0]), (5, [5, -20, 0], "easeOutQuart"), (9, Z)),
+    "right_item": rot((0, Z), (2, [35, 0, 0], "easeOutQuad"), (5, [-25, 0, 0], "easeOutQuart"), (9, Z)),
 })
 anim("sword_slash_2", 10, {  # 上から斜めに振り下ろす
     "right_arm": rot((0, R0), (3, [-170, 25, 15], "easeOutQuad"), (6, [-40, -30, -5], "easeInQuad"), (10, R0)),
     "torso": rot((0, Z), (3, [-6, 8, 0]), (6, [12, -12, 0], "easeInQuad"), (10, Z)),
+    "right_item": rot((0, Z), (3, [70, 0, 0], "easeOutQuad"), (6, [-35, 0, 0], "easeInQuad"), (10, Z)),
 })
 anim("sword_slash_3", 10, {  # 下から斬り上げる
     "right_arm": rot((0, R0), (2, [-15, -40, -10], "easeOutQuad"), (6, [-160, 40, 25], "easeOutQuart"), (10, R0)),
     "torso": rot((0, Z), (2, [12, -12, 0]), (6, [-8, 15, 0], "easeOutQuart"), (10, Z)),
+    "right_item": rot((0, Z), (2, [-45, 0, 0], "easeOutQuad"), (6, [45, 0, 0], "easeOutQuart"), (10, Z)),
 })
 anim("sword_skill", 15, {    # 回転斬り
     "body": rot((0, Z), (2, [0, -30, 0], "easeOutQuad"), (10, [0, 360, 0], "easeOutQuart"), (15, [0, 360, 0])),
     "right_arm": rot((0, R0), (2, [-90, 60, 30]), (10, [-90, 60, 30]), (15, R0)),
     "left_arm": rot((0, L0), (2, [-30, 0, -40]), (10, [-30, 0, -40]), (15, L0)),
+    "right_item": rot((0, Z), (2, [20, 0, 0]), (10, [-20, 0, 0]), (15, Z)),
 })
 
 # ================= 斧 =================
@@ -53,11 +58,13 @@ anim("axe_chop_1", 12, {     # 両手で振りかぶって叩きつける
     "right_arm": rot((0, R0), (4, [-178, 5, 8], "easeOutQuad"), (7, [-35, 0, 0], "easeInQuart"), (12, R0)),
     "left_arm": rot((0, L0), (4, [-172, -15, -8], "easeOutQuad"), (7, [-40, -25, 0], "easeInQuart"), (12, L0)),
     "torso": rot((0, Z), (4, [-10, 0, 0]), (7, [22, 0, 0], "easeInQuart"), (12, Z)),
+    "right_item": rot((0, Z), (4, [75, 0, 0], "easeOutQuad"), (7, [-35, 0, 0], "easeInQuart"), (12, Z)),
 })
 anim("axe_chop_2", 12, {     # 横に大きくなぎ払う
     "right_arm": rot((0, R0), (4, [-85, 70, 25], "easeOutQuad"), (7, [-88, -75, -10], "easeInQuart"), (12, R0)),
     "left_arm": rot((0, L0), (4, [-80, 45, -5], "easeOutQuad"), (7, [-85, -85, -20], "easeInQuart"), (12, L0)),
     "torso": rot((0, Z), (4, [0, 22, 0]), (7, [6, -28, 0], "easeInQuart"), (12, Z)),
+    "right_item": rot((0, Z), (4, [30, 0, 0], "easeOutQuad"), (7, [-25, 0, 0], "easeInQuart"), (12, Z)),
 })
 anim("axe_skill", 17, {      # 跳び上がって叩きつける
     "body": {"position": [(0, Z), (6, [0, 7, 0], "easeOutQuad"), (10, Z, "easeInQuad"), (17, Z)]},
@@ -66,6 +73,7 @@ anim("axe_skill", 17, {      # 跳び上がって叩きつける
     "torso": rot((0, Z), (6, [-12, 0, 0]), (10, [28, 0, 0], "easeInQuart"), (17, Z)),
     "right_leg": rot((0, Z), (6, [-30, 0, 0]), (10, [0, 0, 0]), (17, Z)),
     "left_leg": rot((0, Z), (6, [-10, 0, 0]), (10, [0, 0, 0]), (17, Z)),
+    "right_item": rot((0, Z), (6, [80, 0, 0], "easeOutQuad"), (10, [-40, 0, 0], "easeInQuart"), (17, Z)),
 })
 
 # ================= 槍 =================
@@ -90,10 +98,12 @@ anim("spear_skill", 18, {    # くるっと回して突き出す
 anim("dagger_right", 7, {
     "right_arm": rot((0, R0), (2, [-105, 45, 35], "easeOutQuad"), (4, [-60, -55, -10], "easeOutExpo"), (7, R0)),
     "torso": rot((0, Z), (2, [0, 12, 0]), (4, [5, -15, 0], "easeOutExpo"), (7, Z)),
+    "right_item": rot((0, Z), (2, [40, 0, 0], "easeOutQuad"), (4, [-30, 0, 0], "easeOutExpo"), (7, Z)),
 })
 anim("dagger_left", 7, {
     "left_arm": rot((0, L0), (2, [-105, -45, -35], "easeOutQuad"), (4, [-60, 55, 10], "easeOutExpo"), (7, L0)),
     "torso": rot((0, Z), (2, [0, -12, 0]), (4, [5, 15, 0], "easeOutExpo"), (7, Z)),
+    "left_item": rot((0, Z), (2, [40, 0, 0], "easeOutQuad"), (4, [-30, 0, 0], "easeOutExpo"), (7, Z)),
 })
 anim("dagger_skill", 12, {   # 両手を交差させて、×の字に斬る
     "right_arm": rot((0, R0), (3, [-155, -30, -20], "easeOutQuad"), (6, [-45, 50, 35], "easeOutExpo"), (12, R0)),
@@ -121,17 +131,20 @@ anim("fist_skill", 12, {     # しゃがんでアッパー
 anim("whip_crack", 10, {     # 振りかぶって前へ打ちつける
     "right_arm": rot((0, R0), (3, [-195, 25, 15], "easeOutQuad"), (5, [-70, -10, 0], "easeOutExpo"), (10, R0)),
     "torso": rot((0, Z), (3, [-8, 12, 0]), (5, [10, -12, 0], "easeOutExpo"), (10, Z)),
+    "right_item": rot((0, Z), (3, [85, 0, 0], "easeOutQuad"), (5, [-45, 0, 0], "easeOutExpo"), (10, Z)),
 })
 anim("whip_skill", 16, {     # 頭の上で回してから打つ
     "right_arm": rot((0, R0), (2, [-170, 30, 10]), (4, [-170, -30, -5]), (6, [-170, 30, 10]), (8, [-170, -30, -5]),
                      (11, [-65, -10, 0], "easeOutExpo"), (16, R0)),
     "torso": rot((0, Z), (8, [-6, 0, 0]), (11, [12, -10, 0], "easeOutExpo"), (16, Z)),
+    "right_item": rot((0, Z), (8, [60, 0, 0]), (11, [-45, 0, 0], "easeOutExpo"), (16, Z)),
 })
 
 # ================= 杖・魔法 =================
 anim("staff_strike", 10, {
     "right_arm": rot((0, R0), (3, [-160, 15, 10], "easeOutQuad"), (6, [-50, -20, 0], "easeInQuad"), (10, R0)),
     "torso": rot((0, Z), (3, [-5, 5, 0]), (6, [10, -8, 0], "easeInQuad"), (10, Z)),
+    "right_item": rot((0, Z), (3, [55, 0, 0], "easeOutQuad"), (6, [-25, 0, 0], "easeInQuad"), (10, Z)),
 })
 anim("cast", 14, {           # 杖を掲げてから前へ突き出す
     "right_arm": rot((0, R0), (3, [-150, 0, 10], "easeOutQuad"), (8, [-150, 0, 10]), (10, [-95, 0, 0], "easeOutExpo"), (14, R0)),
