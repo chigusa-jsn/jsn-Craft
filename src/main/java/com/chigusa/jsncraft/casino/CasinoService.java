@@ -19,11 +19,12 @@ public final class CasinoService {
 
     public static void open(ServerPlayer p, CasinoGame game, BlockPos pos) {
         PacketDistributor.sendToPlayer(p, new CasinoPayloads.Open(game.ordinal(), pos, Chips.count(p), Money.walletInChips(p), Money.hasLightman()));
+        if (game == CasinoGame.BLACKJACK) Blackjack.open(p);
         if (game == CasinoGame.PACHI_CROWN || game == CasinoGame.PACHI_TROPICAL) com.chigusa.jsncraft.casino.pachi.PachiService.open(p, game);
     }
 
     /** その台の近く（8ブロック）にいるか */
-    private static boolean near(ServerPlayer p, BlockPos pos, CasinoGame game) {
+    static boolean near(ServerPlayer p, BlockPos pos, CasinoGame game) {
         if (p.blockPosition().distSqr(pos) > 64) return false;
         return p.level().getBlockState(pos).getBlock() instanceof CasinoBlock b && b.game == game;
     }

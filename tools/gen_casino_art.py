@@ -217,3 +217,63 @@ for lang, add in {"ja_jp": {"block.jsn_craft.pachislot_crown": "パチスロ「�
                   "en_us": {"block.jsn_craft.pachislot_crown": "Pachislot: Pika Crown", "block.jsn_craft.pachislot_tropical": "Pachislot: Tropical Doki-Doki"}}.items():
     p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
 print("pachi ok")
+
+# ================= テーブル（ルーレット・ブラックジャック） =================
+def felt_base(d):
+    d.rectangle([0, 0, 31, 31], fill=hx("#0e5a36"))
+    for i in range(0, 32, 2):
+        for j in range(0, 32, 2):
+            if (i * 7 + j * 3) % 5 == 0: d.point((i, j), fill=hx("#0c5030"))
+    d.rectangle([0, 0, 31, 31], outline=hx("#5a3a1a"), width=2)
+
+def roulette_top(d, im):
+    felt_base(d)
+    d.ellipse([3, 3, 28, 28], fill=hx("#5a3a1a")); d.ellipse([5, 5, 26, 26], fill=hx("#2a1a0a"))
+    import math as _m
+    for i in range(18):
+        a = i * 2 * _m.pi / 18; x, y = 15.5 + 9 * _m.cos(a), 15.5 + 9 * _m.sin(a)
+        d.rectangle([x - 1, y - 1, x + 1, y + 1], fill=hx("#c01818" if i % 2 else "#181818"))
+    d.ellipse([11, 11, 20, 20], fill=hx("#6a4a24")); d.ellipse([14, 14, 17, 17], fill=hx("#e6b836"))
+    d.point((24, 9), fill=hx("#ffffff"))
+tex("roulette_top", roulette_top)
+
+def bj_top(d, im):
+    felt_base(d)
+    d.arc([-6, -20, 37, 26], 20, 160, fill=hx("#e6b836"), width=1)
+    for x in (6, 13, 20):
+        d.rectangle([x, 18, x + 5, 25], fill=hx("#f8f4ea")); d.rectangle([x + 1, 19, x + 2, 20], fill=hx("#c01818"))
+    d.ellipse([13, 4, 18, 9], fill=hx("#f0c040"))
+tex("blackjack_top", bj_top)
+
+def table_side(d, im):
+    d.rectangle([0, 0, 31, 31], fill=hx("#6a4424"))
+    for y in range(0, 32, 5): d.line([0, y, 31, y], fill=hx("#5a3a1a"))
+    d.rectangle([0, 0, 31, 4], fill=hx("#3a2410"))
+tex("table_side", table_side)
+
+for b, top_tex in (("roulette_table", "roulette_top"), ("blackjack_table", "blackjack_top")):
+    m = {"parent": "minecraft:block/block", "textures": {"felt": f"jsn_craft:block/casino/{top_tex}", "wood": "jsn_craft:block/casino/table_side",
+                                                          "particle": "jsn_craft:block/casino/table_side"},
+         "elements": [box([0, 11, 0], [16, 14, 16], n="wood", s="wood", e="wood", w="wood", u="felt", dn="wood"),
+                      box([6, 0, 6], [10, 11, 10], n="wood", s="wood", e="wood", w="wood", u="wood", dn="wood"),
+                      box([3, 0, 3], [13, 1, 13], n="wood", s="wood", e="wood", w="wood", u="wood", dn="wood")]}
+    wj(f"{A}/models/block/{b}.json", m)
+    wj(f"{A}/blockstates/{b}.json", {"variants": {f"facing={f}": ({"model": f"jsn_craft:block/{b}"} | ({"y": y} if y else {}))
+                                                  for f, y in (("north", 0), ("east", 90), ("south", 180), ("west", 270))}})
+    wj(f"{A}/models/item/{b}.json", {"parent": f"jsn_craft:block/{b}"})
+    wj(f"{D}/loot_table/blocks/{b}.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"jsn_craft:{b}"}],
+                                                                                  "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+    p = f"{R}/data/minecraft/tags/block/mineable/axe.json"
+    dd = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {"replace": False, "values": []}
+    if f"jsn_craft:{b}" not in dd["values"]: dd["values"].append(f"jsn_craft:{b}")
+    wj(p, dd)
+wj(f"{D}/recipe/roulette_table.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GWG", "PCP", " P "],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "W": {"item": "minecraft:green_carpet"}, "P": {"tag": "minecraft:planks"}, "C": {"item": "minecraft:compass"}},
+    "result": {"id": "jsn_craft:roulette_table", "count": 1}})
+wj(f"{D}/recipe/blackjack_table.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GWG", "PBP", " P "],
+    "key": {"G": {"item": "minecraft:gold_ingot"}, "W": {"item": "minecraft:green_carpet"}, "P": {"tag": "minecraft:planks"}, "B": {"item": "minecraft:book"}},
+    "result": {"id": "jsn_craft:blackjack_table", "count": 1}})
+for lang, add in {"ja_jp": {"block.jsn_craft.roulette_table": "ルーレット台", "block.jsn_craft.blackjack_table": "ブラックジャック台"},
+                  "en_us": {"block.jsn_craft.roulette_table": "Roulette Table", "block.jsn_craft.blackjack_table": "Blackjack Table"}}.items():
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
+print("tables ok")

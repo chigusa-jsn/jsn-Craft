@@ -728,5 +728,7 @@
   "item.jsn_craft.casino_chip_100": "カジノチップ（100）",
   "item.jsn_craft.casino_chip_1000": "カジノチップ（1000）",
   "block.jsn_craft.pachislot_crown": "パチスロ「ピカッとクラウン」",
-  "block.jsn_craft.pachislot_tropical": "パチスロ「トロピカル・ドキドキ」"
+  "block.jsn_craft.pachislot_tropical": "パチスロ「トロピカル・ドキドキ」",
+  "block.jsn_craft.roulette_table": "ルーレット台",
+  "block.jsn_craft.blackjack_table": "ブラックジャック台"
 }

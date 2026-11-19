@@ -4,6 +4,8 @@
     "jsn_craft:brewing_barrel",
     "jsn_craft:alchemy_table",
     "jsn_craft:jeweler_table",
-    "jsn_craft:feeder"
+    "jsn_craft:feeder",
+    "jsn_craft:roulette_table",
+    "jsn_craft:blackjack_table"
   ]
 }

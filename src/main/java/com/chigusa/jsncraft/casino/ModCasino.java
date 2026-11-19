@@ -29,6 +29,10 @@ public final class ModCasino {
     public static final DeferredBlock<TallCasinoBlock> PACHI_TROPICAL = tall("pachislot_tropical", CasinoGame.PACHI_TROPICAL);
     public static final DeferredItem<BlockItem> PACHI_CROWN_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(PACHI_CROWN);
     public static final DeferredItem<BlockItem> PACHI_TROPICAL_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(PACHI_TROPICAL);
+    public static final DeferredBlock<CasinoBlock> ROULETTE = block("roulette_table", CasinoGame.ROULETTE);
+    public static final DeferredBlock<CasinoBlock> BLACKJACK = block("blackjack_table", CasinoGame.BLACKJACK);
+    public static final DeferredItem<BlockItem> ROULETTE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(ROULETTE);
+    public static final DeferredItem<BlockItem> BLACKJACK_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(BLACKJACK);
     public static final DeferredItem<BlockItem> EXCHANGER_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(EXCHANGER);
     public static final DeferredItem<BlockItem> SLOT_MACHINE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(SLOT_MACHINE);
 

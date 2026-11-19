@@ -728,5 +728,7 @@
   "item.jsn_craft.casino_chip_100": "Casino Chip (100)",
   "item.jsn_craft.casino_chip_1000": "Casino Chip (1000)",
   "block.jsn_craft.pachislot_crown": "Pachislot: Pika Crown",
-  "block.jsn_craft.pachislot_tropical": "Pachislot: Tropical Doki-Doki"
+  "block.jsn_craft.pachislot_tropical": "Pachislot: Tropical Doki-Doki",
+  "block.jsn_craft.roulette_table": "Roulette Table",
+  "block.jsn_craft.blackjack_table": "Blackjack Table"
 }
