@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:green_wool"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:archer_1_head",
+    "count": 1
+  }
+}

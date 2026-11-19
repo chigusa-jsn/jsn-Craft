@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:archer_2_head"
+  },
+  "addition": {
+    "item": "minecraft:blaze_rod"
+  },
+  "result": {
+    "id": "jsn_craft:archer_3_head",
+    "count": 1
+  }
+}

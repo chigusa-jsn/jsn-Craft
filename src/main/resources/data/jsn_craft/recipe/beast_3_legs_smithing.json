@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:beast_2_legs"
+  },
+  "addition": {
+    "item": "minecraft:bone_block"
+  },
+  "result": {
+    "id": "jsn_craft:beast_3_legs",
+    "count": 1
+  }
+}

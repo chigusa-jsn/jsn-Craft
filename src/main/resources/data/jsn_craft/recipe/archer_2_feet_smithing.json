@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:archer_1_feet"
+  },
+  "addition": {
+    "item": "minecraft:bone_block"
+  },
+  "result": {
+    "id": "jsn_craft:archer_2_feet",
+    "count": 1
+  }
+}

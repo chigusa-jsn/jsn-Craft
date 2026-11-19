@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_2"
+  },
+  "base": {
+    "item": "jsn_craft:shield_knight_1_legs"
+  },
+  "addition": {
+    "item": "minecraft:iron_block"
+  },
+  "result": {
+    "id": "jsn_craft:shield_knight_2_legs",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:healer_2_chest"
+  },
+  "addition": {
+    "item": "jsn_craft:holy_crystal"
+  },
+  "result": {
+    "id": "jsn_craft:healer_3_chest",
+    "count": 1
+  }
+}

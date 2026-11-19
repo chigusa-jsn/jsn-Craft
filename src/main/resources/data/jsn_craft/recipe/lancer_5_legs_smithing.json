@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:moon_silver_template"
+  },
+  "base": {
+    "item": "jsn_craft:lancer_4_legs"
+  },
+  "addition": {
+    "item": "jsn_craft:moon_silver_ingot"
+  },
+  "result": {
+    "id": "jsn_craft:lancer_5_legs",
+    "count": 1
+  }
+}

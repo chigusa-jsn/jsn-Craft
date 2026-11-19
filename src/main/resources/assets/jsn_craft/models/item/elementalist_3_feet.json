@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "jsn_craft:item/armor/elementalist_3_feet"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:cyan_wool"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:lancer_1_feet",
+    "count": 1
+  }
+}

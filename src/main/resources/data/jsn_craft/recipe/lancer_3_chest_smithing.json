@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "jsn_craft:job_template_3"
+  },
+  "base": {
+    "item": "jsn_craft:lancer_2_chest"
+  },
+  "addition": {
+    "item": "minecraft:prismarine_crystals"
+  },
+  "result": {
+    "id": "jsn_craft:lancer_3_chest",
+    "count": 1
+  }
+}
