@@ -99,6 +99,10 @@ public class GachaScreen extends Screen {
     }
 
     /** お金の書き方：ライトマンなら「金コイン1枚」、なければ「エメラルド1個」 */
+    public static String moneyText(long chips) {
+        return money(chips);
+    }
+
     static String money(long chips) {
         if (!CasinoClient.lightman) return chips % 10 == 0 ? "エメラルド" + chips / 10 + "個" : chips + "枚";
         long copper = chips * 10;

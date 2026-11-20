@@ -1,0 +1,72 @@
+package com.chigusa.jsncraft.card;
+
+import java.util.List;
+
+/** カードの一覧（tools/gen_cards.py で作る。手で直さない） */
+public final class CardList {
+    public record Card(String id, String entity, int rarity, String stat) {}
+
+    public static final List<Card> ALL = List.of(
+            new Card("chicken", "minecraft:chicken", 0, "speed"),
+            new Card("pig", "minecraft:pig", 0, "health"),
+            new Card("cow", "minecraft:cow", 0, "health"),
+            new Card("sheep", "minecraft:sheep", 0, "armor"),
+            new Card("rabbit", "minecraft:rabbit", 0, "speed"),
+            new Card("cod", "minecraft:cod", 0, "stamina"),
+            new Card("salmon", "minecraft:salmon", 0, "stamina"),
+            new Card("squid", "minecraft:squid", 0, "mana"),
+            new Card("bat", "minecraft:bat", 0, "crit"),
+            new Card("zombie", "minecraft:zombie", 0, "attack"),
+            new Card("skeleton", "minecraft:skeleton", 0, "crit"),
+            new Card("spider", "minecraft:spider", 0, "speed"),
+            new Card("creeper", "minecraft:creeper", 0, "attack"),
+            new Card("slime", "minecraft:slime", 0, "regen"),
+            new Card("husk", "minecraft:husk", 0, "armor"),
+            new Card("drowned", "minecraft:drowned", 0, "mana"),
+            new Card("silverfish", "minecraft:silverfish", 0, "fortune"),
+            new Card("frog", "minecraft:frog", 0, "luck"),
+            new Card("bee", "minecraft:bee", 0, "steal"),
+            new Card("fox", "minecraft:fox", 0, "luck"),
+            new Card("wolf", "minecraft:wolf", 1, "attack"),
+            new Card("cat", "minecraft:cat", 1, "luck"),
+            new Card("parrot", "minecraft:parrot", 1, "xp"),
+            new Card("turtle", "minecraft:turtle", 1, "armor"),
+            new Card("axolotl", "minecraft:axolotl", 1, "regen"),
+            new Card("goat", "minecraft:goat", 1, "kbres"),
+            new Card("llama", "minecraft:llama", 1, "stamina"),
+            new Card("horse", "minecraft:horse", 1, "speed"),
+            new Card("enderman", "minecraft:enderman", 1, "critdmg"),
+            new Card("witch", "minecraft:witch", 1, "magic"),
+            new Card("pillager", "minecraft:pillager", 1, "crit"),
+            new Card("blaze", "minecraft:blaze", 1, "skill"),
+            new Card("magma_cube", "minecraft:magma_cube", 1, "guard"),
+            new Card("ghast", "minecraft:ghast", 1, "magic"),
+            new Card("phantom", "minecraft:phantom", 1, "cdr"),
+            new Card("guardian", "minecraft:guardian", 1, "heal"),
+            new Card("iron_golem", "minecraft:iron_golem", 2, "guard"),
+            new Card("snow_golem", "minecraft:snow_golem", 2, "heal"),
+            new Card("villager", "minecraft:villager", 2, "xp"),
+            new Card("piglin_brute", "minecraft:piglin_brute", 2, "attack"),
+            new Card("evoker", "minecraft:evoker", 2, "magic"),
+            new Card("vindicator", "minecraft:vindicator", 2, "critdmg"),
+            new Card("ravager", "minecraft:ravager", 2, "health"),
+            new Card("shulker", "minecraft:shulker", 2, "armor"),
+            new Card("allay", "minecraft:allay", 2, "luck"),
+            new Card("sniffer", "minecraft:sniffer", 2, "fortune"),
+            new Card("strider", "minecraft:strider", 2, "stamina"),
+            new Card("breeze", "minecraft:breeze", 2, "speed"),
+            new Card("wither_skeleton", "minecraft:wither_skeleton", 3, "steal"),
+            new Card("elder_guardian", "minecraft:elder_guardian", 3, "heal"),
+            new Card("mooshroom", "minecraft:mooshroom", 3, "regen"),
+            new Card("panda", "minecraft:panda", 3, "luck"),
+            new Card("polar_bear", "minecraft:polar_bear", 3, "health"),
+            new Card("glow_squid", "minecraft:glow_squid", 3, "mana"),
+            new Card("hoglin", "minecraft:hoglin", 3, "boss"),
+            new Card("piglin", "minecraft:piglin", 3, "fortune"),
+            new Card("warden", "minecraft:warden", 4, "guard"),
+            new Card("ender_dragon", "minecraft:ender_dragon", 4, "boss"),
+            new Card("wither", "minecraft:wither", 4, "skill"),
+            new Card("illusioner", "minecraft:illusioner", 4, "cdr"));
+
+    private CardList() {}
+}

@@ -11,6 +11,7 @@
     "jsn_craft:video_poker",
     "jsn_craft:pachinko",
     "jsn_craft:gacha_machine",
-    "jsn_craft:figure"
+    "jsn_craft:figure",
+    "jsn_craft:card_machine"
   ]
 }

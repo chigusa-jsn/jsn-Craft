@@ -767,5 +767,10 @@
   "block.jsn_craft.gacha_machine": "Capsule Toy Machine",
   "block.jsn_craft.figure": "Figure",
   "item.jsn_craft.figure": "Figure",
-  "item.jsn_craft.title_ticket": "Title Ticket"
+  "item.jsn_craft.title_ticket": "Title Ticket",
+  "block.jsn_craft.card_machine": "Card Machine",
+  "item.jsn_craft.card": "Card",
+  "item.jsn_craft.card_binder": "Card Binder",
+  "item.jsn_craft.card_album": "Card Album",
+  "curios.identifier.card_binder": "Card Binder"
 }

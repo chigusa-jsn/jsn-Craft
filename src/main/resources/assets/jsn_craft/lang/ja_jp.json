@@ -767,5 +767,10 @@
   "block.jsn_craft.gacha_machine": "ガチャガチャ",
   "block.jsn_craft.figure": "フィギュア",
   "item.jsn_craft.figure": "フィギュア",
-  "item.jsn_craft.title_ticket": "肩書チケット"
+  "item.jsn_craft.title_ticket": "肩書チケット",
+  "block.jsn_craft.card_machine": "カードマシン",
+  "item.jsn_craft.card": "カード",
+  "item.jsn_craft.card_binder": "装備用バインダー",
+  "item.jsn_craft.card_album": "カードアルバム",
+  "curios.identifier.card_binder": "カードバインダー"
 }

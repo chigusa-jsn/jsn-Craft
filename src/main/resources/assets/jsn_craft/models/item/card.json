@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "jsn_craft:item/card_0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "jsn_craft:card_rarity": 0.25
+      },
+      "model": "jsn_craft:item/card_1"
+    },
+    {
+      "predicate": {
+        "jsn_craft:card_rarity": 0.5
+      },
+      "model": "jsn_craft:item/card_2"
+    },
+    {
+      "predicate": {
+        "jsn_craft:card_rarity": 0.75
+      },
+      "model": "jsn_craft:item/card_3"
+    },
+    {
+      "predicate": {
+        "jsn_craft:card_rarity": 1.0
+      },
+      "model": "jsn_craft:item/card_4"
+    }
+  ]
+}

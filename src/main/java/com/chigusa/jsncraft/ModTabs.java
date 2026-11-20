@@ -152,6 +152,10 @@ public final class ModTabs {
                 for (String f : new String[]{"minecraft:creeper", "minecraft:zombie", "minecraft:enderman", "minecraft:warden", "minecraft:ender_dragon"})
                     out.accept(com.chigusa.jsncraft.gacha.FigureItem.of(f));
                 out.accept(com.chigusa.jsncraft.gacha.TitleTicketItem.of("ガチャの申し子"));
+                out.accept(com.chigusa.jsncraft.card.ModCards.CARD_MACHINE_ITEM.get());
+                out.accept(com.chigusa.jsncraft.card.ModCards.BINDER.get());
+                out.accept(com.chigusa.jsncraft.card.ModCards.ALBUM.get());
+                for (var c : com.chigusa.jsncraft.card.CardList.ALL) out.accept(com.chigusa.jsncraft.card.CardItem.of(c.id()));
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.ROULETTE_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.BLACKJACK_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.POKER_ITEM.get());
