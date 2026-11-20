@@ -194,6 +194,7 @@ public final class QuestService {
 
         q.reported.remove(id);
         q.completed.put(id, LocalDate.now().toEpochDay());
+        com.chigusa.jsncraft.compat.PhoneBridge.news(player, player.getName().getString() + " が依頼「" + def.title().getString() + "」を達成！", "dungeon");
         player.sendSystemMessage(Component.literal("★ 依頼「").withStyle(ChatFormatting.GOLD)
                 .append(def.title().copy()).append(Component.literal("」を達成しました！").withStyle(ChatFormatting.GOLD)));
         player.level().playSound(null, player.blockPosition(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 0.6F, 1.0F);

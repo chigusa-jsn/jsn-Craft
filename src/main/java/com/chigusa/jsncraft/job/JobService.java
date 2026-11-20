@@ -83,6 +83,10 @@ public final class JobService {
             sync(player);
             SkillBoardService.sendSnapshot(player, false);
             com.chigusa.jsncraft.skill.SkillService.onLevelUp(player, jobId, oldLevel, prog.level);
+            // スマホのお知らせ：10レベルごとと、最大レベル
+            if (prog.level >= def.maxLevel() || prog.level / 10 > oldLevel / 10)
+                com.chigusa.jsncraft.compat.PhoneBridge.news(player, player.getName().getString() + " の " + def.name().getString()
+                        + (prog.level >= def.maxLevel() ? " がレベル最大（Lv." + prog.level + "）に！" : " が Lv." + prog.level + " を突破！"), "level");
         } else {
             String progressText = prog.level >= def.maxLevel()
                     ? " (MAX)"
@@ -112,6 +116,7 @@ public final class JobService {
             }
         }
         data.setJob(def.type(), jobId);
+        com.chigusa.jsncraft.compat.PhoneBridge.news(player, player.getName().getString() + " が「" + def.name().getString() + "」に転職した！", "level");
         data.progress(jobId); // 初めてならLv.1で作られる
         SkillBoardService.applyBonuses(player); // 前の職業のボードはお休み、新しい職業のボードを反映
         com.chigusa.jsncraft.skill.SkillService.autoFill(player);

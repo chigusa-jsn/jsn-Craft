@@ -34,6 +34,9 @@ public final class CasinoLuck {
     /** カジノで遊んだ：かけた枚数と、もどってきた枚数で経験値（遊び人のルール "casino_play" / "casino_jackpot"） */
     public static void played(ServerPlayer p, long bet, long won) {
         if (bet <= 0) return;
+        com.chigusa.jsncraft.compat.PhoneBridge.casinoPlayed(p, bet, won);
+        if (won >= bet * 20 && won >= 200)
+            com.chigusa.jsncraft.compat.PhoneBridge.news(p, p.getName().getString() + " がカジノでチップ " + won + " 枚の大当たり！", "casino");
         double mult = Math.max(1, Math.min(20, bet / 5.0));
         JobService.onAction(p, r -> r.action().equals("casino_play"), mult);
         if (won >= bet * 10 && won >= 50) JobService.onAction(p, r -> r.action().equals("casino_jackpot"));
