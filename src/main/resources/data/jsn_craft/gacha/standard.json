@@ -1,0 +1,3383 @@
+{
+  "_comment": "ガチャガチャの中身。rates はノーマル〜レジェンドの確率(%)、pity は天井、price は1回の値段(チップ枚数＝鉄コイン)",
+  "rates": [
+    60,
+    28,
+    9,
+    2.5,
+    0.5
+  ],
+  "pity": 100,
+  "price": 10,
+  "tiers": [
+    [
+      {
+        "item": "minecraft:bread",
+        "count": 8,
+        "weight": 4
+      },
+      {
+        "item": "minecraft:cooked_beef",
+        "count": 6,
+        "weight": 4
+      },
+      {
+        "item": "minecraft:coal",
+        "count": 12,
+        "weight": 4
+      },
+      {
+        "item": "minecraft:iron_ingot",
+        "count": 4,
+        "weight": 4
+      },
+      {
+        "item": "minecraft:arrow",
+        "count": 16,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:experience_bottle",
+        "count": 4,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:redstone",
+        "count": 12,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:lapis_lazuli",
+        "count": 8,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:torch",
+        "count": 16,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:cake",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:herb",
+        "count": 4,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:vigor_herb",
+        "count": 3,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:moon_herb",
+        "count": 3,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_heal",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:elixir_stamina",
+        "count": 2,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_mana",
+        "count": 2,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:enhance_stone_iron",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:cooked_rice",
+        "count": 4,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:salt",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:tea",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_garnet",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_peridot",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_aquamarine",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_onyx",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_ruby",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_sapphire",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_topaz",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_crystal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_moonstone",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_opal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:stone_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wood_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:leather_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:old_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_1_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_1_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_1_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_1_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:chicken",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:pig",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:cow",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:sheep",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:rabbit",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:cod",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:bat",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:squid",
+        "weight": 2
+      }
+    ],
+    [
+      {
+        "item": "minecraft:gold_ingot",
+        "count": 6,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:emerald",
+        "count": 3,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:diamond",
+        "count": 1,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:ender_pearl",
+        "count": 4,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:golden_apple",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:name_tag",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:saddle",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:glow_berries",
+        "count": 12,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_gold",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:elixir_swift",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_might",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_armor",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_luck",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_great_heal",
+        "count": 2,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:garnet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:peridot",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:aquamarine",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:onyx",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ruby",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:sapphire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:topaz",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moonstone",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:opal",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:copper_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:copper_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:copper_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:copper_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:copper_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:iron_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:bone_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_2_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_2_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_2_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_2_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zombie",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:skeleton",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:creeper",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:spider",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:slime",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:drowned",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:husk",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:fox",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:wolf",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:cat",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:parrot",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:turtle",
+        "weight": 2
+      },
+      {
+        "title": "見習い冒険者",
+        "weight": 1
+      },
+      {
+        "title": "ガチャ好き",
+        "weight": 1
+      },
+      {
+        "title": "カプセル収集家",
+        "weight": 1
+      },
+      {
+        "title": "のんびり屋",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond",
+        "count": 3,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:emerald_block",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:ender_eye",
+        "count": 2,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:experience_bottle",
+        "count": 16,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:enhance_stone_diamond",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:rune_book",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_crit",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_arcane",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:elixir_training",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:moon_silver_ingot",
+        "count": 2,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:gold_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gold_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gold_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gold_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gold_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:diamond_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:blaze_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:prismarine_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:obsidian_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:orb_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_3_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_3_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_3_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_3_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_4_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_4_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_4_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_4_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:enderman",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:blaze",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:witch",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:villager",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:iron_golem",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:axolotl",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:panda",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:piglin",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:ghast",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:guardian",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:bee",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:frog",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:allay",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:sniffer",
+        "weight": 2
+      },
+      {
+        "title": "幸運の持ち主",
+        "weight": 1
+      },
+      {
+        "title": "ガチャの申し子",
+        "weight": 1
+      },
+      {
+        "title": "フィギュア職人",
+        "weight": 1
+      },
+      {
+        "title": "夜ふかし勇者",
+        "weight": 1
+      },
+      {
+        "title": "カジノの常連",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:netherite_ingot",
+        "count": 1,
+        "weight": 3
+      },
+      {
+        "item": "minecraft:totem_of_undying",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:enchanted_golden_apple",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:diamond_block",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:enhance_stone_netherite",
+        "count": 2,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:elixir_elixir",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:star_silver_ingot",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:netherite_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:wanderer_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:harvest_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:night_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:sea_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:echo_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:netherite_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_5_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_5_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_5_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_5_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:wither_skeleton",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:elder_guardian",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:evoker",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:ravager",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:shulker",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:breeze",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:mooshroom",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:strider",
+        "weight": 2
+      },
+      {
+        "title": "ウルトラ級の運",
+        "weight": 2
+      },
+      {
+        "title": "伝説のコレクター",
+        "weight": 2
+      },
+      {
+        "title": "大当たり職人",
+        "weight": 2
+      },
+      {
+        "title": "ガチャ王",
+        "weight": 2
+      }
+    ],
+    [
+      {
+        "item": "minecraft:nether_star",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:elytra",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "minecraft:netherite_block",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_star",
+        "count": 3,
+        "weight": 3
+      },
+      {
+        "item": "jsn_craft:elixir_ancient",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:phoenix_charm",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:dragon_necklace",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:sovereign_ring",
+        "count": 1,
+        "weight": 2
+      },
+      {
+        "item": "jsn_craft:star_silver_ring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_necklace",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_bracelet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_earring",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_charm",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_job_axe",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_job_sword",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_katana",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_tower_shield",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_spear",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_dagger",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_whip",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_gauntlets",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_job_bow",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_holy_staff",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_grimoire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mage_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:warrior_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:axeman_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:archer_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:lancer_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:shield_knight_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:beast_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:brawler_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ninja_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cleric_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:assassin_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_6_head",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_6_chest",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_6_legs",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:gambler_6_feet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:warden",
+        "weight": 3
+      },
+      {
+        "figure": "minecraft:ender_dragon",
+        "weight": 3
+      },
+      {
+        "figure": "minecraft:wither",
+        "weight": 3
+      },
+      {
+        "title": "ガチャの神",
+        "weight": 3
+      },
+      {
+        "title": "天に選ばれし者",
+        "weight": 3
+      },
+      {
+        "title": "レジェンド",
+        "weight": 3
+      }
+    ]
+  ]
+}

@@ -763,5 +763,9 @@
   "item.jsn_craft.gambler_6_head": "Star Silver Gambler Top Hat",
   "item.jsn_craft.gambler_6_chest": "Star Silver Gambler Tailcoat",
   "item.jsn_craft.gambler_6_legs": "Star Silver Gambler Slacks",
-  "item.jsn_craft.gambler_6_feet": "Star Silver Gambler Shoes"
+  "item.jsn_craft.gambler_6_feet": "Star Silver Gambler Shoes",
+  "block.jsn_craft.gacha_machine": "Capsule Toy Machine",
+  "block.jsn_craft.figure": "Figure",
+  "item.jsn_craft.figure": "Figure",
+  "item.jsn_craft.title_ticket": "Title Ticket"
 }

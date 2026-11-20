@@ -763,5 +763,9 @@
   "item.jsn_craft.gambler_6_head": "星銀の博徒のシルクハット",
   "item.jsn_craft.gambler_6_chest": "星銀の博徒の燕尾服",
   "item.jsn_craft.gambler_6_legs": "星銀の博徒のスラックス",
-  "item.jsn_craft.gambler_6_feet": "星銀の博徒の革靴"
+  "item.jsn_craft.gambler_6_feet": "星銀の博徒の革靴",
+  "block.jsn_craft.gacha_machine": "ガチャガチャ",
+  "block.jsn_craft.figure": "フィギュア",
+  "item.jsn_craft.figure": "フィギュア",
+  "item.jsn_craft.title_ticket": "肩書チケット"
 }

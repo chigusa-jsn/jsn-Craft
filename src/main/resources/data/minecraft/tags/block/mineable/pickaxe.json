@@ -9,6 +9,8 @@
     "jsn_craft:pachislot_crown",
     "jsn_craft:pachislot_tropical",
     "jsn_craft:video_poker",
-    "jsn_craft:pachinko"
+    "jsn_craft:pachinko",
+    "jsn_craft:gacha_machine",
+    "jsn_craft:figure"
   ]
 }

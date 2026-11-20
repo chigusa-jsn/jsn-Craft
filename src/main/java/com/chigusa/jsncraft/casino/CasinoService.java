@@ -23,6 +23,7 @@ public final class CasinoService {
         if (game == CasinoGame.POKER) VideoPoker.open(p);
         if (game == CasinoGame.PACHINKO) com.chigusa.jsncraft.casino.pachinko.PachinkoService.open(p, pos);
         if (game == CasinoGame.CHINCHIRO) Chinchiro.open(p);
+        if (game == CasinoGame.GACHA) com.chigusa.jsncraft.gacha.GachaService.open(p, pos);
         if (game == CasinoGame.PACHI_CROWN || game == CasinoGame.PACHI_TROPICAL) com.chigusa.jsncraft.casino.pachi.PachiService.open(p, game);
     }
 

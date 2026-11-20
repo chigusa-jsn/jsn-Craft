@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "rotation=0": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=1": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=2": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=3": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=4": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=5": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=6": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=7": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=8": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=9": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=10": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=11": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=12": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=13": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=14": {
+      "model": "jsn_craft:block/figure"
+    },
+    "rotation=15": {
+      "model": "jsn_craft:block/figure"
+    }
+  }
+}

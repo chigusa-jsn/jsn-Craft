@@ -6,6 +6,12 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 /** カジノの通信の登録 */
 public final class CasinoNetwork {
     public static void register(PayloadRegistrar r) {
+        r.playToServer(com.chigusa.jsncraft.gacha.GachaPayloads.Pull.TYPE, com.chigusa.jsncraft.gacha.GachaPayloads.Pull.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.gacha.GachaService.pull(sp, p);
+                }));
+        r.playToClient(com.chigusa.jsncraft.gacha.GachaPayloads.Result.TYPE, com.chigusa.jsncraft.gacha.GachaPayloads.Result.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.gacha.GachaScreen.onResult(p)));
         r.playToClient(CasinoPayloads.Open.TYPE, CasinoPayloads.Open.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.casino.CasinoClient.open(p)));
         r.playToClient(CasinoPayloads.Balance.TYPE, CasinoPayloads.Balance.STREAM_CODEC,
