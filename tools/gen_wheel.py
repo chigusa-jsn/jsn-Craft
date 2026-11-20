@@ -152,19 +152,19 @@ def bowl_in(d):
 tex16("chin_top", tbl_top); tex16("chin_side", tbl_side); tex16("chin_bowl", bowl); tex16("chin_bowl_in", bowl_in)
 def el(fr, to, faces): return {"from": fr, "to": to, "faces": faces}
 def F6(n, u=None, dn=None): return {"north": face(n), "south": face(n), "east": face(n), "west": face(n), "up": face(u or n), "down": face(dn or n)}
-wj(f"{A}/models/block/chinchiro_table.json", {"parent": "minecraft:block/block", "textures": {"t": "jsn_craft:block/wheel/chin_top", "s": "jsn_craft:block/wheel/chin_side",
+wj(f"{A}/models/block/chinchiro_versus.json", {"parent": "minecraft:block/block", "textures": {"t": "jsn_craft:block/wheel/chin_top", "s": "jsn_craft:block/wheel/chin_side",
     "b": "jsn_craft:block/wheel/chin_bowl", "i": "jsn_craft:block/wheel/chin_bowl_in", "particle": "jsn_craft:block/wheel/chin_side"},
     "elements": [el([0, 8, 0], [16, 10, 16], F6("s", u="t")), el([1, 0, 1], [3, 8, 3], F6("s")), el([13, 0, 1], [15, 8, 3], F6("s")),
                  el([1, 0, 13], [3, 8, 15], F6("s")), el([13, 0, 13], [15, 8, 15], F6("s")), el([5, 10, 5], [11, 13, 11], F6("b", u="i"))]})
-wj(f"{A}/blockstates/chinchiro_table.json", {"variants": {"": {"model": "jsn_craft:block/chinchiro_table"}}})
-wj(f"{A}/models/item/chinchiro_table.json", {"parent": "jsn_craft:block/chinchiro_table"})
-wj(f"{D}/loot_table/blocks/chinchiro_table.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": "jsn_craft:chinchiro_table"}],
+wj(f"{A}/blockstates/chinchiro_versus.json", {"variants": {"": {"model": "jsn_craft:block/chinchiro_versus"}}})
+wj(f"{A}/models/item/chinchiro_versus.json", {"parent": "jsn_craft:block/chinchiro_versus"})
+wj(f"{D}/loot_table/blocks/chinchiro_versus.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": "jsn_craft:chinchiro_versus"}],
                                                                                        "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
-wj(f"{D}/recipe/chinchiro_table.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": [" B ", "GGG", "P P"],
-    "key": {"P": {"tag": "minecraft:planks"}, "G": {"item": "minecraft:green_carpet"}, "B": {"item": "minecraft:bowl"}}, "result": {"id": "jsn_craft:chinchiro_table", "count": 1}})
+wj(f"{D}/recipe/chinchiro_versus.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": [" B ", "GGG", "P P"],
+    "key": {"P": {"tag": "minecraft:planks"}, "G": {"item": "minecraft:green_carpet"}, "B": {"item": "minecraft:bowl"}}, "result": {"id": "jsn_craft:chinchiro_versus", "count": 1}})
 pk = f"{R}/data/minecraft/tags/block/mineable/axe.json"; dd = json.load(open(pk, encoding="utf-8"))
-if "jsn_craft:chinchiro_table" not in dd["values"]: dd["values"].append("jsn_craft:chinchiro_table")
+if "jsn_craft:chinchiro_versus" not in dd["values"]: dd["values"].append("jsn_craft:chinchiro_versus")
 wj(pk, dd)
 for lang, name in (("ja_jp", "チンチロ対戦の卓"), ("en_us", "Chinchiro Table")):
-    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd["block.jsn_craft.chinchiro_table"] = name; wj(p, dd)
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd["block.jsn_craft.chinchiro_versus"] = name; wj(p, dd)
 print("chinchiro ok")
