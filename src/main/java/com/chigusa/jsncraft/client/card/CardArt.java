@@ -37,7 +37,13 @@ public final class CardArt {
                 le.yBodyRot = le.yBodyRotO = 180 + 25;
                 le.yHeadRot = le.yHeadRotO = 180 + 25;
                 le.setYRot(180 + 25);
-                g.enableScissor(x + 3, y + 3, x + w - 3, y + artH);
+                // 切りぬきは画面の座標で指定するので、いまの拡大・移動を計算に入れる（カードがめくれる途中など）
+                org.joml.Matrix4f m = g.pose().last().pose();
+                org.joml.Vector3f a = m.transformPosition(new org.joml.Vector3f(x + 3, y + 3, 0)), b = m.transformPosition(new org.joml.Vector3f(x + w - 3, y + artH, 0));
+                g.pose().pushPose();
+                g.pose().setIdentity();
+                g.enableScissor((int) Math.floor(Math.min(a.x, b.x)), (int) Math.floor(Math.min(a.y, b.y)), (int) Math.ceil(Math.max(a.x, b.x)), (int) Math.ceil(Math.max(a.y, b.y)));
+                g.pose().popPose();
                 try {
                     InventoryScreen.renderEntityInInventory(g, x + w / 2F, y + 3 + (artH - 3) / 2F + le.getBbHeight() * scale / 2F, scale,
                             new Vector3f(0, 0, 0), new Quaternionf().rotateZ((float) Math.PI), null, le);
