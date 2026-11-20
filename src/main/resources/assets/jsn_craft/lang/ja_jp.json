@@ -775,5 +775,7 @@
   "block.jsn_craft.gacha_equip": "装備ガチャ",
   "block.jsn_craft.gacha_material": "素材ガチャ",
   "block.jsn_craft.gacha_figure": "フィギュアガチャ",
-  "block.jsn_craft.gacha_title": "肩書ガチャ"
+  "block.jsn_craft.gacha_title": "肩書ガチャ",
+  "block.jsn_craft.big_wheel": "ビッグホイール",
+  "block.jsn_craft.wheel_terminal": "ホイールのかけ台"
 }

@@ -7,6 +7,8 @@
     "jsn_craft:feeder",
     "jsn_craft:roulette_table",
     "jsn_craft:blackjack_table",
-    "jsn_craft:chinchiro_table"
+    "jsn_craft:chinchiro_table",
+    "jsn_craft:big_wheel",
+    "jsn_craft:wheel_terminal"
   ]
 }

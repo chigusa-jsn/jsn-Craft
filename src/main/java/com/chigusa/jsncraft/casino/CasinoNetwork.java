@@ -6,6 +6,12 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 /** カジノの通信の登録 */
 public final class CasinoNetwork {
     public static void register(PayloadRegistrar r) {
+        r.playToServer(com.chigusa.jsncraft.wheel.WheelPayloads.Bet.TYPE, com.chigusa.jsncraft.wheel.WheelPayloads.Bet.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.wheel.WheelService.handle(sp, p);
+                }));
+        r.playToClient(com.chigusa.jsncraft.wheel.WheelPayloads.State.TYPE, com.chigusa.jsncraft.wheel.WheelPayloads.State.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.wheel.WheelScreen.onState(p)));
         r.playToServer(com.chigusa.jsncraft.card.CardPayloads.Buy.TYPE, com.chigusa.jsncraft.card.CardPayloads.Buy.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.card.CardService.buy(sp, p);

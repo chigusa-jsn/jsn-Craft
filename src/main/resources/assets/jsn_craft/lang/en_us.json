@@ -775,5 +775,7 @@
   "block.jsn_craft.gacha_equip": "Gear Gacha",
   "block.jsn_craft.gacha_material": "Material Gacha",
   "block.jsn_craft.gacha_figure": "Figure Gacha",
-  "block.jsn_craft.gacha_title": "Title Gacha"
+  "block.jsn_craft.gacha_title": "Title Gacha",
+  "block.jsn_craft.big_wheel": "Big Wheel",
+  "block.jsn_craft.wheel_terminal": "Wheel Betting Terminal"
 }
