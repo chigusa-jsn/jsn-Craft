@@ -21,8 +21,11 @@ public final class GachaService {
     private static final String PITY = "jsn_gacha_pity";
 
     public static void pull(ServerPlayer p, GachaPayloads.Pull req) {
-        if (p.blockPosition().distSqr(req.pos()) > 64 || !(p.level().getBlockState(req.pos()).getBlock() instanceof CasinoBlock b) || b.game != CasinoGame.GACHA) return;
-        GachaPool pool = GachaPool.get(p.server);
+        if (p.blockPosition().distSqr(req.pos()) > 64 || !(p.level().getBlockState(req.pos()).getBlock() instanceof CasinoBlock b)) return;
+        GachaKind kind = GachaKind.of(b.game);
+        if (kind == null) return;
+        GachaPool pool = GachaPool.get(p.server, kind);
+        String pityKey = PITY + "_" + kind.id;
         int count = req.count() == 10 ? 10 : req.count() == 1 ? 1 : 0;
         List<ItemStack> items = new ArrayList<>();
         List<Integer> rar = new ArrayList<>();
@@ -32,7 +35,7 @@ public final class GachaService {
                 count = 0;
             }
         }
-        int pity = p.getPersistentData().getInt(PITY);
+        int pity = p.getPersistentData().getInt(pityKey);
         double luck = CasinoLuck.edge(p);
         boolean goodSeen = false;
         for (int i = 0; i < count; i++) {
@@ -47,9 +50,9 @@ public final class GachaService {
             items.add(s.copy());
             rar.add(r);
             if (!p.getInventory().add(s)) p.drop(s, false);
-            if (r >= 3) PhoneBridge.news(p, p.getName().getString() + " がガチャガチャで" + GachaPool.RARITY[r] + "「" + s.getHoverName().getString() + "」を引いた！", "casino");
+            if (r >= 3) PhoneBridge.news(p, p.getName().getString() + " が" + kind.name + "で" + GachaPool.RARITY[r] + "「" + s.getHoverName().getString() + "」を引いた！", "casino");
         }
-        p.getPersistentData().putInt(PITY, pity);
+        p.getPersistentData().putInt(pityKey, pity);
         if (count > 0) {
             CasinoLuck.played(p, (long) pool.price * count, 0);
             p.level().playSound(null, p.blockPosition(), SoundEvents.CHAIN_PLACE, SoundSource.PLAYERS, 0.8F, 1.6F);
@@ -65,7 +68,7 @@ public final class GachaService {
         }
         List<Float> rates = new ArrayList<>();
         for (double d : pool.rates) rates.add((float) d);
-        PacketDistributor.sendToPlayer(p, new GachaPayloads.Result(items, rar, pool.pity - pity, Money.walletInChips(p), pool.price, prev, prevR, rates));
+        PacketDistributor.sendToPlayer(p, new GachaPayloads.Result(kind.ordinal(), items, rar, pool.pity - pity, Money.walletInChips(p), pool.price, prev, prevR, rates));
     }
 
     public static void open(ServerPlayer p, BlockPos pos) {

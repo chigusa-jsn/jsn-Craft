@@ -10,8 +10,11 @@
     "jsn_craft:pachislot_tropical",
     "jsn_craft:video_poker",
     "jsn_craft:pachinko",
-    "jsn_craft:gacha_machine",
     "jsn_craft:figure",
-    "jsn_craft:card_machine"
+    "jsn_craft:card_machine",
+    "jsn_craft:gacha_equip",
+    "jsn_craft:gacha_material",
+    "jsn_craft:gacha_figure",
+    "jsn_craft:gacha_title"
   ]
 }

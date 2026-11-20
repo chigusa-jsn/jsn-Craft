@@ -1,0 +1,559 @@
+{
+  "_comment": "素材ガチャの中身。rates はノーマル〜レジェンドの確率(%)、pity は天井、price は1回の値段(チップ枚数＝鉄コイン。10=金コイン1枚、100=エメラルドコイン1枚、1000=ダイヤコイン1枚)",
+  "rates": [
+    60,
+    28,
+    9,
+    2.5,
+    0.5
+  ],
+  "pity": 100,
+  "price": 10,
+  "tiers": [
+    [
+      {
+        "item": "minecraft:bread",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:cooked_beef",
+        "count": 6,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:coal",
+        "count": 12,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:iron_ingot",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:arrow",
+        "count": 16,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:redstone",
+        "count": 12,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:lapis_lazuli",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:torch",
+        "count": 16,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:copper_ingot",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:string",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:leather",
+        "count": 6,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:paper",
+        "count": 12,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:herb",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:vigor_herb",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_herb",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:antidote_herb",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:fire_herb",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_heal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_stamina",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_mana",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_iron",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cooked_rice",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:salt",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:tea",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:flour",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:butter",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:cheese",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:miso",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_garnet",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_peridot",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_aquamarine",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_onyx",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_ruby",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_sapphire",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_topaz",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_crystal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_moonstone",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:raw_opal",
+        "count": 2,
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:gold_ingot",
+        "count": 6,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:emerald",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:diamond",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:ender_pearl",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:golden_apple",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:name_tag",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:experience_bottle",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:glow_berries",
+        "count": 12,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:honey_bottle",
+        "count": 4,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:amethyst_shard",
+        "count": 8,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_gold",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_swift",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_might",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_armor",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_luck",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_great_heal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_cure",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_miner",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_angler",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:silver_ingot",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:truffle",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:golden_egg",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:premium_beef",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:garnet",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:peridot",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:aquamarine",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:onyx",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:ruby",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:sapphire",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:topaz",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:crystal",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moonstone",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:opal",
+        "count": 1,
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:emerald_block",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:ender_eye",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:experience_bottle",
+        "count": 24,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:blaze_rod",
+        "count": 6,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_diamond",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:rune_book",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_crit",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_arcane",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_training",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_focus",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_runner",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_ingot",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:holy_crystal",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:spirit_stone",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:mandrake",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:job_template_2",
+        "count": 1,
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:netherite_ingot",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:totem_of_undying",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:enchanted_golden_apple",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:diamond_block",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:heart_of_the_sea",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_netherite",
+        "count": 2,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_elixir",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_ingot",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:job_template_3",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:moon_silver_template",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:oblivion_orb",
+        "count": 1,
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "item": "minecraft:nether_star",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:elytra",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:netherite_block",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "minecraft:dragon_egg",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:enhance_stone_star",
+        "count": 3,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_ancient",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:star_silver_template",
+        "count": 1,
+        "weight": 1
+      },
+      {
+        "item": "jsn_craft:elixir_recall",
+        "count": 3,
+        "weight": 1
+      }
+    ]
+  ]
+}

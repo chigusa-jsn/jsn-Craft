@@ -1,0 +1,380 @@
+{
+  "_comment": "フィギュアガチャの中身。rates はノーマル〜レジェンドの確率(%)、pity は天井、price は1回の値段(チップ枚数＝鉄コイン。10=金コイン1枚、100=エメラルドコイン1枚、1000=ダイヤコイン1枚)",
+  "rates": [
+    60,
+    28,
+    9,
+    2.5,
+    0.5
+  ],
+  "pity": 100,
+  "price": 100,
+  "tiers": [
+    [
+      {
+        "figure": "minecraft:chicken",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:pig",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:cow",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:sheep",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:rabbit",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:cod",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:salmon",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:tropical_fish",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:pufferfish",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:bat",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:squid",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:tadpole",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:silverfish",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:endermite",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zombie",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:skeleton",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:spider",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:cave_spider",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:slime",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:creeper",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "figure": "minecraft:husk",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:stray",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:drowned",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:bogged",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zombie_villager",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:frog",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:bee",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:fox",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:wolf",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:cat",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:ocelot",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:parrot",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:turtle",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:donkey",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:mule",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:horse",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:llama",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:trader_llama",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:goat",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:dolphin",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:magma_cube",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:phantom",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:witch",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:pillager",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "figure": "minecraft:axolotl",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:glow_squid",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:panda",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:polar_bear",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:camel",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:armadillo",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:sniffer",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:allay",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:strider",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:enderman",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:blaze",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:ghast",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:guardian",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:villager",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:wandering_trader",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:iron_golem",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:snow_golem",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:vindicator",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:piglin",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zombified_piglin",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_wolf",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_bee",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_hawk",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "figure": "minecraft:mooshroom",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:skeleton_horse",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zombie_horse",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:hoglin",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:zoglin",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:piglin_brute",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:evoker",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:vex",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:ravager",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:shulker",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:breeze",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:wither_skeleton",
+        "weight": 1
+      },
+      {
+        "figure": "minecraft:elder_guardian",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_golem",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_white_fox",
+        "weight": 1
+      },
+      {
+        "figure": "jsn_craft:pet_wind_cat",
+        "weight": 1
+      }
+    ],
+    [
+      {
+        "figure": "minecraft:warden",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:ender_dragon",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:wither",
+        "weight": 2
+      },
+      {
+        "figure": "minecraft:illusioner",
+        "weight": 2
+      },
+      {
+        "figure": "jsn_craft:pet_thunder_lion",
+        "weight": 2
+      },
+      {
+        "figure": "jsn_craft:pet_blade_dragon",
+        "weight": 2
+      }
+    ]
+  ]
+}

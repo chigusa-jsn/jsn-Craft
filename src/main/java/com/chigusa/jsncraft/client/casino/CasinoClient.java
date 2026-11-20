@@ -24,7 +24,7 @@ public final class CasinoClient {
             case POKER -> new PokerScreen(p.pos());
             case CHINCHIRO -> new ChinchiroScreen(p.pos());
             case PACHINKO -> new PachinkoScreen(p.pos());
-            case GACHA -> new com.chigusa.jsncraft.client.gacha.GachaScreen(p.pos());
+            case GACHA, GACHA_MATERIAL, GACHA_FIGURE, GACHA_TITLE -> new com.chigusa.jsncraft.client.gacha.GachaScreen(p.pos(), com.chigusa.jsncraft.gacha.GachaKind.of(g));
             case CARD -> new com.chigusa.jsncraft.client.card.CardMachineScreen(p.pos());
         });
     }

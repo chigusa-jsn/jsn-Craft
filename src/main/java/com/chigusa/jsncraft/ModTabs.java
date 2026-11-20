@@ -148,7 +148,7 @@ public final class ModTabs {
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_CROWN_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHI_TROPICAL_ITEM.get());
                 out.accept(com.chigusa.jsncraft.casino.ModCasino.PACHINKO_ITEM.get());
-                out.accept(com.chigusa.jsncraft.gacha.ModGacha.GACHA_MACHINE_ITEM.get());
+                for (var m : com.chigusa.jsncraft.gacha.ModGacha.MACHINE_ITEMS) out.accept(m.get());
                 for (String f : new String[]{"minecraft:creeper", "minecraft:zombie", "minecraft:enderman", "minecraft:warden", "minecraft:ender_dragon"})
                     out.accept(com.chigusa.jsncraft.gacha.FigureItem.of(f));
                 out.accept(com.chigusa.jsncraft.gacha.TitleTicketItem.of("ガチャの申し子"));

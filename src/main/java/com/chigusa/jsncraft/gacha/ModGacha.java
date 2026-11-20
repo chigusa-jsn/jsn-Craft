@@ -1,6 +1,6 @@
 package com.chigusa.jsncraft.gacha;
 
-import com.chigusa.jsncraft.casino.CasinoBlock;
+import com.chigusa.jsncraft.casino.TallCasinoBlock;
 import com.chigusa.jsncraft.casino.CasinoGame;
 import com.chigusa.jsncraft.cooking.ModCooking;
 import com.chigusa.jsncraft.npc.ModEntities;
@@ -18,9 +18,11 @@ import java.util.function.Supplier;
 
 /** ガチャガチャ：本体・フィギュア・肩書チケット */
 public final class ModGacha {
-    public static final DeferredBlock<CasinoBlock> GACHA_MACHINE = ModCooking.BLOCKS.register("gacha_machine", () -> new CasinoBlock(
-            BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).strength(2.5F).sound(SoundType.METAL).lightLevel(s -> 7).noOcclusion(), CasinoGame.GACHA));
-    public static final DeferredItem<BlockItem> GACHA_MACHINE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(GACHA_MACHINE);
+    /** 4台：装備・素材・フィギュア・肩書（縦2マス） */
+    public static final java.util.List<DeferredBlock<TallCasinoBlock>> MACHINES = java.util.Arrays.stream(GachaKind.values()).map(k ->
+            ModCooking.BLOCKS.register("gacha_" + k.id, () -> new TallCasinoBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK)
+                    .strength(2.5F).sound(SoundType.METAL).lightLevel(s -> 7).noOcclusion(), k.game))).toList();
+    public static final java.util.List<DeferredItem<BlockItem>> MACHINE_ITEMS = MACHINES.stream().map(ModEntities.ITEMS::registerSimpleBlockItem).toList();
 
     public static final DeferredBlock<FigureBlock> FIGURE = ModCooking.BLOCKS.register("figure", () -> new FigureBlock(
             BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.6F).sound(SoundType.STONE).noOcclusion()));

@@ -764,7 +764,6 @@
   "item.jsn_craft.gambler_6_chest": "星銀の博徒の燕尾服",
   "item.jsn_craft.gambler_6_legs": "星銀の博徒のスラックス",
   "item.jsn_craft.gambler_6_feet": "星銀の博徒の革靴",
-  "block.jsn_craft.gacha_machine": "ガチャガチャ",
   "block.jsn_craft.figure": "フィギュア",
   "item.jsn_craft.figure": "フィギュア",
   "item.jsn_craft.title_ticket": "肩書チケット",
@@ -772,5 +771,9 @@
   "item.jsn_craft.card": "カード",
   "item.jsn_craft.card_binder": "装備用バインダー",
   "item.jsn_craft.card_album": "カードアルバム",
-  "curios.identifier.card_binder": "カードバインダー"
+  "curios.identifier.card_binder": "カードバインダー",
+  "block.jsn_craft.gacha_equip": "装備ガチャ",
+  "block.jsn_craft.gacha_material": "素材ガチャ",
+  "block.jsn_craft.gacha_figure": "フィギュアガチャ",
+  "block.jsn_craft.gacha_title": "肩書ガチャ"
 }

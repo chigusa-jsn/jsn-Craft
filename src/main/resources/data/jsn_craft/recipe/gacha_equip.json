@@ -3,15 +3,15 @@
   "category": "misc",
   "pattern": [
     "GGG",
-    "PCP",
-    "III"
+    "GPG",
+    "ICI"
   ],
   "key": {
     "G": {
       "item": "minecraft:glass"
     },
     "P": {
-      "item": "minecraft:pink_dye"
+      "item": "minecraft:red_dye"
     },
     "C": {
       "item": "minecraft:chest"
@@ -21,7 +21,7 @@
     }
   },
   "result": {
-    "id": "jsn_craft:gacha_machine",
+    "id": "jsn_craft:gacha_equip",
     "count": 1
   }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ガチャの中身：data/jsn_craft/gacha/standard.json（データパックで差しかえられる）。
+ * ガチャの中身：data/jsn_craft/gacha/<種類>.json（データパックで差しかえられる）。
  * {"rates":[60,28,9,2.5,0.5], "pity":100, "price":10, "tiers":[[{"item":"minecraft:bread","count":8},{"figure":"minecraft:pig"},{"title":"…"}], …]}
  */
 public final class GachaPool {
@@ -30,14 +30,19 @@ public final class GachaPool {
     public int pity = 100, price = 10;
     final List<List<Entry>> tiers = new ArrayList<>();
 
-    private static GachaPool cached;
+    private static final java.util.Map<GachaKind, GachaPool> CACHE = new java.util.EnumMap<>(GachaKind.class);
     private static MinecraftServer cachedFor;
 
-    public static GachaPool get(MinecraftServer server) {
-        if (cached != null && cachedFor == server) return cached;
+    public static GachaPool get(MinecraftServer server, GachaKind kind) {
+        if (cachedFor != server) {
+            CACHE.clear();
+            cachedFor = server;
+        }
+        GachaPool c = CACHE.get(kind);
+        if (c != null) return c;
         GachaPool p = new GachaPool();
         try {
-            var res = server.getResourceManager().getResource(ResourceLocation.fromNamespaceAndPath("jsn_craft", "gacha/standard.json"));
+            var res = server.getResourceManager().getResource(ResourceLocation.fromNamespaceAndPath("jsn_craft", "gacha/" + kind.id + ".json"));
             if (res.isPresent()) try (var in = new InputStreamReader(res.get().open(), StandardCharsets.UTF_8)) {
                 JsonObject o = JsonParser.parseReader(in).getAsJsonObject();
                 if (o.has("rates")) {
@@ -70,8 +75,7 @@ public final class GachaPool {
             com.chigusa.jsncraft.JsnCraft.LOGGER.warn("ガチャの中身が読めなかった", e);
         }
         while (p.tiers.size() < 5) p.tiers.add(new ArrayList<>());
-        cached = p;
-        cachedFor = server;
+        CACHE.put(kind, p);
         return p;
     }
 

@@ -27,6 +27,7 @@ public class GachaScreen extends Screen {
     private static final int W = 300, H = 210;
     private static final int[] CAPS = {0xFFE05050, 0xFF50A0E0, 0xFFF0D040, 0xFF60C060, 0xFFE070C0, 0xFFF09040, 0xFFA070F0};
     private final BlockPos pos;
+    private final com.chigusa.jsncraft.gacha.GachaKind kind;
     private int left, top, ticks;
     private Button one, ten, list;
 
@@ -40,9 +41,10 @@ public class GachaScreen extends Screen {
     private int phase, phaseT, shown;
     private boolean waiting, showList;
 
-    public GachaScreen(BlockPos pos) {
-        super(Component.literal("ガチャガチャ"));
+    public GachaScreen(BlockPos pos, com.chigusa.jsncraft.gacha.GachaKind kind) {
+        super(Component.literal(kind.name));
         this.pos = pos;
+        this.kind = kind;
     }
 
     public static void onResult(GachaPayloads.Result r) {
@@ -112,9 +114,9 @@ public class GachaScreen extends Screen {
         for (int i = 5; i >= 0; i--) if (copper >= v[i]) {
             long k = copper / v[i];
             copper -= k * v[i];
-            sb.append(sb.length() > 0 ? "+" : "").append(n[i]).append(k);
+            sb.append(sb.length() > 0 ? "＋" : "").append(n[i]).append("コイン").append(k).append("枚");
         }
-        return sb.length() == 0 ? "0" : sb + "コイン";
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 
     private int best() {
@@ -176,8 +178,8 @@ public class GachaScreen extends Screen {
     public void render(GuiGraphics g, int mx, int my, float pt) {
         super.render(g, mx, my, pt);
         g.fill(left, top, left + W, top + H, 0xF0201828);
-        g.renderOutline(left, top, W, H, 0xFFF080B0);
-        g.drawString(font, "§lガチャガチャ", left + 160, top + 8, 0xFFF0A0C0);
+        g.renderOutline(left, top, W, H, kind.color);
+        g.drawString(font, "§l" + kind.name, left + 160, top + 8, 0xFFFFFF);
         machine(g, left + 10, top + 10, pt);
         // 右の情報
         int x = left + 160, y = top + 24;
@@ -204,9 +206,10 @@ public class GachaScreen extends Screen {
     private void machine(GuiGraphics g, int x, int y, float pt) {
         int cx = x + 65, cy = y + 52, r = 46;
         // 台
-        g.fill(x + 15, y + 96, x + 115, y + 186, 0xFFD04070);
-        g.fill(x + 15, y + 96, x + 115, y + 100, 0xFFF080A0);
-        g.fill(x + 10, y + 186, x + 120, y + 192, 0xFF8A2048);
+        int body = kind.color, light = 0xFF000000 | mix(body, 0xFFFFFF, 0.4F), dark = 0xFF000000 | mix(body, 0x000000, 0.45F);
+        g.fill(x + 15, y + 96, x + 115, y + 186, body);
+        g.fill(x + 15, y + 96, x + 115, y + 100, light);
+        g.fill(x + 10, y + 186, x + 120, y + 192, dark);
         // ガラスとカプセル
         for (int dy = -r; dy <= r; dy++) {
             int hw = (int) Math.sqrt(r * r - dy * dy);
@@ -226,8 +229,8 @@ public class GachaScreen extends Screen {
         // ひかり
         for (int i = 0; i < 12; i++) g.fill(cx - 30 + i, cy - 30 + i / 2, cx - 28 + i, cy - 28 + i / 2, 0x80FFFFFF);
         // ラベル
-        g.fill(x + 30, y + 106, x + 100, y + 120, 0xFFFFF0F4);
-        g.drawCenteredString(font, "§c§lGACHA", x + 65, y + 109, 0xFFFFFF);
+        g.fill(x + 18, y + 106, x + 112, y + 120, 0xFFFFF0F4);
+        g.drawCenteredString(font, "§l" + kind.name, x + 65, y + 109, kind.color);
         // ハンドル（回る）
         int hx = x + 65, hy = y + 140;
         g.fill(hx - 16, hy - 16, hx + 16, hy + 16, 0xFFE0E0E8);
@@ -262,6 +265,11 @@ public class GachaScreen extends Screen {
                 }
             }
         }
+    }
+
+    private static int mix(int a, int b, float t) {
+        int ar = a >> 16 & 255, ag = a >> 8 & 255, ab = a & 255, br = b >> 16 & 255, bg = b >> 8 & 255, bb = b & 255;
+        return (int) (ar + (br - ar) * t) << 16 | (int) (ag + (bg - ag) * t) << 8 | (int) (ab + (bb - ab) * t);
     }
 
     private static void capsule(GuiGraphics g, int x, int y, int r, int color) {
@@ -325,7 +333,7 @@ public class GachaScreen extends Screen {
     private void previewList(GuiGraphics g, int mx, int my) {
         int x = left + 8, y = top + 8, w = 144, h = 194;
         g.fill(x, y, x + w, y + h, 0xF4100C18);
-        g.renderOutline(x, y, w, h, 0xFFF080B0);
+        g.renderOutline(x, y, w, h, kind.color);
         g.drawCenteredString(font, "§lなにが出る？（一部）", x + w / 2, y + 4, 0xFFFFFF);
         int yy = y + 16;
         int lastR = -1, col = 0;

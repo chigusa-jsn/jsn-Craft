@@ -764,7 +764,6 @@
   "item.jsn_craft.gambler_6_chest": "Star Silver Gambler Tailcoat",
   "item.jsn_craft.gambler_6_legs": "Star Silver Gambler Slacks",
   "item.jsn_craft.gambler_6_feet": "Star Silver Gambler Shoes",
-  "block.jsn_craft.gacha_machine": "Capsule Toy Machine",
   "block.jsn_craft.figure": "Figure",
   "item.jsn_craft.figure": "Figure",
   "item.jsn_craft.title_ticket": "Title Ticket",
@@ -772,5 +771,9 @@
   "item.jsn_craft.card": "Card",
   "item.jsn_craft.card_binder": "Card Binder",
   "item.jsn_craft.card_album": "Card Album",
-  "curios.identifier.card_binder": "Card Binder"
+  "curios.identifier.card_binder": "Card Binder",
+  "block.jsn_craft.gacha_equip": "Gear Gacha",
+  "block.jsn_craft.gacha_material": "Material Gacha",
+  "block.jsn_craft.gacha_figure": "Figure Gacha",
+  "block.jsn_craft.gacha_title": "Title Gacha"
 }
