@@ -41,8 +41,8 @@ public class ChinchiroTableScreen extends Screen {
     }
 
     private void update(ChinchiroPayloads.State s) {
-        if (st != null && s.rollId() != lastRollId && s.wait() > 0) {
-            animUntil = ticks + Math.min(30, s.wait());
+        if (st != null && s.rollId() != lastRollId && s.busy() > 0) {
+            animUntil = ticks + Math.min(30, s.busy());
             Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BONE_BLOCK_HIT, 1.6F, 0.7F));
         }
         lastRollId = s.rollId();
@@ -73,7 +73,7 @@ public class ChinchiroTableScreen extends Screen {
     private void rebuild() {
         if (st == null || width == 0) return;
         int me = mySeat();
-        boolean myTurn = me >= 0 && st.turn() == me && (st.phase() == ChinchiroTableBlockEntity.PARENT || st.phase() == ChinchiroTableBlockEntity.CHILD) && st.wait() == 0;
+        boolean myTurn = me >= 0 && st.turn() == me && (st.phase() == ChinchiroTableBlockEntity.PARENT || st.phase() == ChinchiroTableBlockEntity.CHILD) && st.busy() == 0;
         boolean canBet = me >= 0 && st.phase() == ChinchiroTableBlockEntity.BETTING && me != st.parent() && st.bets().get(me) == 0;
         String key = st.phase() + "|" + me + "|" + myTurn + "|" + canBet;
         if (key.equals(buttonsKey)) return;
@@ -117,7 +117,7 @@ public class ChinchiroTableScreen extends Screen {
         g.drawString(font, "§7" + chips, left + W - 10 - font.width(chips), top + 8, 0xFFFFFF);
         int tl = Math.max(0, st.timer() - (int) ((System.currentTimeMillis() - receivedAt) / 50));
         String ph = "§e" + PHASE[Math.max(0, Math.min(4, st.phase()))];
-        if (st.phase() == ChinchiroTableBlockEntity.BETTING || ((st.phase() == 2 || st.phase() == 3) && st.wait() == 0)) ph += " §7" + (tl / 20 + 1) + "秒";
+        if (st.phase() == ChinchiroTableBlockEntity.BETTING || ((st.phase() == 2 || st.phase() == 3) && st.busy() == 0)) ph += " §7" + (tl / 20 + 1) + "秒";
         if ((st.phase() == 2 || st.phase() == 3) && st.turn() >= 0) ph += " §f― " + st.names().get(st.turn()) + " の番";
         g.drawString(font, ph, left + 10, top + 20, 0xFFFFFF);
         // どんぶり
