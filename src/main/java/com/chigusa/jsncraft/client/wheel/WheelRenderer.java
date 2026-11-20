@@ -35,7 +35,7 @@ public class WheelRenderer implements BlockEntityRenderer<BigWheelBlockEntity> {
         int full = LightTexture.FULL_BRIGHT;
         quad(ps, buf.getBuffer(RenderType.entityCutoutNoCull(FRAME)), 2.9F, 0, full);
         ps.translate(0, 0, 0.02);
-        double ang = be.level == null ? 0 : be.angle(be.level.getGameTime(), partial);
+        double ang = be.getLevel() == null ? 0 : be.angle(be.getLevel().getGameTime(), partial);
         ps.pushPose();
         ps.mulPose(Axis.ZP.rotationDegrees((float) -ang));
         quad(ps, buf.getBuffer(RenderType.entityCutoutNoCull(FACE)), 2.5F, 0, full);
