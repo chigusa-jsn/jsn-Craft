@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "BBB",
-    "WFW",
-    " W "
+    " B ",
+    "GGG",
+    "P P"
   ],
   "key": {
-    "B": {
-      "item": "minecraft:bone"
-    },
-    "F": {
-      "item": "minecraft:flower_pot"
-    },
-    "W": {
+    "P": {
       "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "minecraft:green_carpet"
+    },
+    "B": {
+      "item": "minecraft:bowl"
     }
   },
   "result": {

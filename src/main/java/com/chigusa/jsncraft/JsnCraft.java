@@ -37,6 +37,7 @@ public class JsnCraft {
         com.chigusa.jsncraft.card.ModCards.init(); // カード
         com.chigusa.jsncraft.wheel.ModWheel.init(); // ビッグホイール
         com.chigusa.jsncraft.race.ModRace.init(); // 競馬
+        com.chigusa.jsncraft.chinchiro.ModChinchiro.init(); // チンチロ対戦
         com.chigusa.jsncraft.armor.ModArmor.MATERIALS.register(modEventBus);
         com.chigusa.jsncraft.cooking.ModCooking.register(modEventBus); // 調理台と料理
         com.chigusa.jsncraft.farming.ModCrops.register(modEventBus); // 新しい作物と食材

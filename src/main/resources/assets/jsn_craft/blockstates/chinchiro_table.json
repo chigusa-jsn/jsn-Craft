@@ -1,19 +1,7 @@
 {
   "variants": {
-    "facing=north": {
+    "": {
       "model": "jsn_craft:block/chinchiro_table"
-    },
-    "facing=east": {
-      "model": "jsn_craft:block/chinchiro_table",
-      "y": 90
-    },
-    "facing=south": {
-      "model": "jsn_craft:block/chinchiro_table",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "jsn_craft:block/chinchiro_table",
-      "y": 270
     }
   }
 }
