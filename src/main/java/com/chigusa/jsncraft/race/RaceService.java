@@ -125,13 +125,13 @@ public final class RaceService {
             Chips.give(p, lastWin);
             p.sendSystemMessage(Component.literal("§6競馬：いない間の当たり チップ +" + lastWin + "枚"));
         }
-        if (phase == BETTING && req.horse() >= 0 && req.horse() < 8 && (req.type() == WIN || req.type() == PLACE)) {
+        if (phase == BETTING && req.horse() >= 0 && req.horse() < 8 && (req.kind() == WIN || req.kind() == PLACE)) {
             long[] mine = BETS.getOrDefault(p.getUUID(), new long[16]);
             long sum = 0;
             for (long v : mine) sum += v;
             int amount = Math.max(0, Math.min(MAX_BET, req.amount()));
             if (amount > 0 && sum + amount <= MAX_BET * 5L && Chips.take(p, amount)) {
-                mine[req.horse() * 2 + req.type()] += amount;
+                mine[req.horse() * 2 + req.kind()] += amount;
                 BETS.put(p.getUUID(), mine);
             } else if (amount > 0) p.displayClientMessage(Component.literal("チップが足りないよ"), true);
         } else if (phase == BETTING && req.horse() == -2) {

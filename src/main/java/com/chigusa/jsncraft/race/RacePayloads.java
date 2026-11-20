@@ -12,10 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.List;
 
 public final class RacePayloads {
-    public record Bet(BlockPos terminal, int horse, int type, int amount) implements CustomPacketPayload {
+    public record Bet(BlockPos terminal, int horse, int kind, int amount) implements CustomPacketPayload {
         public static final Type<Bet> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(JsnCraft.MODID, "race_bet"));
         public static final StreamCodec<ByteBuf, Bet> STREAM_CODEC = StreamCodec.composite(BlockPos.STREAM_CODEC, Bet::terminal,
-                ByteBufCodecs.INT, Bet::horse, ByteBufCodecs.VAR_INT, Bet::type, ByteBufCodecs.INT, Bet::amount, Bet::new);
+                ByteBufCodecs.INT, Bet::horse, ByteBufCodecs.VAR_INT, Bet::kind, ByteBufCodecs.INT, Bet::amount, Bet::new);
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
 
