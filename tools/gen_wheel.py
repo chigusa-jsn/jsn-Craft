@@ -110,3 +110,31 @@ NAMES = {"ja_jp": {"block.jsn_craft.big_wheel": "ビッグホイール", "block.
 for lang, add in NAMES.items():
     p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd.update(add); wj(p, dd)
 print("ok")
+
+# ================= 競馬の台 =================
+def race_front(d):
+    d.rectangle([0, 0, 15, 15], fill=hx("#1a3a24")); d.rectangle([1, 1, 14, 9], fill=hx("#3a8a3a"))
+    for y, c in ((3, "#e03030"), (5, "#3060e0"), (7, "#f0d030")): d.rectangle([3 + y % 3, y, 5 + y % 3, y + 1], fill=hx(c))
+    d.line([12, 1, 12, 9], fill=hx("#ffffff")); d.rectangle([2, 11, 13, 13], fill=hx("#f0c030"))
+def race_side(d):
+    d.rectangle([0, 0, 15, 15], fill=hx("#1a3a24")); d.rectangle([0, 0, 15, 1], fill=hx("#60c060"))
+def race_top(d):
+    d.rectangle([0, 0, 15, 15], fill=hx("#2a5a34")); d.rectangle([2, 2, 13, 13], outline=hx("#60c060"))
+tex16("race_front", race_front); tex16("race_side", race_side); tex16("race_top", race_top)
+wj(f"{A}/models/block/race_terminal.json", {"parent": "minecraft:block/block", "textures": {"f": "jsn_craft:block/wheel/race_front",
+    "s": "jsn_craft:block/wheel/race_side", "t": "jsn_craft:block/wheel/race_top", "particle": "jsn_craft:block/wheel/race_side"},
+    "elements": [{"from": [2, 0, 2], "to": [14, 14, 14], "faces": {"north": face("f"), "south": face("s"), "east": face("s"), "west": face("s"), "up": face("t"), "down": face("s")}}]})
+wj(f"{A}/blockstates/race_terminal.json", {"variants": {f"facing={f}": ({"model": "jsn_craft:block/race_terminal"} | ({"y": y} if y else {}))
+                                                        for f, y in (("north", 0), ("east", 90), ("south", 180), ("west", 270))}})
+wj(f"{A}/models/item/race_terminal.json", {"parent": "jsn_craft:block/race_terminal"})
+wj(f"{D}/loot_table/blocks/race_terminal.json", {"type": "minecraft:block", "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": "jsn_craft:race_terminal"}],
+                                                                                     "conditions": [{"condition": "minecraft:survives_explosion"}]}]})
+wj(f"{D}/recipe/race_terminal.json", {"type": "minecraft:crafting_shaped", "category": "misc", "pattern": ["GHG", "PRP", "PPP"],
+    "key": {"P": {"tag": "minecraft:planks"}, "G": {"item": "minecraft:gold_nugget"}, "H": {"item": "minecraft:hay_block"}, "R": {"item": "minecraft:redstone"}},
+    "result": {"id": "jsn_craft:race_terminal", "count": 1}})
+pk = f"{R}/data/minecraft/tags/block/mineable/axe.json"; dd = json.load(open(pk, encoding="utf-8"))
+if "jsn_craft:race_terminal" not in dd["values"]: dd["values"].append("jsn_craft:race_terminal")
+wj(pk, dd)
+for lang, name in (("ja_jp", "競馬の台"), ("en_us", "Horse Race Terminal")):
+    p = f"{A}/lang/{lang}.json"; dd = json.load(open(p, encoding="utf-8")); dd["block.jsn_craft.race_terminal"] = name; wj(p, dd)
+print("race ok")

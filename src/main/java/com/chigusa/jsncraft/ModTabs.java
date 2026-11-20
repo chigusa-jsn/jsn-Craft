@@ -151,6 +151,7 @@ public final class ModTabs {
                 for (var m : com.chigusa.jsncraft.gacha.ModGacha.MACHINE_ITEMS) out.accept(m.get());
                 out.accept(com.chigusa.jsncraft.wheel.ModWheel.WHEEL_ITEM.get());
                 out.accept(com.chigusa.jsncraft.wheel.ModWheel.TERMINAL_ITEM.get());
+                out.accept(com.chigusa.jsncraft.race.ModRace.TERMINAL_ITEM.get());
                 for (String f : new String[]{"minecraft:creeper", "minecraft:zombie", "minecraft:enderman", "minecraft:warden", "minecraft:ender_dragon"})
                     out.accept(com.chigusa.jsncraft.gacha.FigureItem.of(f));
                 out.accept(com.chigusa.jsncraft.gacha.TitleTicketItem.of("ガチャの申し子"));

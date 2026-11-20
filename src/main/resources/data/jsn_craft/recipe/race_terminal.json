@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GHG",
+    "PRP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    },
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:race_terminal",
+    "count": 1
+  }
+}
