@@ -27,8 +27,21 @@ public record QuestEditorData(
         List<ItemStack> items,
         List<ItemStack> choices,
         int choose,
-        boolean hideRewards
+        Extra extra
 ) {
+    /** 報酬を隠すか・先に達成が必要な依頼・解放するダンジョン */
+    public record Extra(boolean hideRewards, String requires, String unlockDungeon) {
+        public static final Codec<Extra> CODEC = RecordCodecBuilder.create(i -> i.group(
+                Codec.BOOL.fieldOf("hide_rewards").forGetter(Extra::hideRewards),
+                Codec.STRING.optionalFieldOf("requires", "").forGetter(Extra::requires),
+                Codec.STRING.optionalFieldOf("unlock_dungeon", "").forGetter(Extra::unlockDungeon)
+        ).apply(i, Extra::new));
+    }
+
+    public boolean hideRewards() {
+        return extra.hideRewards();
+    }
+
     /** 受けられる期間（"2026-12-24 18:00" の形、空なら指定なし） */
     public record Period(String start, String end) {
         public static final Codec<Period> CODEC = RecordCodecBuilder.create(i -> i.group(
@@ -73,12 +86,12 @@ public record QuestEditorData(
             ItemStack.CODEC.listOf().fieldOf("items").forGetter(QuestEditorData::items),
             ItemStack.CODEC.listOf().fieldOf("choices").forGetter(QuestEditorData::choices),
             Codec.INT.fieldOf("choose").forGetter(QuestEditorData::choose),
-            Codec.BOOL.fieldOf("hide_rewards").forGetter(QuestEditorData::hideRewards)
+            Extra.CODEC.fieldOf("extra").forGetter(QuestEditorData::extra)
     ).apply(i, QuestEditorData::new));
 
     public static QuestEditorData blank() {
         List<Obj> objs = new ArrayList<>();
         for (int i = 0; i < MAX_OBJECTIVES; i++) objs.add(new Obj("break_block", "", 1));
-        return new QuestEditorData("", "", "", "normal", "once", "", 0, new Period("", ""), objs, "life", 0, "", List.of(), List.of(), 1, false);
+        return new QuestEditorData("", "", "", "normal", "once", "", 0, new Period("", ""), objs, "life", 0, "", List.of(), List.of(), 1, new Extra(false, "", ""));
     }
 }

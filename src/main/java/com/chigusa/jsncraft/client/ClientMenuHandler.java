@@ -21,7 +21,7 @@ public final class ClientMenuHandler {
     }
 
     public static void openEditor(QuestEditorPayloads.Open payload) {
-        Minecraft.getInstance().setScreen(new QuestEditorScreen(payload.data(), payload.jobs()));
+        Minecraft.getInstance().setScreen(new QuestEditorScreen(payload.data(), payload.jobs(), payload.dungeons(), payload.quests()));
     }
 
     public static void editorResult(QuestEditorPayloads.Result result) {

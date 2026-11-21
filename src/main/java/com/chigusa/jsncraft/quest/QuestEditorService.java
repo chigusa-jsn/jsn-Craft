@@ -37,7 +37,12 @@ public final class QuestEditorService {
         }
         List<JobOption> jobs = new ArrayList<>();
         JobManager.INSTANCE.all().forEach((jobId, def) -> jobs.add(new JobOption(jobId.toString(), def.name())));
-        PacketDistributor.sendToPlayer(player, new QuestEditorPayloads.Open(data, jobs));
+        // Party Dungeon のダンジョン（入っていれば）と、ほかの依頼（「先に達成」用）
+        List<JobOption> dungeons = new ArrayList<>();
+        for (String[] d : com.chigusa.jsncraft.compat.DungeonBridge.dungeons(player.server)) dungeons.add(new JobOption(d[0], Component.literal(d[1])));
+        List<JobOption> quests = new ArrayList<>();
+        QuestManager.INSTANCE.all().forEach((qid, q) -> quests.add(new JobOption(qid.toString(), q.title())));
+        PacketDistributor.sendToPlayer(player, new QuestEditorPayloads.Open(data, jobs, dungeons, quests));
     }
 
     public static void save(ServerPlayer player, QuestEditorData data) {
@@ -93,8 +98,10 @@ public final class QuestEditorService {
                 data.repeat(),
                 start, end,
                 objectives,
-                new QuestDefinition.Rewards(xp, items, title, choices, choose),
-                data.hideRewards());
+                new QuestDefinition.Rewards(xp, items, title, choices, choose,
+                        data.extra().unlockDungeon().isBlank() ? List.of() : List.of(data.extra().unlockDungeon().trim())),
+                data.hideRewards(),
+                data.extra().requires().isBlank() ? Optional.empty() : Optional.ofNullable(ResourceLocation.tryParse(data.extra().requires())));
 
         ResourceLocation id = data.id().isBlank() ? null : ResourceLocation.tryParse(data.id());
         if (id != null && store.find(id) != null) {
@@ -166,7 +173,8 @@ public final class QuestEditorService {
                 def.rewards().items().stream().limit(QuestEditorData.MAX_ITEMS).map(ItemStack::copy).toList(),
                 def.rewards().choices().stream().limit(QuestEditorData.MAX_CHOICES).map(ItemStack::copy).toList(),
                 def.rewards().choose(),
-                def.hideRewards());
+                new QuestEditorData.Extra(def.hideRewards(), def.requires().map(ResourceLocation::toString).orElse(""),
+                        def.rewards().unlockDungeons().isEmpty() ? "" : def.rewards().unlockDungeons().get(0)));
     }
 
     private QuestEditorService() {}

@@ -25,11 +25,13 @@ public final class QuestEditorPayloads {
     }
 
     /** サーバー → OP：エディターを開く */
-    public record Open(QuestEditorData data, List<JobOption> jobs) implements CustomPacketPayload {
+    public record Open(QuestEditorData data, List<JobOption> jobs, List<JobOption> dungeons, List<JobOption> quests) implements CustomPacketPayload {
         public static final Type<Open> TYPE = new Type<>(JsnCraft.id("quest_editor_open"));
         public static final Codec<Open> CODEC = RecordCodecBuilder.create(i -> i.group(
                 QuestEditorData.CODEC.fieldOf("data").forGetter(Open::data),
-                JobOption.CODEC.listOf().fieldOf("jobs").forGetter(Open::jobs)
+                JobOption.CODEC.listOf().fieldOf("jobs").forGetter(Open::jobs),
+                JobOption.CODEC.listOf().fieldOf("dungeons").forGetter(Open::dungeons),
+                JobOption.CODEC.listOf().fieldOf("quests").forGetter(Open::quests)
         ).apply(i, Open::new));
         public static final StreamCodec<RegistryFriendlyByteBuf, Open> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC);
 

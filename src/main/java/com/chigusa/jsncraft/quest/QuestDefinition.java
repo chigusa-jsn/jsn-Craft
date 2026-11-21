@@ -18,6 +18,9 @@ import java.util.Optional;
  * category: normal（通常依頼） / job（職業依頼） / special（運営の特別依頼）
  * repeat:   once（1回だけ） / daily（1日1回） / always（何度でも）
  * start/end: "2026-12-24T00:00" の形。サーバーのPCの時刻で判定。書かなければいつでも。
+ * requires: 先に達成しておく必要がある依頼のID（例 "jsn_craft:custom_3"）。
+ * 目標 clear_dungeon：target はダンジョンの名前かID。"名前@hard" のように書くと「ハード以上」。
+ * ごほうび unlock_dungeons：Party Dungeon のダンジョン（名前かID）をその人に解放する。
  * hide_rewards: true にすると、受け取るまで報酬が「？？？？？」と表示される。
  */
 public record QuestDefinition(
@@ -31,7 +34,8 @@ public record QuestDefinition(
         Optional<String> end,
         List<Objective> objectives,
         Rewards rewards,
-        boolean hideRewards
+        boolean hideRewards,
+        Optional<ResourceLocation> requires
 ) {
     public static final Codec<QuestDefinition> CODEC = RecordCodecBuilder.create(i -> i.group(
             ComponentSerialization.CODEC.fieldOf("title").forGetter(QuestDefinition::title),
@@ -44,7 +48,8 @@ public record QuestDefinition(
             Codec.STRING.optionalFieldOf("end").forGetter(QuestDefinition::end),
             Objective.CODEC.listOf().fieldOf("objectives").forGetter(QuestDefinition::objectives),
             Rewards.CODEC.optionalFieldOf("rewards", Rewards.NONE).forGetter(QuestDefinition::rewards),
-            Codec.BOOL.optionalFieldOf("hide_rewards", false).forGetter(QuestDefinition::hideRewards)
+            Codec.BOOL.optionalFieldOf("hide_rewards", false).forGetter(QuestDefinition::hideRewards),
+            ResourceLocation.CODEC.optionalFieldOf("requires").forGetter(QuestDefinition::requires)
     ).apply(i, QuestDefinition::new));
 
     /**
@@ -64,7 +69,7 @@ public record QuestDefinition(
 
         /** 行動するたびに数える目標か（納品とレベルは報告のときに確認する） */
         public boolean isCounted() {
-            return type.equals("break_block") || type.equals("kill_entity");
+            return type.equals("break_block") || type.equals("kill_entity") || type.equals("clear_dungeon");
         }
     }
 
@@ -74,14 +79,15 @@ public record QuestDefinition(
      * choices は選択報酬の候補、choose はその中から選べる数（例：3つの中から1つ）。
      */
     public record Rewards(List<JobXp> jobXp, List<ItemStack> items, Optional<String> title,
-                          List<ItemStack> choices, int choose) {
-        public static final Rewards NONE = new Rewards(List.of(), List.of(), Optional.empty(), List.of(), 1);
+                          List<ItemStack> choices, int choose, List<String> unlockDungeons) {
+        public static final Rewards NONE = new Rewards(List.of(), List.of(), Optional.empty(), List.of(), 1, List.of());
         public static final Codec<Rewards> CODEC = RecordCodecBuilder.create(i -> i.group(
                 JobXp.CODEC.listOf().optionalFieldOf("job_xp", List.of()).forGetter(Rewards::jobXp),
                 ItemStack.CODEC.listOf().optionalFieldOf("items", List.of()).forGetter(Rewards::items),
                 Codec.STRING.optionalFieldOf("title").forGetter(Rewards::title),
                 ItemStack.CODEC.listOf().optionalFieldOf("choices", List.of()).forGetter(Rewards::choices),
-                Codec.intRange(1, 10).optionalFieldOf("choose", 1).forGetter(Rewards::choose)
+                Codec.intRange(1, 10).optionalFieldOf("choose", 1).forGetter(Rewards::choose),
+                Codec.STRING.listOf().optionalFieldOf("unlock_dungeons", List.of()).forGetter(Rewards::unlockDungeons)
         ).apply(i, Rewards::new));
 
         /** 実際に選ぶ数（候補より多くは選べない） */

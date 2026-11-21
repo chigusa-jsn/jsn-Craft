@@ -29,11 +29,18 @@ public class QuestEditorScreen extends Screen {
 
     private static final List<String> CATEGORIES = List.of("normal", "job", "special");
     private static final List<String> REPEATS = List.of("once", "daily", "always");
-    private static final List<String> OBJ_TYPES = List.of("break_block", "kill_entity", "deliver_item", "reach_level");
+    private static final List<String> OBJ_TYPES = List.of("break_block", "kill_entity", "deliver_item", "reach_level", "clear_dungeon");
+    private static final String[] DIFFS = {"easy", "normal", "hard", "very_hard", "chaos"};
+    private static final String[] DIFF_LABELS = {"イージー", "ノーマル", "ハード", "ベリーハード", "カオス"};
     private static final List<String> XP_JOBS = List.of("life", "combat");
     private static final int ROW = 22;
 
     private final List<JobOption> jobs;
+    /** ダンジョン（Party Dungeon）：目標用は「名前＋難易度」、解放用は名前だけ */
+    private final List<JobOption> dungeonTargets = new ArrayList<>(), dungeons;
+    private final List<JobOption> quests;
+    private final List<String> dungeonChoices = new ArrayList<>(), questChoices = new ArrayList<>();
+    private String requires = "", unlockDungeon = "";
     private final List<String> jobChoices = new ArrayList<>(); // "" = なし
 
     // 入力中の値（画面サイズが変わって作り直しても消えないように、ここに持つ）
@@ -51,9 +58,24 @@ public class QuestEditorScreen extends Screen {
     private Component status = Component.empty();
     private int left, top, panelW, colW;
 
-    public QuestEditorScreen(QuestEditorData data, List<JobOption> jobs) {
+    public QuestEditorScreen(QuestEditorData data, List<JobOption> jobs, List<JobOption> dungeons, List<JobOption> quests) {
         super(Component.literal("依頼エディター"));
         this.jobs = jobs;
+        this.dungeons = dungeons;
+        this.quests = quests;
+        for (JobOption d : dungeons) {
+            dungeonTargets.add(new JobOption(d.id(), Component.literal(d.name().getString() + "（どの難易度でも）")));
+            for (int k = 1; k < DIFFS.length; k++)
+                dungeonTargets.add(new JobOption(d.id() + "@" + DIFFS[k], Component.literal(d.name().getString() + "（" + DIFF_LABELS[k] + "以上）")));
+        }
+        dungeonChoices.add("");
+        for (JobOption d : dungeons) dungeonChoices.add(d.id());
+        questChoices.add("");
+        for (JobOption q : quests) if (!q.id().equals(data.id())) questChoices.add(q.id());
+        requires = data.extra().requires();
+        unlockDungeon = data.extra().unlockDungeon();
+        if (!requires.isEmpty() && !questChoices.contains(requires)) questChoices.add(requires);
+        if (!unlockDungeon.isEmpty() && !dungeonChoices.contains(unlockDungeon)) dungeonChoices.add(unlockDungeon);
         jobChoices.add("");
         for (JobOption j : jobs) jobChoices.add(j.id());
 
@@ -92,7 +114,7 @@ public class QuestEditorScreen extends Screen {
         panelW = Math.min(width - 10, 420);
         colW = (panelW - 18) / 2;
         left = (width - panelW) / 2;
-        int H = 22 + ROW * 7 + 34;
+        int H = 22 + ROW * 8 + 34;
         top = Math.max(4, (height - H) / 2);
 
         int lx = left + 6, rx = left + 12 + colW;
@@ -130,6 +152,15 @@ public class QuestEditorScreen extends Screen {
                 .withValues(false, true).withInitialValue(hideRewards).displayOnlyValue()
                 .create(lx, y0 + ROW * 6, colW, 20, Component.literal("報酬の表示"), (b, v) -> hideRewards = v));
 
+        // ---- 左：先に達成が必要な依頼 ----
+        addRenderableWidget(CycleButton.<String>builder(this::questName)
+                .withValues(questChoices).withInitialValue(questChoices.contains(requires) ? requires : "").displayOnlyValue()
+                .create(lx, y0 + ROW * 7, colW, 20, Component.literal("先に達成"), (b, v) -> requires = v));
+        // ---- 右：ごほうびでダンジョン解放 ----
+        addRenderableWidget(CycleButton.<String>builder(this::dungeonName)
+                .withValues(dungeonChoices).withInitialValue(dungeonChoices.contains(unlockDungeon) ? unlockDungeon : "").displayOnlyValue()
+                .create(left + 12 + colW, y0 + ROW * 7, colW, 20, Component.literal("解放"), (b, v) -> unlockDungeon = v));
+
         // ---- 右：目標 ----
         for (int i = 0; i < QuestEditorData.MAX_OBJECTIVES; i++) {
             final int n = i;
@@ -142,7 +173,7 @@ public class QuestEditorScreen extends Screen {
                         rebuildWidgets();
                     }));
             int tw = colW - 46 - 36 - 22 - 6;
-            Component targetName = PickerScreen.nameOf(objType[i], objTarget[i], jobs);
+            Component targetName = PickerScreen.nameOf(objType[i], objTarget[i], objType[i].equals("clear_dungeon") ? dungeonTargets : jobs);
             String shortName = font.plainSubstrByWidth(targetName.getString(), tw - 8);
             addRenderableWidget(Button.builder(Component.literal(shortName).withStyle(targetName.getStyle()), b -> openTargetPicker(n))
                     .bounds(rx + 48, y, tw, 20)
@@ -178,7 +209,7 @@ public class QuestEditorScreen extends Screen {
                 .setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal("候補の中から選べる数")));
 
         // ---- 下：保存 ----
-        int by = y0 + ROW * 7 + 12;
+        int by = y0 + ROW * 8 + 12;
         addRenderableWidget(Button.builder(Component.literal(id.isEmpty() ? "作成する" : "更新する").withStyle(ChatFormatting.GREEN),
                 b -> save()).bounds(left + panelW / 2 - 104, by, 100, 20).build());
         addRenderableWidget(Button.builder(Component.literal("キャンセル"), b -> onClose())
@@ -236,14 +267,14 @@ public class QuestEditorScreen extends Screen {
         else g.drawString(font, "から" + chooseCount() + "つ", cx + 2, cy + 4, 0x88CC88);
 
         if (!status.getString().isEmpty()) {
-            g.drawCenteredString(font, status, left + panelW / 2, y0 + ROW * 7 + 1, 0xFF5555);
+            g.drawCenteredString(font, status, left + panelW / 2, y0 + ROW * 8 + 1, 0xFF5555);
         }
     }
 
     @Override
     public void renderBackground(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         super.renderBackground(g, mouseX, mouseY, partialTick);
-        int H = 22 + ROW * 7 + 34;
+        int H = 22 + ROW * 8 + 34;
         g.fill(left, top, left + panelW, top + H, 0xE0101018);
         g.fill(left, top, left + panelW, top + 1, 0xFF5A5A78);
         g.fill(left, top + H - 1, left + panelW, top + H, 0xFF5A5A78);
@@ -280,9 +311,14 @@ public class QuestEditorScreen extends Screen {
             case "kill_entity" -> PickerScreen.Kind.MOB;
             case "deliver_item" -> PickerScreen.Kind.ITEM;
             case "reach_level" -> PickerScreen.Kind.JOB;
+            case "clear_dungeon" -> PickerScreen.Kind.DUNGEON;
             default -> PickerScreen.Kind.BLOCK;
         };
-        minecraft.setScreen(new PickerScreen(this, kind, jobs, (entry, count) -> objTarget[n] = entry.id()));
+        if (kind == PickerScreen.Kind.DUNGEON && dungeons.isEmpty()) {
+            status = Component.literal("Party Dungeon が入っていないか、ダンジョンがまだありません");
+            return;
+        }
+        minecraft.setScreen(new PickerScreen(this, kind, kind == PickerScreen.Kind.DUNGEON ? dungeonTargets : jobs, (entry, count) -> objTarget[n] = entry.id()));
     }
 
     private void openRewardPicker(boolean choice) {
@@ -348,7 +384,8 @@ public class QuestEditorScreen extends Screen {
         }
         QuestEditorData data = new QuestEditorData(id, title, description, category, repeat,
                 requiredJob == null ? "" : requiredJob, parse(minLevel, 0), new QuestEditorData.Period(start, end), objs,
-                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items), List.copyOf(choices), chooseCount(), hideRewards);
+                xpJob, parse(xpAmount, 0), rewardTitle, List.copyOf(items), List.copyOf(choices), chooseCount(),
+                new QuestEditorData.Extra(hideRewards, requires == null ? "" : requires, unlockDungeon == null ? "" : unlockDungeon));
         status = Component.literal("保存中…").withStyle(ChatFormatting.GRAY);
         PacketDistributor.sendToServer(new QuestEditorPayloads.Save(data));
     }
@@ -395,8 +432,21 @@ public class QuestEditorScreen extends Screen {
             case "kill_entity" -> "倒す";
             case "deliver_item" -> "納品";
             case "reach_level" -> "Lv";
+            case "clear_dungeon" -> "攻略";
             default -> "壊す";
         });
+    }
+
+    private Component questName(String v) {
+        if (v.isEmpty()) return Component.literal("先に達成：なし").withStyle(ChatFormatting.GRAY);
+        for (JobOption q : quests) if (q.id().equals(v)) return Component.literal("先に達成：").append(q.name());
+        return Component.literal("先に達成：" + v);
+    }
+
+    private Component dungeonName(String v) {
+        if (v.isEmpty()) return Component.literal("ダンジョン解放：なし").withStyle(ChatFormatting.GRAY);
+        for (JobOption d : dungeons) if (d.id().equals(v)) return Component.literal("ダンジョン解放：").append(d.name()).withStyle(ChatFormatting.LIGHT_PURPLE);
+        return Component.literal("ダンジョン解放：" + v);
     }
 
     private static Component xpJobName(String v) {

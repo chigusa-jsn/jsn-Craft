@@ -32,7 +32,7 @@ import java.util.function.BiConsumer;
  */
 public class PickerScreen extends Screen {
 
-    public enum Kind { BLOCK, MOB, ITEM, REWARD, JOB }
+    public enum Kind { BLOCK, MOB, ITEM, REWARD, JOB, DUNGEON }
 
     /** 一覧の1つ。id は目標の対象として入る文字（タグなら #付き）、stack は報酬で渡すアイテム。 */
     public record Entry(String id, Component name, ItemStack icon, ItemStack stack) {}
@@ -108,6 +108,9 @@ public class PickerScreen extends Screen {
             }
             case JOB -> {
                 for (JobOption j : jobs) out.add(new Entry(j.id(), j.name(), ItemStack.EMPTY, ItemStack.EMPTY));
+            }
+            case DUNGEON -> {
+                for (JobOption j : jobs) out.add(new Entry(j.id(), j.name(), new ItemStack(Items.FILLED_MAP), ItemStack.EMPTY));
             }
         }
         return out;
@@ -237,6 +240,7 @@ public class PickerScreen extends Screen {
             case ITEM -> "納品するアイテムを選ぶ";
             case REWARD -> "報酬のアイテムを選ぶ（個数は右上）";
             case JOB -> "職業を選ぶ";
+            case DUNGEON -> "ダンジョンと難易度を選ぶ";
         });
     }
 
@@ -285,7 +289,7 @@ public class PickerScreen extends Screen {
             String label = TAG_NAMES.get(id);
             return Component.literal(label != null ? label : id).withStyle(ChatFormatting.AQUA);
         }
-        if (type.equals("reach_level")) {
+        if (type.equals("reach_level") || type.equals("clear_dungeon")) {
             for (JobOption j : jobs) if (j.id().equals(id)) return j.name();
             return Component.literal(id);
         }

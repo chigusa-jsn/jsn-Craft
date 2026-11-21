@@ -92,6 +92,11 @@ public final class QuestService {
             }
         }
 
+        if (def.requires().isPresent() && !q.completed.containsKey(def.requires().get())) {
+            QuestDefinition pre = QuestManager.INSTANCE.get(def.requires().get());
+            return Component.literal("先に依頼「").append(pre != null ? pre.title().copy() : Component.literal(def.requires().get().toString()))
+                    .append("」を達成してください");
+        }
         if (def.requiredJob().isPresent()) {
             ResourceLocation job = def.requiredJob().get();
             PlayerJobData jobs = JobService.data(player);
@@ -185,6 +190,13 @@ public final class QuestService {
             player.sendSystemMessage(Component.literal("  + ").withStyle(ChatFormatting.GRAY)
                     .append(item.getHoverName()).append(" ×" + item.getCount()));
         }
+        for (String d : r.unlockDungeons()) {
+            String name = com.chigusa.jsncraft.compat.DungeonBridge.unlock(player, d);
+            if (name != null) {
+                player.sendSystemMessage(Component.literal("ダンジョン「" + name + "」が解放されました！").withStyle(ChatFormatting.LIGHT_PURPLE));
+                com.chigusa.jsncraft.compat.PhoneBridge.news(player, player.getName().getString() + " がダンジョン「" + name + "」を解放した！", "dungeon");
+            }
+        }
         r.title().ifPresent(title -> {
             q.titles.add(title);
             JobService.data(player).setTitle(title);
@@ -226,6 +238,17 @@ public final class QuestService {
 
     public static void onKill(ServerPlayer player, Entity victim) {
         onAction(player, "kill_entity", target -> matchesEntity(target, victim));
+    }
+
+    /** Party Dungeon でダンジョンをクリアした */
+    public static void onDungeonClear(ServerPlayer player, String dungeonId, String dungeonName, String difficulty) {
+        int rank = com.chigusa.jsncraft.compat.DungeonBridge.diffRank(difficulty);
+        onAction(player, "clear_dungeon", target -> {
+            String[] parts = target.split("@", 2);
+            boolean same = parts[0].equals(dungeonId) || parts[0].equals(dungeonName) || parts[0].equals("*");
+            int need = parts.length > 1 ? com.chigusa.jsncraft.compat.DungeonBridge.diffRank(parts[1]) : 0;
+            return same && rank >= need;
+        });
     }
 
     private static void onAction(ServerPlayer player, String type, Predicate<String> matcher) {
@@ -370,6 +393,7 @@ public final class QuestService {
             case "break_block" -> Component.empty().append(blockName(t)).append(" を壊す");
             case "kill_entity" -> Component.empty().append(entityName(t)).append(" を倒す");
             case "deliver_item" -> Component.empty().append(itemName(t)).append(" を納品");
+            case "clear_dungeon" -> Component.literal("ダンジョン「" + com.chigusa.jsncraft.compat.DungeonBridge.label(t) + "」をクリア");
             case "reach_level" -> {
                 JobDefinition jd = JobManager.INSTANCE.get(ResourceLocation.tryParse(t));
                 yield Component.empty().append(jd != null ? jd.name() : Component.literal(t)).append(" のレベル");
