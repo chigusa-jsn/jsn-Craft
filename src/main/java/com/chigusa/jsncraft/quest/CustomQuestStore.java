@@ -31,6 +31,10 @@ public class CustomQuestStore extends SavedData {
     private final Map<ResourceLocation, QuestDefinition> quests = new LinkedHashMap<>();
     private final Set<ResourceLocation> disabled = new LinkedHashSet<>();
     private int nextId = 1;
+    /** どのワールドでも同じ依頼だと分かる印（まとめて書き出し用） */
+    private final Map<ResourceLocation, String> uids = new LinkedHashMap<>();
+    /** 最後に書き出し／読み込みしたときの中身の指紋 */
+    private final Map<ResourceLocation, String> syncs = new LinkedHashMap<>();
 
     public static void onServerStarted(MinecraftServer server) {
         current = server.overworld().getDataStorage().computeIfAbsent(
@@ -77,8 +81,48 @@ public class CustomQuestStore extends SavedData {
         setDirty();
     }
 
+    /** 印（なければ付ける） */
+    public String uidOf(ResourceLocation id) {
+        String u = uids.get(id);
+        if (u == null) {
+            u = java.util.UUID.randomUUID().toString();
+            uids.put(id, u);
+            setDirty();
+        }
+        return u;
+    }
+
+    public void setUid(ResourceLocation id, String uid) {
+        uids.put(id, uid);
+        setDirty();
+    }
+
+    @Nullable
+    public ResourceLocation idByUid(String uid) {
+        for (Map.Entry<ResourceLocation, String> e : uids.entrySet()) {
+            if (e.getValue().equals(uid) && quests.containsKey(e.getKey())) return e.getKey();
+        }
+        return null;
+    }
+
+    public String syncOf(ResourceLocation id) {
+        return syncs.getOrDefault(id, "");
+    }
+
+    public void setSync(ResourceLocation id, String hash) {
+        syncs.put(id, hash);
+        setDirty();
+    }
+
+    public void setDisabled(ResourceLocation id, boolean off) {
+        if (off) disabled.add(id); else disabled.remove(id);
+        setDirty();
+    }
+
     public boolean remove(ResourceLocation id) {
         disabled.remove(id);
+        uids.remove(id);
+        syncs.remove(id);
         boolean removed = quests.remove(id) != null;
         if (removed) setDirty();
         return removed;
@@ -104,6 +148,8 @@ public class CustomQuestStore extends SavedData {
                     e.putString("id", id.toString());
                     e.put("def", t);
                     e.putBoolean("disabled", disabled.contains(id));
+                    if (uids.containsKey(id)) e.putString("uid", uids.get(id));
+                    if (syncs.containsKey(id)) e.putString("sync", syncs.get(id));
                     list.add(e);
                 }));
         tag.put("quests", list);
@@ -124,6 +170,8 @@ public class CustomQuestStore extends SavedData {
                     .ifPresent(def -> {
                         store.quests.put(id, def);
                         if (e.getBoolean("disabled")) store.disabled.add(id);
+                        if (!e.getString("uid").isEmpty()) store.uids.put(id, e.getString("uid"));
+                        if (!e.getString("sync").isEmpty()) store.syncs.put(id, e.getString("sync"));
                     });
         }
         store.nextId = Math.max(1, tag.getInt("next_id"));
