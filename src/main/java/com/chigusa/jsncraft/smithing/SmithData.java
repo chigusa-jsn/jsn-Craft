@@ -24,7 +24,7 @@ public final class SmithData {
 
     public record TraitRoll(String id, double value, double ratio) {}
 
-    /** 種類：W 武器 / A 防具 / T 道具（斧は WT）。強化できない物は空 */
+    /** 種類：W 武器 / A 防具 / T 道具（斧は WT）/ S 盾 / E エリトラ / F 釣り竿。強化できない物は空 */
     public static String kinds(ItemStack stack) {
         var item = stack.getItem();
         StringBuilder sb = new StringBuilder();
@@ -35,6 +35,9 @@ public final class SmithData {
                 || item instanceof com.chigusa.jsncraft.weapon.DaggerItem) sb.append('W');
         if (item instanceof ArmorItem) sb.append('A');
         if (item instanceof DiggerItem) sb.append('T');
+        if (item instanceof net.minecraft.world.item.ShieldItem) sb.append('S');
+        if (item instanceof net.minecraft.world.item.ElytraItem) sb.append('E');
+        if (item instanceof net.minecraft.world.item.FishingRodItem) sb.append('F');
         return sb.toString();
     }
 
@@ -81,7 +84,7 @@ public final class SmithData {
     }
 
     public static ChatFormatting plusColor(int plus) {
-        return plus >= 13 ? ChatFormatting.GOLD : plus >= 10 ? ChatFormatting.LIGHT_PURPLE : plus >= 7 ? ChatFormatting.AQUA
+        return plus >= 25 ? ChatFormatting.RED : plus >= 19 ? ChatFormatting.GOLD : plus >= 13 ? ChatFormatting.LIGHT_PURPLE : plus >= 7 ? ChatFormatting.AQUA
                 : plus >= 4 ? ChatFormatting.GREEN : ChatFormatting.WHITE;
     }
 

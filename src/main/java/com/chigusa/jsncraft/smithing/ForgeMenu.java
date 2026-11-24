@@ -39,7 +39,7 @@ public class ForgeMenu extends AbstractContainerMenu {
         this.be = be;
         this.container = be != null ? be.items() : new SimpleContainer(2);
         Player player = inv.player;
-        this.data = client || be == null ? new SimpleContainerData(7) : new ContainerData() {
+        this.data = client || be == null ? new SimpleContainerData(8) : new ContainerData() {
             @Override
             public int get(int i) {
                 if (!(player instanceof ServerPlayer sp)) return 0;
@@ -56,7 +56,7 @@ public class ForgeMenu extends AbstractContainerMenu {
                             yield ci >= 0 && lv >= SmithingService.CRAFTS.get(ci).minLevel() && mat.getCount() >= SmithingService.CRAFTS.get(ci).count() ? CAN_CRAFT : 0;
                         }
                         int f = 0;
-                        if (!kinds.isEmpty() && plus < max && ModSmithing.stoneTier(mat) >= SmithingService.tierFor(plus + 1)) f |= CAN_ENHANCE;
+                        if (SmithingService.canEnhance(sp, be)) f |= CAN_ENHANCE;
                         if (!kinds.isEmpty() && !SmithTraits.pool(mat.getItem(), kinds).isEmpty()) {
                             f |= CAN_REFORGE1;
                             if (SmithingService.traitSlots(sp) >= 2) f |= CAN_REFORGE2;
@@ -64,7 +64,7 @@ public class ForgeMenu extends AbstractContainerMenu {
                         if (SmithingService.canRepair(item)) f |= CAN_REPAIR;
                         yield f;
                     }
-                    case 1 -> kinds.isEmpty() || plus >= 15 ? 0 : (int) Math.round(SmithingService.successRate(sp, plus + 1) * 1000);
+                    case 1 -> kinds.isEmpty() || plus >= SmithingService.MAX_PLUS ? 0 : (int) Math.round(SmithingService.successRate(sp, plus + 1) * 1000);
                     case 2 -> max;
                     case 3 -> SmithingService.traitSlots(sp);
                     case 5 -> {
@@ -73,6 +73,7 @@ public class ForgeMenu extends AbstractContainerMenu {
                         yield lv >= SmithingService.CRAFTS.get(ci).minLevel() ? ci + 1 : -(ci + 1);
                     }
                     case 6 -> lv;
+                    case 7 -> (int) Math.round(SmithingService.greatBonus(sp) * 1000);
                     case 4 -> item.isEmpty() ? ST_EMPTY : lv < 0 ? ST_NOT_SMITH : kinds.isEmpty() ? ST_CANT : plus >= max ? ST_MAX : ST_OK;
                     default -> 0;
                 };
@@ -84,7 +85,7 @@ public class ForgeMenu extends AbstractContainerMenu {
 
             @Override
             public int getCount() {
-                return 7;
+                return 8;
             }
         };
         addSlot(new Slot(container, 0, 26, 26));
@@ -101,6 +102,7 @@ public class ForgeMenu extends AbstractContainerMenu {
     public int status() { return data.get(4); }
     public int craftInfo() { return data.get(5); }
     public int smithLevel() { return data.get(6); }
+    public int greatPermille() { return data.get(7); }
 
     public ItemStack item() {
         return container.getItem(0);
@@ -110,7 +112,8 @@ public class ForgeMenu extends AbstractContainerMenu {
     public boolean clickMenuButton(Player player, int id) {
         if (be == null || !(player instanceof ServerPlayer sp)) return false;
         return switch (id) {
-            case 0 -> SmithingService.enhance(sp, be);
+            case 0 -> SmithingService.startEnhance(sp, be);
+            case 10, 11, 12 -> SmithingService.enhance(sp, be, id - 10);
             case 1 -> SmithingService.reforge(sp, be, 0);
             case 2 -> SmithingService.reforge(sp, be, 1);
             case 3 -> SmithingService.repair(sp, be);

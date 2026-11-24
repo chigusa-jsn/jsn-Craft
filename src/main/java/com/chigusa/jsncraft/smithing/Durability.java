@@ -183,6 +183,12 @@ public final class Durability {
         }
     }
 
+    /** 壊れた盾では防げない */
+    @SubscribeEvent
+    public static void onShield(net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent event) {
+        if (event.getBlocked() && broken(event.getEntity().getUseItem())) event.setBlocked(false);
+    }
+
     // ================= 当て板 =================
 
     public static int plate(ItemStack stack) {

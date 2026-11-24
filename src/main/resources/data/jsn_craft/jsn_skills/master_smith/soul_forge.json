@@ -3,7 +3,7 @@
     "text": "魂込め"
   },
   "description": {
-    "text": "大成功がさらに出やすくなる（+10%）。"
+    "text": "大成功がさらに出やすくなる（ミニゲームの会心の幅が広がる）（+10%）。"
   },
   "icon": "jsn_craft:skill_icon/master_smith/soul_forge",
   "type": "passive",

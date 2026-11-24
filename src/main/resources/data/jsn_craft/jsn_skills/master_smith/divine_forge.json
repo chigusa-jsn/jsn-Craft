@@ -3,7 +3,7 @@
     "text": "神匠の一撃"
   },
   "description": {
-    "text": "60秒間、強化が必ず成功する。"
+    "text": "60秒間、強化ミニゲームで失敗しない（外しても成功になる）。"
   },
   "icon": "jsn_craft:skill_icon/master_smith/divine_forge",
   "type": "active",

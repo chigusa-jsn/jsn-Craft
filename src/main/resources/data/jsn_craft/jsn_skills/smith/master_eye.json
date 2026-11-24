@@ -3,7 +3,7 @@
     "text": "名工の勘"
   },
   "description": {
-    "text": "強化に成功したとき、一気に+2になる「大成功」が出やすくなる（+5%）。"
+    "text": "強化に成功したとき、一気に+2になる「大成功」が出やすくなる（ミニゲームの会心の幅が広がる）（+5%）。"
   },
   "icon": "jsn_craft:skill_icon/smith/master_eye",
   "type": "passive",

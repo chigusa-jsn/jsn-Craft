@@ -3,7 +3,7 @@
     "text": "焼き入れ"
   },
   "description": {
-    "text": "120秒間、強化の成功率が15%上がる。"
+    "text": "120秒間、強化ミニゲームの当たりが広くなる（成功率+15%相当）。"
   },
   "icon": "jsn_craft:skill_icon/smith/quench",
   "type": "active",

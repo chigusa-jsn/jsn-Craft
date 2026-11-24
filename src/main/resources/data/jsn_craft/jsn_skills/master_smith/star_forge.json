@@ -3,7 +3,7 @@
     "text": "星鉄の鍛錬"
   },
   "description": {
-    "text": "+11以上の強化ができるようになり、特性を2つまでつけられるようになる。"
+    "text": "+21以上の強化ができるようになり、特性を2つまでつけられるようになる。"
   },
   "icon": "jsn_craft:skill_icon/master_smith/star_forge",
   "type": "passive",

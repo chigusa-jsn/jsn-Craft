@@ -37,8 +37,10 @@ public final class SmithingService {
     public static final ResourceLocation SMITH = JsnCraft.id("smith");
     public static final ResourceLocation MASTER = JsnCraft.id("master_smith");
 
-    /** +n にするときの成功率（%） */
-    private static final int[] RATE = {100, 95, 90, 80, 70, 60, 50, 40, 32, 25, 20, 15, 12, 9, 7};
+    public static final int MAX_PLUS = 30;
+    /** +n にするときの成功率（%）＝ミニゲームの当たり幅の広さ */
+    private static final int[] RATE = {100, 97, 94, 90, 86, 82, 78, 74, 70, 66, 62, 58, 54, 50, 46,
+            42, 38, 34, 30, 27, 24, 21, 18, 16, 14, 12, 10, 8, 6, 5};
     public static final String[] TIER_NAMES = {"鉄", "金", "ダイヤ", "ネザライト", "星鉄"};
 
     // ================= 職業 =================
@@ -52,26 +54,31 @@ public final class SmithingService {
         return -1;
     }
 
-    /** 強化できる上限：鍛ち手は Lv4 ごとに +1（最大 +10）、名工は +10〜+15 */
+    /** 強化できる上限：鍛ち手は Lv5 ごとに +2（最大 +20）、名工は +20〜+30（Lv10 ごとに +1） */
     public static int maxPlus(ServerPlayer player) {
         int lv = smithLevel(player);
         if (lv < 0) return 0;
-        if (lv <= 50) return Math.min(10, 1 + lv / 4);
-        return Math.min(15, 10 + (lv - 50) / 20);
+        if (lv <= 50) return Math.min(20, 1 + lv * 2 / 5);
+        return Math.min(MAX_PLUS, 20 + (lv - 50) / 10);
+    }
+
+    /** +の値による伸び：+15 までは a ずつ、そこから先は b ずつ */
+    public static double grow(int plus, double a, double b) {
+        return a * Math.min(plus, 15) + b * Math.max(0, plus - 15);
     }
 
     public static int traitSlots(ServerPlayer player) {
         return SkillService.passive(player, "star_forge") != null ? 2 : 1;
     }
 
-    /** +n に必要な強化石の段階（0 鉄 … 4 星鉄） */
+    /** +n に必要な強化石の段階（0 鉄 +1〜6 / 1 金 +7〜12 / 2 ダイヤ +13〜18 / 3 ネザライト +19〜24 / 4 星鉄 +25〜30） */
     public static int tierFor(int target) {
-        return Math.min(4, (target - 1) / 3);
+        return Math.max(0, Math.min(4, (target - 1) / 6));
     }
 
     public static double successRate(ServerPlayer player, int target) {
         if (TimedFlags.get(player, "divine_forge") > 0) return 1.0;
-        double r = RATE[Math.max(0, Math.min(14, target - 1))] / 100.0;
+        double r = RATE[Math.max(0, Math.min(MAX_PLUS - 1, target - 1))] / 100.0;
         r += Math.max(0, smithLevel(player)) * 0.001;
         SkillDefinition focus = SkillService.passive(player, "smith_success");
         if (focus != null) r += focus.power();
@@ -81,43 +88,70 @@ public final class SmithingService {
 
     // ================= 強化 =================
 
-    public static boolean enhance(ServerPlayer player, ForgeBlockEntity be) {
+    /** 大成功（会心）の幅の足し（ミニゲームの会心の幅が広がる） */
+    public static double greatBonus(ServerPlayer player) {
+        double great = 0.03;
+        SkillDefinition g1 = SkillService.passive(player, "smith_great");
+        SkillDefinition g2 = SkillService.passive(player, "smith_great2");
+        if (g1 != null) great += g1.chance();
+        if (g2 != null) great += g2.chance();
+        return great;
+    }
+
+    public static boolean canEnhance(ServerPlayer player, ForgeBlockEntity be) {
         ItemStack item = be.item(), mat = be.material();
         if (smithLevel(player) < 0 || SmithData.kinds(item).isEmpty()) return false;
         int plus = SmithData.plus(item);
+        return plus < maxPlus(player) && ModSmithing.stoneTier(mat) >= tierFor(plus + 1);
+    }
+
+    /** ミニゲームを始めた時刻（ずるの防止） */
+    private static final java.util.Map<java.util.UUID, Long> GAME_START = new java.util.HashMap<>();
+
+    public static boolean startEnhance(ServerPlayer player, ForgeBlockEntity be) {
+        if (!canEnhance(player, be)) return false;
+        GAME_START.put(player.getUUID(), player.serverLevel().getGameTime());
+        player.serverLevel().playSound(null, be.getBlockPos(), SoundEvents.BLAZE_SHOOT, SoundSource.BLOCKS, 0.4F, 1.4F);
+        return true;
+    }
+
+    /** ミニゲームの結果で強化する：0 失敗 / 1 成功 / 2 大成功 */
+    public static boolean enhance(ServerPlayer player, ForgeBlockEntity be, int result) {
+        Long started = GAME_START.remove(player.getUUID());
+        ServerLevel level = player.serverLevel();
+        if (started == null || level.getGameTime() - started < 15 || !canEnhance(player, be)) return false;
+        ItemStack item = be.item(), mat = be.material();
+        int plus = SmithData.plus(item);
         int max = maxPlus(player);
-        if (plus >= max) return false;
-        int tier = ModSmithing.stoneTier(mat);
-        if (tier < tierFor(plus + 1)) return false;
+        if (TimedFlags.get(player, "divine_forge") > 0 && result == 0) result = 1;   // 神匠の一撃：失敗しない
         var r = player.getRandom();
-        boolean success = r.nextDouble() < successRate(player, plus + 1);
         SkillDefinition save = SkillService.passive(player, "smith_save");
         if (save == null || r.nextDouble() >= save.chance()) mat.shrink(1);
         be.setChanged();
-        ServerLevel level = player.serverLevel();
         BlockPos pos = be.getBlockPos();
         Vec3 c = Vec3.atCenterOf(pos).add(0, 0.6, 0);
         level.sendParticles(ParticleTypes.LAVA, c.x, c.y, c.z, 6, 0.2, 0.1, 0.2, 0);
         Vfx.sparks(level, c, 16);
-        if (success) {
-            double great = 0.03;
-            SkillDefinition g1 = SkillService.passive(player, "smith_great");
-            SkillDefinition g2 = SkillService.passive(player, "smith_great2");
-            if (g1 != null) great += g1.chance();
-            if (g2 != null) great += g2.chance();
-            int up = (r.nextDouble() < great && plus + 2 <= max) ? 2 : 1;
+        if (result > 0) {
+            int up = (result == 2 && plus + 2 <= max) ? 2 : 1;
             SmithData.setPlus(item, plus + up);
             level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0F, 1.2F);
-            level.playSound(null, pos, SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 0.6F, up == 2 ? 1.8F : 1.4F);
-            Vfx.ring(level, Vec3.atBottomCenterOf(pos).add(0, 1.05, 0), up == 2 ? 2.2F : 1.4F, 14, up == 2 ? Vfx.GOLD : Vfx.WHITE);
-            var msg = Component.literal(up == 2 ? "大成功！ " : "強化成功！ ").withStyle(up == 2 ? ChatFormatting.GOLD : ChatFormatting.GREEN, ChatFormatting.BOLD)
+            level.playSound(null, pos, SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 0.6F, result == 2 ? 1.8F : 1.4F);
+            Vfx.ring(level, Vec3.atBottomCenterOf(pos).add(0, 1.05, 0), result == 2 ? 2.2F : 1.4F, 14, result == 2 ? Vfx.GOLD : Vfx.WHITE);
+            var msg = Component.literal(result == 2 ? "大成功！ " : "強化成功！ ").withStyle(result == 2 ? ChatFormatting.GOLD : ChatFormatting.GREEN, ChatFormatting.BOLD)
                     .append(item.getHoverName().copy());
             player.displayClientMessage(msg, true);
-            if (plus + up >= 10) {
+            int now = plus + up;
+            if (now >= 15) {
+                String verb = now >= MAX_PLUS ? " を極限まで鍛え上げた！！" : now >= 25 ? " を伝説の域まで鍛え上げた！" : " を鍛え上げた！";
                 level.getServer().getPlayerList().broadcastSystemMessage(Component.literal("⚒ " + player.getGameProfile().getName() + " が ")
-                        .withStyle(ChatFormatting.GOLD).append(item.getHoverName().copy()).append(Component.literal(" を鍛え上げた！").withStyle(ChatFormatting.GOLD)), false);
+                        .withStyle(ChatFormatting.GOLD).append(item.getHoverName().copy()).append(Component.literal(verb).withStyle(ChatFormatting.GOLD)), false);
             }
-            JobService.onAction(player, rule -> rule.action().equals("smith"), 5 + (plus + up) * 3);
+            if (now >= 20) {
+                level.sendParticles(ParticleTypes.END_ROD, c.x, c.y + 0.4, c.z, 30, 0.3, 0.6, 0.3, 0.08);
+                level.playSound(null, pos, SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.8F, 1.2F);
+            }
+            JobService.onAction(player, rule -> rule.action().equals("smith"), 5 + now * 2 + (result == 2 ? 5 : 0));
         } else {
             level.playSound(null, pos, SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 0.8F, 0.7F);
             level.sendParticles(ParticleTypes.LARGE_SMOKE, c.x, c.y, c.z, 10, 0.2, 0.2, 0.2, 0.02);
@@ -233,7 +267,7 @@ public final class SmithingService {
         if (kinds.isEmpty()) return;
         int plus = SmithData.plus(stack);
         var traits = SmithData.traits(stack);
-        EquipmentSlotGroup group = stack.getItem() instanceof ArmorItem a ? EquipmentSlotGroup.bySlot(a.getEquipmentSlot()) : EquipmentSlotGroup.MAINHAND;
+        EquipmentSlotGroup group = groupOf(stack);
         if (Durability.plate(stack) > 0 && kinds.contains("A")) {
             event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plate_armor_" + group.getSerializedName()), 1.5,
                     AttributeModifier.Operation.ADD_VALUE), group);
@@ -242,20 +276,37 @@ public final class SmithingService {
         }
         if (plus > 0) {
             if (kinds.contains("W") && !SmithData.ranged(stack)) {
-                event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(JsnCraft.id("smith/plus_attack"), 0.6 * plus,
+                event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(JsnCraft.id("smith/plus_attack"), grow(plus, 0.6, 0.4),
                         AttributeModifier.Operation.ADD_VALUE), group);
             }
             if (kinds.contains("A")) {
-                event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plus_armor_" + group.getSerializedName()), 0.25 * plus,
+                event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plus_armor_" + group.getSerializedName()), grow(plus, 0.25, 0.15),
                         AttributeModifier.Operation.ADD_VALUE), group);
-                event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(JsnCraft.id("smith/plus_tough_" + group.getSerializedName()), 0.1 * plus,
+                event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(JsnCraft.id("smith/plus_tough_" + group.getSerializedName()), grow(plus, 0.1, 0.06),
+                        AttributeModifier.Operation.ADD_VALUE), group);
+            }
+            String g = group.getSerializedName();
+            if (kinds.contains("S")) {   // 盾：防御とノックバック耐性
+                event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plus_shield_armor"), grow(plus, 0.15, 0.1),
+                        AttributeModifier.Operation.ADD_VALUE), group);
+                event.addModifier(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(JsnCraft.id("smith/plus_shield_kb"), grow(plus, 0.01, 0.01),
+                        AttributeModifier.Operation.ADD_VALUE), group);
+            }
+            if (kinds.contains("E")) {   // エリトラ：防御とタフネス
+                event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plus_elytra_armor_" + g), grow(plus, 0.2, 0.12),
+                        AttributeModifier.Operation.ADD_VALUE), group);
+                event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(JsnCraft.id("smith/plus_elytra_tough_" + g), grow(plus, 0.08, 0.05),
+                        AttributeModifier.Operation.ADD_VALUE), group);
+            }
+            if (kinds.contains("F")) {   // 釣り竿：幸運（釣れる物が良くなる）
+                event.addModifier(Attributes.LUCK, new AttributeModifier(JsnCraft.id("smith/plus_rod_luck"), grow(plus, 0.1, 0.08),
                         AttributeModifier.Operation.ADD_VALUE), group);
             }
             if (kinds.contains("T")) {
                 // 掘る速さ：効率強化と同じ「採掘効率」（その道具で掘れるブロックだけ）＋全体の倍率
-                event.addModifier(Attributes.MINING_EFFICIENCY, new AttributeModifier(JsnCraft.id("smith/plus_efficiency"), 1.5 * plus,
+                event.addModifier(Attributes.MINING_EFFICIENCY, new AttributeModifier(JsnCraft.id("smith/plus_efficiency"), grow(plus, 1.5, 1.0),
                         AttributeModifier.Operation.ADD_VALUE), group);
-                event.addModifier(Attributes.BLOCK_BREAK_SPEED, new AttributeModifier(JsnCraft.id("smith/plus_mining"), 0.06 * plus,
+                event.addModifier(Attributes.BLOCK_BREAK_SPEED, new AttributeModifier(JsnCraft.id("smith/plus_mining"), grow(plus, 0.06, 0.04),
                         AttributeModifier.Operation.ADD_MULTIPLIED_BASE), group);
             }
         }
@@ -268,6 +319,14 @@ public final class SmithingService {
                     JsnCraft.id("smith/trait" + idx + "_" + group.getSerializedName()), roll.value(), t.op()), group));
         }
         sharpness(event, stack, kinds, group);
+    }
+
+    public static EquipmentSlotGroup groupOf(ItemStack stack) {
+        var item = stack.getItem();
+        if (item instanceof ArmorItem a) return EquipmentSlotGroup.bySlot(a.getEquipmentSlot());
+        if (item instanceof net.minecraft.world.item.ElytraItem) return EquipmentSlotGroup.CHEST;
+        if (item instanceof net.minecraft.world.item.ShieldItem || item instanceof net.minecraft.world.item.FishingRodItem) return EquipmentSlotGroup.HAND;
+        return EquipmentSlotGroup.MAINHAND;
     }
 
     /** 切れ味：耐久が減ると攻撃力・防御力が下がる（壊れるとほぼ使えない） */
@@ -313,7 +372,7 @@ public final class SmithingService {
         ItemStack weapon = arrow.getWeaponItem();
         if (weapon == null || weapon.isEmpty()) return;
         int plus = SmithData.plus(weapon);
-        if (plus > 0) arrow.setBaseDamage(arrow.getBaseDamage() + 0.3 * plus);
+        if (plus > 0) arrow.setBaseDamage(arrow.getBaseDamage() + grow(plus, 0.3, 0.2));
         if (weapon.getMaxDamage() > 0) arrow.setBaseDamage(arrow.getBaseDamage() * Durability.weaponFactor(weapon));
     }
 

@@ -38,7 +38,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     protected void init() {
         super.init();
         int x = leftPos + 98;
-        enhanceBtn = addRenderableWidget(Button.builder(Component.literal("強化する"), b -> click(0)).bounds(x, topPos + 4, 72, 12).build());
+        enhanceBtn = addRenderableWidget(Button.builder(Component.literal("強化する"), b -> startGame()).bounds(x, topPos + 4, 72, 12).build());
         reforge1Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す"), b -> click(1)).bounds(x, topPos + 17, 72, 12).build());
         reforge2Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す(2)"), b -> click(2)).bounds(x, topPos + 30, 72, 12).build());
         repairBtn = addRenderableWidget(Button.builder(Component.literal("修理する"), b -> click(3)).bounds(x, topPos + 43, 72, 12).build());
@@ -49,9 +49,150 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
     }
 
+    // ================= 強化ミニゲーム =================
+    // 火床の上を行き来する印を、光っている所でタイミングよく止めて5回叩く。
+    // 真ん中（会心）なら PERFECT、光の中なら GOOD、外れたら MISS。
+    // MISS 2回以上 → 失敗 / MISS なしで PERFECT 4回以上 → 大成功 / それ以外 → 成功
+
+    private static final int STRIKES = 5;
+    private boolean game;
+    private final int[] marks = new int[STRIKES];
+    private int strike;
+    private long phaseStart, finishAt;
+    private double zone, goodHalf, perfectHalf, period;
+    private String flash = "";
+    private long flashUntil;
+    private final java.util.Random rnd = new java.util.Random();
+
+    private void startGame() {
+        if ((menu.flags() & ForgeMenu.CAN_ENHANCE) == 0 || game) return;
+        click(0);
+        game = true;
+        strike = 0;
+        finishAt = 0;
+        java.util.Arrays.fill(marks, -1);
+        double rate = Math.max(0.03, menu.ratePermille() / 1000.0);
+        int plus = SmithData.plus(menu.item());
+        goodHalf = 0.04 + 0.21 * rate;
+        perfectHalf = goodHalf * Math.min(0.7, 0.3 + menu.greatPermille() / 1000.0 * 2);
+        period = Math.max(0.55, 1.6 - 0.035 * plus);
+        newZone();
+        phaseStart = System.nanoTime();
+        setButtons(false);
+    }
+
+    private void newZone() {
+        double m = goodHalf + 0.04;
+        zone = m + rnd.nextDouble() * Math.max(0, 1 - 2 * m);
+    }
+
+    /** 印の位置（0〜1を往復） */
+    private double cursor() {
+        double t = (System.nanoTime() - phaseStart) / 1e9 / period;
+        double f = t - Math.floor(t);
+        return f < 0.5 ? f * 2 : 2 - f * 2;
+    }
+
+    private void hit() {
+        if (!game || strike >= STRIKES) return;
+        double d = Math.abs(cursor() - zone);
+        int m = d <= perfectHalf ? 2 : d <= goodHalf ? 1 : 0;
+        marks[strike++] = m;
+        flash = m == 2 ? "§6§lPERFECT!" : m == 1 ? "§aGOOD" : "§7MISS…";
+        flashUntil = System.currentTimeMillis() + 450;
+        if (minecraft != null) {
+            var snd = m == 0 ? net.minecraft.sounds.SoundEvents.ANVIL_LAND : net.minecraft.sounds.SoundEvents.ANVIL_PLACE;
+            float pitch = m == 2 ? 1.6F : m == 1 ? 1.2F : 0.6F;
+            minecraft.getSoundManager().play(net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(snd, pitch, m == 0 ? 0.3F : 0.45F));
+        }
+        if (strike >= STRIKES) {
+            finishAt = System.currentTimeMillis() + 700;
+        } else {
+            newZone();
+            phaseStart = System.nanoTime() - (long) (rnd.nextDouble() * period * 1e9);
+        }
+    }
+
+    private int outcome() {
+        int miss = 0, perfect = 0;
+        for (int m : marks) {
+            if (m == 0) miss++;
+            if (m == 2) perfect++;
+        }
+        if (miss >= 2) return 0;
+        if (miss == 0 && perfect >= 4) return 2;
+        return 1;
+    }
+
+    private void setButtons(boolean on) {
+        for (Button b : new Button[]{enhanceBtn, reforge1Btn, reforge2Btn, repairBtn, craftBtn}) b.visible = on;
+        if (on) reforge2Btn.visible = menu.traitSlots() >= 2;
+    }
+
+    private void renderGame(GuiGraphics g) {
+        int x = leftPos + 4, y = topPos + 4, w = imageWidth - 8, h = 68;
+        g.fill(x, y, x + w, y + h, 0xF0201814);
+        g.drawString(font, "§6⚒ 強化！ §7光った所でクリック", x + 6, y + 4, 0xFFFFFF, false);
+        // 火床のバー
+        int bx = x + 8, by = y + 20, bw = w - 16, bh = 14;
+        g.fill(bx - 1, by - 1, bx + bw + 1, by + bh + 1, 0xFF000000);
+        g.fill(bx, by, bx + bw, by + bh, 0xFF3A2A22);
+        if (strike < STRIKES) {
+            int gz0 = bx + (int) ((zone - goodHalf) * bw), gz1 = bx + (int) ((zone + goodHalf) * bw);
+            int pz0 = bx + (int) ((zone - perfectHalf) * bw), pz1 = bx + (int) ((zone + perfectHalf) * bw);
+            g.fill(Math.max(bx, gz0), by, Math.min(bx + bw, gz1), by + bh, 0xFFE07828);
+            g.fill(Math.max(bx, pz0), by, Math.min(bx + bw, pz1), by + bh, 0xFFFFE070);
+            int cx = bx + (int) (cursor() * bw);
+            g.fill(cx - 1, by - 4, cx + 2, by + bh + 4, 0xFFFFFFFF);
+        }
+        // 5回の結果
+        for (int i = 0; i < STRIKES; i++) {
+            int ix = x + w / 2 - STRIKES * 11 + i * 22, iy = y + 40;
+            int c = marks[i] == 2 ? 0xFFFFD040 : marks[i] == 1 ? 0xFF60D060 : marks[i] == 0 ? 0xFF808080 : 0xFF4A4038;
+            g.fill(ix, iy, ix + 18, iy + 10, 0xFF000000);
+            g.fill(ix + 1, iy + 1, ix + 17, iy + 9, c);
+            if (i == strike && strike < STRIKES) g.fill(ix, iy + 11, ix + 18, iy + 12, 0xFFFFFFFF);
+        }
+        String msg = System.currentTimeMillis() < flashUntil ? flash : "";
+        if (strike >= STRIKES) {
+            int o = outcome();
+            msg = o == 2 ? "§6§l大成功！" : o == 1 ? "§a§l成功！" : "§c§l失敗…";
+        }
+        if (!msg.isEmpty()) g.drawCenteredString(font, msg, x + w / 2, y + 55, 0xFFFFFF);
+    }
+
+    @Override
+    public boolean mouseClicked(double mx, double my, int button) {
+        if (game) {
+            if (mx >= leftPos && mx < leftPos + imageWidth && my >= topPos && my < topPos + 72) {
+                hit();
+                return true;
+            }
+        }
+        return super.mouseClicked(mx, my, button);
+    }
+
+    @Override
+    public boolean keyPressed(int key, int scan, int mods) {
+        if (game && key == org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE) {
+            hit();
+            return true;
+        }
+        return super.keyPressed(key, scan, mods);
+    }
+
     @Override
     protected void containerTick() {
         super.containerTick();
+        if (game) {
+            if (finishAt > 0 && System.currentTimeMillis() >= finishAt) {
+                click(10 + outcome());
+                game = false;
+                setButtons(true);
+            } else {
+                return;
+            }
+        }
         int f = menu.flags();
         enhanceBtn.active = (f & ForgeMenu.CAN_ENHANCE) != 0;
         reforge1Btn.active = (f & ForgeMenu.CAN_REFORGE1) != 0;
@@ -102,7 +243,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             case ForgeMenu.ST_MAX -> line1 = "§6+" + SmithData.plus(item) + "（今の上限 +" + menu.maxPlus() + "）";
             default -> {
                 int plus = SmithData.plus(item);
-                line1 = "§f+" + plus + " → +" + (plus + 1) + "  §e成功率 " + menu.ratePermille() / 10 + "%";
+                int stars = Math.max(1, Math.min(5, 5 - (int) Math.round(menu.ratePermille() / 1000.0 * 4)));
+                line1 = "§f+" + plus + " → +" + (plus + 1) + " §e" + "★".repeat(stars) + "§8" + "★".repeat(5 - stars);
                 line2 = "§7必要：" + SmithingService.TIER_NAMES[SmithingService.tierFor(plus + 1)] + "の強化石";
             }
         }
@@ -117,6 +259,12 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
+        if (game) {
+            g.pose().pushPose();
+            g.pose().translate(0, 0, 300);
+            renderGame(g);
+            g.pose().popPose();
+        }
         renderTooltip(g, mouseX, mouseY);
     }
 
@@ -183,8 +331,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             sharpTooltip(stack, tip);
             int tier = ModSmithing.stoneTier(stack);
             if (tier >= 0) {
-                int from = tier * 3 + 1;
-                tip.add(Component.literal("+" + from + "〜+" + (from + 2) + " の強化に使う").withStyle(ChatFormatting.GRAY));
+                int from = tier * 6 + 1;
+                tip.add(Component.literal("+" + from + "〜+" + (from + 5) + " の強化に使う").withStyle(ChatFormatting.GRAY));
             }
         }
     }

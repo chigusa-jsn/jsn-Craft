@@ -42,7 +42,8 @@ public class RepairToolItem extends Item {
         String k = SmithData.kinds(target);
         return switch (kind) {
             case WHETSTONE -> k.contains("W") || k.contains("T");
-            case KIT, PLATE -> k.contains("A");
+            case KIT -> !(k.contains("W") || k.contains("T"));
+            case PLATE -> k.contains("A");
         };
     }
 
@@ -125,7 +126,7 @@ public class RepairToolItem extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tip, TooltipFlag flag) {
         switch (kind) {
             case WHETSTONE -> tip.add(Component.literal("武器・道具の切れ味を " + Math.round(amount * 100) + "% 戻す").withStyle(ChatFormatting.GRAY));
-            case KIT -> tip.add(Component.literal("防具の耐久を " + Math.round(amount * 100) + "% 戻す").withStyle(ChatFormatting.GRAY));
+            case KIT -> tip.add(Component.literal("防具・盾・エリトラ・釣り竿の耐久を " + Math.round(amount * 100) + "% 戻す").withStyle(ChatFormatting.GRAY));
             case PLATE -> tip.add(Component.literal("防具に付けると 防御 +1.5・タフネス +1（" + PLATE_HITS + " 回受けると外れる）").withStyle(ChatFormatting.GRAY));
         }
         if (kind != Kind.PLATE) {

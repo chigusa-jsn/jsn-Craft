@@ -3,7 +3,7 @@
     "text": "集中の一打"
   },
   "description": {
-    "text": "強化の成功率が5%上がる。"
+    "text": "強化ミニゲームの当たり（光る所）が広くなる（成功率+5%相当）。"
   },
   "icon": "jsn_craft:skill_icon/smith/focus_strike",
   "type": "passive",
