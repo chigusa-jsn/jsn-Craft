@@ -303,6 +303,11 @@ public final class SmithingService {
         CRAFTS = List.copyOf(l);
     }
 
+    /** 必要なレベルの書き方：50 までは「鍛冶師LvN」、51 からは「名工LvN」 */
+    public static String levelText(int minLevel) {
+        return minLevel > 50 ? "名工Lv" + (minLevel - 50) : "鍛冶師Lv" + minLevel;
+    }
+
     /** 2つの枠の物で作れる物（無ければ -1） */
     public static int craftIndex(ItemStack item, ItemStack mat) {
         if (mat.isEmpty()) return -1;

@@ -67,6 +67,16 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     private static final int PANEL_W = 150, ROW = 18;
     private int recipeScroll;
+    /** 一覧のタブ：false 鍛冶師 / true 名工（上位職） */
+    private boolean masterTab;
+
+    /** 今のタブに出すレシピ（元の番号） */
+    private List<Integer> shown() {
+        List<Integer> out = new java.util.ArrayList<>();
+        var list = SmithingService.CRAFTS;
+        for (int i = 0; i < list.size(); i++) if ((list.get(i).minLevel() > 50) == masterTab) out.add(i);
+        return out;
+    }
 
     private int panelX() {
         return leftPos + imageWidth + 4;
@@ -89,36 +99,56 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         g.fill(x, y, x + PANEL_W, y + h, 0xFF1E1E22);
         g.fill(x + 2, y + 2, x + PANEL_W - 2, y + h - 2, 0xFF7A7A82);
         var list = SmithingService.CRAFTS;
-        g.drawString(font, "製作レシピ（" + list.size() + "）", x + 6, y + 6, 0xFFE8E8E8, false);
+        List<Integer> ord = shown();
+        // タブ：鍛冶師／名工
+        String a = "鍛冶師", b = "名工（上位職）";
+        int aw = font.width(a), bw = font.width(b);
+        g.fill(x + 4, y + 4, x + 10 + aw, y + 16, masterTab ? 0x00000000 : 0xFF3A3A42);
+        g.fill(x + 14 + aw, y + 4, x + 20 + aw + bw, y + 16, masterTab ? 0xFF6A4A10 : 0x00000000);
+        g.drawString(font, a, x + 7, y + 6, masterTab ? 0xFF4A4A52 : 0xFFE8E8E8, false);
+        g.drawString(font, b, x + 17 + aw, y + 6, masterTab ? 0xFFFFD870 : 0xFF4A4A52, false);
         int n = panelRows();
-        recipeScroll = Math.max(0, Math.min(recipeScroll, Math.max(0, list.size() - n)));
+        recipeScroll = Math.max(0, Math.min(recipeScroll, Math.max(0, ord.size() - n)));
         int lv = menu.smithLevel();
         int ly = y + 18;
-        for (int k = recipeScroll; k < list.size() && k < recipeScroll + n; k++) {
-            var c = list.get(k);
+        for (int k = recipeScroll; k < ord.size() && k < recipeScroll + n; k++) {
+            var c = list.get(ord.get(k));
             boolean hover = mouseX >= x + 2 && mouseX < x + PANEL_W - 4 && mouseY >= ly && mouseY < ly + ROW;
             boolean have = count(c.input()) >= c.count() && (c.base() == null || count(c.base()) >= c.baseCount());
             if (hover) g.fill(x + 3, ly, x + PANEL_W - 5, ly + ROW, 0x30FFFFFF);
             g.renderItem(new ItemStack(c.output().get()), x + 4, ly + 1);
             int col = lv < c.minLevel() ? 0xFF6A3A3A : have ? 0xFF1A1A1A : 0xFF4A4A52;
-            g.drawString(font, font.plainSubstrByWidth(c.name(), PANEL_W - 50), x + 22, ly + 5, col, false);
-            String lvs = "Lv" + c.minLevel();
+            g.drawString(font, font.plainSubstrByWidth(c.name(), PANEL_W - 56), x + 22, ly + 5, col, false);
+            String lvs = "Lv" + (c.minLevel() > 50 ? c.minLevel() - 50 : c.minLevel());
             g.drawString(font, lvs, x + PANEL_W - 8 - font.width(lvs), ly + 5, lv < c.minLevel() ? 0xFFA03030 : 0xFF3A3A42, false);
             ly += ROW;
         }
-        if (list.size() > n) {
-            int barH = Math.max(8, (h - 22) * n / list.size());
-            int barY = y + 18 + (h - 22 - barH) * recipeScroll / Math.max(1, list.size() - n);
+        if (ord.size() > n) {
+            int barH = Math.max(8, (h - 22) * n / ord.size());
+            int barY = y + 18 + (h - 22 - barH) * recipeScroll / Math.max(1, ord.size() - n);
             g.fill(x + PANEL_W - 5, barY, x + PANEL_W - 3, barY + barH, 0xFF3A3A42);
         }
+    }
+
+    /** タブを押したら true */
+    private boolean clickTab(double mx, double my) {
+        int x = panelX(), y = topPos;
+        if (my < y + 4 || my >= y + 16 || mx < x + 4 || mx >= x + PANEL_W) return false;
+        boolean m = mx >= x + 12 + font.width("鍛冶師");
+        if (m != masterTab) {
+            masterTab = m;
+            recipeScroll = 0;
+        }
+        return true;
     }
 
     private int recipeAt(double mx, double my) {
         int x = panelX(), y = topPos;
         if (mx < x + 2 || mx >= x + PANEL_W - 4 || my < y + 18 || my >= y + imageHeight - 4) return -1;
         int k = recipeScroll + (int) ((my - y - 18) / ROW);
-        if (k >= SmithingService.CRAFTS.size() || k >= recipeScroll + panelRows()) return -1;
-        return k;
+        List<Integer> ord = shown();
+        if (k >= ord.size() || k >= recipeScroll + panelRows()) return -1;
+        return ord.get(k);
     }
 
     private void renderRecipeTooltip(GuiGraphics g, int mx, int my) {
@@ -128,7 +158,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         List<Component> tip = new java.util.ArrayList<>();
         tip.add(Component.literal(c.name() + " ×" + c.outCount()).withStyle(ChatFormatting.GOLD));
         boolean lvOk = menu.smithLevel() >= c.minLevel();
-        tip.add(Component.literal("必要なレベル：鍛冶師Lv" + c.minLevel()).withStyle(lvOk ? ChatFormatting.GRAY : ChatFormatting.RED));
+        tip.add(Component.literal("必要なレベル：" + SmithingService.levelText(c.minLevel()) + (c.minLevel() > 50 ? "（上位職）" : "")).withStyle(lvOk ? ChatFormatting.GRAY : ChatFormatting.RED));
         if (c.base() != null) tip.add(need("土台（左の枠）", c.base(), c.baseCount()));
         tip.add(need("素材（右の枠）", c.input(), c.count()));
         if (c.quality()) tip.add(Component.literal("品質 ★1〜3（鍛冶の腕が高いほど★が出やすい）").withStyle(ChatFormatting.AQUA));
@@ -273,6 +303,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     @Override
     public boolean mouseClicked(double mx, double my, int button) {
+        if (!game && clickTab(mx, my)) return true;
         if (!game) {
             int r = recipeAt(mx, my);
             if (r >= 0) {
@@ -364,7 +395,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 g.renderItemDecorations(font, out, 98, 26);
                 l1 = (ci > 0 ? "§f" : "§c") + c.name() + " ×" + c.outCount();
                 int haveMat = menu.slots.get(1).getItem().getCount(), haveBase = menu.slots.get(0).getItem().getCount();
-                if (ci < 0) l2 = "§c鍛冶師Lv" + c.minLevel() + " から";
+                if (ci < 0) l2 = "§c" + SmithingService.levelText(c.minLevel()) + " から";
                 else if (haveMat < c.count()) l2 = "§c素材が足りない（×" + c.count() + " 必要）";
                 else if (c.base() != null && haveBase < c.baseCount()) l2 = "§c土台が足りない（×" + c.baseCount() + " 必要）";
                 else l2 = c.quality() ? "§b★は鍛冶の腕次第" : "§a作れます";
