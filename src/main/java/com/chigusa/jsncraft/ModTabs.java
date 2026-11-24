@@ -94,6 +94,12 @@ public final class ModTabs {
                 out.accept(ModSmithing.REPAIR_KIT.get());
                 out.accept(ModSmithing.REPAIR_KIT_ADV.get());
                 out.accept(ModSmithing.ARMOR_PLATE.get());
+                out.accept(ModSmithing.WHETSTONE_ROUGH.get());
+                out.accept(ModSmithing.REPAIR_KIT_SIMPLE.get());
+                out.accept(ModSmithing.IRON_PLATE.get());
+                out.accept(ModSmithing.HONE_WHITE.get());
+                out.accept(ModSmithing.HONE_PURPLE.get());
+                out.accept(ModSmithing.REPAIR_KIT_DIVINE.get());
                 all(out, com.chigusa.jsncraft.smithing.arrow.ModArrows.ARROWS.values());
                 out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.THROWING_KNIFE.get());
                 out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.SHURIKEN.get());

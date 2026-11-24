@@ -27,7 +27,7 @@ public final class ModArrows {
     static {
         for (ArrowKind k : ArrowKind.values()) {
             ARROWS.put(k, ModEntities.ITEMS.register(k.id, () -> new SpecialArrowItem(k,
-                    new Item.Properties().rarity(k == ArrowKind.HOMING || k == ArrowKind.RETRIEVE ? Rarity.UNCOMMON : Rarity.COMMON))));
+                    new Item.Properties().rarity(k == ArrowKind.STAR || k == ArrowKind.DRAGON ? Rarity.EPIC : k.ordinal() >= ArrowKind.HARDENED.ordinal() ? Rarity.RARE : k == ArrowKind.HOMING || k == ArrowKind.RETRIEVE ? Rarity.UNCOMMON : Rarity.COMMON))));
         }
     }
 
@@ -39,7 +39,8 @@ public final class ModArrows {
     public static final List<DeferredItem<TridentTipItem>> TIPS = List.of(
             ModEntities.ITEMS.register("trident_tip_fire", () -> new TridentTipItem(TridentTipItem.Tip.FIRE, new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON))),
             ModEntities.ITEMS.register("trident_tip_frost", () -> new TridentTipItem(TridentTipItem.Tip.FROST, new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON))),
-            ModEntities.ITEMS.register("trident_tip_storm", () -> new TridentTipItem(TridentTipItem.Tip.STORM, new Item.Properties().stacksTo(16).rarity(Rarity.RARE))));
+            ModEntities.ITEMS.register("trident_tip_storm", () -> new TridentTipItem(TridentTipItem.Tip.STORM, new Item.Properties().stacksTo(16).rarity(Rarity.RARE))),
+            ModEntities.ITEMS.register("trident_tip_abyss", () -> new TridentTipItem(TridentTipItem.Tip.ABYSS, new Item.Properties().stacksTo(16).rarity(Rarity.EPIC))));
 
     public static Item arrow(ArrowKind k) {
         return ARROWS.get(k).get();

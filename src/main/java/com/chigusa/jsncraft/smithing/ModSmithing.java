@@ -66,6 +66,19 @@ public final class ModSmithing {
     public static final DeferredItem<RepairToolItem> ARMOR_PLATE = ModEntities.ITEMS.register("armor_plate",
             () -> new RepairToolItem(RepairToolItem.Kind.PLATE, 0, new Item.Properties().stacksTo(16)));
 
+    public static final DeferredItem<RepairToolItem> WHETSTONE_ROUGH = ModEntities.ITEMS.register("whetstone_rough",
+            () -> new RepairToolItem(RepairToolItem.Kind.WHETSTONE, 0.1, new Item.Properties().stacksTo(32)));
+    public static final DeferredItem<RepairToolItem> REPAIR_KIT_SIMPLE = ModEntities.ITEMS.register("repair_kit_simple",
+            () -> new RepairToolItem(RepairToolItem.Kind.KIT, 0.1, new Item.Properties().stacksTo(32)));
+    public static final DeferredItem<RepairToolItem> IRON_PLATE = ModEntities.ITEMS.register("iron_plate",
+            () -> new RepairToolItem(RepairToolItem.Kind.PLATE, 0, 2, new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<RepairToolItem> HONE_WHITE = ModEntities.ITEMS.register("finishing_whetstone",
+            () -> new RepairToolItem(RepairToolItem.Kind.HONE, 0, 1, new Item.Properties().stacksTo(16).rarity(Rarity.RARE)));
+    public static final DeferredItem<RepairToolItem> HONE_PURPLE = ModEntities.ITEMS.register("divine_whetstone",
+            () -> new RepairToolItem(RepairToolItem.Kind.HONE, 0, 2, new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
+    public static final DeferredItem<RepairToolItem> REPAIR_KIT_DIVINE = ModEntities.ITEMS.register("repair_kit_divine",
+            () -> new RepairToolItem(RepairToolItem.Kind.KIT, 0.5, 2, new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
+
     /** 強化石の段階（強化石でなければ -1） */
     public static int stoneTier(ItemStack stack) {
         for (int i = 0; i < STONES.size(); i++) if (stack.is(STONES.get(i).get())) return i;

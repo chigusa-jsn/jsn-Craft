@@ -805,5 +805,18 @@
   "item.jsn_craft.trident_tip_frost": "氷の穂先",
   "item.jsn_craft.trident_tip_storm": "雷の穂先",
   "entity.jsn_craft.special_arrow": "特別な矢",
-  "entity.jsn_craft.thrown_blade": "投げ刃"
+  "entity.jsn_craft.thrown_blade": "投げ刃",
+  "item.jsn_craft.whetstone_rough": "粗砥石",
+  "item.jsn_craft.repair_kit_simple": "簡易修理キット",
+  "item.jsn_craft.iron_plate": "鉄の当て板",
+  "item.jsn_craft.finishing_whetstone": "仕上げ砥石",
+  "item.jsn_craft.divine_whetstone": "神砥石",
+  "item.jsn_craft.repair_kit_divine": "神匠の修理キット",
+  "item.jsn_craft.hardened_arrow": "精鋼の矢",
+  "item.jsn_craft.inferno_arrow": "業火の矢",
+  "item.jsn_craft.glacier_arrow": "氷結の矢",
+  "item.jsn_craft.storm_arrow": "天雷の矢",
+  "item.jsn_craft.star_arrow": "星鉄の矢",
+  "item.jsn_craft.dragon_arrow": "竜殺しの矢",
+  "item.jsn_craft.trident_tip_abyss": "深淵の穂先"
 }

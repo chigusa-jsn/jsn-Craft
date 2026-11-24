@@ -805,5 +805,18 @@
   "item.jsn_craft.trident_tip_frost": "Frost Trident Tip",
   "item.jsn_craft.trident_tip_storm": "Storm Trident Tip",
   "entity.jsn_craft.special_arrow": "Special Arrow",
-  "entity.jsn_craft.thrown_blade": "Thrown Blade"
+  "entity.jsn_craft.thrown_blade": "Thrown Blade",
+  "item.jsn_craft.whetstone_rough": "Rough Whetstone",
+  "item.jsn_craft.repair_kit_simple": "Simple Repair Kit",
+  "item.jsn_craft.iron_plate": "Iron Armor Plate",
+  "item.jsn_craft.finishing_whetstone": "Finishing Whetstone",
+  "item.jsn_craft.divine_whetstone": "Divine Whetstone",
+  "item.jsn_craft.repair_kit_divine": "Divine Repair Kit",
+  "item.jsn_craft.hardened_arrow": "Hardened Steel Arrow",
+  "item.jsn_craft.inferno_arrow": "Inferno Arrow",
+  "item.jsn_craft.glacier_arrow": "Glacier Arrow",
+  "item.jsn_craft.storm_arrow": "Storm Arrow",
+  "item.jsn_craft.star_arrow": "Star Iron Arrow",
+  "item.jsn_craft.dragon_arrow": "Dragonslayer Arrow",
+  "item.jsn_craft.trident_tip_abyss": "Abyss Trident Tip"
 }

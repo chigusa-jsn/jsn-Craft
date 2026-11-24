@@ -74,10 +74,10 @@ public final class Durability {
         return r >= 0.7 ? 3 : r >= 0.4 ? 2 : r >= 0.2 ? 1 : 0;
     }
 
-    /** 武器の攻撃力の倍率 */
+    /** 武器の攻撃力の倍率（青の上に、研ぎ澄ましの白・紫がある） */
     public static double weaponFactor(ItemStack stack) {
         return switch (band(stack)) {
-            case 3 -> 1.0;
+            case 3 -> hone(stack) > 0 ? 1.0 + 0.1 * honeLevel(stack) : 1.0;
             case 2 -> 0.9;
             case 1 -> 0.75;
             case 0 -> 0.5;
@@ -189,16 +189,64 @@ public final class Durability {
         if (event.getBlocked() && broken(event.getEntity().getUseItem())) event.setBlocked(false);
     }
 
+    // ================= 研ぎ澄まし（切れ味の上限：白・紫） =================
+
+    public static int hone(ItemStack stack) {
+        return stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("jsn_hone");
+    }
+
+    /** 1 白（攻撃 110%）/ 2 紫（攻撃 120%） */
+    public static int honeLevel(ItemStack stack) {
+        return Math.max(1, stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("jsn_hone_lv"));
+    }
+
+    public static void setHone(ItemStack stack, int hits, int level) {
+        CustomData.update(DataComponents.CUSTOM_DATA, stack, t -> {
+            if (hits > 0) {
+                t.putInt("jsn_hone", hits);
+                t.putInt("jsn_hone_lv", level);
+            } else {
+                t.remove("jsn_hone");
+                t.remove("jsn_hone_lv");
+            }
+        });
+    }
+
+    /** 研ぎ澄ました武器で殴ると、回数が減る */
+    @SubscribeEvent
+    public static void onHoneHit(LivingIncomingDamageEvent event) {
+        if (!(event.getSource().getDirectEntity() instanceof ServerPlayer p)) return;
+        ItemStack w = p.getMainHandItem();
+        int h = hone(w);
+        if (h <= 0) return;
+        setHone(w, h - 1, honeLevel(w));
+        if (h - 1 <= 0) p.displayClientMessage(Component.literal("研ぎ澄ましが切れた").withStyle(ChatFormatting.GRAY), true);
+    }
+
     // ================= 当て板 =================
 
     public static int plate(ItemStack stack) {
         return stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("jsn_plate");
     }
 
+    /** 1 当て板 / 2 鉄の当て板 */
+    public static int plateLevel(ItemStack stack) {
+        return Math.max(1, stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt("jsn_plate_lv"));
+    }
+
     public static void setPlate(ItemStack stack, int hits) {
+        setPlate(stack, hits, plateLevel(stack));
+    }
+
+    public static void setPlate(ItemStack stack, int hits, int level) {
         CustomData.update(DataComponents.CUSTOM_DATA, stack, t -> {
-            if (hits > 0) t.putInt("jsn_plate", hits);
-            else t.remove("jsn_plate");
+            if (hits > 0) {
+                t.putInt("jsn_plate", hits);
+                t.putInt("jsn_plate_lv", level);
+            } else {
+                t.remove("jsn_plate");
+                t.remove("jsn_plate_lv");
+            }
         });
     }
 

@@ -14,7 +14,13 @@ public enum ArrowKind {
     LIGHT("light_arrow", "光の矢", "刺さった所がしばらく光る", 0.8, 0xFFFFC0),
     RETRIEVE("retrieve_arrow", "回収の矢", "当たった所の周りの落とし物を引き寄せる", 0.8, 0x50D0B0),
     HOMING("homing_arrow", "追尾の矢", "近くの敵へ少し曲がって飛ぶ", 1.0, 0xD070FF),
-    BOLT("heavy_bolt", "太矢", "クロスボウ用。威力 ×2.2（弓だと弱い）", 2.2, 0x707880);
+    BOLT("heavy_bolt", "太矢", "クロスボウ用。威力 ×2.2（弓だと弱い）", 2.2, 0x707880),
+    HARDENED("hardened_arrow", "精鋼の矢", "ダメージ +90%", 1.9, 0xE8ECF4),
+    INFERNO("inferno_arrow", "業火の矢", "長く燃やし、周りの敵にも燃え移る", 1.3, 0xFF4010),
+    GLACIER("glacier_arrow", "氷結の矢", "強く凍らせて、周りの敵も遅くする", 1.3, 0x60C8FF),
+    STORM("storm_arrow", "天雷の矢", "当たると必ず雷が落ちる", 1.3, 0xFFFFA0),
+    STAR("star_arrow", "星鉄の矢", "ダメージ ×2.6・2体つらぬく（名工）", 2.6, 0xB0A0FF),
+    DRAGON("dragon_arrow", "竜殺しの矢", "ボスや大きな敵に ×2.5（名工）", 1.5, 0x60E080);
 
     public final String id, name, desc;
     public final double damage;

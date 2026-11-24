@@ -114,7 +114,7 @@ public final class RecyclerService {
             Map<Item, Double> out = new LinkedHashMap<>();
             out.merge(c.input(), (double) c.count() / c.outCount(), Double::sum);
             // 矢そのもの（矢柄）は戻らない。ほかの土台は戻る
-            if (c.base() != null && c.base() != Items.ARROW) out.merge(c.base(), (double) c.baseCount() / c.outCount(), Double::sum);
+            if (c.base() != null && !(c.base() instanceof net.minecraft.world.item.ArrowItem)) out.merge(c.base(), (double) c.baseCount() / c.outCount(), Double::sum);
             return out;
         }
         return Map.of();

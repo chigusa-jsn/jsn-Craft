@@ -428,14 +428,18 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         String kinds = SmithData.kinds(stack);
         int at = Math.min(1, tip.size());
         int plate = com.chigusa.jsncraft.smithing.Durability.plate(stack);
-        if (plate > 0) tip.add(at, Component.literal("▣ 当て板 あと" + plate + "回").withStyle(ChatFormatting.GOLD));
+        if (plate > 0) tip.add(at, Component.literal("▣ " + (com.chigusa.jsncraft.smithing.Durability.plateLevel(stack) >= 2 ? "鉄の当て板" : "当て板") + " あと" + plate + "回").withStyle(ChatFormatting.GOLD));
         if (com.chigusa.jsncraft.smithing.Durability.broken(stack)) {
             tip.add(at, Component.literal("✖ 壊れている（鍛冶師に鍛冶台で直してもらおう）").withStyle(ChatFormatting.RED, ChatFormatting.BOLD));
             return;
         }
         double r = com.chigusa.jsncraft.smithing.Durability.ratio(stack);
         int band = com.chigusa.jsncraft.smithing.Durability.band(stack);
-        ChatFormatting col = band == 3 ? ChatFormatting.AQUA : band == 2 ? ChatFormatting.GREEN : band == 1 ? ChatFormatting.YELLOW : ChatFormatting.RED;
+        int hone = com.chigusa.jsncraft.smithing.Durability.hone(stack);
+        boolean honed = band == 3 && hone > 0;
+        ChatFormatting col = honed ? (com.chigusa.jsncraft.smithing.Durability.honeLevel(stack) >= 2 ? ChatFormatting.LIGHT_PURPLE : ChatFormatting.WHITE)
+                : band == 3 ? ChatFormatting.AQUA : band == 2 ? ChatFormatting.GREEN : band == 1 ? ChatFormatting.YELLOW : ChatFormatting.RED;
+        if (honed) tip.add(at, Component.literal("  研ぎ澄まし あと" + hone + "回").withStyle(col));
         int filled = (int) Math.ceil(r * 10);
         String label = kinds.contains("A") ? "耐久 " : "切れ味 ";
         String effect;

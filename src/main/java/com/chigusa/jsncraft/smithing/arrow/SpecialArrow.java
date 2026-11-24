@@ -67,7 +67,9 @@ public class SpecialArrow extends AbstractArrow {
         setBaseDamage(dmg);
         if (kind == ArrowKind.FIRE) igniteForSeconds(100);
         if (kind == ArrowKind.PIERCE) setPierce((byte) (3 + bowPlus / 10));
-        if (kind == ArrowKind.LIGHT || kind == ArrowKind.HOMING) setGlowingTag(true);
+        if (kind == ArrowKind.STAR) setPierce((byte) 2);
+        if (kind == ArrowKind.INFERNO) igniteForSeconds(100);
+        if (kind == ArrowKind.LIGHT || kind == ArrowKind.HOMING || kind == ArrowKind.STAR) setGlowingTag(true);
     }
 
     private void setPierce(byte level) {
@@ -158,13 +160,41 @@ public class SpecialArrow extends AbstractArrow {
                 if (random.nextDouble() < 0.25 + bowPlus * 0.015 || sl.isThundering()) strike(sl, target.position());
             }
             case RETRIEVE -> pull(sl, target.position());
+            case INFERNO -> {
+                target.igniteForSeconds((float) (10 * p));
+                for (LivingEntity e : sl.getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(2.5), e -> e != owner && e instanceof Enemy))
+                    e.igniteForSeconds((float) (5 * p));
+                sl.sendParticles(ParticleTypes.FLAME, target.getX(), target.getY() + 1, target.getZ(), 30, 1.0, 0.5, 1.0, 0.05);
+            }
+            case GLACIER -> {
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, (int) (100 * p), 2), owner);
+                target.setTicksFrozen(target.getTicksRequiredToFreeze() + 200);
+                for (LivingEntity e : sl.getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(2.5), e -> e != owner && e instanceof Enemy))
+                    e.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, (int) (60 * p), 1), owner);
+                sl.sendParticles(ParticleTypes.SNOWFLAKE, target.getX(), target.getY() + 1, target.getZ(), 50, 1.2, 0.6, 1.2, 0.03);
+            }
+            case STORM -> strike(sl, target.position());
             default -> {
             }
         }
     }
 
+    private static boolean bigOne(Entity e) {
+        return e instanceof LivingEntity le && (le.getMaxHealth() >= 100 || le.getType().is(net.neoforged.neoforge.common.Tags.EntityTypes.BOSSES)
+                || le.getBbWidth() >= 1.8F);
+    }
+
     @Override
     protected void onHitEntity(EntityHitResult result) {
+        if (kind() == ArrowKind.DRAGON && bigOne(result.getEntity())) {
+            double base = getBaseDamage();
+            setBaseDamage(base * 2.5);
+            super.onHitEntity(result);
+            setBaseDamage(base);
+            if (level() instanceof ServerLevel sl)
+                sl.sendParticles(ParticleTypes.DRAGON_BREATH, getX(), getY(), getZ(), 20, 0.4, 0.4, 0.4, 0.02);
+            return;
+        }
         super.onHitEntity(result);
         if (kind() == ArrowKind.BLAST && level() instanceof ServerLevel sl && !effectDone) {
             effectDone = true;
@@ -189,6 +219,7 @@ public class SpecialArrow extends AbstractArrow {
                 }
             }
             case RETRIEVE -> pull(sl, result.getLocation());
+            case STORM -> strike(sl, result.getLocation());
             default -> {
             }
         }

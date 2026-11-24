@@ -66,6 +66,11 @@ public final class ArrowEvents {
                 target.setTicksFrozen(Math.min(target.getTicksRequiredToFreeze() + 100, target.getTicksFrozen() + 120));
                 level.sendParticles(ParticleTypes.SNOWFLAKE, target.getX(), target.getY() + 1, target.getZ(), 20, 0.3, 0.5, 0.3, 0.02);
             }
+            case ABYSS -> {
+                target.addEffect(new MobEffectInstance(MobEffects.WITHER, thrown ? 100 : 60, 1), owner);
+                if (owner != null) owner.heal(thrown ? 3.0F : 1.5F);
+                level.sendParticles(ParticleTypes.SCULK_SOUL, target.getX(), target.getY() + 1, target.getZ(), 12, 0.3, 0.5, 0.3, 0.02);
+            }
             case STORM -> {
                 if (!thrown && level.random.nextFloat() >= 0.2F) return;
                 LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(level);

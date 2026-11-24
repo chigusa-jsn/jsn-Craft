@@ -186,3 +186,25 @@ shuriken().save(os.path.join(ROOT, 'item', 'arrow', 'shuriken.png'))
 tip(0xFF5020).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_fire.png'))
 tip(0x80E0FF).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_frost.png'))
 tip(0xFFE040).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_storm.png'))
+
+# ---------------- 上位の品（鍛冶師 Lv35〜・名工） ----------------
+S = os.path.join(ROOT, 'item', 'smith')
+whetstone((120, 116, 110, 255), (150, 146, 140, 255), (80, 76, 72, 255), (60, 58, 56, 255)).save(os.path.join(S, 'whetstone_rough.png'))
+whetstone((236, 236, 240, 255), (255, 255, 255, 255), (180, 184, 196, 255), (210, 230, 255, 255)).save(os.path.join(S, 'finishing_whetstone.png'))
+whetstone((190, 90, 230, 255), (240, 190, 255, 255), (110, 40, 150, 255), (255, 230, 120, 255)).save(os.path.join(S, 'divine_whetstone.png'))
+kit((150, 110, 70, 255), (180, 140, 90, 255), (200, 200, 200, 255)).save(os.path.join(S, 'repair_kit_simple.png'))
+kit((60, 30, 90, 255), (120, 70, 170, 255), (255, 210, 80, 255)).save(os.path.join(S, 'repair_kit_divine.png'))
+def iron_plate():
+    im = plate()
+    for x in range(16):
+        for y in range(16):
+            r, g, b, a = im.getpixel((x, y))
+            if a and (r, g, b) != (30, 26, 30):
+                v = (r + g + b) // 3
+                im.putpixel((x, y), (min(255, v + 30), min(255, v + 34), min(255, v + 42), 255))
+    return im
+iron_plate().save(os.path.join(S, 'iron_plate.png'))
+for name, col, extra, thick in [('hardened_arrow', 0xE8ECF4, None, True), ('inferno_arrow', 0xFF4010, None, True), ('glacier_arrow', 0x60C8FF, None, True),
+                                ('storm_arrow', 0xFFFFA0, None, True), ('star_arrow', 0xB0A0FF, None, True), ('dragon_arrow', 0x60E080, None, True)]:
+    arrow_sprite(hexc(col), shade(hexc(col), 40), thick, extra).save(os.path.join(ROOT, 'item', 'arrow', name + '.png'))
+tip(0x7030A0).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_abyss.png'))

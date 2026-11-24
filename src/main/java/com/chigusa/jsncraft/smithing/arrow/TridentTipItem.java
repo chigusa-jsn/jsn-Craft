@@ -21,7 +21,8 @@ public class TridentTipItem extends Item {
     public enum Tip {
         FIRE("fire", "炎の穂先", "当てた敵を燃やす", ChatFormatting.RED),
         FROST("frost", "氷の穂先", "当てた敵を凍らせて遅くする", ChatFormatting.AQUA),
-        STORM("storm", "雷の穂先", "投げて当てると雷が落ちる（晴れでも）", ChatFormatting.YELLOW);
+        STORM("storm", "雷の穂先", "投げて当てると雷が落ちる（晴れでも）", ChatFormatting.YELLOW),
+        ABYSS("abyss", "深淵の穂先", "衰弱させて、自分の体力を少し吸い取る（名工）", ChatFormatting.DARK_PURPLE);
 
         public final String id, name, desc;
         public final ChatFormatting color;

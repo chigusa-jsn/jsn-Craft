@@ -25,7 +25,7 @@ public class SpecialArrowRenderer extends ArrowRenderer<SpecialArrow> {
     @Override
     public ResourceLocation getTextureLocation(SpecialArrow arrow) {
         ArrowKind k = arrow.kind();
-        return k == ArrowKind.LIGHT || k == ArrowKind.HOMING || k == ArrowKind.THUNDER ? SPECTRAL : ARROW;
+        return k == ArrowKind.LIGHT || k == ArrowKind.HOMING || k == ArrowKind.THUNDER || k == ArrowKind.STORM || k == ArrowKind.STAR ? SPECTRAL : ARROW;
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

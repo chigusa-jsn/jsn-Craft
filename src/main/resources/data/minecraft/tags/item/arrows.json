@@ -13,6 +13,12 @@
     "jsn_craft:light_arrow",
     "jsn_craft:retrieve_arrow",
     "jsn_craft:homing_arrow",
-    "jsn_craft:heavy_bolt"
+    "jsn_craft:heavy_bolt",
+    "jsn_craft:hardened_arrow",
+    "jsn_craft:inferno_arrow",
+    "jsn_craft:glacier_arrow",
+    "jsn_craft:storm_arrow",
+    "jsn_craft:star_arrow",
+    "jsn_craft:dragon_arrow"
   ]
 }
