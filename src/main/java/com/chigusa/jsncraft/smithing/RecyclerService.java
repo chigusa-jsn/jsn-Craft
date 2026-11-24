@@ -56,7 +56,9 @@ public final class RecyclerService {
         }
         Map<Item, Double> got = CACHE.get(item);
         if (got != null) return got;
+        CACHE.put(item, Map.of());   // 輪になったレシピで止まらないように
         Map<Item, Double> out = find(level, rm, item);
+        if (out.isEmpty()) out = findSmithing(level, rm, item);
         if (out.isEmpty()) {
             // ネザライト装備：ダイヤ装備の材料 ＋ ネザライトの欠片
             ResourceLocation id = BuiltInRegistries.ITEM.getKey(item);
@@ -102,6 +104,46 @@ public final class RecyclerService {
             return out;
         }
         return Map.of();
+    }
+
+    /** 鍛冶台（スミシング）で作る物：元の装備の材料 ＋ 足した素材 ＋ 型（半分） */
+    private static Map<Item, Double> findSmithing(ServerLevel level, RecipeManager rm, Item item) {
+        for (var holder : rm.getAllRecipesFor(RecipeType.SMITHING)) {
+            if (!(holder.value() instanceof net.minecraft.world.item.crafting.SmithingTransformRecipe recipe)) continue;
+            ItemStack res;
+            try {
+                res = recipe.getResultItem(level.registryAccess());
+            } catch (Exception e) {
+                continue;
+            }
+            if (res.isEmpty() || !res.is(item)) continue;
+            Item base = first(field(recipe, "base")), addition = first(field(recipe, "addition")), template = first(field(recipe, "template"));
+            if (base == null || base == item) continue;
+            Map<Item, Double> out = new LinkedHashMap<>();
+            Map<Item, Double> baseParts = parts(level, base);
+            if (baseParts.isEmpty()) out.merge(base, 1.0, Double::sum);
+            else baseParts.forEach((k, v) -> out.merge(k, v, Double::sum));
+            if (addition != null) out.merge(addition, 1.0, Double::sum);
+            if (template != null) out.merge(template, 0.5, Double::sum);
+            return out;
+        }
+        return Map.of();
+    }
+
+    private static Ingredient field(Object recipe, String name) {
+        try {
+            var f = net.minecraft.world.item.crafting.SmithingTransformRecipe.class.getDeclaredField(name);
+            f.setAccessible(true);
+            return f.get(recipe) instanceof Ingredient i ? i : null;
+        } catch (ReflectiveOperationException | RuntimeException e) {
+            return null;
+        }
+    }
+
+    private static Item first(Ingredient ing) {
+        if (ing == null || ing.isEmpty()) return null;
+        ItemStack[] items = ing.getItems();
+        return items.length == 0 ? null : items[0].getItem();
     }
 
     /** 1個を分解した結果 */
