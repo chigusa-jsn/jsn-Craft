@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "jsn_craft:steel_arrow",
+    "jsn_craft:pierce_arrow",
+    "jsn_craft:blast_arrow",
+    "jsn_craft:fire_arrow",
+    "jsn_craft:ice_arrow",
+    "jsn_craft:thunder_arrow",
+    "jsn_craft:poison_arrow",
+    "jsn_craft:weakness_arrow",
+    "jsn_craft:rope_arrow",
+    "jsn_craft:light_arrow",
+    "jsn_craft:retrieve_arrow",
+    "jsn_craft:homing_arrow",
+    "jsn_craft:heavy_bolt"
+  ]
+}

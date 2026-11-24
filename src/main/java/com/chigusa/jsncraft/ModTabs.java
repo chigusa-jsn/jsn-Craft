@@ -94,6 +94,10 @@ public final class ModTabs {
                 out.accept(ModSmithing.REPAIR_KIT.get());
                 out.accept(ModSmithing.REPAIR_KIT_ADV.get());
                 out.accept(ModSmithing.ARMOR_PLATE.get());
+                all(out, com.chigusa.jsncraft.smithing.arrow.ModArrows.ARROWS.values());
+                out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.THROWING_KNIFE.get());
+                out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.SHURIKEN.get());
+                all(out, com.chigusa.jsncraft.smithing.arrow.ModArrows.TIPS);
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ENCHANTING = tab("enchanting", "jsn-Craft：付与",

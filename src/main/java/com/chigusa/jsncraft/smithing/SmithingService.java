@@ -226,34 +226,92 @@ public final class SmithingService {
 
     // ================= 製作（鍛冶師だけが作れる物） =================
 
-    public record Craft(net.minecraft.world.item.Item input, int count, java.util.function.Supplier<? extends net.minecraft.world.item.Item> output, int minLevel, String name) {}
+    /** 鍛冶台での製作：base（鍛える物の枠、無しなら null）＋ input（素材の枠）→ output */
+    public record Craft(net.minecraft.world.item.Item base, int baseCount, net.minecraft.world.item.Item input, int count,
+                        java.util.function.Supplier<? extends net.minecraft.world.item.Item> output, int outCount, int minLevel, String name, boolean quality) {}
 
-    public static final List<Craft> CRAFTS = List.of(
-            new Craft(net.minecraft.world.item.Items.FLINT, 3, ModSmithing.WHETSTONE, 0, "砥石"),
-            new Craft(net.minecraft.world.item.Items.IRON_INGOT, 2, ModSmithing.REPAIR_KIT, 0, "修理キット"),
-            new Craft(net.minecraft.world.item.Items.COPPER_INGOT, 4, ModSmithing.ARMOR_PLATE, 5, "当て板"),
-            new Craft(net.minecraft.world.item.Items.AMETHYST_SHARD, 3, ModSmithing.WHETSTONE_ADV, 15, "上級砥石"),
-            new Craft(net.minecraft.world.item.Items.DIAMOND, 1, ModSmithing.REPAIR_KIT_ADV, 15, "上級修理キット"));
+    private static Craft tool(net.minecraft.world.item.Item in, int n, java.util.function.Supplier<? extends net.minecraft.world.item.Item> out, int lv, String name) {
+        return new Craft(null, 0, in, n, out, 1, lv, name, false);
+    }
 
-    /** 素材の枠の物で作れる物（無ければ -1） */
-    public static int craftIndex(ItemStack mat) {
-        for (int i = 0; i < CRAFTS.size(); i++) if (mat.is(CRAFTS.get(i).input())) return i;
+    private static Craft arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind k, net.minecraft.world.item.Item in, int n, int arrows, int lv) {
+        return new Craft(net.minecraft.world.item.Items.ARROW, arrows, in, n, com.chigusa.jsncraft.smithing.arrow.ModArrows.ARROWS.get(k), arrows, lv, k.name, true);
+    }
+
+    public static final List<Craft> CRAFTS;
+
+    static {
+        java.util.List<Craft> l = new java.util.ArrayList<>();
+        // 修理の道具
+        l.add(tool(net.minecraft.world.item.Items.FLINT, 3, ModSmithing.WHETSTONE, 0, "砥石"));
+        l.add(tool(net.minecraft.world.item.Items.IRON_INGOT, 2, ModSmithing.REPAIR_KIT, 0, "修理キット"));
+        l.add(tool(net.minecraft.world.item.Items.COPPER_INGOT, 4, ModSmithing.ARMOR_PLATE, 5, "当て板"));
+        l.add(tool(net.minecraft.world.item.Items.AMETHYST_SHARD, 3, ModSmithing.WHETSTONE_ADV, 15, "上級砥石"));
+        l.add(tool(net.minecraft.world.item.Items.DIAMOND, 1, ModSmithing.REPAIR_KIT_ADV, 15, "上級修理キット"));
+        // 矢（鍛える物の枠に矢、素材の枠に材料）
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.STEEL, net.minecraft.world.item.Items.IRON_INGOT, 1, 8, 0));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.POISON, net.minecraft.world.item.Items.SPIDER_EYE, 1, 8, 0));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.LIGHT, net.minecraft.world.item.Items.GLOWSTONE_DUST, 2, 8, 0));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.ROPE, net.minecraft.world.item.Items.STRING, 4, 4, 0));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.FIRE, net.minecraft.world.item.Items.BLAZE_POWDER, 1, 8, 5));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.ICE, net.minecraft.world.item.Items.PACKED_ICE, 1, 8, 5));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.WEAKNESS, net.minecraft.world.item.Items.FERMENTED_SPIDER_EYE, 1, 8, 5));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.PIERCE, net.minecraft.world.item.Items.QUARTZ, 2, 8, 10));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.BLAST, net.minecraft.world.item.Items.GUNPOWDER, 2, 8, 10));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.BOLT, net.minecraft.world.item.Items.CHAIN, 1, 4, 10));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.THUNDER, net.minecraft.world.item.Items.COPPER_INGOT, 2, 8, 15));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.RETRIEVE, net.minecraft.world.item.Items.ENDER_PEARL, 1, 8, 20));
+        l.add(arrow(com.chigusa.jsncraft.smithing.arrow.ArrowKind.HOMING, net.minecraft.world.item.Items.ENDER_EYE, 1, 8, 30));
+        // 投げ物
+        l.add(new Craft(null, 0, net.minecraft.world.item.Items.IRON_NUGGET, 6, com.chigusa.jsncraft.smithing.arrow.ModArrows.THROWING_KNIFE, 4, 5, "投げナイフ", true));
+        l.add(new Craft(net.minecraft.world.item.Items.IRON_NUGGET, 4, net.minecraft.world.item.Items.FLINT, 1, com.chigusa.jsncraft.smithing.arrow.ModArrows.SHURIKEN, 8, 10, "手裏剣", true));
+        // 三叉槍の穂先
+        var T = com.chigusa.jsncraft.smithing.arrow.ModArrows.TIPS;
+        l.add(new Craft(net.minecraft.world.item.Items.PRISMARINE_SHARD, 4, net.minecraft.world.item.Items.MAGMA_CREAM, 2, T.get(0), 1, 20, "炎の穂先", false));
+        l.add(new Craft(net.minecraft.world.item.Items.PRISMARINE_SHARD, 4, net.minecraft.world.item.Items.BLUE_ICE, 1, T.get(1), 1, 20, "氷の穂先", false));
+        l.add(new Craft(net.minecraft.world.item.Items.PRISMARINE_SHARD, 4, net.minecraft.world.item.Items.LIGHTNING_ROD, 2, T.get(2), 1, 25, "雷の穂先", false));
+        CRAFTS = List.copyOf(l);
+    }
+
+    /** 2つの枠の物で作れる物（無ければ -1） */
+    public static int craftIndex(ItemStack item, ItemStack mat) {
+        if (mat.isEmpty()) return -1;
+        for (int i = 0; i < CRAFTS.size(); i++) {
+            Craft c = CRAFTS.get(i);
+            if (!mat.is(c.input())) continue;
+            if (c.base() == null ? item.isEmpty() : item.is(c.base())) return i;
+        }
         return -1;
+    }
+
+    public static boolean canCraft(int lv, ItemStack item, ItemStack mat) {
+        int idx = craftIndex(item, mat);
+        if (lv < 0 || idx < 0) return false;
+        Craft c = CRAFTS.get(idx);
+        return lv >= c.minLevel() && mat.getCount() >= c.count() && (c.base() == null || item.getCount() >= c.baseCount());
     }
 
     public static boolean craft(ServerPlayer player, ForgeBlockEntity be) {
         ItemStack item = be.item(), mat = be.material();
-        int idx = craftIndex(mat);
         int lv = smithLevel(player);
-        if (lv < 0 || !item.isEmpty() || idx < 0) return false;
-        Craft c = CRAFTS.get(idx);
-        if (lv < c.minLevel() || mat.getCount() < c.count()) return false;
+        if (!canCraft(lv, item, mat)) return false;
+        Craft c = CRAFTS.get(craftIndex(item, mat));
         mat.shrink(c.count());
-        be.items().setItem(0, new ItemStack(c.output().get()));
+        if (c.base() != null) item.shrink(c.baseCount());
+        ItemStack out = new ItemStack(c.output().get(), c.outCount());
+        int q = 1;
+        if (c.quality()) {
+            q = com.chigusa.jsncraft.smithing.arrow.Quality.roll(lv, player.getRandom());
+            com.chigusa.jsncraft.smithing.arrow.Quality.set(out, q);
+        }
         be.setChanged();
+        if (!player.getInventory().add(out)) player.drop(out, false);
         ServerLevel level = player.serverLevel();
         level.playSound(null, be.getBlockPos(), SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS, 1.0F, 1.1F);
+        if (q == 3) level.playSound(null, be.getBlockPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 0.5F, 1.8F);
         Vfx.sparks(level, Vec3.atCenterOf(be.getBlockPos()).add(0, 0.6, 0), 10);
+        player.displayClientMessage(Component.literal("製作：" + c.name() + " ×" + c.outCount() + (c.quality() ? "  " + "★".repeat(q) : ""))
+                .withStyle(q == 3 ? ChatFormatting.GOLD : ChatFormatting.GREEN), true);
         JobService.onAction(player, rule -> rule.action().equals("smith"), 2 + c.minLevel() / 5);
         return true;
     }

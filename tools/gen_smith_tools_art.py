@@ -102,3 +102,87 @@ block_side().save(os.path.join(ROOT, 'block', 'recycler_side.png'))
 block_side(True).save(os.path.join(ROOT, 'block', 'recycler_top.png'))
 block_front(False).save(os.path.join(ROOT, 'block', 'recycler_front.png'))
 block_front(True).save(os.path.join(ROOT, 'block', 'recycler_front_on.png'))
+
+# ---------------- 特別な矢・投げ物・三叉槍の穂先 ----------------
+def hexc(h, a=255):
+    return ((h >> 16) & 255, (h >> 8) & 255, h & 255, a)
+
+def shade(c, d):
+    return tuple(max(0, min(255, v + d)) if i < 3 else v for i, v in enumerate(c))
+
+def arrow_sprite(head, fletch=(235, 235, 235, 255), thick=False, extra=None):
+    im = img()
+    wood = (137, 103, 64, 255); wood_d = (98, 72, 44, 255)
+    for i in range(3, 12):   # 矢柄：左下 → 右上
+        x, y = i, 15 - i
+        im.putpixel((x, y), wood)
+        if thick:
+            im.putpixel((x, y - 1) if y - 1 >= 0 else (x, y), wood_d)
+    # 矢じり
+    hx, hy = 12, 3
+    for (dx, dy) in ((0, 0), (1, -1), (2, -2), (-1, -1), (0, -1), (1, -2), (0, -2), (1, 0), (2, -1), (1, 1) if thick else (0, 0)):
+        x, y = hx + dx, hy + dy
+        if 0 <= x < 16 and 0 <= y < 16: im.putpixel((x, y), head)
+    im.putpixel((13, 1), shade(head, 50)); im.putpixel((14, 1), shade(head, 70))
+    # 羽根
+    for (x, y) in ((1, 12), (2, 13), (3, 14), (1, 13), (2, 14), (2, 11), (3, 12), (4, 13)):
+        im.putpixel((x, y), fletch)
+    im.putpixel((1, 14), shade(fletch, -40))
+    if extra: extra(im)
+    outline(im)
+    return im
+
+def rope_extra(im):
+    for (x, y) in ((5, 7), (6, 6), (7, 7), (6, 8), (5, 8), (4, 9)):
+        im.putpixel((x, y), (220, 200, 150, 255))
+
+def blast_extra(im):
+    for (x, y) in ((10, 6), (11, 6), (10, 7), (11, 7)):
+        im.putpixel((x, y), (200, 40, 30, 255))
+
+def knife():
+    im = img()
+    for i in range(6):   # 刃
+        im.putpixel((8 + i, 7 - i), (220, 224, 232, 255)); im.putpixel((8 + i, 8 - i), (170, 175, 185, 255))
+    im.putpixel((14, 1), (240, 240, 250, 255))
+    rect(im, 6, 8, 7, 9, (80, 80, 90, 255))   # つば
+    for i in range(4):
+        im.putpixel((5 - i, 10 + i), (70, 50, 40, 255)); im.putpixel((6 - i, 10 + i), (110, 80, 60, 255))
+    outline(im)
+    return im
+
+def shuriken():
+    im = img(); m = (170, 175, 190, 255); l = (220, 225, 235, 255)
+    rect(im, 7, 3, 8, 12, m); rect(im, 3, 7, 12, 8, m)
+    for (x, y) in ((7, 3), (12, 7), (8, 12), (3, 8)): im.putpixel((x, y), l)
+    for (x, y) in ((6, 5), (9, 5), (5, 9), (10, 10), (10, 6), (5, 6), (6, 10), (9, 10)): im.putpixel((x, y), m)
+    rect(im, 7, 7, 8, 8, (40, 40, 48, 255))
+    outline(im)
+    return im
+
+def tip(col):
+    im = img(); c = hexc(col)
+    for y in range(2, 13):   # 三つ又の穂先
+        for x in (4, 8, 12) if y < 7 else ():
+            im.putpixel((x if x != 8 else 8, y), c)
+    for x in (4, 8, 12):
+        im.putpixel((x, 1), shade(c, 60))
+    rect(im, 4, 7, 12, 8, shade(c, -30))
+    rect(im, 7, 9, 9, 14, (90, 140, 130, 255))
+    outline(im)
+    return im
+
+KINDS = [('steel_arrow', 0xC8CCD4, None, False), ('pierce_arrow', 0xF0E8D0, None, False), ('blast_arrow', 0xFF7030, blast_extra, False),
+         ('fire_arrow', 0xFF9020, None, False), ('ice_arrow', 0x90E0FF, None, False), ('thunder_arrow', 0xFFF060, None, False),
+         ('poison_arrow', 0x60C040, None, False), ('weakness_arrow', 0x8060A0, None, False), ('rope_arrow', 0xC8A060, rope_extra, False),
+         ('light_arrow', 0xFFFFC0, None, False), ('retrieve_arrow', 0x50D0B0, None, False), ('homing_arrow', 0xD070FF, None, False),
+         ('heavy_bolt', 0x707880, None, True)]
+os.makedirs(os.path.join(ROOT, 'item', 'arrow'), exist_ok=True)
+for name, col, extra, thick in KINDS:
+    fl = shade(hexc(col), 30) if name not in ('steel_arrow', 'heavy_bolt', 'pierce_arrow') else (235, 235, 235, 255)
+    arrow_sprite(hexc(col), fl, thick, extra).save(os.path.join(ROOT, 'item', 'arrow', name + '.png'))
+knife().save(os.path.join(ROOT, 'item', 'arrow', 'throwing_knife.png'))
+shuriken().save(os.path.join(ROOT, 'item', 'arrow', 'shuriken.png'))
+tip(0xFF5020).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_fire.png'))
+tip(0x80E0FF).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_frost.png'))
+tip(0xFFE040).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_storm.png'))

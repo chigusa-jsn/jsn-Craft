@@ -51,30 +51,62 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     // ================= 製作レシピ（画面の右に表示） =================
 
+    private static final int ROWS = 8;
+    private int recipeScroll;
+
+    private int recipeX() {
+        return leftPos + imageWidth + 4;
+    }
+
     private void renderRecipes(GuiGraphics g, int mouseX, int mouseY) {
-        int x = leftPos + imageWidth + 4, y = topPos;
-        int w = 112, rows = SmithingService.CRAFTS.size();
-        int h = 18 + rows * 20;
+        int x = recipeX(), y = topPos;
+        int w = 150, total = SmithingService.CRAFTS.size();
+        int h = 30 + ROWS * 18;
         if (x + w > width) return;   // 画面が狭いときは出さない
+        recipeScroll = Math.max(0, Math.min(total - ROWS, recipeScroll));
         g.fill(x, y, x + w, y + h, 0xFF1E1E22);
         g.fill(x + 2, y + 2, x + w - 2, y + h - 2, 0xFF5A5A62);
-        g.drawString(font, "製作レシピ", x + 6, y + 6, 0xFFE8C060, false);
+        g.drawString(font, "製作レシピ", x + 6, y + 5, 0xFFE8C060, false);
+        g.drawString(font, "§7(ホイールで送る)", x + 62, y + 5, 0xFFFFFF, false);
+        g.drawString(font, "§8左の枠 ＋ 素材 → 出来上がり", x + 6, y + 16, 0xFFFFFF, false);
         int lv = menu.smithLevel();
-        for (int i = 0; i < rows; i++) {
-            var c = SmithingService.CRAFTS.get(i);
-            int ry = y + 18 + i * 20;
+        ItemStack hover = ItemStack.EMPTY;
+        for (int r = 0; r < ROWS && recipeScroll + r < total; r++) {
+            var c = SmithingService.CRAFTS.get(recipeScroll + r);
+            int ry = y + 28 + r * 18;
             boolean ok = lv >= c.minLevel();
+            ItemStack base = c.base() == null ? ItemStack.EMPTY : new ItemStack(c.base(), c.baseCount());
             ItemStack in = new ItemStack(c.input(), c.count());
-            ItemStack out = new ItemStack(c.output().get());
-            g.renderItem(in, x + 6, ry);
-            g.renderItemDecorations(font, in, x + 6, ry);
-            g.drawString(font, "→", x + 26, ry + 4, 0xFFFFFFFF, false);
-            g.renderItem(out, x + 38, ry);
+            ItemStack out = new ItemStack(c.output().get(), c.outCount());
+            ItemStack[] icons = {base, in, out};
+            int[] xs = {x + 6, x + 30, x + 60};
+            if (!base.isEmpty()) g.drawString(font, "+", x + 23, ry + 4, 0xFFFFFFFF, false);
+            g.drawString(font, "→", x + 48, ry + 4, 0xFFFFFFFF, false);
+            for (int i = 0; i < 3; i++) {
+                if (icons[i].isEmpty()) continue;
+                g.renderItem(icons[i], xs[i], ry);
+                g.renderItemDecorations(font, icons[i], xs[i], ry);
+                if (mouseX >= xs[i] && mouseX < xs[i] + 16 && mouseY >= ry && mouseY < ry + 16) hover = icons[i];
+            }
             String label = ok ? "§f" + c.name() : "§cLv" + c.minLevel() + "〜";
-            g.drawString(font, label, x + 57, ry + 4, 0xFFFFFF, false);
-            if (mouseX >= x + 6 && mouseX < x + 22 && mouseY >= ry && mouseY < ry + 16) g.renderTooltip(font, in, mouseX, mouseY);
-            if (mouseX >= x + 38 && mouseX < x + 54 && mouseY >= ry && mouseY < ry + 16) g.renderTooltip(font, out, mouseX, mouseY);
+            g.drawString(font, label, x + 80, ry + 4, 0xFFFFFF, false);
         }
+        if (total > ROWS) {
+            int barH = ROWS * 18, th = Math.max(10, barH * ROWS / total);
+            int ty = y + 28 + (barH - th) * recipeScroll / (total - ROWS);
+            g.fill(x + w - 5, y + 28, x + w - 3, y + 28 + barH, 0xFF3A3A42);
+            g.fill(x + w - 5, ty, x + w - 3, ty + th, 0xFFC8C8C8);
+        }
+        if (!hover.isEmpty()) g.renderTooltip(font, hover, mouseX, mouseY);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mx, double my, double sx, double sy) {
+        if (mx >= recipeX() && mx < recipeX() + 150 && my >= topPos && my < topPos + 30 + ROWS * 18) {
+            recipeScroll -= (int) Math.signum(sy);
+            return true;
+        }
+        return super.mouseScrolled(mx, my, sx, sy);
     }
 
     // ================= 強化ミニゲーム =================
@@ -254,6 +286,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         ItemStack item = menu.item();
         int st = menu.status();
         String line1, line2 = "";
+        int craftInfo = menu.craftInfo();
+        if (craftInfo != 0 && st != ForgeMenu.ST_NOT_SMITH) st = ForgeMenu.ST_EMPTY;
         switch (st) {
             case ForgeMenu.ST_EMPTY -> {
                 int ci = menu.craftInfo();
@@ -263,7 +297,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 } else {
                     var c = SmithingService.CRAFTS.get(Math.abs(ci) - 1);
                     line1 = (ci > 0 ? "§f製作：" : "§c製作：") + c.name();
-                    line2 = ci > 0 ? "§7素材 ×" + c.count() + " で1個" : "§c鍛冶師Lv" + c.minLevel() + " から";
+                    line2 = ci > 0 ? "§7→ ×" + c.outCount() + (c.quality() ? "（★は腕次第）" : "") : "§c鍛冶師Lv" + c.minLevel() + " から";
                 }
             }
             case ForgeMenu.ST_NOT_SMITH -> line1 = "§c鍛えられるのは鍛冶師だけです";

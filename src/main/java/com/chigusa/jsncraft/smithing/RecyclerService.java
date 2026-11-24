@@ -59,6 +59,7 @@ public final class RecyclerService {
         CACHE.put(item, Map.of());   // 輪になったレシピで止まらないように
         Map<Item, Double> out = find(level, rm, item);
         if (out.isEmpty()) out = findSmithing(level, rm, item);
+        if (out.isEmpty()) out = findForge(item);
         if (out.isEmpty()) {
             // ネザライト装備：ダイヤ装備の材料 ＋ ネザライトの欠片
             ResourceLocation id = BuiltInRegistries.ITEM.getKey(item);
@@ -101,6 +102,19 @@ public final class RecyclerService {
                 out.merge(part, 1.0 / res.getCount(), Double::sum);
             }
             if (loop || out.isEmpty()) continue;
+            return out;
+        }
+        return Map.of();
+    }
+
+    /** 鍛冶師が鍛冶台で作る物（特別な矢・投げ物・砥石など）：矢じりの材料が戻る */
+    private static Map<Item, Double> findForge(Item item) {
+        for (SmithingService.Craft c : SmithingService.CRAFTS) {
+            if (c.output().get() != item) continue;
+            Map<Item, Double> out = new LinkedHashMap<>();
+            out.merge(c.input(), (double) c.count() / c.outCount(), Double::sum);
+            // 矢そのもの（矢柄）は戻らない。ほかの土台は戻る
+            if (c.base() != null && c.base() != Items.ARROW) out.merge(c.base(), (double) c.baseCount() / c.outCount(), Double::sum);
             return out;
         }
         return Map.of();

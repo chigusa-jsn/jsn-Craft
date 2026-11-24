@@ -51,10 +51,7 @@ public class ForgeMenu extends AbstractContainerMenu {
                 return switch (i) {
                     case 0 -> {
                         if (lv < 0) yield 0;
-                        if (item.isEmpty()) {
-                            int ci = SmithingService.craftIndex(mat);
-                            yield ci >= 0 && lv >= SmithingService.CRAFTS.get(ci).minLevel() && mat.getCount() >= SmithingService.CRAFTS.get(ci).count() ? CAN_CRAFT : 0;
-                        }
+                        if (item.isEmpty()) yield SmithingService.canCraft(lv, item, mat) ? CAN_CRAFT : 0;
                         int f = 0;
                         if (SmithingService.canEnhance(sp, be)) f |= CAN_ENHANCE;
                         if (!kinds.isEmpty() && !SmithTraits.pool(mat.getItem(), kinds).isEmpty()) {
@@ -62,13 +59,14 @@ public class ForgeMenu extends AbstractContainerMenu {
                             if (SmithingService.traitSlots(sp) >= 2) f |= CAN_REFORGE2;
                         }
                         if (SmithingService.canRepair(item)) f |= CAN_REPAIR;
+                        if (SmithingService.canCraft(lv, item, mat)) f |= CAN_CRAFT;
                         yield f;
                     }
                     case 1 -> kinds.isEmpty() || plus >= SmithingService.MAX_PLUS ? 0 : (int) Math.round(SmithingService.successRate(sp, plus + 1) * 1000);
                     case 2 -> max;
                     case 3 -> SmithingService.traitSlots(sp);
                     case 5 -> {
-                        int ci = SmithingService.craftIndex(mat);
+                        int ci = SmithingService.craftIndex(item, mat);
                         if (ci < 0) yield 0;
                         yield lv >= SmithingService.CRAFTS.get(ci).minLevel() ? ci + 1 : -(ci + 1);
                     }
@@ -131,7 +129,8 @@ public class ForgeMenu extends AbstractContainerMenu {
         if (index < 2) {
             if (!moveItemStackTo(stack, 2, slots.size(), true)) return ItemStack.EMPTY;
         } else {
-            boolean gear = !SmithData.kinds(stack).isEmpty() || stack.isDamageableItem() || Durability.broken(stack);
+            boolean gear = !SmithData.kinds(stack).isEmpty() || stack.isDamageableItem() || Durability.broken(stack)
+                    || stack.is(net.minecraft.world.item.Items.ARROW) || stack.is(net.minecraft.world.item.Items.PRISMARINE_SHARD);
             if (gear ? !moveItemStackTo(stack, 0, 1, false) : !moveItemStackTo(stack, 1, 2, false)) return ItemStack.EMPTY;
         }
         if (stack.isEmpty()) slot.set(ItemStack.EMPTY);

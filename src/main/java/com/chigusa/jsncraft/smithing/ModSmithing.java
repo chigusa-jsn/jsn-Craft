@@ -72,7 +72,9 @@ public final class ModSmithing {
         return -1;
     }
 
-    public static void init() {}
+    public static void init() {
+        com.chigusa.jsncraft.smithing.arrow.ModArrows.init();
+    }
 
     private ModSmithing() {}
 }
