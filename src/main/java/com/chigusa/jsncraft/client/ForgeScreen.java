@@ -117,8 +117,11 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             boolean have = count(c.input()) >= c.count() && (c.base() == null || count(c.base()) >= c.baseCount());
             if (hover) g.fill(x + 3, ly, x + PANEL_W - 5, ly + ROW, 0x30FFFFFF);
             g.renderItem(new ItemStack(c.output().get()), x + 4, ly + 1);
-            int col = lv < c.minLevel() ? 0xFF6A3A3A : have ? 0xFF1A1A1A : 0xFF4A4A52;
-            g.drawString(font, font.plainSubstrByWidth(c.name(), PANEL_W - 56), x + 22, ly + 5, col, false);
+            // 名前：レベルが足りなければ赤、作れるなら黒。材料がそろっていれば緑の ✔
+            int col = lv < c.minLevel() ? 0xFF8A2A2A : 0xFF1A1A1A;
+            String nm = font.plainSubstrByWidth(c.name(), PANEL_W - 66);
+            g.drawString(font, nm, x + 22, ly + 5, col, false);
+            if (have && lv >= c.minLevel()) g.drawString(font, "✔", x + 24 + font.width(nm), ly + 5, 0xFF1E7A1E, false);
             String lvs = "Lv" + (c.minLevel() > 50 ? c.minLevel() - 50 : c.minLevel());
             g.drawString(font, lvs, x + PANEL_W - 8 - font.width(lvs), ly + 5, lv < c.minLevel() ? 0xFFA03030 : 0xFF3A3A42, false);
             ly += ROW;
@@ -346,7 +349,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         int f = menu.flags();
         enhanceBtn.active = (f & ForgeMenu.CAN_ENHANCE) != 0;
         reforge1Btn.active = (f & ForgeMenu.CAN_REFORGE1) != 0;
-        reforge2Btn.visible = menu.traitSlots() >= 2;
+        reforge2Btn.visible = !craftMode && !game && menu.traitSlots() >= 2;
         reforge2Btn.active = (f & ForgeMenu.CAN_REFORGE2) != 0;
         repairBtn.active = (f & ForgeMenu.CAN_REPAIR) != 0;
         craftBtn.active = true;
