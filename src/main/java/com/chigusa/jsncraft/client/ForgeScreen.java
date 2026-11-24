@@ -75,6 +75,88 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         return (imageHeight - 22) / ROW;
     }
 
+    // ================= 鍛え直しの触媒（鍛冶の画面のときの右の一覧） =================
+
+    private int catScroll;
+
+    private List<net.minecraft.world.item.Item> catalysts() {
+        return new java.util.ArrayList<>(SmithTraits.CATALYSTS.keySet());
+    }
+
+    private void renderCatalysts(GuiGraphics g, int mouseX, int mouseY) {
+        int x = panelX(), y = topPos, h = imageHeight;
+        g.fill(x, y, x + PANEL_W, y + h, 0xFF1E1E22);
+        g.fill(x + 2, y + 2, x + PANEL_W - 2, y + h - 2, 0xFF7A7A82);
+        g.drawString(font, "鍛え直しの触媒", x + 6, y + 6, 0xFFE8E8E8, false);
+        var cats = catalysts();
+        int n = panelRows();
+        catScroll = Math.max(0, Math.min(catScroll, Math.max(0, cats.size() - n)));
+        String kinds = SmithData.kinds(menu.item());
+        int ly = y + 18;
+        for (int k = catScroll; k < cats.size() && k < catScroll + n; k++) {
+            var item = cats.get(k);
+            boolean hover = mouseX >= x + 2 && mouseX < x + PANEL_W - 4 && mouseY >= ly && mouseY < ly + ROW;
+            if (hover) g.fill(x + 3, ly, x + PANEL_W - 5, ly + ROW, 0x30FFFFFF);
+            g.renderItem(new ItemStack(item), x + 4, ly + 1);
+            boolean echo = item == net.minecraft.world.item.Items.ECHO_SHARD;
+            StringBuilder sb = new StringBuilder();
+            if (echo) sb.append("どれでも（強め）");
+            else for (String id : SmithTraits.CATALYSTS.get(item)) {
+                var t = SmithTraits.TRAITS.get(id);
+                if (t == null) continue;
+                if (sb.length() > 0) sb.append("・");
+                sb.append(t.name());
+            }
+            // 置いている装備に付けられる特性がなければ薄く
+            boolean usable = kinds.isEmpty() || !SmithTraits.pool(item, kinds).isEmpty();
+            int col = usable ? 0xFF1A1A1A : 0xFF5A5A62;
+            String txt = font.plainSubstrByWidth(sb.toString(), PANEL_W - 32);
+            g.drawString(font, txt, x + 22, ly + 5, col, false);
+            if (count(item) > 0 && usable) g.fill(x + PANEL_W - 9, ly + 6, x + PANEL_W - 6, ly + 9, 0xFF1E7A1E);
+            ly += ROW;
+        }
+        if (cats.size() > n) {
+            int barH = Math.max(8, (h - 22) * n / cats.size());
+            int barY = y + 18 + (h - 22 - barH) * catScroll / Math.max(1, cats.size() - n);
+            g.fill(x + PANEL_W - 5, barY, x + PANEL_W - 3, barY + barH, 0xFF3A3A42);
+        }
+    }
+
+    private int catalystAt(double mx, double my) {
+        int x = panelX(), y = topPos;
+        if (mx < x + 2 || mx >= x + PANEL_W - 4 || my < y + 18 || my >= y + imageHeight - 4) return -1;
+        int k = catScroll + (int) ((my - y - 18) / ROW);
+        if (k >= catalysts().size() || k >= catScroll + panelRows()) return -1;
+        return k;
+    }
+
+    private void renderCatalystTooltip(GuiGraphics g, int mx, int my) {
+        int i = catalystAt(mx, my);
+        if (i < 0) return;
+        var item = catalysts().get(i);
+        List<Component> tip = new java.util.ArrayList<>();
+        tip.add(new ItemStack(item).getHoverName().copy().withStyle(ChatFormatting.GOLD).append(Component.literal("（持っている：" + count(item) + "）").withStyle(ChatFormatting.GRAY)));
+        boolean echo = item == net.minecraft.world.item.Items.ECHO_SHARD;
+        if (echo) tip.add(Component.literal("どの特性でも出る。強めに出やすく、まれに上限を超える").withStyle(ChatFormatting.LIGHT_PURPLE));
+        String kinds = SmithData.kinds(menu.item());
+        for (String id : SmithTraits.CATALYSTS.get(item)) {
+            var t = SmithTraits.TRAITS.get(id);
+            if (t == null) continue;
+            String range = t.percent()
+                    ? String.format(Locale.ROOT, "+%.0f〜%.0f%%", t.min() * 100, t.max() * 100)
+                    : String.format(Locale.ROOT, "+%.1f〜%.1f", t.min(), t.max());
+            StringBuilder on = new StringBuilder();
+            if (t.kinds().contains("W")) on.append("武器");
+            if (t.kinds().contains("A")) on.append(on.length() > 0 ? "・" : "").append("防具");
+            if (t.kinds().contains("T")) on.append(on.length() > 0 ? "・" : "").append("道具");
+            boolean fits = kinds.isEmpty() || SmithTraits.pool(item, kinds).contains(t);
+            tip.add(Component.literal(" ◆" + t.name() + " " + range + "（" + on + "）").withStyle(fits ? ChatFormatting.AQUA : ChatFormatting.DARK_GRAY));
+        }
+        tip.add(Component.literal("強さは S・A・B・C。何度でも鍛え直せる").withStyle(ChatFormatting.GRAY));
+        tip.add(Component.literal("クリックで持ち物から素材の枠に入れる").withStyle(ChatFormatting.DARK_GRAY));
+        g.renderComponentTooltip(font, tip, mx, my);
+    }
+
     /** 一覧の並び：-1 鍛冶師の見出し / -2 名工の見出し / 0〜 レシピの番号 */
     private List<Integer> shown() {
         List<Integer> out = new java.util.ArrayList<>();
@@ -199,7 +281,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     public boolean mouseScrolled(double mx, double my, double sx, double sy) {
         int x = panelX();
         if (mx >= x && mx < x + PANEL_W && my >= topPos && my < topPos + imageHeight) {
-            recipeScroll = Math.max(0, recipeScroll - (int) Math.signum(sy) * 2);
+            if (craftMode) recipeScroll = Math.max(0, recipeScroll - (int) Math.signum(sy) * 2);
+            else catScroll = Math.max(0, catScroll - (int) Math.signum(sy));
             return true;
         }
         return super.mouseScrolled(mx, my, sx, sy);
@@ -321,8 +404,15 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     @Override
     public boolean mouseClicked(double mx, double my, int button) {
-        if (!game && clickTab(mx, my)) return true;
-        if (!game) {
+        if (!game && !craftMode) {
+            int c = catalystAt(mx, my);
+            if (c >= 0) {
+                click(300 + c);
+                return true;
+            }
+        }
+        if (!game && craftMode && clickTab(mx, my)) return true;
+        if (!game && craftMode) {
             int r = recipeAt(mx, my);
             if (r >= 0) {
                 setCraftMode(true);
@@ -360,7 +450,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 return;
             }
         }
-        if (!craftMode && menu.item().isEmpty() && menu.craftInfo() != 0) setCraftMode(true);
+        if (!craftMode && menu.item().isEmpty() && menu.craftInfo() != 0
+                && !SmithTraits.CATALYSTS.containsKey(menu.slots.get(1).getItem().getItem())) setCraftMode(true);
         int f = menu.flags();
         enhanceBtn.active = (f & ForgeMenu.CAN_ENHANCE) != 0;
         reforge1Btn.active = (f & ForgeMenu.CAN_REFORGE1) != 0;
@@ -452,7 +543,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
-        renderRecipes(g, mouseX, mouseY);
+        if (craftMode) renderRecipes(g, mouseX, mouseY);
+        else renderCatalysts(g, mouseX, mouseY);
         if (game) {
             g.pose().pushPose();
             g.pose().translate(0, 0, 300);
@@ -460,7 +552,10 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             g.pose().popPose();
         }
         renderTooltip(g, mouseX, mouseY);
-        if (!game) renderRecipeTooltip(g, mouseX, mouseY);
+        if (!game) {
+            if (craftMode) renderRecipeTooltip(g, mouseX, mouseY);
+            else renderCatalystTooltip(g, mouseX, mouseY);
+        }
     }
 
     @EventBusSubscriber(modid = JsnCraft.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

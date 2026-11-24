@@ -344,6 +344,22 @@ public final class SmithingService {
         return true;
     }
 
+    /** 鍛え直しの触媒を選んだとき：素材の枠を持ち物に戻して、その触媒を入れる */
+    public static boolean fillCatalyst(ServerPlayer player, ForgeBlockEntity be, int idx) {
+        var keys = new java.util.ArrayList<>(SmithTraits.CATALYSTS.keySet());
+        if (idx < 0 || idx >= keys.size()) return false;
+        var inv = player.getInventory();
+        ItemStack st = be.items().getItem(1);
+        if (!st.isEmpty()) {
+            be.items().setItem(1, ItemStack.EMPTY);
+            if (!inv.add(st)) player.drop(st, false);
+        }
+        be.items().setItem(1, take(inv, keys.get(idx)));
+        be.setChanged();
+        player.containerMenu.broadcastChanges();
+        return true;
+    }
+
     /** 持ち物から、その物（印の無いふつうの物）を1スタック分集める */
     private static ItemStack take(net.minecraft.world.entity.player.Inventory inv, net.minecraft.world.item.Item item) {
         ItemStack plain = take(inv, item, true);

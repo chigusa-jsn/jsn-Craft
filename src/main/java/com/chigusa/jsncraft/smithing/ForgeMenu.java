@@ -109,6 +109,7 @@ public class ForgeMenu extends AbstractContainerMenu {
     @Override
     public boolean clickMenuButton(Player player, int id) {
         if (be == null || !(player instanceof ServerPlayer sp)) return false;
+        if (id >= 300) return SmithingService.fillCatalyst(sp, be, id - 300);
         if (id >= 200) return SmithingService.fillCraft(sp, be, id - 200);
         return switch (id) {
             case 0 -> SmithingService.startEnhance(sp, be);
