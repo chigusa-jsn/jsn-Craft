@@ -291,6 +291,43 @@ public final class SmithingService {
         return lv >= c.minLevel() && mat.getCount() >= c.count() && (c.base() == null || item.getCount() >= c.baseCount());
     }
 
+    /** レシピを選んだとき：枠の中身を持ち物に戻して、持ち物から材料を入れる */
+    public static boolean fillCraft(ServerPlayer player, ForgeBlockEntity be, int idx) {
+        if (idx < 0 || idx >= CRAFTS.size()) return false;
+        Craft c = CRAFTS.get(idx);
+        var inv = player.getInventory();
+        for (int s = 0; s < 2; s++) {
+            ItemStack st = be.items().getItem(s);
+            if (st.isEmpty()) continue;
+            be.items().setItem(s, ItemStack.EMPTY);
+            if (!inv.add(st)) player.drop(st, false);
+        }
+        if (c.base() != null) be.items().setItem(0, take(inv, c.base()));
+        be.items().setItem(1, take(inv, c.input()));
+        be.setChanged();
+        player.containerMenu.broadcastChanges();
+        return true;
+    }
+
+    /** 持ち物から、その物（印の無いふつうの物）を1スタック分集める */
+    private static ItemStack take(net.minecraft.world.entity.player.Inventory inv, net.minecraft.world.item.Item item) {
+        ItemStack acc = ItemStack.EMPTY;
+        for (int i = 0; i < inv.items.size(); i++) {
+            ItemStack st = inv.items.get(i);
+            if (!st.is(item) || st.has(net.minecraft.core.component.DataComponents.CUSTOM_DATA)) continue;
+            if (acc.isEmpty()) {
+                acc = st.split(Math.min(st.getCount(), st.getMaxStackSize()));
+            } else {
+                if (!ItemStack.isSameItemSameComponents(acc, st)) continue;
+                int m = Math.min(st.getCount(), acc.getMaxStackSize() - acc.getCount());
+                if (m <= 0) break;
+                st.shrink(m);
+                acc.grow(m);
+            }
+        }
+        return acc;
+    }
+
     public static boolean craft(ServerPlayer player, ForgeBlockEntity be) {
         ItemStack item = be.item(), mat = be.material();
         int lv = smithLevel(player);
