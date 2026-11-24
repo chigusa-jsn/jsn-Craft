@@ -779,5 +779,11 @@
   "block.jsn_craft.big_wheel": "ビッグホイール",
   "block.jsn_craft.wheel_terminal": "ホイールのかけ台",
   "block.jsn_craft.race_terminal": "競馬の台",
-  "block.jsn_craft.chinchiro_versus": "チンチロ対戦の卓"
+  "block.jsn_craft.chinchiro_versus": "チンチロ対戦の卓",
+  "item.jsn_craft.whetstone": "砥石",
+  "item.jsn_craft.whetstone_adv": "上級砥石",
+  "item.jsn_craft.repair_kit": "修理キット",
+  "item.jsn_craft.repair_kit_adv": "上級修理キット",
+  "item.jsn_craft.armor_plate": "当て板",
+  "block.jsn_craft.recycler": "分解機"
 }

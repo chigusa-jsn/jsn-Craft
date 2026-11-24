@@ -44,6 +44,28 @@ public final class ModSmithing {
             ModEntities.ITEMS.registerSimpleItem("enhance_stone_netherite", new Item.Properties().rarity(Rarity.RARE)),
             ModEntities.ITEMS.registerSimpleItem("enhance_stone_star", new Item.Properties().rarity(Rarity.EPIC)));
 
+    // ---- 分解機 ----
+    public static final DeferredBlock<RecyclerBlock> RECYCLER = ModCooking.BLOCKS.register("recycler",
+            () -> new RecyclerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.5F)
+                    .sound(SoundType.METAL).requiresCorrectToolForDrops()));
+    public static final DeferredItem<BlockItem> RECYCLER_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(RECYCLER);
+    public static final Supplier<BlockEntityType<RecyclerBlockEntity>> RECYCLER_BE = ModCooking.BLOCK_ENTITIES.register(
+            "recycler", () -> BlockEntityType.Builder.of(RecyclerBlockEntity::new, RECYCLER.get()).build(null));
+    public static final DeferredHolder<MenuType<?>, MenuType<RecyclerMenu>> RECYCLER_MENU = ModCooking.MENUS.register("recycler",
+            () -> IMenuTypeExtension.create(RecyclerMenu::new));
+
+    // ---- 砥石・修理キット・当て板（鍛冶台で鍛冶師が作る） ----
+    public static final DeferredItem<RepairToolItem> WHETSTONE = ModEntities.ITEMS.register("whetstone",
+            () -> new RepairToolItem(RepairToolItem.Kind.WHETSTONE, 0.25, new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<RepairToolItem> WHETSTONE_ADV = ModEntities.ITEMS.register("whetstone_adv",
+            () -> new RepairToolItem(RepairToolItem.Kind.WHETSTONE, 0.5, new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<RepairToolItem> REPAIR_KIT = ModEntities.ITEMS.register("repair_kit",
+            () -> new RepairToolItem(RepairToolItem.Kind.KIT, 0.25, new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<RepairToolItem> REPAIR_KIT_ADV = ModEntities.ITEMS.register("repair_kit_adv",
+            () -> new RepairToolItem(RepairToolItem.Kind.KIT, 0.5, new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<RepairToolItem> ARMOR_PLATE = ModEntities.ITEMS.register("armor_plate",
+            () -> new RepairToolItem(RepairToolItem.Kind.PLATE, 0, new Item.Properties().stacksTo(16)));
+
     /** 強化石の段階（強化石でなければ -1） */
     public static int stoneTier(ItemStack stack) {
         for (int i = 0; i < STONES.size(); i++) if (stack.is(STONES.get(i).get())) return i;

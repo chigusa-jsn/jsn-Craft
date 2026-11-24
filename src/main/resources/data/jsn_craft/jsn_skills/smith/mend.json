@@ -3,7 +3,7 @@
     "text": "打ち直し上手"
   },
   "description": {
-    "text": "修理で回復する耐久が25%増える（ふつうは素材1つで50%）。"
+    "text": "鍛冶台の修理で回復する耐久が25%増える（ふつうは素材なし35%・素材1つで50%）。"
   },
   "icon": "jsn_craft:skill_icon/smith/mend",
   "type": "passive",

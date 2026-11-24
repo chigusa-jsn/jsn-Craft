@@ -87,7 +87,13 @@ public final class ModTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SMITHING = tab("smithing", "jsn-Craft：鍛冶",
             () -> new ItemStack(ModSmithing.FORGE_ITEM.get()), out -> {
                 out.accept(ModSmithing.FORGE_ITEM.get());
+                out.accept(ModSmithing.RECYCLER_ITEM.get());
                 all(out, ModSmithing.STONES);
+                out.accept(ModSmithing.WHETSTONE.get());
+                out.accept(ModSmithing.WHETSTONE_ADV.get());
+                out.accept(ModSmithing.REPAIR_KIT.get());
+                out.accept(ModSmithing.REPAIR_KIT_ADV.get());
+                out.accept(ModSmithing.ARMOR_PLATE.get());
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ENCHANTING = tab("enchanting", "jsn-Craft：付与",

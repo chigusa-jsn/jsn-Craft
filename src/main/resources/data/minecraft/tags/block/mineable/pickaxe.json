@@ -15,6 +15,7 @@
     "jsn_craft:gacha_equip",
     "jsn_craft:gacha_material",
     "jsn_craft:gacha_figure",
-    "jsn_craft:gacha_title"
+    "jsn_craft:gacha_title",
+    "jsn_craft:recycler"
   ]
 }

@@ -164,18 +164,63 @@ public final class SmithingService {
 
     // ================= 修理 =================
 
+    /** 修理：鍛冶師なら素材なしでも直せる（素材を入れるともっと直る）。壊れた物も直せて、100% まで戻せる */
     public static boolean repair(ServerPlayer player, ForgeBlockEntity be) {
         ItemStack item = be.item(), mat = be.material();
-        if (smithLevel(player) < 0 || !item.isDamaged() || mat.isEmpty() || !item.getItem().isValidRepairItem(item, mat)) return false;
-        double amount = 0.5;
+        if (smithLevel(player) < 0 || !canRepair(item)) return false;
+        boolean useMat = !mat.isEmpty() && item.getItem().isValidRepairItem(item, mat);
+        boolean wasBroken = Durability.broken(item);
+        double amount = useMat ? 0.5 : 0.35;
         SkillDefinition skill = SkillService.passive(player, "smith_repair");
         if (skill != null) amount += skill.power();
-        item.setDamageValue(Math.max(0, item.getDamageValue() - (int) Math.ceil(item.getMaxDamage() * amount)));
-        mat.shrink(1);
+        amount += Math.max(0, smithLevel(player)) * 0.002;
+        Durability.repair(item, amount, 1.0);
+        if (useMat) mat.shrink(1);
         be.setChanged();
-        player.serverLevel().playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.8F, 1.0F);
-        Vfx.sparks(player.serverLevel(), Vec3.atCenterOf(be.getBlockPos()).add(0, 0.6, 0), 8);
-        JobService.onAction(player, rule -> rule.action().equals("smith"), 3);
+        ServerLevel level = player.serverLevel();
+        level.playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.8F, 1.0F);
+        Vfx.sparks(level, Vec3.atCenterOf(be.getBlockPos()).add(0, 0.6, 0), 8);
+        player.displayClientMessage(Component.literal((wasBroken ? "壊れた物を直した！ " : "修理した！ ") + "耐久 "
+                + Math.round(Durability.ratio(item) * 100) + "%").withStyle(ChatFormatting.GREEN), true);
+        JobService.onAction(player, rule -> rule.action().equals("smith"), wasBroken ? 6 : 3);
+        return true;
+    }
+
+    public static boolean canRepair(ItemStack item) {
+        return !item.isEmpty() && (item.isDamaged() || Durability.broken(item));
+    }
+
+    // ================= 製作（鍛冶師だけが作れる物） =================
+
+    public record Craft(net.minecraft.world.item.Item input, int count, java.util.function.Supplier<? extends net.minecraft.world.item.Item> output, int minLevel, String name) {}
+
+    public static final List<Craft> CRAFTS = List.of(
+            new Craft(net.minecraft.world.item.Items.FLINT, 3, ModSmithing.WHETSTONE, 0, "砥石"),
+            new Craft(net.minecraft.world.item.Items.IRON_INGOT, 2, ModSmithing.REPAIR_KIT, 0, "修理キット"),
+            new Craft(net.minecraft.world.item.Items.COPPER_INGOT, 4, ModSmithing.ARMOR_PLATE, 5, "当て板"),
+            new Craft(net.minecraft.world.item.Items.AMETHYST_SHARD, 3, ModSmithing.WHETSTONE_ADV, 15, "上級砥石"),
+            new Craft(net.minecraft.world.item.Items.DIAMOND, 1, ModSmithing.REPAIR_KIT_ADV, 15, "上級修理キット"));
+
+    /** 素材の枠の物で作れる物（無ければ -1） */
+    public static int craftIndex(ItemStack mat) {
+        for (int i = 0; i < CRAFTS.size(); i++) if (mat.is(CRAFTS.get(i).input())) return i;
+        return -1;
+    }
+
+    public static boolean craft(ServerPlayer player, ForgeBlockEntity be) {
+        ItemStack item = be.item(), mat = be.material();
+        int idx = craftIndex(mat);
+        int lv = smithLevel(player);
+        if (lv < 0 || !item.isEmpty() || idx < 0) return false;
+        Craft c = CRAFTS.get(idx);
+        if (lv < c.minLevel() || mat.getCount() < c.count()) return false;
+        mat.shrink(c.count());
+        be.items().setItem(0, new ItemStack(c.output().get()));
+        be.setChanged();
+        ServerLevel level = player.serverLevel();
+        level.playSound(null, be.getBlockPos(), SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS, 1.0F, 1.1F);
+        Vfx.sparks(level, Vec3.atCenterOf(be.getBlockPos()).add(0, 0.6, 0), 10);
+        JobService.onAction(player, rule -> rule.action().equals("smith"), 2 + c.minLevel() / 5);
         return true;
     }
 
@@ -188,8 +233,13 @@ public final class SmithingService {
         if (kinds.isEmpty()) return;
         int plus = SmithData.plus(stack);
         var traits = SmithData.traits(stack);
-        if (plus <= 0 && traits.isEmpty()) return;
         EquipmentSlotGroup group = stack.getItem() instanceof ArmorItem a ? EquipmentSlotGroup.bySlot(a.getEquipmentSlot()) : EquipmentSlotGroup.MAINHAND;
+        if (Durability.plate(stack) > 0 && kinds.contains("A")) {
+            event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/plate_armor_" + group.getSerializedName()), 1.5,
+                    AttributeModifier.Operation.ADD_VALUE), group);
+            event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(JsnCraft.id("smith/plate_tough_" + group.getSerializedName()), 1.0,
+                    AttributeModifier.Operation.ADD_VALUE), group);
+        }
         if (plus > 0) {
             if (kinds.contains("W") && !SmithData.ranged(stack)) {
                 event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(JsnCraft.id("smith/plus_attack"), 0.6 * plus,
@@ -217,6 +267,43 @@ public final class SmithingService {
             t.holder().ifPresent(h -> event.addModifier(h, new AttributeModifier(
                     JsnCraft.id("smith/trait" + idx + "_" + group.getSerializedName()), roll.value(), t.op()), group));
         }
+        sharpness(event, stack, kinds, group);
+    }
+
+    /** 切れ味：耐久が減ると攻撃力・防御力が下がる（壊れるとほぼ使えない） */
+    private static void sharpness(ItemAttributeModifierEvent event, ItemStack stack, String kinds, EquipmentSlotGroup group) {
+        if (stack.getMaxDamage() <= 0) return;
+        if (kinds.contains("W") && !SmithData.ranged(stack)) {
+            double f = Durability.weaponFactor(stack);
+            if (f < 1) {
+                double base = sum(event, Attributes.ATTACK_DAMAGE, group);
+                if (base > 0) event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(JsnCraft.id("smith/sharpness"),
+                        -base * (1 - f), AttributeModifier.Operation.ADD_VALUE), group);
+            }
+        }
+        if (kinds.contains("A")) {
+            double f = Durability.armorFactor(stack);
+            if (f < 1) {
+                String g = group.getSerializedName();
+                double armor = sum(event, Attributes.ARMOR, group), tough = sum(event, Attributes.ARMOR_TOUGHNESS, group);
+                if (armor > 0) event.addModifier(Attributes.ARMOR, new AttributeModifier(JsnCraft.id("smith/wear_armor_" + g),
+                        -armor * (1 - f), AttributeModifier.Operation.ADD_VALUE), group);
+                if (tough > 0) event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(JsnCraft.id("smith/wear_tough_" + g),
+                        -tough * (1 - f), AttributeModifier.Operation.ADD_VALUE), group);
+            }
+        }
+        if (Durability.broken(stack) && kinds.contains("T")) {
+            event.addModifier(Attributes.BLOCK_BREAK_SPEED, new AttributeModifier(JsnCraft.id("smith/broken_mining"), -0.9,
+                    AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), group);
+        }
+    }
+
+    private static double sum(ItemAttributeModifierEvent event, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attr, EquipmentSlotGroup group) {
+        double v = 0;
+        for (var e : event.getModifiers()) {
+            if (e.attribute().equals(attr) && e.slot() == group && e.modifier().operation() == AttributeModifier.Operation.ADD_VALUE) v += e.modifier().amount();
+        }
+        return v;
     }
 
     /** 強化した弓・クロスボウの矢は、ダメージが上がる */
@@ -227,6 +314,7 @@ public final class SmithingService {
         if (weapon == null || weapon.isEmpty()) return;
         int plus = SmithData.plus(weapon);
         if (plus > 0) arrow.setBaseDamage(arrow.getBaseDamage() + 0.3 * plus);
+        if (weapon.getMaxDamage() > 0) arrow.setBaseDamage(arrow.getBaseDamage() * Durability.weaponFactor(weapon));
     }
 
     // ================= スキル =================

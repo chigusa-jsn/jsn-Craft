@@ -779,5 +779,11 @@
   "block.jsn_craft.big_wheel": "Big Wheel",
   "block.jsn_craft.wheel_terminal": "Wheel Betting Terminal",
   "block.jsn_craft.race_terminal": "Horse Race Terminal",
-  "block.jsn_craft.chinchiro_versus": "Chinchiro Table"
+  "block.jsn_craft.chinchiro_versus": "Chinchiro Table",
+  "item.jsn_craft.whetstone": "Whetstone",
+  "item.jsn_craft.whetstone_adv": "Fine Whetstone",
+  "item.jsn_craft.repair_kit": "Repair Kit",
+  "item.jsn_craft.repair_kit_adv": "Advanced Repair Kit",
+  "item.jsn_craft.armor_plate": "Armor Plate",
+  "block.jsn_craft.recycler": "Recycler"
 }

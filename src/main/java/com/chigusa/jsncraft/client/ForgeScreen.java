@@ -25,7 +25,7 @@ import java.util.Locale;
 
 /** 鍛冶台の画面：左に鍛える物、真ん中に素材。右のボタンで強化・鍛え直し・修理。 */
 public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
-    private Button enhanceBtn, reforge1Btn, reforge2Btn, repairBtn;
+    private Button enhanceBtn, reforge1Btn, reforge2Btn, repairBtn, craftBtn;
 
     public ForgeScreen(ForgeMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
@@ -38,10 +38,11 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     protected void init() {
         super.init();
         int x = leftPos + 98;
-        enhanceBtn = addRenderableWidget(Button.builder(Component.literal("強化する"), b -> click(0)).bounds(x, topPos + 6, 72, 14).build());
-        reforge1Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す"), b -> click(1)).bounds(x, topPos + 22, 72, 14).build());
-        reforge2Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す(2)"), b -> click(2)).bounds(x, topPos + 38, 72, 14).build());
-        repairBtn = addRenderableWidget(Button.builder(Component.literal("修理する"), b -> click(3)).bounds(x, topPos + 54, 72, 14).build());
+        enhanceBtn = addRenderableWidget(Button.builder(Component.literal("強化する"), b -> click(0)).bounds(x, topPos + 4, 72, 12).build());
+        reforge1Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す"), b -> click(1)).bounds(x, topPos + 17, 72, 12).build());
+        reforge2Btn = addRenderableWidget(Button.builder(Component.literal("鍛え直す(2)"), b -> click(2)).bounds(x, topPos + 30, 72, 12).build());
+        repairBtn = addRenderableWidget(Button.builder(Component.literal("修理する"), b -> click(3)).bounds(x, topPos + 43, 72, 12).build());
+        craftBtn = addRenderableWidget(Button.builder(Component.literal("製作する"), b -> click(4)).bounds(x, topPos + 56, 72, 12).build());
     }
 
     private void click(int id) {
@@ -57,6 +58,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         reforge2Btn.visible = menu.traitSlots() >= 2;
         reforge2Btn.active = (f & ForgeMenu.CAN_REFORGE2) != 0;
         repairBtn.active = (f & ForgeMenu.CAN_REPAIR) != 0;
+        craftBtn.active = (f & ForgeMenu.CAN_CRAFT) != 0;
         reforge1Btn.setMessage(Component.literal(menu.traitSlots() >= 2 ? "鍛え直す(1)" : "鍛え直す"));
     }
 
@@ -84,7 +86,17 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         int st = menu.status();
         String line1, line2 = "";
         switch (st) {
-            case ForgeMenu.ST_EMPTY -> line1 = "§7武器・防具・道具を置こう";
+            case ForgeMenu.ST_EMPTY -> {
+                int ci = menu.craftInfo();
+                if (ci == 0) {
+                    line1 = "§7武器・防具・道具を置こう";
+                    line2 = "§8素材だけ置くと製作";
+                } else {
+                    var c = SmithingService.CRAFTS.get(Math.abs(ci) - 1);
+                    line1 = (ci > 0 ? "§f製作：" : "§c製作：") + c.name();
+                    line2 = ci > 0 ? "§7素材 ×" + c.count() + " で1個" : "§c鍛冶師Lv" + c.minLevel() + " から";
+                }
+            }
             case ForgeMenu.ST_NOT_SMITH -> line1 = "§c鍛えられるのは鍛冶師だけです";
             case ForgeMenu.ST_CANT -> line1 = "§7これは強化できない（修理のみ）";
             case ForgeMenu.ST_MAX -> line1 = "§6+" + SmithData.plus(item) + "（今の上限 +" + menu.maxPlus() + "）";
@@ -93,6 +105,10 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 line1 = "§f+" + plus + " → +" + (plus + 1) + "  §e成功率 " + menu.ratePermille() / 10 + "%";
                 line2 = "§7必要：" + SmithingService.TIER_NAMES[SmithingService.tierFor(plus + 1)] + "の強化石";
             }
+        }
+        if (!item.isEmpty() && item.getMaxDamage() > 0 && st != ForgeMenu.ST_NOT_SMITH && line2.isEmpty()) {
+            line2 = com.chigusa.jsncraft.smithing.Durability.broken(item) ? "§c壊れている"
+                    : "§7耐久 " + Math.round(com.chigusa.jsncraft.smithing.Durability.ratio(item) * 100) + "%";
         }
         g.drawString(font, line1, 8, 48, 0xFFFFFF, false);
         if (!line2.isEmpty()) g.drawString(font, line2, 8, 59, 0xFFFFFF, false);
@@ -110,6 +126,36 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         public static void onScreens(RegisterMenuScreensEvent event) {
             event.register(ModSmithing.FORGE_MENU.get(), ForgeScreen::new);
         }
+    }
+
+    /** 切れ味ゲージ（MHの切れ味みたいに、耐久が減ると色が変わって弱くなる） */
+    static void sharpTooltip(ItemStack stack, List<Component> tip) {
+        if (!com.chigusa.jsncraft.smithing.Durability.isGear(stack)) return;
+        String kinds = SmithData.kinds(stack);
+        int at = Math.min(1, tip.size());
+        int plate = com.chigusa.jsncraft.smithing.Durability.plate(stack);
+        if (plate > 0) tip.add(at, Component.literal("▣ 当て板 あと" + plate + "回").withStyle(ChatFormatting.GOLD));
+        if (com.chigusa.jsncraft.smithing.Durability.broken(stack)) {
+            tip.add(at, Component.literal("✖ 壊れている（鍛冶師に鍛冶台で直してもらおう）").withStyle(ChatFormatting.RED, ChatFormatting.BOLD));
+            return;
+        }
+        double r = com.chigusa.jsncraft.smithing.Durability.ratio(stack);
+        int band = com.chigusa.jsncraft.smithing.Durability.band(stack);
+        ChatFormatting col = band == 3 ? ChatFormatting.AQUA : band == 2 ? ChatFormatting.GREEN : band == 1 ? ChatFormatting.YELLOW : ChatFormatting.RED;
+        int filled = (int) Math.ceil(r * 10);
+        String label = kinds.contains("A") ? "耐久 " : "切れ味 ";
+        String effect;
+        if (kinds.contains("A")) {
+            effect = "防御 " + Math.round(com.chigusa.jsncraft.smithing.Durability.armorFactor(stack) * 100) + "%";
+        } else if (kinds.contains("W")) {
+            effect = (SmithData.ranged(stack) ? "威力 " : "攻撃 ") + Math.round(com.chigusa.jsncraft.smithing.Durability.weaponFactor(stack) * 100) + "%";
+        } else {
+            effect = Math.round(r * 100) + "%";
+        }
+        tip.add(at, Component.literal(label).withStyle(ChatFormatting.GRAY)
+                .append(Component.literal("■".repeat(filled)).withStyle(col))
+                .append(Component.literal("■".repeat(10 - filled)).withStyle(ChatFormatting.DARK_GRAY))
+                .append(Component.literal(" " + effect).withStyle(col)));
     }
 
     /** 特性の説明と、触媒の説明をツールチップに出す */
@@ -134,6 +180,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 else for (int i = 0; i < cat.size(); i++) sb.append(i > 0 ? "・" : "").append(SmithTraits.TRAITS.get(cat.get(i)).name());
                 tip.add(Component.literal(sb.toString()).withStyle(ChatFormatting.DARK_AQUA));
             }
+            sharpTooltip(stack, tip);
             int tier = ModSmithing.stoneTier(stack);
             if (tier >= 0) {
                 int from = tier * 3 + 1;
