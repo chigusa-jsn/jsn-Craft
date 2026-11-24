@@ -88,6 +88,7 @@ public final class PlayerAnims {
     /** 本人が武器を振った → まわりの人にも見せる（本人はもう動いている） */
     public static void onSwing(ServerPlayer p, String anim) {
         if (!validName(anim)) return;
+        if (anim.startsWith("whip_")) com.chigusa.jsncraft.weapon.WhipService.lash(p);
         PacketDistributor.sendToPlayersTrackingEntity(p, new AnimPayloads.Play(p.getId(), anim));
     }
 

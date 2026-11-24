@@ -70,6 +70,7 @@ public class WhipItem extends TieredItem {
         lines.add(Component.literal("獣使いの鞭（" + spec.tier() + "段目）").withStyle(ChatFormatting.GOLD));
         lines.add(Component.literal("持つとスキルと相棒のダメージ +" + Math.round(spec.skill() * 100) + "%").withStyle(ChatFormatting.BLUE));
         lines.add(Component.literal("攻撃が " + spec.reach() + " ブロック遠くまで届く").withStyle(ChatFormatting.BLUE));
+        lines.add(Component.literal("伸びた鞭の線の上の敵に、まとめて当たる").withStyle(ChatFormatting.BLUE));
         lines.add(Component.literal("叩いた敵を、相棒たちがいっせいに狙う").withStyle(ChatFormatting.BLUE));
         if (spec.tier() < 6) lines.add(Component.literal("鍛冶台で鍛冶型を使うと次の段へ（魔紋と強化はそのまま）").withStyle(ChatFormatting.DARK_GRAY));
     }
