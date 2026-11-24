@@ -311,6 +311,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 return;
             }
         }
+        if (!craftMode && menu.item().isEmpty() && menu.craftInfo() != 0) setCraftMode(true);
         int f = menu.flags();
         enhanceBtn.active = (f & ForgeMenu.CAN_ENHANCE) != 0;
         reforge1Btn.active = (f & ForgeMenu.CAN_REFORGE1) != 0;
@@ -351,7 +352,9 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             g.drawString(font, "出来上がり", 84, 16, 0xFFD8D8D8, false);
             int ci = menu.craftInfo();
             String l1, l2 = "";
-            if (ci == 0) {
+            if (menu.status() == ForgeMenu.ST_NOT_SMITH || menu.smithLevel() < 0) {
+                l1 = "§c作れるのは鍛冶師だけです";
+            } else if (ci == 0) {
                 l1 = "§7右の一覧から選ぼう";
                 l2 = "§7（材料が自動で入る）";
             } else {
@@ -360,7 +363,11 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
                 g.renderItem(out, 98, 26);
                 g.renderItemDecorations(font, out, 98, 26);
                 l1 = (ci > 0 ? "§f" : "§c") + c.name() + " ×" + c.outCount();
-                l2 = ci > 0 ? (c.quality() ? "§b★は鍛冶の腕次第" : "") : "§c鍛冶師Lv" + c.minLevel() + " から";
+                int haveMat = menu.slots.get(1).getItem().getCount(), haveBase = menu.slots.get(0).getItem().getCount();
+                if (ci < 0) l2 = "§c鍛冶師Lv" + c.minLevel() + " から";
+                else if (haveMat < c.count()) l2 = "§c素材が足りない（×" + c.count() + " 必要）";
+                else if (c.base() != null && haveBase < c.baseCount()) l2 = "§c土台が足りない（×" + c.baseCount() + " 必要）";
+                else l2 = c.quality() ? "§b★は鍛冶の腕次第" : "§a作れます";
             }
             g.drawString(font, l1, 8, 48, 0xFFFFFF, false);
             if (!l2.isEmpty()) g.drawString(font, l2, 8, 59, 0xFFFFFF, false);
