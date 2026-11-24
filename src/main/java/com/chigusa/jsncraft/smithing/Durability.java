@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.item.component.ItemEnchantments;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.item.component.Unbreakable;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -200,7 +200,7 @@ public final class Durability {
     public static void onDamaged(LivingDamageEvent.Post event) {
         if (!(event.getEntity() instanceof ServerPlayer p) || event.getNewDamage() <= 0) return;
         for (EquipmentSlot s : SLOTS) {
-            if (!s.getType() == EquipmentSlot.Type.HUMANOID_ARMOR) continue;
+            if (s.getType() != EquipmentSlot.Type.HUMANOID_ARMOR) continue;
             ItemStack st = p.getItemBySlot(s);
             int hits = plate(st);
             if (hits <= 0) continue;
