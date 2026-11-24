@@ -67,6 +67,14 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     private static final int PANEL_W = 150, ROW = 18;
     private int recipeScroll;
+    private int panelX() {
+        return leftPos + imageWidth + 4;
+    }
+
+    private int panelRows() {
+        return (imageHeight - 22) / ROW;
+    }
+
     /** 一覧の並び：-1 鍛冶師の見出し / -2 名工の見出し / 0〜 レシピの番号 */
     private List<Integer> shown() {
         List<Integer> out = new java.util.ArrayList<>();
