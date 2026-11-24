@@ -67,23 +67,24 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
 
     private static final int PANEL_W = 150, ROW = 18;
     private int recipeScroll;
-    /** 一覧のタブ：false 鍛冶師 / true 名工（上位職） */
-    private boolean masterTab;
-
-    /** 今のタブに出すレシピ（元の番号） */
+    /** 一覧の並び：-1 鍛冶師の見出し / -2 名工の見出し / 0〜 レシピの番号 */
     private List<Integer> shown() {
         List<Integer> out = new java.util.ArrayList<>();
         var list = SmithingService.CRAFTS;
-        for (int i = 0; i < list.size(); i++) if ((list.get(i).minLevel() > 50) == masterTab) out.add(i);
+        out.add(-1);
+        for (int i = 0; i < list.size(); i++) if (list.get(i).minLevel() <= 50) out.add(i);
+        out.add(-2);
+        for (int i = 0; i < list.size(); i++) if (list.get(i).minLevel() > 50) out.add(i);
         return out;
     }
 
-    private int panelX() {
-        return leftPos + imageWidth + 4;
+    private int masterHeaderRow() {
+        return shown().indexOf(-2);
     }
 
-    private int panelRows() {
-        return (imageHeight - 22) / ROW;
+    /** 今、名工の所を見ているか（タブの色） */
+    private boolean masterTab() {
+        return recipeScroll + panelRows() / 2 >= masterHeaderRow();
     }
 
     private static int count(net.minecraft.world.item.Item item) {
@@ -100,19 +101,28 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         g.fill(x + 2, y + 2, x + PANEL_W - 2, y + h - 2, 0xFF7A7A82);
         var list = SmithingService.CRAFTS;
         List<Integer> ord = shown();
-        // タブ：鍛冶師／名工
+        int n = panelRows();
+        recipeScroll = Math.max(0, Math.min(recipeScroll, Math.max(0, ord.size() - n)));
+        boolean masterTab = masterTab();
+        // タブ（押すとその見出しまで飛ぶ）：鍛冶師／名工
         String a = "鍛冶師", b = "名工（上位職）";
         int aw = font.width(a), bw = font.width(b);
         g.fill(x + 4, y + 4, x + 10 + aw, y + 16, masterTab ? 0x00000000 : 0xFF3A3A42);
         g.fill(x + 14 + aw, y + 4, x + 20 + aw + bw, y + 16, masterTab ? 0xFF6A4A10 : 0x00000000);
         g.drawString(font, a, x + 7, y + 6, masterTab ? 0xFF4A4A52 : 0xFFE8E8E8, false);
         g.drawString(font, b, x + 17 + aw, y + 6, masterTab ? 0xFFFFD870 : 0xFF4A4A52, false);
-        int n = panelRows();
-        recipeScroll = Math.max(0, Math.min(recipeScroll, Math.max(0, ord.size() - n)));
         int lv = menu.smithLevel();
         int ly = y + 18;
         for (int k = recipeScroll; k < ord.size() && k < recipeScroll + n; k++) {
-            var c = list.get(ord.get(k));
+            int id = ord.get(k);
+            if (id < 0) {
+                String hd = id == -1 ? "― 鍛冶師 Lv1〜50 ―" : "― 名工（上位職）―";
+                g.fill(x + 3, ly + 2, x + PANEL_W - 5, ly + ROW - 2, id == -1 ? 0xFF4A4A52 : 0xFF6A4A10);
+                g.drawCenteredString(font, hd, x + PANEL_W / 2, ly + 5, id == -1 ? 0xFFE8E8E8 : 0xFFFFD870);
+                ly += ROW;
+                continue;
+            }
+            var c = list.get(id);
             boolean hover = mouseX >= x + 2 && mouseX < x + PANEL_W - 4 && mouseY >= ly && mouseY < ly + ROW;
             boolean have = count(c.input()) >= c.count() && (c.base() == null || count(c.base()) >= c.baseCount());
             if (hover) g.fill(x + 3, ly, x + PANEL_W - 5, ly + ROW, 0x30FFFFFF);
@@ -133,15 +143,12 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         }
     }
 
-    /** タブを押したら true */
+    /** タブ（一覧の上の行）を押したら、その見出しまで飛ぶ */
     private boolean clickTab(double mx, double my) {
         int x = panelX(), y = topPos;
-        if (my < y + 4 || my >= y + 16 || mx < x + 4 || mx >= x + PANEL_W) return false;
+        if (my < y || my >= y + 18 || mx < x || mx >= x + PANEL_W) return false;
         boolean m = mx >= x + 12 + font.width("鍛冶師");
-        if (m != masterTab) {
-            masterTab = m;
-            recipeScroll = 0;
-        }
+        recipeScroll = m ? masterHeaderRow() : 0;
         return true;
     }
 
@@ -151,7 +158,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         int k = recipeScroll + (int) ((my - y - 18) / ROW);
         List<Integer> ord = shown();
         if (k >= ord.size() || k >= recipeScroll + panelRows()) return -1;
-        return ord.get(k);
+        return Math.max(-1, ord.get(k));
     }
 
     private void renderRecipeTooltip(GuiGraphics g, int mx, int my) {
