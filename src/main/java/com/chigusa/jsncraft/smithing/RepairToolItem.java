@@ -134,5 +134,12 @@ public class RepairToolItem extends Item {
             tip.add(Component.literal("鍛冶師が使うと +10%").withStyle(ChatFormatting.DARK_GRAY));
         }
         tip.add(Component.literal("持って、直したい物の上で右クリック").withStyle(ChatFormatting.DARK_AQUA));
+        for (var c : SmithingService.CRAFTS) {
+            if (c.output().get() == this) {
+                tip.add(Component.literal("作り方：鍛冶台の素材の枠に ").withStyle(ChatFormatting.DARK_GRAY)
+                        .append(Component.translatable(c.input().getDescriptionId())).append(" ×" + c.count()
+                        + (c.minLevel() > 0 ? "（鍛冶師Lv" + c.minLevel() + "〜）" : "（鍛冶師）")).withStyle(ChatFormatting.DARK_GRAY));
+            }
+        }
     }
 }

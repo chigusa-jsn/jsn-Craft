@@ -49,6 +49,34 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
         if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, id);
     }
 
+    // ================= 製作レシピ（画面の右に表示） =================
+
+    private void renderRecipes(GuiGraphics g, int mouseX, int mouseY) {
+        int x = leftPos + imageWidth + 4, y = topPos;
+        int w = 112, rows = SmithingService.CRAFTS.size();
+        int h = 18 + rows * 20;
+        if (x + w > width) return;   // 画面が狭いときは出さない
+        g.fill(x, y, x + w, y + h, 0xFF1E1E22);
+        g.fill(x + 2, y + 2, x + w - 2, y + h - 2, 0xFF5A5A62);
+        g.drawString(font, "製作レシピ", x + 6, y + 6, 0xFFE8C060, false);
+        int lv = menu.smithLevel();
+        for (int i = 0; i < rows; i++) {
+            var c = SmithingService.CRAFTS.get(i);
+            int ry = y + 18 + i * 20;
+            boolean ok = lv >= c.minLevel();
+            ItemStack in = new ItemStack(c.input(), c.count());
+            ItemStack out = new ItemStack(c.output().get());
+            g.renderItem(in, x + 6, ry);
+            g.renderItemDecorations(font, in, x + 6, ry);
+            g.drawString(font, "→", x + 26, ry + 4, 0xFFFFFFFF, false);
+            g.renderItem(out, x + 38, ry);
+            String label = ok ? "§f" + c.name() : "§cLv" + c.minLevel() + "〜";
+            g.drawString(font, label, x + 57, ry + 4, 0xFFFFFF, false);
+            if (mouseX >= x + 6 && mouseX < x + 22 && mouseY >= ry && mouseY < ry + 16) g.renderTooltip(font, in, mouseX, mouseY);
+            if (mouseX >= x + 38 && mouseX < x + 54 && mouseY >= ry && mouseY < ry + 16) g.renderTooltip(font, out, mouseX, mouseY);
+        }
+    }
+
     // ================= 強化ミニゲーム =================
     // 火床の上を行き来する印を、光っている所でタイミングよく止めて5回叩く。
     // 真ん中（会心）なら PERFECT、光の中なら GOOD、外れたら MISS。
@@ -230,8 +258,8 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
             case ForgeMenu.ST_EMPTY -> {
                 int ci = menu.craftInfo();
                 if (ci == 0) {
-                    line1 = "§7武器・防具・道具を置こう";
-                    line2 = "§8素材だけ置くと製作";
+                    line1 = "§7鍛える物を置こう";
+                    line2 = "§7素材だけ→製作";
                 } else {
                     var c = SmithingService.CRAFTS.get(Math.abs(ci) - 1);
                     line1 = (ci > 0 ? "§f製作：" : "§c製作：") + c.name();
@@ -259,6 +287,7 @@ public class ForgeScreen extends AbstractContainerScreen<ForgeMenu> {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float pt) {
         super.render(g, mouseX, mouseY, pt);
+        if (!game) renderRecipes(g, mouseX, mouseY);
         if (game) {
             g.pose().pushPose();
             g.pose().translate(0, 0, 300);
