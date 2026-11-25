@@ -33,6 +33,7 @@ class Cube:
         self.bone, self.origin, self.size, self.part = bone, origin, size, part
         self.inflate, self.rot, self.pivot, self.mirror, self.tags = inflate, rot, pivot, mirror, set(tags)
         self.uv = {}
+        self.uvs = 1.0   # 絵の場所の縮め具合（大きくて薄い飾りは、絵を小さめに）
 
 def mirror_x(c, bone):
     """右のパーツから左を作る（x を反転）"""
@@ -44,7 +45,7 @@ def mirror_x(c, bone):
 # ---------------- 面の大きさと、絵の置き場所 ----------------
 FACES = ("north", "south", "east", "west", "up", "down")
 def face_size(c, f):
-    w, h, d = c.size
+    w, h, d = (v * c.uvs for v in c.size)
     return {"north": (w, h), "south": (w, h), "east": (d, h), "west": (d, h), "up": (w, d), "down": (w, d)}[f]
 
 def pack(cubes):
@@ -77,6 +78,10 @@ def paint_face(img, c, f, pal, tier, style):
     d = ImageDraw.Draw(img)
     r = rng(zlib.crc32(f"{style}{tier}{part}{f}{c.origin}".encode()))
     side = f in ("north", "south", "east", "west")
+    if tier == 6:
+        paint6(img, c, f, pal, style, x0, y0, W, H, col, r)
+        cutouts(img, c, f, pal, x0, y0, W, H, r, PX * 2)
+        return
     metal = part in ("metal", "plate", "gem", "blade", "shell", "trim2", "crown", "circlet", "halo")
     # 地の色：上から下へ少し暗く（金属は強めのつや）
     for yy in range(H):
@@ -154,6 +159,13 @@ def paint_face(img, c, f, pal, tier, style):
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)): d.point([sx + dx, sy + dy], fill=g + (255,))
         if len(pts) >= 3:
             d.line(pts[:3], fill=mix(g, col, 0.55) + (255,))
+    cutouts(img, c, f, pal, x0, y0, W, H, r, tw)
+
+def cutouts(img, c, f, pal, x0, y0, W, H, r, tw):
+    """顔の穴・ぼろぼろのすそ・上下の穴（絵を透明にくりぬく）"""
+    d = ImageDraw.Draw(img)
+    trim = pal["trim"]
+    side = f in ("north", "south", "east", "west")
     if "face_hole" in c.tags and f == "north":
         hx0, hx1 = x0 + int(1.2 * PX), x0 + W - int(1.2 * PX)
         hy0, hy1 = y0 + int(2.2 * PX), y0 + H - int(0.6 * PX)
@@ -168,8 +180,210 @@ def paint_face(img, c, f, pal, tier, style):
     if "open_top" in c.tags and f == "up":
         d.rectangle([x0, y0, x0 + W - 1, y0 + H - 1], fill=(0, 0, 0, 0))
 
+# ================= 星銀（6段目）：高い解像度で、なめらかな陰影・星雲・金の唐草・きらめく星 =================
+import numpy as np
+from PIL import ImageFilter
+
+NEBULA = [(120, 70, 200), (60, 140, 220), (200, 80, 190), (80, 200, 210)]
+
+def _lum(c): return 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2]
+
+def _arr(W, H, col):
+    a = np.zeros((H, W, 4), np.float32); a[..., :3] = col; a[..., 3] = 255
+    return a
+
+def _img(a): return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+
+def _soft(W, H, draw_fn, blur):
+    """ぼかした光の層（RGBA）"""
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw_fn(ImageDraw.Draw(layer))
+    return layer.filter(ImageFilter.GaussianBlur(blur)) if blur > 0 else layer
+
+def sparkle(d, x, y, size, col, core=(255, 252, 235)):
+    """4つの光の筋がある星"""
+    for i in range(1, size + 1):
+        a = int(255 * (1 - i / (size + 1)))
+        for dx, dy in ((i, 0), (-i, 0), (0, i), (0, -i)):
+            d.point([x + dx, y + dy], fill=col + (a,))
+    for dx, dy in ((1, 1), (-1, 1), (1, -1), (-1, -1)):
+        d.point([x + dx, y + dy], fill=col + (110,))
+    d.point([x, y], fill=core + (255,))
+
+def filigree(d, x0, y, W, col, hi, unit):
+    """金の唐草（くるっと巻いた模様を並べる）"""
+    xx = x0 + unit
+    flip = False
+    while xx < x0 + W - unit:
+        box = [xx - unit // 2, y - unit // 2, xx + unit // 2, y + unit // 2]
+        d.arc(box, 200 if not flip else 20, 520 if not flip else 340, fill=col + (255,), width=max(1, unit // 5))
+        d.point([xx, y], fill=hi + (255,))
+        xx += unit
+        flip = not flip
+
+def paint6(img, c, f, pal, style, x0, y0, W, H, col, r):
+    part = c.part
+    side = f in ("north", "south", "east", "west")
+    metal = part in ("metal", "plate", "gem", "blade", "shell", "trim2", "crown", "circlet", "halo", "card", "dice", "horn", "fang", "fin")
+    cloth = part in CLOTH or part in ("leather", "belt", "boot", "shoe", "wrap", "tie", "feather", "wing", "leaf")
+    gold = pal["trim"]; star = pal.get("star", (240, 200, 64))
+    ys = np.linspace(0, 1, H)[:, None]; xs = np.linspace(0, 1, W)[None, :]
+    if part == "crystal_wing":
+        col = (150, 200, 255)
+    a = _arr(W, H, col)
+    dark_face = _lum(col) < 110 and part != "crystal_wing"
+    if metal and part != "gem":
+        # 金属：ななめの光の帯＋下へ向かって暗く（なめらか）
+        band = np.exp(-((xs * 0.9 + ys * 0.7 - (0.35 + r() * 0.2)) / 0.16) ** 2)
+        k = (1.12 - 0.38 * ys) + 0.55 * band if side else 1.05 + 0.25 * band
+        a[..., :3] = np.array(col, np.float32) * k[..., None]
+        a[..., :3] += 40 * band[..., None]
+    else:
+        # 布など：上から下へ、星空の紫へ寄るグラデーション＋やわらかいひだ
+        tint = np.array((60, 36, 120), np.float32)
+        t = ys if side else 0.4 + 0 * ys
+        base = np.array(col, np.float32)
+        a[..., :3] = base * (1.08 - 0.22 * t)[..., None] * (1 - 0.3 * t[..., None]) + tint * (0.3 * t)[..., None]
+        if side and W >= 16:
+            freq = max(2.0, W / (PX * 2.2))
+            fold = 0.9 + 0.1 * np.sin(xs * np.pi * 2 * freq + r() * 6)
+            a[..., :3] *= fold[..., None]
+    # 縁の立体感（やわらかく）
+    e = max(2, PX // 2)
+    edge = np.minimum(np.minimum(np.arange(W)[None, :], np.arange(W)[None, :][:, ::-1]), np.minimum(np.arange(H)[:, None], np.arange(H)[::-1][:, None]))
+    a[..., :3] *= (0.72 + 0.28 * np.clip(edge / e, 0, 1))[..., None]
+    a[:max(1, PX // 4), :, :3] = a[:max(1, PX // 4), :, :3] * 0.6 + 255 * 0.4 * (0.6 if metal else 0.25)
+    face = _img(a)
+    # 星雲（暗い布だけ）
+    if dark_face and side and not metal and W >= 16 and H >= 16:
+        def neb(d):
+            for _ in range(2 + int(W * H / 2500)):
+                nc = NEBULA[int(r() * len(NEBULA))]
+                cx, cy = r() * W, r() * H
+                rw, rh = W * (0.15 + r() * 0.25), H * (0.1 + r() * 0.2)
+                d.ellipse([cx - rw, cy - rh, cx + rw, cy + rh], fill=nc + (70,))
+        face.alpha_composite(_soft(W, H, neb, max(2, PX)))
+    d = ImageDraw.Draw(face)
+    unit = PX * 2
+    tw = max(2, PX)
+    def bevel_band(y_a, y_b):
+        d.rectangle([0, y_a, W - 1, y_b], fill=gold + (255,))
+        d.line([0, y_a, W - 1, y_a], fill=light(gold, 0.5) + (255,))
+        d.line([0, y_b, W - 1, y_b], fill=dark(gold, 0.45) + (255,))
+    if side:
+        if "hem" in c.tags:
+            yb = H - PX // 2 - 1
+            bevel_band(yb - tw, yb)
+            if H > tw * 4:
+                filigree(d, 0, yb - tw - unit // 2 - 1, W, gold, light(gold, 0.6), unit)
+        if "top_trim" in c.tags:
+            bevel_band(0, tw - 1)
+        if "front" in c.tags and f == "north":
+            d.rectangle([W // 2 - tw // 2, 0, W // 2 + tw // 2, H - 1], fill=gold + (255,))
+            d.line([W // 2 - tw // 2, 0, W // 2 - tw // 2, H - 1], fill=light(gold, 0.5) + (255,))
+            for yy in range(unit, H - unit, unit * 2):
+                d.ellipse([W // 2 - 2, yy - 2, W // 2 + 2, yy + 2], fill=pal["gem"] + (255,), outline=dark(gold, 0.3) + (255,))
+        if "lapel" in c.tags and f == "north":
+            lc = pal.get("lapel", gold)
+            n = int(H * 0.55)
+            for i in range(n):
+                xa = i * W // (2 * n); xb = W - 1 - i * W // (2 * n)
+                d.line([xa, i, xa + PX, i], fill=lc + (255,)); d.line([xb - PX, i, xb, i], fill=lc + (255,))
+        if "border" in c.tags:
+            d.rectangle([0, 0, W - 1, H - 1], outline=gold + (255,), width=max(2, PX // 2))
+            d.rectangle([1, 1, W - 2, H - 2], outline=light(gold, 0.45) + (255,), width=1)
+            if W > unit * 2 and H > unit * 2:   # 四隅の小さな宝石
+                for (px_, py_) in ((3, 3), (W - 4, 3), (3, H - 4), (W - 4, H - 4)):
+                    d.ellipse([px_ - 2, py_ - 2, px_ + 2, py_ + 2], fill=pal["gem"] + (255,))
+                    d.point([px_ - 1, py_ - 1], fill=(255, 255, 255, 255))
+        if part in ("metal", "plate") and "ridge" in c.tags:
+            d.line([W // 2, 2, W // 2, H - 3], fill=light(col, 0.5) + (255,), width=max(2, PX // 3))
+        if part in ("metal", "plate") and "rivets" in c.tags and W > 20 and H > 20:
+            for (px_, py_) in ((6, 6), (W - 7, 6), (6, H - 7), (W - 7, H - 7)):
+                d.ellipse([px_ - 2, py_ - 2, px_ + 2, py_ + 2], fill=gold + (255,), outline=dark(gold, 0.4) + (255,))
+                d.point([px_ - 1, py_ - 1], fill=(255, 255, 240, 255))
+        # 金属の彫り模様（唐草）
+        if part in ("metal", "plate", "crown") and W > unit * 3 and H > unit * 3:
+            filigree(d, 0, H // 2, W, mix(gold, col, 0.35), light(gold, 0.4), unit)
+    if part == "belt" and f == "north":
+        gw = PX * 2
+        d.ellipse([W // 2 - gw // 2, 1, W // 2 + gw // 2 - 1, H - 2], fill=pal["gem"] + (255,), outline=dark(pal["gem"], 0.4) + (255,))
+    # 宝石：まるい光と、きらめき
+    if part == "gem" and W > 2 and H > 2:
+        g = np.exp(-(((xs - 0.38) / 0.45) ** 2 + ((ys - 0.35) / 0.45) ** 2))
+        ga = _arr(W, H, pal["gem"]); ga[..., :3] = np.array(dark(pal["gem"], 0.25), np.float32) + (np.array(light(pal["gem"], 0.6), np.float32) - np.array(dark(pal["gem"], 0.25), np.float32)) * g[..., None]
+        face = _img(ga); d = ImageDraw.Draw(face)
+        d.point([max(1, W // 3), max(1, H // 3)], fill=(255, 255, 255, 255))
+    # 星：暗い面に、きらめく星と星座
+    if dark_face and side and W >= 10 and H >= 10:
+        glow = []
+        pts = []
+        for _ in range(int(W * H / 160) + 2):
+            sx, sy = int(r() * W), int(r() * H)
+            d.point([sx, sy], fill=(255, 250, 230, int(120 + r() * 135)))
+        for _ in range(int(W * H / 900) + 1):
+            sx, sy = 3 + int(r() * (W - 6)), 3 + int(r() * (H - 6))
+            pts.append((sx, sy)); glow.append((sx, sy, 2 + int(r() * 3)))
+        if len(pts) >= 3:
+            line = _soft(W, H, lambda dd: dd.line(pts[:4], fill=star + (110,), width=1), 0)
+            face.alpha_composite(line)
+        halo = _soft(W, H, lambda dd: [dd.ellipse([x - s * 2, y - s * 2, x + s * 2, y + s * 2], fill=star + (90,)) for x, y, s in glow], 2)
+        face.alpha_composite(halo)
+        d = ImageDraw.Draw(face)
+        for x, y, s in glow: sparkle(d, x, y, s + 1, star)
+    img.alpha_composite(face, (x0, y0))
+    # 光る輪（後光）：まるい輪だけ残して、ほかは透明に
+    if part == "halo" and f in ("north", "south"):
+        mask = Image.new("L", (W, H), 0)
+        md = ImageDraw.Draw(mask)
+        md.ellipse([0, 0, W - 1, H - 1], fill=255)
+        md.ellipse([W * 0.2, H * 0.2, W * 0.8, H * 0.8], fill=0)
+        reg = img.crop((x0, y0, x0 + W, y0 + H)); reg.putalpha(Image.composite(reg.getchannel("A"), Image.new("L", (W, H), 0), mask))
+        dd = ImageDraw.Draw(reg)
+        for i in range(8):
+            ang = i * math.pi / 4
+            sx, sy = W / 2 + math.cos(ang) * W * 0.4, H / 2 + math.sin(ang) * H * 0.4
+            sparkle(dd, int(sx), int(sy), 3 if i % 2 else 5, star)
+        img.paste(reg, (x0, y0))
+    # 水晶の羽：羽の形だけ残す
+    if part == "crystal_wing" and f in ("north", "south"):
+        mask = Image.new("L", (W, H), 0)
+        md = ImageDraw.Draw(mask)
+        right = (f == "north") != c.mirror
+        pts = [(0, 0), (W - 1, H * 0.08), (W * 0.75, H * 0.45), (W - 1, H * 0.55), (W * 0.55, H * 0.8), (W * 0.7, H - 1), (0, H * 0.6)]
+        if not right: pts = [(W - 1 - x, y) for x, y in pts]
+        md.polygon(pts, fill=255)
+        # 水晶：根元は青、先は白く光る。すじと、ふちの光
+        g = np.clip((xs if right else 1 - xs) * 0.7 + ys * 0.3, 0, 1)
+        ca = _arr(W, H, (120, 170, 255)); ca[..., :3] = np.array((110, 150, 240), np.float32) * (1 - g[..., None]) + np.array((235, 245, 255), np.float32) * g[..., None]
+        reg = _img(ca)
+        td = ImageDraw.Draw(reg)
+        root = (0, 0) if right else (W - 1, 0)
+        for t in (0.25, 0.5, 0.75):
+            td.line([root, (W * (0.55 + 0.4 * t) if right else W - 1 - W * (0.55 + 0.4 * t), H * t)], fill=(255, 255, 255, 255), width=1)
+        edge = mask.filter(ImageFilter.FIND_EDGES)
+        reg.paste((255, 250, 220, 255), mask=edge)
+        for _ in range(6):
+            sx, sy = int(r() * W), int(r() * H)
+            if mask.getpixel((sx, sy)): sparkle(td, sx, sy, 2, (255, 240, 200))
+        reg.putalpha(Image.composite(Image.new("L", (W, H), 225), Image.new("L", (W, H), 0), mask))
+        img.paste(reg, (x0, y0))
+
+def extras6(style):
+    """星銀だけの飾り：頭の後ろの光る輪（後光）と、背中の水晶の羽"""
+    C = []
+    if style != "mage":   # 魔導士は星の輪と羽がもうある
+        C.append(Cube("armorHead", [-6.5, 23.5, 5.2], [13, 13, 0.2], "halo", tags=("noicon",), tier_from=6))
+        w = Cube("armorBody", [-15.0, 5.0, 3.4], [13, 18, 0.2], "crystal_wing", rot=[6, 22, 8], pivot=[-2.0, 21, 3.4], tags=("noicon",), tier_from=6)
+        C += [w, mirror_x(w, "armorBody")]
+    for c in C: c.uvs = 0.5
+    return C
+
 def build(style, cubes, palettes, emblem=None):
+    global PX
+    cubes = cubes + extras6(style)
     pack(cubes)
+    assert max(c.uv[f][1] + c.uv[f][3] for c in cubes for f in FACES) <= TW, f"{style}: 絵の場所が足りない"
     # geo
     bones = []
     for name, piv in BONES.items():
@@ -189,6 +403,7 @@ def build(style, cubes, palettes, emblem=None):
     os.makedirs(f"{ROOT}/textures/item/armor", exist_ok=True)
     sheets = []
     for tier in range(1, 7):
+        PX = 8 if tier == 6 else 4    # 星銀は2倍の細かさ（1024×1024）
         pal = palettes[tier]
         img = Image.new("RGBA", (TW * PX, TW * PX), (0, 0, 0, 0))
         for c in cubes:
@@ -199,9 +414,10 @@ def build(style, cubes, palettes, emblem=None):
         img.save(f"{ROOT}/textures/armor/{style}_{tier}.png")
         icons = []
         for piece, bnames in PIECES.items():
-            ic = icon(img, [c for c in cubes if c.bone in bnames and c.tier_from <= tier <= c.tier_to and not (c.part == "gem" and tier < pal.get("gem_from", 1))], piece)
+            ic = icon(img, [c for c in cubes if c.bone in bnames and c.tier_from <= tier <= c.tier_to and "noicon" not in c.tags and not (c.part == "gem" and tier < pal.get("gem_from", 1))], piece)
             ic.save(f"{ROOT}/textures/item/armor/{style}_{tier}_{piece}.png"); icons.append(ic)
         sheets.append((img, icons))
+    PX = 4
     return sheets
 
 # ---------------- 持ち物の絵：前から見た形を、そのまま縮めて描く ----------------
