@@ -818,5 +818,6 @@
   "item.jsn_craft.storm_arrow": "Storm Arrow",
   "item.jsn_craft.star_arrow": "Star Iron Arrow",
   "item.jsn_craft.dragon_arrow": "Dragonslayer Arrow",
-  "item.jsn_craft.trident_tip_abyss": "Abyss Trident Tip"
+  "item.jsn_craft.trident_tip_abyss": "Abyss Trident Tip",
+  "key.jsn_craft.dodge": "Dodge Roll"
 }

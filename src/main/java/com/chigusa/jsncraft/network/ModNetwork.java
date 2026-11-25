@@ -23,6 +23,10 @@ public final class ModNetwork {
         registrar.playToClient(OpenTabPayload.TYPE, OpenTabPayload.STREAM_CODEC, ModNetwork::handleOpenTab);
         registrar.playToClient(SkillPayloads.State.TYPE, SkillPayloads.State.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.ClientSkills.update(p)));
+        registrar.playToServer(DodgePayload.TYPE, DodgePayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.dodge.DodgeService.dodge(sp, p.dir());
+                }));
         registrar.playToServer(SkillPayloads.Cast.TYPE, SkillPayloads.Cast.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.skill.SkillService.cast(sp, p.slot());

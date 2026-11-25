@@ -923,6 +923,28 @@ for _n in ("shield_bash", "shield_taunt", "shield_charge", "shield_wall", "shiel
     ANIMS[_n]["bones"]["left_item"] = {"position": {k: {"vector": [SHIELD_CENTER, 0, 0] if v["vector"][1] == 30 else [0, 0, 0], "easing": v["easing"]}
                                                     for k, v in _la.items()}}
 
+# ================= ドッジロール（腰のあたりを中心に、体ごと1回転） =================
+# body の回転は腰（高さ0.7）が中心。体を丸めて（腕・脚をたたむ）、しゃがみながら回る。
+def roll(name, axis, sign):
+    L = 12
+    def rv(deg):
+        v = [0, 0, 0]; v[axis] = sign * deg; return v
+    tuck_arm = [-70, 0, 0]
+    anim(name, L, {
+        "body": {"rotation": [(0, Z), (2, rv(40), "linear"), (5, rv(160), "linear"), (8, rv(290), "linear"), (11, rv(360), "easeOutQuad"), (12, rv(360))],
+                 "position": [(0, Z), (3, [0, -6, 0], "easeOutQuad"), (8, [0, -6, 0]), (12, Z, "easeOutQuad")]},
+        "right_arm": rot((0, R0), (3, tuck_arm, "easeOutQuad"), (9, tuck_arm), (12, R0)),
+        "left_arm": rot((0, L0), (3, tuck_arm, "easeOutQuad"), (9, tuck_arm), (12, L0)),
+        "right_leg": rot((0, Z), (3, [-80, 0, 0], "easeOutQuad"), (9, [-80, 0, 0]), (12, Z)),
+        "left_leg": rot((0, Z), (3, [-80, 0, 0], "easeOutQuad"), (9, [-80, 0, 0]), (12, Z)),
+        "torso": rot((0, Z), (3, [35, 0, 0], "easeOutQuad"), (9, [35, 0, 0]), (12, Z)),
+    })
+
+roll("dodge_forward", 0, 1)
+roll("dodge_back", 0, -1)
+roll("dodge_left", 2, -1)
+roll("dodge_right", 2, 1)
+
 if __name__ == "__main__":
     out = os.path.join(os.path.dirname(__file__), "..", "src/main/resources/assets/jsn_craft/player_animations/weapons.json")
     with open(out, "w") as f:
