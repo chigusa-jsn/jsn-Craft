@@ -95,6 +95,7 @@ public final class ModSmithing {
         com.chigusa.jsncraft.capture.CaptureItems.init();
         com.chigusa.jsncraft.jewelry.Orbs.init();
         com.chigusa.jsncraft.enchanting.SelectEnchant.init();
+        com.chigusa.jsncraft.loginbonus.LoginBonusEditMenu.init();
     }
 
     private ModSmithing() {}
