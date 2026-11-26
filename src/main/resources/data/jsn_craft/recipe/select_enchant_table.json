@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " B ",
+    "LEL",
+    "OOO"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:writable_book"
+    },
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "E": {
+      "item": "minecraft:enchanting_table"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "jsn_craft:select_enchant_table"
+  }
+}

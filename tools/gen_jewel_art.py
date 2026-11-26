@@ -175,7 +175,10 @@ def jewel(kind, tier_col):
 UNIQUES = [("wanderer_ring", "ring", 0x8A5AC8, 0x40E0D0), ("harvest_charm", "charm", 0xF0B030, 0x60C040),
            ("night_earring", "earring", 0x3A3A6A, 0xB0F0FF), ("sea_bracelet", "bracelet", 0x3A8AB0, 0x40F0E0),
            ("phoenix_charm", "charm", 0xE04020, 0xFFD040), ("echo_earring", "earring", 0x1A4A5A, 0x30E0E0),
-           ("dragon_necklace", "necklace", 0x6A2A8A, 0xE070FF), ("sovereign_ring", "ring", 0xF0C840, 0xFF2040)]
+           ("dragon_necklace", "necklace", 0x6A2A8A, 0xE070FF), ("sovereign_ring", "ring", 0xF0C840, 0xFF2040),
+           ("life_ring", "ring", 0xD8D8D8, 0xFF5060), ("gale_earring", "earring", 0xF0C840, 0xA0F0E0), ("miner_charm", "charm", 0xD8D8D8, 0xE04030),
+           ("guardian_bracelet", "bracelet", 0x6A6A78, 0x40A0E0), ("spring_necklace", "necklace", 0xC8B8F0, 0x3060E0), ("fury_ring", "ring", 0xF0C840, 0xFF7020),
+           ("titan_bracelet", "bracelet", 0xB8C8F0, 0xF0D040), ("star_earring", "earring", 0xF8F0D0, 0x7060FF), ("world_tree_charm", "charm", 0xF8F0D0, 0x40E060)]
 
 def ingot(col):
     rows = [

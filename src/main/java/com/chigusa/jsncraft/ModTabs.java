@@ -126,6 +126,7 @@ public final class ModTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ENCHANTING = tab("enchanting", "jsn-Craft：付与",
             () -> new ItemStack(ModEnchanting.ALTAR_ITEM.get()), out -> {
                 out.accept(ModEnchanting.ALTAR_ITEM.get());
+                out.accept(com.chigusa.jsncraft.enchanting.SelectEnchant.TABLE_ITEM.get());
                 out.accept(ModEnchanting.RUNE_BOOK.get());
             });
 
@@ -149,6 +150,8 @@ public final class ModTabs {
                 out.accept(ModJewelry.STAR_SILVER.get());
                 all(out, ModJewelry.JEWELRY.values());
                 all(out, ModJewelry.UNIQUES);
+                for (var arr : com.chigusa.jsncraft.jewelry.Orbs.ITEMS) for (var o : arr) out.accept(o.get());
+                out.accept(com.chigusa.jsncraft.jewelry.Orbs.TWEEZERS.get());
             });
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = tab("weapons", "jsn-Craft：職業武器",

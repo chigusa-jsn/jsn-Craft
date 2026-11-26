@@ -93,6 +93,8 @@ public final class ModSmithing {
         com.chigusa.jsncraft.farming.ModFarming.init();
         com.chigusa.jsncraft.tools.ModTools.init();
         com.chigusa.jsncraft.capture.CaptureItems.init();
+        com.chigusa.jsncraft.jewelry.Orbs.init();
+        com.chigusa.jsncraft.enchanting.SelectEnchant.init();
     }
 
     private ModSmithing() {}

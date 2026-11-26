@@ -19,6 +19,7 @@
     "jsn_craft:recycler",
     "jsn_craft:big_furnace",
     "jsn_craft:coke_oven",
-    "jsn_craft:coke_block"
+    "jsn_craft:coke_block",
+    "jsn_craft:select_enchant_table"
   ]
 }

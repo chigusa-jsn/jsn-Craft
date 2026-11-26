@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jsn_craft:orb_peridot_2"
+    },
+    {
+      "item": "jsn_craft:orb_peridot_2"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jsn_craft:orb_peridot_3"
+  }
+}

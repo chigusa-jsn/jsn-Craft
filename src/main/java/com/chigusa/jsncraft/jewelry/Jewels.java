@@ -101,7 +101,26 @@ public final class Jewels {
             new Unique(6, "dragon_necklace", "竜息の首飾り", 1, () -> Items.DRAGON_BREATH, 8, () -> ModJewelry.STAR_SILVER.get(), 2, 60,
                     "", "", List.of(pct(ModAttributes.MAGIC_POWER, 0.2, "魔法の威力"), add(ModAttributes.MAX_MANA, 40, "最大マナ"))),
             new Unique(7, "sovereign_ring", "覇者の指輪", 0, () -> Items.NETHER_STAR, 1, () -> ModJewelry.STAR_SILVER.get(), 2, 70,
-                    "", "", List.of(add(Attributes.ATTACK_DAMAGE, 4, "攻撃力"), pct(ModAttributes.CRIT_CHANCE, 0.1, "会心率"), add(Attributes.MAX_HEALTH, 6, "最大HP"))));
+                    "", "", List.of(add(Attributes.ATTACK_DAMAGE, 4, "攻撃力"), pct(ModAttributes.CRIT_CHANCE, 0.1, "会心率"), add(Attributes.MAX_HEALTH, 6, "最大HP"))),
+            // ---- 追加：弱い物から強い物まで ----
+            new Unique(8, "life_ring", "命の指輪", 0, () -> Items.APPLE, 16, () -> Items.IRON_INGOT, 4, 1,
+                    "", "", List.of(add(Attributes.MAX_HEALTH, 4, "最大HP"))),
+            new Unique(9, "gale_earring", "疾風の耳飾り", 3, () -> Items.FEATHER, 16, () -> Items.GOLD_INGOT, 2, 5,
+                    "", "", List.of(mult(Attributes.MOVEMENT_SPEED, 0.08, "移動速度"), add(ModAttributes.MAX_STAMINA, 15, "最大スタミナ"))),
+            new Unique(10, "miner_charm", "鉱夫のお守り", 4, () -> Items.REDSTONE, 16, () -> Items.IRON_INGOT, 4, 8,
+                    "", "", List.of(mult(Attributes.BLOCK_BREAK_SPEED, 0.2, "掘る速さ"), pct(ModAttributes.MINING_FORTUNE, 0.15, "採掘の幸運"))),
+            new Unique(11, "guardian_bracelet", "守りの腕輪", 2, () -> Items.OBSIDIAN, 8, () -> Items.IRON_BLOCK, 2, 12,
+                    "", "", List.of(add(Attributes.ARMOR, 3, "防御力"), add(Attributes.ARMOR_TOUGHNESS, 2, "防具強度"), pct(ModAttributes.DAMAGE_REDUCTION, 0.05, "受けるダメージ減少"))),
+            new Unique(12, "spring_necklace", "泉の首飾り", 1, () -> Items.LAPIS_LAZULI, 16, () -> Items.AMETHYST_SHARD, 8, 18,
+                    "", "", List.of(add(ModAttributes.MAX_MANA, 30, "最大マナ"), add(ModAttributes.MANA_REGEN, 0.5, "マナ回復/秒"))),
+            new Unique(13, "fury_ring", "狂戦の指輪", 0, () -> Items.BLAZE_POWDER, 16, () -> Items.GOLD_INGOT, 4, 25,
+                    "", "", List.of(add(Attributes.ATTACK_DAMAGE, 3, "攻撃力"), pct(ModAttributes.CRIT_CHANCE, 0.05, "会心率"))),
+            new Unique(14, "titan_bracelet", "巨人の腕輪", 2, () -> Items.GOLDEN_APPLE, 4, () -> ModJewelry.MOON_SILVER.get(), 2, 40,
+                    "", "", List.of(add(Attributes.MAX_HEALTH, 20, "最大HP"), add(ModAttributes.HP_REGEN, 0.5, "HP回復/秒"))),
+            new Unique(15, "star_earring", "星詠みの耳飾り", 3, () -> Items.ECHO_SHARD, 8, () -> ModJewelry.STAR_SILVER.get(), 2, 65,
+                    "", "", List.of(pct(ModAttributes.COOLDOWN_REDUCTION, 0.15, "待ち時間短縮"), pct(ModAttributes.MAGIC_POWER, 0.15, "魔法の威力"), add(ModAttributes.MAX_MANA, 30, "最大マナ"))),
+            new Unique(16, "world_tree_charm", "世界樹のお守り", 4, () -> Items.ENCHANTED_GOLDEN_APPLE, 1, () -> ModJewelry.STAR_SILVER.get(), 3, 85,
+                    "", "", List.of(add(Attributes.MAX_HEALTH, 50, "最大HP"), add(ModAttributes.HP_REGEN, 1.0, "HP回復/秒")))));
 
     // ================= 便利 =================
 

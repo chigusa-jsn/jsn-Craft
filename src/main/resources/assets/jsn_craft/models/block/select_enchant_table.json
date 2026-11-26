@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "jsn_craft:block/select_enchant_table_top",
+    "bottom": "minecraft:block/obsidian",
+    "side": "jsn_craft:block/select_enchant_table_side"
+  }
+}

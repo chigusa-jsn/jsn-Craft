@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jsn_craft:orb_sapphire_1"
+    },
+    {
+      "item": "jsn_craft:orb_sapphire_1"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jsn_craft:orb_sapphire_2"
+  }
+}

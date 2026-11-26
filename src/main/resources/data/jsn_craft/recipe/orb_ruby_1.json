@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jsn_craft:ruby"
+    },
+    {
+      "item": "jsn_craft:ruby"
+    },
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "jsn_craft:orb_ruby_1"
+  }
+}
