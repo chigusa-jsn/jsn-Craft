@@ -208,3 +208,56 @@ for name, col, extra, thick in [('hardened_arrow', 0xE8ECF4, None, True), ('infe
                                 ('storm_arrow', 0xFFFFA0, None, True), ('star_arrow', 0xB0A0FF, None, True), ('dragon_arrow', 0x60E080, None, True)]:
     arrow_sprite(hexc(col), shade(hexc(col), 40), thick, extra).save(os.path.join(ROOT, 'item', 'arrow', name + '.png'))
 tip(0x7030A0).save(os.path.join(ROOT, 'item', 'arrow', 'trident_tip_abyss.png'))
+
+# ---------------- 大きい炉・コークス炉・コークス ----------------
+def furnace_tex(base, mouth_on, brick=True, seed=3):
+    r = random.Random(seed)
+    def side():
+        im = Image.new('RGBA', (16, 16), base + (255,))
+        for y in range(16):
+            for x in range(16):
+                row = y // 4
+                off = 0 if row % 2 == 0 else 4
+                edge = (y % 4 == 0) or ((x + off) % 8 == 0)
+                v = r.randint(-10, 10) - (35 if edge else 0)
+                im.putpixel((x, y), tuple(max(0, min(255, c + v)) for c in base) + (255,))
+        return im
+    s = side()
+    top = side()
+    rect(top, 4, 4, 11, 11, (30, 24, 22, 255)); rect(top, 5, 5, 10, 10, (60, 40, 30, 255))
+    def front(on):
+        im = side()
+        rect(im, 3, 7, 12, 14, (20, 16, 16, 255))
+        if on:
+            for x in range(4, 12):
+                for y in range(9, 14):
+                    t = (y - 9) / 4
+                    im.putpixel((x, y), (255, int(200 - 120 * t + r.randint(-20, 20)), int(60 - 40 * t), 255))
+        rect(im, 2, 6, 13, 6, tuple(max(0, c - 40) for c in base) + (255,))
+        return im
+    return s, top, front(False), front(True)
+
+for name, base in (('big_furnace', (150, 70, 55)), ('coke_oven', (120, 120, 126))):
+    s, t, f, fo = furnace_tex(base, True)
+    s.save(os.path.join(ROOT, 'block', f'{name}_side.png')); t.save(os.path.join(ROOT, 'block', f'{name}_top.png'))
+    f.save(os.path.join(ROOT, 'block', f'{name}_front.png')); fo.save(os.path.join(ROOT, 'block', f'{name}_front_on.png'))
+
+def coke_item():
+    im = img(); r = random.Random(9)
+    pts = [(3, 8), (6, 4), (11, 4), (13, 8), (11, 12), (5, 12)]
+    ImageDraw.Draw(im).polygon(pts, fill=(52, 52, 58, 255))
+    for _ in range(14):
+        x, y = r.randint(4, 11), r.randint(5, 11)
+        if im.getpixel((x, y))[3]: im.putpixel((x, y), (90, 90, 100, 255) if r.random() < 0.6 else (30, 30, 34, 255))
+    im.putpixel((7, 6), (150, 150, 165, 255)); im.putpixel((10, 9), (150, 150, 165, 255))
+    outline(im)
+    return im
+coke_item().save(os.path.join(ROOT, 'item', 'coke.png'))
+cb = Image.new('RGBA', (16, 16)); r9 = random.Random(4)
+for y in range(16):
+    for x in range(16):
+        v = 46 + r9.randint(-12, 14)
+        cb.putpixel((x, y), (v, v, v + 6, 255))
+for _ in range(20):
+    cb.putpixel((r9.randint(0, 15), r9.randint(0, 15)), (120, 120, 132, 255))
+cb.save(os.path.join(ROOT, 'block', 'coke_block.png'))

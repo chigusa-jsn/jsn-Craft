@@ -88,6 +88,10 @@ public final class ModTabs {
             () -> new ItemStack(ModSmithing.FORGE_ITEM.get()), out -> {
                 out.accept(ModSmithing.FORGE_ITEM.get());
                 out.accept(ModSmithing.RECYCLER_ITEM.get());
+                out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.BIG_FURNACE_ITEM.get());
+                out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_OVEN_ITEM.get());
+                out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE.get());
+                out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_BLOCK_ITEM.get());
                 all(out, ModSmithing.STONES);
                 out.accept(ModSmithing.WHETSTONE.get());
                 out.accept(ModSmithing.WHETSTONE_ADV.get());

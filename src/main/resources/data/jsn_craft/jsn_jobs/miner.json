@@ -9,6 +9,11 @@
   "skill_points_per_level": 2,
   "xp": [
     {
+      "action": "coke",
+      "target": "*",
+      "xp": 3
+    },
+    {
       "action": "break_block",
       "target": "#c:ores/netherite_scrap",
       "xp": 40
