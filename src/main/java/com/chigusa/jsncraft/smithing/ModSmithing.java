@@ -96,6 +96,7 @@ public final class ModSmithing {
         com.chigusa.jsncraft.jewelry.Orbs.init();
         com.chigusa.jsncraft.enchanting.SelectEnchant.init();
         com.chigusa.jsncraft.loginbonus.LoginBonusEditMenu.init();
+        com.chigusa.jsncraft.warp.Warps.init();
     }
 
     private ModSmithing() {}

@@ -923,5 +923,6 @@
   "item.jsn_craft.orb_opal_3": "Opal Great Orb",
   "item.jsn_craft.orb_tweezers": "Orb Tweezers",
   "block.jsn_craft.select_enchant_table": "Selective Enchanting Table",
-  "item.jsn_craft.elixir_xp": "Experience Elixir"
+  "item.jsn_craft.elixir_xp": "Experience Elixir",
+  "block.jsn_craft.warp_stone": "Warp Stone"
 }

@@ -109,6 +109,12 @@ public final class ModNetwork {
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.loginbonus.LoginBonus.claim(sp);
                 }));
+        registrar.playToClient(com.chigusa.jsncraft.warp.WarpListPayload.TYPE, com.chigusa.jsncraft.warp.WarpListPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.WarpScreen.open(p)));
+        registrar.playToServer(com.chigusa.jsncraft.warp.WarpGoPayload.TYPE, com.chigusa.jsncraft.warp.WarpGoPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.warp.Warps.go(sp, p.index());
+                }));
         registrar.playToClient(MonsterDexPayload.TYPE, MonsterDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> MonsterDexPayload.client = p));
         registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,
