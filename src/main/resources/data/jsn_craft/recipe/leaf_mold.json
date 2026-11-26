@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LDL",
+    "DLD",
+    "LDL"
+  ],
+  "key": {
+    "L": {
+      "item": "jsn_craft:fallen_leaves"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:leaf_mold",
+    "count": 4
+  }
+}

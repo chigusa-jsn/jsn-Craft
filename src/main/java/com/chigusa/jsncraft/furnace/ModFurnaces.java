@@ -29,10 +29,13 @@ public final class ModFurnaces {
 
     public static final DeferredBlock<MachineBlock> BIG_FURNACE = ModCooking.BLOCKS.register("big_furnace", () -> new MachineBlock(MachineKind.BIG_FURNACE, stone()));
     public static final DeferredBlock<MachineBlock> COKE_OVEN = ModCooking.BLOCKS.register("coke_oven", () -> new MachineBlock(MachineKind.COKE_OVEN, stone()));
+    public static final DeferredBlock<MachineBlock> SAWMILL = ModCooking.BLOCKS.register("sawmill", () -> new MachineBlock(MachineKind.SAWMILL,
+            BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).lightLevel(s -> 0)));
+    public static final DeferredItem<BlockItem> SAWMILL_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(SAWMILL);
     public static final DeferredItem<BlockItem> BIG_FURNACE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(BIG_FURNACE);
     public static final DeferredItem<BlockItem> COKE_OVEN_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(COKE_OVEN);
     public static final Supplier<BlockEntityType<MachineBlockEntity>> MACHINE_BE = ModCooking.BLOCK_ENTITIES.register("job_machine",
-            () -> BlockEntityType.Builder.of(MachineBlockEntity::new, BIG_FURNACE.get(), COKE_OVEN.get()).build(null));
+            () -> BlockEntityType.Builder.of(MachineBlockEntity::new, BIG_FURNACE.get(), COKE_OVEN.get(), SAWMILL.get()).build(null));
     public static final DeferredHolder<MenuType<?>, MenuType<MachineMenu>> MENU = ModCooking.MENUS.register("job_machine",
             () -> IMenuTypeExtension.create(MachineMenu::new));
 

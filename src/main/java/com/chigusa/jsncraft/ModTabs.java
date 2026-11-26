@@ -90,6 +90,10 @@ public final class ModTabs {
                 out.accept(ModSmithing.RECYCLER_ITEM.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.BIG_FURNACE_ITEM.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_OVEN_ITEM.get());
+                out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.SAWMILL_ITEM.get());
+                out.accept(com.chigusa.jsncraft.forestry.ModForestry.FALLEN_LEAVES.get());
+                out.accept(com.chigusa.jsncraft.forestry.ModForestry.LEAF_MOLD_ITEM.get());
+                out.accept(com.chigusa.jsncraft.forestry.ModForestry.RICH_SOIL_ITEM.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_BLOCK_ITEM.get());
                 all(out, ModSmithing.STONES);

@@ -261,3 +261,51 @@ for y in range(16):
 for _ in range(20):
     cb.putpixel((r9.randint(0, 15), r9.randint(0, 15)), (120, 120, 132, 255))
 cb.save(os.path.join(ROOT, 'block', 'coke_block.png'))
+
+# ---------------- 製材台・落ち葉・腐葉土・豊穣の土 ----------------
+def wood_noise(base, seed):
+    r = random.Random(seed); im = Image.new('RGBA', (16, 16))
+    for y in range(16):
+        for x in range(16):
+            v = r.randint(-12, 12) - (25 if y % 4 == 0 else 0)
+            im.putpixel((x, y), tuple(max(0, min(255, c + v)) for c in base) + (255,))
+    return im
+saw_side = wood_noise((160, 120, 75), 11)
+rect(saw_side, 0, 0, 15, 2, (110, 80, 50, 255))
+for x in (1, 14): rect(saw_side, x, 3, x, 15, (95, 68, 42, 255))
+saw_top = wood_noise((175, 135, 85), 12)
+d_ = ImageDraw.Draw(saw_top)
+d_.ellipse([3, 3, 12, 12], fill=(185, 190, 200, 255), outline=(110, 115, 125, 255))
+for a in range(0, 360, 30):
+    import math as _m
+    x = 7.5 + _m.cos(_m.radians(a)) * 5.5; y = 7.5 + _m.sin(_m.radians(a)) * 5.5
+    saw_top.putpixel((int(round(x)), int(round(y))), (230, 232, 240, 255))
+rect(saw_top, 7, 7, 8, 8, (60, 60, 66, 255))
+saw_front = saw_side.copy(); rect(saw_front, 4, 5, 11, 11, (70, 50, 32, 255)); rect(saw_front, 5, 6, 10, 10, (200, 205, 215, 255))
+saw_front_on = saw_front.copy(); rect(saw_front_on, 6, 7, 9, 9, (255, 230, 160, 255))
+for nm, im_ in (('sawmill_side', saw_side), ('sawmill_top', saw_top), ('sawmill_front', saw_front), ('sawmill_front_on', saw_front_on)):
+    im_.save(os.path.join(ROOT, 'block', nm + '.png'))
+
+def soil(base, specks, seed):
+    r = random.Random(seed); im = Image.new('RGBA', (16, 16))
+    for y in range(16):
+        for x in range(16):
+            v = r.randint(-14, 14)
+            im.putpixel((x, y), tuple(max(0, min(255, c + v)) for c in base) + (255,))
+    for col, n in specks:
+        for _ in range(n):
+            im.putpixel((r.randint(0, 15), r.randint(0, 15)), col)
+    return im
+soil((78, 56, 38), [((130, 90, 40, 255), 14), ((95, 120, 50, 255), 10)], 21).save(os.path.join(ROOT, 'block', 'leaf_mold.png'))
+soil((62, 42, 30), [((240, 200, 80, 255), 8), ((120, 170, 70, 255), 10), ((150, 100, 50, 255), 10)], 22).save(os.path.join(ROOT, 'block', 'rich_soil.png'))
+def fallen():
+    im = img(); r = random.Random(31)
+    cols = [(200, 120, 40), (220, 170, 50), (150, 90, 40), (120, 150, 50)]
+    for i in range(4):
+        cx, cy = 4 + (i % 2) * 7, 4 + (i // 2) * 7
+        c = cols[i]
+        ImageDraw.Draw(im).ellipse([cx - 3, cy - 2, cx + 3, cy + 2], fill=c + (255,))
+        ImageDraw.Draw(im).line([cx - 3, cy + 2, cx + 3, cy - 2], fill=tuple(int(v * 0.6) for v in c) + (255,))
+    outline(im)
+    return im
+fallen().save(os.path.join(ROOT, 'item', 'fallen_leaves.png'))

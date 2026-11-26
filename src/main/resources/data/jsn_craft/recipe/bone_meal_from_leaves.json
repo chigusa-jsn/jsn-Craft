@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jsn_craft:fallen_leaves"
+    },
+    {
+      "item": "jsn_craft:fallen_leaves"
+    },
+    {
+      "item": "jsn_craft:fallen_leaves"
+    }
+  ],
+  "result": {
+    "id": "minecraft:bone_meal",
+    "count": 2
+  }
+}

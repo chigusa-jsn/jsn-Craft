@@ -9,6 +9,11 @@
   "skill_points_per_level": 2,
   "xp": [
     {
+      "action": "saw",
+      "target": "*",
+      "xp": 2
+    },
+    {
       "action": "break_block",
       "target": "minecraft:cherry_log",
       "xp": 7

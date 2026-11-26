@@ -94,6 +94,11 @@ public class MachineBlock extends BaseEntityBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource r) {
         if (!state.getValue(LIT)) return;
+        if (kind == MachineKind.SAWMILL) {
+            if (r.nextInt(2) == 0) level.addParticle(new net.minecraft.core.particles.BlockParticleOption(ParticleTypes.BLOCK, net.minecraft.world.level.block.Blocks.OAK_PLANKS.defaultBlockState()),
+                    pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, (r.nextDouble() - 0.5) * 0.2, 0.15, (r.nextDouble() - 0.5) * 0.2);
+            return;
+        }
         double x = pos.getX() + 0.3 + r.nextDouble() * 0.4, z = pos.getZ() + 0.3 + r.nextDouble() * 0.4;
         level.addParticle(ParticleTypes.LARGE_SMOKE, x, pos.getY() + 1.02, z, 0, 0.05, 0);
         Direction f = state.getValue(FACING);

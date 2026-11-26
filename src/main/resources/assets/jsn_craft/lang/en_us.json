@@ -827,5 +827,9 @@
   "block.jsn_craft.big_furnace": "Great Furnace",
   "block.jsn_craft.coke_oven": "Coke Oven",
   "item.jsn_craft.coke": "Coke",
-  "block.jsn_craft.coke_block": "Block of Coke"
+  "block.jsn_craft.coke_block": "Block of Coke",
+  "block.jsn_craft.sawmill": "Sawmill",
+  "item.jsn_craft.fallen_leaves": "Fallen Leaves",
+  "block.jsn_craft.leaf_mold": "Leaf Mold",
+  "block.jsn_craft.rich_soil": "Rich Soil"
 }

@@ -100,13 +100,38 @@ public class MachineBlockEntity extends BlockEntity {
             if (in.is(Items.COAL_BLOCK)) return new ItemStack(ModFurnaces.COKE_BLOCK_ITEM.get());
             return ItemStack.EMPTY;
         }
+        if (kind == MachineKind.SAWMILL) return sawResult(level, in);
         return level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(in.copyWithCount(1)), level)
                 .map(r -> r.value().getResultItem(level.registryAccess()).copy()).orElse(ItemStack.EMPTY);
     }
 
+    private static net.minecraft.world.item.crafting.RecipeManager sawCacheFor;
+    private static final java.util.Map<Item, ItemStack> SAW = new java.util.HashMap<>();
+
+    /** 製材台：材料1つだけで作れる作業台のレシピ（原木→板、竹のブロック→板など）。原木・竹・板だけ */
+    private static ItemStack sawResult(ServerLevel level, ItemStack in) {
+        if (!(in.is(net.minecraft.tags.ItemTags.LOGS) || in.is(net.minecraft.tags.ItemTags.BAMBOO_BLOCKS) || in.is(net.minecraft.tags.ItemTags.PLANKS))) return ItemStack.EMPTY;
+        var rm = level.getRecipeManager();
+        if (rm != sawCacheFor) { SAW.clear(); sawCacheFor = rm; }
+        ItemStack got = SAW.get(in.getItem());
+        if (got != null) return got.copy();
+        ItemStack res = ItemStack.EMPTY;
+        for (var h : rm.getAllRecipesFor(RecipeType.CRAFTING)) {
+            var ings = h.value().getIngredients().stream().filter(i -> !i.isEmpty()).toList();
+            if (ings.size() != 1 || !ings.get(0).test(in)) continue;
+            ItemStack r;
+            try { r = h.value().getResultItem(level.registryAccess()); } catch (Exception e) { continue; }
+            if (r.isEmpty() || r.is(in.getItem())) continue;
+            // 板（原木から）を先に、板からは棒
+            if (res.isEmpty() || r.is(net.minecraft.tags.ItemTags.PLANKS)) res = r.copy();
+        }
+        SAW.put(in.getItem(), res);
+        return res.copy();
+    }
+
     /** 多めに取れる物か（大きい炉は鉱石・原石だけ、コークス炉は全部） */
     private static boolean bonusApplies(MachineKind kind, ItemStack in) {
-        return kind == MachineKind.COKE_OVEN || in.is(RAW) || in.is(ORES) || in.is(Items.ANCIENT_DEBRIS);
+        return kind != MachineKind.BIG_FURNACE || in.is(RAW) || in.is(ORES) || in.is(Items.ANCIENT_DEBRIS);
     }
 
     public static void serverTick(Level lv, BlockPos pos, BlockState state, MachineBlockEntity be) {
@@ -133,7 +158,9 @@ public class MachineBlockEntity extends BlockEntity {
         }
         if (kind.needsFuel) be.burn--;
         be.progress++;
-        if (be.progress % 20 == 0) lv.playSound(null, pos, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.6F, 1.0F);
+        if (kind == MachineKind.SAWMILL) {
+            if (be.progress % 6 == 0) lv.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 0.5F, 0.8F + lv.random.nextFloat() * 0.4F);
+        } else if (be.progress % 20 == 0) lv.playSound(null, pos, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.6F, 1.0F);
         if (be.progress < kind.time) { be.setChanged(); return; }
         ItemStack in = be.items.getItem(slot);
         int n = out.getCount();
@@ -150,7 +177,11 @@ public class MachineBlockEntity extends BlockEntity {
         lv.playSound(null, pos, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.5F, 1.2F);
         ServerPlayer p = be.owner == null ? null : sl.getServer().getPlayerList().getPlayer(be.owner);
         if (p != null) {
-            String action = kind == MachineKind.BIG_FURNACE ? "smith" : "coke";
+            String action = switch (kind) {
+                case BIG_FURNACE -> "smith";
+                case COKE_OVEN -> "coke";
+                case SAWMILL -> "saw";
+            };
             JobService.onAction(p, rule -> rule.action().equals(action), bonusApplies(kind, out.isEmpty() ? in : in) ? 1.0 : 0.5);
         }
         be.setChanged();

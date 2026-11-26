@@ -827,5 +827,9 @@
   "block.jsn_craft.big_furnace": "大きい炉",
   "block.jsn_craft.coke_oven": "コークス炉",
   "item.jsn_craft.coke": "コークス",
-  "block.jsn_craft.coke_block": "コークスブロック"
+  "block.jsn_craft.coke_block": "コークスブロック",
+  "block.jsn_craft.sawmill": "製材台",
+  "item.jsn_craft.fallen_leaves": "落ち葉",
+  "block.jsn_craft.leaf_mold": "腐葉土",
+  "block.jsn_craft.rich_soil": "豊穣の土"
 }
