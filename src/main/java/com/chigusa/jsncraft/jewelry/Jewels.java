@@ -120,7 +120,7 @@ public final class Jewels {
             new Unique(15, "star_earring", "星詠みの耳飾り", 3, () -> Items.ECHO_SHARD, 8, () -> ModJewelry.STAR_SILVER.get(), 2, 65,
                     "", "", List.of(pct(ModAttributes.COOLDOWN_REDUCTION, 0.15, "待ち時間短縮"), pct(ModAttributes.MAGIC_POWER, 0.15, "魔法の威力"), add(ModAttributes.MAX_MANA, 30, "最大マナ"))),
             new Unique(16, "world_tree_charm", "世界樹のお守り", 4, () -> Items.ENCHANTED_GOLDEN_APPLE, 1, () -> ModJewelry.STAR_SILVER.get(), 3, 85,
-                    "", "", List.of(add(Attributes.MAX_HEALTH, 50, "最大HP"), add(ModAttributes.HP_REGEN, 1.0, "HP回復/秒")))));
+                    "", "", List.of(add(Attributes.MAX_HEALTH, 50, "最大HP"), add(ModAttributes.HP_REGEN, 1.0, "HP回復/秒"))));
 
     // ================= 便利 =================
 
