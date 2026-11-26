@@ -103,6 +103,8 @@ public final class ModNetwork {
                 (p, c) -> c.enqueueWork(() -> SeasoningsPayload.client = p));
         registrar.playToClient(DishDexPayload.TYPE, DishDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> DishDexPayload.client = p));
+        registrar.playToClient(MonsterDexPayload.TYPE, MonsterDexPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> MonsterDexPayload.client = p));
         registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> FishDexPayload.client = p));
         registrar.playToClient(OreRevealPayload.TYPE, OreRevealPayload.STREAM_CODEC,
@@ -136,6 +138,8 @@ public final class ModNetwork {
                 QuestService.sendList(player); // 先に依頼一覧を送ってから、メニューを開かせる
                 net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, FishDexPayload.of(player));
                 net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, DishDexPayload.of(player));
+                com.chigusa.jsncraft.dex.MonsterDex.checkRewards(player);
+                net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, MonsterDexPayload.of(player));
                 SkillBoardService.sendSnapshot(player, true);
             }
         });

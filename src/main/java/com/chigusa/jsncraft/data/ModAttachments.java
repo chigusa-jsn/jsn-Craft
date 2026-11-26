@@ -52,6 +52,14 @@ public final class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    /** モンスター図鑑とフィギュア図鑑。死んでも消えない。 */
+    public static final Supplier<AttachmentType<com.chigusa.jsncraft.dex.MonsterDexData>> MONSTER_DEX = ATTACHMENT_TYPES.register(
+            "monster_dex",
+            () -> AttachmentType.builder(() -> new com.chigusa.jsncraft.dex.MonsterDexData())
+                    .serialize(com.chigusa.jsncraft.dex.MonsterDexData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
     /** 料理図鑑（作った数と最高の★）。中身は魚図鑑と同じ形。死んでも消えない。 */
     public static final Supplier<AttachmentType<com.chigusa.jsncraft.fishing.FishDexData>> DISH_DEX = ATTACHMENT_TYPES.register(
             "dish_dex",

@@ -117,6 +117,14 @@ public final class GachaPool {
         };
     }
 
+    /** フィギュアの一覧：[entity id, レア度] */
+    public List<java.util.Map.Entry<String, Integer>> figures() {
+        List<java.util.Map.Entry<String, Integer>> out = new ArrayList<>();
+        for (int t = 0; t < tiers.size(); t++)
+            for (Entry e : tiers.get(t)) if (e.kind().equals("figure")) out.add(java.util.Map.entry(e.id(), t));
+        return out;
+    }
+
     /** 中身の見本（画面の「なにが出る？」用）：レア度ごとに最大12こ */
     public List<List<ItemStack>> preview() {
         List<List<ItemStack>> out = new ArrayList<>();

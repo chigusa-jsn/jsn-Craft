@@ -99,10 +99,15 @@ public class JobScreen extends Screen {
                 .bounds(left + 24 + tabW * 5, top + 4, tabW, 18).build());
 
         // 図鑑タブの切り替え（魚 / 料理）
-        fishDexBtn = addRenderableWidget(Button.builder(Component.literal("魚"), b -> { dishMode = false; dexScroll = 0; })
-                .bounds(left + panelW - 64, top + 27, 26, 13).build());
-        dishDexBtn = addRenderableWidget(Button.builder(Component.literal("料理"), b -> { dishMode = true; dexScroll = 0; })
-                .bounds(left + panelW - 36, top + 27, 30, 13).build());
+        int dy = top + panelH - 16;
+        fishDexBtn = addRenderableWidget(Button.builder(Component.literal("魚"), b -> { dexMode = 0; dexScroll = 0; })
+                .bounds(left + 8, dy, 26, 13).build());
+        dishDexBtn = addRenderableWidget(Button.builder(Component.literal("料理"), b -> { dexMode = 1; dexScroll = 0; })
+                .bounds(left + 36, dy, 32, 13).build());
+        monDexBtn = addRenderableWidget(Button.builder(Component.literal("モンスター"), b -> { dexMode = 2; dexScroll = 0; })
+                .bounds(left + 70, dy, 56, 13).build());
+        figDexBtn = addRenderableWidget(Button.builder(Component.literal("フィギュア"), b -> { dexMode = 3; dexScroll = 0; })
+                .bounds(left + 128, dy, 56, 13).build());
 
         // 肩書の変更（ステータスタブ）
         titleBtn = addRenderableWidget(Button.builder(Component.literal("肩書を変更"), b -> titleMenu = !titleMenu)
@@ -163,10 +168,11 @@ public class JobScreen extends Screen {
     @Override
     public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
         titleBtn.visible = tab == TAB_STATUS;
-        fishDexBtn.visible = tab == TAB_DEX;
-        dishDexBtn.visible = tab == TAB_DEX;
-        fishDexBtn.active = dishMode;
-        dishDexBtn.active = !dishMode;
+        Button[] dexBtns = {fishDexBtn, dishDexBtn, monDexBtn, figDexBtn};
+        for (int i = 0; i < dexBtns.length; i++) {
+            dexBtns[i].visible = tab == TAB_DEX;
+            dexBtns[i].active = dexMode != i;
+        }
         if (tab != TAB_STATUS) titleMenu = false;
         boolean multi = isBoardTab() && boards().size() > 1;
         QuestView selected = selectedQuest();
@@ -795,27 +801,37 @@ public class JobScreen extends Screen {
 
     private static final int DEX_CELL = 20;
     private int dexScroll;
-    /** 図鑑タブ：false なら魚図鑑、true なら料理図鑑 */
-    private static boolean dishMode;
-    private Button fishDexBtn, dishDexBtn;
+    /** 図鑑タブ：0 魚 / 1 料理 / 2 モンスター / 3 フィギュア */
+    private static int dexMode;
+    private Button fishDexBtn, dishDexBtn, monDexBtn, figDexBtn;
 
     private int dexCols() {
         return Math.max(1, (panelW - 20) / DEX_CELL);
     }
 
     private int dexVisibleRows() {
-        return Math.max(1, (panelH - 58) / DEX_CELL);
+        return Math.max(1, (panelH - 64) / DEX_CELL);
     }
 
     private int dexMaxScroll() {
-        int size = dishMode ? DishDexPayload.client.entries().size() : FishDexPayload.client.entries().size();
+        int size = switch (dexMode) {
+            case 1 -> DishDexPayload.client.entries().size();
+            case 2 -> com.chigusa.jsncraft.network.MonsterDexPayload.client.monsters().size();
+            case 3 -> com.chigusa.jsncraft.network.MonsterDexPayload.client.figures().size();
+            default -> FishDexPayload.client.entries().size();
+        };
         int rows = (size + dexCols() - 1) / dexCols();
         return Math.max(0, rows - dexVisibleRows());
     }
 
     private void renderDex(GuiGraphics g, int mouseX, int mouseY) {
-        if (dishMode) {
+        if (dexMode == 1) {
             renderDishDex(g, mouseX, mouseY);
+            return;
+        }
+        if (dexMode == 2 || dexMode == 3) {
+            DexPages.render(this, g, font, mouseX, mouseY, dexMode == 2, left, top, panelW, panelH, dexCols(), dexVisibleRows(),
+                    dexScroll = Math.min(dexScroll, dexMaxScroll()), dexMaxScroll());
             return;
         }
         List<FishDexPayload.Entry> list = FishDexPayload.client.entries();
