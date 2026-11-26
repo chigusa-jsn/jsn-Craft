@@ -52,6 +52,14 @@ public final class ModAttachments {
                     .copyOnDeath()
                     .build());
 
+    /** ログインボーナス。死んでも消えない。 */
+    public static final Supplier<AttachmentType<com.chigusa.jsncraft.loginbonus.LoginBonusData>> LOGIN_BONUS = ATTACHMENT_TYPES.register(
+            "login_bonus",
+            () -> AttachmentType.builder(() -> new com.chigusa.jsncraft.loginbonus.LoginBonusData())
+                    .serialize(com.chigusa.jsncraft.loginbonus.LoginBonusData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
     /** モンスター図鑑とフィギュア図鑑。死んでも消えない。 */
     public static final Supplier<AttachmentType<com.chigusa.jsncraft.dex.MonsterDexData>> MONSTER_DEX = ATTACHMENT_TYPES.register(
             "monster_dex",

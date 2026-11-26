@@ -103,6 +103,12 @@ public final class ModNetwork {
                 (p, c) -> c.enqueueWork(() -> SeasoningsPayload.client = p));
         registrar.playToClient(DishDexPayload.TYPE, DishDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> DishDexPayload.client = p));
+        registrar.playToClient(com.chigusa.jsncraft.loginbonus.LoginBonusPayload.TYPE, com.chigusa.jsncraft.loginbonus.LoginBonusPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.LoginBonusScreen.receive(p)));
+        registrar.playToServer(com.chigusa.jsncraft.loginbonus.LoginBonusClaimPayload.TYPE, com.chigusa.jsncraft.loginbonus.LoginBonusClaimPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.loginbonus.LoginBonus.claim(sp);
+                }));
         registrar.playToClient(MonsterDexPayload.TYPE, MonsterDexPayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> MonsterDexPayload.client = p));
         registrar.playToClient(FishDexPayload.TYPE, FishDexPayload.STREAM_CODEC,
