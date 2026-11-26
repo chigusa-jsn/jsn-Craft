@@ -18,7 +18,7 @@ public enum Mutant {
     RAINBOW_SHEEP("虹色の羊", 0x00000000, List.of("毛の色がくるくる変わる", "刈るといろんな色の羊毛が出る")),
     MARBLED_COW("霜降り牛", 0xFFF0A0A0, List.of("倒すと必ず霜降り牛肉", "搾りたてミルクが3本・早く搾れる")),
     TRUFFLE_PIG("トリュフ豚", 0xFF6A4020, List.of("ときどき地面を掘って", "キノコやめずらしい物を見つける")),
-    PEGASUS("天馬", 0xFFC8F0FF, List.of("とても速く、高く跳べる", "落下ダメージを受けない")),
+    PEGASUS("天馬", 0xFFC8F0FF, List.of("とても速く、高く跳べる・落下ダメージなし", "空中でジャンプを押すと羽ばたいて空を飛べる")),
     QUEEN_BEE("女王バチ", 0xFFB070FF, List.of("巣箱のハチミツがすぐたまる"));
 
     public final String label;

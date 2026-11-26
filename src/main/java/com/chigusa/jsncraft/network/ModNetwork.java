@@ -23,6 +23,17 @@ public final class ModNetwork {
         registrar.playToClient(OpenTabPayload.TYPE, OpenTabPayload.STREAM_CODEC, ModNetwork::handleOpenTab);
         registrar.playToClient(SkillPayloads.State.TYPE, SkillPayloads.State.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> com.chigusa.jsncraft.client.ClientSkills.update(p)));
+        registrar.playToServer(PegasusFlapPayload.TYPE, PegasusFlapPayload.STREAM_CODEC,
+                (p, c) -> c.enqueueWork(() -> {
+                    if (c.player() instanceof ServerPlayer sp && sp.getVehicle() != null && sp.getVehicle().getId() == p.horseId()
+                            && com.chigusa.jsncraft.ranch.RanchService.mutant(sp.getVehicle()) == com.chigusa.jsncraft.ranch.Mutant.PEGASUS) {
+                        var h = sp.getVehicle();
+                        var level = sp.serverLevel();
+                        level.playSound(null, h.getX(), h.getY(), h.getZ(), net.minecraft.sounds.SoundEvents.ENDER_DRAGON_FLAP, net.minecraft.sounds.SoundSource.NEUTRAL, 0.5F, 1.6F);
+                        level.sendParticles(net.minecraft.core.particles.ParticleTypes.CLOUD, h.getX(), h.getY() + 0.8, h.getZ(), 6, 0.6, 0.1, 0.6, 0.02);
+                        h.fallDistance = 0;
+                    }
+                }));
         registrar.playToServer(DodgePayload.TYPE, DodgePayload.STREAM_CODEC,
                 (p, c) -> c.enqueueWork(() -> {
                     if (c.player() instanceof ServerPlayer sp) com.chigusa.jsncraft.dodge.DodgeService.dodge(sp, p.dir());
