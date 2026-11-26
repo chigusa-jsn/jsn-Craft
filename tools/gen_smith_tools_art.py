@@ -370,3 +370,62 @@ def golden_icon(kind):
     return im
 for k in ('rice', 'wheat', 'potato', 'tomato'):
     golden_icon(k).save(os.path.join(ROOT, 'item', 'golden', f'golden_{k}.png'))
+
+# ---------------- 月銀・星銀の道具、段階のある釣り竿 ----------------
+TOOL_PAL = {'moon_silver': ((215, 228, 252), (160, 182, 228), (92, 108, 160), None),
+            'star_silver': ((86, 96, 170), (46, 54, 118), (24, 28, 70), (245, 205, 90))}
+HANDLE = ((140, 100, 60), (95, 64, 36))
+
+def thick_line(d, pts, col, w):
+    d.line(pts, fill=col + (255,), width=w)
+
+def tool_icon(kind, mat):
+    im = img(); d = ImageDraw.Draw(im)
+    hi, mid, dk, gold = TOOL_PAL[mat]
+    # 柄
+    end = {'pickaxe': (9, 6), 'axe': (10, 5), 'shovel': (9, 6), 'hoe': (10, 5)}[kind]
+    d.line([(2, 13), end], fill=HANDLE[0] + (255,), width=1)
+    d.line([(3, 13), (end[0] + 1, end[1])], fill=HANDLE[1] + (255,), width=1)
+    if kind == 'pickaxe':
+        thick_line(d, [(3, 4), (6, 2), (10, 2), (13, 5), (13, 9), (12, 12)], mid, 2)
+        d.line([(4, 3), (6, 2), (10, 2)], fill=hi + (255,)); d.line([(13, 6), (13, 9)], fill=dk + (255,))
+    elif kind == 'axe':
+        d.polygon([(8, 2), (12, 1), (14, 3), (14, 8), (11, 9), (9, 6)], fill=mid + (255,))
+        d.line([(12, 1), (14, 3), (14, 8)], fill=hi + (255,)); d.line([(9, 6), (11, 9)], fill=dk + (255,))
+    elif kind == 'shovel':
+        d.polygon([(9, 5), (11, 2), (14, 3), (14, 6), (11, 8)], fill=mid + (255,))
+        d.line([(11, 2), (14, 3)], fill=hi + (255,)); d.line([(11, 8), (14, 6)], fill=dk + (255,))
+    else:
+        thick_line(d, [(7, 3), (11, 3), (13, 5)], mid, 2)
+        d.line([(7, 3), (11, 3)], fill=hi + (255,))
+    if gold:
+        for (x, y) in {'pickaxe': ((6, 2), (13, 6), (10, 2)), 'axe': ((12, 1), (14, 6)), 'shovel': ((11, 2), (14, 5)), 'hoe': ((11, 3),)}[kind]:
+            im.putpixel((x, y), gold + (255,))
+        im.putpixel((4, 11), gold + (255,))
+    outline(im)
+    return im
+
+os.makedirs(os.path.join(ROOT, 'item', 'tool'), exist_ok=True)
+for mat in TOOL_PAL:
+    for kind in ('pickaxe', 'axe', 'shovel', 'hoe'):
+        tool_icon(kind, mat).save(os.path.join(ROOT, 'item', 'tool', f'{mat}_{kind}.png'))
+
+ROD_PAL = {'iron': ((200, 204, 212), (120, 124, 132)), 'diamond': ((120, 230, 225), (40, 150, 150)),
+           'netherite': ((90, 80, 86), (50, 42, 46)), 'moon_silver': ((215, 228, 252), (120, 140, 200)),
+           'star_silver': ((70, 80, 160), (245, 205, 90))}
+def rod_icon(mat, cast):
+    im = img(); d = ImageDraw.Draw(im)
+    a, b = ROD_PAL[mat]
+    d.line([(2, 14), (13, 3)], fill=a + (255,), width=1)
+    d.line([(3, 14), (14, 3)], fill=b + (255,), width=1)
+    d.line([(2, 14), (4, 12)], fill=(60, 40, 30, 255), width=2)   # 持ち手
+    d.ellipse([4, 9, 7, 12], fill=b + (255,), outline=(40, 40, 46, 255))   # リール
+    if not cast:
+        d.line([(14, 3), (14, 12)], fill=(230, 230, 230, 255))
+        im.putpixel((14, 13), (220, 60, 50, 255)); im.putpixel((14, 12), (240, 240, 240, 255))
+    outline(im)
+    return im
+os.makedirs(os.path.join(ROOT, 'item', 'rod'), exist_ok=True)
+for mat in ROD_PAL:
+    rod_icon(mat, False).save(os.path.join(ROOT, 'item', 'rod', f'{mat}_fishing_rod.png'))
+    rod_icon(mat, True).save(os.path.join(ROOT, 'item', 'rod', f'{mat}_fishing_rod_cast.png'))

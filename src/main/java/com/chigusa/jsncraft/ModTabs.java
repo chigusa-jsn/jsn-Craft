@@ -97,6 +97,8 @@ public final class ModTabs {
                 out.accept(com.chigusa.jsncraft.farming.ModFarming.FERTILE_BONE_MEAL.get());
                 out.accept(com.chigusa.jsncraft.farming.ModFarming.CROSSBREED_ITEM.get());
                 all(out, com.chigusa.jsncraft.farming.ModFarming.GOLDEN);
+                all(out, com.chigusa.jsncraft.tools.ModTools.TOOLS);
+                all(out, com.chigusa.jsncraft.tools.ModTools.RODS);
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_BLOCK_ITEM.get());
                 all(out, ModSmithing.STONES);

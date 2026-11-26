@@ -845,5 +845,18 @@
   "item.jsn_craft.dish.golden_potato_gratin": "Golden Potato Gratin",
   "item.jsn_craft.dish.golden_tomato_soup": "Golden Tomato Soup",
   "item.jsn_craft.dish.harvest_stew": "Harvest Stew",
-  "item.jsn_craft.dish.golden_gozen": "Golden Banquet"
+  "item.jsn_craft.dish.golden_gozen": "Golden Banquet",
+  "item.jsn_craft.moon_silver_pickaxe": "Moon Silver Pickaxe",
+  "item.jsn_craft.moon_silver_axe": "Moon Silver Axe",
+  "item.jsn_craft.moon_silver_shovel": "Moon Silver Shovel",
+  "item.jsn_craft.moon_silver_hoe": "Moon Silver Hoe",
+  "item.jsn_craft.star_silver_pickaxe": "Star Silver Pickaxe",
+  "item.jsn_craft.star_silver_axe": "Star Silver Axe",
+  "item.jsn_craft.star_silver_shovel": "Star Silver Shovel",
+  "item.jsn_craft.star_silver_hoe": "Star Silver Hoe",
+  "item.jsn_craft.iron_fishing_rod": "Iron Fishing Rod",
+  "item.jsn_craft.diamond_fishing_rod": "Diamond Fishing Rod",
+  "item.jsn_craft.netherite_fishing_rod": "Netherite Fishing Rod",
+  "item.jsn_craft.moon_silver_fishing_rod": "Moon Silver Fishing Rod",
+  "item.jsn_craft.star_silver_fishing_rod": "Star Silver Fishing Rod"
 }

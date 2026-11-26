@@ -845,5 +845,18 @@
   "item.jsn_craft.dish.golden_potato_gratin": "黄金ポテトグラタン",
   "item.jsn_craft.dish.golden_tomato_soup": "黄金トマトのスープ",
   "item.jsn_craft.dish.harvest_stew": "豊作の大鍋シチュー",
-  "item.jsn_craft.dish.golden_gozen": "黄金の御膳"
+  "item.jsn_craft.dish.golden_gozen": "黄金の御膳",
+  "item.jsn_craft.moon_silver_pickaxe": "月銀のツルハシ",
+  "item.jsn_craft.moon_silver_axe": "月銀の斧",
+  "item.jsn_craft.moon_silver_shovel": "月銀のスコップ",
+  "item.jsn_craft.moon_silver_hoe": "月銀のクワ",
+  "item.jsn_craft.star_silver_pickaxe": "星銀のツルハシ",
+  "item.jsn_craft.star_silver_axe": "星銀の斧",
+  "item.jsn_craft.star_silver_shovel": "星銀のスコップ",
+  "item.jsn_craft.star_silver_hoe": "星銀のクワ",
+  "item.jsn_craft.iron_fishing_rod": "鉄の釣り竿",
+  "item.jsn_craft.diamond_fishing_rod": "ダイヤの釣り竿",
+  "item.jsn_craft.netherite_fishing_rod": "ネザライトの釣り竿",
+  "item.jsn_craft.moon_silver_fishing_rod": "月銀の釣り竿",
+  "item.jsn_craft.star_silver_fishing_rod": "星銀の釣り竿"
 }

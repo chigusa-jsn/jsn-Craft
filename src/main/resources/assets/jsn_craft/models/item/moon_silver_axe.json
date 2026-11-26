@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "jsn_craft:item/tool/moon_silver_axe"
+  }
+}

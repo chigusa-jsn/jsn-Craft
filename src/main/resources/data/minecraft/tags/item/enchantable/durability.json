@@ -58,6 +58,11 @@
     "jsn_craft:bone_whip",
     "jsn_craft:netherite_whip",
     "jsn_craft:moon_silver_whip",
-    "jsn_craft:star_silver_whip"
+    "jsn_craft:star_silver_whip",
+    "jsn_craft:iron_fishing_rod",
+    "jsn_craft:diamond_fishing_rod",
+    "jsn_craft:netherite_fishing_rod",
+    "jsn_craft:moon_silver_fishing_rod",
+    "jsn_craft:star_silver_fishing_rod"
   ]
 }
