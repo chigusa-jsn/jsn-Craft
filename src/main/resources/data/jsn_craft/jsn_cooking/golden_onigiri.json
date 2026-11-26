@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/golden_onigiri",
+  "ingredients": [
+    "jsn_craft:golden_rice",
+    "jsn_craft:salt",
+    "minecraft:dried_kelp"
+  ],
+  "level": 20,
+  "time": 220,
+  "xp": 20,
+  "nutrition": 10,
+  "saturation": 1.2,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:stamina_regen",
+      "amount": 0.8,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "minecraft:generic.luck",
+      "amount": 1,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "fine",
+  "no": 88
+}

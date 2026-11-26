@@ -838,5 +838,12 @@
   "item.jsn_craft.golden_rice": "Golden Rice",
   "item.jsn_craft.golden_wheat": "Golden Wheat",
   "item.jsn_craft.golden_potato": "Golden Potato",
-  "item.jsn_craft.golden_tomato": "Golden Tomato"
+  "item.jsn_craft.golden_tomato": "Golden Tomato",
+  "item.jsn_craft.dish.golden_onigiri": "Golden Onigiri",
+  "item.jsn_craft.dish.golden_fried_rice": "Golden Fried Rice",
+  "item.jsn_craft.dish.golden_bread": "Golden Bread",
+  "item.jsn_craft.dish.golden_potato_gratin": "Golden Potato Gratin",
+  "item.jsn_craft.dish.golden_tomato_soup": "Golden Tomato Soup",
+  "item.jsn_craft.dish.harvest_stew": "Harvest Stew",
+  "item.jsn_craft.dish.golden_gozen": "Golden Banquet"
 }

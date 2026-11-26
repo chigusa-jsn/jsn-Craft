@@ -64,7 +64,9 @@ public final class ModCooking {
             "coelacanth_stew", "crimson_curry", "soul_eater_skewer", "void_jelly_dessert", "moon_lord_sashimi",
             "storm_king_steak", "ice_queen_carpaccio", "inferno_dragon_roast", "soulflame_nabe", "ender_dragon_feast",
             // 牧場の料理
-            "marbled_steak", "herb_roast_lamb", "jidori_karaage", "golden_omelette", "milk_pudding", "cheesecake"};
+            "marbled_steak", "herb_roast_lamb", "jidori_karaage", "golden_omelette", "milk_pudding", "cheesecake",
+            // 農家の黄金の食材・巨大作物の料理
+            "golden_onigiri", "golden_fried_rice", "golden_bread", "golden_potato_gratin", "golden_tomato_soup", "harvest_stew", "golden_gozen"};
 
     public static final List<DeferredItem<Item>> DISH_ITEMS = new ArrayList<>();
 

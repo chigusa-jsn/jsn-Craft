@@ -838,5 +838,12 @@
   "item.jsn_craft.golden_rice": "黄金米",
   "item.jsn_craft.golden_wheat": "黄金の小麦",
   "item.jsn_craft.golden_potato": "黄金のじゃがいも",
-  "item.jsn_craft.golden_tomato": "黄金トマト"
+  "item.jsn_craft.golden_tomato": "黄金トマト",
+  "item.jsn_craft.dish.golden_onigiri": "黄金のおにぎり",
+  "item.jsn_craft.dish.golden_fried_rice": "黄金チャーハン",
+  "item.jsn_craft.dish.golden_bread": "黄金のパン",
+  "item.jsn_craft.dish.golden_potato_gratin": "黄金ポテトグラタン",
+  "item.jsn_craft.dish.golden_tomato_soup": "黄金トマトのスープ",
+  "item.jsn_craft.dish.harvest_stew": "豊作の大鍋シチュー",
+  "item.jsn_craft.dish.golden_gozen": "黄金の御膳"
 }

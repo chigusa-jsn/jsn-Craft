@@ -922,6 +922,65 @@ def cheesecake(d):
     d.box([4.4, 5.4, 5.4], [6.4, 5.8, 7.4], mat="berry_sauce"); d.box([8.0, 5.4, 8.6], [9.6, 5.8, 10.2], mat="berry_sauce")
     d.box([11.6, 1, 6.0], [13.0, 2.2, 7.4], mat="strawberry"); d.box([11.8, 1, 9.0], [12.8, 1.8, 10.0], mat="blueberry")
 
+# ---- 農家の黄金の食材・巨大作物の料理 ----
+@dish
+def golden_onigiri(d):
+    d.plate(r=6.5, top="gold_plate_top", side="gold_side", h=0.5)
+    for cx in (5.4, 10.6):
+        d.triangle(cx, 8, 4.6, 5.0, 3.0, 0.5, "golden_rice_m")
+        d.box([cx - 2.4, 0.4, 6.4], [cx + 2.4, 1.9, 9.6], mat="nori")
+    d.box([7.0, 0.5, 11.4], [9.6, 1.1, 12.6], mat="takuan")
+
+@dish
+def golden_fried_rice(d):
+    d.plate()
+    for (r, y1, y2) in ((4.8, 1, 2.4), (4.0, 2.4, 3.6), (2.8, 3.6, 4.6), (1.6, 4.6, 5.2)):
+        d.disc(8, 8, r, y1, y2, mat="golden_rice_m")
+    for (x, z) in ((5.4, 6.4), (9.6, 5.8), (10.4, 9.4), (6.4, 10.0), (8.0, 4.8)):
+        d.box([x, 2.6, z], [x + 1.0, 3.2, z + 1.0], mat="tamago")
+    for (x, z) in ((7.0, 7.0), (9.0, 8.6), (6.0, 8.4)):
+        d.box([x, 4.4, z], [x + 0.6, 4.8, z + 0.6], mat="negi")
+
+@dish
+def golden_bread(d):
+    d.board() if hasattr(d, "board") else d.tray(2.0, 3.0, 14.0, 13.0, 1.0, "tray_wood")
+    d.box([3.4, 1, 5.0], [12.6, 4.4, 11.0], mat="golden_bread")
+    d.box([4.0, 4.4, 5.6], [12.0, 5.4, 10.4], mat="golden_bread")
+    for x in (5.2, 7.6, 10.0):
+        d.box([x, 5.4, 6.4], [x + 1.0, 5.6, 9.6], mat="butter")
+
+@dish
+def golden_potato_gratin(d):
+    d.disc(8, 8, 6.6, 0, 3.6, rz=5.0, top="clay_side", side="clay_side", bottom="clay_side")
+    d.disc(8, 8, 5.8, 3.0, 3.8, rz=4.2, mat="gratin_top")
+    for (x, z) in ((5.0, 6.4), (9.4, 6.0), (7.2, 9.0), (10.2, 9.2)):
+        d.box([x, 3.6, z], [x + 1.4, 4.4, z + 1.4], mat="golden_potato_m")
+    d.box([7.4, 3.8, 7.4], [8.2, 4.1, 8.2], mat="parsley")
+
+@dish
+def golden_tomato_soup(d):
+    d.small_bowl(8, 8, 6.8, 3.6, "tomato_soup", "porcelain_side", "porcelain_side", "porcelain_side")
+    for (x, z) in ((5.4, 6.4), (9.4, 6.8), (7.4, 9.6)):
+        d.box([x, 2.9, z], [x + 1.4, 3.7, z + 1.4], mat="golden_tomato_m")
+    d.box([8.0, 3.5, 5.6], [8.6, 3.7, 6.2], mat="parsley")
+
+@dish
+def harvest_stew(d):
+    d.small_bowl(8, 8, 7.2, 4.0, "harvest_stew", "clay_side", "clay_side", "clay_side")
+    for (x, z, m) in ((4.6, 6.0, "carrot"), (9.0, 5.0, "potato"), (10.6, 9.0, "carrot"), (6.0, 9.6, "potato"), (8.2, 7.6, "beef"), (7.6, 11.0, "lettuce"), (11.0, 6.6, "golden_potato_m")):
+        d.box([x, 3.3, z], [x + 1.8, 4.3, z + 1.8], mat=m)
+
+@dish
+def golden_gozen(d):
+    d.tray(1.0, 1.0, 15.0, 15.0, 0.8, "lacquer_red", top="lacquer_black")
+    d.small_bowl(5.0, 5.4, 3.0, 2.6, "golden_rice_m", "lacquer_gold", "lacquer_gold", "lacquer_gold")
+    d.small_bowl(11.0, 5.4, 3.0, 2.4, "tomato_soup", "lacquer_black", "lacquer_black", "lacquer_gold")
+    d.box([3.0, 0.8, 9.4], [7.4, 2.2, 13.0], mat="golden_bread")
+    d.box([9.0, 0.8, 9.6], [13.0, 1.4, 13.0], mat="porcelain_top")
+    for (x, z) in ((9.6, 10.2), (11.4, 11.4)):
+        d.box([x, 1.4, z], [x + 1.4, 2.6, z + 1.4], mat="golden_potato_m")
+    d.box([11.0, 1.4, 9.8], [12.4, 2.6, 11.2], mat="golden_tomato_m")
+
 # ======================== 出力 ========================
 
 def build(preview_dir=None):

@@ -1,0 +1,28 @@
+{
+  "result": "jsn_craft:dish/golden_tomato_soup",
+  "ingredients": [
+    "jsn_craft:golden_tomato",
+    "jsn_craft:onion",
+    "jsn_craft:salt"
+  ],
+  "level": 20,
+  "time": 220,
+  "xp": 22,
+  "nutrition": 10,
+  "saturation": 1.2,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:hp_regen",
+      "amount": 0.6,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "amplifier": 0,
+      "seconds": 20
+    }
+  ],
+  "rank": "fine",
+  "no": 92
+}

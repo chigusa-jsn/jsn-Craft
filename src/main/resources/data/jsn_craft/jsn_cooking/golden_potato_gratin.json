@@ -1,0 +1,29 @@
+{
+  "result": "jsn_craft:dish/golden_potato_gratin",
+  "ingredients": [
+    "jsn_craft:golden_potato",
+    "jsn_craft:cheese",
+    "minecraft:milk_bucket"
+  ],
+  "level": 25,
+  "time": 220,
+  "xp": 26,
+  "nutrition": 14,
+  "saturation": 1.3,
+  "buffs": [
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 6,
+      "operation": "add_value",
+      "seconds": 600
+    },
+    {
+      "attribute": "jsn_craft:damage_reduction",
+      "amount": 0.06,
+      "operation": "add_value",
+      "seconds": 600
+    }
+  ],
+  "rank": "fine",
+  "no": 91
+}

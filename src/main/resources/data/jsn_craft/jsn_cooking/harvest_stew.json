@@ -1,0 +1,30 @@
+{
+  "result": "jsn_craft:dish/harvest_stew",
+  "ingredients": [
+    "minecraft:carrot",
+    "minecraft:potato",
+    "jsn_craft:cabbage",
+    "#c:foods/raw_meat"
+  ],
+  "level": 15,
+  "time": 160,
+  "xp": 18,
+  "nutrition": 13,
+  "saturation": 1.1,
+  "buffs": [
+    {
+      "attribute": "jsn_craft:max_stamina",
+      "amount": 40,
+      "operation": "add_value",
+      "seconds": 480
+    },
+    {
+      "attribute": "minecraft:generic.max_health",
+      "amount": 4,
+      "operation": "add_value",
+      "seconds": 480
+    }
+  ],
+  "rank": "feast",
+  "no": 93
+}
