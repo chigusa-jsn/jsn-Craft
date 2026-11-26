@@ -29,7 +29,7 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
     public static void init() {}
 
     @Nullable private final MinecraftServer server;
-    private final SimpleContainer slots = new SimpleContainer(LoginBonusSaved.SLOTS);
+    private final SimpleContainer rewards = new SimpleContainer(LoginBonusSaved.SLOTS);
     private final ContainerData data;
     private int day;
 
@@ -67,7 +67,7 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
             };
             load();
         }
-        for (int c = 0; c < LoginBonusSaved.SLOTS; c++) addSlot(new Slot(slots, c, 8 + c * 18, 52));
+        for (int c = 0; c < LoginBonusSaved.SLOTS; c++) addSlot(new Slot(rewards, c, 8 + c * 18, 52));
         for (int r = 0; r < 3; r++) for (int c = 0; c < 9; c++) addSlot(new Slot(inv, c + r * 9 + 9, 8 + c * 18, 104 + r * 18));
         for (int c = 0; c < 9; c++) addSlot(new Slot(inv, c, 8 + c * 18, 162));
         addDataSlots(data);
@@ -85,10 +85,10 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
 
     private void load() {
         LoginBonusSaved s = saved();
-        slots.clearContent();
+        rewards.clearContent();
         if (day < s.days.size()) {
             List<ItemStack> items = s.days.get(day).items;
-            for (int i = 0; i < Math.min(items.size(), LoginBonusSaved.SLOTS); i++) slots.setItem(i, items.get(i).copy());
+            for (int i = 0; i < Math.min(items.size(), LoginBonusSaved.SLOTS); i++) rewards.setItem(i, items.get(i).copy());
         }
     }
 
@@ -98,7 +98,7 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
         if (day >= s.days.size()) return;
         List<ItemStack> items = s.days.get(day).items;
         items.clear();
-        for (int i = 0; i < LoginBonusSaved.SLOTS; i++) if (!slots.getItem(i).isEmpty()) items.add(slots.getItem(i).copy());
+        for (int i = 0; i < LoginBonusSaved.SLOTS; i++) if (!rewards.getItem(i).isEmpty()) items.add(rewards.getItem(i).copy());
         s.setDirty();
         LoginBonus.invalidate();
     }
@@ -153,14 +153,14 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
         }
         if (type != net.minecraft.world.inventory.ClickType.PICKUP && type != net.minecraft.world.inventory.ClickType.QUICK_MOVE) return;
         ItemStack carried = getCarried();
-        ItemStack cur = slots.getItem(slotId);
+        ItemStack cur = rewards.getItem(slotId);
         if (type == net.minecraft.world.inventory.ClickType.QUICK_MOVE) {
-            slots.setItem(slotId, ItemStack.EMPTY);
+            rewards.setItem(slotId, ItemStack.EMPTY);
         } else if (!carried.isEmpty()) {
-            slots.setItem(slotId, carried.copyWithCount(button == 1 ? 1 : carried.getCount()));
+            rewards.setItem(slotId, carried.copyWithCount(button == 1 ? 1 : carried.getCount()));
         } else if (!cur.isEmpty()) {
             if (button == 1) cur.setCount(Math.min(cur.getMaxStackSize(), cur.getCount() + 1));
-            else slots.setItem(slotId, ItemStack.EMPTY);
+            else rewards.setItem(slotId, ItemStack.EMPTY);
         }
         store();
     }
@@ -179,8 +179,8 @@ public class LoginBonusEditMenu extends AbstractContainerMenu {
         if (index >= LoginBonusSaved.SLOTS) {
             // 持ち物から：コピーを空いているマスに置く（持ち物はそのまま）
             for (int i = 0; i < LoginBonusSaved.SLOTS; i++) {
-                if (slots.getItem(i).isEmpty()) {
-                    slots.setItem(i, stack.copy());
+                if (rewards.getItem(i).isEmpty()) {
+                    rewards.setItem(i, stack.copy());
                     store();
                     break;
                 }
