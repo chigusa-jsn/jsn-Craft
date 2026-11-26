@@ -98,6 +98,7 @@ public class MachineBlockEntity extends BlockEntity {
         if (kind == MachineKind.COKE_OVEN) {
             if (in.is(Items.COAL) || in.is(Items.CHARCOAL)) return new ItemStack(ModFurnaces.COKE.get());
             if (in.is(Items.COAL_BLOCK)) return new ItemStack(ModFurnaces.COKE_BLOCK_ITEM.get());
+            if (stoneFactor(in) > 0) return new ItemStack(Items.COAL);
             return ItemStack.EMPTY;
         }
         if (kind == MachineKind.SAWMILL) return sawResult(level, in);
@@ -127,6 +128,13 @@ public class MachineBlockEntity extends BlockEntity {
         }
         SAW.put(in.getItem(), res);
         return res.copy();
+    }
+
+    /** 石・丸石から石炭が取れる割合（必ずではない。腕が上がるほど取れやすい） */
+    public static double stoneFactor(ItemStack in) {
+        if (in.is(Items.COBBLESTONE) || in.is(Items.STONE)) return 0.25;
+        if (in.is(Items.COBBLED_DEEPSLATE) || in.is(Items.DEEPSLATE)) return 0.35;
+        return 0;
     }
 
     /** 多めに取れる物か（大きい炉は鉱石・原石だけ、コークス炉は全部） */
@@ -164,13 +172,14 @@ public class MachineBlockEntity extends BlockEntity {
         if (be.progress < kind.time) { be.setChanged(); return; }
         ItemStack in = be.items.getItem(slot);
         int n = out.getCount();
+        double sf = kind == MachineKind.COKE_OVEN ? stoneFactor(in) : 0;
         if (bonusApplies(kind, in)) {
-            double total = n * kind.bonus(be.jobLevel);
+            double total = n * kind.bonus(be.jobLevel) * (sf > 0 ? sf : 1);
             n = (int) Math.floor(total);
             if (lv.random.nextDouble() < total - n) n++;
         }
         ItemStack made = out.copyWithCount(n);
-        if (!be.insert(made)) { be.progress = kind.time; be.stop(2); return; }
+        if (n > 0 && !be.insert(made)) { be.progress = kind.time; be.stop(2); return; }
         in.shrink(1);
         be.items.setItem(slot, in);
         be.progress = 0;

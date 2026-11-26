@@ -83,7 +83,7 @@ public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
         g.drawString(font, s, imageWidth - 8 - font.width(s.replaceAll("§.", "")), 6, 0xFFFFFF, false);
         g.drawString(font, switch (k) {
             case BIG_FURNACE -> "鉱石・原石は多めに";
-            case COKE_OVEN -> "石炭・木炭→コークス";
+            case COKE_OVEN -> "石炭→コークス／石→石炭";
             case SAWMILL -> "原木・竹→板（多めに）";
         }, 8, 40, 0xFFD8D8D8, false);
         if (k == MachineKind.BIG_FURNACE) g.drawString(font, "燃料", 8, 60, 0xFFD8D8D8, false);
