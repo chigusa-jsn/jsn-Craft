@@ -100,6 +100,7 @@ public final class ModTabs {
                 out.accept(ModSmithing.HONE_WHITE.get());
                 out.accept(ModSmithing.HONE_PURPLE.get());
                 out.accept(ModSmithing.REPAIR_KIT_DIVINE.get());
+                all(out, com.chigusa.jsncraft.airship.ModAirships.ITEMS);
                 all(out, com.chigusa.jsncraft.smithing.arrow.ModArrows.ARROWS.values());
                 out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.THROWING_KNIFE.get());
                 out.accept(com.chigusa.jsncraft.smithing.arrow.ModArrows.SHURIKEN.get());

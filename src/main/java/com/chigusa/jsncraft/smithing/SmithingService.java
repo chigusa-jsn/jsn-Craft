@@ -299,6 +299,10 @@ public final class SmithingService {
         l.add(upper(com.chigusa.jsncraft.smithing.arrow.ArrowKind.HARDENED, com.chigusa.jsncraft.smithing.arrow.ArrowKind.DRAGON, () -> net.minecraft.world.item.Items.NETHERITE_SCRAP, 1, 70));
         l.add(new Craft(ModSmithing.HONE_WHITE, 1, ModSmithing.STONES.get(3), 1, ModSmithing.HONE_PURPLE, 1, 75, "神砥石", false));
         l.add(new Craft(() -> net.minecraft.world.item.Items.PRISMARINE_SHARD, 4, () -> net.minecraft.world.item.Items.ECHO_SHARD, 1, T.get(3), 1, 80, "深淵の穂先", false));
+        // ---- 飛空艇（大きくするときは、荷物・燃料・色をそのまま引き継ぐ） ----
+        l.add(new Craft(() -> net.minecraft.world.item.Items.WHITE_WOOL, 16, () -> net.minecraft.world.item.Items.PHANTOM_MEMBRANE, 4, com.chigusa.jsncraft.airship.ModAirships.SMALL, 1, 25, "小型飛空艇", false));
+        l.add(new Craft(com.chigusa.jsncraft.airship.ModAirships.SMALL, 1, () -> net.minecraft.world.item.Items.IRON_BLOCK, 4, com.chigusa.jsncraft.airship.ModAirships.MEDIUM, 1, 45, "中型飛空艇", false));
+        l.add(new Craft(com.chigusa.jsncraft.airship.ModAirships.MEDIUM, 1, () -> net.minecraft.world.item.Items.NETHERITE_INGOT, 1, com.chigusa.jsncraft.airship.ModAirships.LARGE, 1, 60, "大型飛空艇", false));
         l.sort(java.util.Comparator.comparingInt(Craft::minLevel));
         CRAFTS = List.copyOf(l);
     }
@@ -389,9 +393,14 @@ public final class SmithingService {
         int lv = smithLevel(player);
         if (!canCraft(lv, item, mat)) return false;
         Craft c = CRAFTS.get(craftIndex(item, mat));
+        ItemStack baseCopy = item.copy();
         mat.shrink(c.count());
         if (c.base() != null) item.shrink(c.baseCount());
         ItemStack out = new ItemStack(c.output().get(), c.outCount());
+        if (out.getItem() instanceof com.chigusa.jsncraft.airship.AirshipItem && baseCopy.getItem() instanceof com.chigusa.jsncraft.airship.AirshipItem) {
+            if (baseCopy.has(net.minecraft.core.component.DataComponents.CUSTOM_DATA)) out.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA, baseCopy.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA));
+            if (baseCopy.has(net.minecraft.core.component.DataComponents.CUSTOM_NAME)) out.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, baseCopy.get(net.minecraft.core.component.DataComponents.CUSTOM_NAME));
+        }
         int q = 1;
         if (c.quality()) {
             q = com.chigusa.jsncraft.smithing.arrow.Quality.roll(lv, player.getRandom());

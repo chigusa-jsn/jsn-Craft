@@ -819,5 +819,9 @@
   "item.jsn_craft.star_arrow": "星鉄の矢",
   "item.jsn_craft.dragon_arrow": "竜殺しの矢",
   "item.jsn_craft.trident_tip_abyss": "深淵の穂先",
-  "key.jsn_craft.dodge": "ドッジロール（回避）"
+  "key.jsn_craft.dodge": "ドッジロール（回避）",
+  "item.jsn_craft.airship_small": "小型飛空艇",
+  "item.jsn_craft.airship_medium": "中型飛空艇",
+  "item.jsn_craft.airship_large": "大型飛空艇",
+  "entity.jsn_craft.airship": "飛空艇"
 }

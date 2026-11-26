@@ -819,5 +819,9 @@
   "item.jsn_craft.star_arrow": "Star Iron Arrow",
   "item.jsn_craft.dragon_arrow": "Dragonslayer Arrow",
   "item.jsn_craft.trident_tip_abyss": "Abyss Trident Tip",
-  "key.jsn_craft.dodge": "Dodge Roll"
+  "key.jsn_craft.dodge": "Dodge Roll",
+  "item.jsn_craft.airship_small": "Small Airship",
+  "item.jsn_craft.airship_medium": "Medium Airship",
+  "item.jsn_craft.airship_large": "Large Airship",
+  "entity.jsn_craft.airship": "Airship"
 }

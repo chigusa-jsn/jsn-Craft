@@ -42,6 +42,7 @@ public final class RecyclerService {
         BundleContents bundle = stack.get(DataComponents.BUNDLE_CONTENTS);
         if (bundle != null && !bundle.isEmpty()) return true;
         if (stack.getItem() instanceof BlockItem b && b.getBlock() instanceof ShulkerBoxBlock) return true;
+        if (stack.getItem() instanceof com.chigusa.jsncraft.airship.AirshipItem) return true;   // 荷物が入っているかもしれない
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (id.getNamespace().equals("jsn_storage")) return true;
         return parts(level, stack.getItem()).isEmpty();
