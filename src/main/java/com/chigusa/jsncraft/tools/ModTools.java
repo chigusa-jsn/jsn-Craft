@@ -60,6 +60,17 @@ public final class ModTools {
     public static final DeferredItem<JsnRodItem> STAR_ROD = rod("star_silver_fishing_rod", 5, 1200, Rarity.EPIC, true);
     public static final List<DeferredItem<JsnRodItem>> RODS = List.of(IRON_ROD, DIAMOND_ROD, NETHERITE_ROD, MOON_ROD, STAR_ROD);
 
+    // ---- 釣り竿カスタム台 ----
+    public static final net.neoforged.neoforge.registries.DeferredBlock<RodTableBlock> ROD_TABLE = com.chigusa.jsncraft.cooking.ModCooking.BLOCKS.register("rod_table",
+            () -> new RodTableBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties.of().mapColor(net.minecraft.world.level.material.MapColor.WOOD)
+                    .strength(2.0F).sound(net.minecraft.world.level.block.SoundType.WOOD)));
+    public static final DeferredItem<net.minecraft.world.item.BlockItem> ROD_TABLE_ITEM = ModEntities.ITEMS.registerSimpleBlockItem(ROD_TABLE);
+    public static final java.util.function.Supplier<net.minecraft.world.level.block.entity.BlockEntityType<RodTableBlockEntity>> ROD_TABLE_BE =
+            com.chigusa.jsncraft.cooking.ModCooking.BLOCK_ENTITIES.register("rod_table",
+                    () -> net.minecraft.world.level.block.entity.BlockEntityType.Builder.of(RodTableBlockEntity::new, ROD_TABLE.get()).build(null));
+    public static final net.neoforged.neoforge.registries.DeferredHolder<net.minecraft.world.inventory.MenuType<?>, net.minecraft.world.inventory.MenuType<RodTableMenu>> ROD_TABLE_MENU =
+            com.chigusa.jsncraft.cooking.ModCooking.MENUS.register("rod_table", () -> net.neoforged.neoforge.common.extensions.IMenuTypeExtension.create(RodTableMenu::new));
+
     private static DeferredItem<JsnRodItem> rod(String id, int tier, int dur, Rarity rarity, boolean fire) {
         return ModEntities.ITEMS.register(id, () -> {
             Item.Properties p = new Item.Properties().durability(dur).rarity(rarity);
@@ -68,7 +79,9 @@ public final class ModTools {
         });
     }
 
-    public static void init() {}
+    public static void init() {
+        RodParts.init();
+    }
 
     private ModTools() {}
 }

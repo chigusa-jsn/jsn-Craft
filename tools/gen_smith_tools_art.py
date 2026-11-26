@@ -429,3 +429,31 @@ os.makedirs(os.path.join(ROOT, 'item', 'rod'), exist_ok=True)
 for mat in ROD_PAL:
     rod_icon(mat, False).save(os.path.join(ROOT, 'item', 'rod', f'{mat}_fishing_rod.png'))
     rod_icon(mat, True).save(os.path.join(ROOT, 'item', 'rod', f'{mat}_fishing_rod_cast.png'))
+
+# ---------------- 釣り竿の部品・カスタム台 ----------------
+GRADE_COL = [(150, 110, 60), (170, 175, 185), (240, 200, 70), (120, 230, 240)]
+def part_icon(kind, g):
+    im = img(); d = ImageDraw.Draw(im); c = GRADE_COL[g - 1]; dk = tuple(int(v * 0.6) for v in c)
+    if kind == 'blank':
+        d.line([(3, 13), (13, 3)], fill=c + (255,), width=2); d.line([(3, 13), (5, 11)], fill=(60, 40, 30, 255), width=3)
+    elif kind == 'reel':
+        d.ellipse([3, 3, 12, 12], fill=c + (255,), outline=dk + (255,)); d.ellipse([6, 6, 9, 9], fill=dk + (255,)); d.line([(9, 7), (14, 4)], fill=dk + (255,), width=2)
+    elif kind == 'lure':
+        body = [(200, 200, 200), (90, 160, 60), (240, 200, 70), (120, 230, 240)][g - 1]
+        d.ellipse([4, 5, 12, 10], fill=body + (255,), outline=tuple(int(v * 0.6) for v in body) + (255,))
+        d.polygon([(12, 7), (15, 4), (15, 10)], fill=body + (255,)); im.putpixel((6, 7), (20, 20, 20, 255))
+        d.line([(6, 10), (6, 13), (8, 13)], fill=(200, 200, 210, 255))
+    elif kind == 'float':
+        top = [(220, 60, 50), (230, 70, 60), (200, 230, 240), (140, 255, 180)][g - 1]
+        d.ellipse([5, 3, 10, 8], fill=top + (255,)); d.ellipse([5, 7, 10, 12], fill=(240, 240, 240, 255)); d.line([(7, 12), (7, 15)], fill=c + (255,))
+    else:
+        for i in range(3): d.arc([2 + i, 2 + i, 13 - i, 13 - i], 0, 300, fill=c + (255,))
+    outline(im)
+    return im
+os.makedirs(os.path.join(ROOT, 'item', 'rod_part'), exist_ok=True)
+for kind in ('blank', 'reel', 'lure', 'float', 'line'):
+    for g in range(1, 5):
+        part_icon(kind, g).save(os.path.join(ROOT, 'item', 'rod_part', f'rod_{kind}_{g}.png'))
+rt_side = wood_noise((110, 140, 170), 51); rect(rt_side, 0, 0, 15, 2, (70, 90, 120, 255))
+rt_top = wood_noise((140, 110, 75), 52); d_ = ImageDraw.Draw(rt_top); d_.line([(2, 13), (13, 2)], fill=(90, 60, 30, 255), width=2); d_.ellipse([4, 8, 7, 11], fill=(180, 185, 195, 255))
+rt_side.save(os.path.join(ROOT, 'block', 'rod_table_side.png')); rt_top.save(os.path.join(ROOT, 'block', 'rod_table_top.png'))

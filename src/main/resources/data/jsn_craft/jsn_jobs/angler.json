@@ -9,6 +9,11 @@
   "skill_points_per_level": 2,
   "xp": [
     {
+      "action": "rod_build",
+      "target": "*",
+      "xp": 6
+    },
+    {
       "action": "fish",
       "target": "@lord",
       "xp": 120

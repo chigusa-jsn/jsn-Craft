@@ -17,6 +17,7 @@ public final class JobLevels {
     public static int miner(ServerPlayer p) { return life(p, "miner", "vein_king"); }
     public static int lumberjack(ServerPlayer p) { return life(p, "lumberjack", "forest_master"); }
     public static int farmer(ServerPlayer p) { return life(p, "farmer", "harvest_keeper"); }
+    public static int angler(ServerPlayer p) { return life(p, "angler", "net_master"); }
 
     private JobLevels() {}
 }

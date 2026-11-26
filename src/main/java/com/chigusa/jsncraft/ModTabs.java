@@ -99,6 +99,8 @@ public final class ModTabs {
                 all(out, com.chigusa.jsncraft.farming.ModFarming.GOLDEN);
                 all(out, com.chigusa.jsncraft.tools.ModTools.TOOLS);
                 all(out, com.chigusa.jsncraft.tools.ModTools.RODS);
+                out.accept(com.chigusa.jsncraft.tools.ModTools.ROD_TABLE_ITEM.get());
+                for (var arr : com.chigusa.jsncraft.tools.RodParts.ITEMS.values()) for (var it : arr) out.accept(it.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE.get());
                 out.accept(com.chigusa.jsncraft.furnace.ModFurnaces.COKE_BLOCK_ITEM.get());
                 all(out, ModSmithing.STONES);
