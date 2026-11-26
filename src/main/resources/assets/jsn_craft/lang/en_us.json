@@ -823,5 +823,9 @@
   "item.jsn_craft.airship_small": "Small Airship",
   "item.jsn_craft.airship_medium": "Medium Airship",
   "item.jsn_craft.airship_large": "Large Airship",
-  "entity.jsn_craft.airship": "Airship"
+  "entity.jsn_craft.airship": "Airship",
+  "block.jsn_craft.big_furnace": "Great Furnace",
+  "block.jsn_craft.coke_oven": "Coke Oven",
+  "item.jsn_craft.coke": "Coke",
+  "block.jsn_craft.coke_block": "Block of Coke"
 }

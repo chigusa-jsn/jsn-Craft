@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "jsn_craft:block/big_furnace_front_on",
+    "side": "jsn_craft:block/big_furnace_side",
+    "top": "jsn_craft:block/big_furnace_top"
+  }
+}

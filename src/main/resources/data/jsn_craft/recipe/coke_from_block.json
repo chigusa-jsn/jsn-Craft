@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "jsn_craft:coke_block"
+    }
+  ],
+  "result": {
+    "id": "jsn_craft:coke",
+    "count": 9
+  }
+}

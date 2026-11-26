@@ -823,5 +823,9 @@
   "item.jsn_craft.airship_small": "小型飛空艇",
   "item.jsn_craft.airship_medium": "中型飛空艇",
   "item.jsn_craft.airship_large": "大型飛空艇",
-  "entity.jsn_craft.airship": "飛空艇"
+  "entity.jsn_craft.airship": "飛空艇",
+  "block.jsn_craft.big_furnace": "大きい炉",
+  "block.jsn_craft.coke_oven": "コークス炉",
+  "item.jsn_craft.coke": "コークス",
+  "block.jsn_craft.coke_block": "コークスブロック"
 }

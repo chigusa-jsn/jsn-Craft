@@ -16,6 +16,9 @@
     "jsn_craft:gacha_material",
     "jsn_craft:gacha_figure",
     "jsn_craft:gacha_title",
-    "jsn_craft:recycler"
+    "jsn_craft:recycler",
+    "jsn_craft:big_furnace",
+    "jsn_craft:coke_oven",
+    "jsn_craft:coke_block"
   ]
 }

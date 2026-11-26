@@ -1,5 +1,5 @@
 """鍛冶の追加アイテム（砥石・修理キット・当て板）と分解機のテクスチャを作る。"""
-from PIL import Image
+from PIL import Image, ImageDraw
 import os, random
 ROOT = os.path.join(os.path.dirname(__file__), '..', 'src', 'main', 'resources', 'assets', 'jsn_craft', 'textures')
 
