@@ -16,6 +16,16 @@
   "xp": [
     {
       "action": "harvest",
+      "target": "jsn_craft:giant_crop",
+      "xp": 120
+    },
+    {
+      "action": "breed",
+      "target": "*",
+      "xp": 6
+    },
+    {
+      "action": "harvest",
       "target": "minecraft:nether_wart",
       "xp": 6
     },

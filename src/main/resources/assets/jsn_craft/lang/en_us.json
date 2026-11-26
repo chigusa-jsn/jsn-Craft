@@ -831,5 +831,12 @@
   "block.jsn_craft.sawmill": "Sawmill",
   "item.jsn_craft.fallen_leaves": "Fallen Leaves",
   "block.jsn_craft.leaf_mold": "Leaf Mold",
-  "block.jsn_craft.rich_soil": "Rich Soil"
+  "block.jsn_craft.rich_soil": "Rich Soil",
+  "block.jsn_craft.giant_crop": "Giant Crop",
+  "block.jsn_craft.crossbreed_table": "Crossbreeding Table",
+  "item.jsn_craft.fertile_bone_meal": "Fertile Bone Meal",
+  "item.jsn_craft.golden_rice": "Golden Rice",
+  "item.jsn_craft.golden_wheat": "Golden Wheat",
+  "item.jsn_craft.golden_potato": "Golden Potato",
+  "item.jsn_craft.golden_tomato": "Golden Tomato"
 }

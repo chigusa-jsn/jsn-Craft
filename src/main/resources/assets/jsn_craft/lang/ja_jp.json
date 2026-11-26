@@ -831,5 +831,12 @@
   "block.jsn_craft.sawmill": "製材台",
   "item.jsn_craft.fallen_leaves": "落ち葉",
   "block.jsn_craft.leaf_mold": "腐葉土",
-  "block.jsn_craft.rich_soil": "豊穣の土"
+  "block.jsn_craft.rich_soil": "豊穣の土",
+  "block.jsn_craft.giant_crop": "巨大作物",
+  "block.jsn_craft.crossbreed_table": "交配台",
+  "item.jsn_craft.fertile_bone_meal": "豊穣の骨粉",
+  "item.jsn_craft.golden_rice": "黄金米",
+  "item.jsn_craft.golden_wheat": "黄金の小麦",
+  "item.jsn_craft.golden_potato": "黄金のじゃがいも",
+  "item.jsn_craft.golden_tomato": "黄金トマト"
 }

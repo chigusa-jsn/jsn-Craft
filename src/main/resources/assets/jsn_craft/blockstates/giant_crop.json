@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "kind=wheat": {
+      "model": "jsn_craft:block/giant/wheat"
+    },
+    "kind=carrot": {
+      "model": "jsn_craft:block/giant/carrot"
+    },
+    "kind=potato": {
+      "model": "jsn_craft:block/giant/potato"
+    },
+    "kind=beetroot": {
+      "model": "jsn_craft:block/giant/beetroot"
+    },
+    "kind=rice": {
+      "model": "jsn_craft:block/giant/rice"
+    },
+    "kind=tomato": {
+      "model": "jsn_craft:block/giant/tomato"
+    },
+    "kind=cabbage": {
+      "model": "jsn_craft:block/giant/cabbage"
+    },
+    "kind=onion": {
+      "model": "jsn_craft:block/giant/onion"
+    }
+  }
+}

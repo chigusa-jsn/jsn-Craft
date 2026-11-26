@@ -42,6 +42,7 @@ public class SoilBlock extends Block {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource r) {
         BlockPos up = pos.above();
         BlockState plant = level.getBlockState(up);
+        if (grade >= 2 && r.nextFloat() < 0.04F && com.chigusa.jsncraft.farming.GiantCropBlock.tryForm(level, up)) return;
         if (!(plant.getBlock() instanceof BonemealableBlock b)) return;
         float chance = grade >= 2 ? 0.5F : 0.25F;
         if (r.nextFloat() < chance && b.isValidBonemealTarget(level, up, plant)) {

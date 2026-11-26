@@ -96,7 +96,8 @@ public final class CookingService {
         }
         // 牧場の上質な材料（高級肉・搾りたてミルク・金の卵）は品質が上がりやすい
         double premium = 0;
-        for (int slot : use) premium += com.chigusa.jsncraft.ranch.RanchIngredients.qualityBonus(be.items().getItem(slot));
+        for (int slot : use) premium += com.chigusa.jsncraft.ranch.RanchIngredients.qualityBonus(be.items().getItem(slot))
+                + com.chigusa.jsncraft.farming.CropRanks.qualityBonus(be.items().getItem(slot));
         // 材料と隠し味を使う（はちみつの瓶などの入れ物は返す）
         for (int slot : use) consume(be, slot, level, pos);
         ItemStack seasonStack = be.items().getItem(CookingStationBlockEntity.SEASONING);

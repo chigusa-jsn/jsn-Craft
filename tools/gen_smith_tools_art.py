@@ -1,6 +1,6 @@
 """鍛冶の追加アイテム（砥石・修理キット・当て板）と分解機のテクスチャを作る。"""
 from PIL import Image, ImageDraw
-import os, random
+import os, random, math
 ROOT = os.path.join(os.path.dirname(__file__), '..', 'src', 'main', 'resources', 'assets', 'jsn_craft', 'textures')
 
 def img():
@@ -309,3 +309,64 @@ def fallen():
     outline(im)
     return im
 fallen().save(os.path.join(ROOT, 'item', 'fallen_leaves.png'))
+
+# ---------------- 農家：巨大作物・交配台・豊穣の骨粉・黄金の食材 ----------------
+GIANT = {'wheat': 0xDCBE5A, 'carrot': 0xF08228, 'potato': 0xC8A05A, 'beetroot': 0x961E32,
+         'rice': 0xF0EBD2, 'tomato': 0xDC3228, 'cabbage': 0x82C85A, 'onion': 0xDCB478}
+os.makedirs(os.path.join(ROOT, 'block', 'giant'), exist_ok=True)
+for name, col in GIANT.items():
+    r = random.Random(hash(name) & 0xFFFF)
+    c = hexc(col)
+    body = Image.new('RGBA', (16, 16))
+    for y in range(16):
+        for x in range(16):
+            v = r.randint(-14, 14) + int(12 * math.cos((x - 8) / 5.0)) - int(y * 0.8)
+            body.putpixel((x, y), tuple(max(0, min(255, ch + v)) for ch in c[:3]) + (255,))
+    if name in ('wheat', 'rice'):
+        for x in range(0, 16, 3):
+            for y in range(16):
+                if (y + x) % 4 == 0: body.putpixel((x, y), shade(c, -40))
+    if name == 'cabbage':
+        for i in range(0, 16, 4): ImageDraw.Draw(body).arc([i - 6, 2, i + 6, 14], 200, 340, fill=shade(c, -45))
+    body.putpixel((4, 4), shade(c, 60)); body.putpixel((5, 4), shade(c, 50))
+    body.save(os.path.join(ROOT, 'block', 'giant', name + '.png'))
+    leaf = Image.new('RGBA', (16, 16), (0, 0, 0, 0)); dl = ImageDraw.Draw(leaf)
+    lc = (220, 200, 120, 255) if name in ('wheat', 'rice') else (70, 150, 50, 255)
+    for i in range(5):
+        x = 2 + i * 3
+        dl.line([x, 15, x + r.randint(-2, 2), r.randint(1, 5)], fill=lc, width=2)
+    leaf.save(os.path.join(ROOT, 'block', 'giant', name + '_top.png'))
+
+def xb_tex():
+    side = wood_noise((140, 110, 70), 41); rect(side, 0, 0, 15, 2, (90, 140, 60, 255))
+    top = wood_noise((150, 120, 75), 42); rect(top, 2, 2, 13, 13, (100, 75, 45, 255)); rect(top, 3, 3, 12, 12, (90, 150, 60, 255))
+    for (x, y) in ((5, 6), (10, 6), (7, 10), (9, 9)): top.putpixel((x, y), (240, 220, 120, 255))
+    side.save(os.path.join(ROOT, 'block', 'crossbreed_table_side.png')); top.save(os.path.join(ROOT, 'block', 'crossbreed_table_top.png'))
+xb_tex()
+
+def dust(col, sparkle_col):
+    im = img(); r = random.Random(col)
+    for _ in range(46):
+        x, y = int(8 + r.gauss(0, 2.6)), int(9 + r.gauss(0, 2.2))
+        if 1 <= x <= 14 and 2 <= y <= 14: im.putpixel((x, y), hexc(col) if r.random() < 0.7 else shade(hexc(col), -40))
+    for _ in range(5): im.putpixel((r.randint(4, 12), r.randint(4, 12)), hexc(sparkle_col))
+    outline(im, (60, 60, 60, 255))
+    return im
+dust(0xF0F0D8, 0x80FF80).save(os.path.join(ROOT, 'item', 'fertile_bone_meal.png'))
+os.makedirs(os.path.join(ROOT, 'item', 'golden'), exist_ok=True)
+def golden_icon(kind):
+    im = img(); d = ImageDraw.Draw(im); g = (245, 200, 60, 255); gl = (255, 240, 160, 255); gd = (190, 140, 30, 255)
+    if kind == 'rice':
+        for (x, y) in ((5, 6), (8, 5), (11, 7), (6, 10), (9, 9), (12, 11), (7, 13), (10, 12)):
+            d.ellipse([x - 1, y - 2, x + 1, y + 1], fill=g, outline=gd); im.putpixel((x, y - 1), gl)
+    elif kind == 'wheat':
+        d.line([4, 14, 11, 3], fill=gd, width=1)
+        for i in range(5): d.ellipse([5 + i, 9 - i * 1.5 - 1, 8 + i, 9 - i * 1.5 + 1], fill=g)
+    elif kind == 'potato':
+        d.ellipse([3, 5, 13, 13], fill=g, outline=gd); im.putpixel((6, 8), gd); im.putpixel((10, 10), gd); im.putpixel((5, 7), gl)
+    else:
+        d.ellipse([3, 4, 13, 14], fill=g, outline=gd); d.line([6, 4, 10, 4], fill=(90, 160, 60, 255)); im.putpixel((8, 3), (90, 160, 60, 255)); im.putpixel((5, 7), gl)
+    outline(im)
+    return im
+for k in ('rice', 'wheat', 'potato', 'tomato'):
+    golden_icon(k).save(os.path.join(ROOT, 'item', 'golden', f'golden_{k}.png'))

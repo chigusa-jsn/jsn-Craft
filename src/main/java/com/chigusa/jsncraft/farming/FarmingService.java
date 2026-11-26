@@ -201,6 +201,8 @@ public final class FarmingService {
             level.destroyBlock(pos, false, player);
         }
         bonus(player, st, drops);
+        int rank = CropRanks.apply(level, pos, st, drops, player);
+        CropRanks.set(level, pos, again != null ? rank : 1);   // 植え直したら同じランクから
         for (ItemStack s : drops) if (!s.isEmpty()) Block.popResource(level, pos, s);
         onHarvested(player, level, pos, st);
         return true;

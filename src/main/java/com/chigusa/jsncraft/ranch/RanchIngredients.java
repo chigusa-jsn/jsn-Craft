@@ -14,7 +14,11 @@ public final class RanchIngredients {
             JsnCraft.id("premium_mutton"), ResourceLocation.withDefaultNamespace("mutton"),
             JsnCraft.id("premium_chicken"), ResourceLocation.withDefaultNamespace("chicken"),
             JsnCraft.id("fresh_milk"), ResourceLocation.withDefaultNamespace("milk_bucket"),
-            JsnCraft.id("golden_egg"), ResourceLocation.withDefaultNamespace("egg"));
+            JsnCraft.id("golden_egg"), ResourceLocation.withDefaultNamespace("egg"),
+            JsnCraft.id("golden_rice"), JsnCraft.id("rice"),
+            JsnCraft.id("golden_wheat"), ResourceLocation.withDefaultNamespace("wheat"),
+            JsnCraft.id("golden_potato"), ResourceLocation.withDefaultNamespace("potato"),
+            JsnCraft.id("golden_tomato"), JsnCraft.id("tomato"));
 
     /** この材料が代わりになる、ふつうの材料（なければ null） */
     public static ResourceLocation substituteFor(ResourceLocation id) {

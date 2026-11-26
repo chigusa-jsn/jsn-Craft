@@ -90,6 +90,7 @@ public final class ModSmithing {
         com.chigusa.jsncraft.airship.ModAirships.init();
         com.chigusa.jsncraft.furnace.ModFurnaces.init();
         com.chigusa.jsncraft.forestry.ModForestry.init();
+        com.chigusa.jsncraft.farming.ModFarming.init();
     }
 
     private ModSmithing() {}
