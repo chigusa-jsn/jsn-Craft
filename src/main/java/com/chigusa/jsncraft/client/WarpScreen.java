@@ -2,7 +2,6 @@ package com.chigusa.jsncraft.client;
 
 import com.chigusa.jsncraft.warp.WarpGoPayload;
 import com.chigusa.jsncraft.warp.WarpListPayload;
-import com.chigusa.jsncraft.warp.Warps;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -67,7 +66,7 @@ public class WarpScreen extends Screen {
             g.fill(x, y, x + W - 12, y + ROW - 2, hover ? 0xFF3A7090 : 0xFF244A60);
             g.fill(x, y, x + 3, y + ROW - 2, dimColor(e.dim()));
             g.drawString(font, e.name(), x + 7, y + 2, 0xFFFFFFFF, false);
-            String sub = Warps.dimName(e.dim()) + "  (" + e.x() + ", " + e.y() + ", " + e.z() + ")" + (e.dim().equals(data.here()) ? "" : "  ※別のディメンション");
+            String sub = e.label() + "  (" + e.x() + ", " + e.y() + ", " + e.z() + ")" + (e.dim().equals(data.here()) ? "" : "  ※別のディメンション");
             g.drawString(font, sub, x + 7, y + 11, 0xFF9AB8C8, false);
             String cost = e.cost() > 0 ? "使用料 " + e.cost() : "無料";
             g.drawString(font, cost, x + W - 16 - font.width(cost), y + 2, e.cost() > 0 ? 0xFFFFD060 : 0xFF80E080, false);

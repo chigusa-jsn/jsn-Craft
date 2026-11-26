@@ -56,6 +56,8 @@ public final class WarpData extends SavedData {
     }
 
     public final List<Point> points = new ArrayList<>();
+    /** ディメンションの表示名（OPが決める）：ID → 名前 */
+    public final java.util.Map<String, String> dimNames = new java.util.LinkedHashMap<>();
 
     public static WarpData get(MinecraftServer server) {
         return server.overworld().getDataStorage().computeIfAbsent(new SavedData.Factory<>(WarpData::new, WarpData::load), "jsn_craft_warps");
@@ -64,6 +66,8 @@ public final class WarpData extends SavedData {
     static WarpData load(CompoundTag t, HolderLookup.Provider reg) {
         WarpData d = new WarpData();
         for (Tag e : t.getList("points", Tag.TAG_COMPOUND)) d.points.add(Point.load((CompoundTag) e));
+        CompoundTag names = t.getCompound("dim_names");
+        for (String k : names.getAllKeys()) d.dimNames.put(k, names.getString(k));
         return d;
     }
 
@@ -72,6 +76,9 @@ public final class WarpData extends SavedData {
         ListTag l = new ListTag();
         for (Point p : points) l.add(p.save());
         t.put("points", l);
+        CompoundTag names = new CompoundTag();
+        dimNames.forEach(names::putString);
+        t.put("dim_names", names);
         return t;
     }
 

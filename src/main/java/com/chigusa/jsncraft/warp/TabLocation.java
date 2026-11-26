@@ -36,7 +36,7 @@ public final class TabLocation {
                 best = pt.name;
             }
         }
-        String dimName = Warps.dimName(dim);
+        String dimName = Warps.dimLabel(p.server, dim);
         return best != null ? (dim.equals("minecraft:overworld") ? best : dimName + "・" + best) : dimName;
     }
 
@@ -56,6 +56,14 @@ public final class TabLocation {
         if (w.equals(LAST.get(p.getUUID()))) return;
         LAST.put(p.getUUID(), w);
         p.refreshTabListName();
+    }
+
+    /** 表示名を変えたとき、みんなの一覧をすぐ書きかえる */
+    public static void refreshAll(net.minecraft.server.MinecraftServer server) {
+        for (ServerPlayer p : server.getPlayerList().getPlayers()) {
+            LAST.put(p.getUUID(), where(p));
+            p.refreshTabListName();
+        }
     }
 
     @SubscribeEvent

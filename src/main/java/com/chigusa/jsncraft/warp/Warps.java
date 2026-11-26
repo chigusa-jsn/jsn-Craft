@@ -42,6 +42,12 @@ public final class Warps {
         Monuments.init();
     }
 
+    /** 表示名：OPが決めた名前があればそれ、なければふつうの名前 */
+    public static String dimLabel(net.minecraft.server.MinecraftServer server, String dim) {
+        String n = WarpData.get(server).dimNames.get(dim);
+        return n != null ? n : dimName(dim);
+    }
+
     public static String dimName(String dim) {
         return switch (dim) {
             case "minecraft:overworld" -> "地上";
@@ -137,7 +143,7 @@ public final class Warps {
                     pt.z = p.getZ();
                     pt.yaw = p.getYRot();
                     data.setDirty();
-                    return msg(ctx.getSource(), (isNew ? "ワープ地点「" : "ワープ地点「") + n + "」を" + (isNew ? "登録した" : "今の場所に動かした") + "（" + dimName(pt.dim) + "）");
+                    return msg(ctx.getSource(), (isNew ? "ワープ地点「" : "ワープ地点「") + n + "」を" + (isNew ? "登録した" : "今の場所に動かした") + "（" + dimLabel(ctx.getSource().getServer(), pt.dim) + "）");
                 })))
                 .then(Commands.literal("rename").then(Commands.argument("name", StringArgumentType.string())
                         .suggests((ctx, b) -> SharedSuggestionProvider.suggest(WarpData.get(ctx.getSource().getServer()).points.stream()
@@ -176,11 +182,38 @@ public final class Warps {
                         .suggests((ctx, b) -> SharedSuggestionProvider.suggest(WarpData.get(ctx.getSource().getServer()).points.stream()
                                 .map(pt -> StringArgumentType.escapeIfRequired(pt.name)), b))
                         .executes(ctx -> move(ctx.getSource(), StringArgumentType.getString(ctx, "name"), 1))))
+                .then(Commands.literal("dimname")
+                        .then(Commands.argument("dimension", net.minecraft.commands.arguments.DimensionArgument.dimension())
+                                .then(Commands.literal("reset").executes(ctx -> {
+                                    String dim = net.minecraft.commands.arguments.DimensionArgument.getDimension(ctx, "dimension").dimension().location().toString();
+                                    WarpData data = WarpData.get(ctx.getSource().getServer());
+                                    data.dimNames.remove(dim);
+                                    data.setDirty();
+                                    TabLocation.refreshAll(ctx.getSource().getServer());
+                                    return msg(ctx.getSource(), dim + " の表示名をもとにもどした（" + dimName(dim) + "）");
+                                }))
+                                .then(Commands.argument("label", StringArgumentType.greedyString()).executes(ctx -> {
+                                    String dim = net.minecraft.commands.arguments.DimensionArgument.getDimension(ctx, "dimension").dimension().location().toString();
+                                    String label = StringArgumentType.getString(ctx, "label");
+                                    WarpData data = WarpData.get(ctx.getSource().getServer());
+                                    data.dimNames.put(dim, label);
+                                    data.setDirty();
+                                    TabLocation.refreshAll(ctx.getSource().getServer());
+                                    return msg(ctx.getSource(), dim + " の表示名を「" + label + "」にした");
+                                })))
+                        .executes(ctx -> {
+                            var server = ctx.getSource().getServer();
+                            for (var lvl : server.getAllLevels()) {
+                                String dim = lvl.dimension().location().toString();
+                                msg(ctx.getSource(), "・" + dim + " → " + dimLabel(server, dim));
+                            }
+                            return 1;
+                        }))
                 .then(Commands.literal("list").executes(ctx -> {
                     WarpData data = WarpData.get(ctx.getSource().getServer());
                     if (data.points.isEmpty()) return msg(ctx.getSource(), "ワープ地点はまだない（/warp add 名前）");
                     for (WarpData.Point pt : data.points)
-                        msg(ctx.getSource(), "・" + pt.name + "  " + dimName(pt.dim) + " (" + (int) pt.x + ", " + (int) pt.y + ", " + (int) pt.z + ")" + (pt.cost > 0 ? "  使用料 " + pt.cost : ""));
+                        msg(ctx.getSource(), "・" + pt.name + "  " + dimLabel(ctx.getSource().getServer(), pt.dim) + " (" + (int) pt.x + ", " + (int) pt.y + ", " + (int) pt.z + ")" + (pt.cost > 0 ? "  使用料 " + pt.cost : ""));
                     return 1;
                 })));
     }
