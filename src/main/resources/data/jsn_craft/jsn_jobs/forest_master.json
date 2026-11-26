@@ -61,8 +61,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:forest_master/forest_breath",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:forest_master/guardian_grove",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:forest_master/forest_bounty",
+      "level": 50
     },
     {
       "skill": "jsn_craft:forest_master/tree_spirit",

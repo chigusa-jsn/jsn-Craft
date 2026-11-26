@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "料理長の大盛り"
+  },
+  "description": {
+    "text": "料理を作ると、10%の確率で3倍の量ができる。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_chef/triple_dish",
+  "type": "passive",
+  "effect": "upper_triple_dish",
+  "chance": 0.1,
+  "item_icon": "minecraft:bowl"
+}

@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "血の狂宴"
+  },
+  "description": {
+    "text": "10秒間、攻撃速度+25%。斧で与えたダメージの15%だけHPが回復する。"
+  },
+  "icon": "jsn_craft:skill_icon/berserker/blood_feast",
+  "type": "active",
+  "effect": "upper_blood_feast",
+  "stamina": 35,
+  "cooldown": 40,
+  "power": 0.15,
+  "duration": 10,
+  "item_icon": "minecraft:redstone_block"
+}

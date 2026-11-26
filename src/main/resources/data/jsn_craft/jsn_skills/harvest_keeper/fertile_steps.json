@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "実りの足跡"
+  },
+  "description": {
+    "text": "歩いている周り（4ブロック）の作物が、毎秒ときどき育つ。"
+  },
+  "icon": "jsn_craft:skill_icon/harvest_keeper/fertile_steps",
+  "type": "passive",
+  "effect": "upper_fertile_steps",
+  "radius": 4,
+  "amplifier": 6,
+  "item_icon": "minecraft:bone_meal"
+}

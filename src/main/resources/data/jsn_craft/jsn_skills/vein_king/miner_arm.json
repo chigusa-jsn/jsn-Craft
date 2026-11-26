@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "鉱夫の剛腕"
+  },
+  "description": {
+    "text": "いつも掘る速さ+25%・採掘の幸運+20%。"
+  },
+  "icon": "jsn_craft:skill_icon/vein_king/miner_arm",
+  "type": "passive",
+  "effect": "stat",
+  "target": "minecraft:player.block_break_speed*0.25|jsn_craft:mining_fortune=0.2",
+  "item_icon": "minecraft:diamond_pickaxe"
+}

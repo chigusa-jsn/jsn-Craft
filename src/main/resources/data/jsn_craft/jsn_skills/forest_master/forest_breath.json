@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "森の息吹"
+  },
+  "description": {
+    "text": "いつも最大HP+4・HP回復+0.3/秒。"
+  },
+  "icon": "jsn_craft:skill_icon/forest_master/forest_breath",
+  "type": "passive",
+  "effect": "stat",
+  "target": "minecraft:generic.max_health=4|jsn_craft:hp_regen=0.3",
+  "item_icon": "minecraft:oak_sapling"
+}

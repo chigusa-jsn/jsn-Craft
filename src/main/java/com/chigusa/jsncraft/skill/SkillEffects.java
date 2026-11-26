@@ -49,6 +49,7 @@ public final class SkillEffects {
         if (s.effect().startsWith("mage_")) return com.chigusa.jsncraft.magic.MageSpells.cast(player, s);
         if (s.effect().startsWith("spirit_")) return com.chigusa.jsncraft.magic.SpiritSpells.cast(player, s);
         if (s.effect().startsWith("holy_")) return com.chigusa.jsncraft.magic.HolySpells.cast(player, s);
+        if (s.effect().startsWith("upper_")) return com.chigusa.jsncraft.combat.UpperSkills.cast(player, s);
         if (s.effect().startsWith("axe_")) return com.chigusa.jsncraft.combat.AxeSkills.cast(player, s);
         if (s.effect().startsWith("bow_")) return com.chigusa.jsncraft.combat.BowSkills.cast(player, s);
         if (s.effect().startsWith("guard_")) return com.chigusa.jsncraft.combat.GuardSkills.cast(player, s);

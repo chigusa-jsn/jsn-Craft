@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "潮の加護"
+  },
+  "description": {
+    "text": "水の中か雨の中にいると、攻撃力+20%・移動速度+15%。"
+  },
+  "icon": "jsn_craft:skill_icon/sea_lancer/sea_grace",
+  "type": "passive",
+  "effect": "upper_sea_grace",
+  "power": 0.2,
+  "bonus": 0.15,
+  "item_icon": "minecraft:prismarine_crystals"
+}

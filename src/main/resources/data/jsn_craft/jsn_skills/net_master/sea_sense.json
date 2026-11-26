@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "海の勘"
+  },
+  "description": {
+    "text": "いつも魚のかかる速さ+25%・お宝の確率+5%。"
+  },
+  "icon": "jsn_craft:skill_icon/net_master/sea_sense",
+  "type": "passive",
+  "effect": "stat",
+  "target": "jsn_craft:fishing_bite=0.25|jsn_craft:fishing_treasure=0.05",
+  "item_icon": "minecraft:fishing_rod"
+}

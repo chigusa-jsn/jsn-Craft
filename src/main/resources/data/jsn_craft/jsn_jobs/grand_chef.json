@@ -26,8 +26,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:grand_chef/gourmet_body",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:grand_chef/supreme_dish",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:grand_chef/triple_dish",
+      "level": 50
     },
     {
       "skill": "jsn_craft:grand_chef/divine_kitchen",

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "宝石の鉱脈"
+  },
+  "description": {
+    "text": "鉱石を掘ると、3%の確率で宝石の原石（細工師の素材）も出る。"
+  },
+  "icon": "jsn_craft:skill_icon/vein_king/gem_vein",
+  "type": "passive",
+  "effect": "upper_gem_vein",
+  "chance": 0.03,
+  "item_icon": "minecraft:amethyst_cluster"
+}

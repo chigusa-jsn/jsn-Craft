@@ -179,7 +179,9 @@ public class MachineBlockEntity extends BlockEntity {
         int n = out.getCount();
         double sf = kind == MachineKind.COKE_OVEN ? stoneFactor(in) : 0;
         if (bonusApplies(kind, in)) {
-            double total = n * kind.bonus(be.jobLevel) * (sf > 0 ? sf : 1) * (kind == MachineKind.BIG_FURNACE && isSand(in) ? 1.5 : 1);
+            ServerPlayer ownerP = be.owner == null ? null : sl.getServer().getPlayerList().getPlayer(be.owner);
+            var mf = kind == MachineKind.BIG_FURNACE && ownerP != null ? com.chigusa.jsncraft.skill.SkillService.passive(ownerP, "upper_master_furnace") : null;
+            double total = (mf != null ? 1 + mf.power() : 1) * n * kind.bonus(be.jobLevel) * (sf > 0 ? sf : 1) * (kind == MachineKind.BIG_FURNACE && isSand(in) ? 1.5 : 1);
             n = (int) Math.floor(total);
             if (lv.random.nextDouble() < total - n) n++;
         }

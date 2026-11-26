@@ -31,8 +31,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:grand_gadabout/treasure_nose",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:grand_gadabout/house_favorite",
       "level": 30
+    },
+    {
+      "skill": "jsn_craft:grand_gadabout/grand_aura",
+      "level": 40
     },
     {
       "skill": "jsn_craft:grand_gadabout/big_lottery",

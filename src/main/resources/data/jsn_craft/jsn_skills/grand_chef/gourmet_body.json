@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "美食家の体"
+  },
+  "description": {
+    "text": "いつも最大HP+6・最大スタミナ+30。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_chef/gourmet_body",
+  "type": "passive",
+  "effect": "stat",
+  "target": "minecraft:generic.max_health=6|jsn_craft:max_stamina=30",
+  "item_icon": "minecraft:cake"
+}

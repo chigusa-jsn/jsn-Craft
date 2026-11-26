@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "影渡り"
+  },
+  "description": {
+    "text": "短剣で敵を倒すと、2秒間 姿が消えて移動速度+30%。次の一撃は2倍。"
+  },
+  "icon": "jsn_craft:skill_icon/reaper/shadow_step",
+  "type": "passive",
+  "effect": "upper_shadow_step",
+  "power": 0.3,
+  "duration": 2,
+  "item_icon": "minecraft:ender_eye"
+}

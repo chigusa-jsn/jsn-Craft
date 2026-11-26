@@ -214,6 +214,17 @@ public final class FishingService {
         for (int t = 0; t < times; t++) {
             for (ItemStack stack : s.drops()) give(player, stack.copy());
         }
+        SkillDefinition jackpot = SkillService.passive(player, "upper_sea_jackpot");
+        if (jackpot != null && s.kind() != Kind.JUNK && r.nextDouble() < jackpot.chance()) {
+            ItemStack prize = switch (r.nextInt(4)) {
+                case 0 -> new ItemStack(net.minecraft.world.item.Items.DIAMOND);
+                case 1 -> new ItemStack(net.minecraft.world.item.Items.EMERALD, 2 + r.nextInt(3));
+                case 2 -> new ItemStack(net.minecraft.world.item.Items.NAUTILUS_SHELL);
+                default -> new ItemStack(com.chigusa.jsncraft.jewelry.ModJewelry.RAW_GEMS.get(r.nextInt(com.chigusa.jsncraft.jewelry.ModJewelry.RAW_GEMS.size())).get());
+            };
+            give(player, prize);
+            player.displayClientMessage(Component.literal("海の宝！ ").withStyle(ChatFormatting.GOLD).append(prize.getHoverName()), false);
+        }
         int orbs = s.kind() == Kind.LORD ? 40 : s.kind() == Kind.TREASURE ? 8 : 1 + r.nextInt(6);
         level.addFreshEntity(new ExperienceOrb(level, player.getX(), player.getY() + 0.5, player.getZ(), orbs));
         if (main.is(ItemTags.FISHES) || main.is(RAW_FISH)) player.awardStat(Stats.FISH_CAUGHT, times);

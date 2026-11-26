@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "大物の風格"
+  },
+  "description": {
+    "text": "いつも幸運+3・移動速度+10%。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/grand_aura",
+  "type": "passive",
+  "effect": "stat",
+  "target": "minecraft:generic.luck=3|minecraft:generic.movement_speed*0.1",
+  "item_icon": "minecraft:gold_block"
+}

@@ -26,8 +26,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:master_smith/forged_body",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:master_smith/soul_forge",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:master_smith/master_furnace",
+      "level": 50
     },
     {
       "skill": "jsn_craft:master_smith/divine_forge",

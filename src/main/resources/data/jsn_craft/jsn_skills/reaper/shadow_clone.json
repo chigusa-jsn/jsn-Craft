@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "影分身"
+  },
+  "description": {
+    "text": "10秒間、短剣の攻撃のあとに影がもう一度斬る（ダメージの60%）。"
+  },
+  "icon": "jsn_craft:skill_icon/reaper/shadow_clone",
+  "type": "active",
+  "effect": "upper_shadow_clone",
+  "stamina": 35,
+  "cooldown": 40,
+  "power": 0.6,
+  "duration": 10,
+  "item_icon": "minecraft:black_dye"
+}

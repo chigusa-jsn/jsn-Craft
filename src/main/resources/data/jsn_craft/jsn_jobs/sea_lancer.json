@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:sea_lancer/sea_grace",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:sea_lancer/maelstrom",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:sea_lancer/thunder_tide",
+      "level": 50
     },
     {
       "skill": "jsn_craft:sea_lancer/poseidon",

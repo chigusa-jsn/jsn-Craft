@@ -115,10 +115,13 @@ public final class SelectEnchant {
             p.displayClientMessage(Component.literal(why).withStyle(ChatFormatting.RED), true);
             return false;
         }
-        if (!p.getAbilities().instabuild) {
+        var thrift = com.chigusa.jsncraft.skill.SkillService.passive(p, "upper_rune_thrift");
+        boolean free = thrift != null && p.getRandom().nextDouble() < thrift.chance();
+        if (!p.getAbilities().instabuild && !free) {
             p.giveExperienceLevels(-xp);
             be.items().getItem(1).shrink(lapis);
         }
+        if (free) p.displayClientMessage(Component.literal("神紋の節約：経験値とラピスを使わなかった！").withStyle(ChatFormatting.AQUA), false);
         if (stack.is(Items.BOOK)) {
             ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
             book.enchant(ench, level);

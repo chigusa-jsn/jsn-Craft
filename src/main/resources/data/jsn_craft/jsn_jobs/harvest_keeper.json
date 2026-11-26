@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:harvest_keeper/earth_grace",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:harvest_keeper/harvest_ward",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:harvest_keeper/fertile_steps",
+      "level": 50
     },
     {
       "skill": "jsn_craft:harvest_keeper/harvest_miracle",

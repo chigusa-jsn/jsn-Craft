@@ -3661,8 +3661,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:sword_saint/azure_edge",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:sword_saint/thousand_blades",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:sword_saint/still_water",
+      "level": 50
     },
     {
       "skill": "jsn_craft:sword_saint/azure_moon",

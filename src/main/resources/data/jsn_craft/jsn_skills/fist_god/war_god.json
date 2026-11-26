@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "闘神降臨"
+  },
+  "description": {
+    "text": "12秒間、ノックバックしなくなり、素手の攻撃が衝撃波になる（周り2.5ブロックの敵にも60%）。"
+  },
+  "icon": "jsn_craft:skill_icon/fist_god/war_god",
+  "type": "active",
+  "effect": "upper_war_god",
+  "stamina": 40,
+  "cooldown": 45,
+  "power": 0.6,
+  "duration": 12,
+  "item_icon": "minecraft:nether_star"
+}

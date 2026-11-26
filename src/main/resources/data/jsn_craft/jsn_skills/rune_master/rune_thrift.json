@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "神紋の節約"
+  },
+  "description": {
+    "text": "選べる付与台で付けるとき、50%の確率で経験値とラピスを使わない。"
+  },
+  "icon": "jsn_craft:skill_icon/rune_master/rune_thrift",
+  "type": "passive",
+  "effect": "upper_rune_thrift",
+  "chance": 0.5,
+  "item_icon": "minecraft:enchanted_book"
+}

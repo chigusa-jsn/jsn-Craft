@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "魔力の泉"
+  },
+  "description": {
+    "text": "いつも最大マナ+40・マナ回復+1/秒。"
+  },
+  "icon": "jsn_craft:skill_icon/rune_master/mana_spring",
+  "type": "passive",
+  "effect": "stat",
+  "target": "jsn_craft:max_mana=40|jsn_craft:mana_regen=1",
+  "item_icon": "minecraft:lapis_block"
+}

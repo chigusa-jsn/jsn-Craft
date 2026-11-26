@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "鉄壁の誓い"
+  },
+  "description": {
+    "text": "盾で防ぐたびに、自分と周り（8ブロック）の仲間のHPを2回復し、3秒間 攻撃力+15%。"
+  },
+  "icon": "jsn_craft:skill_icon/guardian_knight/iron_oath",
+  "type": "passive",
+  "effect": "upper_iron_oath",
+  "power": 2,
+  "bonus": 0.15,
+  "radius": 8,
+  "item_icon": "minecraft:shield"
+}

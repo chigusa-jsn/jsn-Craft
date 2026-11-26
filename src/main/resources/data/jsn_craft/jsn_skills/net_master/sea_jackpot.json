@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "海の宝"
+  },
+  "description": {
+    "text": "魚を釣ると、5%の確率でダイヤ・エメラルド・オウムガイの殻・宝石の原石のどれかも釣れる。"
+  },
+  "icon": "jsn_craft:skill_icon/net_master/sea_jackpot",
+  "type": "passive",
+  "effect": "upper_sea_jackpot",
+  "chance": 0.05,
+  "item_icon": "minecraft:nautilus_shell"
+}

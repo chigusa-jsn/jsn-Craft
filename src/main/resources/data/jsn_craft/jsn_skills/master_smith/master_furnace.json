@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "名工の炉"
+  },
+  "description": {
+    "text": "大きい炉で取れる量がさらに1.25倍になる（自分がスイッチを入れた炉）。"
+  },
+  "icon": "jsn_craft:skill_icon/master_smith/master_furnace",
+  "type": "passive",
+  "effect": "upper_master_furnace",
+  "power": 0.25,
+  "item_icon": "minecraft:blast_furnace"
+}

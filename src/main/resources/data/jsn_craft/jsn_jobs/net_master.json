@@ -66,8 +66,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:net_master/sea_sense",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:net_master/tide_blessing",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:net_master/sea_jackpot",
+      "level": 50
     },
     {
       "skill": "jsn_craft:net_master/sea_lord",

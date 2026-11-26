@@ -122,6 +122,11 @@ public final class CookingService {
         SkillDefinition dbl = SkillService.passive(player, "cook_double");
         boolean doubled = dbl != null && r.nextDouble() < dbl.chance();
         if (doubled) count *= 2;
+        SkillDefinition triple = SkillService.passive(player, "upper_triple_dish");
+        if (!doubled && triple != null && r.nextDouble() < triple.chance()) {
+            count *= 3;
+            player.displayClientMessage(Component.literal("料理長の大盛り！ 3倍できた").withStyle(ChatFormatting.GOLD), true);
+        }
         ItemStack result = buildResult(recipe, count, quality, buffs);
 
         // 調理時間

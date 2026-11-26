@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "鍛え抜いた体"
+  },
+  "description": {
+    "text": "いつも攻撃力+2・防御力+3。"
+  },
+  "icon": "jsn_craft:skill_icon/master_smith/forged_body",
+  "type": "passive",
+  "effect": "stat",
+  "target": "minecraft:generic.attack_damage=2|minecraft:generic.armor=3",
+  "item_icon": "minecraft:iron_chestplate"
+}

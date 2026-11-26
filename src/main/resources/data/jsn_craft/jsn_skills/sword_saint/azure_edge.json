@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "蒼天の太刀筋"
+  },
+  "description": {
+    "text": "剣で4回攻撃するごとに、前へ蒼い斬撃が飛ぶ（6ブロック・通り道の敵に攻撃力の0.8倍）。"
+  },
+  "icon": "jsn_craft:skill_icon/sword_saint/azure_edge",
+  "type": "passive",
+  "effect": "upper_azure_edge",
+  "power": 0.8,
+  "radius": 6,
+  "amplifier": 4,
+  "item_icon": "minecraft:prismarine_shard"
+}

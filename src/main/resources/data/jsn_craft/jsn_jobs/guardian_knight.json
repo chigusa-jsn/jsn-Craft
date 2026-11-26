@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:guardian_knight/iron_oath",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:guardian_knight/judgment",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:guardian_knight/fortress",
+      "level": 50
     },
     {
       "skill": "jsn_craft:guardian_knight/adamant",

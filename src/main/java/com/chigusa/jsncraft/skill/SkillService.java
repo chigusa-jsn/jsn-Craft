@@ -78,6 +78,22 @@ public final class SkillService {
         return null;
     }
 
+    /** 覚えているパッシブのうち、この効果のものを全部（スキルID → 中身） */
+    public static java.util.List<java.util.Map.Entry<ResourceLocation, SkillDefinition>> passives(ServerPlayer player, String effect) {
+        java.util.List<java.util.Map.Entry<ResourceLocation, SkillDefinition>> out = new java.util.ArrayList<>();
+        PlayerJobData jobs = JobService.data(player);
+        for (ResourceLocation jobId : SkillBoardService.allActiveBoards(jobs)) {
+            JobDefinition def = JobManager.INSTANCE.get(jobId);
+            if (def == null) continue;
+            for (JobDefinition.SkillUnlock u : def.skills()) {
+                if (jobs.level(jobId) < u.level()) continue;
+                SkillDefinition s = SkillManager.INSTANCE.get(u.skill());
+                if (s != null && !s.isActive() && s.effect().equals(effect)) out.add(java.util.Map.entry(u.skill(), s));
+            }
+        }
+        return out;
+    }
+
     /**
      * ボードの「技の強化」パネルと、待ち時間短縮・消費ST軽減を反映したスキルの中身。
      * 元の設定は変えずに、強化済みのコピーを返す。

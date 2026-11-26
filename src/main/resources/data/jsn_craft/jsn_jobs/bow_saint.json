@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:bow_saint/hawk_eye",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:bow_saint/meteor_arrow",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:bow_saint/starfall",
+      "level": 50
     },
     {
       "skill": "jsn_craft:bow_saint/sky_pierce",

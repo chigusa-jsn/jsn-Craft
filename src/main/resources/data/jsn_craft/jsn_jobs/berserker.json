@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:berserker/indomitable",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:berserker/frenzy",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:berserker/blood_feast",
+      "level": 50
     },
     {
       "skill": "jsn_craft:berserker/sky_breaker",

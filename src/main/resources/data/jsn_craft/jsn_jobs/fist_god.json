@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:fist_god/combo",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:fist_god/stomp",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:fist_god/war_god",
+      "level": 50
     },
     {
       "skill": "jsn_craft:fist_god/overlord",

@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "不落の城塞"
+  },
+  "description": {
+    "text": "8秒間、受けるダメージ-40%。周り（12ブロック）の敵をすべて自分に引きつける。"
+  },
+  "icon": "jsn_craft:skill_icon/guardian_knight/fortress",
+  "type": "active",
+  "effect": "upper_fortress",
+  "stamina": 40,
+  "cooldown": 50,
+  "power": 0.4,
+  "radius": 12,
+  "duration": 8,
+  "item_icon": "minecraft:netherite_block"
+}

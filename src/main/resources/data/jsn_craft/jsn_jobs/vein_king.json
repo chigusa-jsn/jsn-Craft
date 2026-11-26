@@ -86,8 +86,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:vein_king/miner_arm",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:vein_king/earth_pulse",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:vein_king/gem_vein",
+      "level": 50
     },
     {
       "skill": "jsn_craft:vein_king/rich_vein",

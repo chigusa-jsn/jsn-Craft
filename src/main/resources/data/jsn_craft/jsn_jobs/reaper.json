@@ -51,8 +51,16 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:reaper/shadow_step",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:reaper/death_mark",
       "level": 35
+    },
+    {
+      "skill": "jsn_craft:reaper/shadow_clone",
+      "level": 50
     },
     {
       "skill": "jsn_craft:reaper/netherworld",

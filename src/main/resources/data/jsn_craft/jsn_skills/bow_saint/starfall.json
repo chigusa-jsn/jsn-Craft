@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "星降りの矢"
+  },
+  "description": {
+    "text": "10秒間、矢が当たると光がはじけて、周り（2.5ブロック）の敵にも矢のダメージの半分。"
+  },
+  "icon": "jsn_craft:skill_icon/bow_saint/starfall",
+  "type": "active",
+  "effect": "upper_star_arrows",
+  "stamina": 35,
+  "cooldown": 40,
+  "power": 0.5,
+  "duration": 10,
+  "item_icon": "minecraft:firework_star"
+}

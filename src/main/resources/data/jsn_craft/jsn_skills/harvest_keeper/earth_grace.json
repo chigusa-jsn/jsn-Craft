@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "大地の恵み"
+  },
+  "description": {
+    "text": "いつも収穫の幸運+30%・幸運+1。"
+  },
+  "icon": "jsn_craft:skill_icon/harvest_keeper/earth_grace",
+  "type": "passive",
+  "effect": "stat",
+  "target": "jsn_craft:harvest_fortune=0.3|minecraft:generic.luck=1",
+  "item_icon": "minecraft:hay_block"
+}

@@ -1,0 +1,13 @@
+{
+  "name": {
+    "text": "宝探しの鼻"
+  },
+  "description": {
+    "text": "モンスターを倒すと、3%の確率でエメラルドを1〜3個見つける。"
+  },
+  "icon": "jsn_craft:skill_icon/grand_gadabout/treasure_nose",
+  "type": "passive",
+  "effect": "upper_treasure_nose",
+  "chance": 0.03,
+  "item_icon": "minecraft:emerald"
+}

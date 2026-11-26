@@ -26,12 +26,20 @@
       "level": 10
     },
     {
+      "skill": "jsn_craft:rune_master/mana_spring",
+      "level": 20
+    },
+    {
       "skill": "jsn_craft:rune_master/runic_aura",
       "level": 35
     },
     {
       "skill": "jsn_craft:rune_master/limit_master",
       "level": 40
+    },
+    {
+      "skill": "jsn_craft:rune_master/rune_thrift",
+      "level": 50
     },
     {
       "skill": "jsn_craft:rune_master/divine_inscription",

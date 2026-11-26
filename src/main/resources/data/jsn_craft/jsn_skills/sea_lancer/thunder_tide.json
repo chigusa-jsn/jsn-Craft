@@ -1,0 +1,16 @@
+{
+  "name": {
+    "text": "雷潮の槍"
+  },
+  "description": {
+    "text": "10秒間、槍の攻撃のたびに30%の確率で雷が落ちる（攻撃力の1.2倍）。"
+  },
+  "icon": "jsn_craft:skill_icon/sea_lancer/thunder_tide",
+  "type": "active",
+  "effect": "upper_thunder_tide",
+  "stamina": 35,
+  "cooldown": 40,
+  "power": 1.2,
+  "duration": 10,
+  "item_icon": "minecraft:lightning_rod"
+}

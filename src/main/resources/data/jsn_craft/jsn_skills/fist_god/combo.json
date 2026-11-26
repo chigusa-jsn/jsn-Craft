@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "連撃の極意"
+  },
+  "description": {
+    "text": "素手で殴り続けるほど強くなる。1回ごとに+5%（最大+40%）。2秒殴らないと元に戻る。"
+  },
+  "icon": "jsn_craft:skill_icon/fist_god/combo",
+  "type": "passive",
+  "effect": "upper_combo",
+  "power": 0.05,
+  "amplifier": 8,
+  "item_icon": "minecraft:blaze_powder"
+}

@@ -1,0 +1,15 @@
+{
+  "name": {
+    "text": "不屈の闘志"
+  },
+  "description": {
+    "text": "HPが30%以下のとき、与えるダメージ+25%・受けるダメージ-15%。"
+  },
+  "icon": "jsn_craft:skill_icon/berserker/indomitable",
+  "type": "passive",
+  "effect": "upper_indomitable",
+  "power": 0.25,
+  "bonus": 0.15,
+  "chance": 0.3,
+  "item_icon": "minecraft:totem_of_undying"
+}

@@ -1,0 +1,14 @@
+{
+  "name": {
+    "text": "森の恵み"
+  },
+  "description": {
+    "text": "原木を切ると、6%の確率でリンゴか棒、0.5%で金のリンゴが出る。"
+  },
+  "icon": "jsn_craft:skill_icon/forest_master/forest_bounty",
+  "type": "passive",
+  "effect": "upper_forest_bounty",
+  "chance": 0.06,
+  "bonus": 0.005,
+  "item_icon": "minecraft:golden_apple"
+}

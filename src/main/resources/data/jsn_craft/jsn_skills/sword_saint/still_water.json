@@ -1,0 +1,17 @@
+{
+  "name": {
+    "text": "明鏡止水"
+  },
+  "description": {
+    "text": "8秒間、会心率+30%・攻撃速度+20%。受ける攻撃を25%の確率で受け流す（ダメージなし）。"
+  },
+  "icon": "jsn_craft:skill_icon/sword_saint/still_water",
+  "type": "active",
+  "effect": "upper_still_water",
+  "stamina": 40,
+  "cooldown": 45,
+  "power": 0.3,
+  "chance": 0.25,
+  "duration": 8,
+  "item_icon": "minecraft:heart_of_the_sea"
+}
