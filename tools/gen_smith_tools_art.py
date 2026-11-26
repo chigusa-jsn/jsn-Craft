@@ -457,3 +457,21 @@ for kind in ('blank', 'reel', 'lure', 'float', 'line'):
 rt_side = wood_noise((110, 140, 170), 51); rect(rt_side, 0, 0, 15, 2, (70, 90, 120, 255))
 rt_top = wood_noise((140, 110, 75), 52); d_ = ImageDraw.Draw(rt_top); d_.line([(2, 13), (13, 2)], fill=(90, 60, 30, 255), width=2); d_.ellipse([4, 8, 7, 11], fill=(180, 185, 195, 255))
 rt_side.save(os.path.join(ROOT, 'block', 'rod_table_side.png')); rt_top.save(os.path.join(ROOT, 'block', 'rod_table_top.png'))
+
+# ---------------- 捕獲の杖・捕獲玉 ----------------
+def wand_icon():
+    im = img(); d = ImageDraw.Draw(im)
+    d.line([(2, 14), (10, 6)], fill=(120, 85, 50, 255), width=1); d.line([(3, 14), (11, 6)], fill=(90, 60, 35, 255), width=1)
+    d.ellipse([9, 1, 15, 7], fill=(120, 220, 160, 255), outline=(40, 120, 80, 255)); im.putpixel((11, 3), (240, 255, 240, 255))
+    d.arc([7, 0, 16, 9], 200, 340, fill=(240, 200, 80, 255))
+    outline(im)
+    return im
+def orb_icon():
+    im = img(); d = ImageDraw.Draw(im)
+    d.ellipse([2, 2, 13, 13], fill=(150, 230, 190, 255), outline=(40, 120, 80, 255))
+    d.chord([2, 2, 13, 13], 0, 180, fill=(240, 240, 240, 255), outline=(40, 120, 80, 255))
+    d.line([(2, 8), (13, 8)], fill=(40, 120, 80, 255)); d.ellipse([6, 6, 9, 9], fill=(255, 255, 255, 255), outline=(40, 120, 80, 255))
+    im.putpixel((5, 4), (255, 255, 255, 255))
+    outline(im)
+    return im
+wand_icon().save(os.path.join(ROOT, 'item', 'capture_wand.png')); orb_icon().save(os.path.join(ROOT, 'item', 'captured_animal.png'))

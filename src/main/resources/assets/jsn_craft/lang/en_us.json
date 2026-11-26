@@ -879,5 +879,7 @@
   "item.jsn_craft.rod_line_2": "Hemp Line",
   "item.jsn_craft.rod_line_3": "Wire Line",
   "item.jsn_craft.rod_line_4": "Magic Line",
-  "block.jsn_craft.rod_table": "Rod Workbench"
+  "block.jsn_craft.rod_table": "Rod Workbench",
+  "item.jsn_craft.capture_wand": "Capture Wand",
+  "item.jsn_craft.captured_animal": "Capture Orb"
 }

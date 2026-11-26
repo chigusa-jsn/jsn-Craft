@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    " EL",
+    " SE",
+    "S  "
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "L": {
+      "item": "minecraft:lead"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "jsn_craft:capture_wand",
+    "count": 1
+  }
+}

@@ -879,5 +879,7 @@
   "item.jsn_craft.rod_line_2": "麻のライン",
   "item.jsn_craft.rod_line_3": "鋼線のライン",
   "item.jsn_craft.rod_line_4": "魔法の糸",
-  "block.jsn_craft.rod_table": "釣り竿カスタム台"
+  "block.jsn_craft.rod_table": "釣り竿カスタム台",
+  "item.jsn_craft.capture_wand": "捕獲の杖",
+  "item.jsn_craft.captured_animal": "捕獲玉"
 }

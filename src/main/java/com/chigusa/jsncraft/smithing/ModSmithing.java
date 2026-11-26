@@ -92,6 +92,7 @@ public final class ModSmithing {
         com.chigusa.jsncraft.forestry.ModForestry.init();
         com.chigusa.jsncraft.farming.ModFarming.init();
         com.chigusa.jsncraft.tools.ModTools.init();
+        com.chigusa.jsncraft.capture.CaptureItems.init();
     }
 
     private ModSmithing() {}
