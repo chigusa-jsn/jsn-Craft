@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "jsn_craft:block/warp_stone_top",
-    "side": "jsn_craft:block/warp_stone_side"
-  }
-}

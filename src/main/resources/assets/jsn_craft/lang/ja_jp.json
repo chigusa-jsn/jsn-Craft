@@ -924,5 +924,7 @@
   "item.jsn_craft.orb_tweezers": "宝珠ばさみ",
   "block.jsn_craft.select_enchant_table": "選べる付与台",
   "item.jsn_craft.elixir_xp": "経験値の薬",
-  "block.jsn_craft.warp_stone": "ワープの石碑"
+  "block.jsn_craft.warp_monument": "ワープのモニュメント",
+  "item.jsn_craft.warp_monument": "ワープのモニュメント",
+  "item.jsn_craft.warp_crystal": "ワープのクリスタル"
 }

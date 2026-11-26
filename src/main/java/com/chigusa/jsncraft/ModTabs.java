@@ -127,7 +127,7 @@ public final class ModTabs {
             () -> new ItemStack(ModEnchanting.ALTAR_ITEM.get()), out -> {
                 out.accept(ModEnchanting.ALTAR_ITEM.get());
                 out.accept(com.chigusa.jsncraft.enchanting.SelectEnchant.TABLE_ITEM.get());
-                out.accept(com.chigusa.jsncraft.warp.Warps.STONE_ITEM.get());
+                out.accept(com.chigusa.jsncraft.warp.Monuments.ITEM.get());
                 out.accept(ModEnchanting.RUNE_BOOK.get());
             });
 

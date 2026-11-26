@@ -2,8 +2,6 @@ package com.chigusa.jsncraft.warp;
 
 import com.chigusa.jsncraft.JsnCraft;
 import com.chigusa.jsncraft.casino.Money;
-import com.chigusa.jsncraft.cooking.ModCooking;
-import com.chigusa.jsncraft.npc.ModEntities;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -21,40 +19,28 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 /**
- * ワープ地点：OPが /warp add で登録して、みんなはワープの石碑から選んで飛ぶ（ディメンションをまたいでもOK）。
- * 石碑はクラフトできない（クリエイティブ・OPだけ）。
+ * ワープ地点：OPが /warp add で登録して、みんなはワープのモニュメントから選んで飛ぶ（ディメンションをまたいでもOK）。
+ * モニュメントはクラフトできない（クリエイティブ・OPだけ）。
  */
 @EventBusSubscriber(modid = JsnCraft.MODID)
 public final class Warps {
-    public static final DeferredBlock<WarpStoneBlock> STONE = ModCooking.BLOCKS.register("warp_stone",
-            () -> new WarpStoneBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).strength(-1.0F, 3600000.0F)
-                    .sound(SoundType.STONE).lightLevel(s -> 12).noLootTable()));
-    public static final DeferredItem<BlockItem> STONE_ITEM = ModEntities.ITEMS.register("warp_stone",
-            () -> new BlockItem(STONE.get(), new Item.Properties().rarity(Rarity.EPIC)));
-
     private static final Map<UUID, Long> COOLDOWN = new HashMap<>();
     private static final int USE_RANGE = 6;
 
-    public static void init() {}
+    public static void init() {
+        Monuments.init();
+    }
 
     public static String dimName(String dim) {
         return switch (dim) {
@@ -65,11 +51,11 @@ public final class Warps {
         };
     }
 
-    /** 近くにワープの石碑があるか */
+    /** 近くにワープのモニュメントがあるか */
     private static boolean nearStone(ServerPlayer p) {
         BlockPos c = p.blockPosition();
         for (BlockPos b : BlockPos.betweenClosed(c.offset(-USE_RANGE, -3, -USE_RANGE), c.offset(USE_RANGE, 3, USE_RANGE)))
-            if (p.level().getBlockState(b).is(STONE.get())) return true;
+            if (p.level().getBlockState(b).is(Monuments.BLOCK.get())) return true;
         return false;
     }
 
@@ -82,7 +68,7 @@ public final class Warps {
         if (index < 0 || index >= d.points.size()) return;
         boolean op = p.hasPermissions(2);
         if (!op && !nearStone(p)) {
-            p.displayClientMessage(Component.literal("ワープの石碑の近くで使ってね").withStyle(ChatFormatting.RED), true);
+            p.displayClientMessage(Component.literal("ワープのモニュメントの近くで使ってね").withStyle(ChatFormatting.RED), true);
             return;
         }
         long now = p.level().getGameTime();
@@ -153,6 +139,19 @@ public final class Warps {
                     data.setDirty();
                     return msg(ctx.getSource(), (isNew ? "ワープ地点「" : "ワープ地点「") + n + "」を" + (isNew ? "登録した" : "今の場所に動かした") + "（" + dimName(pt.dim) + "）");
                 })))
+                .then(Commands.literal("rename").then(Commands.argument("name", StringArgumentType.string())
+                        .suggests((ctx, b) -> SharedSuggestionProvider.suggest(WarpData.get(ctx.getSource().getServer()).points.stream()
+                                .map(pt -> StringArgumentType.escapeIfRequired(pt.name)), b))
+                        .then(Commands.argument("new", StringArgumentType.string()).executes(ctx -> {
+                            String n = StringArgumentType.getString(ctx, "name"), nn = StringArgumentType.getString(ctx, "new");
+                            WarpData data = WarpData.get(ctx.getSource().getServer());
+                            WarpData.Point pt = data.find(n);
+                            if (pt == null) return msg(ctx.getSource(), "「" + n + "」は見つからない");
+                            if (data.find(nn) != null) return msg(ctx.getSource(), "「" + nn + "」はもうある");
+                            pt.name = nn;
+                            data.setDirty();
+                            return msg(ctx.getSource(), "「" + n + "」を「" + nn + "」に変えた");
+                        }))))
                 .then(Commands.literal("remove").then(name.executes(ctx -> {
                     String n = StringArgumentType.getString(ctx, "name");
                     WarpData data = WarpData.get(ctx.getSource().getServer());

@@ -18,6 +18,9 @@ public final class WarpData extends SavedData {
         public double x, y, z;
         public float yaw;
         public int cost;
+        /** モニュメントで作った地点なら、その真ん中の場所 */
+        public boolean monument;
+        public int mx, my, mz;
 
         CompoundTag save() {
             CompoundTag t = new CompoundTag();
@@ -28,6 +31,10 @@ public final class WarpData extends SavedData {
             t.putDouble("z", z);
             t.putFloat("yaw", yaw);
             t.putInt("cost", cost);
+            t.putBoolean("monument", monument);
+            t.putInt("mx", mx);
+            t.putInt("my", my);
+            t.putInt("mz", mz);
             return t;
         }
 
@@ -40,6 +47,10 @@ public final class WarpData extends SavedData {
             p.z = t.getDouble("z");
             p.yaw = t.getFloat("yaw");
             p.cost = t.getInt("cost");
+            p.monument = t.getBoolean("monument");
+            p.mx = t.getInt("mx");
+            p.my = t.getInt("my");
+            p.mz = t.getInt("mz");
             return p;
         }
     }

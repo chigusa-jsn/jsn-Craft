@@ -1,0 +1,72 @@
+{
+  "variants": {
+    "facing=north,part=center": {
+      "model": "jsn_craft:block/warp_monument_center"
+    },
+    "facing=north,part=pillar": {
+      "model": "jsn_craft:block/warp_monument_pillar"
+    },
+    "facing=north,part=top": {
+      "model": "jsn_craft:block/warp_monument_top"
+    },
+    "facing=north,part=edge": {
+      "model": "jsn_craft:block/warp_monument_edge",
+      "y": 0
+    },
+    "facing=north,part=corner": {
+      "model": "jsn_craft:block/warp_monument_corner",
+      "y": 0
+    },
+    "facing=east,part=center": {
+      "model": "jsn_craft:block/warp_monument_center"
+    },
+    "facing=east,part=pillar": {
+      "model": "jsn_craft:block/warp_monument_pillar"
+    },
+    "facing=east,part=top": {
+      "model": "jsn_craft:block/warp_monument_top"
+    },
+    "facing=east,part=edge": {
+      "model": "jsn_craft:block/warp_monument_edge",
+      "y": 90
+    },
+    "facing=east,part=corner": {
+      "model": "jsn_craft:block/warp_monument_corner",
+      "y": 90
+    },
+    "facing=south,part=center": {
+      "model": "jsn_craft:block/warp_monument_center"
+    },
+    "facing=south,part=pillar": {
+      "model": "jsn_craft:block/warp_monument_pillar"
+    },
+    "facing=south,part=top": {
+      "model": "jsn_craft:block/warp_monument_top"
+    },
+    "facing=south,part=edge": {
+      "model": "jsn_craft:block/warp_monument_edge",
+      "y": 180
+    },
+    "facing=south,part=corner": {
+      "model": "jsn_craft:block/warp_monument_corner",
+      "y": 180
+    },
+    "facing=west,part=center": {
+      "model": "jsn_craft:block/warp_monument_center"
+    },
+    "facing=west,part=pillar": {
+      "model": "jsn_craft:block/warp_monument_pillar"
+    },
+    "facing=west,part=top": {
+      "model": "jsn_craft:block/warp_monument_top"
+    },
+    "facing=west,part=edge": {
+      "model": "jsn_craft:block/warp_monument_edge",
+      "y": 270
+    },
+    "facing=west,part=corner": {
+      "model": "jsn_craft:block/warp_monument_corner",
+      "y": 270
+    }
+  }
+}
