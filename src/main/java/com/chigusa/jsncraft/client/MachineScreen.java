@@ -82,7 +82,7 @@ public class MachineScreen extends AbstractContainerScreen<MachineMenu> {
         else s = "§7多めに取れる ×" + String.format("%.2f", menu.bonusPercent() / 100.0);
         g.drawString(font, s, imageWidth - 8 - font.width(s.replaceAll("§.", "")), 6, 0xFFFFFF, false);
         g.drawString(font, switch (k) {
-            case BIG_FURNACE -> "鉱石・原石は多めに";
+            case BIG_FURNACE -> "鉱石・原石・砂は多めに";
             case COKE_OVEN -> "石炭→コークス／石→石炭";
             case SAWMILL -> "原木・竹→板（多めに）";
         }, 8, 40, 0xFFD8D8D8, false);

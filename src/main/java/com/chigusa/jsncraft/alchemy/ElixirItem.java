@@ -111,6 +111,7 @@ public class ElixirItem extends Item {
         for (String ex : d.extras()) {
             Elixirs.Additive a = Elixirs.additive(ex);
             if (a != null) tip.add(Component.literal("＋" + a.desc()).withStyle(ChatFormatting.DARK_AQUA));
+            else if (PotionUses.isExtra(ex)) tip.add(Component.literal("＋").append(PotionUses.describeExtra(ex)).withStyle(ChatFormatting.DARK_AQUA));
         }
         if (d.form() == ElixirData.THROW) tip.add(Component.literal("右クリックで投げる（当たった周り3ブロックの仲間に効く）").withStyle(ChatFormatting.GRAY));
         if (d.form() == ElixirData.DUST) tip.add(Component.literal("使うと周りの仲間みんなに効く").withStyle(ChatFormatting.GRAY));

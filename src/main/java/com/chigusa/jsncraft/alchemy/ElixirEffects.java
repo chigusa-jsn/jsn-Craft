@@ -60,6 +60,10 @@ public final class ElixirEffects {
                 res.mana = ResourceService.maxMana(target);
             }
             case "recall" -> recall(target);
+            case "xp" -> {
+                target.giveExperiencePoints((int) Math.round(t.amount() * power));
+                level.playSound(null, target.blockPosition(), net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP, net.minecraft.sounds.SoundSource.PLAYERS, 0.8F, 1.0F);
+            }
             default -> {
                 for (Elixirs.Buff b : t.buffs()) {
                     SkillEffects.attributeBuff(target, b.attr(), "elixir_" + t.id() + "_" + b.label().hashCode(), b.amount() * power, b.op(), t.seconds() * time);
@@ -79,6 +83,7 @@ public final class ElixirEffects {
     }
 
     private static void extra(ServerPlayer p, String id) {
+        if (PotionUses.applyExtra(p, id)) return;
         PlayerResources res = ResourceService.get(p);
         switch (id) {
             case "heal" -> p.heal(4);

@@ -90,6 +90,13 @@ public final class AlchemyService {
             ItemStack s = be.get(i);
             if (s.isEmpty()) continue;
             if (i - 2 >= slots) return Brew.of(SLOT_LOCKED, t);
+            if (s.getItem() instanceof net.minecraft.world.item.PotionItem) {
+                List<String> pe = PotionUses.extrasOf(s);
+                if (pe.isEmpty()) return Brew.of(BAD_ADDITIVE, t);
+                for (String e : pe) if (!extras.contains(e)) extras.add(e);
+                max = Math.min(max, s.getCount());
+                continue;
+            }
             Elixirs.Additive a = Elixirs.byAdditive(s.getItem());
             if (a == null) return Brew.of(BAD_ADDITIVE, t);
             max = Math.min(max, s.getCount());

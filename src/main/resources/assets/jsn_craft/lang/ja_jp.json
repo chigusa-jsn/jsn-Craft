@@ -922,5 +922,6 @@
   "item.jsn_craft.orb_opal_2": "オパールの宝珠",
   "item.jsn_craft.orb_opal_3": "オパールの大宝珠",
   "item.jsn_craft.orb_tweezers": "宝珠ばさみ",
-  "block.jsn_craft.select_enchant_table": "選べる付与台"
+  "block.jsn_craft.select_enchant_table": "選べる付与台",
+  "item.jsn_craft.elixir_xp": "経験値の薬"
 }

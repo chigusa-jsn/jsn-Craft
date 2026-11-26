@@ -139,7 +139,12 @@ public class MachineBlockEntity extends BlockEntity {
 
     /** 多めに取れる物か（大きい炉は鉱石・原石だけ、コークス炉は全部） */
     private static boolean bonusApplies(MachineKind kind, ItemStack in) {
-        return kind != MachineKind.BIG_FURNACE || in.is(RAW) || in.is(ORES) || in.is(Items.ANCIENT_DEBRIS);
+        return kind != MachineKind.BIG_FURNACE || in.is(RAW) || in.is(ORES) || in.is(Items.ANCIENT_DEBRIS) || isSand(in);
+    }
+
+    /** 砂：大きい炉ではガラスがたくさん取れる（腕の倍率 ×1.5） */
+    private static boolean isSand(ItemStack in) {
+        return in.is(net.minecraft.tags.ItemTags.SMELTS_TO_GLASS);
     }
 
     public static void serverTick(Level lv, BlockPos pos, BlockState state, MachineBlockEntity be) {
@@ -174,7 +179,7 @@ public class MachineBlockEntity extends BlockEntity {
         int n = out.getCount();
         double sf = kind == MachineKind.COKE_OVEN ? stoneFactor(in) : 0;
         if (bonusApplies(kind, in)) {
-            double total = n * kind.bonus(be.jobLevel) * (sf > 0 ? sf : 1);
+            double total = n * kind.bonus(be.jobLevel) * (sf > 0 ? sf : 1) * (kind == MachineKind.BIG_FURNACE && isSand(in) ? 1.5 : 1);
             n = (int) Math.floor(total);
             if (lv.random.nextDouble() < total - n) n++;
         }

@@ -103,6 +103,7 @@ public final class Elixirs {
                 pct(ModAttributes.JOB_XP_BONUS, 0.2, "職業経験値"));
         type("luck", "豪運の薬", "豪運の香", () -> Items.RABBIT_FOOT, 30, 0x50E050, "buff", 0, 300,
                 add(Attributes.LUCK, 3, "幸運"), pct(ModAttributes.HARVEST_FORTUNE, 0.2, "収穫の幸運"));
+        type("xp", "経験値の薬", "経験値の香", () -> Items.LAPIS_LAZULI, 10, 0x9AF040, "xp", 30, 0);
         type("recall", "帰還薬", "", () -> Items.ENDER_PEARL, 25, 0x20A0A0, "recall", 0, 0);
 
         // ---- 追加素材 ----
@@ -178,6 +179,7 @@ public final class Elixirs {
                 out.add("HP・スタミナ・マナを全回復");
                 out.add("最大HP +" + num(t.amount() * power) + "（" + time(t.seconds() * time) + "）");
             }
+            case "xp" -> out.add("経験値を" + num(Math.round(t.amount() * power)) + "もらえる");
             case "recall" -> out.add("ベッド（なければ初めの場所）に帰る");
             default -> {
                 for (Buff b : t.buffs()) {

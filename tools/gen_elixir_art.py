@@ -12,7 +12,7 @@ OUT = os.path.join(ROOT, "src/main/resources/assets/jsn_craft/textures/item/elix
 TYPES = [("heal", 0xE03040), ("stamina", 0xF0B020), ("mana", 0x4080F0), ("cure", 0xA060E0), ("great_heal", 0xFF5070),
          ("elixir", 0xFF80C0), ("ancient", 0xFFD040), ("swift", 0x80E0F0), ("might", 0xD03010), ("armor", 0x8A8A9A),
          ("runner", 0xF0D040), ("crit", 0xE8E8F0), ("arcane", 0xB070F0), ("focus", 0x6A4020), ("miner", 0xC08040),
-         ("angler", 0x30A080), ("training", 0x40D060), ("luck", 0x50E050), ("recall", 0x20A0A0)]
+         ("angler", 0x30A080), ("training", 0x40D060), ("luck", 0x50E050), ("xp", 0x9AF040), ("recall", 0x20A0A0)]
 
 def rgb(c): return ((c >> 16) & 255, (c >> 8) & 255, c & 255, 255)
 def mix(a, b, t): return tuple(int(a[i] * (1 - t) + b[i] * t) for i in range(3)) + (255,)
