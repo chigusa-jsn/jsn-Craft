@@ -129,13 +129,35 @@ public final class PotionUses {
         if (event.getClickAction() != ClickAction.SECONDARY) return;
         ItemStack potion = event.getCarriedItem(), weapon = event.getStackedOnItem();
         if (!(potion.getItem() instanceof PotionItem) || !coatable(weapon)) return;
-        List<MobEffectInstance> list = harmful(potion);
-        Player player = event.getPlayer();
         event.setCanceled(true);
-        if (!(player instanceof ServerPlayer sp)) return;
+        if (event.getPlayer() instanceof ServerPlayer sp && applyCoat(sp, potion, weapon)) event.getSlot().setChanged();
+    }
+
+    /**
+     * オフハンドにポーション、メインハンドに近接武器を持って右クリックでも塗れる。
+     * （右クリックで自分の動きがある武器＝槍などは、しゃがみながら右クリック）
+     */
+    @SubscribeEvent
+    public static void onRightClick(net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickItem event) {
+        Player player = event.getEntity();
+        ItemStack weapon = player.getMainHandItem(), potion = player.getOffhandItem();
+        if (!(potion.getItem() instanceof PotionItem) || !coatable(weapon)) return;
+        boolean ownUse = weapon.getUseAnimation() != net.minecraft.world.item.UseAnim.NONE;
+        if (ownUse && !player.isShiftKeyDown()) return;
+        // メインの右クリックで塗る。オフハンドのポーションを飲むのは止める
+        event.setCanceled(true);
+        event.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
+        if (event.getHand() != net.minecraft.world.InteractionHand.MAIN_HAND) return;
+        if (player instanceof ServerPlayer sp) applyCoat(sp, potion, weapon);
+        else player.swing(net.minecraft.world.InteractionHand.MAIN_HAND);
+    }
+
+    /** ポーションを1本使って武器に塗る。塗れたら true */
+    public static boolean applyCoat(ServerPlayer sp, ItemStack potion, ItemStack weapon) {
+        List<MobEffectInstance> list = harmful(potion);
         if (list.isEmpty()) {
             sp.displayClientMessage(Component.literal("武器に塗れるのは、毒や弱化など悪い効果のポーションだけ").withStyle(ChatFormatting.RED), true);
-            return;
+            return false;
         }
         int charges = AlchemyService.alchemyLevel(sp) >= 0 ? CHARGES_ALCHEMIST : CHARGES;
         CompoundTag c = new CompoundTag();
@@ -150,12 +172,13 @@ public final class PotionUses {
         c.put("effects", effs);
         c.putInt("charges", charges);
         CustomData.update(DataComponents.CUSTOM_DATA, weapon, root -> root.put(COAT, c));
-        event.getSlot().setChanged();
         potion.shrink(1);
         ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
         if (!sp.getInventory().add(bottle)) sp.drop(bottle, false);
         sp.serverLevel().playSound(null, sp.blockPosition(), SoundEvents.BREWING_STAND_BREW, SoundSource.PLAYERS, 0.7F, 1.4F);
+        sp.serverLevel().sendParticles(net.minecraft.core.particles.ParticleTypes.ITEM_SLIME, sp.getX(), sp.getY() + 1.1, sp.getZ(), 6, 0.2, 0.2, 0.2, 0.02);
         sp.displayClientMessage(Component.literal("武器にポーションを塗った！（" + charges + " 回）").withStyle(ChatFormatting.DARK_GREEN), true);
+        return true;
     }
 
     private static CompoundTag coat(ItemStack weapon) {
@@ -210,7 +233,7 @@ public final class PotionUses {
             List<Component> tip = event.getToolTip();
             if (st.getItem() instanceof PotionItem && !extrasOf(st).isEmpty()) {
                 tip.add(Component.literal("調合台の追加素材に入れると、薬にこの効果が付く（時間 ×1.5）").withStyle(ChatFormatting.DARK_AQUA));
-                if (!harmful(st).isEmpty()) tip.add(Component.literal("持って近接武器の上で右クリック：武器に塗る").withStyle(ChatFormatting.DARK_GREEN));
+                if (!harmful(st).isEmpty()) tip.add(Component.literal("持って近接武器の上で右クリック、またはオフハンドに持って武器で右クリック：武器に塗る").withStyle(ChatFormatting.DARK_GREEN));
                 return;
             }
             CompoundTag c = coat(st);
