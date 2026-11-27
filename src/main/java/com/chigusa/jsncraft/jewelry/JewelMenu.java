@@ -19,8 +19,8 @@ import org.jetbrains.annotations.Nullable;
  * data：0 選んだ種類 / 1 選んだ特別 / 2 細工の腕 / 3〜6 状態（作る・研磨・はめ込み・特別）/ 7 宝飾師か
  */
 public class JewelMenu extends AbstractContainerMenu {
-    public static final int BTN_MAKE = 0, BTN_POLISH = 1, BTN_SOCKET = 2, BTN_UNIQUE = 3, BTN_KIND = 100, BTN_PICK_UNIQUE = 200;
-    private static final int COUNT = 8;
+    public static final int BTN_MAKE = 0, BTN_POLISH = 1, BTN_SOCKET = 2, BTN_UNIQUE = 3, BTN_UNSOCKET = 4, BTN_KIND = 100, BTN_PICK_UNIQUE = 200;
+    private static final int COUNT = 9;
 
     private final Container container;
     private final ContainerData data;
@@ -53,6 +53,7 @@ public class JewelMenu extends AbstractContainerMenu {
                     case 5 -> JewelryService.checkSocket(sp, be);
                     case 6 -> JewelryService.checkUnique(sp, be, unique >= 0 ? Jewels.UNIQUES.get(unique) : null);
                     case 7 -> JewelryService.isMaster(sp) ? 1 : 0;
+                    case 8 -> JewelryService.checkUnsocket(sp, be);
                     default -> 0;
                 };
             }
@@ -79,6 +80,7 @@ public class JewelMenu extends AbstractContainerMenu {
     public int jewelLevel() { return data.get(2); }
     public int status(int mode) { return data.get(3 + mode); }
     public boolean master() { return data.get(7) == 1; }
+    public int unsocketStatus() { return data.get(8); }
 
     public ItemStack slotItem(int i) {
         return container.getItem(i);
@@ -101,6 +103,7 @@ public class JewelMenu extends AbstractContainerMenu {
             case BTN_MAKE -> kind >= 0 && JewelryService.make(sp, be, Jewels.KINDS.get(kind));
             case BTN_POLISH -> JewelryService.polish(sp, be);
             case BTN_SOCKET -> JewelryService.socket(sp, be);
+            case BTN_UNSOCKET -> JewelryService.unsocket(sp, be);
             case BTN_UNIQUE -> unique >= 0 && JewelryService.makeUnique(sp, be, Jewels.UNIQUES.get(unique));
             default -> false;
         };
@@ -114,7 +117,7 @@ public class JewelMenu extends AbstractContainerMenu {
         ItemStack copy = stack.copy();
         if (index < 4) {
             if (!moveItemStackTo(stack, 4, slots.size(), true)) return ItemStack.EMPTY;
-        } else if (ModJewelry.gemOf(stack.getItem(), false) != null) {
+        } else if (ModJewelry.gemOf(stack.getItem(), false) != null || stack.getItem() instanceof OrbItem) {
             if (!moveItemStackTo(stack, 1, 4, false)) return ItemStack.EMPTY;
         } else {
             if (!moveItemStackTo(stack, 0, 1, false)) return ItemStack.EMPTY;

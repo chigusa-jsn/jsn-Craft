@@ -37,7 +37,8 @@ public final class JewelryService {
 
     public static final int OK = 0, NOT_JEWELER = 1, NO_SELECT = 2, NO_METAL = 3, BAD_METAL = 4, LEVEL_LOW = 5,
             TOO_MANY_GEMS = 6, BAD_GEM = 7, NO_RAW = 8, NO_JEWELRY = 9, NOT_MASTER = 10, NO_MATERIAL = 11,
-            NEED_SKILL = 12, NOT_ENOUGH_METAL = 13, UNIQUE_ITEM = 14;
+            NEED_SKILL = 12, NOT_ENOUGH_METAL = 13, UNIQUE_ITEM = 14,
+            NO_ORB = 15, BAD_ORB = 16, NOTHING_TO_REMOVE = 17;
 
     // ================= 職業 =================
 
@@ -175,20 +176,48 @@ public final class JewelryService {
 
     // ================= はめ込み（付け替え・取り外し） =================
 
+    /** 細工台に置いた装備（宝珠をはめられる防具）か */
+    private static boolean isArmor(ItemStack s) {
+        return !s.isEmpty() && !(s.getItem() instanceof JewelryItem) && Orbs.socketable(s);
+    }
+
     public static int checkSocket(ServerPlayer player, JewelTableBlockEntity be) {
-        if (jewelLevel(player) < 0) return NOT_JEWELER;
+        int lv = jewelLevel(player);
+        if (lv < 0) return NOT_JEWELER;
         ItemStack j = be.get(0);
+        if (isArmor(j)) {
+            if (!be.get(2).isEmpty() || !be.get(3).isEmpty()) return BAD_ORB;
+            ItemStack o = be.get(1);
+            if (o.isEmpty()) return NO_ORB;
+            if (!(o.getItem() instanceof OrbItem orb)) return BAD_ORB;
+            if (orb.grade > Orbs.maxGrade(lv)) return LEVEL_LOW;
+            return OK;
+        }
         if (!(j.getItem() instanceof JewelryItem item)) return NO_JEWELRY;
         if (item.unique() != null) return UNIQUE_ITEM;
         List<String> gems = gemsIn(be);
         if (gems == null) return BAD_GEM;
+        if (gems.isEmpty()) return NO_SELECT;
         if (gems.size() > item.data(j).sockets()) return TOO_MANY_GEMS;
         return OK;
     }
 
+    /** はめ込む：置いた宝石（装飾品）か宝珠（装備）をはめる。前にはまっていた物は手元に戻る */
     public static boolean socket(ServerPlayer player, JewelTableBlockEntity be) {
         if (checkSocket(player, be) != OK) return false;
         ItemStack j = be.get(0);
+        if (isArmor(j)) {
+            OrbItem orb = (OrbItem) be.get(1).getItem();
+            OrbItem old = Orbs.orbOf(j);
+            if (old != null) give(player, new ItemStack(old));
+            Orbs.setOrb(j, orb);
+            be.get(1).shrink(1);
+            be.setChanged();
+            effects(player, be.getBlockPos(), false);
+            player.displayClientMessage(Component.literal("宝珠をはめ込んだ：" + orb.gem.name() + "の" + Orbs.GRADE_NAME[orb.grade - 1]).withStyle(ChatFormatting.LIGHT_PURPLE), true);
+            JobService.onAction(player, rule -> rule.action().equals("jewel"), 2 + orb.grade);
+            return true;
+        }
         JewelryItem item = (JewelryItem) j.getItem();
         JewelData d = item.data(j);
         List<String> gems = gemsIn(be);
@@ -197,8 +226,37 @@ public final class JewelryService {
         d.withGems(gems).write(j);
         be.setChanged();
         effects(player, be.getBlockPos(), false);
-        player.displayClientMessage(Component.literal(gems.isEmpty() ? "宝石を外した" : "宝石をはめ込んだ").withStyle(ChatFormatting.AQUA), true);
+        player.displayClientMessage(Component.literal("宝石をはめ込んだ").withStyle(ChatFormatting.AQUA), true);
         JobService.onAction(player, rule -> rule.action().equals("jewel"), 2 + gems.size());
+        return true;
+    }
+
+    public static int checkUnsocket(ServerPlayer player, JewelTableBlockEntity be) {
+        if (jewelLevel(player) < 0) return NOT_JEWELER;
+        ItemStack j = be.get(0);
+        if (isArmor(j)) return Orbs.orbOf(j) != null ? OK : NOTHING_TO_REMOVE;
+        if (!(j.getItem() instanceof JewelryItem item)) return NO_JEWELRY;
+        if (item.unique() != null) return UNIQUE_ITEM;
+        return item.data(j).gems().isEmpty() ? NOTHING_TO_REMOVE : OK;
+    }
+
+    /** 外す：はまっている宝石・宝珠を全部外して、手元に戻す */
+    public static boolean unsocket(ServerPlayer player, JewelTableBlockEntity be) {
+        if (checkUnsocket(player, be) != OK) return false;
+        ItemStack j = be.get(0);
+        if (isArmor(j)) {
+            OrbItem old = Orbs.orbOf(j);
+            give(player, new ItemStack(old));
+            Orbs.setOrb(j, null);
+        } else {
+            JewelryItem item = (JewelryItem) j.getItem();
+            JewelData d = item.data(j);
+            for (String old : d.gems()) give(player, new ItemStack(ModJewelry.GEMS.get(Jewels.gem(old).index()).get()));
+            d.withGems(List.of()).write(j);
+        }
+        be.setChanged();
+        player.serverLevel().playSound(null, be.getBlockPos(), net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_HIT, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.2F);
+        player.displayClientMessage(Component.literal("外して、手元に戻した").withStyle(ChatFormatting.AQUA), true);
         return true;
     }
 

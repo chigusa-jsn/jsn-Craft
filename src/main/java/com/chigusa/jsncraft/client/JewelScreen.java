@@ -4,6 +4,8 @@ import com.chigusa.jsncraft.JsnCraft;
 import com.chigusa.jsncraft.jewelry.JewelData;
 import com.chigusa.jsncraft.jewelry.JewelMenu;
 import com.chigusa.jsncraft.jewelry.JewelryItem;
+import com.chigusa.jsncraft.jewelry.OrbItem;
+import com.chigusa.jsncraft.jewelry.Orbs;
 import com.chigusa.jsncraft.jewelry.JewelryService;
 import com.chigusa.jsncraft.jewelry.Jewels;
 import com.chigusa.jsncraft.jewelry.ModJewelry;
@@ -37,7 +39,7 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
 
     private int mode = 0, scroll = 0;
     private final Button[] tabs = new Button[4];
-    private Button action;
+    private Button action, remove;
 
     public JewelScreen(JewelMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
@@ -58,6 +60,8 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         }
         action = addRenderableWidget(Button.builder(Component.literal(ACTIONS[0]), b -> click(BUTTONS[mode]))
                 .bounds(leftPos + 8, topPos + 123, 110, 15).build());
+        remove = addRenderableWidget(Button.builder(Component.literal("外す"), b -> click(JewelMenu.BTN_UNSOCKET))
+                .bounds(leftPos + 64, topPos + 123, 54, 15).build());
     }
 
     private void click(int id) {
@@ -93,6 +97,9 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         for (int i = 0; i < 4; i++) tabs[i].active = mode != i;
         action.setMessage(Component.literal(ACTIONS[mode]));
         action.active = menu.status(mode) == JewelryService.OK;
+        action.setWidth(mode == 2 ? 54 : 110);
+        remove.visible = mode == 2;
+        remove.active = menu.unsocketStatus() == JewelryService.OK;
         scroll = Math.max(0, Math.min(scroll, rows().size() - ROWS));
     }
 
@@ -104,7 +111,8 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         g.fill(x + 4, y + 22, x + 120, y + 141, 0xFF26343F);
         g.fill(x + LIST_X - 2, y + LIST_Y - 2, x + LIST_X + LIST_W + 2, y + LIST_Y + ROW * ROWS + 2, 0xFF1A2430);
         for (Slot s : menu.slots) {
-            boolean unused = (mode == 1 && s.index >= 1 && s.index <= 3) || (mode == 3 && s.index >= 2 && s.index <= 3);
+            boolean armor = mode == 2 && isArmor(menu.slotItem(0));
+            boolean unused = (mode == 1 && s.index >= 1 && s.index <= 3) || (mode == 3 && s.index >= 2 && s.index <= 3) || (armor && s.index >= 2 && s.index <= 3);
             int c = s.index == 0 ? 0xFFC8A050 : s.index <= 3 ? (unused ? 0xFF2A3440 : 0xFF50B0D0) : 0xFF1E2A36;
             g.fill(x + s.x - 1, y + s.y - 1, x + s.x + 17, y + s.y + 17, c);
             g.fill(x + s.x, y + s.y, x + s.x + 16, y + s.y + 16, unused ? 0xFF3A4450 : 0xFF7A8490);
@@ -112,11 +120,12 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         String label0 = switch (mode) {
             case 0 -> "台座の金属";
             case 1 -> "原石";
-            case 2 -> "装飾品";
+            case 2 -> "装飾品・装備";
             default -> "素材A";
         };
         g.drawString(font, label0, x + 36, y + 28, 0xFFE0D0A0, false);
-        g.drawString(font, mode == 3 ? "↑素材B" : mode == 1 ? "" : "宝石", x + 72, y + 56, 0xFFA0D8F0, false);
+        String label1 = mode == 3 ? "↑素材B" : mode == 1 ? "" : mode == 2 && isArmor(menu.slotItem(0)) ? "←宝珠" : mode == 2 ? "宝石・宝珠" : "宝石";
+        g.drawString(font, label1, x + (mode == 2 && isArmor(menu.slotItem(0)) ? 36 : 72), y + 56, 0xFFA0D8F0, false);
 
         int ly = y + LIST_Y;
         List<Integer> rows = rows();
@@ -210,12 +219,19 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
                 if (gem != null) lines.add(Component.literal(gem.name() + "の原石×" + menu.slotItem(0).getCount() + " を磨く").withStyle(ChatFormatting.AQUA));
             }
             case 2 -> {
-                if (menu.slotItem(0).getItem() instanceof JewelryItem j && j.unique() == null) {
-                    JewelData d = j.data(menu.slotItem(0));
-                    lines.add(Component.literal("今：" + names(d.gems())).withStyle(ChatFormatting.GRAY));
+                ItemStack st0 = menu.slotItem(0);
+                if (st0.getItem() instanceof JewelryItem j && j.unique() == null) {
+                    JewelData d = j.data(st0);
+                    lines.add(Component.literal("今：" + names(d.gems()) + "（穴" + d.sockets() + "）").withStyle(ChatFormatting.GRAY));
                     List<String> now = gemsInSlots();
-                    lines.add(Component.literal("→ " + (now.isEmpty() ? "宝石を外す" : names(now))).withStyle(ChatFormatting.AQUA));
-                    lines.add(Component.literal("外した宝石は手元に戻る").withStyle(ChatFormatting.DARK_GRAY));
+                    if (!now.isEmpty()) lines.add(Component.literal("→ " + names(now)).withStyle(ChatFormatting.AQUA));
+                    lines.add(Component.literal("前の宝石は手元に戻る").withStyle(ChatFormatting.DARK_GRAY));
+                } else if (isArmor(st0)) {
+                    OrbItem cur = Orbs.orbOf(st0);
+                    lines.add(Component.literal("今：" + (cur == null ? "なし" : cur.gem.name() + "の" + Orbs.GRADE_NAME[cur.grade - 1])).withStyle(ChatFormatting.GRAY));
+                    if (menu.slotItem(1).getItem() instanceof OrbItem o)
+                        lines.add(Component.literal("→ " + o.gem.name() + "の" + Orbs.GRADE_NAME[o.grade - 1]).withStyle(ChatFormatting.LIGHT_PURPLE));
+                    lines.add(Component.literal("前の宝珠は手元に戻る").withStyle(ChatFormatting.DARK_GRAY));
                 }
             }
             default -> {
@@ -243,6 +259,10 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
         }
     }
 
+    private static boolean isArmor(ItemStack s) {
+        return !s.isEmpty() && !(s.getItem() instanceof JewelryItem) && Orbs.socketable(s);
+    }
+
     private static String names(List<String> gems) {
         if (gems.isEmpty()) return "なし";
         StringBuilder sb = new StringBuilder();
@@ -259,14 +279,17 @@ public class JewelScreen extends AbstractContainerScreen<JewelMenu> {
                 default -> "§a作れます";
             };
             case JewelryService.NOT_JEWELER -> "§c使えるのは細工師だけです";
-            case JewelryService.NO_SELECT -> mode == 3 ? "§7右の一覧から選ぼう" : "§7右の一覧から種類を選ぼう";
+            case JewelryService.NO_SELECT -> mode == 3 ? "§7右の一覧から選ぼう" : mode == 2 ? "§7はめる宝石を置こう（外すだけなら「外す」）" : "§7右の一覧から種類を選ぼう";
             case JewelryService.NO_METAL -> "§7台座の金属を置こう";
             case JewelryService.BAD_METAL -> "§cこれは台座にならない";
             case JewelryService.LEVEL_LOW -> "§c細工の腕が足りない";
             case JewelryService.TOO_MANY_GEMS -> "§c宝石が穴の数より多い";
             case JewelryService.BAD_GEM -> "§c宝石の枠には磨いた宝石だけ";
             case JewelryService.NO_RAW -> "§7原石を置こう";
-            case JewelryService.NO_JEWELRY -> "§7装飾品を置こう（宝石なしで外す）";
+            case JewelryService.NO_JEWELRY -> "§7装飾品か装備を置こう";
+            case JewelryService.NO_ORB -> "§7宝珠を置こう（外すだけなら「外す」）";
+            case JewelryService.BAD_ORB -> "§c装備には宝珠を1つだけ";
+            case JewelryService.NOTHING_TO_REMOVE -> "§7外す物がない";
             case JewelryService.NOT_MASTER -> "§c特別な装飾品は宝飾師だけ";
             case JewelryService.NO_MATERIAL -> "§7素材A・Bを置こう";
             case JewelryService.NEED_SKILL -> "§cスキル「至宝の細工」が必要";
